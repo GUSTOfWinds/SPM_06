@@ -12,30 +12,45 @@ public class MainMenuButtonManager : MonoBehaviour
     [SerializeField] private Text chosenName;
     [SerializeField] private Image displayedImage;
     [SerializeField] private GameObject player;
-    
+    public Animator animator;
+    public UnityEngine.UI.Text settingButton;
+
     // opens player customization page
     public void NewGame()
     {
         customizationScreen.SetActive(true);
     }
-    
+
     // loads the latest save
-    public void LoadGame() 
+    public void LoadGame()
     {
         print("Load happens now");
     }
-    
+
     // Exits the application
-    public void ExitGame() 
+    public void ExitGame()
     {
         Application.Quit();
     }
-    
+
     // launches a new run of game, ships the current inserted name and the chosen color to the GlobalPlayerInfo container
     public void LaunchGame()
     {
         //GlobalPlayerInfo.SetSkinColor(displayedImage.color);
         //lobalPlayerInfo.SetPlayerName(chosenName.text);
         SceneManager.LoadScene(1);
+    }
+
+    public void Settings()
+    {
+        animator.SetBool("settings", !animator.GetBool("settings"));
+        if (animator.GetBool("settings"))
+        {
+            settingButton.text = "Back";
+        }
+        else
+        {
+            settingButton.text = "Settings";
+        }
     }
 }
