@@ -4,7 +4,6 @@ using UnityEngine;
 using Mirror;
 
 [RequireComponent(typeof(CapsuleCollider))]
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerScript3D : NetworkBehaviour
 {
     [SerializeField] private State[] states;
