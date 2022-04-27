@@ -26,17 +26,16 @@ namespace Event
         IEnumerator DestroyEnemy(UnitDeathEventInfo unitDeathEventInfo)
         {
             float timer = unitDeathEventInfo.RespawnTimer;
-            
-            
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            foreach(GameObject p in players) {
-                p.GetComponent<PlayerActivateEnemyHealthBar>().RemoveHealthBarAtDeath(unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId);
-            }
-
+            uint netIDOfEnemy = unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
             var parent = unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetRespawnParent();
             
+            // Destroys the enemy
             NetworkServer.Destroy(unitDeathEventInfo.EventUnitGo);
-            
+            // Destroys the health bars
+            yield return new WaitForSeconds(0.2f);
+            foreach(GameObject p in GameObject.FindGameObjectsWithTag("Player")) {
+                p.GetComponent<PlayerActivateEnemyHealthBar>().RemoveHealthBarAtDeath(netIDOfEnemy);
+            }
             yield return new WaitForSeconds(timer);
             
             // respawn

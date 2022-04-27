@@ -46,11 +46,12 @@ namespace DefaultNamespace
 
         void FixedUpdate()
         {
+
             if (!isLocalPlayer) return;
             // All enemies detected by the SphereCast
             hits = Physics.SphereCastAll(mainCamera.transform.position, 3,
                 mainCamera.transform.forward, 10, layerMask);
-
+            
             // makes sure that the previousHits array contains objects before iterating through it.
             if (previousHits.Length > 0)
             {
@@ -142,14 +143,16 @@ namespace DefaultNamespace
         // Removes a certain health bar for a certain enemy
         public void RemoveHealthBarAtDeath(uint netID)
         {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
             foreach (var hb in instancesOfEnemyHealthBars)
             {
-                Debug.Log(netID);
                 if (hb.GetComponent<EnemyHealthBar>().GetPersonalNetID() == netID)
                 {
-                    
-                    instancesOfEnemiesSpotted.Remove(netID);
-                    instancesToDisable.Remove(NetworkServer.spawned[netID].gameObject);
+                    //instancesOfEnemiesSpotted.Remove(netID);
+                    //instancesToDisable.Remove(hb);
                     instancesOfEnemyHealthBars.Remove(hb);
                     Destroy(hb);
                     break;
