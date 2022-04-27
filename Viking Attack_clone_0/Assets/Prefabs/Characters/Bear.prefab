@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 4336340493110069652}
   - component: {fileID: 791254781668399720}
   - component: {fileID: 4684018865620026954}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Bear
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -151,20 +151,10 @@ MonoBehaviour:
   patrolRange: 30
   groundCheck: {fileID: 6653956863877352429}
   detectScopeRadius: 10
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  player: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
-  globalPlayerInfo: {fileID: 0}
-  range: 0
-  attackCooldown: 0
-  damage: 0
-  cooldown: 0
-  characterBase: {fileID: 11400000, guid: 7480ad8c232b0b543a9379e72628b8aa, type: 2}
   chasingSpeedMultiplier: 0
   moveSpeed: 0
-  health: 0
-  maxHealth: 0
+  characterBase: {fileID: 11400000, guid: 7480ad8c232b0b543a9379e72628b8aa, type: 2}
+  syncPosition: {x: 0, y: 0, z: 0}
   syncRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &-6392840626969825405
 MonoBehaviour:
@@ -215,7 +205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d400a614d43e2b948a26d97146aebb23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bar: {fileID: 0}
 --- !u!114 &4336340493110069652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +221,8 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyHealthBarController: {fileID: 666273781339074935}
   characterBase: {fileID: 11400000, guid: 7480ad8c232b0b543a9379e72628b8aa, type: 2}
+  waitTime: 5
+  hasDied: 0
   currentHealth: 100
 --- !u!114 &791254781668399720
 MonoBehaviour:
@@ -262,7 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d400a614d43e2b948a26d97146aebb23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bar: {fileID: 0}
 --- !u!1 &6653956863877352429
 GameObject:
   m_ObjectHideFlags: 0

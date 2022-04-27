@@ -18,6 +18,7 @@ namespace DefaultNamespace
         [SerializeField] private float health;
         [SerializeField] public float maxHealth;
         private bool hasHealthBarShown;
+        private Transform respawnParent;
 
         private void Awake()
         {
@@ -42,6 +43,16 @@ namespace DefaultNamespace
         public bool CheckHealthBarStatus()
         {
             return hasHealthBarShown;
+        }
+
+        public void SetRespawnAnchor(Transform p)
+        {
+            respawnParent = p;
+        }
+
+        public Transform GetRespawnParent()
+        {
+            return respawnParent;
         }
 
         public void SetHealthBarStatus(bool b)

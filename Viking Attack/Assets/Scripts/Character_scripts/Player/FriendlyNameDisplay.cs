@@ -1,8 +1,7 @@
-using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FriendlyNameDisplay : NetworkBehaviour
+public class FriendlyNameDisplay : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private Text text;
@@ -25,27 +24,16 @@ public class FriendlyNameDisplay : NetworkBehaviour
 
     }
 
-    public uint GetPersonalInstanceID()
+    public uint GetPersonalNetID()
     {
         return netIDOfSpottedPlayer;
     }
     
-    // public void Setup(Transform parent, Transform player, GlobalPlayerInfo playerInfo, Camera mainCam)
-    // {
-    //     Debug.Log(gameObject.GetInstanceID());
-    //     transform.SetParent(parent.Find("UI"));
-    //     nameSource = player.gameObject;
-    //     target = player.Find("Overhead").gameObject.transform;
-    //     instanceID = player.gameObject.GetInstanceID();
-    //     text.text = playerInfo.GetName();
-    //     mainCamera = mainCam;
-    // }
-
-    public void Setup(Transform parent, uint spottedPlayerNetID, Camera mainCam)
+    public void Setup(Transform parent, uint spottedPlayerNetID, GameObject spottedPlayer, Camera mainCam)
     {
         transform.SetParent(parent.Find("UI"));
-        nameSource = NetworkServer.spawned[spottedPlayerNetID].gameObject;
-        target = nameSource.transform;
+        nameSource = spottedPlayer;
+        target = nameSource.transform.Find("Overhead");
         netIDOfSpottedPlayer = spottedPlayerNetID;
         text.text = nameSource.GetComponent<GlobalPlayerInfo>().GetName();
         mainCamera = mainCam;
