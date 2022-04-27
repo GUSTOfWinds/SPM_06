@@ -23,7 +23,7 @@ namespace DefaultNamespace
         // the previous hits by the spherecast, used for comparison to determine what objects to enable and disable
         private RaycastHit[] previousHits;
 
-        // The instanceIDs of all enemies spotted in each frame
+        // The netIDs of all enemies spotted in each frame
         private List<uint> instancesOfEnemiesSpotted;
 
         // All Enemy health bars that exist and belong to an enemy
@@ -56,18 +56,21 @@ namespace DefaultNamespace
             {
                 foreach (var previousHit in previousHits) // loops through all hits in the previous frame
                 {
-                    // checks if the previousHit shouldn't have the health bar left
-                    bool shouldDisable = CheckForHit(previousHit.collider.transform.gameObject
-                        .GetComponent<NetworkIdentity>().netId);
-
-                    if (shouldDisable)
+                    if (previousHit.collider)
                     {
-                        foreach (GameObject go in instancesOfEnemyHealthBars)
+                        // checks if the previousHit shouldn't have the health bar left
+                        bool shouldDisable = CheckForHit(previousHit.collider.transform.gameObject
+                            .GetComponent<NetworkIdentity>().netId);
+
+                        if (shouldDisable)
                         {
-                            if (previousHit.transform.gameObject.GetInstanceID() ==
-                                go.GetComponent<EnemyHealthBar>().GetPersonalNetID())
+                            foreach (GameObject go in instancesOfEnemyHealthBars)
                             {
-                                instancesToDisable.Add(go);
+                                if (previousHit.transform.gameObject.GetComponent<NetworkIdentity>().netId ==
+                                    go.GetComponent<EnemyHealthBar>().GetPersonalNetID())
+                                {
+                                    instancesToDisable.Add(go);
+                                }
                             }
                         }
                     }
@@ -97,7 +100,7 @@ namespace DefaultNamespace
                     foreach (var healthBar in instancesOfEnemyHealthBars)
                     {
                         //  Will set the found healthBar to active if it already exists, else a new one will be created
-                        if (hit.collider.gameObject.GetInstanceID() ==
+                        if (hit.collider.gameObject.GetComponent<NetworkIdentity>().netId ==
                             healthBar.gameObject.GetComponent<EnemyHealthBar>().GetPersonalNetID())
                         {
                             healthBar.SetActive(true);
@@ -139,21 +142,22 @@ namespace DefaultNamespace
         // Removes a certain health bar for a certain enemy
         public void RemoveHealthBarAtDeath(uint netID)
         {
-            
             foreach (var hb in instancesOfEnemyHealthBars)
             {
+                Debug.Log(netID);
                 if (hb.GetComponent<EnemyHealthBar>().GetPersonalNetID() == netID)
                 {
+                    
                     instancesOfEnemiesSpotted.Remove(netID);
-                    instancesToDisable.Remove(NetworkIdentity.spawned[netID].gameObject);
-                    instancesOfEnemyHealthBars.Remove(NetworkIdentity.spawned[netID].gameObject);
+                    instancesToDisable.Remove(NetworkServer.spawned[netID].gameObject);
+                    instancesOfEnemyHealthBars.Remove(hb);
                     Destroy(hb);
                     break;
                 }
             }
         }
 
-        // Checks for an instance ID clash 
+        // Checks for an net ID clash 
         private bool CheckForHit(uint previousHit)
         {
             if (hits.Length > 0)

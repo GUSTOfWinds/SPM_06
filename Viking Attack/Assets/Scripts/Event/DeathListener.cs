@@ -32,13 +32,15 @@ namespace Event
             foreach(GameObject p in players) {
                 p.GetComponent<PlayerActivateEnemyHealthBar>().RemoveHealthBarAtDeath(unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId);
             }
+
+            var parent = unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetRespawnParent();
             
             NetworkServer.Destroy(unitDeathEventInfo.EventUnitGo);
             
             yield return new WaitForSeconds(timer);
             
             // respawn
-            gameObject.GetComponent<EnemySpawner>().EnemySpawn();
+            parent.GetComponent<EnemySpawner>().EnemySpawn();
         }
     }
 
