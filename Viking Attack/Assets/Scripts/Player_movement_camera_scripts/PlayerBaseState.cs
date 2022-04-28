@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 [CreateAssetMenu(menuName = "PlayerState/BaseState")]
 //Used as a state when the player does nothing
 public class PlayerBaseState : PlayerState
@@ -11,12 +12,12 @@ public class PlayerBaseState : PlayerState
     }
     public override void Update()
     {
-
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Player.jump)
         {
+            Player.jump = false;
             stateMachine.ChangeState<PlayerJumpState>();
         }
-        if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        if(Player.movementKeyInfo.ReadValue<Vector2>() != Vector2.zero)
         {
             stateMachine.ChangeState<PlayerRunState>();
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Mirror;
 
 [CreateAssetMenu(menuName = "PlayerState/RunState")]
@@ -8,17 +9,14 @@ using Mirror;
 public class PlayerRunState : PlayerState
 {
     private Vector3 input;
-
-    public override void Enter()
+    public override void Exit()
     {
-
+        
     }
-
     public override void Update()
     {
-
-        //get player input
-        input = Vector3.right * Input.GetAxisRaw("Horizontal") + Vector3.forward * Input.GetAxisRaw("Vertical");
+        Vector2 inputMovement = Player.movementKeyInfo.ReadValue<Vector2>();
+        input = new Vector3(inputMovement.x, 0, inputMovement.y);
         input = GameObject.FindGameObjectWithTag("CameraMain").transform.rotation * input; 
         input = Vector3.ProjectOnPlane(input, Player.MyRigidbody3D.Grounded().normal);
         input = input.normalized * Player.acceleration;
@@ -28,13 +26,13 @@ public class PlayerRunState : PlayerState
             input = new Vector3(input.x, 0f, input.z);
         Player.MyRigidbody3D.velocity += input * Player.acceleration;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Player.jump)
+        {
+            Player.jump = false;
             stateMachine.ChangeState<PlayerJumpState>();
-        else if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+        }    
+        else if (Player.movementKeyInfo.ReadValue<Vector2>() == Vector2.zero)
             stateMachine.ChangeState<PlayerBaseState>();
     }
-    public override void Exit()
-    {
-        
-    }
+
 }

@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Mirror;
 using UnityEngine.SceneManagement;
 using Camera = UnityEngine.Camera;
@@ -8,11 +10,25 @@ public class CameraMovement3D : NetworkBehaviour
     [SerializeField]private GameObject firstPersonPosition;
     [SerializeField]private GameObject thirdPersonPosition;
     [SerializeField] float mouseSensitivity = 1;
+    [SerializeField] private bool lockMouse;
     private float rotationX;
     private float rotationY;
     private Vector3 cameraPosition;
-    private Camera mainCamera;    
-    
+    private Camera mainCamera;
+
+    private void Update()
+    {
+        // Just for the testing, allows the player to control if the mouse should be locked
+        if (lockMouse)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
     void Awake()
     {
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
@@ -33,6 +49,11 @@ public class CameraMovement3D : NetworkBehaviour
 
             }
         }
+
+        if (isLocalPlayer)
+        {
+            gameObject.transform.Find("UI").GetComponent<Canvas>().enabled = true;
+        }
     }
 
     public override void OnStopLocalPlayer()
@@ -49,17 +70,6 @@ public class CameraMovement3D : NetworkBehaviour
         }
     }
 
-    void Update()
-    {
-        if (!isLocalPlayer) return;
-        //Sets rotation to camera depending on mouse position and movement
-        rotationX -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
-        rotationY += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
-        rotationX = Mathf.Clamp(rotationX, -89, 89);
-        mainCamera.transform.rotation = Quaternion.Euler(rotationX, rotationY, 0f);
-        
-    }
-
     void LateUpdate()
     {
         if (!isLocalPlayer) return;
@@ -74,5 +84,14 @@ public class CameraMovement3D : NetworkBehaviour
         {
             mainCamera.transform.position = mainCamera.transform.parent.transform.position + cameraOffset;
         }
+    }
+    public void OnMouseMovement(InputAction.CallbackContext value)
+    {
+        if (!isLocalPlayer) return;
+        //Sets rotation to camera depending on mouse position and movement
+        rotationX -= value.ReadValue<Vector2>().y * mouseSensitivity;
+        rotationY += value.ReadValue<Vector2>().x * mouseSensitivity;
+        rotationX = Mathf.Clamp(rotationX, -89, 89);
+        mainCamera.transform.rotation = Quaternion.Euler(rotationX, rotationY, 0f);
     }
 }
