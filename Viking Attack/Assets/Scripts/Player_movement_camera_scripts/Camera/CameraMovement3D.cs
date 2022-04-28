@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Mirror;
 using UnityEngine.SceneManagement;
 using Camera = UnityEngine.Camera;
@@ -49,17 +50,6 @@ public class CameraMovement3D : NetworkBehaviour
         }
     }
 
-    void Update()
-    {
-        if (!isLocalPlayer) return;
-        //Sets rotation to camera depending on mouse position and movement
-        rotationX -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
-        rotationY += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
-        rotationX = Mathf.Clamp(rotationX, -89, 89);
-        mainCamera.transform.rotation = Quaternion.Euler(rotationX, rotationY, 0f);
-        
-    }
-
     void LateUpdate()
     {
         if (!isLocalPlayer) return;
@@ -74,5 +64,14 @@ public class CameraMovement3D : NetworkBehaviour
         {
             mainCamera.transform.position = mainCamera.transform.parent.transform.position + cameraOffset;
         }
+    }
+    public void OnMouseMovement(InputAction.CallbackContext value)
+    {
+        if (!isLocalPlayer) return;
+        //Sets rotation to camera depending on mouse position and movement
+        rotationX -= value.ReadValue<Vector2>().y * mouseSensitivity;
+        rotationY += value.ReadValue<Vector2>().x * mouseSensitivity;
+        rotationX = Mathf.Clamp(rotationX, -89, 89);
+        mainCamera.transform.rotation = Quaternion.Euler(rotationX, rotationY, 0f);
     }
 }

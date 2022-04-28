@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Mirror;
 
 [RequireComponent(typeof(CapsuleCollider))]
@@ -12,6 +13,10 @@ public class PlayerScript3D : NetworkBehaviour
     public float jumpForce = 10f;
     public float acceleration = 10f;
     public bool firstPerson;
+    //KeyInfo variables  start
+    public InputAction.CallbackContext movementKeyInfo;
+    [HideInInspector] public bool jump;
+    //KeyInfo variables  stop
     
     public override void OnStartLocalPlayer()
     {
@@ -35,4 +40,14 @@ public class PlayerScript3D : NetworkBehaviour
     }
     //Returns myRigidbody
     public MyRigidbody3D MyRigidbody3D => myRigidbody;
+    public void OnMovement(InputAction.CallbackContext value)
+    {
+        movementKeyInfo = value;
+    }
+    public void OnJump(InputAction.CallbackContext value)
+    {
+        jump = value.started;
+        jump = !value.canceled;
+        
+    }
 }
