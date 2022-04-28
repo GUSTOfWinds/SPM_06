@@ -31,11 +31,8 @@ namespace Event
             
             // Destroys the enemy
             NetworkServer.Destroy(unitDeathEventInfo.EventUnitGo);
+            
             // Destroys the health bars
-            yield return new WaitForSeconds(0.2f);
-            foreach(GameObject p in GameObject.FindGameObjectsWithTag("Player")) {
-                p.GetComponent<PlayerActivateEnemyHealthBar>().RemoveHealthBarAtDeath(netIDOfEnemy);
-            }
             yield return new WaitForSeconds(timer);
             
             // respawn

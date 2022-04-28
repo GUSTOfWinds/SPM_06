@@ -20,27 +20,23 @@ namespace DefaultNamespace
         // the hits detected by the spherecast
         private RaycastHit[] hits;
 
-        // the previous hits by the spherecast, used for comparison to determine what objects to enable and disable
-        private RaycastHit[] previousHits;
-
         // The netIDs of all enemies spotted in each frame
         private List<uint> instancesOfEnemiesSpotted;
 
+        private List<uint> idsSpottedThisFrame;
+
         // All Enemy health bars that exist and belong to an enemy
         private List<GameObject> instancesOfEnemyHealthBars;
-
-        // Will be updated when health bars are to be deactivated
-        private List<GameObject> instancesToDisable;
+        
 
         private Camera mainCamera;
 
 
         private void Awake()
         {
+            idsSpottedThisFrame = new List<uint>();
             instancesOfEnemiesSpotted = new List<uint>();
             instancesOfEnemyHealthBars = new List<GameObject>();
-            instancesToDisable = new List<GameObject>();
-            previousHits = new RaycastHit[] { };
             mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
         }
 
@@ -51,77 +47,35 @@ namespace DefaultNamespace
             // All enemies detected by the SphereCast
             hits = Physics.SphereCastAll(mainCamera.transform.position, 3,
                 mainCamera.transform.forward, 10, layerMask);
-            
-            // makes sure that the previousHits array contains objects before iterating through it.
-            if (previousHits.Length > 0)
-            {
-                foreach (var previousHit in previousHits) // loops through all hits in the previous frame
-                {
-                    if (previousHit.collider)
-                    {
-                        // checks if the previousHit shouldn't have the health bar left
-                        bool shouldDisable = CheckForHit(previousHit.collider.transform.gameObject
-                            .GetComponent<NetworkIdentity>().netId);
-
-                        if (shouldDisable)
-                        {
-                            foreach (GameObject go in instancesOfEnemyHealthBars)
-                            {
-                                if (previousHit.transform.gameObject.GetComponent<NetworkIdentity>().netId ==
-                                    go.GetComponent<EnemyHealthBar>().GetPersonalNetID())
-                                {
-                                    instancesToDisable.Add(go);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Handles instances of the health bar to remove
-            if (instancesToDisable.Count > 0)
-            {
-                foreach (var goToDisable in instancesToDisable)
-                {
-                    instancesOfEnemiesSpotted.Remove(goToDisable.GetComponent<EnemyHealthBar>().GetPersonalNetID());
-                    goToDisable.SetActive(false);
-                }
-
-                instancesToDisable.Clear(); // clears after the objects have been handled
-            }
 
             // Instantiates an health bar for each enemy in sight if one is missing
             foreach (var hit in hits)
             {
+                idsSpottedThisFrame.Add(hit.transform.GetComponent<NetworkIdentity>().netId);
                 // if the enemy wasn't spotted in the previous frame, will simply update previousHits and move to the next frame
                 if (instancesOfEnemiesSpotted.Contains(hit.transform.gameObject.GetComponent<NetworkIdentity>()
                         .netId) == false)
                 {
-                    bool alreadyExists = false;
-                    foreach (var healthBar in instancesOfEnemyHealthBars)
-                    {
-                        //  Will set the found healthBar to active if it already exists, else a new one will be created
-                        if (hit.collider.gameObject.GetComponent<NetworkIdentity>().netId ==
-                            healthBar.gameObject.GetComponent<EnemyHealthBar>().GetPersonalNetID())
-                        {
-                            healthBar.SetActive(true);
-                            alreadyExists = true;
-                            break;
-                        }
-                    }
-
-                    if (!alreadyExists)
-                    {
-                        GameObject go = SetupHealthBar(hit);
-                        instancesOfEnemyHealthBars.Add(go);
-                    }
-
+                    GameObject go = SetupHealthBar(hit);
+                    instancesOfEnemyHealthBars.Add(go);
+                    
                     // Adds to all enemy instances (saves the instanceID)
                     instancesOfEnemiesSpotted.Add(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
                 }
             }
-
-            previousHits = hits;
+    
+            // Loops through and destroys the healthbars that aren't visible in this frame
+            for (int i = 0; i < instancesOfEnemyHealthBars.Count; i++)
+            {
+                // Checks if the enemy IDS that were spotted this frame exist in all instancesOfenemyHealthbars.
+                if (idsSpottedThisFrame.Contains(instancesOfEnemyHealthBars[i].GetComponent<EnemyHealthBar>().GetPersonalNetID()) == false)
+                {
+                    instancesOfEnemiesSpotted.Remove(instancesOfEnemyHealthBars[i].GetComponent<EnemyHealthBar>().GetPersonalNetID());
+                    Destroy(instancesOfEnemyHealthBars[i]);
+                    instancesOfEnemyHealthBars.Remove(instancesOfEnemyHealthBars[i]);
+                }
+            }
+            idsSpottedThisFrame.Clear();
         }
 
 
@@ -138,44 +92,6 @@ namespace DefaultNamespace
                 , enemy.GetComponent<NetworkIdentity>().netId);
 
             return go;
-        }
-
-        // Removes a certain health bar for a certain enemy
-        public void RemoveHealthBarAtDeath(uint netID)
-        {
-            if (!isLocalPlayer)
-            {
-                return;
-            }
-            foreach (var hb in instancesOfEnemyHealthBars)
-            {
-                if (hb.GetComponent<EnemyHealthBar>().GetPersonalNetID() == netID)
-                {
-                    //instancesOfEnemiesSpotted.Remove(netID);
-                    //instancesToDisable.Remove(hb);
-                    instancesOfEnemyHealthBars.Remove(hb);
-                    Destroy(hb);
-                    break;
-                }
-            }
-        }
-
-        // Checks for an net ID clash 
-        private bool CheckForHit(uint previousHit)
-        {
-            if (hits.Length > 0)
-            {
-                foreach (var hit in hits)
-                {
-                    // Will return false if there is one found
-                    if (hit.collider.transform.gameObject.GetComponent<NetworkIdentity>().netId == previousHit)
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
         }
     }
 }
