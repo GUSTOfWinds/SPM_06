@@ -45,10 +45,9 @@ GameObject:
   - component: {fileID: 6653956862289318911}
   - component: {fileID: -6392840626969825405}
   - component: {fileID: 6653956862289318896}
-  - component: {fileID: 666273781339074935}
   - component: {fileID: 4336340493110069652}
   - component: {fileID: 791254781668399720}
-  - component: {fileID: 4684018865620026954}
+  - component: {fileID: -9188301234470208725}
   m_Layer: 3
   m_Name: Bear
   m_TagString: Enemy
@@ -193,18 +192,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &666273781339074935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6653956862289318906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d400a614d43e2b948a26d97146aebb23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4336340493110069652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,9 +206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyHealthBarController: {fileID: 666273781339074935}
   characterBase: {fileID: 11400000, guid: 7480ad8c232b0b543a9379e72628b8aa, type: 2}
-  waitTime: 5
+  waitTime: 10
   hasDied: 0
   currentHealth: 100
 --- !u!114 &791254781668399720
@@ -241,7 +227,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 80522e53aa967a74bbfe7184b84308dc
   hasSpawned: 0
---- !u!114 &4684018865620026954
+--- !u!114 &-9188301234470208725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,9 +236,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6653956862289318906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d400a614d43e2b948a26d97146aebb23, type: 3}
+  m_Script: {fileID: 11500000, guid: e1d13d7cbdde4148a5b1cad6be81872d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 0
+  attackCooldown: 0
+  damage: 0
+  cooldown: 0
+  characterBase: {fileID: 11400000, guid: 7480ad8c232b0b543a9379e72628b8aa, type: 2}
+  player: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
+  globalPlayerInfo: {fileID: 0}
 --- !u!1 &6653956863877352429
 GameObject:
   m_ObjectHideFlags: 0

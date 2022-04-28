@@ -17,10 +17,8 @@ public class GlobalPlayerInfo : MonoBehaviour
 
     private void Awake()
     {
-        
         health = 100;
         maxHealth = 100;
-        //Cursor.lockState = CursorLockMode.Locked; // Locks the mouse cursor
     }
 
     // Gets called upon during game launch, the main menu sets the player name
