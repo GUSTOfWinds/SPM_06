@@ -32,7 +32,6 @@ public class CameraMovement3D : NetworkBehaviour
     void Awake()
     {
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public override void OnStartLocalPlayer()
@@ -49,6 +48,11 @@ public class CameraMovement3D : NetworkBehaviour
                 cameraPosition = thirdPersonPosition.transform.localPosition;
 
             }
+        }
+
+        if (isLocalPlayer)
+        {
+            gameObject.transform.Find("UI").GetComponent<Canvas>().enabled = true;
         }
     }
 

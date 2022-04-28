@@ -10,7 +10,7 @@ public class PlayerHealthBar : MonoBehaviour
 {
     public Slider healthBar; // the slider 
     [SerializeField] private GlobalPlayerInfo globalPlayerInfo; // contains the global info of the current player
-
+    
     private void Awake()
     {
         healthBar = GetComponent<Slider>();
