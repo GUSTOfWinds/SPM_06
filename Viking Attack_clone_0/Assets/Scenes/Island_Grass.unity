@@ -21521,6 +21521,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
     - target: {fileID: 1078430519148682724, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
+      propertyPath: serverTickRate
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078430519148682724, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: playerSpawnMethod
       value: 0
       objectReference: {fileID: 0}
@@ -21582,7 +21586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1078430519148682731, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: Interval
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}

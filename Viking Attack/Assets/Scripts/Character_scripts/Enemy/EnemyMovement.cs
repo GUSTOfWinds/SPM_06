@@ -52,8 +52,8 @@ public class EnemyMovement : NetworkBehaviour
 
     void Update()
     {
-
-        colliders = Physics.OverlapBox(groundCheck.transform.position, new Vector3(0.1f, 0.1f, 0.1f),
+        if (isServer) {
+                    colliders = Physics.OverlapBox(groundCheck.transform.position, new Vector3(0.1f, 0.1f, 0.1f),
             Quaternion.identity, ground); //Check if we are on the Ground
         if (colliders.Length > 0) //when we find the ground
         {
@@ -110,9 +110,20 @@ public class EnemyMovement : NetworkBehaviour
                     chasingSpeedMultiplier * 1.5f * Time.deltaTime);
             }
         }
-        //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
-        CmdSetSynchedPosition(transform.position);
-        CmdSetSynchedRotation(transform.rotation);
+            //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
+            CmdSetSynchedPosition(transform.position);
+            CmdSetSynchedRotation(transform.rotation);
+        }
+
+    }
+    
+    private void LateUpdate()
+    {
+        if (!isServer)
+        {
+            this.transform.position = syncPosition;
+            this.transform.rotation = syncRotation;
+        }
     }
 
     //Kommandlinjer for att be servern om uppdateringar po rotation och position
@@ -134,16 +145,5 @@ public class EnemyMovement : NetworkBehaviour
                 isChasing = true;
             }
         }
-    }
-
-    void SetPosition(Vector3 pos)
-    {
-        transform.position = pos;
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(transform.position, detectScopeRadius);
     }
 }
