@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Mirror;
@@ -9,14 +10,29 @@ public class CameraMovement3D : NetworkBehaviour
     [SerializeField]private GameObject firstPersonPosition;
     [SerializeField]private GameObject thirdPersonPosition;
     [SerializeField] float mouseSensitivity = 1;
+    [SerializeField] private bool lockMouse;
     private float rotationX;
     private float rotationY;
     private Vector3 cameraPosition;
-    private Camera mainCamera;    
-    
+    private Camera mainCamera;
+
+    private void Update()
+    {
+        // Just for the testing, allows the player to control if the mouse should be locked
+        if (lockMouse)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
     void Awake()
     {
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public override void OnStartLocalPlayer()

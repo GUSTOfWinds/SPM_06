@@ -52,9 +52,11 @@ namespace DefaultNamespace
             {
                 foreach (var previousHit in previousHits)
                 {
-                    if (previousHit.collider.GetComponent<NetworkIdentity>().netId == gameObject.GetComponent<NetworkIdentity>().netId == false)
+                    if (previousHit.collider.GetComponent<NetworkIdentity>().netId ==
+                        gameObject.GetComponent<NetworkIdentity>().netId == false)
                     {
-                        bool shouldDisable = CheckForHit(previousHit.collider.gameObject.GetComponent<NetworkIdentity>().netId);
+                        bool shouldDisable =
+                            CheckForHit(previousHit.collider.gameObject.GetComponent<NetworkIdentity>().netId);
 
                         if (shouldDisable)
                         {
@@ -76,7 +78,7 @@ namespace DefaultNamespace
             {
                 DisableNameInstances();
             }
-            
+
             // Instantiates a player name for each player in sight if one is missing
             CreateAndEnableExistingNames();
 
@@ -108,6 +110,7 @@ namespace DefaultNamespace
                     }
                 }
             }
+
             return true;
         }
 

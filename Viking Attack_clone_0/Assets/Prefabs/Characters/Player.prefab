@@ -280,8 +280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e0e120985fc5d4faeaaadf1a135feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 7584883869511104253}
-  player: {fileID: 5988590173649968415}
+  healthBar: {fileID: 0}
+  globalPlayerInfo: {fileID: 1008048771508749607}
 --- !u!1 &4164637546602133064
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 300, y: 92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7468296751446448601
 CanvasRenderer:
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7b1d7e22a4f90b94bac77d9ce512dc5f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0fa741debafb9684981f825a1d2f8667, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -641,7 +641,7 @@ Transform:
   m_GameObject: {fileID: 5988590173649968415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 5988590174005083854}
   - {fileID: 5988590173403348294}
@@ -867,6 +867,7 @@ MonoBehaviour:
   firstPersonPosition: {fileID: 5988590173403348295}
   thirdPersonPosition: {fileID: 5988590174005083855}
   mouseSensitivity: 0.1
+  lockMouse: 0
 --- !u!114 &-4742521611354210552
 MonoBehaviour:
   m_ObjectHideFlags: 0
