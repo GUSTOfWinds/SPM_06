@@ -4,11 +4,9 @@ using Event;
 using Mirror;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyHealthBarController))]
 public class EnemyVitalController : NetworkBehaviour
 {
     float maxHealth;
-    [SerializeField] private EnemyHealthBarController enemyHealthBarController;
     [SerializeField] private CharacterBase characterBase;
     [SerializeField] public float waitTime;
     [SerializeField]private bool hasDied;
@@ -20,8 +18,6 @@ public class EnemyVitalController : NetworkBehaviour
     {
         currentHealth = characterBase.GetMaxHealth();
         maxHealth = currentHealth;
-
-        enemyHealthBarController.SetVitalController(this);
     }
     public void Die()
     {
