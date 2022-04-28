@@ -37,7 +37,6 @@ public class EnemyMovement : NetworkBehaviour
     [SyncVar]
     [SerializeField] private Quaternion syncRotation;
 
-
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
