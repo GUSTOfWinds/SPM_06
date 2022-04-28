@@ -1,6 +1,7 @@
 using DefaultNamespace;
 using UnityEngine;
 using Mirror;
+using UnityEngine.InputSystem;
 
 public class PlayerItemUsageController : NetworkBehaviour
 {
@@ -15,9 +16,9 @@ public class PlayerItemUsageController : NetworkBehaviour
     }
 
     // WHO TO BLAME: Martin Kings
-    void Update()
+    public void OnAttack(InputAction.CallbackContext value)
     {
-        if (Input.GetMouseButtonDown(0)) // if the left mouse button is clicked
+        if(value.performed)
         {
             if (!isLocalPlayer) return;
             if (itemBase.GetType() == ItemBase.Type.Food) // checks to see if the itembase is food in the playerhand
@@ -26,7 +27,7 @@ public class PlayerItemUsageController : NetworkBehaviour
             }
             else if
                 (itemBase.GetType() ==
-                 ItemBase.Type.Weapon) // checks to see if the itembase is a weapon in the playerhand
+                ItemBase.Type.Weapon) // checks to see if the itembase is a weapon in the playerhand
             {
                 RaycastHit hit;
                 if (Physics.SphereCast(mainCamera.transform.position, 1f,
