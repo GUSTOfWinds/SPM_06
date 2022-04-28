@@ -13,7 +13,9 @@ public class MainMenuButtonManager : MonoBehaviour
     [SerializeField] private Image displayedImage;
     [SerializeField] private GameObject player;
     public Animator animator;
-    public UnityEngine.UI.Text settingButton;
+    public UnityEngine.UI.Button settingButton;
+    public Sprite back;
+    public Sprite settings;
 
     // opens player customization page
     public void NewGame()
@@ -46,11 +48,13 @@ public class MainMenuButtonManager : MonoBehaviour
         animator.SetBool("settings", !animator.GetBool("settings"));
         if (animator.GetBool("settings"))
         {
-            settingButton.text = "Back";
+            settingButton.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            settingButton.image.sprite = back;
         }
         else
         {
-            settingButton.text = "Settings";
+            settingButton.image.sprite = settings;
+            settingButton.transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 }
