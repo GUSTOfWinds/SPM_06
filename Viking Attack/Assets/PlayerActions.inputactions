@@ -55,6 +55,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "78c449c1-89cf-40d4-b279-4f2590600f0e",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "WASD Keys",
                     "id": "d2ba53de-1889-4e1b-8836-6f0351fc1000",
                     "path": "2DVector",
@@ -111,6 +122,17 @@
                 },
                 {
                     "name": "",
+                    "id": "cd719f40-455a-43eb-8c63-817c4c74580f",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "30fb491c-bf3a-4c37-963d-fa2937df4643",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -122,8 +144,30 @@
                 },
                 {
                     "name": "",
+                    "id": "8de5dd08-f4a7-4a6d-94c2-bad61f2036c4",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4d3dcd3b-02e2-4185-ab98-5869dfeff219",
                     "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ee9dc56-ed6b-4e4f-ae3b-8749dadfa101",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
