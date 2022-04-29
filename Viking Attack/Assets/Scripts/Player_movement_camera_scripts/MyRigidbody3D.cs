@@ -84,7 +84,7 @@ public class MyRigidbody3D : NetworkBehaviour
         RaycastHit hit = new RaycastHit();
         if (Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out hit, (groundCheckDistance + colliderMargin), waterLayer)) {
             if (hit.collider)
-            transform.position = new Vector3(0f, 10f, 0f);
+                gameObject.GetComponent<KillPlayer>().PlayerRespawn();
         }
     }
     //Check if object is on ground (on another collider) returns a RaycastHit veribal
