@@ -14,6 +14,8 @@ public class LeverInteraction : BaseObjectInteraction
     //Sets to the starting rotation
     private Quaternion targetRotation;
     //Is called from InteractableObjectScript when the player press the chosen button
+    private Transform leverPivot;
+
     public override void InteractedWith()
     {
         //Calls the object to activate (uses the BaseObjectActivation so i can call different objects)
@@ -32,12 +34,45 @@ public class LeverInteraction : BaseObjectInteraction
     // Sets the default targetRotation to current LeverShaftPivot rotation
     private void Start()
     {
-        targetRotation = transform.Find("LeverShaftPivot").transform.rotation;
+        leverPivot = transform.GetChild(1);
+        targetRotation = syncObject.FindObjectWithTag("LeverShaftPivot").transform.rotation;
+        //targetRotation = transform.FindObjectWithTag("LeverShaftPivot").transform.rotation;
+        
     }
+
+    private SyncObject syncObject = new SyncObject();
 
     void Update()
     {
+        if (!syncObject.IsItLocal())
+        {
+            base.transform.rotation = syncObject.syncRotation;
+            return;
+        }
         //Moves the lever in a motion (Not teleporting)
-        transform.Find("LeverShaftPivot").transform.rotation = Quaternion.RotateTowards(transform.Find("LeverShaftPivot").transform.rotation, targetRotation, roatitionSpeed * Time.deltaTime);
+        leverPivot.rotation = Quaternion.RotateTowards(leverPivot.rotation, targetRotation, roatitionSpeed * Time.deltaTime);
+        syncObject.CmdSetSynchedRotation(transform.rotation);
+    }
+
+    private class SyncObject : NetworkBehaviour
+    {
+        [SyncVar] public Quaternion syncRotation;
+        
+        
+        [Command]
+        public void CmdSetSynchedRotation(Quaternion rotation) => syncRotation = rotation;
+
+
+        public bool IsItLocal()
+        {
+            return isLocalPlayer;
+        }
+
+        private GameObject returnObject;
+
+        public GameObject FindObjectWithTag(String findString)
+        {
+            return FindObjectWithTag(findString);
+        }
     }
 }
