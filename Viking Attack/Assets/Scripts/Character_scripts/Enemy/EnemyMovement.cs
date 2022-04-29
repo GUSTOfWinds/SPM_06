@@ -74,21 +74,21 @@ public class EnemyMovement : NetworkBehaviour
 
             if (isChasing)
             {
-                if (Vector3.Distance(transform.position, respawnPosWithoutY) >=
-                    patrolRange) //if enemy chasing too far, back to the position before chasing
-                {
-                    isChasing = false;
-                    backToDefault = true;
-                }
-                else
-                {
+                // if (Vector3.Distance(transform.position, respawnPosWithoutY) >=
+                //     patrolRange) //if enemy chasing too far, back to the position before chasing
+                // {
+                //     isChasing = false;
+                //     backToDefault = true;
+                // }
+                // else
+                // {
                     if (chasingObject.Equals(null)) return;
                     Vector3 facePlayer = new Vector3(chasingObject.transform.position.x, transform.position.y,
                         chasingObject.transform.position.z);
                     transform.LookAt(facePlayer);
                     transform.position = Vector3.MoveTowards(transform.position, facePlayer,
                         chasingSpeedMultiplier * Time.fixedDeltaTime);
-                }
+                // }
             }
             else
             {
