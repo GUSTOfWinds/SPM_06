@@ -66,6 +66,11 @@ public class GlobalPlayerInfo : MonoBehaviour
     {
         health += difference;
         gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform.Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>().SetHealth();
+        if (health <= 0) {
+            gameObject.GetComponent<KillPlayer>().PlayerRespawn();
+        }
+        
+        
     }
 
 }
