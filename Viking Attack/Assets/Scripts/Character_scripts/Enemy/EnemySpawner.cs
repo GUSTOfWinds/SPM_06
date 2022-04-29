@@ -14,7 +14,7 @@ public class EnemySpawner : NetworkBehaviour
     {
         // Will be changed to happen ONCE when event manager handles deaths.
         // Spawns an enemy at the location of the spawner parent, will also spawn it on the server
-        var enemy = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, gameObject.transform.rotation, null);
+        var enemy = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
             enemy.GetComponent<EnemyInfo>().SetRespawnAnchor(transform);
             NetworkServer.Spawn(enemy);
     }
