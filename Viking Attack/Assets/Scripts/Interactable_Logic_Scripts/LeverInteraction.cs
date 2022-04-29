@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class LeverInteraction : BaseObjectInteraction
 {
@@ -20,11 +21,11 @@ public class LeverInteraction : BaseObjectInteraction
         //Moves the lever shaft by 90 degrees
         if(!leverOn)
         {
-            targetRotation = Quaternion.Euler(0,0,-45);
+            targetRotation = Quaternion.Euler(transform.parent.transform.rotation.x,transform.parent.transform.rotation.y,-45);
             leverOn = true;
         }else
         {
-            targetRotation = Quaternion.Euler(0,0, 45);
+            targetRotation = Quaternion.Euler(transform.parent.transform.rotation.x,transform.parent.transform.rotation.y, 45);
             leverOn = false;
         }   
     }

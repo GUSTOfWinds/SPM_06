@@ -1266,6 +1266,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1ddc9014-ad68-4125-a12e-3c1a48174b92
     m_ActionName: PlayerControls/Camera[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5988590173649968423}
+        m_TargetAssemblyTypeName: PlayerInteractionScript, Assembly-CSharp
+        m_MethodName: OnInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 899a16ae-eb25-4224-a4d5-660b3f6195c8
+    m_ActionName: PlayerControls/Interact[/Keyboard/e,/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls
