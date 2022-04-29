@@ -36,11 +36,8 @@ public class BridgeActivation : BaseObjectActivation
 
     void Update()
     {
-        if (!syncObject.IsItLocal())
-        {
-            base.transform.rotation = syncObject.syncRotation;
-            return;
-        }
+        base.transform.rotation = syncObject.syncRotation;
+        
         //Moves the bridge in a motion (Not teleporting)
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         syncObject.CmdSetSynchedRotation(transform.rotation);
@@ -58,10 +55,7 @@ public class BridgeActivation : BaseObjectActivation
         public void CmdSetSynchedRotation(Quaternion rotation) => syncRotation = rotation;
 
 
-        public bool IsItLocal()
-        {
-            return isLocalPlayer;
-        }
+
     }
     
 }

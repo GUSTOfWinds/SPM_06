@@ -23,11 +23,11 @@ public class LeverInteraction : BaseObjectInteraction
         //Moves the lever shaft by 90 degrees
         if(!leverOn)
         {
-            targetRotation = Quaternion.Euler(transform.parent.transform.rotation.x,transform.parent.transform.rotation.y,-45);
+            targetRotation = Quaternion.Euler(transform.rotation.x,transform.rotation.y,-45);
             leverOn = true;
         }else
         {
-            targetRotation = Quaternion.Euler(transform.parent.transform.rotation.x,transform.parent.transform.rotation.y, 45);
+            targetRotation = Quaternion.Euler(transform.rotation.x,transform.rotation.y, 45);
             leverOn = false;
         }   
     }
@@ -35,7 +35,7 @@ public class LeverInteraction : BaseObjectInteraction
     private void Start()
     {
         leverPivot = transform.GetChild(1);
-        targetRotation = syncObject.FindObjectWithTag("LeverShaftPivot").transform.rotation;
+        targetRotation = leverPivot.rotation;
         //targetRotation = transform.FindObjectWithTag("LeverShaftPivot").transform.rotation;
         
     }
@@ -44,11 +44,9 @@ public class LeverInteraction : BaseObjectInteraction
 
     void Update()
     {
-        if (!syncObject.IsItLocal())
-        {
-            base.transform.rotation = syncObject.syncRotation;
-            return;
-        }
+        
+        base.transform.rotation = syncObject.syncRotation;
+        
         //Moves the lever in a motion (Not teleporting)
         leverPivot.rotation = Quaternion.RotateTowards(leverPivot.rotation, targetRotation, roatitionSpeed * Time.deltaTime);
         syncObject.CmdSetSynchedRotation(transform.rotation);
@@ -66,13 +64,6 @@ public class LeverInteraction : BaseObjectInteraction
         public bool IsItLocal()
         {
             return isLocalPlayer;
-        }
-
-        private GameObject returnObject;
-
-        public GameObject FindObjectWithTag(String findString)
-        {
-            return FindObjectWithTag(findString);
         }
     }
 }
