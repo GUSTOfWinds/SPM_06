@@ -65,7 +65,8 @@ public class GlobalPlayerInfo : MonoBehaviour
     public void UpdateHealth(float difference)
     {
         health += difference;
-        gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform.Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>().SetHealth();
+        
+        gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform.Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>().SetHealth(health);
         if (health <= 0) {
             gameObject.GetComponent<KillPlayer>().PlayerRespawn();
         }

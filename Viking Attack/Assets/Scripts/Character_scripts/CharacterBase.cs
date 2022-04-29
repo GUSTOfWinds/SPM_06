@@ -19,6 +19,7 @@ namespace DefaultNamespace
         [SerializeField] private int moveSpeed;
         [SerializeField] private float maxHealth;
 
+
         // Returns name of the item
         public string GetName()
         {

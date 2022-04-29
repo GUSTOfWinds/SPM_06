@@ -23,9 +23,9 @@ public class PlayerHealthBar : MonoBehaviour
     }
 
     // Updates the value of the slider to the players current health (will be called upon when being attacked, healed etc)
-    public void SetHealth()
+    public void SetHealth(float health)
     {
         healthBar.maxValue = globalPlayerInfo.GetMaxHealth();
-        healthBar.value = globalPlayerInfo.health;
+        healthBar.value = health;
     }
 }
