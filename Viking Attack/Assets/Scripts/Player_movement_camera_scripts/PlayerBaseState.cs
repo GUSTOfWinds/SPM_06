@@ -15,7 +15,7 @@ public class PlayerBaseState : PlayerState
         if(Player.jump)
         {
             Player.jump = false;
-            stateMachine.ChangeState<PlayerJumpState>();
+            stateMachine.ChangeState<PlayerDashState>();
         }
         if(Player.movementKeyInfo.ReadValue<Vector2>() != Vector2.zero)
         {
