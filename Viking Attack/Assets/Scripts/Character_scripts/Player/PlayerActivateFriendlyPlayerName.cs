@@ -45,7 +45,7 @@ namespace DefaultNamespace
 
             // All friendly players detected by the SphereCast
             hits = Physics.SphereCastAll(mainCamera.transform.position, 3,
-                mainCamera.transform.forward, 10, layerMask);
+                mainCamera.transform.forward, 30, layerMask);
 
             // makes sure that the previousHits array contains objects before iterating through it.
             if (previousHits.Length > 1)
