@@ -13,6 +13,7 @@ public class MyRigidbody3D : NetworkBehaviour
     private float groundCheckDistance = 0.01f;
     private CapsuleCollider capsuleCollider;
     private LayerMask collisionMask;
+    [SerializeField] LayerMask waterLayer;
     private Vector3 point1;
     private Vector3 point2;
     public Vector3 velocity;
@@ -40,6 +41,8 @@ public class MyRigidbody3D : NetworkBehaviour
             base.transform.rotation = syncRotation;
             return;
         }
+        WaterBool();
+
         //Add gravity     
         velocity += Vector3.down * gravity;
 
@@ -72,6 +75,17 @@ public class MyRigidbody3D : NetworkBehaviour
     {
         RaycastHit hit = new RaycastHit();
         return Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out hit, (groundCheckDistance + colliderMargin), collisionMask);
+    }
+
+    //TODO: Remove after playtest and impolement proper way to handle water
+    public void WaterBool()
+    {
+        
+        RaycastHit hit = new RaycastHit();
+        if (Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out hit, (groundCheckDistance + colliderMargin), waterLayer)) {
+            if (hit.collider)
+            transform.position = new Vector3(0f, 10f, 0f);
+        }
     }
     //Check if object is on ground (on another collider) returns a RaycastHit veribal
     public RaycastHit Grounded()
