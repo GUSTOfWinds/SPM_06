@@ -92,7 +92,6 @@ public class CameraMovement3D : NetworkBehaviour
         rotationX -= value.ReadValue<Vector2>().y * mouseSensitivity;
         rotationY += value.ReadValue<Vector2>().x * mouseSensitivity;
         rotationX = Mathf.Clamp(rotationX, -89, 89);
-        // Changed to rotate player instead of camera
-        transform.rotation = Quaternion.Euler(rotationX, rotationY, 0f);
+        mainCamera.transform.rotation = Quaternion.Euler(rotationX, rotationY, 0f);
     }
 }
