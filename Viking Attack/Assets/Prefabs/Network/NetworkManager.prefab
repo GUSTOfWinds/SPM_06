@@ -48,17 +48,18 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   runInBackground: 1
   autoStartServerBuild: 1
-  serverTickRate: 30
+  serverTickRate: 60
   offlineScene: 
   onlineScene: 
   transport: {fileID: 1078430519148682731}
   networkAddress: localhost
-  maxConnections: 100
+  maxConnections: 5
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
 --- !u!114 &1078430519148682731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,12 +75,12 @@ MonoBehaviour:
   Port: 7777
   DualMode: 1
   NoDelay: 1
-  Interval: 10
+  Interval: 0
   Timeout: 10000
-  FastResend: 2
-  CongestionWindow: 0
-  SendWindowSize: 4096
-  ReceiveWindowSize: 4096
+  FastResend: 0
+  CongestionWindow: 1
+  SendWindowSize: 8192
+  ReceiveWindowSize: 8192
   MaxRetransmit: 40
   NonAlloc: 1
   MaximizeSendReceiveBuffersToOSLimit: 1
