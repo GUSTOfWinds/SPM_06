@@ -29,7 +29,7 @@ public class PlayerRunState : PlayerState
         if (Player.jump)
         {
             Player.jump = false;
-            stateMachine.ChangeState<PlayerJumpState>();
+            stateMachine.ChangeState<PlayerDashState>();
         }    
         else if (Player.movementKeyInfo.ReadValue<Vector2>() == Vector2.zero)
             stateMachine.ChangeState<PlayerBaseState>();
