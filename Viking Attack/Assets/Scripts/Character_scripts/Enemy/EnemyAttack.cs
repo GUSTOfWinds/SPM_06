@@ -55,8 +55,7 @@ namespace DefaultNamespace
         private void Attack()
         {
             if (globalPlayerInfo.IsAlive()) // checks if the player is even alive
-            {   
-                // Tests if the correct player is attacked.
+            {
                 globalPlayerInfo.UpdateHealth(-damage);
             }
         }
