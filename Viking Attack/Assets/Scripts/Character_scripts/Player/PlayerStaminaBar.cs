@@ -13,6 +13,7 @@ public class PlayerStaminaBar : MonoBehaviour
     {
         staminaBar.maxValue = globalPlayerInfo.GetMaxStamina();
         staminaBar.value = globalPlayerInfo.GetStamina();
+        
     }
 
     // Updates the value of the slider to the players current stamina (will be called upon when attackacking, sprinting etc)
@@ -20,10 +21,5 @@ public class PlayerStaminaBar : MonoBehaviour
     {
         staminaBar.maxValue = globalPlayerInfo.GetMaxStamina();
         staminaBar.value = stamina;
-    }
-
-    private void Update()
-    {
-        //globalPlayerInfo.UpdateStamina(globalPlayerInfo.stamina += 0.02f * Time.deltaTime);
     }
 }

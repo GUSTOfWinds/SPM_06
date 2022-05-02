@@ -18,6 +18,11 @@ public class GlobalPlayerInfo : MonoBehaviour
     public float maxStamina;
     public Component healthBar;
     public Component staminaBar;
+    public Component experienceBar;
+    public float experience;
+    public int level;
+    public float levelThreshold;
+    public int availableStatpoints;
 
     private void Awake()
     {
@@ -27,7 +32,11 @@ public class GlobalPlayerInfo : MonoBehaviour
         maxStamina = 100;
         healthBar = gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform.Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>();
         staminaBar = gameObject.transform.Find("UI").gameObject.transform.Find("Stamina_bar").gameObject.transform.Find("Stamina_bar_slider").gameObject.GetComponent<PlayerStaminaBar>();
-
+        experienceBar = gameObject.transform.Find("UI").gameObject.transform.Find("Experience_bar").gameObject.transform.Find("Experience_bar_slider").gameObject.GetComponent<PlayerExperienceBar>();
+        experience = 0;
+        levelThreshold = 30;
+        availableStatpoints = 0;
+        level = 1;
     }
 
     // Gets called upon during game launch, the main menu sets the player name
@@ -111,6 +120,41 @@ public class GlobalPlayerInfo : MonoBehaviour
             stamina = maxStamina;
         }
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
+    }
+
+
+    // Increases the players current experience, will reset it to 0 if the player reaches next level
+    public void IncreaseExperience(float exp)
+    {
+        experience += exp;
+        if (experience >= levelThreshold * (1.3 * level)) {
+            IncreaseLevel();
+            experience = 0;
+        }
+
+        experienceBar.GetComponent<PlayerExperienceBar>().SetExperience(experience);
+    }
+
+    public void IncreaseLevel()
+    {
+        level++;
+        availableStatpoints += 3;
+
+    }
+
+    public float GetExperience()
+    {
+        return experience;
+    }
+
+    public int GetLevel()
+    {
+        return level;
+    }
+
+    public int GetStatPoints()
+    {
+        return availableStatpoints;
     }
 
 }
