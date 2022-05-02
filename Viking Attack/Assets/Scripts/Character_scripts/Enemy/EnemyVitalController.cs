@@ -10,9 +10,8 @@ public class EnemyVitalController : NetworkBehaviour
     [SerializeField] private CharacterBase characterBase;
     [SerializeField] public float waitTime;
     [SerializeField]private bool hasDied;
-    
+    private Collider[] sphereColliders;
     [SerializeField][SyncVar(hook = nameof(OnHealthChangedHook))]float currentHealth = 100f;
-    //TODO Vi behöver lägga till så nuvarande HP uppdateras. EnemyHealthBarController ska uppdatera alla värden där.
     //spara maxvärdet så vi kan räkna ut procent 
     void Start()
     {
@@ -57,6 +56,14 @@ public class EnemyVitalController : NetworkBehaviour
 
             if(currentHealth <= 0f)
             {
+                sphereColliders = Physics.OverlapSphere(transform.position, 20f);
+                foreach (var coll in sphereColliders)
+                {
+                    if (coll.tag == "Player") //find Player and start chasing
+                    {
+                        coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(10);
+                    }
+                }
                 this.OnDeath?.Invoke(this);
                 Die();
             }
