@@ -8,14 +8,16 @@ using UnityEngine.SceneManagement;
 
 public class NetworkManagerLobby : NetworkManager
 {
-
+    private int minPlayers;
     [Scene] [SerializeField] private string menuScene = string.Empty;
     
     [Header("Room")] 
-    [SerializeField] private NetworkManagerLobby roomManagerPrefab;
+    [SerializeField] private NetworkRoomPlayerLobby roomPlayerLobby;
 
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
+
+    public List<NetworkRoomPlayerLobby> RoomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
 
     public override void OnStartServer() => spawnPrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs").ToList();
 
@@ -55,12 +57,68 @@ public class NetworkManagerLobby : NetworkManager
         }
     }
 
+    public override void OnServerDisconnect(NetworkConnectionToClient conn)
+    {
+
+        if (conn.identity != null)
+        {
+            var player = conn.identity.GetComponent<NetworkRoomPlayerLobby>();
+
+            RoomPlayers.Remove(player);
+            NotifyPlayersOfReadyState();
+        }
+ 
+    }
+
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         if (SceneManager.GetActiveScene().name == menuScene)
         {
-            NetworkManagerLobby roomManagerInstance = Instantiate(roomManagerPrefab);
-            NetworkServer.AddPlayerForConnection(conn, roomManagerInstance.gameObject);
+            bool isLeader = RoomPlayers.Count == 0;
+            
+            
+            NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerLobby);
+
+            roomPlayerInstance.IsLeader = isLeader;
+            NetworkServer.AddPlayerForConnection(conn, roomPlayerLobby.gameObject);
         }
+        base.OnServerDisconnect(conn);
+    }
+
+    public override void OnStopServer()
+    {
+        RoomPlayers.Clear();
+        
+    }
+
+    public void NotifyPlayersOfReadyState()
+    {
+        foreach (var player in RoomPlayers)
+        {
+            
+            player.HandleReadyToStart(IsReadyTostart());
+        }
+    }
+
+    private bool IsReadyTostart()
+    {
+        //TODO SÄTT COUNTDOWN OM HÄLFTEN SÄGER ATT DE ÄR KLARA
+        int ready = 0;
+        if (numPlayers <= 0) return false; 
+        foreach (var player in RoomPlayers)
+        {
+            if (player.isReady)
+            {
+                ready++;
+            }
+            
+        }
+        if (ready >= numPlayers / 2)
+        {
+            return true;
+        }
+
+        return false;
+
     }
 }

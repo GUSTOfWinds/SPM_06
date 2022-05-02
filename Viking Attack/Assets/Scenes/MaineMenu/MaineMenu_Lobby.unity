@@ -705,12 +705,12 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 5
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 1588750985201798, guid: deae2134a1d77704b9c595efe69767dd, type: 3}
+  playerPrefab: {fileID: 4178134505983114358, guid: bf76016401850694d988fe410a528477, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
   menuScene: Assets/Scenes/MaineMenu/MaineMenu_Lobby.unity
-  roomManagerPrefab: {fileID: 0}
+  roomPlayerLobby: {fileID: 0}
 --- !u!4 &681876271
 Transform:
   m_ObjectHideFlags: 0
@@ -2702,7 +2702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1655397326
 RectTransform:
   m_ObjectHideFlags: 0
