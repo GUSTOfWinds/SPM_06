@@ -3,17 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - FirstPerson
+  - ThirdPerson
+  - MinimapCamera
+  - CameraMain
+  - LeverShaftPivot
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Ground
+  - InteractableObject
   - 
   - 
   - 

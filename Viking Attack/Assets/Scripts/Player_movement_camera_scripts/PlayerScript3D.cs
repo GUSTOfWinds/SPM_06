@@ -13,8 +13,11 @@ public class PlayerScript3D : NetworkBehaviour
     public float jumpForce = 10f;
     public float acceleration = 10f;
     public bool firstPerson;
+
+    public GlobalPlayerInfo globalPlayerInfo;
     //KeyInfo variables  start
     public InputAction.CallbackContext movementKeyInfo;
+    public InputAction.CallbackContext sprintKeyInfo;
     [HideInInspector] public bool jump;
     //KeyInfo variables  stop
     
@@ -22,7 +25,8 @@ public class PlayerScript3D : NetworkBehaviour
     {
         myRigidbody = GetComponent<MyRigidbody3D>();
         if (states.Length > 0)
-            stateMachine = new StateMachine(this, states);    
+            stateMachine = new StateMachine(this, states);
+        globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
     }
 
 
@@ -44,8 +48,15 @@ public class PlayerScript3D : NetworkBehaviour
     {
         movementKeyInfo = value;
     }
+
+    // Checks if the button for sprint is pressed, the value only functions as a bool (pressed or not) in the run state
+    public void OnSprint(InputAction.CallbackContext value)
+    {
+        sprintKeyInfo = value;
+    }
     public void OnJump(InputAction.CallbackContext value)
     {
+        
         jump = value.started;
         jump = !value.canceled;
         
