@@ -7,12 +7,14 @@ public class PlayerItemUsageController : NetworkBehaviour
 {
     [SerializeField] private ItemBase itemBase; // Will need to be updated if another item is being used.
     private Camera mainCamera = null;
+    private GlobalPlayerInfo globalPlayerInfo;
 
 
     public void Start()
     {
         if (!isLocalPlayer) return;
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
+        globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
     }
 
     // WHO TO BLAME: Martin Kings
@@ -34,6 +36,7 @@ public class PlayerItemUsageController : NetworkBehaviour
                         mainCamera.transform.forward, out hit, itemBase.GetRange(),
                         LayerMask.GetMask("Enemy")))
                 {
+                    globalPlayerInfo.UpdateStamina(-20f);
                     hit.collider.gameObject.GetComponent<EnemyVitalController>()
                         .CmdUpdateHealth(-itemBase.GetDamage());
                 }
