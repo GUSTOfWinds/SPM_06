@@ -13,7 +13,7 @@ public class PlayerRunState : PlayerState
     private Vector2 inputMovement;
     public InputAction.CallbackContext sprintKeyInfo;
     private float sprintCost = 8f;
-    private float staminaGain = 5f;
+    private float staminaGain = 10f;
     
     
     public override void Exit()
