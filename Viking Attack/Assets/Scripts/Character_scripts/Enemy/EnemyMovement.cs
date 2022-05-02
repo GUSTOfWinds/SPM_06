@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using DefaultNamespace;
+using ItemNamespace;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Mirror;

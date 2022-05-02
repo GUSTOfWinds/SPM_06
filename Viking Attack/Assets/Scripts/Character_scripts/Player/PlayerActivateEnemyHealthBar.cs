@@ -6,7 +6,7 @@ using System.Security;
 using Mirror;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace ItemNamespace
 {
     // WHO TO BLAME: Martin Kings
     public class PlayerActivateEnemyHealthBar : NetworkBehaviour

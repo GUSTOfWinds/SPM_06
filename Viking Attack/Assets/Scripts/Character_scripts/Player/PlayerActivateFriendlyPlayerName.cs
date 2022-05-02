@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace ItemNamespace
 {
     public class PlayerActivateFriendlyPlayerName : NetworkBehaviour
     {
