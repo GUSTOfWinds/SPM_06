@@ -8,22 +8,39 @@ using UnityEngine.InputSystem;
 public class PlayerItemUsageController : NetworkBehaviour
 {
     [SerializeField] private ItemBase itemBase; // Will need to be updated if another item is being used.
-    private List<Type> hasComponent = new List<Type>();
+    [SerializeField] private GameObject heldItemWorldObject;
+    [SerializeField] private GameObject holdingHand;
+    
+    private Type currentActingComponentType;
     private ItemBaseBehavior currentActingComponent;
+
+    public void Start()
+    {
+        if(holdingHand != null)
+            heldItemWorldObject.transform.SetParent(holdingHand.transform);
+    }
 
     public void OnUse(InputAction.CallbackContext value)
     {
         if (!isLocalPlayer) return;
         if (value.performed)
         { 
-            Type itemType = Type.GetType(itemBase.GetItemBaseBehaviorScriptName);
-            if(hasComponent.Contains(itemType))
-                currentActingComponent.Use();
-            else
+            if(itemBase != null)
             {
-                currentActingComponent = (ItemBaseBehavior)gameObject.AddComponent(itemType);
-                currentActingComponent.SetBelongingTo(itemBase);
-                hasComponent.Add(itemType);
+                Type itemType = Type.GetType(itemBase.GetItemBaseBehaviorScriptName);
+                if(currentActingComponentType == itemType)
+                    currentActingComponent.Use();
+                else
+                {
+                    if(currentActingComponent != null)
+                        Destroy(currentActingComponent);
+                    currentActingComponent = (ItemBaseBehavior)gameObject.AddComponent(itemType);
+                    currentActingComponent.SetBelongingTo(itemBase);
+                    currentActingComponentType = itemType;
+                    heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
+                    heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
+                    heldItemWorldObject.GetComponent<BoxCollider>().size = new Vector3(0.5f,itemBase.GetRange,0.5f);
+                }
             }
         }
     }
