@@ -46,6 +46,11 @@ namespace ItemNamespace
         public Sprite GetSprite => sprite;
         // Returns this type
         public Type GetType => type;
+        //Returns mesh
+        public Mesh GetMesh => mesh;
+        //Returns material
+        public Material GetMaterial => material;
+        //Returns name of script with this items behavior
         public String GetItemBaseBehaviorScriptName => itemBaseBehaviorScriptName;
 
         // Contains the different item type, add a new line to the enum in order to add an item type.

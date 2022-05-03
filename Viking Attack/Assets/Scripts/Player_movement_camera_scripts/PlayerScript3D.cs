@@ -36,6 +36,7 @@ public class PlayerScript3D : NetworkBehaviour
         //If there are any added states in the unity inspector
         if (states.Length > 0)
             stateMachine.Update();
+        //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x,GameObject.FindGameObjectWithTag("CameraMain").transform.rotation.eulerAngles.y,transform.rotation.eulerAngles.z) ;
     }
 
     public bool LocalCheck()
