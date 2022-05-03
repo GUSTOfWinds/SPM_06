@@ -23,6 +23,9 @@ public class GlobalPlayerInfo : MonoBehaviour
     public int level;
     public float levelThreshold;
     public int availableStatpoints;
+    private int damageStat;
+    private int healthStat;
+    private int staminaStat;
 
     private void Awake()
     {
@@ -156,5 +159,43 @@ public class GlobalPlayerInfo : MonoBehaviour
     {
         return availableStatpoints;
     }
+
+    public int GetDamageStatPoints()
+    {
+        return damageStat;
+    }
+    
+    public int GetHealthStatPoints()
+    {
+        return healthStat;
+    }
+
+    public int GetStaminaStatPoints()
+    {
+        return staminaStat;
+    }
+
+    public void IncreaseDamageStatPoints()
+    {
+        // TODO add increased base damage to player
+        availableStatpoints--;
+        damageStat++;
+    }
+    
+    public void IncreaseHealthStatPoints()
+    {
+        // TODO add increased base health to player
+        availableStatpoints--;
+        healthStat++;
+    }
+
+    public void IncreaseStaminaStatPoints()
+    {
+        // TODO add increased base stamina to player
+        availableStatpoints--;
+        staminaStat++;
+    }
+
+    
 
 }
