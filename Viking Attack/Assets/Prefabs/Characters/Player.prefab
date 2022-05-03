@@ -3502,6 +3502,7 @@ MonoBehaviour:
   syncInterval: 0.1
   itemBase: {fileID: 11400000, guid: e42a76ee5900ffc4f93a5fbaf0dadbb4, type: 2}
   heldItemWorldObject: {fileID: 8080762913142632678}
+  holdingHand: {fileID: 0}
 --- !u!114 &-1269286427876547455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3726,6 +3727,46 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 29b2511d-54c0-46ac-974c-529248c8a4a5
     m_ActionName: PlayerControls/Toggle Menu screen[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b9565816-fcd5-4f3b-a366-4bbf5f55998e
+    m_ActionName: MenuControls/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 60aaf160-7d67-46fe-8548-b8bfe5c8b9bf
+    m_ActionName: MenuControls/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0e02860b-26ab-4634-b24c-09e88be2f30a
+    m_ActionName: MenuControls/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9c467273-ae69-49b2-abec-bd3cc285d985
+    m_ActionName: MenuControls/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ac9da41f-5c41-4447-8979-14cae23ee884
+    m_ActionName: MenuControls/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4daa9e1a-687f-4b7c-8572-e75e4c34dcb9
+    m_ActionName: MenuControls/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 500d3814-6b12-4270-9ad6-7f0d521aed82
+    m_ActionName: MenuControls/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3f542409-bfd2-4225-93ad-3db3ac7e1ae3
+    m_ActionName: MenuControls/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f30d056-4820-41c3-bbb1-376b54e60020
+    m_ActionName: MenuControls/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fe3ada87-d875-4073-817b-f13fe2e5c4ce
+    m_ActionName: MenuControls/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls
@@ -4570,7 +4611,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8080762913142632678}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

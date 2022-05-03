@@ -39,7 +39,6 @@ public class PlayerItemUsageController : NetworkBehaviour
                     currentActingComponentType = itemType;
                     heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
                     heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
-                    heldItemWorldObject.GetComponent<BoxCollider>().size = new Vector3(0.5f,itemBase.GetRange,0.5f);
                 }
             }
         }
