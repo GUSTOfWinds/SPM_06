@@ -12,10 +12,10 @@ public class PlayerRunState : PlayerState
     private Vector3 input;
     private Vector2 inputMovement;
     public InputAction.CallbackContext sprintKeyInfo;
-    private float sprintCost = 8f;
-    private float staminaGain = 10f;
-    
-    
+    private float sprintCost = 7f;
+    private float staminaGain = 12f;
+    [SerializeField] private float cooldown = 0.9f;
+
     public override void Exit()
     {
         
@@ -33,7 +33,7 @@ public class PlayerRunState : PlayerState
         if (sprintKeyInfo.performed && Player.globalPlayerInfo.GetStamina() > 1)
         {
             Player.globalPlayerInfo.UpdateStamina( -sprintCost * Time.deltaTime);
-            input = input.normalized * Player.acceleration * 2;
+            input = input.normalized * Player.acceleration * 1.6f;
         }
         else
         {
@@ -49,11 +49,19 @@ public class PlayerRunState : PlayerState
             input = new Vector3(input.x, 0f, input.z);
         Player.MyRigidbody3D.velocity += input * Player.acceleration;
 
-        if (Player.jump)
+        cooldown -= Time.deltaTime;
+        if (cooldown <= 0.0f)
         {
-            Player.jump = false;
-            stateMachine.ChangeState<PlayerDashState>();
-        }    
+            if (Player.jump)
+            {
+                Player.jump = false;
+                stateMachine.ChangeState<PlayerDashState>();
+                cooldown = 0.9f;
+            }    
+            
+
+        }
+        
         else if (Player.movementKeyInfo.ReadValue<Vector2>() == Vector2.zero)
             stateMachine.ChangeState<PlayerBaseState>();
     }

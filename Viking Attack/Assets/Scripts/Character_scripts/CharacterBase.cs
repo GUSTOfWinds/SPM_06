@@ -18,6 +18,9 @@ namespace ItemNamespace
         [SerializeField] private float chasingSpeedMultiplier;
         [SerializeField] private int moveSpeed;
         [SerializeField] private float maxHealth;
+        [SerializeField] private float experienceRadius;
+        [SerializeField] private int level;
+        [SerializeField] private float experience;
 
 
         // Returns name of the item
@@ -64,6 +67,17 @@ namespace ItemNamespace
         public int GetMovementSpeed()
         {
             return moveSpeed;
+        }
+
+        public float GetExperienceRadius()
+        {
+            return experienceRadius;
+        }
+
+        // Will give more exp if higher level
+        public float GetExperience()
+        {
+            return level * experience;
         }
 
         // Contains the different item type, add a new line to the enum in order to add an item type.

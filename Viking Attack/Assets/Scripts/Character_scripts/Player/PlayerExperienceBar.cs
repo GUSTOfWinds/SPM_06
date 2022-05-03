@@ -12,7 +12,7 @@ public class PlayerExperienceBar : MonoBehaviour
 
     private void Start()
     {
-        experienceBar.maxValue = (globalPlayerInfo.GetLevel() * globalPlayerInfo.levelThreshold * 1.3f);
+        experienceBar.maxValue = (globalPlayerInfo.GetLevel() * globalPlayerInfo.GetLevelThreshold() * 1.3f);
         experienceBar.value = globalPlayerInfo.GetExperience();
         levelText.text = globalPlayerInfo.GetLevel().ToString();
     }
@@ -20,13 +20,8 @@ public class PlayerExperienceBar : MonoBehaviour
     // Updates the value of the slider to the players current stamina (will be called upon when attackacking, sprinting etc)
     public void SetExperience(float experience)
     {
-        experienceBar.maxValue = (globalPlayerInfo.GetLevel() * globalPlayerInfo.levelThreshold * 1.3f);
+        experienceBar.maxValue = (globalPlayerInfo.GetLevel() * globalPlayerInfo.GetLevelThreshold() * 1.3f);
         experienceBar.value = experience;
         levelText.text = globalPlayerInfo.GetLevel().ToString();
-    }
-
-    private void Update()
-    {
-        //globalPlayerInfo.UpdateStamina(globalPlayerInfo.stamina += 0.02f * Time.deltaTime);
     }
 }
