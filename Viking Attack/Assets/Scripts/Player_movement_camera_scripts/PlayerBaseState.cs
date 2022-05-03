@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 //Used as a state when the player does nothing
 public class PlayerBaseState : PlayerState
 {
+
     public override void Enter()
     {
         
@@ -15,11 +16,7 @@ public class PlayerBaseState : PlayerState
         // If the player is standing still, the stamina gets replenished.
         Player.globalPlayerInfo.UpdateStamina( 17f * Time.deltaTime);
         
-        if(Player.jump)
-        {
-            Player.jump = false;
-            stateMachine.ChangeState<PlayerJumpState>();
-        }
+        
         if(Player.movementKeyInfo.ReadValue<Vector2>() != Vector2.zero)
         {
             stateMachine.ChangeState<PlayerRunState>();

@@ -11,6 +11,7 @@ public class PlayerDashState : PlayerState
     private Vector2 inputMovement;
     private Vector3 input;
     private float diff;
+
     
     public override void Enter()
     {
@@ -19,24 +20,27 @@ public class PlayerDashState : PlayerState
 
     public override void Update()
     {
-        // Calculates the input as we do in the run state.
+        
+
+             // Calculates the input as we do in the run state.
         inputMovement = Player.movementKeyInfo.ReadValue<Vector2>();
         input = new Vector3(inputMovement.x, 0, inputMovement.y);
         input = GameObject.FindGameObjectWithTag("CameraMain").transform.rotation * input;
         input = Vector3.ProjectOnPlane(input, Player.MyRigidbody3D.Grounded().normal);
-
         // Checks that the player is moving, if so it will add 15f quickly to the current velocity
-        if (Player.MyRigidbody3D.velocity.magnitude > 0.2f && Player.GetComponent<GlobalPlayerInfo>().GetStamina() > 10f)
-        {
-            Player.GetComponentInParent<GlobalPlayerInfo>().UpdateStamina(-20f);
-            Player.MyRigidbody3D.velocity += input * 25f;
-        }
-
-        
+             if (Player.MyRigidbody3D.velocity.magnitude > 0.2f && Player.GetComponent<GlobalPlayerInfo>().GetStamina() > 10f)
+             {
+                Player.GetComponentInParent<GlobalPlayerInfo>().UpdateStamina(-14f);
+                Player.MyRigidbody3D.velocity += input * 25f;
+                    
+                
+             }
+            
         if (Player.movementKeyInfo.ReadValue<Vector2>() != Vector2.zero)
             stateMachine.ChangeState<PlayerRunState>();
         else if (!Player.jump)
         {
+
             stateMachine.ChangeState<PlayerBaseState>();
         }
     }
