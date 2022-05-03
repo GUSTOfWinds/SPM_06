@@ -33,7 +33,7 @@ public class PlayerRunState : PlayerState
         if (sprintKeyInfo.performed && Player.globalPlayerInfo.GetStamina() > 1)
         {
             Player.globalPlayerInfo.UpdateStamina( -sprintCost * Time.deltaTime);
-            input = input.normalized * Player.acceleration * 2;
+            input = input.normalized * Player.acceleration * 1.6f;
         }
         else
         {
