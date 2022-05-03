@@ -13,7 +13,7 @@ public class PlayerBaseState : PlayerState
     public override void Update()
     {
         // If the player is standing still, the stamina gets replenished.
-        Player.globalPlayerInfo.UpdateStamina( 15f * Time.deltaTime);
+        Player.globalPlayerInfo.UpdateStamina( 17f * Time.deltaTime);
         
         if(Player.jump)
         {

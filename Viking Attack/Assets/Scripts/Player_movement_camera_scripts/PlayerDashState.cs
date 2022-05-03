@@ -28,8 +28,8 @@ public class PlayerDashState : PlayerState
         // Checks that the player is moving, if so it will add 15f quickly to the current velocity
         if (Player.MyRigidbody3D.velocity.magnitude > 0.2f && Player.GetComponent<GlobalPlayerInfo>().GetStamina() > 10f)
         {
-            Player.GetComponentInParent<GlobalPlayerInfo>().UpdateStamina(-10f);
-            Player.MyRigidbody3D.velocity += input * 15f;
+            Player.GetComponentInParent<GlobalPlayerInfo>().UpdateStamina(-20f);
+            Player.MyRigidbody3D.velocity += input * 25f;
         }
 
         
