@@ -16,21 +16,9 @@ public class CameraMovement3D : NetworkBehaviour
     private Vector3 cameraPosition;
     private Camera mainCamera;
 
-    private void Update()
-    {
-        // Just for the testing, allows the player to control if the mouse should be locked
-        if (lockMouse)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
-
     void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
     }
 
