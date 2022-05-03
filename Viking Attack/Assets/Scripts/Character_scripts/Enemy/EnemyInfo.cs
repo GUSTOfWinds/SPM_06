@@ -17,14 +17,18 @@ namespace ItemNamespace
         [SerializeField] private int moveSpeed; // movement speed of the enemy
         [SerializeField] private float health;
         [SerializeField] public float maxHealth;
+        [SerializeField] private float experienceRadius;
+        [Header("Insert the level you want the enemy to be")]
+        [SerializeField] private int level;
+        [SerializeField] private float experience;
         private bool hasHealthBarShown;
         private Transform respawnParent;
 
         private void Awake()
         {
-            // START OF MARTIN
             // Updates the variables using the scriptable object
-        
+            experience = characterBase.GetExperience();
+            experienceRadius = characterBase.GetExperienceRadius();
             range = characterBase.GetRange();
             attackCooldown = characterBase.GetAttackCooldown();
             damage = characterBase.GetDamage();

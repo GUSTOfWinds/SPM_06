@@ -8,27 +8,29 @@ using UnityEngine;
 // Container for all player specifics, will add experience gained, HP, level, items owned etc...
 public class GlobalPlayerInfo : MonoBehaviour
 {
-    public string playerName;
-    public Color skinColor;
-    public float health;
-    public float maxHealth;
-    public ItemBase[] items;
-    public bool alive = true;
-    public float stamina;
-    public float maxStamina;
-    public Component healthBar;
-    public Component staminaBar;
-    public Component experienceBar;
-    public float experience;
-    public int level;
-    public float levelThreshold;
-    public int availableStatpoints;
-    private int damageStat;
-    private int healthStat;
-    private int staminaStat;
+    [SerializeField] private Component healthBar;
+    [SerializeField] private Component staminaBar;
+    [SerializeField] private Component experienceBar;
+    [SerializeField] private string playerName;
+    [SerializeField] private Color skinColor;
+    [SerializeField] private float health;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private ItemBase[] items;
+    [SerializeField] private bool alive = true;
+    [SerializeField] private float stamina;
+    [SerializeField] private float maxStamina;
+    [SerializeField] private float experience;
+    [SerializeField] private int level;
+    [SerializeField] private float levelThreshold;
+    [SerializeField] private int availableStatpoints;
+    [SerializeField] private int damageStat;
+    [SerializeField] private int healthStat;
+    [SerializeField] private int staminaStat;
+    [SerializeField] private float damage;
 
     private void Awake()
     {
+        damage = 5;
         health = 100;
         maxHealth = 100;
         stamina = 100;
@@ -97,6 +99,11 @@ public class GlobalPlayerInfo : MonoBehaviour
         if (health <= 0) {
             gameObject.GetComponent<KillPlayer>().PlayerRespawn();
         }
+    }
+
+    public void SetHealth(float hp)
+    {
+        health = hp;
     }
 
     // Returns the current stamina
@@ -177,24 +184,32 @@ public class GlobalPlayerInfo : MonoBehaviour
 
     public void IncreaseDamageStatPoints()
     {
-        // TODO add increased base damage to player
+        damage++;
         availableStatpoints--;
         damageStat++;
     }
     
     public void IncreaseHealthStatPoints()
     {
-        // TODO add increased base health to player
+        maxHealth += 10;
         availableStatpoints--;
         healthStat++;
+        healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
     }
 
     public void IncreaseStaminaStatPoints()
     {
-        // TODO add increased base stamina to player
+        maxStamina += 10; 
         availableStatpoints--;
         staminaStat++;
+        staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
     }
+
+    public float GetLevelThreshold()
+    {
+        return levelThreshold;
+    }
+
 
     
 
