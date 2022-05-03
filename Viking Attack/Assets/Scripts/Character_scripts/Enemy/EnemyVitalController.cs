@@ -9,15 +9,20 @@ public class EnemyVitalController : NetworkBehaviour
     float maxHealth;
     [SerializeField] private CharacterBase characterBase;
     [SerializeField] public float waitTime;
-    [SerializeField]private bool hasDied;
+    [SerializeField] private bool hasDied;
     private Collider[] sphereColliders;
-    [SerializeField][SyncVar(hook = nameof(OnHealthChangedHook))]float currentHealth = 100f;
+    [SerializeField] private LayerMask layerMask;
+
+    [SerializeField] [SyncVar(hook = nameof(OnHealthChangedHook))]
+    float currentHealth = 100f;
+
     //spara maxvärdet så vi kan räkna ut procent 
     void Start()
     {
         currentHealth = characterBase.GetMaxHealth();
         maxHealth = currentHealth;
     }
+
     public void Die()
     {
         if (hasDied)
@@ -29,11 +34,9 @@ public class EnemyVitalController : NetworkBehaviour
             EventDescription = "Unit " + gameObject.name + " has died.",
             RespawnTimer = waitTime
         };
-            
-            
         EventSystem.Current.FireEvent(unitDeathEventInfo);
     }
-    
+
 
     //körs på alla klienter efter att syncvarens värde ändras
     void OnHealthChangedHook(float old, float @new)
@@ -45,24 +48,22 @@ public class EnemyVitalController : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CmdUpdateHealth(float change) => UpdateHealth(change);
 
+    // Updates the health of the enemy when being damaged or healed.
+    // When dying, it will add experience to all players in proximity
     private void UpdateHealth(float change)
     {
-        
         if (base.isServer)
         {
-            
             //clampa värdet så vi inte kan få mer hp än maxvärdet
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
-
-            if(currentHealth <= 0f)
+            if (currentHealth <= 0f)
             {
-                sphereColliders = Physics.OverlapSphere(transform.position, 20f);
+                sphereColliders = Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
                 foreach (var coll in sphereColliders)
                 {
-                    if (coll.tag == "Player") //find Player and start chasing
-                    {
-                        coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(10);
-                    }
+                    // Updates both the client and the player
+                    RpcIncreaseExperience(coll.gameObject, characterBase.GetExperience());
+                    coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(characterBase.GetExperience());
                 }
                 this.OnDeath?.Invoke(this);
                 Die();
@@ -70,6 +71,13 @@ public class EnemyVitalController : NetworkBehaviour
         }
         else
             CmdUpdateHealth(change);
+    }
+    
+    // Ships experience to clients, makes experience within proximity possible
+    [ClientRpc]
+    private void RpcIncreaseExperience(GameObject player, float exp)
+    {
+        player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(exp);
     }
 
     public float getCurrentHealth()
