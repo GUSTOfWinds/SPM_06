@@ -3293,6 +3293,7 @@ GameObject:
   - component: {fileID: 1484514502063720293}
   - component: {fileID: 1769524434509249876}
   - component: {fileID: 2628422722539755476}
+  - component: {fileID: 8617473935864422748}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3397,12 +3398,12 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   gravity: 0.4
-  staticFrictionCoefficient: 0.3
-  kineticFrictionCoefficient: 0.2
+  staticFrictionCoefficient: 0.9
+  kineticFrictionCoefficient: 0.6
   airResistance: 0.0001
-  waterLayer:
+  collisionMask:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 80
   velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &5988590173649968409
 MonoBehaviour:
@@ -3423,7 +3424,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 72064a91bcb61c845b3203c72ca636c8, type: 2}
   - {fileID: 11400000, guid: 4e4bfb8b1a8ce0b4b86d45adb98c4ec1, type: 2}
   jumpForce: 60
-  acceleration: 0.5
+  acceleration: 0.8
   firstPerson: 1
   globalPlayerInfo: {fileID: 0}
   jump: 0
@@ -3827,7 +3828,22 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   menuScreen: {fileID: 2262438205755379932}
+<<<<<<< Updated upstream
   open: 0
+=======
+--- !u!114 &8617473935864422748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5988590173649968415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2115d669ba7e6449fd2a5eeb4cb2ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> Stashed changes
 --- !u!1 &5988590174005083855
 GameObject:
   m_ObjectHideFlags: 0
