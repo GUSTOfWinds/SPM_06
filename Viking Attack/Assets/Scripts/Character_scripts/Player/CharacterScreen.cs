@@ -15,7 +15,6 @@ public class CharacterScreen : MonoBehaviour
     [SerializeField] private Text staminaStatPoints;
     [SerializeField] private Text availableStatPoints;
     [SerializeField]
-    public Animator animator;
     private GlobalPlayerInfo globalPlayerInfo;
 
 
@@ -33,10 +32,8 @@ public class CharacterScreen : MonoBehaviour
     // Increases the damage stat of the player when the damage button is pressed
     public void IncreaseDamage()
     {
-        
         if (globalPlayerInfo.GetStatPoints() < 1)
             return;
-        animator.SetTrigger("IncDMG");
         globalPlayerInfo.IncreaseDamageStatPoints();
         damageStatPoints.text = globalPlayerInfo.GetDamageStatPoints().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
@@ -46,9 +43,7 @@ public class CharacterScreen : MonoBehaviour
     public void IncreaseHealth()
     {
         if (globalPlayerInfo.GetStatPoints() < 1)
-
             return;
-        animator.SetTrigger("IncHP");
         globalPlayerInfo.IncreaseHealthStatPoints();
         healthStatPoints.text = globalPlayerInfo.GetHealthStatPoints().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
@@ -58,7 +53,6 @@ public class CharacterScreen : MonoBehaviour
     {
         if (globalPlayerInfo.GetStatPoints() < 1)
             return;
-        animator.SetTrigger("IncSTAM");
         globalPlayerInfo.IncreaseStaminaStatPoints();
         staminaStatPoints.text = globalPlayerInfo.GetStaminaStatPoints().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
