@@ -6,33 +6,20 @@ using UnityEngine.InputSystem;
 public class ToggleCharacterScreen : MonoBehaviour
 {
     [SerializeField] private GameObject characterScreen;
-<<<<<<< HEAD
-=======
-    public Animator animator;
-    //[SerializeField] private InputSystem inputSystem;
->>>>>>> parent of d094a905 (Revert "Ny HP, Stamina och hotbar. WIP. Animationer för character screen. Finare knappar.")
     public void ToggleScreen()
     {
-        if (animator.GetBool("CSSheetOpen"))
+        if (characterScreen.active)
         {
-<<<<<<< HEAD
             gameObject.GetComponent<ToggleMenu>().enabled = true;
-=======
-            animator.SetBool("CSSheetOpen", false);
->>>>>>> parent of d094a905 (Revert "Ny HP, Stamina och hotbar. WIP. Animationer för character screen. Finare knappar.")
             Cursor.lockState = CursorLockMode.Locked;
-            
+            characterScreen.SetActive(false);
             
         }
         else
         {
-<<<<<<< HEAD
             gameObject.GetComponent<ToggleMenu>().enabled = false;
-=======
-            animator.SetBool("CSSheetOpen", true);            
->>>>>>> parent of d094a905 (Revert "Ny HP, Stamina och hotbar. WIP. Animationer för character screen. Finare knappar.")
             Cursor.lockState = CursorLockMode.None;
-            
+            characterScreen.SetActive(true);
             characterScreen.GetComponent<CharacterScreen>().OpenCharacterScreen();
         }
     }
