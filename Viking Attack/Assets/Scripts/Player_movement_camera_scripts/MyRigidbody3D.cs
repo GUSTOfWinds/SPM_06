@@ -80,7 +80,6 @@ public class MyRigidbody3D : NetworkBehaviour
     //TODO: Remove after playtest and impolement proper way to handle water
     public void WaterBool()
     {
-        
         RaycastHit hit = new RaycastHit();
         if (Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out hit, (groundCheckDistance + colliderMargin), waterLayer)) {
             if (hit.collider)

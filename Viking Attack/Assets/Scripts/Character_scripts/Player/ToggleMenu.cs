@@ -3,40 +3,57 @@ using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ToggleMenu : NetworkBehaviour
 {
-    [SerializeField] private GameObject menuScreen;
+    private GameObject[] players;
 
-    public void ToggleScreen()
+    // Called upon from either host or the client, client will however not be able to 
+    // pause the game
+    public void OpenScreen()
     {
-        if (base.isServer)
+        if (isServer)
         {
-            // Runs the method below on all clients
-            RpcLockScreen();
+            players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var player in players)
+            {
+                RpcOpenMenu(player);
+            }
         }
     }
 
-    [ClientRpc]
-    public void RpcLockScreen()
+    // Called upon from either host or client, client will however not be able to 
+    // unpause the game
+    public void CloseScreen()
     {
-        if (menuScreen.active)
+        if (isServer)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            menuScreen.SetActive(false);
-            this.GetComponent<PlayerScript3D>().enabled = true;
-            this.GetComponent<CameraMovement3D>().enabled = true;
-            this.GetComponent<ToggleCharacterScreen>().enabled = true;
-            Time.timeScale = 1;
+            players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var player in players)
+            {
+                RpcCloseMenu(player);
+            }
         }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            menuScreen.SetActive(true);
-            this.GetComponent<PlayerScript3D>().enabled = false;
-            this.GetComponent<CameraMovement3D>().enabled = false;
-            this.GetComponent<ToggleCharacterScreen>().enabled = false;
-            Time.timeScale = 0;
-        }
+    }
+    
+    // Closes the menu and unpauses the game
+    [ClientRpc]
+    private void RpcCloseMenu(GameObject player)
+    {
+        gameObject.GetComponent<PlayerInput>().enabled = true;
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        player.transform.Find("UI").Find("Menu_screen").gameObject.SetActive(false);
+    }
+    
+    // Opens the menu and pauses the game
+    [ClientRpc]
+    private void RpcOpenMenu(GameObject player)
+    {
+        gameObject.GetComponent<PlayerInput>().enabled = false;
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        player.transform.Find("UI").Find("Menu_screen").gameObject.SetActive(true);
     }
 }
