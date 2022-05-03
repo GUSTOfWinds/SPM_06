@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace ItemNamespace
 {
     public class GameController
     {

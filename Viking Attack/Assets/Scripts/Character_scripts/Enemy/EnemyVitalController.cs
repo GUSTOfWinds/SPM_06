@@ -1,5 +1,5 @@
 using System;
-using DefaultNamespace;
+using ItemNamespace;
 using Event;
 using Mirror;
 using UnityEngine;

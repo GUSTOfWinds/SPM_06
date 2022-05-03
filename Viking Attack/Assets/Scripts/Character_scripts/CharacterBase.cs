@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace DefaultNamespace
+namespace ItemNamespace
 
 // WHO TO BLAME: Martin Kings
 {

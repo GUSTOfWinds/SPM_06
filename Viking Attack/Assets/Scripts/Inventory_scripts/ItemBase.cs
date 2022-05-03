@@ -1,7 +1,8 @@
 using UnityEngine;
+using System;
 
 
-namespace DefaultNamespace
+namespace ItemNamespace
 {
     // Creates the ScriptableObject function for the Item objects.
     [CreateAssetMenu(fileName = "Item", menuName = "ScriptableObjects/Create new item")]
@@ -19,52 +20,33 @@ namespace DefaultNamespace
         [SerializeField] private string description;
         [SerializeField] private int damage; // only interesting if weapon
         [SerializeField] private float range;
+        [SerializeField] private float stamina;
         [SerializeField] private int healAmount; // only interesting if food
         [SerializeField] private Sprite sprite; // the icon shown when interacting with the item
         [SerializeField] private bool stackable; // if the item can be stacked in the inventory or the player bar
+        [SerializeField] private Mesh mesh; // the mesh for the item in the world
+        [SerializeField] private Material material; // the material for the item in the world
+        [SerializeField] private string itemBaseBehaviorScriptName; // the object with base behavior script for the item
 
 
         
         // Returns damage output when used
-        public int GetDamage()
-        {
-            return damage;
-        }
-
-        public float GetRange()
-        {
-            return range;
-        }
-
+        public int GetDamage => damage;
+        // Returns range when used
+        public float GetRange => range;
+        // Returns stamina when used
+        public float GetStamina => stamina;
         // Returns name of the item
-        public string GetName()
-        {
-            return itemName;
-        }
-        
+        public string GetName => itemName;
         // Returns the amount healed when using the item
-        public int GetHealAmount()
-        {
-            return healAmount;
-        }
-
+        public int GetHealAmount => healAmount;
         // Returns the description of the item
-        public string GetDescription()
-        {
-            return description;
-        }
-        
+        public string GetDescription => description;
         // Returns the 2D image for the item
-        public Sprite GetSprite()
-        {
-            return sprite;
-        }
-        
+        public Sprite GetSprite => sprite;
         // Returns this type
-        public Type GetType()
-        {
-            return type;
-        }
+        public Type GetType => type;
+        public String GetItemBaseBehaviorScriptName => itemBaseBehaviorScriptName;
 
         // Contains the different item type, add a new line to the enum in order to add an item type.
         public enum Type

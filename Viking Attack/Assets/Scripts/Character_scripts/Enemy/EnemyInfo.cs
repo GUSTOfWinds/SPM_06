@@ -4,7 +4,7 @@ using UnityEngine;
 
 // WHO TO BLAME: Martin Kings
 
-namespace DefaultNamespace
+namespace ItemNamespace
 {
     public class EnemyInfo : MonoBehaviour
     {

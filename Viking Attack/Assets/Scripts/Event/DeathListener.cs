@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using DefaultNamespace;
+using ItemNamespace;
 using Mirror;
 using UnityEngine;
 
