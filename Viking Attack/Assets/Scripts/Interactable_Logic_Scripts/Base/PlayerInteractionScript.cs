@@ -8,7 +8,7 @@ public class PlayerInteractionScript : NetworkBehaviour
 {
     //The text that shows when hovering over an interactable object
     [SerializeField] private UnityEngine.UI.Text interactionText;
-    [SerializeField] private Camera mainCamera;
+    private Camera mainCamera;
 
     private RaycastHit hit;
     public void Start()
@@ -39,7 +39,7 @@ public class PlayerInteractionScript : NetworkBehaviour
     {
         if(value.performed && hit.collider)
         {
-            hit.transform.GetComponent<InteractableObjectScript>().buttonPressed();
+            hit.transform.GetComponent<InteractableObjectScript>().buttonPressed(gameObject);
         }
     }
 }

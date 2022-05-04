@@ -13,13 +13,13 @@ public class InteractableObjectScript : MonoBehaviour
     {
         interactionDescription = interactionDescriptionPositiv;
     }
-    public void buttonPressed()
+    public void buttonPressed(GameObject gameObject)
     {
         if(interactionDescription.Equals(interactionDescriptionPositiv))
             interactionDescription = interactionDescriptionNegative;
         else
             interactionDescription = interactionDescriptionPositiv;
         //Calls the object to interact with (uses the BaseObjectInteraction so i can call different objects)
-        interactableGameObject.GetComponent<BaseObjectInteraction>().InteractedWith();
+        interactableGameObject.GetComponent<BaseObjectInteraction>().InteractedWith(gameObject);
     }
 }

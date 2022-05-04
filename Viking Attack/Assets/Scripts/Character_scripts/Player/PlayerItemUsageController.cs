@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerItemUsageController : NetworkBehaviour
 {
-    [SerializeField] private ItemBase itemBase; // Will need to be updated if another item is being used.
+    public ItemBase itemBase; // Will need to be updated if another item is being used.
     [SerializeField] private GameObject heldItemWorldObject;
     [SerializeField] private GameObject holdingHand;
     

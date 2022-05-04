@@ -9,6 +9,7 @@ namespace Event
 {
     public class DeathListener : NetworkBehaviour
     {
+        [SerializeField] private GameObject dropBase;
         private Guid DeathEventGuid;
         private void Start()
         {
@@ -31,6 +32,14 @@ namespace Event
             
             // Destroys the enemy
             NetworkServer.Destroy(unitDeathEventInfo.EventUnitGo);
+
+            dropBase.GetComponent<DropItemInWorldScript>().itembase = unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetDrop();
+            if(unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetDrop() != null)
+            {
+                var drop = Instantiate(dropBase,new Vector3(unitDeathEventInfo.EventUnitGo.transform.position.x,unitDeathEventInfo.EventUnitGo.transform.position.y + 1,unitDeathEventInfo.EventUnitGo.transform.position.z),new Quaternion(0,0,0,0));
+                NetworkServer.Spawn(drop);
+            }
+                
             
             // Destroys the health bars
             yield return new WaitForSeconds(timer);
