@@ -3410,10 +3410,10 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5988590173649968415}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 1
+  m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5988590173649968408
@@ -3437,6 +3437,7 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 88
+  capsuleCollider: {fileID: 5988590173649968411}
   velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &5988590173649968409
 MonoBehaviour:
@@ -3488,7 +3489,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   interactionText: {fileID: 5988590174749780766}
-  mainCamera: {fileID: 0}
 --- !u!114 &1008048771508749607
 MonoBehaviour:
   m_ObjectHideFlags: 0
