@@ -30,6 +30,8 @@ namespace ItemNamespace
 
         private RaycastHit hit;
 
+        private Vector3 rayBeginning;
+
 
         void Start()
         {
@@ -45,8 +47,11 @@ namespace ItemNamespace
                 cooldown += Time.fixedDeltaTime;
             }
 
+            rayBeginning = transform.position;
+            rayBeginning.y += 0.4f;
             // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 30))
+            if (Physics.Raycast(rayBeginning,
+                    transform.TransformDirection(Vector3.forward), out hit, 30))
             {
                 // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
                 if (hit.distance < range && cooldown > attackCooldown && hit.collider.CompareTag("Player"))
@@ -89,7 +94,7 @@ namespace ItemNamespace
             if (globalPlayerInfo.IsAlive()) // checks if the player is even alive
             {
                 globalPlayerInfo.UpdateHealth(-damage); // damages the player in question
-                
+
                 // Creates an event used to play a sound and display the damage in the player UI
                 EventInfo playerDamageEventInfo = new DamageEventInfo
                 {
@@ -98,7 +103,6 @@ namespace ItemNamespace
                     target = player
                 };
                 EventSystem.Current.FireEvent(playerDamageEventInfo);
-                
             }
         }
     }
