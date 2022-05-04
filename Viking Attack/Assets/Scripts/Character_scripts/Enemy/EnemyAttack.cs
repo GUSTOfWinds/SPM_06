@@ -1,4 +1,5 @@
 using System.Collections;
+using Event;
 using UnityEngine;
 
 namespace ItemNamespace
@@ -9,18 +10,26 @@ namespace ItemNamespace
          * Animator stuff below
          */
         [SerializeField] private Animator animator;
-        
-        [SerializeField] private float range;  // The range of the enemy attacks
+
+        [SerializeField] private float range; // The range of the enemy attacks
         [SerializeField] private float attackCooldown; // the cooldown of the enemy attacks
         [SerializeField] private int damage; // the damage of the enemy attacks
-        [SerializeField] private float cooldown; // float that will be reset to 0 after hitting the attackCooldown variable
-        [SerializeField] private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
+
+        [SerializeField]
+        private float cooldown; // float that will be reset to 0 after hitting the attackCooldown variable
+
+        [SerializeField]
+        private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
+
         [SerializeField] private GameObject player;
         [SerializeField] private GlobalPlayerInfo globalPlayerInfo;
         private Vector3 playerLocation; // location used to see if the player has gotten away far enough to not be hit
-        private float playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
+
+        private float
+            playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
+
         private RaycastHit hit;
-        
+
 
         void Start()
         {
@@ -28,7 +37,7 @@ namespace ItemNamespace
             attackCooldown = characterBase.GetAttackCooldown();
             damage = characterBase.GetDamage();
         }
-        
+
         private void FixedUpdate()
         {
             if (cooldown < attackCooldown) // adds to cooldown if attackCooldown hasn't been met
@@ -56,17 +65,18 @@ namespace ItemNamespace
         private IEnumerator FinishAttack()
         {
             // saves the location of the player to be compared to the location at the impact
-            playerLocation = player.transform.position; 
+            playerLocation = player.transform.position;
             ResetCoolDown(); // resets cooldown of the attack
             yield return new WaitForSeconds(1f);
-            playerUpdatedDistance = Vector3.Distance (playerLocation, player.transform.position);
+            playerUpdatedDistance = Vector3.Distance(playerLocation, player.transform.position);
             if (playerUpdatedDistance < range)
             {
                 Attack(); // Attacks player
             }
+
             gameObject.GetComponent<EnemyMovement>().attacking = false;
         }
-        
+
         // Resets the attack cooldown
         private void ResetCoolDown()
         {
@@ -78,7 +88,17 @@ namespace ItemNamespace
         {
             if (globalPlayerInfo.IsAlive()) // checks if the player is even alive
             {
-                globalPlayerInfo.UpdateHealth(-damage);
+                globalPlayerInfo.UpdateHealth(-damage); // damages the player in question
+                
+                // Creates an event used to play a sound and display the damage in the player UI
+                EventInfo playerDamageEventInfo = new DamageEventInfo
+                {
+                    EventUnitGo = gameObject,
+                    EventDescription = "Unit " + gameObject.name + " has died.",
+                    target = player
+                };
+                EventSystem.Current.FireEvent(playerDamageEventInfo);
+                
             }
         }
     }

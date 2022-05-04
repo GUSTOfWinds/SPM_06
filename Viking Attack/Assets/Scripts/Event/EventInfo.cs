@@ -7,6 +7,7 @@ namespace Event
     // Main class, contains a description
     public abstract class EventInfo
     {
+        public GameObject EventUnitGo;
         public string EventDescription;
     }
 
@@ -14,12 +15,16 @@ namespace Event
     // Die event class
     public class UnitDeathEventInfo : EventInfo
     {
-        public GameObject EventUnitGo;
         public float RespawnTimer;
     }
 
     public class DebugEventInfo : EventInfo
     {
         
+    }
+
+    public class DamageEventInfo : EventInfo
+    {
+        public GameObject target;
     }
 }
