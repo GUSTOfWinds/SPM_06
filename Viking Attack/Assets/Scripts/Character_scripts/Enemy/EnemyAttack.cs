@@ -36,14 +36,9 @@ namespace ItemNamespace
                 cooldown += Time.fixedDeltaTime;
             }
 
-            
             // Does the ray intersect any objects excluding the player layer
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 30))
             {
-                // Prints a line of the raycast if a player is detected.
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance,
-                    Color.yellow);
-            
                 // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
                 if (hit.distance < range && cooldown > attackCooldown && hit.collider.CompareTag("Player"))
                 {

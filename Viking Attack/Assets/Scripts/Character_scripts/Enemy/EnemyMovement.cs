@@ -67,7 +67,7 @@ public class EnemyMovement : NetworkBehaviour
         transform.position = position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (isServer)
         {        
