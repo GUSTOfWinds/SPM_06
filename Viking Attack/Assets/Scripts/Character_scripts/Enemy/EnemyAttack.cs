@@ -17,8 +17,10 @@ namespace ItemNamespace
         [SerializeField] private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
         [SerializeField] private GameObject player;
         [SerializeField] private GlobalPlayerInfo globalPlayerInfo;
-        private Vector3 playerLocation;
+        private Vector3 playerLocation; // location used to see if the player has gotten away far enough to not be hit
+        private float playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
         private RaycastHit hit;
+        
 
         void Start()
         {
@@ -51,19 +53,19 @@ namespace ItemNamespace
                     gameObject.GetComponent<EnemyMovement>().attacking = true;
                     player = hit.collider.gameObject; // updates which player object to attack and to
                     globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
-                    StartCoroutine(FinishAttack(hit));
+                    StartCoroutine(FinishAttack());
                 }
             }
         }
 
-        private IEnumerator FinishAttack(RaycastHit hit)
+        private IEnumerator FinishAttack()
         {
             // saves the location of the player to be compared to the location at the impact
             playerLocation = player.transform.position; 
             ResetCoolDown(); // resets cooldown of the attack
-            yield return new WaitForSeconds(0.9f);
-            float distance = Vector3.Distance (playerLocation, player.transform.position);
-            if (distance < range)
+            yield return new WaitForSeconds(1f);
+            playerUpdatedDistance = Vector3.Distance (playerLocation, player.transform.position);
+            if (playerUpdatedDistance < range)
             {
                 Attack(); // Attacks player
             }
