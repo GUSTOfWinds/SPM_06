@@ -16,8 +16,11 @@ MonoBehaviour:
   characterName: Skeleton
   description: Bones
   range: 2
-  attackCooldown: 1
+  attackCooldown: 1.5
   damage: 10
-  chasingSpeedMultiplier: 1.1
+  chasingSpeedMultiplier: 1.5
   moveSpeed: 70
-  maxHealth: 15
+  maxHealth: 70
+  experienceRadius: 20
+  level: 1
+  experience: 10
