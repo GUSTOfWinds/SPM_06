@@ -29,7 +29,7 @@ public class PlayerDamageSoundListener : MonoBehaviour
     {
         if (eventInfo.target.GetComponent<NetworkIdentity>().netId == netID)
         {
-            while (audioSource.clip == lastAudioClip)
+            while (audioSource.clip == lastAudioClip || audioSource.clip == null)
             {
                 audioSource.clip = sounds[Random.Range(0, sounds.Length)];
             }
