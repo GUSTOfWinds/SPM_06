@@ -22,14 +22,17 @@ namespace ItemNamespace
         [Header("Insert the level you want the enemy to be")]
         [SerializeField] private int level;
         [SerializeField] private float experience;
+        [SerializeField] private string name;
         private bool hasHealthBarShown;
         private Transform respawnParent;
         private ItemBase drop;
+        SceneSwitch sceneSwitch;
 
         private void Awake()
         {
             // Updates the variables using the scriptable object
             experience = characterBase.GetExperience();
+            name = characterBase.GetName();
             experienceRadius = characterBase.GetExperienceRadius();
             range = characterBase.GetRange();
             attackCooldown = characterBase.GetAttackCooldown();
@@ -39,12 +42,18 @@ namespace ItemNamespace
             health = characterBase.GetMaxHealth();
             maxHealth = characterBase.GetMaxHealth();
             drop = characterBase.GetDrop();
+            sceneSwitch = GameObject.FindGameObjectWithTag("Portal").GetComponent<SceneSwitch>();
+
         }
 
         public void Kill()
         {
+            
             //TODO ADD EVENT LISTENER HERE, NEEDS TO FIND ALL LISTENERS FOR ENEMY DEATHS
             gameObject.SetActive(false);
+            
+            
+            
         }
 
         public bool CheckHealthBarStatus()

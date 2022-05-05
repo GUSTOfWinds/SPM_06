@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneSwitch : MonoBehaviour
 {
 
-    public bool bossIsDead = true;
+    private bool bossIsDead;
     
     void OnTriggerEnter(Collider other)
     {
@@ -15,5 +15,9 @@ public class SceneSwitch : MonoBehaviour
             SceneManager.LoadScene(1);
         }
         
+    }
+    public void DeadBoss()
+    {
+        bossIsDead = true;
     }
 }
