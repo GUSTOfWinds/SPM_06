@@ -20,6 +20,7 @@ public class CameraMovement3D : NetworkBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
+        
     }
 
     public override void OnStartLocalPlayer()
