@@ -23,23 +23,12 @@ public class ItemSwordBehavior : ItemBaseBehavior
         // Checks if the player has enough stamina to attack, will then attack.
         if (globalPlayerInfo.GetStamina() > belongingTo.GetStamina && canAttack)
         {
-<<<<<<< Updated upstream
-            // Checks if the player has enough stamina to attack, will then attack.
-            if (globalPlayerInfo.GetStamina() > belongingTo.GetStamina)
-            {
-                globalPlayerInfo.UpdateStamina(-belongingTo.GetStamina);
-                hit.collider.gameObject.GetComponent<EnemyVitalController>().UpdateHealth(-belongingTo.GetDamage);
-                // ADD SWING ANIMATION HERE
-            }
-=======
-            
             globalPlayerInfo.UpdateStamina(-belongingTo.GetStamina);
             // ADD SWING ANIMATION HERE
             canAttack = false;
             animator.Play("SwordAttack",animator.GetLayerIndex("Sword Attack"),0f);
             animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"),1);
             StartCoroutine(WaitToAttack(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).speed));
->>>>>>> Stashed changes
         }
     }
     IEnumerator WaitToAttack(float time)
