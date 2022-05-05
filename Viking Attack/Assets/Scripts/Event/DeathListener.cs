@@ -2,12 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ItemNamespace;
-using Mirror;
 using UnityEngine;
-
+using Mirror;
 namespace Event
 {
-    public class DeathListener : NetworkBehaviour
+    public class DeathListener : MonoBehaviour
     {
         [SerializeField] private GameObject dropBase;
         [SerializeField] private GameObject[] enemies;

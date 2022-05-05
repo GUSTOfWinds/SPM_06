@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using Event;
+using Mirror;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace ItemNamespace
 {
-    public class EnemyAttack : MonoBehaviour
+    public class EnemyAttack : NetworkBehaviour
     {
         [SerializeField] private Animator animator;
         [SerializeField] private AudioSource audioSource;
@@ -40,40 +41,46 @@ namespace ItemNamespace
             attackCooldown = characterBase.GetAttackCooldown();
             damage = characterBase.GetDamage();
             enemyMovement = gameObject.GetComponent<EnemyMovement>();
-            deathListener = FindObjectOfType<DeathListener>();
-            enemies = deathListener.GetEnemies();
+            if (isServer)
+            {
+                deathListener = FindObjectOfType<DeathListener>();
+                enemies = deathListener.GetEnemies();
+            }
         }
 
         private void FixedUpdate()
         {
-            if (cooldown < attackCooldown) // adds to cooldown if attackCooldown hasn't been met
+            if (isServer)
             {
-                cooldown += Time.fixedDeltaTime;
-            }
-
-            rayBeginning = transform.position;
-            rayBeginning.y += 0.8f;
-            // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(rayBeginning,
-                    transform.TransformDirection(Vector3.forward), out hit, 5, layerMask))
-            {
-                // Checks that no other enemies already are breathing within a 6 meter radius
-                if (!GetNearbyAudioSourcePlaying() && !audioSource.isPlaying)
+                if (cooldown < attackCooldown) // adds to cooldown if attackCooldown hasn't been met
                 {
-                    // plays the sound of the skeleton breathing when in range for attack
-                    audioSource.PlayOneShot(enemySounds[0]);
+                    cooldown += Time.fixedDeltaTime;
                 }
 
-                // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
-                if (hit.distance < range && cooldown > attackCooldown)
+                rayBeginning = transform.position;
+                rayBeginning.y += 0.8f;
+                // Does the ray intersect any objects excluding the player layer
+                if (Physics.Raycast(rayBeginning,
+                        transform.TransformDirection(Vector3.forward), out hit, 5, layerMask))
                 {
-                    animator.SetBool("Chasing", false);
-                    animator.SetBool("Attacking", true);
-                    animator.SetBool("Patrolling", false);
-                    enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
-                    player = hit.collider.gameObject; // updates which player object to attack and to
-                    globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
-                    StartCoroutine(FinishAttack());
+                    // Checks that no other enemies already are breathing within a 6 meter radius
+                    if (!GetNearbyAudioSourcePlaying() && !audioSource.isPlaying)
+                    {
+                        // plays the sound of the skeleton breathing when in range for attack
+                        audioSource.PlayOneShot(enemySounds[0]);
+                    }
+
+                    // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
+                    if (hit.distance < range && cooldown > attackCooldown)
+                    {
+                        animator.SetBool("Chasing", false);
+                        animator.SetBool("Attacking", true);
+                        animator.SetBool("Patrolling", false);
+                        enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
+                        player = hit.collider.gameObject; // updates which player object to attack and to
+                        globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
+                        StartCoroutine(FinishAttack());
+                    }
                 }
             }
         }
