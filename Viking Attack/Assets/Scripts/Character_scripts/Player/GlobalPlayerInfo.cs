@@ -29,6 +29,8 @@ public class GlobalPlayerInfo : MonoBehaviour
     [SerializeField] private int staminaStat;
     [SerializeField] private float damage;
 
+    public Animator animator;
+
     private void Awake()
     {
         damage = 5;
@@ -148,6 +150,7 @@ public class GlobalPlayerInfo : MonoBehaviour
 
     public void IncreaseLevel()
     {
+        animator.SetTrigger("incLVL");
         EventInfo playerLevelUpInfo = new PlayerLevelUpEventInfo
         {
             
