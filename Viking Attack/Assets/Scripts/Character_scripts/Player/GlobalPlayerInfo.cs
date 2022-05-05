@@ -1,4 +1,5 @@
 
+using Event;
 using ItemNamespace;
 using UnityEngine;
 
@@ -27,6 +28,8 @@ public class GlobalPlayerInfo : MonoBehaviour
     [SerializeField] private int healthStat;
     [SerializeField] private int staminaStat;
     [SerializeField] private float damage;
+
+
 
     private void Awake()
     {
@@ -147,9 +150,14 @@ public class GlobalPlayerInfo : MonoBehaviour
 
     public void IncreaseLevel()
     {
+
+        EventInfo playerLevelUpInfo = new PlayerLevelUpEventInfo
+        {
+            
+        };
+        EventSystem.Current.FireEvent(playerLevelUpInfo);
         level++;
         availableStatpoints += 3;
-
     }
 
     public float GetExperience()

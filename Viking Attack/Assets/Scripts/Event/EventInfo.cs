@@ -34,4 +34,9 @@ namespace Event
         // it was placed in teh beginning of the game
         public Transform parent;
     }
+
+    public class PlayerLevelUpEventInfo : EventInfo
+    {
+        
+    }
 }

@@ -56,7 +56,7 @@ namespace ItemNamespace
         {
             respawnParent = p;
         }
-        
+
         public Transform GetRespawnParent()
         {
             return respawnParent;
