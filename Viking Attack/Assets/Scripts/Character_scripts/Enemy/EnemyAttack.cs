@@ -153,7 +153,6 @@ namespace ItemNamespace
                 EventInfo playerDamageEventInfo = new DamageEventInfo
                 {
                     EventUnitGo = gameObject,
-                    EventDescription = "Unit " + gameObject.name + " has died.",
                     target = player
                 };
                 EventSystem.Current.FireEvent(playerDamageEventInfo);
