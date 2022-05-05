@@ -15,7 +15,6 @@ public class EnemyMovement : NetworkBehaviour
 
     [SerializeField] private Animator animator;
     [SerializeField] public bool attacking;
-    
     /**
      * 
      */
@@ -100,7 +99,6 @@ public class EnemyMovement : NetworkBehaviour
 
                 if (isChasing)
                 {
-                    
                     animator.SetBool("Chasing", true);
                     animator.SetBool("Attacking", false);
                     animator.SetBool("Patrolling", false);
