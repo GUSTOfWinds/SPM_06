@@ -44,7 +44,7 @@ namespace ItemNamespace
             EventSystem.Current.RegisterListener<EnemyRespawnEventInfo>(OnEnemyRespawn, ref respawnEventGuid);
         }
 
-        private void FixedUpdate()
+        public void BeforeAttack()
         {
             if (cooldown < attackCooldown) // adds to cooldown if attackCooldown hasn't been met
             {
