@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-[CreateAssetMenu(menuName = "PlayerState/BaseState")]
+
+[CreateAssetMenu(menuName = "PlayerState/AttackState")]
 //Used as a state when the player does nothing
-public class PlayerBaseState : PlayerState
+public class PlayerAttackState : PlayerState
 {
 
     public override void Enter()

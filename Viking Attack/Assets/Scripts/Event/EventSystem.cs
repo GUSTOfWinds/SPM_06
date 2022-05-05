@@ -92,9 +92,9 @@ namespace Event
                 // No one is listening, we are done.
                 return;
             }
-            
             foreach (GameListener el in eventListeners[trueEventInfoClass])
             {
+                
                 el.listener(eventInfo);
             }
         }

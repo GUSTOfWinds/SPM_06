@@ -32,11 +32,15 @@ public class PlayerRunState : PlayerState
         // decreases by the sprintCost, else the player regains stamina while walking
         if (sprintKeyInfo.performed && Player.globalPlayerInfo.GetStamina() > 1)
         {
+            Animator.SetBool("isRunning",true);
+            Animator.SetBool("isWalking",false);
             Player.globalPlayerInfo.UpdateStamina( -sprintCost * Time.deltaTime);
             input = input.normalized * Player.acceleration * 1.6f;
         }
         else
         {
+            Animator.SetBool("isRunning",false);
+            Animator.SetBool("isWalking",true);
             Player.globalPlayerInfo.UpdateStamina( staminaGain * Time.deltaTime);
             input = input.normalized * Player.acceleration;
         }
@@ -50,20 +54,22 @@ public class PlayerRunState : PlayerState
         Player.MyRigidbody3D.velocity += input * Player.acceleration;
 
         cooldown -= Time.deltaTime;
-        if (cooldown <= 0.0f)
+        if (cooldown <= 0.0f && Player.jump)
         {
-            if (Player.jump)
-            {
-                Player.jump = false;
-                stateMachine.ChangeState<PlayerDashState>();
-                cooldown = 0.9f;
-            }    
-            
-
+            Animator.SetBool("isRunning",false);
+            Animator.SetBool("isWalking",false);
+            Player.jump = false;
+            stateMachine.ChangeState<PlayerDashState>();
+            cooldown = 0.9f;
         }
         
         else if (Player.movementKeyInfo.ReadValue<Vector2>() == Vector2.zero)
+        {
+            Animator.SetBool("isRunning",false);
+            Animator.SetBool("isWalking",false);
             stateMachine.ChangeState<PlayerBaseState>();
+        }
+            
     }
 
 }
