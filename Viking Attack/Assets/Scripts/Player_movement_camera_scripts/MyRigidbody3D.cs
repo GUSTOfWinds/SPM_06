@@ -10,12 +10,16 @@ public class MyRigidbody3D : NetworkBehaviour
     [SerializeField] private float kineticFrictionCoefficient = 0.2f;
     [SerializeField] private float airResistance = 0.0001f;
     [SerializeField] LayerMask collisionMask;
+    [SerializeField] private CapsuleCollider capsuleCollider;
     private float colliderMargin = 0.01f;
     private float groundCheckDistance = 0.01f;
-    private CapsuleCollider capsuleCollider;
+    
     
     private Vector3 point1;
     private Vector3 point2;
+    private float capsuleHeight;
+    private float capsuleRadius;
+    private int UpdateVelocityTimes;
     public Vector3 velocity;
 
     //syncPosition �r till f�r att synkronisera alla spelarpositioner gentemot servern
@@ -25,9 +29,12 @@ public class MyRigidbody3D : NetworkBehaviour
 
     void Awake()
     {
+        
         //Set collisionMask to hit everything except self
         collisionMask = ~(collisionMask);
-        capsuleCollider = GetComponent<CapsuleCollider>();
+        //capsuleCollider = GetComponent<CapsuleCollider>();
+        capsuleHeight = capsuleCollider.height;//* transform.localScale.y;
+        capsuleRadius = capsuleCollider.radius;//* transform.localScale.x;
         NetworkServer.SpawnObjects();
     }
 
@@ -49,11 +56,12 @@ public class MyRigidbody3D : NetworkBehaviour
         velocity *= Mathf.Pow(airResistance, Time.deltaTime);
 
         //Updates capsule (Collider hitbox) circle component position.
-        point1 = gameObject.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        point2 = gameObject.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        point1 = gameObject.transform.position + capsuleCollider.center + Vector3.up * (capsuleHeight / 2 - capsuleRadius);
+        point2 = gameObject.transform.position + capsuleCollider.center + Vector3.down * (capsuleHeight / 2 - capsuleRadius);
 
         PhysicsObjectFrictionFunction();
         UpdateVelocity();
+        UpdateVelocityTimes = 0;
 
         //Add velocity variable to object position
         transform.position += velocity * Time.deltaTime;
@@ -73,18 +81,21 @@ public class MyRigidbody3D : NetworkBehaviour
     public bool GroundedBool()
     {
         RaycastHit hit = new RaycastHit();
-        return Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out hit, (groundCheckDistance + colliderMargin), collisionMask);
+        return Physics.CapsuleCast(point1, point2, capsuleRadius, Vector3.down, out hit, (groundCheckDistance + colliderMargin), collisionMask);
     }
 
     //Check if object is on ground (on another collider) returns a RaycastHit veribal
     public RaycastHit Grounded()
     {
         RaycastHit hit = new RaycastHit();
-        Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out hit, (groundCheckDistance + colliderMargin), collisionMask);
+        Physics.CapsuleCast(point1, point2, capsuleRadius, Vector3.down, out hit, (groundCheckDistance + colliderMargin), collisionMask);
         return hit;
     }
     private void UpdateVelocity()
     {
+        UpdateVelocityTimes++;
+        if(UpdateVelocityTimes >= 100)
+            return;
         if(velocity.magnitude  < 0.0001f)
         {
             velocity = Vector3.zero;
@@ -92,7 +103,7 @@ public class MyRigidbody3D : NetworkBehaviour
         }
         RaycastHit hit1;
         Vector3 normalForce = Vector3.zero;
-        if(Physics.CapsuleCast(point1, point2, capsuleCollider.radius, velocity.normalized, out hit1 ,Mathf.Infinity,collisionMask))
+        if(Physics.CapsuleCast(point1, point2, capsuleRadius, velocity.normalized, out hit1 ,Mathf.Infinity,collisionMask))
         {
             float distanceToColliderNeg = colliderMargin / Vector3.Dot(velocity.normalized, hit1.normal);
             float allowedMovementDistance = hit1.distance + distanceToColliderNeg;
@@ -108,7 +119,7 @@ public class MyRigidbody3D : NetworkBehaviour
             velocity += normalForce;
             UpdateVelocity();
         }
-        Collider[] hitList = Physics.OverlapCapsule(point1, point2, capsuleCollider.radius, collisionMask);
+        Collider[] hitList = Physics.OverlapCapsule(point1, point2, capsuleRadius, collisionMask);
         if(hitList.Length > 0)
         {
             Vector3 direction;
@@ -128,14 +139,13 @@ public class MyRigidbody3D : NetworkBehaviour
             Physics.ComputePenetration(capsuleCollider,capsuleCollider.transform.position,capsuleCollider.transform.rotation,colliderToStartWith,colliderToStartWith.transform.position,colliderToStartWith.transform.rotation,out direction,out distance);
 
             Vector3 separationVector = direction * distance;
-            transform.position += separationVector + direction.normalized * colliderMargin * Time.deltaTime;
+            transform.position += separationVector + direction.normalized * colliderMargin * Time.deltaTime *10;
 
             normalForce += GetComponent<GeneralHelpFunctions3D>().CalculateNormalForce(velocity, direction.normalized);
             velocity += normalForce;
             UpdateVelocity();
         }
         FrictionFunction(normalForce);
-
     }
     //Gives friction to velovity with given normalforce
     private void FrictionFunction(Vector3 normalForce)

@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using ItemNamespace;
 
 // WHO TO BLAME: Martin Kings
 
@@ -23,6 +24,7 @@ namespace ItemNamespace
         [SerializeField] private float experience;
         private bool hasHealthBarShown;
         private Transform respawnParent;
+        private ItemBase drop;
 
         private void Awake()
         {
@@ -36,6 +38,7 @@ namespace ItemNamespace
             moveSpeed = characterBase.GetMovementSpeed();
             health = characterBase.GetMaxHealth();
             maxHealth = characterBase.GetMaxHealth();
+            drop = characterBase.GetDrop();
         }
 
         public void Kill()
@@ -62,6 +65,10 @@ namespace ItemNamespace
         public void SetHealthBarStatus(bool b)
         {
             hasHealthBarShown = b;
+        }
+        public ItemBase GetDrop()
+        {
+            return drop;
         }
         
         public void UpdateHealth(float difference)

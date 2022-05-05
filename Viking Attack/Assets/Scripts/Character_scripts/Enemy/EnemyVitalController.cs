@@ -50,7 +50,7 @@ public class EnemyVitalController : NetworkBehaviour
 
     // Updates the health of the enemy when being damaged or healed.
     // When dying, it will add experience to all players in proximity
-    private void UpdateHealth(float change)
+    public void UpdateHealth(float change)
     {
         if (base.isServer)
         {
