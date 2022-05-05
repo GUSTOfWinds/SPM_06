@@ -38,7 +38,7 @@ public class MyRigidbody3D : NetworkBehaviour
         NetworkServer.SpawnObjects();
     }
 
-    void Update()
+    void FixedUpdate()
     {
 
         // //H�r ser vi om det �r lokal spelare eller inte, om det inte �r det s� uppdaterar vi vyn f�r den andra och avbryter.
@@ -53,7 +53,7 @@ public class MyRigidbody3D : NetworkBehaviour
         velocity += Vector3.down * gravity;
 
         //Add air resistance
-        velocity *= Mathf.Pow(airResistance, Time.deltaTime);
+        velocity *= Mathf.Pow(airResistance, Time.fixedDeltaTime);
 
         //Updates capsule (Collider hitbox) circle component position.
         point1 = gameObject.transform.position + capsuleCollider.center + Vector3.up * (capsuleHeight / 2 - capsuleRadius);
@@ -64,7 +64,7 @@ public class MyRigidbody3D : NetworkBehaviour
         UpdateVelocityTimes = 0;
 
         //Add velocity variable to object position
-        transform.position += velocity * Time.deltaTime;
+        transform.position += velocity * Time.fixedDeltaTime;
 
         //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen.
         CmdSetSynchedPosition(this.transform.position);
@@ -107,7 +107,7 @@ public class MyRigidbody3D : NetworkBehaviour
         {
             float distanceToColliderNeg = colliderMargin / Vector3.Dot(velocity.normalized, hit1.normal);
             float allowedMovementDistance = hit1.distance + distanceToColliderNeg;
-            if (allowedMovementDistance > velocity.magnitude * Time.deltaTime) 
+            if (allowedMovementDistance > velocity.magnitude * Time.fixedDeltaTime) 
             {
                 return;
             }
@@ -139,7 +139,7 @@ public class MyRigidbody3D : NetworkBehaviour
             Physics.ComputePenetration(capsuleCollider,capsuleCollider.transform.position,capsuleCollider.transform.rotation,colliderToStartWith,colliderToStartWith.transform.position,colliderToStartWith.transform.rotation,out direction,out distance);
 
             Vector3 separationVector = direction * distance;
-            transform.position += separationVector + direction.normalized * colliderMargin * Time.deltaTime *10;
+            transform.position += separationVector + direction.normalized * colliderMargin * Time.fixedDeltaTime * 10;
 
             normalForce += GetComponent<GeneralHelpFunctions3D>().CalculateNormalForce(velocity, direction.normalized);
             velocity += normalForce;

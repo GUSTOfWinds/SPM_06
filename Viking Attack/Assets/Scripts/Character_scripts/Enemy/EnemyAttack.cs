@@ -78,7 +78,6 @@ namespace ItemNamespace
                         //sets the others to false
                         animator.SetBool("Chasing", false);
                         animator.SetBool("Patrolling", false);
-                        enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
                         player = hit.collider.gameObject; // updates which player object to attack and to
                         globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
                         StartCoroutine(FinishAttack());
@@ -87,35 +86,30 @@ namespace ItemNamespace
             }
         }
 
-        [Command]
-        public void CmdAttackAnimation()
-        {
-
-        }
-
-        
-
         // Returns true if there is an enemy nearby already playing the chasing sound
         private bool GetNearbyAudioSourcePlaying()
         {
             enemies = deathListener.GetEnemies();
             foreach (var enemy in enemies)
             {
+                
                 if (enemy != null)
                 {
                     if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f &&
-                        enemy.GetComponent<AudioSource>().isPlaying)
+                        enemy.GetComponent<AudioSource>().isPlaying && !enemy.Equals(gameObject))
                     {
                         return true;
                     }
                 }
             }
-
+            Debug.Log("FALSE");
             return false;
         }
 
         private IEnumerator FinishAttack()
         {
+            enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
+            
             // saves the location of the player to be compared to the location at the impact
             playerLocation = player.transform.position;
 

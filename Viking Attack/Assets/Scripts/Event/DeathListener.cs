@@ -14,9 +14,15 @@ namespace Event
         private Guid respawnEventGuid;
         private void Start()
         {
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            StartCoroutine(FetchInitialEnemies());
             EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnUnitDied, ref DeathEventGuid);
             EventSystem.Current.RegisterListener<EnemyRespawnEventInfo>(OnUnitRespawn, ref respawnEventGuid);
+        }
+
+        private IEnumerator FetchInitialEnemies()
+        {
+            yield return new WaitForSeconds(1);
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
         }
 
         void OnUnitRespawn(EnemyRespawnEventInfo unitDeathEventInfo)
