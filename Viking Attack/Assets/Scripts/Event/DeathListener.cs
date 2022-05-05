@@ -75,12 +75,14 @@ namespace Event
         {
             for (int i = 0; i < enemies.Length; i++)
             {
-                if (enemies[i].GetComponent<NetworkIdentity>().netId == unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId)
+                if (enemies[i] != null)
                 {
-                    enemies[i] = null;
+                    if (enemies[i].GetComponent<NetworkIdentity>().netId == unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId)
+                    {
+                        enemies[i] = null;
+                    }
                 }
             }
-            //enemies = GameObject.FindGameObjectsWithTag("Enemy");
         }
 
         public GameObject[] GetEnemies()
