@@ -12,7 +12,8 @@ public class EnemySpawner : NetworkBehaviour
     [SerializeField] private GameObject enemyPrefabToSpawn;
     private Guid respawnEventGuid;
     private uint netID;
-    
+
+
     private void Awake()
     {
         // Registers a listener for respawnevents
@@ -36,11 +37,14 @@ public class EnemySpawner : NetworkBehaviour
 
     public void Spawn()
     {
-        // Will be changed to happen ONCE when event manager handles deaths.
+
+    // Will be changed to happen ONCE when event manager handles deaths.
         // Spawns an enemy at the location of the spawner parent, will also spawn it on the server
         var enemy = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
         enemy.GetComponent<EnemyInfo>().SetRespawnAnchor(transform);
         NetworkServer.Spawn(enemy);
+        
+
     }
 
     public override void OnStartServer()

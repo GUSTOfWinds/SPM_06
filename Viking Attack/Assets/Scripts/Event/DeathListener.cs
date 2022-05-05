@@ -12,11 +12,13 @@ namespace Event
         [SerializeField] private GameObject[] enemies;
         private Guid DeathEventGuid;
         private Guid respawnEventGuid;
+        
         private void Start()
         {
             StartCoroutine(FetchInitialEnemies());
             EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnUnitDied, ref DeathEventGuid);
             EventSystem.Current.RegisterListener<EnemyRespawnEventInfo>(OnUnitRespawn, ref respawnEventGuid);
+            
         }
 
         private IEnumerator FetchInitialEnemies()
@@ -41,6 +43,7 @@ namespace Event
             float timer = unitDeathEventInfo.RespawnTimer;
             uint netIDOfEnemy = unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
             var parent = unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetRespawnParent();
+            
 
             dropBase.GetComponent<DropItemInWorldScript>().itembase = unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetDrop();
             if(unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetDrop() != null)
@@ -61,6 +64,7 @@ namespace Event
 
         private void RespawnEnemy(Transform respawnParent)
         {
+            
             // Sets up a respawn event
             EventInfo unitRespawnInfo = new EnemyRespawnEventInfo
             {

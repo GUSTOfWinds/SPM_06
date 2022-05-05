@@ -22,11 +22,11 @@ namespace ItemNamespace
         [Header("Insert the level you want the enemy to be")]
         [SerializeField] private int level;
         [SerializeField] private float experience;
-        [SerializeField] private string name;
+        [SerializeField] private new string name;
         private bool hasHealthBarShown;
         private Transform respawnParent;
         private ItemBase drop;
-        SceneSwitch sceneSwitch;
+        private SceneSwitch sceneSwitch;
 
         private void Awake()
         {
@@ -49,6 +49,7 @@ namespace ItemNamespace
         public void Kill()
         {
             
+                
             //TODO ADD EVENT LISTENER HERE, NEEDS TO FIND ALL LISTENERS FOR ENEMY DEATHS
             gameObject.SetActive(false);
             
@@ -86,6 +87,7 @@ namespace ItemNamespace
             gameObject.transform.Find("Parent").gameObject.transform.Find("Health_bar").gameObject.GetComponent<EnemyHealthBar>().SetHealth();
             if (health <= 0)
             {
+                sceneSwitch.DeadBoss(name);
                 gameObject.GetComponent<EnemyInfo>().Kill();
             }
         }
