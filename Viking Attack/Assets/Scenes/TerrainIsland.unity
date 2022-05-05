@@ -2149,6 +2149,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Runestone
       objectReference: {fileID: 0}
+    - target: {fileID: 8119905292906804761, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -840037777384891287, guid: 1135aa5308125434ba5a519b6aed3ae0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
 --- !u!4 &1104151897 stripped
@@ -3587,14 +3591,6 @@ PrefabInstance:
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 606.7202
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 606.7202
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_LocalPosition.x

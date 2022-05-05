@@ -78,8 +78,6 @@ namespace ItemNamespace
                         //sets the others to false
                         animator.SetBool("Chasing", false);
                         animator.SetBool("Patrolling", false);
-                        // Sets the network animator to attacking
-                        //CmdAttackAnimation();
                         enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
                         player = hit.collider.gameObject; // updates which player object to attack and to
                         globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
