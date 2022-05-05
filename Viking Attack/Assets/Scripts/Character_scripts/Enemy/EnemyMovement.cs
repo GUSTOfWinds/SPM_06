@@ -116,7 +116,7 @@ public class EnemyMovement : NetworkBehaviour
                     lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
                     transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.fixedDeltaTime * 3);
                     
-                    if (Vector3.Distance(transform.position, chasingObject.transform.position) > 4f)
+                    if (Vector3.Distance(transform.position, chasingObject.transform.position) > 3f)
                     {
                         transform.position = Vector3.MoveTowards(transform.position, facePlayer,
                             chasingSpeedMultiplier * Time.fixedDeltaTime);
