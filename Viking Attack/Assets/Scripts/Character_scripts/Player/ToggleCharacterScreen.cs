@@ -6,20 +6,21 @@ using UnityEngine.InputSystem;
 public class ToggleCharacterScreen : MonoBehaviour
 {
     [SerializeField] private GameObject characterScreen;
+    public Animator animator;
+
     public void ToggleScreen()
     {
-        if (characterScreen.active)
+        if (animator.GetBool("CSOpen"))
         {
-            gameObject.GetComponent<ToggleMenu>().enabled = true;
+            animator.SetBool("CSOpen", false);
+
             Cursor.lockState = CursorLockMode.Locked;
-            characterScreen.SetActive(false);
-            
         }
         else
         {
-            gameObject.GetComponent<ToggleMenu>().enabled = false;
+            animator.SetBool("CSOpen", true);
             Cursor.lockState = CursorLockMode.None;
-            characterScreen.SetActive(true);
+            
             characterScreen.GetComponent<CharacterScreen>().OpenCharacterScreen();
         }
     }

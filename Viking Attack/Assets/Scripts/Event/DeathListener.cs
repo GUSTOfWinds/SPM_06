@@ -2,26 +2,32 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ItemNamespace;
-using Mirror;
 using UnityEngine;
-
+using Mirror;
 namespace Event
 {
-    public class DeathListener : NetworkBehaviour
+    public class DeathListener : MonoBehaviour
     {
         [SerializeField] private GameObject dropBase;
+        [SerializeField] private GameObject[] enemies;
         private Guid DeathEventGuid;
+        private Guid respawnEventGuid;
         private void Start()
         {
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
             EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnUnitDied, ref DeathEventGuid);
+            EventSystem.Current.RegisterListener<EnemyRespawnEventInfo>(OnUnitRespawn, ref respawnEventGuid);
         }
 
-
+        void OnUnitRespawn(EnemyRespawnEventInfo unitDeathEventInfo)
+        {
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
 
         void OnUnitDied(UnitDeathEventInfo unitDeathEventInfo)
         {
+            RefreshEnemyArrays(unitDeathEventInfo);
             StartCoroutine(DestroyEnemy(unitDeathEventInfo));
-
         }
         
         IEnumerator DestroyEnemy(UnitDeathEventInfo unitDeathEventInfo)
@@ -29,12 +35,6 @@ namespace Event
             float timer = unitDeathEventInfo.RespawnTimer;
             uint netIDOfEnemy = unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
             var parent = unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetRespawnParent();
-            
-            // Unregisters the listener in the Eventsystem for the respawn listener
-            unitDeathEventInfo.EventUnitGo.GetComponent<EnemyAttack>().UnregisterRespawnListener();
-            
-            // Destroys the enemy
-            NetworkServer.Destroy(unitDeathEventInfo.EventUnitGo);
 
             dropBase.GetComponent<DropItemInWorldScript>().itembase = unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetDrop();
             if(unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetDrop() != null)
@@ -42,6 +42,9 @@ namespace Event
                 var drop = Instantiate(dropBase,new Vector3(unitDeathEventInfo.EventUnitGo.transform.position.x,unitDeathEventInfo.EventUnitGo.transform.position.y + 1,unitDeathEventInfo.EventUnitGo.transform.position.z),new Quaternion(0,0,0,0));
                 NetworkServer.Spawn(drop);
             }
+            
+            // Destroys the enemy
+            NetworkServer.Destroy(unitDeathEventInfo.EventUnitGo);
 
             // Destroys the health bars
             yield return new WaitForSeconds(timer);
@@ -61,6 +64,22 @@ namespace Event
             // Ships the respawn event
             EventSystem.Current.FireEvent(unitRespawnInfo);
         }
-    }
 
+        private void RefreshEnemyArrays(UnitDeathEventInfo unitDeathEventInfo)
+        {
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                if (enemies[i].GetComponent<NetworkIdentity>().netId == unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId)
+                {
+                    enemies[i] = null;
+                }
+            }
+            //enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
+
+        public GameObject[] GetEnemies()
+        {
+            return enemies;
+        }
+    }
 }
