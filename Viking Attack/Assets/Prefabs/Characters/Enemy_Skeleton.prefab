@@ -1075,7 +1075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.000001
+  syncInterval: 0
   animator: {fileID: 3643602246697119875}
   attacking: 0
   patrolRange: 30
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.003
+  syncInterval: 0
   characterBase: {fileID: 11400000, guid: 51ce9bc9105c0934c8771ec9f22670c7, type: 2}
   waitTime: 10
   hasDied: 0
@@ -1199,10 +1199,10 @@ MonoBehaviour:
   range: 0
   attackCooldown: 0
   damage: 0
+  cooldown: 0
   characterBase: {fileID: 11400000, guid: 51ce9bc9105c0934c8771ec9f22670c7, type: 2}
   player: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
   globalPlayerInfo: {fileID: 0}
-  cooldown: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1335,7 +1335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.001
+  syncInterval: 0
   clientAuthority: 0
   animator: {fileID: 3643602246697119875}
 --- !u!1 &6653956863877352429
