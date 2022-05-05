@@ -42,7 +42,7 @@ public class GlobalPlayerInfo : MonoBehaviour
         staminaBar = gameObject.transform.Find("UI").gameObject.transform.Find("Stamina_bar").gameObject.transform.Find("Stamina_bar_slider").gameObject.GetComponent<PlayerStaminaBar>();
         experienceBar = gameObject.transform.Find("UI").gameObject.transform.Find("Experience_bar").gameObject.transform.Find("Experience_bar_slider").gameObject.GetComponent<PlayerExperienceBar>();
         experience = 0;
-        levelThreshold = 100;
+        levelThreshold = 60;
         availableStatpoints = 0;
         level = 1;
     }
