@@ -27,7 +27,7 @@ public class PlayerDamageSoundListener : MonoBehaviour
     // Will play a random track from the array above when the local player takes damage
     void OnPlayerDamage(DamageEventInfo eventInfo)
     {
-        if (eventInfo.target.GetComponent<NetworkIdentity>().netId == netID)
+        if (eventInfo.target.GetComponent<NetworkIdentity>().netId == netID && !audioSource.isPlaying)
         {
             while (audioSource.clip == lastAudioClip || audioSource.clip == null)
             {
