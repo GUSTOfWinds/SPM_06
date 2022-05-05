@@ -1,5 +1,4 @@
 
-using Event;
 using ItemNamespace;
 using UnityEngine;
 
@@ -151,13 +150,9 @@ public class GlobalPlayerInfo : MonoBehaviour
     public void IncreaseLevel()
     {
         animator.SetTrigger("incLVL");
-        EventInfo playerLevelUpInfo = new PlayerLevelUpEventInfo
-        {
-            
-        };
-        EventSystem.Current.FireEvent(playerLevelUpInfo);
         level++;
         availableStatpoints += 3;
+
     }
 
     public float GetExperience()
