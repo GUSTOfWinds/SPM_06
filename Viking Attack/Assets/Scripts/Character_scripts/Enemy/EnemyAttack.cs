@@ -32,7 +32,7 @@ namespace ItemNamespace
         private EnemyMovement enemyMovement;
         private GameObject[] enemies;
         private Guid respawnEventGuid;
-
+        [SerializeField] private DeathListener deathListener;
 
         void Start()
         {
@@ -40,8 +40,8 @@ namespace ItemNamespace
             attackCooldown = characterBase.GetAttackCooldown();
             damage = characterBase.GetDamage();
             enemyMovement = gameObject.GetComponent<EnemyMovement>();
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            EventSystem.Current.RegisterListener<EnemyRespawnEventInfo>(OnEnemyRespawn, ref respawnEventGuid);
+            deathListener = FindObjectOfType<DeathListener>();
+            enemies = deathListener.GetEnemies();
         }
 
         private void FixedUpdate()
@@ -64,9 +64,6 @@ namespace ItemNamespace
                     audioSource.PlayOneShot(enemySounds[0]);
                 }
 
-                ;
-
-
                 // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
                 if (hit.distance < range && cooldown > attackCooldown)
                 {
@@ -84,11 +81,13 @@ namespace ItemNamespace
         // Returns true if there is an enemy nearby already playing the chasing sound
         private bool GetNearbyAudioSourcePlaying()
         {
+            enemies = deathListener.GetEnemies();
             foreach (var enemy in enemies)
             {
-                if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f) ;
+                if (enemy != null)
                 {
-                    if (enemy.GetComponent<AudioSource>().isPlaying)
+                    if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f &&
+                        enemy.GetComponent<AudioSource>().isPlaying)
                     {
                         return true;
                     }
@@ -142,19 +141,6 @@ namespace ItemNamespace
                 };
                 EventSystem.Current.FireEvent(playerDamageEventInfo);
             }
-        }
-
-        // Refreshes the array of enemies upon the time an enemy respawns
-        private void OnEnemyRespawn(EnemyRespawnEventInfo enemyRespawnEventInfo)
-        {
-            Debug.Log("NU RESPAWNAR EN ENEMY");
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        }
-
-        public void UnregisterRespawnListener()
-        {
-            Debug.Log("UNREGISTRAS NU");
-            EventSystem.Current.UnregisterListener(respawnEventGuid);
         }
     }
 }
