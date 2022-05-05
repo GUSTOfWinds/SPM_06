@@ -3816,6 +3816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f681edd6f6fa08849b26e32acfb770ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossIsDead: 1
 --- !u!65 &1768986888
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3886,7 +3887,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768986886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 139.5, y: -32.27, z: 53.1}
+  m_LocalPosition: {x: 354, y: 11.1, z: -346}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
