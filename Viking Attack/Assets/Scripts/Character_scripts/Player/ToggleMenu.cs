@@ -8,6 +8,13 @@ using UnityEngine.InputSystem;
 public class ToggleMenu : NetworkBehaviour
 {
     private GameObject[] players;
+    private GameObject[] healthBars;
+    private List<GameObject> inactiveBars;
+
+    private void Awake()
+    {
+        inactiveBars = new List<GameObject>();
+    }
 
     // Called upon from either host or the client, client will however not be able to 
     // pause the game
@@ -15,7 +22,15 @@ public class ToggleMenu : NetworkBehaviour
     {
         if (isServer)
         {
+            // // Finds and sets all healthbars to inactive while being paused
+            healthBars = GameObject.FindGameObjectsWithTag("EnemyHealthBar");
+            foreach (var healthBar in healthBars)
+            {
+                inactiveBars.Add(healthBar);
+                healthBar.SetActive(false);
+            }
             players = GameObject.FindGameObjectsWithTag("Player");
+            
             foreach (var player in players)
             {
                 RpcOpenMenu(player);
@@ -29,6 +44,13 @@ public class ToggleMenu : NetworkBehaviour
     {
         if (isServer)
         {
+            // Finds and sets all healthbars to active when unpaused
+            for (int i = 0; i < inactiveBars.Count; i++)
+            {
+                inactiveBars[i].SetActive(true);
+                inactiveBars.Remove(inactiveBars[i]);
+            }
+            
             players = GameObject.FindGameObjectsWithTag("Player");
             foreach (var player in players)
             {
@@ -41,6 +63,7 @@ public class ToggleMenu : NetworkBehaviour
     [ClientRpc]
     private void RpcCloseMenu(GameObject player)
     {
+
         gameObject.GetComponent<PlayerInput>().enabled = true;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
@@ -51,6 +74,8 @@ public class ToggleMenu : NetworkBehaviour
     [ClientRpc]
     private void RpcOpenMenu(GameObject player)
     {
+
+        
         gameObject.GetComponent<PlayerInput>().enabled = false;
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;

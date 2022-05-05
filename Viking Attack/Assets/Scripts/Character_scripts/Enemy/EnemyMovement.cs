@@ -9,6 +9,17 @@ using Mirror;
 
 public class EnemyMovement : NetworkBehaviour
 {
+    /**
+     * Animation stuff below, to be merged with jiang
+     */
+
+    [SerializeField] private Animator animator;
+    [SerializeField] public bool attacking;
+    
+    /**
+     * 
+     */
+    
     [SerializeField] private int patrolRange;
     private Vector3 respawnPosWithoutY;
     private Rigidbody rigidBody;
@@ -57,10 +68,14 @@ public class EnemyMovement : NetworkBehaviour
         transform.position = position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (isServer)
-        {
+        {        
+            if (attacking)
+            {
+                return;
+            }
             colliders = Physics.OverlapBox(groundCheck.transform.position, new Vector3(0.1f, 0.1f, 0.1f),
                 Quaternion.identity, ground); //Check if we are on the Ground
             if (colliders.Length > 0) //when we find the ground
@@ -72,6 +87,9 @@ public class EnemyMovement : NetworkBehaviour
             {
                 if (isGuarding)
                 {
+                    animator.SetBool("Chasing", false);
+                    animator.SetBool("Attacking", false);
+                    animator.SetBool("Patrolling", true);
                     if (Vector3.Distance(transform.position, respawnPosWithoutY) >= patrolRange)
                     {
                         movingDirection = -movingDirection;
@@ -82,6 +100,10 @@ public class EnemyMovement : NetworkBehaviour
 
                 if (isChasing)
                 {
+                    
+                    animator.SetBool("Chasing", true);
+                    animator.SetBool("Attacking", false);
+                    animator.SetBool("Patrolling", false);
                     if (chasingObject.Equals(null)) return;
                     Vector3 facePlayer = new Vector3(chasingObject.transform.position.x, transform.position.y,
                         chasingObject.transform.position.z);
@@ -97,6 +119,9 @@ public class EnemyMovement : NetworkBehaviour
 
             if (backToDefault)
             {
+                animator.SetBool("Chasing", false);
+                animator.SetBool("Attacking", false);
+                animator.SetBool("Patrolling", true);
                 if (Vector3.Distance(transform.position, respawnPosWithoutY) <= 3f)
                 {
                     backToDefault = false;

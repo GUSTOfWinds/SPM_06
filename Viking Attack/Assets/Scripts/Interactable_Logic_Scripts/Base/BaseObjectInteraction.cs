@@ -5,5 +5,5 @@ using UnityEngine;
 //Base for all interactions
 public abstract class BaseObjectInteraction : MonoBehaviour
 {
-    virtual public void InteractedWith(){}
+    virtual public void InteractedWith(GameObject gameObject){}
 }
