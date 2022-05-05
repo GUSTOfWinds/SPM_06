@@ -48,7 +48,7 @@ namespace ItemNamespace
             }
         }
 
-        public void BeforeAttack()
+        private void FixedUpdate()
         {
             if (isServer)
             {
