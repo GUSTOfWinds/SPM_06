@@ -23,7 +23,7 @@ public class ItemSwordBehavior : ItemBaseBehavior
             if (globalPlayerInfo.GetStamina() > belongingTo.GetStamina)
             {
                 globalPlayerInfo.UpdateStamina(-belongingTo.GetStamina);
-                hit.collider.gameObject.GetComponent<EnemyVitalController>().UpdateHealth(-belongingTo.GetDamage);
+                hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-belongingTo.GetDamage);
                 // ADD SWING ANIMATION HERE
             }
         }

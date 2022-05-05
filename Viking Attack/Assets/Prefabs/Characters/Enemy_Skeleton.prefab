@@ -1036,7 +1036,6 @@ GameObject:
   - component: {fileID: -9188301234470208725}
   - component: {fileID: 3643602246697119875}
   - component: {fileID: 2399186864775228470}
-  - component: {fileID: -2517776122318007361}
   m_Layer: 3
   m_Name: Enemy_Skeleton
   m_TagString: Enemy
@@ -1075,7 +1074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0
+  syncInterval: 0.1
   animator: {fileID: 3643602246697119875}
   attacking: 0
   groundCheck: {fileID: 6653956863877352429}
@@ -1153,7 +1152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0
+  syncInterval: 0.1
   characterBase: {fileID: 11400000, guid: 51ce9bc9105c0934c8771ec9f22670c7, type: 2}
   waitTime: 10
   hasDied: 0
@@ -1190,8 +1189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d13d7cbdde4148a5b1cad6be81872d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   animator: {fileID: 3643602246697119875}
   audioSource: {fileID: 2399186864775228470}
   enemySounds:
@@ -1207,7 +1204,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  deathListener: {fileID: 0}
 --- !u!95 &3643602246697119875
 Animator:
   serializedVersion: 3
@@ -1323,22 +1319,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-2517776122318007361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6653956862289318906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0
-  clientAuthority: 0
-  animator: {fileID: 3643602246697119875}
 --- !u!1 &6653956863877352429
 GameObject:
   m_ObjectHideFlags: 0
