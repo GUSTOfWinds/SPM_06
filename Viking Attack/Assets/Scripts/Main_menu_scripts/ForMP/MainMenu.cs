@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+//using Main_menu_scripts.ForMP;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private NetworkManagerLobby networkManager;
-    [Header("UI")] 
-    [SerializeField] private GameObject landingPanel;
+    [SerializeField] private NetworkManagerLobby networkManager = null;
 
-    [Header("Lobby")] 
-    [SerializeField] private GameObject lobby;
+    [Header("UI")]
+    [SerializeField] private GameObject landingPagePanel = null;
 
     public void HostLobby()
     {
         networkManager.StartHost();
-        landingPanel.SetActive(false);
-        lobby.SetActive(true);
+
+        landingPagePanel.SetActive(false);
     }
 }

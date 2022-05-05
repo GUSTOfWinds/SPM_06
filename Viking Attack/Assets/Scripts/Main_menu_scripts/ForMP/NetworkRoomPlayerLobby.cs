@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Mirror;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class NetworkRoomPlayerLobby : NetworkBehaviour
@@ -90,9 +88,9 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
         for (int i = 0; i < Room.RoomPlayers.Count; i++)
         {
             playerNameTexts[i].text = Room.RoomPlayers[i].DisplayName;
-            playerNameTexts[i].text = Room.RoomPlayers[i].isReady
-                ? "<color = green>Ready</color>"
-                : "<color = red>Not Ready</color>";
+            playerReadyTexts[i].text = Room.RoomPlayers[i].isReady
+                ? "<color=green> Ready </color>"
+                : "<color=red> Not Ready </color>";
         }
     }
 
