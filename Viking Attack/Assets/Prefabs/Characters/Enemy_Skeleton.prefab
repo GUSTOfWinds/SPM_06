@@ -1075,12 +1075,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.000001
+  syncInterval: 0
   animator: {fileID: 3643602246697119875}
   attacking: 0
-  patrolRange: 30
   groundCheck: {fileID: 6653956863877352429}
-  detectScopeRadius: 10
+  detectScopeRadius: 8
+  patrolRange: 10
+  maxChasingRange: 25
   chasingSpeedMultiplier: 0
   moveSpeed: 0
   characterBase: {fileID: 11400000, guid: 51ce9bc9105c0934c8771ec9f22670c7, type: 2}
@@ -1152,7 +1153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.003
+  syncInterval: 0
   characterBase: {fileID: 11400000, guid: 51ce9bc9105c0934c8771ec9f22670c7, type: 2}
   waitTime: 10
   hasDied: 0
@@ -1335,7 +1336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.001
+  syncInterval: 0
   clientAuthority: 0
   animator: {fileID: 3643602246697119875}
 --- !u!1 &6653956863877352429

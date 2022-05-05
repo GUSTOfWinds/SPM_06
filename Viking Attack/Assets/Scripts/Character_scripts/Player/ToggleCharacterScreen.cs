@@ -7,22 +7,20 @@ public class ToggleCharacterScreen : MonoBehaviour
 {
     [SerializeField] private GameObject characterScreen;
     public Animator animator;
+
     public void ToggleScreen()
     {
         if (animator.GetBool("CSOpen"))
-        {   animator.SetBool("CSOpen", false);
-/*            gameObject.GetComponent<ToggleMenu>().enabled = true;
-*/            Cursor.lockState = CursorLockMode.Locked;
-            
-            
+        {
+            animator.SetBool("CSOpen", false);
+
+            Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
             animator.SetBool("CSOpen", true);
-/*            gameObject.GetComponent<ToggleMenu>().enabled = false;
-*/            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.None;
             
-
             characterScreen.GetComponent<CharacterScreen>().OpenCharacterScreen();
         }
     }
