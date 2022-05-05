@@ -39,6 +39,7 @@ public class PlayerItemUsageController : NetworkBehaviour
                     currentActingComponentType = itemType;
                     heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
                     heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
+                    currentActingComponent.Use();
                 }
             }
         }

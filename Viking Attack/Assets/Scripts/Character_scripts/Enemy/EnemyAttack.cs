@@ -92,7 +92,6 @@ namespace ItemNamespace
             enemies = deathListener.GetEnemies();
             foreach (var enemy in enemies)
             {
-                
                 if (enemy != null)
                 {
                     if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f &&
@@ -102,14 +101,14 @@ namespace ItemNamespace
                     }
                 }
             }
-            Debug.Log("FALSE");
+
             return false;
         }
 
         private IEnumerator FinishAttack()
         {
             enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
-            
+
             // saves the location of the player to be compared to the location at the impact
             playerLocation = player.transform.position;
 
@@ -121,13 +120,16 @@ namespace ItemNamespace
             yield return new WaitForSeconds(1f); // the time it takes from start of the enemy attack animation
             // to the time of impact, for smooth timing reasons
 
-            playerUpdatedDistance = Vector3.Distance(playerLocation, player.transform.position);
-            if (playerUpdatedDistance < range)
+            if (gameObject != null)
             {
-                Attack(); // Attacks player
-            }
+                playerUpdatedDistance = Vector3.Distance(playerLocation, player.transform.position);
+                if (playerUpdatedDistance < range)
+                {
+                    Attack(); // Attacks player
+                }
 
-            enemyMovement.attacking = false;
+                enemyMovement.attacking = false;
+            }
         }
 
         // Resets the attack cooldown
