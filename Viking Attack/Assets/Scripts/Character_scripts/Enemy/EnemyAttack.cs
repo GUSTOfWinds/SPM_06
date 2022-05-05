@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Event;
 using UnityEditor.Experimental.GraphView;
@@ -7,11 +8,7 @@ namespace ItemNamespace
 {
     public class EnemyAttack : MonoBehaviour
     {
-        /**
-         * Animator stuff below
-         */
         [SerializeField] private Animator animator;
-
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip[] enemySounds;
         [SerializeField] private float range; // The range of the enemy attacks
@@ -33,6 +30,8 @@ namespace ItemNamespace
 
         [SerializeField] private LayerMask layerMask;
         private EnemyMovement enemyMovement;
+        private GameObject[] enemies;
+        private Guid respawnEventGuid;
 
 
         void Start()
@@ -41,6 +40,8 @@ namespace ItemNamespace
             attackCooldown = characterBase.GetAttackCooldown();
             damage = characterBase.GetDamage();
             enemyMovement = gameObject.GetComponent<EnemyMovement>();
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            EventSystem.Current.RegisterListener<EnemyRespawnEventInfo>(OnEnemyRespawn, ref respawnEventGuid);
         }
 
         private void FixedUpdate()
@@ -56,11 +57,15 @@ namespace ItemNamespace
             if (Physics.Raycast(rayBeginning,
                     transform.TransformDirection(Vector3.forward), out hit, 5, layerMask))
             {
-                // plays the sound of the skeleton breathing when in range for attack
-                if (!audioSource.isPlaying)
+                // Checks that no other enemies already are breathing within a 6 meter radius
+                if (!GetNearbyAudioSourcePlaying() && !audioSource.isPlaying)
                 {
+                    // plays the sound of the skeleton breathing when in range for attack
                     audioSource.PlayOneShot(enemySounds[0]);
                 }
+
+                ;
+
 
                 // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
                 if (hit.distance < range && cooldown > attackCooldown)
@@ -68,12 +73,29 @@ namespace ItemNamespace
                     animator.SetBool("Chasing", false);
                     animator.SetBool("Attacking", true);
                     animator.SetBool("Patrolling", false);
-                    enemyMovement.attacking = true;
+                    enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
                     player = hit.collider.gameObject; // updates which player object to attack and to
                     globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
                     StartCoroutine(FinishAttack());
                 }
             }
+        }
+
+        // Returns true if there is an enemy nearby already playing the chasing sound
+        private bool GetNearbyAudioSourcePlaying()
+        {
+            foreach (var enemy in enemies)
+            {
+                if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f) ;
+                {
+                    if (enemy.GetComponent<AudioSource>().isPlaying)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         private IEnumerator FinishAttack()
@@ -120,6 +142,19 @@ namespace ItemNamespace
                 };
                 EventSystem.Current.FireEvent(playerDamageEventInfo);
             }
+        }
+
+        // Refreshes the array of enemies upon the time an enemy respawns
+        private void OnEnemyRespawn(EnemyRespawnEventInfo enemyRespawnEventInfo)
+        {
+            Debug.Log("NU RESPAWNAR EN ENEMY");
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
+
+        public void UnregisterRespawnListener()
+        {
+            Debug.Log("UNREGISTRAS NU");
+            EventSystem.Current.UnregisterListener(respawnEventGuid);
         }
     }
 }
