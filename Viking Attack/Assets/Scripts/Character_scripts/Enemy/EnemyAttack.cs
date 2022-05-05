@@ -73,9 +73,13 @@ namespace ItemNamespace
                     // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
                     if (hit.distance < range && cooldown > attackCooldown)
                     {
-                        animator.SetBool("Chasing", false);
+                        // sets the animator of the enemy to Attacking
                         animator.SetBool("Attacking", true);
+                        //sets the others to false
+                        animator.SetBool("Chasing", false);
                         animator.SetBool("Patrolling", false);
+                        // Sets the network animator to attacking
+                        //CmdAttackAnimation();
                         enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
                         player = hit.collider.gameObject; // updates which player object to attack and to
                         globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
@@ -84,6 +88,14 @@ namespace ItemNamespace
                 }
             }
         }
+
+        [Command]
+        public void CmdAttackAnimation()
+        {
+
+        }
+
+        
 
         // Returns true if there is an enemy nearby already playing the chasing sound
         private bool GetNearbyAudioSourcePlaying()
