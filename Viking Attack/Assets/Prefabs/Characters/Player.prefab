@@ -2425,7 +2425,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4775975759791570770}
-  - component: {fileID: 6270262365207088789}
   - component: {fileID: 7484610620894764299}
   m_Layer: 0
   m_Name: PlayerTakingDamage
@@ -2448,26 +2447,6 @@ Transform:
   m_Father: {fileID: 8133596633395787179}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6270262365207088789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2742750737979252881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f2e9cc7257ef0d47bf641728ab83b52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - {fileID: 8300000, guid: 069f7cd7ada9dbe4d90ac57a23979fcc, type: 3}
-  - {fileID: 8300000, guid: b9a57e2167d7afb4aa5eee2bf054acb6, type: 3}
-  - {fileID: 8300000, guid: 1b6d87c9345068a428a04cc988869188, type: 3}
-  - {fileID: 8300000, guid: 91b41481cf9ca7e41838fc227620975c, type: 3}
-  lastAudioClip: {fileID: 8300000, guid: 069f7cd7ada9dbe4d90ac57a23979fcc, type: 3}
-  audioSource: {fileID: 7484610620894764299}
-  netID: 0
 --- !u!82 &7484610620894764299
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5668,6 +5647,7 @@ GameObject:
   - component: {fileID: 2628422722539755476}
   - component: {fileID: -3214051896938044769}
   - component: {fileID: 8379086476344114826}
+  - component: {fileID: 3650744181074040024}
   - component: {fileID: 4271025885202711048}
   m_Layer: 6
   m_Name: Player
@@ -6182,6 +6162,26 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   playerSoundContainer: {fileID: 1999836596046588185}
+--- !u!114 &3650744181074040024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5988590173649968415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f2e9cc7257ef0d47bf641728ab83b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 069f7cd7ada9dbe4d90ac57a23979fcc, type: 3}
+  - {fileID: 8300000, guid: b9a57e2167d7afb4aa5eee2bf054acb6, type: 3}
+  - {fileID: 8300000, guid: 1b6d87c9345068a428a04cc988869188, type: 3}
+  - {fileID: 8300000, guid: 91b41481cf9ca7e41838fc227620975c, type: 3}
+  lastAudioClip: {fileID: 0}
+  audioSource: {fileID: 7484610620894764299}
+  netID: 0
 --- !u!114 &4271025885202711048
 MonoBehaviour:
   m_ObjectHideFlags: 0

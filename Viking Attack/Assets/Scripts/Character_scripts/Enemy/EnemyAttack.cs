@@ -33,6 +33,7 @@ namespace ItemNamespace
         private EnemyMovement enemyMovement;
         private GameObject[] enemies;
         private Guid respawnEventGuid;
+
         [SerializeField] private DeathListener deathListener;
         //[SyncVar] private GameObject syncGlobalPlayerInfo;
 
@@ -69,6 +70,7 @@ namespace ItemNamespace
                     {
                         // plays the sound of the skeleton breathing when in range for attack
                         audioSource.PlayOneShot(enemySounds[0]);
+                        RpcPlayEnemyChasing();
                     }
 
                     // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
@@ -86,18 +88,6 @@ namespace ItemNamespace
                 }
             }
         }
-
-        // Ships experience to clients, makes experience within proximity possible
-        [ClientRpc]
-        private void RpcDealDamage(GameObject gpi)
-        {
-            if (isServer)
-            {
-                return;
-            }
-            gpi.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
-        }
-        
 
         // Returns true if there is an enemy nearby already playing the chasing sound
         private bool GetNearbyAudioSourcePlaying()
@@ -118,7 +108,7 @@ namespace ItemNamespace
             return false;
         }
 
-        private IEnumerator FinishAttack(GameObject hit)
+        private IEnumerator FinishAttack(GameObject hitGo)
         {
             enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
 
@@ -129,7 +119,7 @@ namespace ItemNamespace
 
             // plays the sound of the skeleton swinging its sword
             audioSource.PlayOneShot(enemySounds[1]);
-
+            RpcSwingSword();
             yield return new WaitForSeconds(1f); // the time it takes from start of the enemy attack animation
             // to the time of impact, for smooth timing reasons
 
@@ -138,12 +128,46 @@ namespace ItemNamespace
                 playerUpdatedDistance = Vector3.Distance(playerLocation, player.transform.position);
                 if (playerUpdatedDistance < range)
                 {
-                    RpcDealDamage(hit);
+                    RpcDealDamage(hitGo);
                     Attack(); // Attacks player
                 }
 
                 enemyMovement.attacking = false;
             }
+        }
+
+        // Ships experience to clients, makes experience within proximity possible
+        [ClientRpc]
+        private void RpcDealDamage(GameObject gpi)
+        {
+            if (isServer)
+            {
+                return;
+            }
+
+            gpi.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
+        }
+
+        [ClientRpc]
+        private void RpcSwingSword()
+        {
+            if (isServer)
+            {
+                return;
+            }
+
+            audioSource.PlayOneShot(enemySounds[1]);
+        }
+
+        [ClientRpc]
+        private void RpcPlayEnemyChasing()
+        {
+            if (isServer)
+            {
+                return;
+            }
+
+            audioSource.PlayOneShot(enemySounds[0]);
         }
 
         // Resets the attack cooldown
