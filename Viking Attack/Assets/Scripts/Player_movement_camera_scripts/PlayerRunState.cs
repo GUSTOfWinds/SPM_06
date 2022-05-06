@@ -20,7 +20,7 @@ public class PlayerRunState : PlayerState
     {
         
     }
-    public override void Update()
+    public override void FixedUpdate()
     {
         inputMovement = Player.movementKeyInfo.ReadValue<Vector2>();
         sprintKeyInfo = Player.sprintKeyInfo;

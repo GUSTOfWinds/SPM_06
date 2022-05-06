@@ -18,7 +18,7 @@ public class PlayerDashState : PlayerState
         
     }
 
-    public override void Update()
+    public override void FixedUpdate()
     {
         
 

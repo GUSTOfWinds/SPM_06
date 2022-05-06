@@ -11,7 +11,7 @@ public class PlayerBaseState : PlayerState
     {
         
     }
-    public override void Update()
+    public override void FixedUpdate()
     {
         // If the player is standing still, the stamina gets replenished.
         Player.globalPlayerInfo.UpdateStamina( 21f * Time.deltaTime);
