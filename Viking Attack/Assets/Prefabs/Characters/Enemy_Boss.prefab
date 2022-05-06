@@ -470,7 +470,7 @@ Transform:
   m_GameObject: {fileID: 1627232034024812431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 28.42, y: 1.919, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 1207791671503127675}
   - {fileID: 8635817924215929209}
@@ -527,6 +527,7 @@ MonoBehaviour:
   experienceRadius: 0
   level: 0
   experience: 0
+  name: 
 --- !u!65 &7773923352912987635
 BoxCollider:
   m_ObjectHideFlags: 0

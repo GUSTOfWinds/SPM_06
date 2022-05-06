@@ -61,7 +61,7 @@ namespace ItemNamespace
                 rayBeginning.y += 0.8f;
                 // Does the ray intersect any objects excluding the player layer
                 if (Physics.Raycast(rayBeginning,
-                        transform.TransformDirection(Vector3.forward), out hit, 5, layerMask))
+                        transform.TransformDirection(Vector3.forward), out hit, 7, layerMask))
                 {
                     // Checks that no other enemies already are breathing within a 6 meter radius
                     if (!GetNearbyAudioSourcePlaying() && !audioSource.isPlaying)
