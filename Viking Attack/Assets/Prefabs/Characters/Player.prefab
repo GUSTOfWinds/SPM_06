@@ -2380,7 +2380,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2385974264639349833}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -5538,7 +5538,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5988590173185455045}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -5883,6 +5883,7 @@ MonoBehaviour:
   firstPersonPosition: {fileID: 5988590173403348295}
   mouseSensitivity: 0.03
   lockMouse: 1
+  shouldBeLocked: 0
 --- !u!114 &-4742521611354210552
 MonoBehaviour:
   m_ObjectHideFlags: 0

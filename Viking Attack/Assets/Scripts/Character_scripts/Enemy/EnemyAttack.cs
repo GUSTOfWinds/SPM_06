@@ -34,6 +34,7 @@ namespace ItemNamespace
         private GameObject[] enemies;
         private Guid respawnEventGuid;
         [SerializeField] private DeathListener deathListener;
+        //[SyncVar] private GameObject syncGlobalPlayerInfo;
 
         void Start()
         {
@@ -81,10 +82,19 @@ namespace ItemNamespace
                         player = hit.collider.gameObject; // updates which player object to attack and to
                         globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
                         StartCoroutine(FinishAttack());
+                        RpcDealDamage(hit.collider.gameObject);
                     }
                 }
             }
         }
+
+        // Ships experience to clients, makes experience within proximity possible
+        [ClientRpc]
+        private void RpcDealDamage(GameObject gpi)
+        {
+            gpi.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
+        }
+        
 
         // Returns true if there is an enemy nearby already playing the chasing sound
         private bool GetNearbyAudioSourcePlaying()
