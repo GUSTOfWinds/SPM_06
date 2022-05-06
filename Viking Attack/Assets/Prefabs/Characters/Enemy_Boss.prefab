@@ -446,7 +446,6 @@ GameObject:
   - component: {fileID: 1845788827967627114}
   - component: {fileID: 7167892709796618374}
   - component: {fileID: 3898713272952607990}
-  - component: {fileID: 7773923352912987635}
   - component: {fileID: 1698871149917711151}
   - component: {fileID: 3255184681656935667}
   - component: {fileID: 3440420057622895963}
@@ -454,6 +453,7 @@ GameObject:
   - component: {fileID: 7070009231341054450}
   - component: {fileID: 5116996558778404577}
   - component: {fileID: 6183275839777379503}
+  - component: {fileID: 7336337623128978098}
   m_Layer: 3
   m_Name: Enemy_Boss
   m_TagString: Enemy
@@ -528,19 +528,6 @@ MonoBehaviour:
   level: 0
   experience: 0
   name: 
---- !u!65 &7773923352912987635
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627232034024812431}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.4581366, y: 1.461647, z: 0.89528555}
-  m_Center: {x: -0.08174533, y: 0.7353549, z: 0.18009868}
 --- !u!54 &1698871149917711151
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -756,6 +743,20 @@ MonoBehaviour:
   syncInterval: 0
   clientAuthority: 0
   animator: {fileID: 7070009231341054450}
+--- !u!136 &7336337623128978098
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627232034024812431}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1718588843749068532
 GameObject:
   m_ObjectHideFlags: 0

@@ -95,7 +95,8 @@ public class EnemyMovement : NetworkBehaviour
                     {
                         movingDirection = -movingDirection;
                     }
-
+                    lookRotation = Quaternion.LookRotation(new Vector3(movingDirection.x, 0, movingDirection.z));
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.fixedDeltaTime * 3);
                     rigidBody.velocity = movingDirection * moveSpeed * Time.fixedDeltaTime;
                 }
 
