@@ -218,6 +218,11 @@ public class GlobalPlayerInfo : MonoBehaviour
         return levelThreshold;
     }
 
+    public float GetDamage()
+    {
+        return damage;
+    }
+
 
     
 
