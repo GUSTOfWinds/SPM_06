@@ -81,8 +81,7 @@ namespace ItemNamespace
                         animator.SetBool("Patrolling", false);
                         player = hit.collider.gameObject; // updates which player object to attack and to
                         globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
-                        StartCoroutine(FinishAttack());
-                        RpcDealDamage(hit.collider.gameObject);
+                        StartCoroutine(FinishAttack(hit.collider.gameObject));
                     }
                 }
             }
@@ -92,6 +91,10 @@ namespace ItemNamespace
         [ClientRpc]
         private void RpcDealDamage(GameObject gpi)
         {
+            if (isServer)
+            {
+                return;
+            }
             gpi.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
         }
         
@@ -115,7 +118,7 @@ namespace ItemNamespace
             return false;
         }
 
-        private IEnumerator FinishAttack()
+        private IEnumerator FinishAttack(GameObject hit)
         {
             enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
 
@@ -135,6 +138,7 @@ namespace ItemNamespace
                 playerUpdatedDistance = Vector3.Distance(playerLocation, player.transform.position);
                 if (playerUpdatedDistance < range)
                 {
+                    RpcDealDamage(hit);
                     Attack(); // Attacks player
                 }
 
