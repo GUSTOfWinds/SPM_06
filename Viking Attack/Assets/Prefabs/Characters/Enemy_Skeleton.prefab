@@ -1078,7 +1078,7 @@ MonoBehaviour:
   syncInterval: 0
   animator: {fileID: 3643602246697119875}
   attacking: 0
-  patrolRange: 30
+  patrolRange: 5
   groundCheck: {fileID: 6653956863877352429}
   detectScopeRadius: 10
   chasingSpeedMultiplier: 0
@@ -1108,7 +1108,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   experienceRadius: 0
-  level: 0
+  level: 1
   experience: 0
 --- !u!65 &2854555053134480687
 BoxCollider:

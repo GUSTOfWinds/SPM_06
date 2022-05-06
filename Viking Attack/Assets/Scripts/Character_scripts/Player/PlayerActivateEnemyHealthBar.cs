@@ -79,7 +79,7 @@ namespace ItemNamespace
         }
 
 
-        // Sets up the health bar instance and assigns proper values, must be cleaned up
+        // Sets up the health bar instance and assigns proper values
         GameObject SetupHealthBar(RaycastHit hit)
         {
             var enemy = hit.collider.transform;

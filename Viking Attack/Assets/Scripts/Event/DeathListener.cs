@@ -35,6 +35,7 @@ namespace Event
             RefreshEnemyArrays(unitDeathEventInfo);
             StartCoroutine(DestroyEnemy(unitDeathEventInfo));
         }
+
         
         IEnumerator DestroyEnemy(UnitDeathEventInfo unitDeathEventInfo)
         {
