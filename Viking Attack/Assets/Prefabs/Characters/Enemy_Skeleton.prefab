@@ -1110,6 +1110,7 @@ MonoBehaviour:
   experienceRadius: 0
   level: 1
   experience: 0
+  name: 
 --- !u!65 &2854555053134480687
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1154,7 +1155,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   characterBase: {fileID: 11400000, guid: 51ce9bc9105c0934c8771ec9f22670c7, type: 2}
-  waitTime: 10
+  waitTime: 50
   hasDied: 0
   layerMask:
     serializedVersion: 2
@@ -1238,7 +1239,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 002d3438d861f224e911c9bea0f7f3d1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.68
+  m_Volume: 0.924
   m_Pitch: 1
   Loop: 0
   Mute: 0

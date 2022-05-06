@@ -16,7 +16,7 @@ public class PlayLevelAnimation : MonoBehaviour
 
     public void OnPlayerLevelUp(PlayerLevelUpEventInfo playerLevelUpEventInfo)
     {
-        gameObject.GetComponent<Image>().enabled = true;
+        //gameObject.GetComponent<Image>().enabled = true;
         parentAnimator.SetTrigger("incLVL");
     }
     
