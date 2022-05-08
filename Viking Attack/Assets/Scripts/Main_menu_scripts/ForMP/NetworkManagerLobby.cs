@@ -5,18 +5,20 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NetworkManagerLobby : NetworkManager 
+namespace Main_menu_scripts.ForMP
+{
+    public class NetworkManagerLobby : NetworkManager 
     {
         [SerializeField] private int minPlayers = 2;
-        [Scene] [SerializeField] private string menuScene = string.Empty;
+        [Scene] [SerializeField] private string menuScene;
 
 
         [Header("Room")]
-        [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
+        [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab;
 
         [Header("Game")]
         //[SerializeField] private NetworkGamePlayerLobby gamePlayerPrefab = null;
-        [SerializeField] private GameObject playerSpawnSystem = null;
+        [SerializeField] private GameObject playerSpawnSystem;
 
         //private MapHandler mapHandler;
 
@@ -27,19 +29,24 @@ public class NetworkManagerLobby : NetworkManager
 
         public List<NetworkRoomPlayerLobby> RoomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
         //public List<NetworkGamePlayerLobby> GamePlayers { get; } = new List<NetworkGamePlayerLobby>();
+        NetworkRoomPlayerLobby roomPlayerInstance;
+        
+        private bool isLeader;
+
 
         public override void OnStartServer() => spawnPrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs").ToList();
 
-        public override void OnStartClient()
+        public override void Awake()
         {
             var spawnablePrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs");
-/*
+
             foreach (var prefab in spawnablePrefabs)
             {
-                ClientScene.RegisterPrefab(prefab);
-            }*/
+                NetworkClient.RegisterPrefab(prefab);
+            }
         }
-
+        
+        [Obsolete("Remove the NetworkConnection parameter in your override and use NetworkClient.connection instead.")]
         public override void OnClientConnect(NetworkConnection conn)
         {
             base.OnClientConnect(conn);
@@ -47,6 +54,7 @@ public class NetworkManagerLobby : NetworkManager
             OnClientConnected?.Invoke();
         }
 
+        [Obsolete("Remove the NetworkConnection parameter in your override and use NetworkClient.connection instead.")]
         public override void OnClientDisconnect(NetworkConnection conn)
         {
             base.OnClientDisconnect(conn);
@@ -62,25 +70,27 @@ public class NetworkManagerLobby : NetworkManager
                 return;
             }
 
-            if (SceneManager.GetActiveScene().name != menuScene)
+            if (SceneManager.GetActiveScene().path != menuScene)
             {
                 conn.Disconnect();
                 return;
             }
+            base.OnServerConnect(conn);
         }
 
         public override void OnServerAddPlayer(NetworkConnectionToClient conn)
         {
-            /*if (SceneManager.GetActiveScene().name == menuScene)
-            {*/
-                bool isLeader = RoomPlayers.Count == 0;
+            if(SceneManager.GetActiveScene().path == menuScene)
+            {
+                isLeader = RoomPlayers.Count == 0;
 
-                NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab);
+                roomPlayerInstance = Instantiate(roomPlayerPrefab);
 
                 roomPlayerInstance.IsLeader = isLeader;
 
+
                 NetworkServer.AddPlayerForConnection(conn, roomPlayerInstance.gameObject);
-            //}
+            }
         }
 
         public override void OnServerDisconnect(NetworkConnectionToClient conn)
@@ -129,7 +139,8 @@ public class NetworkManagerLobby : NetworkManager
         {
             if (SceneManager.GetActiveScene().name == menuScene)
             {
-                if (!IsReadyToStart()) { return; }
+                if (!IsReadyToStart()) {
+                }
 
                 //mapHandler = new MapHandler(mapSet, numberOfRounds);
 
@@ -176,3 +187,4 @@ public class NetworkManagerLobby : NetworkManager
         
         
     }
+}

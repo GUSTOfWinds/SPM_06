@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "PlayerState/DashState")]
 //Used as a state when the player presses "spacebar"

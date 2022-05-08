@@ -1,5 +1,3 @@
-using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 // WHO TO BLAME: Martin Kings

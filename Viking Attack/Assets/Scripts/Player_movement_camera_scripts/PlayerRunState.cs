@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using ItemNamespace;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Mirror;
 
 [CreateAssetMenu(menuName = "PlayerState/RunState")]
 //Used as a state when the player inputs for Horizontal and Vertical movement

@@ -1,4 +1,3 @@
-using System;
 using ItemNamespace;
 using UnityEngine;
 using UnityEngine.UI;

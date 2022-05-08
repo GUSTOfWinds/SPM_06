@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 [CreateAssetMenu(menuName = "PlayerState/BaseState")]
 //Used as a state when the player does nothing
 public class PlayerBaseState : PlayerState
