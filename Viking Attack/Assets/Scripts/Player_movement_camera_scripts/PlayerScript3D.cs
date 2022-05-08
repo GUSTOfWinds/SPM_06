@@ -6,12 +6,14 @@ using Mirror;
 public class PlayerScript3D : NetworkBehaviour
 {
     [SerializeField] private State[] states;
+    
     private MyRigidbody3D myRigidbody;
     private StateMachine stateMachine;
     public float jumpForce = 10f;
     public float acceleration = 12f;
     public bool firstPerson;
-
+    
+    public Animator animator;
     public GlobalPlayerInfo globalPlayerInfo;
     //KeyInfo variables  start
     public InputAction.CallbackContext movementKeyInfo;
@@ -34,6 +36,7 @@ public class PlayerScript3D : NetworkBehaviour
         //If there are any added states in the unity inspector
         if (states.Length > 0)
             stateMachine.Update();
+        transform.rotation = Quaternion.Euler(0,GameObject.FindGameObjectWithTag("CameraMain").transform.rotation.eulerAngles.y,0) ;
     }
 
     public bool LocalCheck()
@@ -46,7 +49,6 @@ public class PlayerScript3D : NetworkBehaviour
     {
         movementKeyInfo = value;
     }
-
     // Checks if the button for sprint is pressed, the value only functions as a bool (pressed or not) in the run state
     public void OnSprint(InputAction.CallbackContext value)
     {
@@ -54,9 +56,7 @@ public class PlayerScript3D : NetworkBehaviour
     }
     public void OnJump(InputAction.CallbackContext value)
     {
-        
         jump = value.started;
-        jump = !value.canceled;
-        
+        jump = !value.canceled;  
     }
 }

@@ -1,50 +1,175 @@
+using System;
+using System.Collections;
+using Event;
+using Mirror;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace ItemNamespace
 {
-    public class EnemyAttack : MonoBehaviour
+    public class EnemyAttack : NetworkBehaviour
     {
-        [SerializeField] private float range;  // The range of the enemy attacks
+        [SerializeField] private Animator animator;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip[] enemySounds;
+        [SerializeField] private float range; // The range of the enemy attacks
         [SerializeField] private float attackCooldown; // the cooldown of the enemy attacks
         [SerializeField] private int damage; // the damage of the enemy attacks
-        [SerializeField] private float cooldown; // float that will be reset to 0 after hitting the attackCooldown variable
-        [SerializeField] private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
+        [SerializeField] private CharacterBase characterBase; // the scriptable object
         [SerializeField] private GameObject player;
         [SerializeField] private GlobalPlayerInfo globalPlayerInfo;
+        private Vector3 playerLocation; // location used to see if the player has gotten away far enough to not be hit
+
+        private float
+            playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
+
+        private RaycastHit hit;
+        private Vector3 rayBeginning;
+
+        [SerializeField]
+        private float cooldown; // float that will be reset to 0 after hitting the attackCooldown variable
+
+        [SerializeField] private LayerMask layerMask;
+        private EnemyMovement enemyMovement;
+        private GameObject[] enemies;
+        private Guid respawnEventGuid;
+
+        [SerializeField] private DeathListener deathListener;
+        //[SyncVar] private GameObject syncGlobalPlayerInfo;
 
         void Start()
         {
             range = characterBase.GetRange();
             attackCooldown = characterBase.GetAttackCooldown();
             damage = characterBase.GetDamage();
+            enemyMovement = gameObject.GetComponent<EnemyMovement>();
+            if (isServer)
+            {
+                deathListener = FindObjectOfType<DeathListener>();
+                enemies = deathListener.GetEnemies();
+            }
         }
-        
+
         private void FixedUpdate()
         {
-            if (cooldown < attackCooldown) // adds to cooldown if attackCooldown hasn't been met
+            if (isServer)
             {
-                cooldown += Time.fixedDeltaTime;
-            }
-
-            RaycastHit hit;
-            // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
-            {
-                // Prints a line of the raycast if a player is detected.
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance,
-                    Color.yellow);
-            
-                // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
-                if (hit.distance < range && cooldown > attackCooldown && hit.collider.CompareTag("Player")) 
+                if (cooldown < attackCooldown) // adds to cooldown if attackCooldown hasn't been met
                 {
-                    player = hit.collider.gameObject; // updates which player object to attack and to 
-                    globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
-                    ResetCoolDown(); // resets cooldown of the attack
-                    Attack(); // Attacks player
+                    cooldown += Time.fixedDeltaTime;
+                }
+
+                rayBeginning = transform.position;
+                rayBeginning.y += 0.8f;
+                // Does the ray intersect any objects excluding the player layer
+                if (Physics.Raycast(rayBeginning,
+                        transform.TransformDirection(Vector3.forward), out hit, 7, layerMask))
+                {
+                    // Checks that no other enemies already are breathing within a 6 meter radius
+                    if (!GetNearbyAudioSourcePlaying() && !audioSource.isPlaying)
+                    {
+                        // plays the sound of the skeleton breathing when in range for attack
+                        audioSource.PlayOneShot(enemySounds[0]);
+                        RpcPlayEnemyChasing();
+                    }
+
+                    // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
+                    if (hit.distance < range && cooldown > attackCooldown)
+                    {
+                        // sets the animator of the enemy to Attacking
+                        animator.SetBool("Attacking", true);
+                        //sets the others to false
+                        animator.SetBool("Chasing", false);
+                        animator.SetBool("Patrolling", false);
+                        player = hit.collider.gameObject; // updates which player object to attack and to
+                        globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
+                        StartCoroutine(FinishAttack(hit.collider.gameObject));
+                    }
                 }
             }
         }
-        
+
+        // Returns true if there is an enemy nearby already playing the chasing sound
+        private bool GetNearbyAudioSourcePlaying()
+        {
+            enemies = deathListener.GetEnemies();
+            foreach (var enemy in enemies)
+            {
+                if (enemy != null)
+                {
+                    if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f &&
+                        enemy.GetComponent<AudioSource>().isPlaying && !enemy.Equals(gameObject))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private IEnumerator FinishAttack(GameObject hitGo)
+        {
+            enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
+
+            // saves the location of the player to be compared to the location at the impact
+            playerLocation = player.transform.position;
+
+            ResetCoolDown(); // resets cooldown of the attack
+
+            // plays the sound of the skeleton swinging its sword
+            audioSource.PlayOneShot(enemySounds[1]);
+            RpcSwingSword();
+            yield return new WaitForSeconds(1f); // the time it takes from start of the enemy attack animation
+            // to the time of impact, for smooth timing reasons
+
+            if (gameObject != null)
+            {
+                playerUpdatedDistance = Vector3.Distance(playerLocation, player.transform.position);
+                if (playerUpdatedDistance < range)
+                {
+                    RpcDealDamage(hitGo);
+                    Attack(); // Attacks player
+                }
+
+                enemyMovement.attacking = false;
+            }
+        }
+
+        // Ships experience to clients, makes experience within proximity possible
+        [ClientRpc]
+        private void RpcDealDamage(GameObject gpi)
+        {
+            if (isServer)
+            {
+                return;
+            }
+
+            gpi.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
+        }
+
+        [ClientRpc]
+        private void RpcSwingSword()
+        {
+            if (isServer)
+            {
+                return;
+            }
+
+            audioSource.PlayOneShot(enemySounds[1]);
+        }
+
+        [ClientRpc]
+        private void RpcPlayEnemyChasing()
+        {
+            if (isServer)
+            {
+                return;
+            }
+
+            audioSource.PlayOneShot(enemySounds[0]);
+        }
+
         // Resets the attack cooldown
         private void ResetCoolDown()
         {
@@ -56,7 +181,15 @@ namespace ItemNamespace
         {
             if (globalPlayerInfo.IsAlive()) // checks if the player is even alive
             {
-                globalPlayerInfo.UpdateHealth(-damage);
+                globalPlayerInfo.UpdateHealth(-damage); // damages the player in question
+
+                // Creates an event used to play a sound and display the damage in the player UI
+                EventInfo playerDamageEventInfo = new DamageEventInfo
+                {
+                    EventUnitGo = gameObject,
+                    target = player
+                };
+                EventSystem.Current.FireEvent(playerDamageEventInfo);
             }
         }
     }

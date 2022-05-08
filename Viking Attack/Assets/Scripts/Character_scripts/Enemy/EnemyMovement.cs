@@ -4,7 +4,18 @@ using Mirror;
 
 public class EnemyMovement : NetworkBehaviour
 {
+    /**
+     * Animation stuff below, to be merged with jiang
+     */
+    [SerializeField] private Animator animator;
+
+    [SerializeField] public bool attacking;
+
+    /**
+     * 
+     */
     [SerializeField] private int patrolRange;
+
     private Vector3 respawnPosWithoutY;
     private Rigidbody rigidBody;
     private Vector3 movingDirection;
@@ -26,8 +37,7 @@ public class EnemyMovement : NetworkBehaviour
     private Collider[] sphereColliders;
     private GameObject chasingObject;
 
-    [SerializeField]
-    private float
+    [SerializeField] private float
         chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
 
     [SerializeField] private int moveSpeed; // movement speed of the enemy
@@ -38,6 +48,12 @@ public class EnemyMovement : NetworkBehaviour
 
     // Syncs the rotaion of the object to the server
     [SyncVar] [SerializeField] private Quaternion syncRotation;
+
+    private Vector3 direction;
+
+    private Vector3 facePlayer;
+
+    private Quaternion lookRotation;
 
     void Start()
     {
@@ -52,7 +68,7 @@ public class EnemyMovement : NetworkBehaviour
         transform.position = position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (isServer)
         {
@@ -67,22 +83,40 @@ public class EnemyMovement : NetworkBehaviour
             {
                 if (isGuarding)
                 {
+                    animator.SetBool("Chasing", false);
+                    animator.SetBool("Attacking", false);
+                    animator.SetBool("Patrolling", true);
                     if (Vector3.Distance(transform.position, respawnPosWithoutY) >= patrolRange)
                     {
                         movingDirection = -movingDirection;
                     }
-
+                    lookRotation = Quaternion.LookRotation(new Vector3(movingDirection.x, 0, movingDirection.z));
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.fixedDeltaTime * 3);
                     rigidBody.velocity = movingDirection * moveSpeed * Time.fixedDeltaTime;
                 }
 
                 if (isChasing)
                 {
+                    if (attacking)
+                    {
+                        return;
+                    }
+                    animator.SetBool("Chasing", true);
+                    animator.SetBool("Attacking", false);
+                    animator.SetBool("Patrolling", false);
                     if (chasingObject.Equals(null)) return;
-                    Vector3 facePlayer = new Vector3(chasingObject.transform.position.x, transform.position.y,
+                    facePlayer = new Vector3(chasingObject.transform.position.x, transform.position.y,
                         chasingObject.transform.position.z);
-                    transform.LookAt(facePlayer);
-                    transform.position = Vector3.MoveTowards(transform.position, facePlayer,
-                        chasingSpeedMultiplier * Time.fixedDeltaTime);
+
+                    direction = (chasingObject.transform.position - transform.position).normalized;
+                    lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.fixedDeltaTime * 3);
+                    
+                    if (Vector3.Distance(transform.position, chasingObject.transform.position) > 3f)
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, facePlayer,
+                            chasingSpeedMultiplier * Time.fixedDeltaTime);
+                    }
                 }
                 else
                 {
@@ -90,20 +124,24 @@ public class EnemyMovement : NetworkBehaviour
                 }
             }
 
-            if (backToDefault)
-            {
-                if (Vector3.Distance(transform.position, respawnPosWithoutY) <= 3f)
-                {
-                    backToDefault = false;
-                    isGuarding = true;
-                }
-                else
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, respawnPosWithoutY,
-                        chasingSpeedMultiplier * 1.5f * Time.deltaTime);
-                }
-            }
-
+            // if (backToDefault)
+            // {
+            //     animator.SetBool("Chasing", false);
+            //     animator.SetBool("Attacking", false);
+            //     animator.SetBool("Patrolling", true);
+            //     if (Vector3.Distance(transform.position, respawnPosWithoutY) <= 3f)
+            //     {
+            //         backToDefault = false;
+            //         isGuarding = true;
+            //     }
+            //     else
+            //     {
+            //         transform.position = Vector3.MoveTowards(transform.position, respawnPosWithoutY,
+            //             chasingSpeedMultiplier * 1.5f * Time.deltaTime);
+            //     }
+            // }
+            
+            
             //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
             CmdSetSynchedPosition(transform.position);
             CmdSetSynchedRotation(transform.rotation);

@@ -14,15 +14,17 @@ public class CharacterScreen : MonoBehaviour
     [SerializeField]
     private GlobalPlayerInfo globalPlayerInfo;
 
+    public Animator animator;
+
 
     // sets all the stats to what the globalplayerinfo contains
     public void OpenCharacterScreen()
     {
         playerName.text = globalPlayerInfo.GetName();
         playerLevelText.text = globalPlayerInfo.GetLevel().ToString();
-        healthStatPoints.text = globalPlayerInfo.GetHealthStatPoints().ToString();
-        damageStatPoints.text = globalPlayerInfo.GetDamageStatPoints().ToString();
-        staminaStatPoints.text = globalPlayerInfo.GetStaminaStatPoints().ToString();
+        healthStatPoints.text = globalPlayerInfo.GetMaxHealth().ToString();
+        damageStatPoints.text = globalPlayerInfo.GetDamage().ToString();
+        staminaStatPoints.text = globalPlayerInfo.GetMaxStamina().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
     }
 
@@ -31,18 +33,21 @@ public class CharacterScreen : MonoBehaviour
     {
         if (globalPlayerInfo.GetStatPoints() < 1)
             return;
+        animator.SetTrigger("incDMG"); 
         globalPlayerInfo.IncreaseDamageStatPoints();
-        damageStatPoints.text = globalPlayerInfo.GetDamageStatPoints().ToString();
+        damageStatPoints.text = globalPlayerInfo.GetDamage().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
     }
     
     // Increases the health stat of the player when the health button is pressed
     public void IncreaseHealth()
     {
+        
         if (globalPlayerInfo.GetStatPoints() < 1)
             return;
+        animator.SetTrigger("incHP");
         globalPlayerInfo.IncreaseHealthStatPoints();
-        healthStatPoints.text = globalPlayerInfo.GetHealthStatPoints().ToString();
+        healthStatPoints.text = globalPlayerInfo.GetMaxHealth().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
     }
     // Increases the stamina stat of the player when the stamina button is pressed
@@ -50,8 +55,9 @@ public class CharacterScreen : MonoBehaviour
     {
         if (globalPlayerInfo.GetStatPoints() < 1)
             return;
+        animator.SetTrigger("incSTAM");
         globalPlayerInfo.IncreaseStaminaStatPoints();
-        staminaStatPoints.text = globalPlayerInfo.GetStaminaStatPoints().ToString();
+        staminaStatPoints.text = globalPlayerInfo.GetMaxStamina().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
     }
     

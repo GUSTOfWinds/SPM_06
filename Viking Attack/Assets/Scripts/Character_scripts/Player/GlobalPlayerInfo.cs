@@ -1,4 +1,4 @@
-
+using Event;
 using ItemNamespace;
 using UnityEngine;
 
@@ -28,6 +28,7 @@ public class GlobalPlayerInfo : MonoBehaviour
     [SerializeField] private int staminaStat;
     [SerializeField] private float damage;
 
+
     private void Awake()
     {
         damage = 5;
@@ -35,11 +36,14 @@ public class GlobalPlayerInfo : MonoBehaviour
         maxHealth = 100;
         stamina = 100;
         maxStamina = 100;
-        healthBar = gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform.Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>();
-        staminaBar = gameObject.transform.Find("UI").gameObject.transform.Find("Stamina_bar").gameObject.transform.Find("Stamina_bar_slider").gameObject.GetComponent<PlayerStaminaBar>();
-        experienceBar = gameObject.transform.Find("UI").gameObject.transform.Find("Experience_bar").gameObject.transform.Find("Experience_bar_slider").gameObject.GetComponent<PlayerExperienceBar>();
+        healthBar = gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform
+            .Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>();
+        staminaBar = gameObject.transform.Find("UI").gameObject.transform.Find("Stamina_bar").gameObject.transform
+            .Find("Stamina_bar_slider").gameObject.GetComponent<PlayerStaminaBar>();
+        experienceBar = gameObject.transform.Find("UI").gameObject.transform.Find("Experience_bar").gameObject.transform
+            .Find("Experience_bar_slider").gameObject.GetComponent<PlayerExperienceBar>();
         experience = 0;
-        levelThreshold = 100;
+        levelThreshold = 60;
         availableStatpoints = 0;
         level = 1;
     }
@@ -77,7 +81,7 @@ public class GlobalPlayerInfo : MonoBehaviour
     {
         return skinColor;
     }
-    
+
     // Checks if the player is alive
     public bool IsAlive()
     {
@@ -95,8 +99,10 @@ public class GlobalPlayerInfo : MonoBehaviour
         {
             health = maxHealth;
         }
+
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
-        if (health <= 0) {
+        if (health <= 0)
+        {
             gameObject.GetComponent<KillPlayer>().PlayerRespawn();
         }
     }
@@ -117,7 +123,7 @@ public class GlobalPlayerInfo : MonoBehaviour
     {
         return maxStamina;
     }
-    
+
     // Adds or reduces stamina
     public void UpdateStamina(float difference)
     {
@@ -129,6 +135,7 @@ public class GlobalPlayerInfo : MonoBehaviour
         {
             stamina = maxStamina;
         }
+
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
     }
 
@@ -137,7 +144,8 @@ public class GlobalPlayerInfo : MonoBehaviour
     public void IncreaseExperience(float exp)
     {
         experience += exp;
-        if (experience >= levelThreshold * (1.3 * level)) {
+        if (experience >= levelThreshold * (1.3 * level))
+        {
             IncreaseLevel();
             experience = 0;
         }
@@ -147,9 +155,12 @@ public class GlobalPlayerInfo : MonoBehaviour
 
     public void IncreaseLevel()
     {
+        EventInfo playerLevelUpInfo = new PlayerLevelUpEventInfo
+        {
+        };
+        EventSystem.Current.FireEvent(playerLevelUpInfo);
         level++;
         availableStatpoints += 3;
-
     }
 
     public float GetExperience()
@@ -171,7 +182,7 @@ public class GlobalPlayerInfo : MonoBehaviour
     {
         return damageStat;
     }
-    
+
     public int GetHealthStatPoints()
     {
         return healthStat;
@@ -188,7 +199,7 @@ public class GlobalPlayerInfo : MonoBehaviour
         availableStatpoints--;
         damageStat++;
     }
-    
+
     public void IncreaseHealthStatPoints()
     {
         maxHealth += 10;
@@ -199,7 +210,7 @@ public class GlobalPlayerInfo : MonoBehaviour
 
     public void IncreaseStaminaStatPoints()
     {
-        maxStamina += 10; 
+        maxStamina += 10;
         availableStatpoints--;
         staminaStat++;
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
@@ -210,7 +221,8 @@ public class GlobalPlayerInfo : MonoBehaviour
         return levelThreshold;
     }
 
-
-    
-
+    public float GetDamage()
+    {
+        return damage;
+    }
 }

@@ -16,6 +16,7 @@ namespace ItemNamespace
         
         
         [SerializeField] private Type type;
+        [SerializeField] private WeaponType weaponType;
         [SerializeField] private string itemName;
         [SerializeField] private string description;
         [SerializeField] private int damage; // only interesting if weapon
@@ -46,6 +47,13 @@ namespace ItemNamespace
         public Sprite GetSprite => sprite;
         // Returns this type
         public Type GetType => type;
+        // Returns this type
+        public WeaponType GetWeaponType => weaponType;
+        //Returns mesh
+        public Mesh GetMesh => mesh;
+        //Returns material
+        public Material GetMaterial => material;
+        //Returns name of script with this items behavior
         public String GetItemBaseBehaviorScriptName => itemBaseBehaviorScriptName;
 
         // Contains the different item type, add a new line to the enum in order to add an item type.
@@ -55,6 +63,13 @@ namespace ItemNamespace
             Weapon,
             Tool,
             Key
+        }
+        public enum WeaponType
+        {
+            None,
+            Sword,
+            Dagger,
+            Spear
         }
     }
 }

@@ -23,7 +23,8 @@ namespace ItemNamespace
 
         // All Enemy health bars that exist and belong to an enemy
         private List<GameObject> instancesOfEnemyHealthBars;
-        
+
+        private GameObject newHealthBarGo;
 
         private Camera mainCamera;
 
@@ -52,8 +53,8 @@ namespace ItemNamespace
                 if (instancesOfEnemiesSpotted.Contains(hit.transform.gameObject.GetComponent<NetworkIdentity>()
                         .netId) == false)
                 {
-                    GameObject go = SetupHealthBar(hit);
-                    instancesOfEnemyHealthBars.Add(go);
+                    newHealthBarGo = SetupHealthBar(hit);
+                    instancesOfEnemyHealthBars.Add(newHealthBarGo);
                     
                     // Adds to all enemy instances (saves the instanceID)
                     instancesOfEnemiesSpotted.Add(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
@@ -75,7 +76,7 @@ namespace ItemNamespace
         }
 
 
-        // Sets up the health bar instance and assigns proper values, must be cleaned up
+        // Sets up the health bar instance and assigns proper values
         GameObject SetupHealthBar(RaycastHit hit)
         {
             var enemy = hit.collider.transform;
