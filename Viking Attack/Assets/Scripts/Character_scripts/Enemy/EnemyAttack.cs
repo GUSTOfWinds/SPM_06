@@ -33,7 +33,9 @@ namespace ItemNamespace
         private EnemyMovement enemyMovement;
         private GameObject[] enemies;
         private Guid respawnEventGuid;
+
         [SerializeField] private DeathListener deathListener;
+        //[SyncVar] private GameObject syncGlobalPlayerInfo;
 
         void Start()
         {
@@ -61,13 +63,14 @@ namespace ItemNamespace
                 rayBeginning.y += 0.8f;
                 // Does the ray intersect any objects excluding the player layer
                 if (Physics.Raycast(rayBeginning,
-                        transform.TransformDirection(Vector3.forward), out hit, 5, layerMask))
+                        transform.TransformDirection(Vector3.forward), out hit, 7, layerMask))
                 {
                     // Checks that no other enemies already are breathing within a 6 meter radius
                     if (!GetNearbyAudioSourcePlaying() && !audioSource.isPlaying)
                     {
                         // plays the sound of the skeleton breathing when in range for attack
                         audioSource.PlayOneShot(enemySounds[0]);
+                        RpcPlayEnemyChasing();
                     }
 
                     // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
@@ -80,7 +83,7 @@ namespace ItemNamespace
                         animator.SetBool("Patrolling", false);
                         player = hit.collider.gameObject; // updates which player object to attack and to
                         globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
-                        StartCoroutine(FinishAttack());
+                        StartCoroutine(FinishAttack(hit.collider.gameObject));
                     }
                 }
             }
@@ -105,7 +108,7 @@ namespace ItemNamespace
             return false;
         }
 
-        private IEnumerator FinishAttack()
+        private IEnumerator FinishAttack(GameObject hitGo)
         {
             enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
 
@@ -116,7 +119,7 @@ namespace ItemNamespace
 
             // plays the sound of the skeleton swinging its sword
             audioSource.PlayOneShot(enemySounds[1]);
-
+            RpcSwingSword();
             yield return new WaitForSeconds(1f); // the time it takes from start of the enemy attack animation
             // to the time of impact, for smooth timing reasons
 
@@ -125,11 +128,46 @@ namespace ItemNamespace
                 playerUpdatedDistance = Vector3.Distance(playerLocation, player.transform.position);
                 if (playerUpdatedDistance < range)
                 {
+                    RpcDealDamage(hitGo);
                     Attack(); // Attacks player
                 }
 
                 enemyMovement.attacking = false;
             }
+        }
+
+        // Ships experience to clients, makes experience within proximity possible
+        [ClientRpc]
+        private void RpcDealDamage(GameObject gpi)
+        {
+            if (isServer)
+            {
+                return;
+            }
+
+            gpi.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
+        }
+
+        [ClientRpc]
+        private void RpcSwingSword()
+        {
+            if (isServer)
+            {
+                return;
+            }
+
+            audioSource.PlayOneShot(enemySounds[1]);
+        }
+
+        [ClientRpc]
+        private void RpcPlayEnemyChasing()
+        {
+            if (isServer)
+            {
+                return;
+            }
+
+            audioSource.PlayOneShot(enemySounds[0]);
         }
 
         // Resets the attack cooldown

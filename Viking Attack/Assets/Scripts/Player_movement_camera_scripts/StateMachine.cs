@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using System;
 
 public class StateMachine
 { 
@@ -28,11 +25,11 @@ public class StateMachine
         if(stateQueue.Count > 0)
         {
             State temp = stateQueue.Dequeue();
-            temp.Update();
+            temp.FixedUpdate();
             currentState = temp;
         }
         else
-            currentState.Update();
+            currentState.FixedUpdate();
     }
     //Changes state
     public void ChangeState<T>() where T : State
