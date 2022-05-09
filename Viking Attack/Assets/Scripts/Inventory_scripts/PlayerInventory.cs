@@ -27,16 +27,11 @@ namespace ItemNamespace
         // Inserts the itembase + its sprite to the inventory array
         void OnItemPickup(PlayerItemPickupEventInfo playerItemPickupEventInfo)
         {
-            ItemBase.ItemType itemBase = playerItemPickupEventInfo.itemBase.GetItemType;
-            switch(itemBase) 
+            switch(playerItemPickupEventInfo.itemBase.GetItemType) 
             {
                 case ItemBase.ItemType.Weapon:
                     
-                    ItemBase.WeaponType weaponType = playerItemPickupEventInfo.itemBase.GetWeaponType;
-                    
-                    
-                    // TODO ADD THAT HELD ITEM IS UPDATED TO THE WEAPON THAT IS PICKED UP
-                    switch (weaponType)
+                    switch (playerItemPickupEventInfo.itemBase.GetWeaponType)
                     {
                         case ItemBase.WeaponType.Sword:
                             inventory[0] = playerItemPickupEventInfo.itemBase;
@@ -44,7 +39,7 @@ namespace ItemNamespace
                             sprites[0].GetComponent<Image>().sprite = inventory[0].GetSprite;
                             gameObject.GetComponent<GlobalPlayerInfo>().SetItemSlot(0, inventory[0]); // sets the info in globalplayerinfo
                             selectedItem.transform.position = sprites[0].transform.position;
-                            gameObject.GetComponent<PlayerItemUsageController>().itemBase = inventory[0];
+                            gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(playerItemPickupEventInfo.itemBase);
                             break;
 
                         case ItemBase.WeaponType.Spear:
@@ -53,7 +48,7 @@ namespace ItemNamespace
                             sprites[1].GetComponent<Image>().sprite = inventory[1].GetSprite;
                             gameObject.GetComponent<GlobalPlayerInfo>().SetItemSlot(1, inventory[1]); // sets the info in globalplayerinfo
                             selectedItem.transform.position = sprites[1].transform.position;
-                            gameObject.GetComponent<PlayerItemUsageController>().itemBase = inventory[1];
+                            gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(playerItemPickupEventInfo.itemBase);
                             break;
                         
                         case ItemBase.WeaponType.Dagger:
@@ -62,7 +57,7 @@ namespace ItemNamespace
                             sprites[2].GetComponent<Image>().sprite = inventory[2].GetSprite;
                             gameObject.GetComponent<GlobalPlayerInfo>().SetItemSlot(2, inventory[2]); // sets the info in globalplayerinfo
                             selectedItem.transform.position = sprites[2].transform.position;
-                            gameObject.GetComponent<PlayerItemUsageController>().itemBase = inventory[2];
+                            gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(playerItemPickupEventInfo.itemBase);
                             break;
                     }
                     break;
@@ -84,7 +79,7 @@ namespace ItemNamespace
         {
             if (inventory[0] != null)
             {
-                gameObject.GetComponent<PlayerItemUsageController>().itemBase = inventory[0];
+                gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
                 selectedItem.transform.position = sprites[0].transform.position;
             }
             
@@ -93,7 +88,7 @@ namespace ItemNamespace
         {
             if (inventory[1] != null)
             {
-                gameObject.GetComponent<PlayerItemUsageController>().itemBase = inventory[1];
+                gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[1]);
                 selectedItem.transform.position = sprites[1].transform.position;
             }
         }
@@ -101,7 +96,7 @@ namespace ItemNamespace
         {
             if (inventory[2] != null)
             {
-                gameObject.GetComponent<PlayerItemUsageController>().itemBase = inventory[2];
+                gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[2]);
                 selectedItem.transform.position = sprites[2].transform.position;
             }
         }
@@ -109,7 +104,7 @@ namespace ItemNamespace
         {
             if (inventory[3] != null)
             {
-                gameObject.GetComponent<PlayerItemUsageController>().itemBase = inventory[3];
+                gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[3]);
                 selectedItem.transform.position = sprites[3].transform.position;
             }
         }
