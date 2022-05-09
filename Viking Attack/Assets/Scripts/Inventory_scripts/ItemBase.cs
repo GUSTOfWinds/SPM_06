@@ -15,7 +15,7 @@ namespace ItemNamespace
         // WHO TO BLAME: Martin Kings
         
         
-        [SerializeField] private Type type;
+        [SerializeField] private ItemType itemType;
         [SerializeField] private WeaponType weaponType;
         [SerializeField] private string itemName;
         [SerializeField] private string description;
@@ -46,7 +46,7 @@ namespace ItemNamespace
         // Returns the 2D image for the item
         public Sprite GetSprite => sprite;
         // Returns this type
-        public Type GetType => type;
+        public ItemType GetItemType => itemType;
         // Returns this type
         public WeaponType GetWeaponType => weaponType;
         //Returns mesh
@@ -57,7 +57,7 @@ namespace ItemNamespace
         public String GetItemBaseBehaviorScriptName => itemBaseBehaviorScriptName;
 
         // Contains the different item type, add a new line to the enum in order to add an item type.
-        public enum Type
+        public enum ItemType
         {
             Food,
             Weapon,
