@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using ItemNamespace;
 using UnityEngine;
 
 namespace Event
@@ -32,11 +31,16 @@ namespace Event
     {
         // The spawner parent, makes sure that the enemy respawns at the same place 
         // it was placed in teh beginning of the game
-        public Transform parent;
+        public Transform respawnParent;
     }
 
     public class PlayerLevelUpEventInfo : EventInfo
     {
         
+    }
+
+    public class PlayerItemPickupEventInfo : EventInfo
+    {
+        public ItemBase itemBase;
     }
 }

@@ -33,6 +33,7 @@ public class GlobalPlayerInfo : MonoBehaviour
 
     private void Awake()
     {
+        items = new ItemBase[4];
         damage = 5;
         health = 100;
         maxHealth = 100;
@@ -45,6 +46,11 @@ public class GlobalPlayerInfo : MonoBehaviour
         levelThreshold = 60;
         availableStatpoints = 0;
         level = 1;
+    }
+
+    public void SetItemSlot(int index, ItemBase itemBase)
+    {
+        items[index] = itemBase;
     }
 
     // Gets called upon during game launch, the main menu sets the player name

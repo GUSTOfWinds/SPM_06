@@ -44,4 +44,17 @@ public class PlayerItemUsageController : NetworkBehaviour
             }
         }
     }
+    
+    public void ChangeItem(ItemBase newItemBase)
+    {
+        itemBase = newItemBase;
+        Type itemType = Type.GetType(itemBase.GetItemBaseBehaviorScriptName);
+        if(currentActingComponent != null)
+            Destroy(currentActingComponent);
+        currentActingComponent = (ItemBaseBehavior)gameObject.AddComponent(itemType);
+        currentActingComponent.SetBelongingTo(itemBase);
+        currentActingComponentType = itemType;
+        heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
+        heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
+    }
 }

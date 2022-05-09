@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using ItemNamespace;
 
 public class ItemSwordBehavior : ItemBaseBehavior
 {
@@ -31,6 +29,7 @@ public class ItemSwordBehavior : ItemBaseBehavior
             StartCoroutine(WaitToAttack(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).speed));
         }
     }
+    
     IEnumerator WaitToAttack(float time)
     {
 
