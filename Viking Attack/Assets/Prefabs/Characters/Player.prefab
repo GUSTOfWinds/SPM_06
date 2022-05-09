@@ -3337,7 +3337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3674650763820852447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.26, z: 0}
+  m_LocalPosition: {x: 0, y: 2.092, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5988590173649968420}
@@ -5294,6 +5294,7 @@ RectTransform:
   - {fileID: 7152318112681383024}
   - {fileID: 5831059869900482311}
   - {fileID: 5589308458130813840}
+  - {fileID: 9214030808677026364}
   m_Father: {fileID: 5988590173185455044}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5644,6 +5645,7 @@ GameObject:
   - component: {fileID: 174002659582352452}
   - component: {fileID: -4742521611354210552}
   - component: {fileID: -7393548442607803837}
+  - component: {fileID: 7980411867349675829}
   - component: {fileID: -7731286149923182968}
   - component: {fileID: 1484514502063720293}
   - component: {fileID: 1769524434509249876}
@@ -5651,7 +5653,6 @@ GameObject:
   - component: {fileID: -3214051896938044769}
   - component: {fileID: 8379086476344114826}
   - component: {fileID: 3650744181074040024}
-  - component: {fileID: 7980411867349675829}
   - component: {fileID: 4271025885202711048}
   m_Layer: 6
   m_Name: Player
@@ -6079,11 +6080,94 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: fe3ada87-d875-4073-817b-f13fe2e5c4ce
     m_ActionName: MenuControls/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7980411867349675829}
+        m_TargetAssemblyTypeName: ItemNamespace.PlayerInventory, Assembly-CSharp
+        m_MethodName: ToggleSword
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: dba249a2-92cc-4a04-bbed-2873b42c70ed
+    m_ActionName: PlayerControls/Toggle Held item[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7980411867349675829}
+        m_TargetAssemblyTypeName: ItemNamespace.PlayerInventory, Assembly-CSharp
+        m_MethodName: ToggleSpear
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 16bf9e8c-9650-430c-9134-a733467b3b07
+    m_ActionName: PlayerControls/Toggle Spear[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7980411867349675829}
+        m_TargetAssemblyTypeName: ItemNamespace.PlayerInventory, Assembly-CSharp
+        m_MethodName: ToggleDagger
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 839a9745-05e6-483c-bb3e-90b327ee6478
+    m_ActionName: PlayerControls/Toggle Dagger[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7980411867349675829}
+        m_TargetAssemblyTypeName: ItemNamespace.PlayerInventory, Assembly-CSharp
+        m_MethodName: ToggleFood
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 01bac9ec-c112-4aa5-a4f8-21fac1eb1dfa
+    m_ActionName: PlayerControls/Toggle Food[/Keyboard/4]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7980411867349675829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5988590173649968415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749ae49d220e433285643cecc63f2bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
+  sprites:
+  - {fileID: 1284388648486731661}
+  - {fileID: 6398425346155906021}
+  - {fileID: 9034543290756917559}
+  - {fileID: 6269023377309250288}
+  selectedItem: {fileID: 8829952045858022846}
 --- !u!114 &-7731286149923182968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6188,24 +6272,6 @@ MonoBehaviour:
   lastAudioClip: {fileID: 0}
   audioSource: {fileID: 7484610620894764299}
   netID: 0
---- !u!114 &7980411867349675829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5988590173649968415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 749ae49d220e433285643cecc63f2bfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: []
-  sprites:
-  - {fileID: 1284388648486731661}
-  - {fileID: 6398425346155906021}
-  - {fileID: 9034543290756917559}
-  - {fileID: 6269023377309250288}
 --- !u!114 &4271025885202711048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8413,6 +8479,81 @@ Transform:
   m_Father: {fileID: 7905453334360618793}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8829952045858022846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9214030808677026364}
+  - component: {fileID: 8990685324371524249}
+  - component: {fileID: 9200136251754378254}
+  m_Layer: 5
+  m_Name: Selected_index
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9214030808677026364
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829952045858022846}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.62000006, y: 0.61, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9105881209717100685}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -128, y: -95.60004}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8990685324371524249
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829952045858022846}
+  m_CullTransparentMesh: 1
+--- !u!114 &9200136251754378254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829952045858022846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 0fa741debafb9684981f825a1d2f8667, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &9013767618455056824
 GameObject:
   m_ObjectHideFlags: 0
