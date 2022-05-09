@@ -1,6 +1,7 @@
-
-
 //Base class to all player states
+
+using UnityEngine;
+
 public abstract class PlayerState : State
 {
     private Animator animator;

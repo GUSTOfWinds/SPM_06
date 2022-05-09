@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ItemSwordBehavior : ItemBaseBehavior
@@ -28,6 +29,7 @@ public class ItemSwordBehavior : ItemBaseBehavior
             StartCoroutine(WaitToAttack(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).speed));
         }
     }
+    
     IEnumerator WaitToAttack(float time)
     {
 
