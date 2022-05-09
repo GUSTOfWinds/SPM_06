@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.UI;
 using Image = Microsoft.Unity.VisualStudio.Editor.Image;
@@ -22,9 +25,9 @@ public class CharacterScreen : MonoBehaviour
     {
         playerName.text = globalPlayerInfo.GetName();
         playerLevelText.text = globalPlayerInfo.GetLevel().ToString();
-        healthStatPoints.text = globalPlayerInfo.GetMaxHealth().ToString();
-        damageStatPoints.text = globalPlayerInfo.GetDamage().ToString();
-        staminaStatPoints.text = globalPlayerInfo.GetMaxStamina().ToString();
+        healthStatPoints.text = globalPlayerInfo.GetHealthStatPoints().ToString();
+        damageStatPoints.text = globalPlayerInfo.GetDamageStatPoints().ToString();
+        staminaStatPoints.text = globalPlayerInfo.GetStaminaStatPoints().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
     }
 
@@ -35,7 +38,7 @@ public class CharacterScreen : MonoBehaviour
             return;
         animator.SetTrigger("incDMG"); 
         globalPlayerInfo.IncreaseDamageStatPoints();
-        damageStatPoints.text = globalPlayerInfo.GetDamage().ToString();
+        damageStatPoints.text = globalPlayerInfo.GetDamageStatPoints().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
     }
     
@@ -47,7 +50,7 @@ public class CharacterScreen : MonoBehaviour
             return;
         animator.SetTrigger("incHP");
         globalPlayerInfo.IncreaseHealthStatPoints();
-        healthStatPoints.text = globalPlayerInfo.GetMaxHealth().ToString();
+        healthStatPoints.text = globalPlayerInfo.GetHealthStatPoints().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
     }
     // Increases the stamina stat of the player when the stamina button is pressed
@@ -57,7 +60,7 @@ public class CharacterScreen : MonoBehaviour
             return;
         animator.SetTrigger("incSTAM");
         globalPlayerInfo.IncreaseStaminaStatPoints();
-        staminaStatPoints.text = globalPlayerInfo.GetMaxStamina().ToString();
+        staminaStatPoints.text = globalPlayerInfo.GetStaminaStatPoints().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
     }
     

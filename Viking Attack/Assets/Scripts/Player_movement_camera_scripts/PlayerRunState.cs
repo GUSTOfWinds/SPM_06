@@ -1,5 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
+using ItemNamespace;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Mirror;
 
 [CreateAssetMenu(menuName = "PlayerState/RunState")]
 //Used as a state when the player inputs for Horizontal and Vertical movement
@@ -16,7 +20,7 @@ public class PlayerRunState : PlayerState
     {
         
     }
-    public override void FixedUpdate()
+    public override void Update()
     {
         inputMovement = Player.movementKeyInfo.ReadValue<Vector2>();
         sprintKeyInfo = Player.sprintKeyInfo;

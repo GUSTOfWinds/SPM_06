@@ -64,7 +64,7 @@ public class ToggleMenu : NetworkBehaviour
     private void RpcCloseMenu(GameObject player)
     {
 
-        player.GetComponent<PlayerInput>().enabled = true;
+        gameObject.GetComponent<PlayerInput>().enabled = true;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         player.transform.Find("UI").Find("Menu_screen").gameObject.SetActive(false);
@@ -74,7 +74,9 @@ public class ToggleMenu : NetworkBehaviour
     [ClientRpc]
     private void RpcOpenMenu(GameObject player)
     {
-        player.GetComponent<PlayerInput>().enabled = false;
+
+        
+        gameObject.GetComponent<PlayerInput>().enabled = false;
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         player.transform.Find("UI").Find("Menu_screen").gameObject.SetActive(true);

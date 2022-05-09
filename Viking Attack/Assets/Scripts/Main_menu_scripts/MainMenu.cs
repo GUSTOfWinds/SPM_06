@@ -1,4 +1,3 @@
-using Main_menu_scripts.ForMP;
 using UnityEngine;
 
 namespace Main_menu_scripts

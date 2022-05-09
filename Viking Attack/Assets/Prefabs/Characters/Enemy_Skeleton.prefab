@@ -1029,6 +1029,7 @@ GameObject:
   - component: {fileID: 6653956862289318910}
   - component: {fileID: 6653956862289318911}
   - component: {fileID: -6392840626969825405}
+  - component: {fileID: 2854555053134480687}
   - component: {fileID: 6653956862289318896}
   - component: {fileID: 4336340493110069652}
   - component: {fileID: 791254781668399720}
@@ -1036,7 +1037,6 @@ GameObject:
   - component: {fileID: 3643602246697119875}
   - component: {fileID: 2399186864775228470}
   - component: {fileID: -2517776122318007361}
-  - component: {fileID: 2690753061192251443}
   m_Layer: 3
   m_Name: Enemy_Skeleton
   m_TagString: Enemy
@@ -1078,7 +1078,7 @@ MonoBehaviour:
   syncInterval: 0
   animator: {fileID: 3643602246697119875}
   attacking: 0
-  patrolRange: 5
+  patrolRange: 30
   groundCheck: {fileID: 6653956863877352429}
   detectScopeRadius: 10
   chasingSpeedMultiplier: 0
@@ -1108,9 +1108,21 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   experienceRadius: 0
-  level: 1
+  level: 0
   experience: 0
-  name: 
+--- !u!65 &2854555053134480687
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6653956862289318906}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4581366, y: 1.461647, z: 0.89528555}
+  m_Center: {x: -0.08174533, y: 0.7353549, z: 0.18009868}
 --- !u!54 &6653956862289318896
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1142,7 +1154,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   characterBase: {fileID: 11400000, guid: 51ce9bc9105c0934c8771ec9f22670c7, type: 2}
-  waitTime: 50
+  waitTime: 10
   hasDied: 0
   layerMask:
     serializedVersion: 2
@@ -1226,7 +1238,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 002d3438d861f224e911c9bea0f7f3d1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.68
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1326,20 +1338,6 @@ MonoBehaviour:
   syncInterval: 0
   clientAuthority: 0
   animator: {fileID: 3643602246697119875}
---- !u!136 &2690753061192251443
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6653956862289318906}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1.8046803
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.8976598, z: 0}
 --- !u!1 &6653956863877352429
 GameObject:
   m_ObjectHideFlags: 0

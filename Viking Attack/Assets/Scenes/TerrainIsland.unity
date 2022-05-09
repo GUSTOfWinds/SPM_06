@@ -153,7 +153,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &21711317
 MonoBehaviour:
@@ -170,7 +170,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &21711318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,71 +187,6 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!1 &63614048
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 63614049}
-  - component: {fileID: 63614051}
-  - component: {fileID: 63614050}
-  m_Layer: 0
-  m_Name: Boss_spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &63614049
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63614048}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 395.51, y: 13.2, z: -239.42}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2045507402}
-  m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &63614050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63614048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 1627232034024812431, guid: 1268ed0163b18974ea84e9d5aef06972, type: 3}
-  shouldSpawn: 0
---- !u!114 &63614051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63614048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 2861250027
-  serverOnly: 1
-  visible: 0
-  m_AssetId: 
-  hasSpawned: 0
 --- !u!1001 &73941759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -263,10 +197,6 @@ PrefabInstance:
     - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_Name
       value: Abandoned_House (16)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
@@ -390,10 +320,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
-    - target: {fileID: 4184897103388663761, guid: d88628bbcd5e4d2448efdf68a0b019d0, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d88628bbcd5e4d2448efdf68a0b019d0, type: 3}
 --- !u!4 &83691172 stripped
@@ -431,7 +357,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &120638679
 MonoBehaviour:
@@ -448,7 +374,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &120638680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,10 +401,6 @@ PrefabInstance:
     - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_Name
       value: Abandoned_House (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
@@ -550,10 +471,6 @@ PrefabInstance:
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -651,7 +568,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &217631400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,10 +609,6 @@ PrefabInstance:
     - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_Name
       value: Abandoned_House (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
@@ -790,7 +702,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &415554267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -832,10 +743,6 @@ PrefabInstance:
     - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_Name
       value: Abandoned_House (11)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
@@ -989,7 +896,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &570852488
 MonoBehaviour:
@@ -1006,7 +913,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &570852489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,10 +940,6 @@ PrefabInstance:
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -1145,10 +1047,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abandoned_House (15)
       objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
       value: 31
@@ -1238,7 +1136,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &710798998
 MonoBehaviour:
@@ -1255,7 +1153,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &710798999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1273,6 +1170,127 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
+--- !u!1 &736304236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 736304237}
+  - component: {fileID: 736304239}
+  - component: {fileID: 736304238}
+  m_Layer: 0
+  m_Name: Skeleton_spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &736304237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736304236}
+  m_LocalRotation: {x: -0.112893425, y: 0.82882017, z: 0.54726166, w: 0.028582498}
+  m_LocalPosition: {x: -113.99, y: 10.8, z: 157.46}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2045507402}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &736304238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736304236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+--- !u!114 &736304239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736304236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 4035035084
+  serverOnly: 1
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
+--- !u!1001 &742393886
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 474612601081244674, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
+      propertyPath: m_Name
+      value: Player_network_spawner (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446515404748053491, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446515404748053491, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446515404748053491, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -32.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446515404748053491, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446515404748053491, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446515404748053491, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446515404748053491, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446515404748053491, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446515404748053491, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446515404748053491, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446515404748053491, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
 --- !u!1001 &793365332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1283,10 +1301,6 @@ PrefabInstance:
     - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_Name
       value: Abandoned_House (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
@@ -1394,7 +1408,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &816190162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1422,10 +1435,6 @@ PrefabInstance:
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -1520,7 +1529,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &884767925
 MonoBehaviour:
@@ -1537,7 +1546,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &884767926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1565,10 +1573,6 @@ PrefabInstance:
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -1708,10 +1712,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abandoned_House (12)
       objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
       value: 28
@@ -1782,10 +1782,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abandoned_House (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -1855,10 +1851,6 @@ PrefabInstance:
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -1933,10 +1925,6 @@ PrefabInstance:
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (13)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -2161,10 +2149,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Runestone
       objectReference: {fileID: 0}
-    - target: {fileID: 7759507166295857100, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 8119905292906804761, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2261,10 +2245,6 @@ PrefabInstance:
     - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_Name
       value: Abandoned_House (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
@@ -2546,10 +2526,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abandoned_House (14)
       objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
       value: 30
@@ -2619,10 +2595,6 @@ PrefabInstance:
     - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_Name
       value: Abandoned_House (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
@@ -2713,7 +2685,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &1266631453
 MonoBehaviour:
@@ -2730,7 +2702,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &1266631454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2758,10 +2729,6 @@ PrefabInstance:
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -2837,10 +2804,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abandoned_House (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -2910,10 +2873,6 @@ PrefabInstance:
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -2988,10 +2947,6 @@ PrefabInstance:
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -3118,7 +3073,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &1421137624
 MonoBehaviour:
@@ -3135,7 +3090,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &1421137625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3186,7 +3140,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &1498591522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3228,10 +3181,6 @@ PrefabInstance:
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -3372,10 +3321,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gravestone (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -3469,7 +3414,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &1599146914
 MonoBehaviour:
@@ -3486,7 +3431,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &1599146915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3534,7 +3478,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &1633310413
 MonoBehaviour:
@@ -3551,7 +3495,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &1633310414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3577,25 +3520,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1078430519148682724, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
-      propertyPath: serverTickRate
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 1078430519148682724, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1078430519148682724, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: spawnPrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 469271222892847950, guid: 3299a738816a72b43b2be7e059fb20ec, type: 3}
-    - target: {fileID: 1078430519148682724, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
-      propertyPath: spawnPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 1627232034024812431, guid: 1268ed0163b18974ea84e9d5aef06972, type: 3}
-    - target: {fileID: 1078430519148682724, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
-      propertyPath: spawnPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 6653956862289318906, guid: ca3f9185ca87a9142996006b6077717d, type: 3}
     - target: {fileID: 1078430519148682725, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3656,10 +3587,6 @@ PrefabInstance:
     - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_Name
       value: Abandoned_House (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
@@ -3722,10 +3649,6 @@ PrefabInstance:
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (12)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -3790,6 +3713,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 1723102958}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1731375727
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2243893873165798285, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: m_Name
+      value: DeathEventHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.22821
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 36.253983
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 144.26593
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
 --- !u!1001 &1745617808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3800,10 +3780,6 @@ PrefabInstance:
     - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_Name
       value: Abandoned_House
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
@@ -3880,10 +3856,10 @@ GameObject:
   - component: {fileID: 1768986892}
   m_Layer: 4
   m_Name: Cube
-  m_TagString: Portal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &1768986887
 MonoBehaviour:
@@ -3897,6 +3873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f681edd6f6fa08849b26e32acfb770ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossIsDead: 1
 --- !u!65 &1768986888
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3958,7 +3935,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768986886}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1768986891
 Transform:
   m_ObjectHideFlags: 0
@@ -3966,13 +3943,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768986886}
-  m_LocalRotation: {x: 0.579228, y: 0.579228, z: 0.4055798, w: 0.4055798}
-  m_LocalPosition: {x: 401.9, y: 12.19, z: -220.77}
-  m_LocalScale: {x: 6, y: 0.05, z: 6}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 139.5, y: -32.27, z: 53.1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 110, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1768986892
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3999,10 +3976,6 @@ PrefabInstance:
     - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_Name
       value: Abandoned_House (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
@@ -4096,7 +4069,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &1795641509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4138,10 +4110,6 @@ PrefabInstance:
     - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_Name
       value: Abandoned_House (13)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
@@ -4284,10 +4252,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gravestone (11)
       objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -4362,10 +4326,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gravestone
       objectReference: {fileID: 0}
-    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -4439,10 +4399,6 @@ PrefabInstance:
     - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_Name
       value: Abandoned_House (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
@@ -4536,7 +4492,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &1965461907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4598,7 +4553,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &2030169184
 MonoBehaviour:
@@ -4615,7 +4570,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &2030169185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4668,6 +4622,7 @@ Transform:
   - {fileID: 2131580591}
   - {fileID: 2081892643}
   - {fileID: 415554268}
+  - {fileID: 736304237}
   - {fileID: 1421137623}
   - {fileID: 120638678}
   - {fileID: 1266631452}
@@ -4678,7 +4633,6 @@ Transform:
   - {fileID: 710798997}
   - {fileID: 21711316}
   - {fileID: 884767924}
-  - {fileID: 63614049}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4715,7 +4669,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &2081892642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4856,7 +4809,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
 --- !u!114 &2131580590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4888,67 +4840,6 @@ Transform:
   m_Father: {fileID: 2045507402}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2724534730234423819
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2243893873165798285, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_Name
-      value: DeathEventHandler
-      objectReference: {fileID: 0}
-    - target: {fileID: 2243893873165798285, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.22821
-      objectReference: {fileID: 0}
-    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 36.253983
-      objectReference: {fileID: 0}
-    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 144.26593
-      objectReference: {fileID: 0}
-    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
 --- !u!1001 &6965989448150476984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4959,10 +4850,6 @@ PrefabInstance:
     - target: {fileID: 474612601081244674, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
       propertyPath: m_Name
       value: Player_network_spawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 474612601081244674, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3446515404748053491, guid: c1bd579d4ace1834cb6956c12c446bef, type: 3}
       propertyPath: m_RootOrder
