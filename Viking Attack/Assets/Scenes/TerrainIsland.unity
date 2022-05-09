@@ -170,7 +170,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &21711318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &120638680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,7 +651,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &217631400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,7 +790,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &415554267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &570852489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1255,7 +1255,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &710798999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1394,7 +1394,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &816190162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,7 +1537,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &884767926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2730,7 +2730,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &1266631454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3135,7 +3135,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &1421137625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3186,7 +3186,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &1498591522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3486,7 +3486,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &1599146915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3551,7 +3551,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &1633310414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3644,7 +3644,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4050693911780330154, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
 --- !u!1001 &1710742766
 PrefabInstance:
@@ -4096,7 +4097,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &1795641509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4536,7 +4537,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &1965461907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4615,7 +4616,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &2030169185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4715,7 +4716,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &2081892642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4856,7 +4857,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 1
+  shouldSpawn: 0
 --- !u!114 &2131580590
 MonoBehaviour:
   m_ObjectHideFlags: 0
