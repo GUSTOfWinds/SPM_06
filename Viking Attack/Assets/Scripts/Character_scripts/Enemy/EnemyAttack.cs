@@ -131,7 +131,12 @@ namespace ItemNamespace
                     RpcDealDamage(hitGo);
                     Attack(); // Attacks player
                 }
-
+                
+                animator.SetBool("Attacking", false);
+                //sets the others to false
+                animator.SetBool("Chasing", true);
+                animator.SetBool("Patrolling", false);
+                
                 enemyMovement.attacking = false;
             }
         }

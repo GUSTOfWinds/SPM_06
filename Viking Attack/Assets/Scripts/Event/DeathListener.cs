@@ -68,7 +68,7 @@ namespace Event
             // Sets up a respawn event
             EventInfo unitRespawnInfo = new EnemyRespawnEventInfo
             {
-                parent = respawnParent
+                respawnParent = respawnParent
             };
             
             // Ships the respawn event

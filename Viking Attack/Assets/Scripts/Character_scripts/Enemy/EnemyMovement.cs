@@ -99,8 +99,11 @@ public class EnemyMovement : NetworkBehaviour
                 {
                     if (attacking)
                     {
+                        Debug.Log("I AM NOT MOVING");
                         return;
                     }
+                    
+                    Debug.Log("I AM MOVING NOW");
                     animator.SetBool("Chasing", true);
                     animator.SetBool("Attacking", false);
                     animator.SetBool("Patrolling", false);
