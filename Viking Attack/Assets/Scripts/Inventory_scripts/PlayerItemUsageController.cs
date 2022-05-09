@@ -23,28 +23,17 @@ public class PlayerItemUsageController : NetworkBehaviour
     public void OnUse(InputAction.CallbackContext value)
     {
         if (!isLocalPlayer) return;
+        //Checks if button is pressed and if there is an item in the player hand triggers that items use function
         if (value.performed)
         { 
             if(itemBase != null)
             {
-                Type itemType = Type.GetType(itemBase.GetItemBaseBehaviorScriptName);
-                if(currentActingComponentType == itemType)
-                    currentActingComponent.Use();
-                else
-                {
-                    if(currentActingComponent != null)
-                        Destroy(currentActingComponent);
-                    currentActingComponent = (ItemBaseBehavior)gameObject.AddComponent(itemType);
-                    currentActingComponent.SetBelongingTo(itemBase);
-                    currentActingComponentType = itemType;
-                    heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
-                    heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
-                    currentActingComponent.Use();
-                }
+                currentActingComponent.Use();
             }
         }
     }
     
+    //Changes what item the player has in their hand and sets the correct mesh and material
     public void ChangeItem(ItemBase newItemBase)
     {
         itemBase = newItemBase;
