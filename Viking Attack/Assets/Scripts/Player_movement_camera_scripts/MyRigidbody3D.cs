@@ -89,40 +89,50 @@ public class MyRigidbody3D : NetworkBehaviour
         Physics.CapsuleCast(point1, point2, capsuleRadius, Vector3.down, out hit, (groundCheckDistance + colliderMargin), collisionMask);
         return hit;
     }
+    //Checks for collisions and updates the velocity accordingly
     private void UpdateVelocity()
     {
+        //If run the function over 100 times exit (For it not to crash if it can't find a way to exit a collider)
         UpdateVelocityTimes++;
         if(UpdateVelocityTimes >= 100)
             return;
+        //If the velocity is to low to notice set velocity to 0 and exit function
         if(velocity.magnitude  < 0.0001f)
         {
             velocity = Vector3.zero;
             return;
         }
+        //Checks if there is a collision with the help of a capsulecast
         RaycastHit hit1;
         Vector3 normalForce = Vector3.zero;
         if(Physics.CapsuleCast(point1, point2, capsuleRadius, velocity.normalized, out hit1 ,Mathf.Infinity,collisionMask))
         {
+            //Gets the distance to the hit collider
             float distanceToColliderNeg = colliderMargin / Vector3.Dot(velocity.normalized, hit1.normal);
             float allowedMovementDistance = hit1.distance + distanceToColliderNeg;
+            //Checks if the object with current velocity can move and not hit the collider, if true exit function
             if (allowedMovementDistance > velocity.magnitude * Time.fixedDeltaTime) 
             {
                 return;
             }
+            //If the object is going to hit a collider but there is space to move, move only the alowed distance 
             if (allowedMovementDistance > 0.0f) 
             {
                 velocity += velocity.normalized * allowedMovementDistance;
             }
+            //Applys normalforce with the collided object
             normalForce += GetComponent<GeneralHelpFunctions3D>().CalculateNormalForce(velocity,hit1.normal);
             velocity += normalForce;
             UpdateVelocity();
         }
+        //If the capsulecast failed and the object is inside a collider this part trys to move the object outside of the overlaping coliider 
         Collider[] hitList = Physics.OverlapCapsule(point1, point2, capsuleRadius, collisionMask);
         if(hitList.Length > 0)
         {
             Vector3 direction;
             float distance = Mathf.Infinity;
             Collider colliderToStartWith = null;
+            //Iterates through all hit colliders and finds the collider with the shortes distance to move to get out of 
             foreach(Collider hit2 in hitList)
             {
                 Vector3 tempDirection;
@@ -139,10 +149,12 @@ public class MyRigidbody3D : NetworkBehaviour
             Vector3 separationVector = direction * distance;
             transform.position += separationVector + direction.normalized * colliderMargin * Time.fixedDeltaTime * 10;
 
+            //Applys normalforce with the collided object
             normalForce += GetComponent<GeneralHelpFunctions3D>().CalculateNormalForce(velocity, direction.normalized);
             velocity += normalForce;
             UpdateVelocity();
         }
+        //Applys friction from the accumulated normalforce from all colliders hit
         FrictionFunction(normalForce);
     }
     //Gives friction to velovity with given normalforce
