@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using Event;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Mirror;
 
-public class PlayerDamageSoundListener : NetworkBehaviour
+public class PlayerEatingSoundListener : NetworkBehaviour
 {
     [SerializeField] private AudioClip[] sounds; // Contains all sounds that can be played
 
@@ -24,39 +22,14 @@ public class PlayerDamageSoundListener : NetworkBehaviour
     {
         lastAudioClip = sounds[0];
         netID = gameObject.GetComponent<NetworkIdentity>().netId; // sets the netid 
-        EventSystem.Current.RegisterListener<DamageEventInfo>(OnPlayerDamage,
+        EventSystem.Current.RegisterListener<PlayerEatingEventInfo>(OnPlayerEating,
             ref SoundEventGuid); // registers the listener
     }
 
     // Will play a random track from the array above when the local player takes damage
-    void OnPlayerDamage(DamageEventInfo eventInfo)
+    void OnPlayerEating(PlayerEatingEventInfo eventInfo)
     {
         if (isServer)
-        {
-            if (eventInfo.target.GetComponent<NetworkIdentity>().netId == netID && !audioSource.isPlaying)
-            {
-                do
-                {
-                    audioSource.clip = sounds[Random.Range(0, sounds.Length)];
-                } while (audioSource.clip == lastAudioClip || audioSource.clip == null);
-
-                if (audioSource.gameObject.active && audioSource.isPlaying == false)
-                {
-                    audioSource.Play();
-                }
-
-
-                lastAudioClip = audioSource.clip;
-                RpcPlayTakingDamage(eventInfo);
-            }
-        }
-    }
-
-    [ClientRpc]
-    void RpcPlayTakingDamage(DamageEventInfo damageEventInfo)
-    {
-        if (isServer) return;
-        if (damageEventInfo.target.GetComponent<NetworkIdentity>().netId == netID)
         {
             do
             {
@@ -67,7 +40,27 @@ public class PlayerDamageSoundListener : NetworkBehaviour
             {
                 audioSource.Play();
             }
+
             lastAudioClip = audioSource.clip;
+            RpcPlayEatingSound(eventInfo);
         }
+    }
+
+
+    [ClientRpc]
+    void RpcPlayEatingSound(PlayerEatingEventInfo damageEventInfo)
+    {
+        if (isServer) return;
+        do
+        {
+            audioSource.clip = sounds[Random.Range(0, sounds.Length)];
+        } while (audioSource.clip == lastAudioClip || audioSource.clip == null);
+
+        if (audioSource.gameObject.active && audioSource.isPlaying == false)
+        {
+            audioSource.Play();
+        }
+
+        lastAudioClip = audioSource.clip;
     }
 }
