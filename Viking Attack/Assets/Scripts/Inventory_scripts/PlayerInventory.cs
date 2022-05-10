@@ -131,5 +131,11 @@ namespace ItemNamespace
                 selectedItem.transform.position = sprites[3].transform.position;
             }
         }
+
+        public void UpdateMeatStack()
+        {
+            meatStackNumber.GetComponent<Text>().text =
+                gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber().ToString();
+        }
     }
 }
