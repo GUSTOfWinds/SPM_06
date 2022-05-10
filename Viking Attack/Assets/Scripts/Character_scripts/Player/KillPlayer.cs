@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KillPlayer : MonoBehaviour
@@ -8,8 +6,15 @@ public class KillPlayer : MonoBehaviour
 
     public void PlayerRespawn()
     {
-        transform.position = new Vector3(0f, 10f, 0f);
+        transform.position = new Vector3(10f, -30f, 10f);
+        Invoke("HealthBack", 2f);
+    }
+
+    private void HealthBack()
+    {
         gameObject.GetComponent<GlobalPlayerInfo>().SetHealth(gameObject.GetComponent<GlobalPlayerInfo>().GetMaxHealth());
         gameObject.GetComponent<GlobalPlayerInfo>().UpdateHealth(0);
     }
+
+
 }

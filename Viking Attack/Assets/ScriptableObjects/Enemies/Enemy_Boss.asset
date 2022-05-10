@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee65ab6ad77e415aaba0db687d6bece9, type: 3}
-  m_Name: Enemy_Skeleton
+  m_Name: Enemy_Boss
   m_EditorClassIdentifier: 
   type: 1
-  characterName: Skeleton
-  description: Bones
-  range: 3.2
-  attackCooldown: 2
-  damage: 10
+  characterName: Boss
+  description: '?'
+  range: 5
+  attackCooldown: 3
+  damage: 20
   chasingSpeedMultiplier: 7
   moveSpeed: 100
-  maxHealth: 35
+  maxHealth: 150
   experienceRadius: 20
   level: 1
-  experience: 20
+  experience: 200
   drop: {fileID: 11400000, guid: e42a76ee5900ffc4f93a5fbaf0dadbb4, type: 2}

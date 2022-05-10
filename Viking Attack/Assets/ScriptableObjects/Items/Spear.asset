@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97eecf9d0fd4b03bc3d576cbcfccea8, type: 3}
+  m_Name: Spear
+  m_EditorClassIdentifier: 
+  itemType: 1
+  weaponType: 3
+  itemName: Spear
+  description: 
+  damage: 5
+  range: 3
+  stamina: 20
+  healAmount: 0
+  sprite: {fileID: 21300000, guid: f39b8b892fa7cf34e9c93ca9ef25b4ae, type: 3}
+  stackable: 0
+  mesh: {fileID: 49431094608927476, guid: 91bf49b0804e5d543962b4b443a1474b, type: 3}
+  material: {fileID: 2100000, guid: a5070b2e4cd0e8d47843d3de102441e6, type: 2}
+  itemBaseBehaviorScriptName: ItemSwordBehavior
