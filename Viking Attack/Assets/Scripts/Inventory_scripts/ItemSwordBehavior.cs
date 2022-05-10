@@ -22,7 +22,7 @@ public class ItemSwordBehavior : ItemBaseBehavior
         if (globalPlayerInfo.GetStamina() > belongingTo.GetStamina && canAttack)
         {
             globalPlayerInfo.UpdateStamina(-belongingTo.GetStamina);
-            // ADD SWING ANIMATION HERE
+
             canAttack = false;
             animator.Play("SwordAttack",animator.GetLayerIndex("Sword Attack"),0f);
             animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"),1);
@@ -30,6 +30,7 @@ public class ItemSwordBehavior : ItemBaseBehavior
         }
     }
     
+    //Waits the lenght of the animation before leting the player attack again.
     IEnumerator WaitToAttack(float time)
     {
 
