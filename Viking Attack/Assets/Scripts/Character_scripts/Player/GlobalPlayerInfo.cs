@@ -27,6 +27,7 @@ public class GlobalPlayerInfo : MonoBehaviour
     [SerializeField] private int healthStat;
     [SerializeField] private int staminaStat;
     [SerializeField] private float damage;
+    [SerializeField] private int meatStackNumber;
 
 
     private void Awake()
@@ -230,5 +231,15 @@ public class GlobalPlayerInfo : MonoBehaviour
     public float GetDamage()
     {
         return damage;
+    }
+
+    public void IncreaseMeatStackNumber()
+    {
+        meatStackNumber++;
+    }
+
+    public int GetMeatStackNumber()
+    {
+        return meatStackNumber;
     }
 }
