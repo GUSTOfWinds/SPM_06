@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using ItemNamespace;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Mirror;
 
 [CreateAssetMenu(menuName = "PlayerState/RunState")]
 //Used as a state when the player inputs for Horizontal and Vertical movement
@@ -44,10 +40,6 @@ public class PlayerRunState : PlayerState
             Player.globalPlayerInfo.UpdateStamina( staminaGain * Time.deltaTime);
             input = input.normalized * Player.acceleration;
         }
-
-        
-        
-        
         //If player is grounded set input vector to follow the ground 
         if (!Player.MyRigidbody3D.GroundedBool())
             input = new Vector3(input.x, 0f, input.z);

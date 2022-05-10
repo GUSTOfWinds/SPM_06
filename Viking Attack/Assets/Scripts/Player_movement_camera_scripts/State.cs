@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Mirror;
+
 //Base class to all states
 public abstract class State : ScriptableObject
 {
