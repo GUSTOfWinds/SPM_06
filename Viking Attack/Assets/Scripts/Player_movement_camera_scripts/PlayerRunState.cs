@@ -9,14 +9,14 @@ public class PlayerRunState : PlayerState
     private Vector2 inputMovement;
     public InputAction.CallbackContext sprintKeyInfo;
     private float sprintCost = 7f;
-    private float staminaGain = 12f;
+    private float staminaGain = 17.5f;
     [SerializeField] private float cooldown = 0.9f;
 
     public override void Exit()
     {
         
     }
-    public override void FixedUpdate()
+    public override void Update()
     {
         inputMovement = Player.movementKeyInfo.ReadValue<Vector2>();
         sprintKeyInfo = Player.sprintKeyInfo;
@@ -40,10 +40,6 @@ public class PlayerRunState : PlayerState
             Player.globalPlayerInfo.UpdateStamina( staminaGain * Time.deltaTime);
             input = input.normalized * Player.acceleration;
         }
-
-        
-        
-        
         //If player is grounded set input vector to follow the ground 
         if (!Player.MyRigidbody3D.GroundedBool())
             input = new Vector3(input.x, 0f, input.z);

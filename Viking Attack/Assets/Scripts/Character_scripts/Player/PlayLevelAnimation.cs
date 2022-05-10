@@ -9,6 +9,7 @@ using Mirror;
 public class PlayLevelAnimation : MonoBehaviour
 {
     [SerializeField] private Animator parentAnimator;
+    [SerializeField] private Animator otherAnimator;
     private Guid levelUpGuid;
     void Start()
     {
@@ -18,6 +19,7 @@ public class PlayLevelAnimation : MonoBehaviour
     public void OnPlayerLevelUp(PlayerLevelUpEventInfo playerLevelUpEventInfo)
     {
         parentAnimator.SetTrigger("incLVL");
+        otherAnimator.SetBool("levelNOTIF", true);
     }
     
 }

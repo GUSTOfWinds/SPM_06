@@ -30,13 +30,12 @@ public class PlayerScript3D : NetworkBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     { //Cancels all updates that aren't the local player
         if (!LocalCheck()) return;
         //If there are any added states in the unity inspector
         if (states.Length > 0)
             stateMachine.Update();
-        transform.rotation = Quaternion.Euler(0,GameObject.FindGameObjectWithTag("CameraMain").transform.rotation.eulerAngles.y,0) ;
     }
 
     public bool LocalCheck()

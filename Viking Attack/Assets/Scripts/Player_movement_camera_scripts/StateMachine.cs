@@ -25,11 +25,11 @@ public class StateMachine
         if(stateQueue.Count > 0)
         {
             State temp = stateQueue.Dequeue();
-            temp.FixedUpdate();
+            temp.Update();
             currentState = temp;
         }
         else
-            currentState.FixedUpdate();
+            currentState.Update();
     }
     //Changes state
     public void ChangeState<T>() where T : State

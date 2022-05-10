@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee65ab6ad77e415aaba0db687d6bece9, type: 3}
-  m_Name: Enemy_Skeleton
+  m_Name: Enemy_Bear
   m_EditorClassIdentifier: 
   type: 1
-  characterName: Skeleton
-  description: Bones
-  range: 3.2
-  attackCooldown: 2
-  damage: 10
-  chasingSpeedMultiplier: 7
-  moveSpeed: 100
-  maxHealth: 35
+  characterName: BEAR
+  description: ROAR
+  range: 4
+  attackCooldown: 0.8
+  damage: 15
+  chasingSpeedMultiplier: 3
+  moveSpeed: 50
+  maxHealth: 25
   experienceRadius: 20
   level: 1
-  experience: 20
-  drop: {fileID: 11400000, guid: e42a76ee5900ffc4f93a5fbaf0dadbb4, type: 2}
+  experience: 5
+  drop: {fileID: 0}

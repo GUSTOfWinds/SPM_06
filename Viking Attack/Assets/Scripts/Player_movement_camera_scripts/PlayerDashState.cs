@@ -13,7 +13,7 @@ public class PlayerDashState : PlayerState
     {
     }
 
-    public override void FixedUpdate()
+    public override void Update()
     {
         // Calculates the input as we do in the run state.
         inputMovement = Player.movementKeyInfo.ReadValue<Vector2>();
