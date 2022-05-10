@@ -495,9 +495,10 @@ MonoBehaviour:
   syncInterval: 0
   animator: {fileID: 7070009231341054450}
   attacking: 0
-  patrolRange: 30
   groundCheck: {fileID: 8374550714829503713}
   detectScopeRadius: 30
+  patrolRange: 30
+  maxChasingRange: 0
   chasingSpeedMultiplier: 0
   moveSpeed: 0
   characterBase: {fileID: 11400000, guid: bd04765703eb87f4a801c8d2a6309999, type: 2}
@@ -559,7 +560,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   characterBase: {fileID: 11400000, guid: bd04765703eb87f4a801c8d2a6309999, type: 2}
-  waitTime: 10
+  waitTime: 50
   hasDied: 0
   layerMask:
     serializedVersion: 2
