@@ -1,7 +1,8 @@
 using System.Collections;
+using ItemNamespace;
 using UnityEngine;
 
-public class ItemSwordBehavior : ItemBaseBehavior
+public class ItemSwordBehaviour : ItemBaseBehaviour
 {
     private Animator animator;
     private Camera mainCamera = null;
@@ -16,7 +17,7 @@ public class ItemSwordBehavior : ItemBaseBehavior
         globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
         animator = gameObject.transform.Find("Prefab_PlayerBot").GetComponent<Animator>();
     }
-    public override void Use()
+    public override void Use(ItemBase itemBase)
     {       
         // Checks if the player has enough stamina to attack, will then attack.
         if (globalPlayerInfo.GetStamina() > belongingTo.GetStamina && canAttack)
