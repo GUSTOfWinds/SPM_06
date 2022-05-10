@@ -83,7 +83,7 @@ public class EnemyMovement : NetworkBehaviour
         {
             return;
         }
-
+      
         if (isServer)
         {
             colliders = Physics.OverlapBox(groundCheck.transform.position, new Vector3(0.1f, 0.1f, 0.1f),
@@ -117,17 +117,12 @@ public class EnemyMovement : NetworkBehaviour
                     animator.SetBool("Attacking", false);
                     animator.SetBool("Patrolling", false);
                     backToDefault = false;
-                    Vector3 facePlayer = new Vector3(chasingObject.transform.position.x, transform.position.y, chasingObject.transform.position.z);
-                    Debug.DrawLine(facePlayer, Vector3.up, Color.red);
-                    movingDirection= (chasingObject.transform.position - transform.position).normalized;
-                    // Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-                    // transform.rotation = Quaternion.Slerp(transform.rotation, facePlayer, Time.fixedDeltaTime * 3);
-
+                    //Vector3 facePlayer = new Vector3(chasingObject.transform.position.x, transform.position.y, chasingObject.transform.position.z);
+                    movingDirection= (chasingObject.transform.position - transform.position);
                     //Movement
-                    //transform.position = Vector3.MoveTowards(transform.position, chasingObject.transform.position,
-                    //           chasingSpeedMultiplier * Time.fixedDeltaTime);
-                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                     ChangeFacingDirection(movingDirection);
+                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
+                    
                     if (Vector3.Distance(transform.position, chasingObject.transform.position) <= 3f)
                     {
                         movingDirection = Vector3.zero;
