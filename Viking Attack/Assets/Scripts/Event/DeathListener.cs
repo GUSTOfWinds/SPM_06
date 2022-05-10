@@ -9,13 +9,13 @@ namespace Event
     {
         [SerializeField] private GameObject dropBase;
         [SerializeField] private GameObject[] enemies;
-        private Guid DeathEventGuid;
+        private Guid deathEventGuid;
         private Guid respawnEventGuid;
         
         private void Start()
         {
             StartCoroutine(FetchInitialEnemies());
-            EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnUnitDied, ref DeathEventGuid);
+            EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnUnitDied, ref deathEventGuid);
             EventSystem.Current.RegisterListener<EnemyRespawnEventInfo>(OnUnitRespawn, ref respawnEventGuid);
             
         }

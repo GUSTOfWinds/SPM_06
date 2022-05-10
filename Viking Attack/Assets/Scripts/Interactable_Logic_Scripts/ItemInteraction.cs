@@ -1,4 +1,6 @@
+using System.Collections;
 using Event;
+using ItemNamespace;
 using UnityEngine;
 using Mirror;
 
@@ -14,10 +16,18 @@ public class ItemInteraction : BaseObjectInteraction
         EventInfo itemPickUpEvent = new PlayerItemPickupEventInfo
         {
             EventUnitGo = playerThatInteracted,
+            itemToDestroy = gameObject,
             itemBase = gameObject.GetComponent<DropItemInWorldScript>().itembase
         };
         EventSystem.Current.FireEvent(itemPickUpEvent);
 
-        Destroy(gameObject);
+        if (isClientOnly)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

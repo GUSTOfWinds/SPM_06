@@ -42,6 +42,7 @@ namespace Event
     public class PlayerItemPickupEventInfo : EventInfo
     {
         public ItemBase itemBase;
+        public GameObject itemToDestroy;
     }
 
     public class PlayerEatingEventInfo : EventInfo

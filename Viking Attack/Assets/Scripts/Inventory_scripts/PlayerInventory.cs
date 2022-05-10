@@ -1,11 +1,12 @@
 ﻿using System;
 using Event;
+using ItemNamespace;
+using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using Mirror;
 
-namespace ItemNamespace
+namespace Inventory_scripts
 {
     public class PlayerInventory : NetworkBehaviour
     {
@@ -79,7 +80,7 @@ namespace ItemNamespace
 
                         break;
                     // END OF INNER WEAPON SWITCH
-
+                    // In case it is a food item being picked up
                     case ItemBase.ItemType.Food:
                         if (inventory[3] != null)
                         {
