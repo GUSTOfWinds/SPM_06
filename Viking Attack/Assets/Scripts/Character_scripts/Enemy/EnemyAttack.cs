@@ -21,8 +21,7 @@ namespace ItemNamespace
         private Vector3 playerLocation; // location used to see if the player has gotten away far enough to not be hit
 
 
-        private float
-            playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
+        private float playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
 
         private RaycastHit hit;
         private Vector3 rayBeginning;
@@ -40,6 +39,8 @@ namespace ItemNamespace
 
         [SerializeField] private DeathListener deathListener;
         //[SyncVar] private GameObject syncGlobalPlayerInfo;
+
+        public IEnumerator finishAttack;
 
         void Start()
         {
@@ -65,6 +66,15 @@ namespace ItemNamespace
                 if (cooldownSound < timeToNextSound) // adds to cooldown if attackCooldown hasn't been met
                 {
                     cooldownSound += Time.fixedDeltaTime;
+                }
+                if(animator.GetBool("Staggered") && finishAttack != null)
+                {
+                    StopCoroutine(finishAttack);
+                    enemyMovement.attacking = false;
+                    animator.SetBool("Attacking", false);
+                    animator.SetBool("Chasing", true);
+                    animator.SetBool("Patrolling", false);
+                    return;
                 }
 
                 rayBeginning = transform.position;
@@ -93,7 +103,8 @@ namespace ItemNamespace
                         animator.SetBool("Patrolling", false);
                         player = hit.collider.gameObject; // updates which player object to attack and to
                         globalPlayerInfo = player.GetComponent<GlobalPlayerInfo>();
-                        StartCoroutine(FinishAttack(hit.collider.gameObject));
+                        finishAttack = FinishAttack(hit.collider.gameObject);
+                        StartCoroutine(finishAttack);
                     }
                 }
             }

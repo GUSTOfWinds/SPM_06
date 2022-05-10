@@ -21,6 +21,7 @@ public class FriendlyNameDisplay : MonoBehaviour
         
         var wantedPos = mainCamera.WorldToScreenPoint (target.position);
         gameObject.transform.position = wantedPos;
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
 
     }
 

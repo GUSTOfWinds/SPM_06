@@ -7,9 +7,10 @@ public class ItemInteraction : BaseObjectInteraction
 {
     public override void InteractedWith(GameObject gameObject)
     {
-        gameObject.GetComponent<PlayerItemUsageController>().itemBase = this.gameObject.GetComponent<DropItemInWorldScript>().itembase;
-        
-        
+        gameObject.GetComponent<PlayerItemUsageController>().itemBase =
+            this.gameObject.GetComponent<DropItemInWorldScript>().itembase;
+
+
         // Activates an event that the inventory will pick up and add the item to the inventory
         EventInfo itemPickUpEvent = new PlayerItemPickupEventInfo
         {

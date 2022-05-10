@@ -31,7 +31,8 @@ public class EnemyMovement : NetworkBehaviour
     private LayerMask player;
     private Collider[] colliders;
 
-    [Header("State Boolean")] private bool isGuarding;
+    [Header("State Boolean")] 
+    private bool isGuarding;
     private bool isChasing;
     private bool isAttacking;
     private bool backToDefault;
@@ -43,9 +44,7 @@ public class EnemyMovement : NetworkBehaviour
     [SerializeField] private float patrolRange;
     [SerializeField] private int maxChasingRange;
 
-    [SerializeField]
-    private float
-        chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
+    [SerializeField] private float chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
 
     [SerializeField] private int moveSpeed; // movement speed of the enemy
     [SerializeField] private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
@@ -77,6 +76,10 @@ public class EnemyMovement : NetworkBehaviour
 
     private void FixedUpdate()
     {
+        if(animator.GetBool("Staggered"))
+        {
+            return;
+        }
         //change the transform.position from botten to central 
         positionTemp = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
         if (attacking)
@@ -118,14 +121,15 @@ public class EnemyMovement : NetworkBehaviour
                     animator.SetBool("Patrolling", false);
                     backToDefault = false;
                     Vector3 facePlayer = new Vector3(chasingObject.transform.position.x, transform.position.y, chasingObject.transform.position.z);
-
+                    Debug.DrawLine(facePlayer, Vector3.up, Color.red);
                     movingDirection= (chasingObject.transform.position - transform.position).normalized;
                     // Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
                     // transform.rotation = Quaternion.Slerp(transform.rotation, facePlayer, Time.fixedDeltaTime * 3);
-                    
+
                     //Movement
-                    transform.position = Vector3.MoveTowards(transform.position, facePlayer,
-                               chasingSpeedMultiplier * Time.fixedDeltaTime);
+                    //transform.position = Vector3.MoveTowards(transform.position, chasingObject.transform.position,
+                    //           chasingSpeedMultiplier * Time.fixedDeltaTime);
+                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                     ChangeFacingDirection(movingDirection);
                     if (Vector3.Distance(transform.position, chasingObject.transform.position) <= 3f)
                     {
@@ -214,10 +218,13 @@ public class EnemyMovement : NetworkBehaviour
                     {
                         ChangeFacingDirection(movingDirection);
                     }
+                  
+                }
+
+                if ((!isChasing) && (!isAttacking))
+                {
                     transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                 }
-              
-                
 
 
                 //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
@@ -325,5 +332,21 @@ public class EnemyMovement : NetworkBehaviour
     public void SetEnemyTransform(Transform tran)
     {
         spawnPosition = tran.position;
+    }
+
+    public void Stagger()
+    {
+        animator.SetBool("Staggered",true);
+        animator.SetBool("Chasing", false);
+        animator.SetBool("Attacking", false);
+        animator.SetBool("Patrolling", false);
+        StartCoroutine(WaitForStagger(0.933f));
+    }
+
+    IEnumerator WaitForStagger(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Staggered",false);
+        
     }
 }

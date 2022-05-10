@@ -29,7 +29,7 @@ public class PlayerEatingSoundListener : NetworkBehaviour
     // Will play a random track from the array above when the local player takes damage
     void OnPlayerEating(PlayerEatingEventInfo eventInfo)
     {
-        if (isServer)
+        if (isLocalPlayer)
         {
             do
             {
@@ -42,25 +42,6 @@ public class PlayerEatingSoundListener : NetworkBehaviour
             }
 
             lastAudioClip = audioSource.clip;
-            RpcPlayEatingSound(eventInfo);
         }
-    }
-
-
-    [ClientRpc]
-    void RpcPlayEatingSound(PlayerEatingEventInfo damageEventInfo)
-    {
-        if (isServer) return;
-        do
-        {
-            audioSource.clip = sounds[Random.Range(0, sounds.Length)];
-        } while (audioSource.clip == lastAudioClip || audioSource.clip == null);
-
-        if (audioSource.gameObject.active && audioSource.isPlaying == false)
-        {
-            audioSource.Play();
-        }
-
-        lastAudioClip = audioSource.clip;
     }
 }
