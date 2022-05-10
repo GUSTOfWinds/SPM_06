@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Event;
 using UnityEngine;
 using UnityEngine.UI;
-using Mirror;
 
 public class PlayLevelAnimation : MonoBehaviour
 {
@@ -17,6 +16,7 @@ public class PlayLevelAnimation : MonoBehaviour
 
     public void OnPlayerLevelUp(PlayerLevelUpEventInfo playerLevelUpEventInfo)
     {
+        gameObject.GetComponent<Image>().enabled = true;
         parentAnimator.SetTrigger("incLVL");
     }
     

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -14,7 +16,7 @@ public class SaveScripter : MonoBehaviour
     void OnGui()
     {
          
-        // Sparar int, float, och boolean baserat pÃ¥ vad du skapat, ska Ã¤ndras till playerposition, status sÃ¥ som HP och vad som finns i inventoryt
+        // Sparar int, float, och boolean baserat på vad du skapat, ska ändras till playerposition, status så som HP och vad som finns i inventoryt
         if (GUI.Button(new Rect(0, 0, 125, 50), "Raise integer")) intToSave++;
         if (GUI.Button(new Rect(0, 100, 125, 50), "Raise Float")) floatToSave++;
         if (GUI.Button(new Rect(0, 200, 125, 50), "Change bool")) boolToSave = boolToSave ? boolToSave = false : boolToSave = true;

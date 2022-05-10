@@ -1,5 +1,4 @@
-﻿using Main_menu_scripts.ForMP;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 

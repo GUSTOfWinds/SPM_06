@@ -1,7 +1,7 @@
+using System;
 using ItemNamespace;
 using UnityEngine;
-using UnityEngine.UIElements;
-using Slider = UnityEngine.UI.Slider;
+using UnityEngine.UI;
 
 // WHO TO BLAME: Martin Kings
 
@@ -11,7 +11,6 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField] public Transform target; // the gameobject.transform that the UI should follow 
     [SerializeField] public Slider healthBar; // the slider 
     [SerializeField] private GameObject healthSource; // the enemy gameobject
-    private Vector3 wantedPos;
 
     [SerializeField]
     private uint netID; // the ID of the enemy spotted in the activation script placed on the player
@@ -45,17 +44,17 @@ public class EnemyHealthBar : MonoBehaviour
 
     public void Display()
     {
-        wantedPos = mainCamera.WorldToScreenPoint(target.position);
+        var wantedPos = mainCamera.WorldToScreenPoint(target.position);
         gameObject.transform.position = wantedPos;
     }
 
-    public void Setup(Transform parent, Transform t, Transform enemy, EnemyInfo enemyInfo, Camera mainCam, uint netId)
+    public void Setup(Transform parent, Transform t, Transform enemy, EnemyInfo enemyInfo, Camera mainCam, uint netID)
     {
         transform.SetParent(parent.Find("UI"));
         target = t;
         SetHealthSource(enemy.gameObject);
         healthBar.maxValue = enemyInfo.maxHealth;
-        this.netID = netId;
+        this.netID = netID;
         mainCamera = mainCam;
     }
 }

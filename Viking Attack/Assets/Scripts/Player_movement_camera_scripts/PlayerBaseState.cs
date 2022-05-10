@@ -1,5 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 [CreateAssetMenu(menuName = "PlayerState/BaseState")]
 //Used as a state when the player does nothing
 public class PlayerBaseState : PlayerState
@@ -9,7 +11,7 @@ public class PlayerBaseState : PlayerState
     {
         
     }
-    public override void FixedUpdate()
+    public override void Update()
     {
         // If the player is standing still, the stamina gets replenished.
         Player.globalPlayerInfo.UpdateStamina( 21f * Time.deltaTime);
