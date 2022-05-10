@@ -6942,6 +6942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749ae49d220e433285643cecc63f2bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   inventory: []
   sprites:
   - {fileID: 1284388648486731661}
@@ -6950,7 +6952,11 @@ MonoBehaviour:
   - {fileID: 6269023377309250288}
   selectedItem: {fileID: 8829952045858022846}
   meatStackNumber: {fileID: 8216098129314240357}
+<<<<<<< Updated upstream
   animator: {fileID: 6997683197337012535}
+=======
+  netID: 0
+>>>>>>> Stashed changes
 --- !u!114 &-7731286149923182968
 MonoBehaviour:
   m_ObjectHideFlags: 0
