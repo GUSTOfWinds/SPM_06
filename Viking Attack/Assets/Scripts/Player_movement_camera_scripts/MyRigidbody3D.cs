@@ -11,8 +11,6 @@ public class MyRigidbody3D : NetworkBehaviour
     [SerializeField] private CapsuleCollider capsuleCollider;
     private float colliderMargin = 0.01f;
     private float groundCheckDistance = 0.01f;
-    
-    
     private Vector3 point1;
     private Vector3 point2;
     private float capsuleHeight;
@@ -51,7 +49,7 @@ public class MyRigidbody3D : NetworkBehaviour
         velocity += Vector3.down * gravity;
 
         //Add air resistance
-        velocity *= Mathf.Pow(airResistance, Time.fixedDeltaTime);
+        velocity *= Mathf.Pow(airResistance, Time.deltaTime);
 
         //Updates capsule (Collider hitbox) circle component position.
         point1 = gameObject.transform.position + capsuleCollider.center + Vector3.up * (capsuleHeight / 2 - capsuleRadius);
@@ -62,7 +60,7 @@ public class MyRigidbody3D : NetworkBehaviour
         UpdateVelocityTimes = 0;
 
         //Add velocity variable to object position
-        transform.position += velocity * Time.fixedDeltaTime;
+        transform.position += velocity * Time.deltaTime;
 
         //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen.
         CmdSetSynchedPosition(this.transform.position);

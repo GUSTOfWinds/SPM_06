@@ -16,7 +16,7 @@ public class PlayerRunState : PlayerState
     {
         
     }
-    public override void FixedUpdate()
+    public override void Update()
     {
         inputMovement = Player.movementKeyInfo.ReadValue<Vector2>();
         sprintKeyInfo = Player.sprintKeyInfo;
@@ -40,10 +40,6 @@ public class PlayerRunState : PlayerState
             Player.globalPlayerInfo.UpdateStamina( staminaGain * Time.deltaTime);
             input = input.normalized * Player.acceleration;
         }
-
-        
-        
-        
         //If player is grounded set input vector to follow the ground 
         if (!Player.MyRigidbody3D.GroundedBool())
             input = new Vector3(input.x, 0f, input.z);
