@@ -87,12 +87,5 @@ namespace ItemNamespace
                 gameObject.GetComponent<EnemyInfo>().Kill();
             }
         }
-
-        //get health back when moving back to default status
-        //public void BackToDefault(GameObject chasingObj)
-        //{
-        //    this.gameObject.GetComponent<EnemyInfo>().health = maxHealth;
-        //    chasingObj.transform.Find("Health_bar").gameObject.GetComponent<EnemyHealthBar>().SetHealth();
-        //}
     }
 }
