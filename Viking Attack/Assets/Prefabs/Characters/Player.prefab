@@ -5364,7 +5364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2695977694989061664
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5385,7 +5385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 954, y: 383}
+  m_AnchoredPosition: {x: 330, y: 353}
   m_SizeDelta: {x: 223.6477, y: 257.2909}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &241154291480303769
@@ -6030,6 +6030,7 @@ GameObject:
   - component: {fileID: 9105881209717100685}
   - component: {fileID: 2714783005888943040}
   - component: {fileID: 3361588374959930480}
+  - component: {fileID: 6997683197337012535}
   m_Layer: 5
   m_Name: hotbar
   m_TagString: Untagged
@@ -6099,6 +6100,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &6997683197337012535
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5723596839648109954}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7d5a6eac38682441a88ab95ffe3faaa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5757473483666005974
 GameObject:
   m_ObjectHideFlags: 0
