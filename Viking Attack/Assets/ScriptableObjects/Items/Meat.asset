@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a97eecf9d0fd4b03bc3d576cbcfccea8, type: 3}
-  m_Name: Spear
+  m_Name: Meat
   m_EditorClassIdentifier: 
-  itemType: 1
-  weaponType: 3
-  itemName: Spear
+  itemType: 0
+  weaponType: 0
+  itemName: Meat
   description: 
-  damage: 5
-  range: 3
-  stamina: 20
-  healAmount: 0
-  sprite: {fileID: 21300000, guid: f39b8b892fa7cf34e9c93ca9ef25b4ae, type: 3}
-  stackable: 0
-  mesh: {fileID: 49431094608927476, guid: 91bf49b0804e5d543962b4b443a1474b, type: 3}
-  material: {fileID: 2100000, guid: a5070b2e4cd0e8d47843d3de102441e6, type: 2}
+  damage: 0
+  range: 0
+  stamina: 0
+  healAmount: 30
+  sprite: {fileID: 21300000, guid: 8039510dd23b4f84daa80c51a8907f0c, type: 3}
+  stackable: 1
+  mesh: {fileID: 3935490030133091849, guid: 1c1cf2830c2aaf44197bb4ce30af1543, type: 3}
+  material: {fileID: 2100000, guid: 66f65ef82fcb025418b7efa4d97acc4b, type: 2}
   itemBaseBehaviorScriptName: ItemSwordBehavior
