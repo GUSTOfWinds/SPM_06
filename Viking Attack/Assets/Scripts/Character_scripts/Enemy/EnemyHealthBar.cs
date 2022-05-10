@@ -47,6 +47,7 @@ public class EnemyHealthBar : MonoBehaviour
     {
         wantedPos = mainCamera.WorldToScreenPoint(target.position);
         gameObject.transform.position = wantedPos;
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     public void Setup(Transform parent, Transform t, Transform enemy, EnemyInfo enemyInfo, Camera mainCam, uint netId)

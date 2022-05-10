@@ -30,7 +30,7 @@ namespace ItemNamespace
         // Inserts the itembase + its sprite to the inventory array
         void OnItemPickup(PlayerItemPickupEventInfo playerItemPickupEventInfo)
         {
-            if (isLocalPlayer)
+            if (playerItemPickupEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId == netID)
             {
                 switch (playerItemPickupEventInfo.itemBase.GetItemType)
                 {
@@ -105,35 +105,16 @@ namespace ItemNamespace
                         break;
                 }
             }
-
-            if (!isLocalPlayer)
-            {
-                GameObject otherPlayer = playerItemPickupEventInfo.EventUnitGo;
-                switch (playerItemPickupEventInfo.itemBase.GetItemType)
-                {
-                    case ItemBase.ItemType.Weapon:
-                        Debug.Log("kommer in första");
-                        otherPlayer.GetComponent<PlayerItemUsageController>()
-                            .ChangeItem(playerItemPickupEventInfo.itemBase);
-                        break;
-                    default:
-                        // code block
-                        break;
-                }
-            }
         }
 
         public void ToggleSword(InputAction.CallbackContext value)
         {
-            if (isLocalPlayer)
+            if (!isLocalPlayer)
             {
-                if (inventory[0] != null)
-                {
-                    gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
-                    selectedItem.transform.position = sprites[0].transform.position;
-                }
+                return;
             }
-            else
+
+            if (inventory[1] != null)
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
                 selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 40f, 0f);
