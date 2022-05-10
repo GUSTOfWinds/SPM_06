@@ -13,7 +13,7 @@ public class LeverInteraction : BaseObjectInteraction
     //Is called from InteractableObjectScript when the player press the chosen button
     private Transform leverPivot;
 
-    public override void InteractedWith(GameObject gameObject)
+    public override void InteractedWith(GameObject playerThatInteracted)
     {
         //Calls the object to activate (uses the BaseObjectActivation so i can call different objects)
         activationObject.GetComponent<BaseObjectActivation>().activate();

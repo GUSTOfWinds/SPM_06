@@ -38,7 +38,7 @@ namespace ItemNamespace
                         animator.SetTrigger("itemPOPUP");
                         switch (playerItemPickupEventInfo.itemBase.GetWeaponType)
                         {
-                            // Sets the inventory slot, sprite updates globalplayerinfo, what item the player is using 
+                            // Sets the inventory slot, updates globalplayerinfo, what item the player is using 
                             // in each case
                             case ItemBase.WeaponType.Sword:
                                 inventory[0] = playerItemPickupEventInfo.itemBase;
@@ -111,6 +111,7 @@ namespace ItemNamespace
         {
             if (!isLocalPlayer)
             {
+                
                 return;
             }
 

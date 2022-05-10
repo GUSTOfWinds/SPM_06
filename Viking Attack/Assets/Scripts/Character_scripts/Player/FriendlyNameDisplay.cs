@@ -13,23 +13,22 @@ public class FriendlyNameDisplay : MonoBehaviour
     {
         Display();
     }
-    
+
     public void Display()
     {
         if (mainCamera == null)
             return;
-        
-        var wantedPos = mainCamera.WorldToScreenPoint (target.position);
+
+        var wantedPos = mainCamera.WorldToScreenPoint(target.position);
         gameObject.transform.position = wantedPos;
         gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-
     }
 
     public uint GetPersonalNetID()
     {
         return netIDOfSpottedPlayer;
     }
-    
+
     public void Setup(Transform parent, uint spottedPlayerNetID, GameObject spottedPlayer, Camera mainCam)
     {
         transform.SetParent(parent.Find("UI"));
