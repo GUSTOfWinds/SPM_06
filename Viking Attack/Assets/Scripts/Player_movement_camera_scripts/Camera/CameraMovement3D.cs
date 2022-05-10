@@ -60,4 +60,12 @@ public class CameraMovement3D : NetworkBehaviour
         rotationX = Mathf.Clamp(rotationX, -89, 89);
         mainCamera.transform.rotation = Quaternion.Euler(rotationX, rotationY, 0f);
     }
+    public void LockCamera ()
+    {
+
+        rotationX = 0;
+        rotationY = 0;
+        rotationX = Mathf.Clamp(rotationX, -89, 89);
+        mainCamera.transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0f);
+    }
 }
