@@ -270,7 +270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
-      value: 32
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_LocalScale.x
@@ -1019,7 +1019,6 @@ Transform:
   - {fileID: 976525224}
   - {fileID: 1798692662}
   - {fileID: 1215258117}
-  - {fileID: 701958243}
   - {fileID: 73941760}
   m_Father: {fileID: 696261250}
   m_RootOrder: 0
@@ -1199,80 +1198,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &701958242
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 569942955}
-    m_Modifications:
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_Name
-      value: Abandoned_House (15)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_RootOrder
-      value: 31
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 606.7202
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 606.7202
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 52.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 327.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 709.46
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.6227114
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.6227114
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.3350083
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.33500817
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 56.559
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
---- !u!4 &701958243 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-  m_PrefabInstance: {fileID: 701958242}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &710798996
 GameObject:
   m_ObjectHideFlags: 0
@@ -5121,8 +5046,8 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 16984a5542e7ff74c989e24d06638551, type: 2}
-  m_TreeDistance: 5000
-  m_TreeBillboardDistance: 50
+  m_TreeDistance: 403
+  m_TreeBillboardDistance: 300
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
