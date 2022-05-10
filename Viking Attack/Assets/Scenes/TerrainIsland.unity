@@ -2789,13 +2789,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1280101500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a7461f6ed6f4cd2a0fdb02ebd47ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 469271222892847950, guid: 3299a738816a72b43b2be7e059fb20ec, type: 3}
-  shouldSpawn: 1
+  spawnAtServerStart: 1
 --- !u!114 &1280101503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4384,13 +4384,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1807918759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a7461f6ed6f4cd2a0fdb02ebd47ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 9080351483311851685, guid: 504deff2fa29fc24e84cbb8900573910, type: 3}
-  shouldSpawn: 1
+  spawnAtServerStart: 1
 --- !u!114 &1807918762
 MonoBehaviour:
   m_ObjectHideFlags: 0
