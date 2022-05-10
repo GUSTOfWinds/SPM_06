@@ -1078,9 +1078,10 @@ MonoBehaviour:
   syncInterval: 0
   animator: {fileID: 3643602246697119875}
   attacking: 0
-  patrolRange: 5
   groundCheck: {fileID: 6653956863877352429}
-  detectScopeRadius: 10
+  detectScopeRadius: 8
+  patrolRange: 10
+  maxChasingRange: 20
   chasingSpeedMultiplier: 0
   moveSpeed: 0
   characterBase: {fileID: 11400000, guid: 51ce9bc9105c0934c8771ec9f22670c7, type: 2}
