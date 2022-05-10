@@ -19,13 +19,13 @@ public class EnemyMovement : NetworkBehaviour
     /**
      * 
      */
-    [Header("Base Movement")] private Vector3 movingDirection;
-
+    [Header("Base Movement")]
+    private Vector3 movingDirection;
     private float waitFrame;
+    private int defaultSpeed;
 
     [Header("GroudCheck Settings")] [SerializeField]
     private GameObject groundCheck;
-
     private bool isGrounded;
     private LayerMask ground;
     private LayerMask player;
@@ -34,7 +34,6 @@ public class EnemyMovement : NetworkBehaviour
     [Header("State Boolean")] private bool isGuarding;
     private bool isChasing;
     private bool isAttacking;
-    private bool canChase;
     private bool backToDefault;
 
     [Header("Patrol Settnings")] private Collider[] sphereColliders;
@@ -51,8 +50,10 @@ public class EnemyMovement : NetworkBehaviour
     [SerializeField] private int moveSpeed; // movement speed of the enemy
     [SerializeField] private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
 
-    [Header("Calculation")] private int traces = 6;
+    [Header("Calculation")] 
+    private int traces = 6;
     private float visionAngle = 45.0f;
+    private Vector3 positionTemp;
 
     // Syncs the position of the object to the server
     [SyncVar] [SerializeField] private Vector3 syncPosition;
@@ -63,8 +64,8 @@ public class EnemyMovement : NetworkBehaviour
     void Start()
     {
         chasingSpeedMultiplier = characterBase.GetChasingSpeed();
-        moveSpeed = characterBase.GetMovementSpeed();
-        canChase = false;
+        defaultSpeed = characterBase.GetMovementSpeed();
+        moveSpeed = defaultSpeed;
         isGuarding = true;
         ground = LayerMask.GetMask("Ground");
         player = LayerMask.GetMask("Player");
@@ -74,8 +75,10 @@ public class EnemyMovement : NetworkBehaviour
         Debug.DrawLine(spawnPosition, Vector3.up, Color.red);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        //change the transform.position from botten to central 
+        positionTemp = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
         if (attacking)
         {
             return;
@@ -93,6 +96,7 @@ public class EnemyMovement : NetworkBehaviour
 
             if (isGrounded) //start patrolling
             {
+                moveSpeed = defaultSpeed;
                 if (isGuarding)
                 {
                     animator.SetBool("Chasing", false);
@@ -102,7 +106,7 @@ public class EnemyMovement : NetworkBehaviour
                     if (Vector3.Distance(transform.position, spawnPosition) >=
                         patrolRange) //when enemy is moving too far, change moving direction
                     {
-                        //TO DO check hit.normal
+                        //Can DO check hit.normal
                         movingDirection = RandomVector(movingDirection);
                     }
                 }
@@ -112,34 +116,30 @@ public class EnemyMovement : NetworkBehaviour
                     animator.SetBool("Chasing", true);
                     animator.SetBool("Attacking", false);
                     animator.SetBool("Patrolling", false);
-                    Debug.Log("Chasing");
                     backToDefault = false;
-                    //movingDirection= new Vector3(chasingObject.transform.position.x, transform.position.y, chasingObject.transform.position.z);
-                    // transform.LookAt(movingDirection);
-                    Vector3 nevMove = transform.position - chasingObject.transform.position;
-                   
-                    //transform.position =Vector3.MoveTowards(transform.position,movingDirection, moveSpeed*0.2f*Time.deltaTime);
-                    //transform.position = Vector3.Lerp(transform.position, chasingObject.transform.position, 0.5f);
+
+                    Vector3 nevMove = new Vector3(chasingObject.transform.position.x, transform.position.y,
+                       chasingObject.transform.position.z);
+
+                    transform.LookAt(nevMove);
+                    transform.position = Vector3.MoveTowards(transform.position, nevMove,
+                           chasingSpeedMultiplier * Time.fixedDeltaTime);
+
+
                     if (Vector3.Distance(transform.position, chasingObject.transform.position) <= 3f)
                     {
-                        nevMove = Vector3.zero;
-                        // transform.position += (-movingDirection) * moveSpeed * 0.1f * Time.deltaTime;
+                        movingDirection = Vector3.zero;
                         //ATTACK
                         isAttacking = true;
                         isChasing = false;
                         Debug.Log("Too close");
                     }
-
-                    //transform.position += (-nevMove) * moveSpeed * 0.2f * Time.deltaTime;
-                    movingDirection = -nevMove;
-                    transform.LookAt(chasingObject.transform.position);
-                    Debug.Log(movingDirection);
-                    Debug.Log(chasingObject);
                     if (Vector3.Distance(transform.position, spawnPosition) >= maxChasingRange)
                     {
                         isChasing = false;
                         backToDefault = true;
                     }
+                  
                 } //is chasing
 
 
@@ -167,16 +167,18 @@ public class EnemyMovement : NetworkBehaviour
                             isChasing = false;
                             isAttacking = false;
                             chasingObject = null;
-                            canChase = false;
                         }
                     }
                 } //is Attacting
 
                 if (backToDefault)
                 {
-                    animator.SetBool("Chasing", false);
+                    moveSpeed = (int)chasingSpeedMultiplier*moveSpeed;
+                    //Enemy gets full HP
+                    //gameObject.GetComponent<EnemyInfo>().BackToDefault(chasingObject);
+                    animator.SetBool("Chasing", true);
                     animator.SetBool("Attacking", false);
-                    animator.SetBool("Patrolling", true);
+                    animator.SetBool("Patrolling", false);
 
                     if (Vector3.Distance(transform.position, spawnPosition) <= 1f)
                     {
@@ -205,7 +207,7 @@ public class EnemyMovement : NetworkBehaviour
                 Vector3 nevVector = CalculateMovement();
                 if (movingDirection != Vector3.zero)
                 {
-                    movingDirection = Vector3.Lerp(movingDirection, nevVector.normalized, moveSpeed * Time.deltaTime);
+                    movingDirection = Vector3.Lerp(movingDirection, nevVector.normalized, moveSpeed * Time.fixedDeltaTime);
                     waitFrame++;
                     if (waitFrame % 60 == 0)
                     {
@@ -213,7 +215,7 @@ public class EnemyMovement : NetworkBehaviour
                     }
                 }
 
-                transform.position += 0.1f * movingDirection * moveSpeed * Time.deltaTime;
+                transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
 
 
                 //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
@@ -254,7 +256,6 @@ public class EnemyMovement : NetworkBehaviour
                     chasingObject = coll.gameObject;
                     isGuarding = false;
                     isChasing = true;
-                    canChase = false;
                 }
             }
         }
@@ -283,6 +284,7 @@ public class EnemyMovement : NetworkBehaviour
     }
 
 
+    //Can be replaced if better solution found**
     private Vector3 CalculateMovement()
     {
         Vector3 movementVector = Vector3.zero;
@@ -298,28 +300,29 @@ public class EnemyMovement : NetworkBehaviour
             Vector3 direction1 = transform.TransformDirection(new Vector3(Mathf.Cos(angle1), 0.0f, Mathf.Sin(angle1)));
 
 
-            if (Physics.Raycast(transform.position, direction1, out hitInfo1, 500f))
+            if (Physics.Raycast(positionTemp, direction1, out hitInfo1, maxChasingRange+ patrolRange))
             {
                 if (hitInfo1.collider.tag != "Player")
                 {
                     movementVector += direction1 * (hitInfo1.distance - 3f);
                 }
 
-                Debug.DrawLine(transform.position, transform.position + direction1 * hitInfo1.distance);
+                Debug.DrawLine(positionTemp, positionTemp + direction1 * hitInfo1.distance);
 
                 Vector3 Perp = Vector3.Cross(direction1, Vector3.up);
                 Debug.DrawLine(hitInfo1.point + Perp, hitInfo1.point - Perp, Color.red);
             }
             else
             {
-                movementVector += direction1 * 500f;
+                movementVector += direction1 * (maxChasingRange + patrolRange);
 
-                Debug.DrawLine(transform.position, transform.position + direction1 * maxChasingRange);
+                Debug.DrawLine(positionTemp, positionTemp + direction1 * maxChasingRange);
             }
         }
 
         return movementVector;
     }
+    //****
 
     public void SetEnemyTransform(Transform tran)
     {

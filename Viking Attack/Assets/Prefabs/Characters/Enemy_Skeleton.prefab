@@ -609,7 +609,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3168914006196405709}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.511, z: 0}
+  m_LocalPosition: {x: 0, y: 0.891, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6653956862289318910}
@@ -1079,9 +1079,9 @@ MonoBehaviour:
   animator: {fileID: 3643602246697119875}
   attacking: 0
   groundCheck: {fileID: 6653956863877352429}
-  detectScopeRadius: 8
-  patrolRange: 12
-  maxChasingRange: 15
+  detectScopeRadius: 10
+  patrolRange: 10
+  maxChasingRange: 20
   chasingSpeedMultiplier: 0
   moveSpeed: 0
   characterBase: {fileID: 11400000, guid: 51ce9bc9105c0934c8771ec9f22670c7, type: 2}
@@ -1338,9 +1338,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3683586
-  m_Height: 1.5404856
+  m_Height: 1.5490668
   m_Direction: 1
-  m_Center: {x: -0.005180359, y: 0.7655624, z: 0}
+  m_Center: {x: -0.005180359, y: 0.7013804, z: 0}
 --- !u!1 &6653956863877352429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,7 +1365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6653956863877352429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.032, z: 0}
+  m_LocalPosition: {x: 0, y: -0.058, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6653956862289318910}
@@ -1578,7 +1578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7401176546953714315}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.045, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6221747967357401260}
