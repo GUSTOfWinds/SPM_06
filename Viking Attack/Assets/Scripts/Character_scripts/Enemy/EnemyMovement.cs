@@ -175,7 +175,7 @@ public class EnemyMovement : NetworkBehaviour
                 {
                     moveSpeed = (int)chasingSpeedMultiplier*moveSpeed;
                     //Enemy gets full HP
-                    gameObject.GetComponent<EnemyInfo>().BackToDefault(chasingObject);
+                    //gameObject.GetComponent<EnemyInfo>().BackToDefault(chasingObject);
                     animator.SetBool("Chasing", true);
                     animator.SetBool("Attacking", false);
                     animator.SetBool("Patrolling", false);
@@ -215,7 +215,7 @@ public class EnemyMovement : NetworkBehaviour
                     }
                 }
 
-                transform.position += 0.2f * movingDirection * moveSpeed * Time.fixedDeltaTime;
+                transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
 
 
                 //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP

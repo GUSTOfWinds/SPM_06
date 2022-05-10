@@ -89,10 +89,10 @@ namespace ItemNamespace
         }
 
         //get health back when moving back to default status
-        public void BackToDefault(GameObject chasingObj)
-        {
-            this.gameObject.GetComponent<EnemyInfo>().health = maxHealth;
-            //set HP UI back
-        }
+        //public void BackToDefault(GameObject chasingObj)
+        //{
+        //    this.gameObject.GetComponent<EnemyInfo>().health = maxHealth;
+        //    chasingObj.transform.Find("Health_bar").gameObject.GetComponent<EnemyHealthBar>().SetHealth();
+        //}
     }
 }
