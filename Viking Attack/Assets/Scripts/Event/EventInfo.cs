@@ -43,4 +43,9 @@ namespace Event
     {
         public ItemBase itemBase;
     }
+
+    public class PlayerEatingEventInfo : EventInfo
+    {
+        
+    }
 }

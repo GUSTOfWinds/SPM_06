@@ -2547,7 +2547,7 @@ GameObject:
   - component: {fileID: 4775975759791570770}
   - component: {fileID: 7484610620894764299}
   m_Layer: 0
-  m_Name: PlayerTakingDamage
+  m_Name: PlayerDamageAndFood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6432,6 +6432,7 @@ GameObject:
   - component: {fileID: -3214051896938044769}
   - component: {fileID: 8379086476344114826}
   - component: {fileID: 3650744181074040024}
+  - component: {fileID: 8523882858212146846}
   - component: {fileID: 4271025885202711048}
   m_Layer: 6
   m_Name: Player
@@ -7051,6 +7052,26 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b9a57e2167d7afb4aa5eee2bf054acb6, type: 3}
   - {fileID: 8300000, guid: 1b6d87c9345068a428a04cc988869188, type: 3}
   - {fileID: 8300000, guid: 91b41481cf9ca7e41838fc227620975c, type: 3}
+  lastAudioClip: {fileID: 0}
+  audioSource: {fileID: 7484610620894764299}
+  netID: 0
+--- !u!114 &8523882858212146846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5988590173649968415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b85cc09638c648d18e3a45dc8daf5984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  sounds:
+  - {fileID: 8300000, guid: f33fbd2a2396ccf40a98bdffe1bb568c, type: 3}
+  - {fileID: 8300000, guid: f57122252b1900b4fb628121c4069c90, type: 3}
   lastAudioClip: {fileID: 0}
   audioSource: {fileID: 7484610620894764299}
   netID: 0
