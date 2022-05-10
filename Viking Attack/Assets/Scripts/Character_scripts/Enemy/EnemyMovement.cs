@@ -31,7 +31,8 @@ public class EnemyMovement : NetworkBehaviour
     private LayerMask player;
     private Collider[] colliders;
 
-    [Header("State Boolean")] private bool isGuarding;
+    [Header("State Boolean")] 
+    private bool isGuarding;
     private bool isChasing;
     private bool isAttacking;
     private bool backToDefault;
@@ -43,9 +44,7 @@ public class EnemyMovement : NetworkBehaviour
     [SerializeField] private float patrolRange;
     [SerializeField] private int maxChasingRange;
 
-    [SerializeField]
-    private float
-        chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
+    [SerializeField] private float chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
 
     [SerializeField] private int moveSpeed; // movement speed of the enemy
     [SerializeField] private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
@@ -77,6 +76,10 @@ public class EnemyMovement : NetworkBehaviour
 
     private void FixedUpdate()
     {
+        if(animator.GetBool("Staggered"))
+        {
+            return;
+        }
         //change the transform.position from botten to central 
         positionTemp = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
         if (attacking)
@@ -324,5 +327,21 @@ public class EnemyMovement : NetworkBehaviour
     public void SetEnemyTransform(Transform tran)
     {
         spawnPosition = tran.position;
+    }
+
+    public void Stagger()
+    {
+        animator.SetBool("Staggered",true);
+        animator.SetBool("Chasing", false);
+        animator.SetBool("Attacking", false);
+        animator.SetBool("Patrolling", false);
+        StartCoroutine(WaitForStagger(0.933f));
+    }
+
+    IEnumerator WaitForStagger(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Staggered",false);
+        
     }
 }

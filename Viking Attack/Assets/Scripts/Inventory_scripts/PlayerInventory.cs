@@ -1,11 +1,12 @@
 ﻿using System;
 using Event;
+using ItemNamespace;
+using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using Mirror;
 
-namespace ItemNamespace
+namespace Inventory_scripts
 {
     public class PlayerInventory : NetworkBehaviour
     {
@@ -30,7 +31,7 @@ namespace ItemNamespace
         // Inserts the itembase + its sprite to the inventory array
         void OnItemPickup(PlayerItemPickupEventInfo playerItemPickupEventInfo)
         {
-            if (isLocalPlayer)
+            if (playerItemPickupEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId == netID)
             {
                 switch (playerItemPickupEventInfo.itemBase.GetItemType)
                 {
@@ -38,7 +39,7 @@ namespace ItemNamespace
                         animator.SetTrigger("itemPOPUP");
                         switch (playerItemPickupEventInfo.itemBase.GetWeaponType)
                         {
-                            // Sets the inventory slot, sprite updates globalplayerinfo, what item the player is using 
+                            // Sets the inventory slot, updates globalplayerinfo, what item the player is using 
                             // in each case
                             case ItemBase.WeaponType.Sword:
                                 inventory[0] = playerItemPickupEventInfo.itemBase;
@@ -47,7 +48,7 @@ namespace ItemNamespace
                                 gameObject.GetComponent<GlobalPlayerInfo>()
                                     .SetItemSlot(0, inventory[0]); // sets the info in globalplayerinfo
                                 selectedItem.transform.position =
-                                    sprites[0].transform.position + new Vector3(0f, 40f, 0f);
+                                    sprites[0].transform.position + new Vector3(0f,10f,0f);
                                 gameObject.GetComponent<PlayerItemUsageController>()
                                     .ChangeItem(playerItemPickupEventInfo.itemBase);
                                 break;
@@ -59,7 +60,7 @@ namespace ItemNamespace
                                 gameObject.GetComponent<GlobalPlayerInfo>()
                                     .SetItemSlot(1, inventory[1]); // sets the info in globalplayerinfo
                                 selectedItem.transform.position =
-                                    sprites[1].transform.position + new Vector3(0f, 40f, 0f);
+                                    sprites[1].transform.position + new Vector3(0f,10f,0f);
                                 gameObject.GetComponent<PlayerItemUsageController>()
                                     .ChangeItem(playerItemPickupEventInfo.itemBase);
                                 break;
@@ -71,7 +72,7 @@ namespace ItemNamespace
                                 gameObject.GetComponent<GlobalPlayerInfo>()
                                     .SetItemSlot(2, inventory[2]); // sets the info in globalplayerinfo
                                 selectedItem.transform.position =
-                                    sprites[2].transform.position + new Vector3(0f, 40f, 0f);
+                                    sprites[2].transform.position + new Vector3(0f,10f,0f);
                                 gameObject.GetComponent<PlayerItemUsageController>()
                                     .ChangeItem(playerItemPickupEventInfo.itemBase);
                                 break;
@@ -79,7 +80,7 @@ namespace ItemNamespace
 
                         break;
                     // END OF INNER WEAPON SWITCH
-
+                    // In case it is a food item being picked up
                     case ItemBase.ItemType.Food:
                         if (inventory[3] != null)
                         {
@@ -105,38 +106,20 @@ namespace ItemNamespace
                         break;
                 }
             }
-
-            if (!isLocalPlayer)
-            {
-                GameObject otherPlayer = playerItemPickupEventInfo.EventUnitGo;
-                switch (playerItemPickupEventInfo.itemBase.GetItemType)
-                {
-                    case ItemBase.ItemType.Weapon:
-                        Debug.Log("kommer in första");
-                        otherPlayer.GetComponent<PlayerItemUsageController>()
-                            .ChangeItem(playerItemPickupEventInfo.itemBase);
-                        break;
-                    default:
-                        // code block
-                        break;
-                }
-            }
         }
 
         public void ToggleSword(InputAction.CallbackContext value)
         {
-            if (isLocalPlayer)
+            if (!isLocalPlayer)
             {
-                if (inventory[0] != null)
-                {
-                    gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
-                    selectedItem.transform.position = sprites[0].transform.position;
-                }
+                
+                return;
             }
-            else
+
+            if (inventory[0] != null)
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
-                selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 40f, 0f);
+                selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f,10f,0f);
                 animator.SetTrigger("itemPOPUP");
             }
         }
@@ -151,7 +134,7 @@ namespace ItemNamespace
             if (inventory[1] != null)
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[1]);
-                selectedItem.transform.position = sprites[1].transform.position + new Vector3(0f, 40f, 0f);
+                selectedItem.transform.position = sprites[1].transform.position + new Vector3(0f,10f,0f);
                 animator.SetTrigger("itemPOPUP");
             }
         }
@@ -166,7 +149,7 @@ namespace ItemNamespace
             if (inventory[2] != null)
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[2]);
-                selectedItem.transform.position = sprites[2].transform.position + new Vector3(0f, 40f, 0f);
+                selectedItem.transform.position = sprites[2].transform.position + new Vector3(0f,10f,0f);
                 animator.SetTrigger("itemPOPUP");
             }
         }
@@ -181,7 +164,7 @@ namespace ItemNamespace
             if (inventory[3] != null && gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber() > 0)
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[3]);
-                selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f, 40f, 0f);
+                selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f,10f,0f);
                 animator.SetTrigger("itemPOPUP");
             }
         }
@@ -194,7 +177,7 @@ namespace ItemNamespace
             }
 
             gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
-            selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 40f, 0f);
+            selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f,10f,0f);
             animator.SetTrigger("itemPOPUP");
         }
 

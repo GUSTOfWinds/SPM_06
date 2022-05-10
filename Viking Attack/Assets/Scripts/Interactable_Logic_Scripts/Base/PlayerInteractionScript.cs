@@ -37,7 +37,7 @@ public class PlayerInteractionScript : NetworkBehaviour
     {
         if(value.performed && hit.collider)
         {
-            hit.transform.GetComponent<InteractableObjectScript>().buttonPressed(gameObject);
+            hit.transform.GetComponent<InteractableObjectScript>().ButtonPressed(gameObject);
         }
     }
 }

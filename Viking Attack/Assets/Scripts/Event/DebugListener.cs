@@ -5,10 +5,10 @@ namespace Event
 {
     public class DebugListener : MonoBehaviour
     {
-        private Guid DebugEventGuid;
+        private Guid debugEventGuid;
         private void Start()
         {
-            EventSystem.Current.RegisterListener<DebugEventInfo>(OnUnitDied, ref DebugEventGuid);
+            EventSystem.Current.RegisterListener<DebugEventInfo>(OnUnitDied, ref debugEventGuid);
             
         }
         

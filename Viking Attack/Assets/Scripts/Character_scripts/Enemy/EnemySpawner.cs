@@ -12,7 +12,6 @@ public class EnemySpawner : NetworkBehaviour
     [SerializeField] private GameObject enemyPrefabToSpawn;
     private Guid respawnEventGuid;
     private uint netID;
-    [SerializeField] private bool shouldSpawn; 
 
 
     private void Awake()
@@ -30,7 +29,7 @@ public class EnemySpawner : NetworkBehaviour
     // Will be run whenever a respawn has been detected by the event system
     public void EnemyRespawn(EnemyRespawnEventInfo enemyRespawnEventInfo)
     {
-        if (enemyRespawnEventInfo.respawnParent.GetComponent<NetworkIdentity>().netId == netID && shouldSpawn)
+        if (enemyRespawnEventInfo.respawnParent.GetComponent<NetworkIdentity>().netId == netID)
         {
             Spawn();
         }

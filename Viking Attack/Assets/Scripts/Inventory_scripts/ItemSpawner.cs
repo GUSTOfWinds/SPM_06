@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemSpawner : NetworkBehaviour
 {
-    [Header("Drag the prefab you want to spawn in this spawner here")] [SerializeField]
+    [Header("Drag the item prefab you want to spawn in this spawner here")] [SerializeField]
     private GameObject enemyPrefabToSpawn;
 
     private uint netID;
@@ -12,8 +12,7 @@ public class ItemSpawner : NetworkBehaviour
 
     public void Spawn()
     {
-        // Will be changed to happen ONCE when event manager handles deaths.
-        // Spawns an enemy at the location of the spawner parent, will also spawn it on the server
+        // Spawns an item at the location of the spawner parent
         var item = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
         NetworkServer.Spawn(item);
     }

@@ -37,7 +37,11 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
 
         yield return new WaitForSeconds(time);
         if(Physics.SphereCast(mainCamera.transform.position, 1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
-                hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-belongingTo.GetDamage);
+        {
+            hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-belongingTo.GetDamage);
+            hit.collider.gameObject.GetComponent<EnemyMovement>().Stagger();
+        }
+                
         animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"),0);
         canAttack = true;
         
