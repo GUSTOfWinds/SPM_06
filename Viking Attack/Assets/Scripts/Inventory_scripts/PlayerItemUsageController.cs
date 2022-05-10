@@ -12,7 +12,7 @@ public class PlayerItemUsageController : NetworkBehaviour
     [SerializeField] private GameObject holdingHand;
     
     private Type currentActingComponentType;
-    private ItemBaseBehavior currentActingComponent;
+    private ItemBaseBehaviour currentActingComponent;
 
     public void Start()
     {
@@ -28,7 +28,7 @@ public class PlayerItemUsageController : NetworkBehaviour
         { 
             if(itemBase != null)
             {
-                currentActingComponent.Use();
+                currentActingComponent.Use(itemBase);
             }
         }
     }
@@ -40,7 +40,7 @@ public class PlayerItemUsageController : NetworkBehaviour
         Type itemType = Type.GetType(itemBase.GetItemBaseBehaviorScriptName);
         if(currentActingComponent != null)
             Destroy(currentActingComponent);
-        currentActingComponent = (ItemBaseBehavior)gameObject.AddComponent(itemType);
+        currentActingComponent = (ItemBaseBehaviour)gameObject.AddComponent(itemType);
         currentActingComponent.SetBelongingTo(itemBase);
         currentActingComponentType = itemType;
         heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;

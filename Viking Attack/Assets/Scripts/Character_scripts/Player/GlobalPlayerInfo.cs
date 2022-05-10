@@ -242,4 +242,9 @@ public class GlobalPlayerInfo : MonoBehaviour
     {
         return meatStackNumber;
     }
+
+    public void DecreaseMeatStackNumber()
+    {
+        meatStackNumber--;
+    }
 }
