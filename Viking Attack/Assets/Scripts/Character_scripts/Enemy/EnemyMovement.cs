@@ -118,14 +118,15 @@ public class EnemyMovement : NetworkBehaviour
                     animator.SetBool("Patrolling", false);
                     backToDefault = false;
                     Vector3 facePlayer = new Vector3(chasingObject.transform.position.x, transform.position.y, chasingObject.transform.position.z);
-
+                    Debug.DrawLine(facePlayer, Vector3.up, Color.red);
                     movingDirection= (chasingObject.transform.position - transform.position).normalized;
                     // Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
                     // transform.rotation = Quaternion.Slerp(transform.rotation, facePlayer, Time.fixedDeltaTime * 3);
-                    
+
                     //Movement
-                    transform.position = Vector3.MoveTowards(transform.position, facePlayer,
-                               chasingSpeedMultiplier * Time.fixedDeltaTime);
+                    //transform.position = Vector3.MoveTowards(transform.position, chasingObject.transform.position,
+                    //           chasingSpeedMultiplier * Time.fixedDeltaTime);
+                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                     ChangeFacingDirection(movingDirection);
                     if (Vector3.Distance(transform.position, chasingObject.transform.position) <= 3f)
                     {
@@ -214,10 +215,13 @@ public class EnemyMovement : NetworkBehaviour
                     {
                         ChangeFacingDirection(movingDirection);
                     }
+                  
+                }
+
+                if ((!isChasing) && (!isAttacking))
+                {
                     transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                 }
-              
-                
 
 
                 //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
