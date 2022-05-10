@@ -9,7 +9,7 @@ public class PlayerRunState : PlayerState
     private Vector2 inputMovement;
     public InputAction.CallbackContext sprintKeyInfo;
     private float sprintCost = 7f;
-    private float staminaGain = 12f;
+    private float staminaGain = 17.5f;
     [SerializeField] private float cooldown = 0.9f;
 
     public override void Exit()
