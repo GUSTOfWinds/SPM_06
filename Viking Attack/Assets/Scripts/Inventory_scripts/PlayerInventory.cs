@@ -47,7 +47,7 @@ namespace ItemNamespace
                                 gameObject.GetComponent<GlobalPlayerInfo>()
                                     .SetItemSlot(0, inventory[0]); // sets the info in globalplayerinfo
                                 selectedItem.transform.position =
-                                    sprites[0].transform.position + new Vector3(0f, 40f, 0f);
+                                    sprites[0].transform.position + new Vector3(0f,10f,0f);
                                 gameObject.GetComponent<PlayerItemUsageController>()
                                     .ChangeItem(playerItemPickupEventInfo.itemBase);
                                 break;
@@ -59,7 +59,7 @@ namespace ItemNamespace
                                 gameObject.GetComponent<GlobalPlayerInfo>()
                                     .SetItemSlot(1, inventory[1]); // sets the info in globalplayerinfo
                                 selectedItem.transform.position =
-                                    sprites[1].transform.position + new Vector3(0f, 40f, 0f);
+                                    sprites[1].transform.position + new Vector3(0f,10f,0f);
                                 gameObject.GetComponent<PlayerItemUsageController>()
                                     .ChangeItem(playerItemPickupEventInfo.itemBase);
                                 break;
@@ -71,7 +71,7 @@ namespace ItemNamespace
                                 gameObject.GetComponent<GlobalPlayerInfo>()
                                     .SetItemSlot(2, inventory[2]); // sets the info in globalplayerinfo
                                 selectedItem.transform.position =
-                                    sprites[2].transform.position + new Vector3(0f, 40f, 0f);
+                                    sprites[2].transform.position + new Vector3(0f,10f,0f);
                                 gameObject.GetComponent<PlayerItemUsageController>()
                                     .ChangeItem(playerItemPickupEventInfo.itemBase);
                                 break;
@@ -130,13 +130,13 @@ namespace ItemNamespace
                 if (inventory[0] != null)
                 {
                     gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
-                    selectedItem.transform.position = sprites[0].transform.position;
+                    selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f,10f,0f);
                 }
             }
             else
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
-                selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 40f, 0f);
+                selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f,10f,0f);
                 animator.SetTrigger("itemPOPUP");
             }
         }
@@ -151,7 +151,7 @@ namespace ItemNamespace
             if (inventory[1] != null)
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[1]);
-                selectedItem.transform.position = sprites[1].transform.position + new Vector3(0f, 40f, 0f);
+                selectedItem.transform.position = sprites[1].transform.position + new Vector3(0f,10f,0f);
                 animator.SetTrigger("itemPOPUP");
             }
         }
@@ -166,7 +166,7 @@ namespace ItemNamespace
             if (inventory[2] != null)
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[2]);
-                selectedItem.transform.position = sprites[2].transform.position + new Vector3(0f, 40f, 0f);
+                selectedItem.transform.position = sprites[2].transform.position + new Vector3(0f,10f,0f);
                 animator.SetTrigger("itemPOPUP");
             }
         }
@@ -181,7 +181,7 @@ namespace ItemNamespace
             if (inventory[3] != null && gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber() > 0)
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[3]);
-                selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f, 40f, 0f);
+                selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f,10f,0f);
                 animator.SetTrigger("itemPOPUP");
             }
         }
@@ -194,7 +194,7 @@ namespace ItemNamespace
             }
 
             gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
-            selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 40f, 0f);
+            selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f,10f,0f);
             animator.SetTrigger("itemPOPUP");
         }
 
