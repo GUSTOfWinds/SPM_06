@@ -20,6 +20,7 @@ namespace ItemNamespace
         [SerializeField] private GlobalPlayerInfo globalPlayerInfo;
         private Vector3 playerLocation; // location used to see if the player has gotten away far enough to not be hit
 
+
         private float
             playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
 
@@ -28,6 +29,9 @@ namespace ItemNamespace
 
         [SerializeField]
         private float cooldown; // float that will be reset to 0 after hitting the attackCooldown variable
+
+        private float cooldownSound = 0f;
+        private float timeToNextSound = 6.5f;
 
         [SerializeField] private LayerMask layerMask;
         private EnemyMovement enemyMovement;
@@ -58,6 +62,10 @@ namespace ItemNamespace
                 {
                     cooldown += Time.fixedDeltaTime;
                 }
+                if (cooldownSound < timeToNextSound) // adds to cooldown if attackCooldown hasn't been met
+                {
+                    cooldownSound += Time.fixedDeltaTime;
+                }
 
                 rayBeginning = transform.position;
                 rayBeginning.y += 0.8f;
@@ -66,11 +74,13 @@ namespace ItemNamespace
                         transform.TransformDirection(Vector3.forward), out hit, 7, layerMask))
                 {
                     // Checks that no other enemies already are breathing within a 6 meter radius
-                    if (!GetNearbyAudioSourcePlaying() && !audioSource.isPlaying)
+                    if (!GetNearbyAudioSourcePlaying() && !audioSource.isPlaying && cooldownSound > timeToNextSound)
                     {
                         // plays the sound of the skeleton breathing when in range for attack
                         audioSource.PlayOneShot(enemySounds[0]);
                         RpcPlayEnemyChasing();
+                        cooldownSound = 0;
+
                     }
 
                     // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
