@@ -125,11 +125,17 @@ namespace ItemNamespace
 
         public void ToggleFood(InputAction.CallbackContext value)
         {
-            if (inventory[3] != null)
+            if (inventory[3] != null && gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber() > 0)
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[3]);
                 selectedItem.transform.position = sprites[3].transform.position;
             }
+        }
+
+        public void ReturnToDefault()
+        {
+            gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
+            selectedItem.transform.position = sprites[0].transform.position;
         }
 
         public void UpdateMeatStack()
