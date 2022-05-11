@@ -1079,8 +1079,9 @@ MonoBehaviour:
   animator: {fileID: 3643602246697119875}
   attacking: 0
   groundCheck: {fileID: 6653956863877352429}
+  isAttacking: 0
   detectScopeRadius: 8
-  patrolRange: 8
+  patrolRange: 10
   maxChasingRange: 30
   chasingSpeedMultiplier: 0
   moveSpeed: 0

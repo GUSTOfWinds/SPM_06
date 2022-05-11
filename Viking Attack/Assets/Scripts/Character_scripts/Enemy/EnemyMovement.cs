@@ -36,6 +36,7 @@ public class EnemyMovement : NetworkBehaviour
     private bool isChasing;
     public bool isAttacking;
     private bool backToDefault;
+    private bool checkForHinder;
 
     [Header("Patrol Settnings")] private Collider[] sphereColliders;
     private GameObject chasingObject;
@@ -102,6 +103,7 @@ public class EnemyMovement : NetworkBehaviour
             if (isGrounded) //start patrolling
             {
                 moveSpeed = defaultSpeed;
+                checkForHinder = true;
                 if (isGuarding)
                 {
                     animator.SetBool("Chasing", false);
@@ -112,11 +114,12 @@ public class EnemyMovement : NetworkBehaviour
                         patrolRange) //when enemy is moving too far, change moving direction
                     {
                         //Can DO check hit.normal
-
                         movingDirection = RandomVector(movingDirection).normalized;
-                        //transform.position = Vector3.MoveTowards(transform.position, movingDirection, Time.fixedDeltaTime);
+                        
+                        checkForHinder = false;
                     }
-             
+                    ChangeFacingDirection(movingDirection);
+
                 }
 
                 if (isChasing)
@@ -209,10 +212,13 @@ public class EnemyMovement : NetworkBehaviour
                     CheckForPlayer();
                 }
 
+
+
                 //calculate new movement based on obstacle his
-                Vector3 nevVector = CalculateMovement();
-                if (movingDirection != Vector3.zero)
+               
+                if (movingDirection != Vector3.zero && checkForHinder)
                 {
+                    Vector3 nevVector = CalculateMovement();
                     movingDirection = Vector3.Lerp(movingDirection, nevVector.normalized, moveSpeed * Time.fixedDeltaTime);
                     waitFrame++;
                     if (waitFrame % 60 == 0)
@@ -224,8 +230,9 @@ public class EnemyMovement : NetworkBehaviour
 
                 if ((!isChasing) && (!isAttacking))
                 {
-                    transform.position +=  0.1f*movingDirection * moveSpeed * Time.fixedDeltaTime;
+                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                 }
+
 
 
                 //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
@@ -242,6 +249,7 @@ public class EnemyMovement : NetworkBehaviour
             this.transform.position = syncPosition;
             this.transform.rotation = syncRotation;
         }
+        waitFrame = 0;
     }
 
     //Kommandlinjer for att be servern om uppdateringar po rotation och position
@@ -282,9 +290,9 @@ public class EnemyMovement : NetworkBehaviour
     private Vector3 RandomVector(Vector3 current)
     {
         
-        float angle = UnityEngine.Random.Range(160f, 230f);
+        float angle = UnityEngine.Random.Range(130f, 220f);
         Vector3 temp = Quaternion.Euler(0, angle, 0) * current;
-       // ChangeFacingDirection(temp);
+        //ChangeFacingDirection(temp);
         return temp;
     }
 
