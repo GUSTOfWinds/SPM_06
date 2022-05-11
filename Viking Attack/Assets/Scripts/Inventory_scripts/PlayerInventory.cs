@@ -45,43 +45,19 @@ namespace Inventory_scripts
                             // Sets the inventory slot, updates globalplayerinfo, what item the player is using 
                             // in each case
                             case ItemBase.WeaponType.Sword:
-                                inventory[0] = playerItemPickupEventInfo.itemBase;
-                                sprites[0].SetActive(true);
-                                sprites[0].GetComponent<Image>().sprite = inventory[0].GetSprite;
-                                gameObject.GetComponent<GlobalPlayerInfo>()
-                                    .SetItemSlot(0, inventory[0]); // sets the info in globalplayerinfo
-                                selectedItem.transform.position =
-                                    sprites[0].transform.position + new Vector3(0f,10f,0f);
-                                gameObject.GetComponent<PlayerItemUsageController>()
-                                    .ChangeItem(playerItemPickupEventInfo.itemBase);
+                                UpdateHeldItem(0, playerItemPickupEventInfo.itemBase);
                                 UpdateItemInfo(0); // updates the weapon info box with sword information
                                 animator.SetTrigger("itemPOPUP");
                                 break;
 
                             case ItemBase.WeaponType.Spear:
-                                inventory[1] = playerItemPickupEventInfo.itemBase;
-                                sprites[1].SetActive(true);
-                                sprites[1].GetComponent<Image>().sprite = inventory[1].GetSprite;
-                                gameObject.GetComponent<GlobalPlayerInfo>()
-                                    .SetItemSlot(1, inventory[1]); // sets the info in globalplayerinfo
-                                selectedItem.transform.position =
-                                    sprites[1].transform.position + new Vector3(0f,10f,0f);
-                                gameObject.GetComponent<PlayerItemUsageController>()
-                                    .ChangeItem(playerItemPickupEventInfo.itemBase);
+                                UpdateHeldItem(1, playerItemPickupEventInfo.itemBase);
                                 UpdateItemInfo(1); // updates the weapon info box with spear information
                                 animator.SetTrigger("itemPOPUP");
                                 break;
 
                             case ItemBase.WeaponType.Dagger:
-                                inventory[2] = playerItemPickupEventInfo.itemBase;
-                                sprites[2].SetActive(true);
-                                sprites[2].GetComponent<Image>().sprite = inventory[2].GetSprite;
-                                gameObject.GetComponent<GlobalPlayerInfo>()
-                                    .SetItemSlot(2, inventory[2]); // sets the info in globalplayerinfo
-                                selectedItem.transform.position =
-                                    sprites[2].transform.position + new Vector3(0f,10f,0f);
-                                gameObject.GetComponent<PlayerItemUsageController>()
-                                    .ChangeItem(playerItemPickupEventInfo.itemBase);
+                                UpdateHeldItem(2, playerItemPickupEventInfo.itemBase);
                                 UpdateItemInfo(2); // updates the weapon info box with dagger information
                                 animator.SetTrigger("itemPOPUP");
                                 break;
@@ -115,6 +91,24 @@ namespace Inventory_scripts
                         break;
                 }
             }
+            else
+            {
+                gameObject.GetComponent<PlayerItemUsageController>()
+                    .ChangeItem(playerItemPickupEventInfo.itemBase);
+            }
+        }
+
+        private void UpdateHeldItem(int index, ItemBase itemBase)
+        {
+            inventory[index] = itemBase;
+            sprites[index].SetActive(true);
+            sprites[index].GetComponent<Image>().sprite = inventory[index].GetSprite;
+            gameObject.GetComponent<GlobalPlayerInfo>()
+                .SetItemSlot(index, inventory[index]); // sets the info in globalplayerinfo
+            selectedItem.transform.position =
+                sprites[index].transform.position + new Vector3(0f,10f,0f);
+            gameObject.GetComponent<PlayerItemUsageController>()
+                .ChangeItem(itemBase);
         }
 
         // Updates the info box to contain the information of the weapon

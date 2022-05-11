@@ -21,7 +21,7 @@ public class ItemMeatBehaviour : ItemBaseBehaviour
     // Will take the itembase heal ammount to heal the player if the player has any meat
     public override void Use(ItemBase itemBase)
     {
-        // Checks if the player has enough food to eat, will then eat.
+        // Checks if the player has enough food to eat and has missing HP will then eat.
         if (globalPlayerInfo.GetMeatStackNumber() > 0 && globalPlayerInfo.GetHealth() < globalPlayerInfo.GetMaxHealth())
         {
             animator.Play("SwordAttack", animator.GetLayerIndex("Sword Attack"), 0f);
@@ -29,8 +29,7 @@ public class ItemMeatBehaviour : ItemBaseBehaviour
             StartCoroutine(WaitToEat(0.5f, itemBase));
         }
     }
-
-    //Waits the lenght of the animation before leting the player attack again.
+    
     IEnumerator WaitToEat(float time, ItemBase itemBase)
     {
         yield return new WaitForSeconds(time);
