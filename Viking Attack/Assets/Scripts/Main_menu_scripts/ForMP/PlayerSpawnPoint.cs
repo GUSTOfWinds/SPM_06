@@ -1,20 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Main_menu_scripts.ForMP;
 using UnityEngine;
 
-public class PlayerSpawnPoint : MonoBehaviour
+namespace Main_menu_scripts.ForMP
 {
-    private void Awake() => PlayerSpawnSystem.AddSpawnPoint(transform);
-
-    private void OnDestroy() => PlayerSpawnSystem.RemoveSpawnPoint(transform);
-
-    private void OnDrawGizmos()
+    public class PlayerSpawnPoint : MonoBehaviour
     {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawSphere(transform.position, 0.75f);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 2);
+        private void Awake() => PlayerSpawnSystem.AddSpawnPoint(transform);
+
+        private void OnDestroy() => PlayerSpawnSystem.RemoveSpawnPoint(transform);
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.magenta;
+            var position = transform.position;
+            Gizmos.DrawSphere(position, 0.75f);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(position, position + transform.forward * 2);
+        }
     }
 }

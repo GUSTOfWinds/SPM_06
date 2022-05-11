@@ -10,7 +10,7 @@ public class MinimapCamera : NetworkBehaviour
         minimapCamera = GameObject.FindGameObjectWithTag("MinimapCamera");
     }
 
-    public override void OnStartLocalPlayer()
+    public override void OnStartAuthority()
     {
         if (minimapCamera != null)
         {

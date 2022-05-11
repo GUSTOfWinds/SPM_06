@@ -15,6 +15,5 @@ public class MainMenu : MonoBehaviour
     {
         networkManager.StartHost();
         landingPanel.SetActive(false);
-        //lobby.SetActive(true);
     }
 }

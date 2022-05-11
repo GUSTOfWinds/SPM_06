@@ -18,18 +18,20 @@ public class CameraMovement3D : NetworkBehaviour
 
     void Awake()
     {
+        mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
         shouldBeLocked = true;
         Cursor.lockState = CursorLockMode.Locked;
-        mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
+        
         
     }
 
-    public override void OnStartLocalPlayer()
+    public override void OnStartClient()
     {
         if (mainCamera != null)
         {
-            mainCamera.transform.SetParent(transform);
-            mainCamera.transform.position = firstPersonPosition.transform.position;
+            Transform transform1;
+            (transform1 = mainCamera.transform).SetParent(transform);
+            transform1.position = firstPersonPosition.transform.position;
         }
 
         if (isLocalPlayer)
@@ -45,8 +47,9 @@ public class CameraMovement3D : NetworkBehaviour
             mainCamera.transform.SetParent(null);
             SceneManager.MoveGameObjectToScene(mainCamera.gameObject, SceneManager.GetActiveScene());
             mainCamera.orthographic = true;
-            mainCamera.transform.localPosition = new Vector3(0f, 70f, 0f);
-            mainCamera.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
+            var transform1 = mainCamera.transform;
+            transform1.localPosition = new Vector3(0f, 70f, 0f);
+            transform1.localEulerAngles = new Vector3(90f, 0f, 0f);
         }
     }
 

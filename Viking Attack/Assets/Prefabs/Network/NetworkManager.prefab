@@ -54,15 +54,15 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 4178134505983114358, guid: bf76016401850694d988fe410a528477, type: 3}
+  playerPrefab: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
   menuScene: Assets/Scenes/MaineMenu/MaineMenu_Lobby.unity
   roomPlayerLobby: {fileID: 379527214673110172, guid: 2a5d2e2012d5d2848b4ab004ed0e74a3, type: 3}
   gamePlayerPrefab: {fileID: 5905042231322285479, guid: a981d4afc5b300845883915a214218c0, type: 3}
-  playerSpawnSystem: {fileID: 0}
-  SpawnablePrefabs:
+  playerSpawnSystem: {fileID: 5696351078985557884, guid: a7973f2daaebe384db5c3de7da34215f, type: 3}
+  spawnablePrefabs:
   - {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
   - {fileID: 1627232034024812431, guid: 1268ed0163b18974ea84e9d5aef06972, type: 3}
   - {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}

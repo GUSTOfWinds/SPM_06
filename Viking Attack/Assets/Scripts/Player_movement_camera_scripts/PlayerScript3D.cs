@@ -21,7 +21,7 @@ public class PlayerScript3D : NetworkBehaviour
     [HideInInspector] public bool jump;
     //KeyInfo variables  stop
     
-    public override void OnStartLocalPlayer()
+    public override void OnStartAuthority()
     {
         myRigidbody = GetComponent<MyRigidbody3D>();
         if (states.Length > 0)
