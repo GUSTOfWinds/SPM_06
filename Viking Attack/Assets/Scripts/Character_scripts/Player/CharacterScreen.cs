@@ -11,6 +11,7 @@ public class CharacterScreen : MonoBehaviour
     [SerializeField] private Text damageStatPoints;
     [SerializeField] private Text staminaStatPoints;
     [SerializeField] private Text availableStatPoints;
+    [SerializeField] private Text XPtoLVL;
     [SerializeField]
     private GlobalPlayerInfo globalPlayerInfo;
 
@@ -19,13 +20,14 @@ public class CharacterScreen : MonoBehaviour
 
     // sets all the stats to what the globalplayerinfo contains
     public void OpenCharacterScreen()
-    {
+    { 
         playerName.text = globalPlayerInfo.GetName();
         playerLevelText.text = globalPlayerInfo.GetLevel().ToString();
         healthStatPoints.text = globalPlayerInfo.GetMaxHealth().ToString();
         damageStatPoints.text = globalPlayerInfo.GetDamage().ToString();
         staminaStatPoints.text = globalPlayerInfo.GetMaxStamina().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
+        XPtoLVL.text = ((globalPlayerInfo.GetLevelThreshold()*globalPlayerInfo.GetLevel()*1.3f) - globalPlayerInfo.GetExperience()).ToString();
     }
 
     // Increases the damage stat of the player when the damage button is pressed
