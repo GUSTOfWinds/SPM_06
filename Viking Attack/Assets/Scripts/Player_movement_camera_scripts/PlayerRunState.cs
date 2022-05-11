@@ -11,6 +11,8 @@ public class PlayerRunState : PlayerState
     private float sprintCost = 7f;
     private float staminaGain = 17.5f;
     [SerializeField] private float cooldown = 0.9f;
+    private bool hasPassedSprintingCooldown;
+    private float sprintingCooldown = 3;
 
     public override void Exit()
     {
@@ -18,6 +20,11 @@ public class PlayerRunState : PlayerState
     }
     public override void Update()
     {
+        if (sprintingCooldown <= 3)
+        {
+            sprintingCooldown += Time.deltaTime;
+        }
+        
         inputMovement = Player.movementKeyInfo.ReadValue<Vector2>();
         sprintKeyInfo = Player.sprintKeyInfo;
         
@@ -26,15 +33,17 @@ public class PlayerRunState : PlayerState
         input = Vector3.ProjectOnPlane(input, Player.MyRigidbody3D.Grounded().normal);
         // if the sprintkey is held and the player has stamina enough to run, the stamina
         // decreases by the sprintCost, else the player regains stamina while walking
-        if (sprintKeyInfo.performed && Player.globalPlayerInfo.GetStamina() > 1)
+        if (sprintKeyInfo.performed && Player.globalPlayerInfo.GetStamina() > 1 && sprintingCooldown >= 3)
         {
-            Animator.SetBool("isRunning",true);
-            Animator.SetBool("isWalking",false);
-            Player.globalPlayerInfo.UpdateStamina( -sprintCost * Time.deltaTime);
-            input = input.normalized * Player.acceleration * 1.6f;
+
+                Animator.SetBool("isRunning",true);
+                Animator.SetBool("isWalking",false);
+                Player.globalPlayerInfo.UpdateStamina( -sprintCost * Time.deltaTime);
+                input = input.normalized * Player.acceleration * 1.6f;
         }
         else
         {
+            
             Animator.SetBool("isRunning",false);
             Animator.SetBool("isWalking",true);
             Player.globalPlayerInfo.UpdateStamina( staminaGain * Time.deltaTime);
@@ -60,6 +69,11 @@ public class PlayerRunState : PlayerState
             Animator.SetBool("isRunning",false);
             Animator.SetBool("isWalking",false);
             stateMachine.ChangeState<PlayerBaseState>();
+        }
+
+        if (Player.globalPlayerInfo.GetStamina() < 1)
+        {
+            sprintingCooldown = 0;
         }
             
     }

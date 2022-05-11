@@ -274,6 +274,16 @@ namespace Inventory_scripts
 
             meatStackNumber.GetComponent<Text>().text =
                 gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber().ToString();
+
+            if (gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber() < 1)
+            {
+                sprites[3].SetActive(false);
+            }
+            else
+            {
+                sprites[3].SetActive(true);
+            }
+            
         }
     }
 }
