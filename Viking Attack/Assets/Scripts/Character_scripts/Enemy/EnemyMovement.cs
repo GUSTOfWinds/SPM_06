@@ -13,8 +13,8 @@ public class EnemyMovement : NetworkBehaviour
      * Animation stuff below, to be merged with jiang
      */
     [SerializeField] private Animator animator;
-
     [SerializeField] public bool attacking;
+    private int hitsForStagger = 0;
 
     /**
      * 
@@ -329,13 +329,19 @@ public class EnemyMovement : NetworkBehaviour
         spawnPosition = tran.position;
     }
 
+    //Gets called from the item beviour
     public void Stagger()
     {
-        animator.SetBool("Staggered",true);
-        animator.SetBool("Chasing", false);
-        animator.SetBool("Attacking", false);
-        animator.SetBool("Patrolling", false);
-        StartCoroutine(WaitForStagger(0.933f));
+        hitsForStagger++;
+        if(hitsForStagger >= 3)
+        {
+            hitsForStagger = 0;
+            animator.SetBool("Staggered",true);
+            animator.SetBool("Chasing", false);
+            animator.SetBool("Attacking", false);
+            animator.SetBool("Patrolling", false);
+            StartCoroutine(WaitForStagger(0.933f));
+        }
     }
 
     IEnumerator WaitForStagger(float time)

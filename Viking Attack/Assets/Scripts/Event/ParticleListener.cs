@@ -22,7 +22,8 @@ namespace Event
         {
             if(particles[0] != null)
             {
-                Instantiate(particles[0],eventInfo.hitPoint, Quaternion.Euler(0,0,0));
+                GameObject temp = Instantiate(particles[0],eventInfo.hitPoint, Quaternion.Euler(0,0,0));
+                Destroy(temp,1);
             }
         }
         
