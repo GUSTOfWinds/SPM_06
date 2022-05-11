@@ -1,3 +1,4 @@
+using Event;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -73,6 +74,13 @@ public class PlayerRunState : PlayerState
 
         if (Player.globalPlayerInfo.GetStamina() < 1)
         {
+            // Creates an event used to play a sound and display the damage in the player UI
+            EventInfo playerFatigueEventInfo = new PlayerFatigueEventInfo
+            {
+                EventUnitGo = Player.gameObject
+            };
+            
+            EventSystem.Current.FireEvent(playerFatigueEventInfo);
             sprintingCooldown = 0;
         }
             
