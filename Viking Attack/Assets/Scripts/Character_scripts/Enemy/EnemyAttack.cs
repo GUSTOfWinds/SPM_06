@@ -95,7 +95,7 @@ namespace ItemNamespace
                     }
 
                     // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
-                    if (hit.distance < range && cooldown > attackCooldown)
+                    if (hit.distance < range && cooldown > attackCooldown && enemyMovement.isAttacking)
                     {
                         // sets the animator of the enemy to Attacking
                         animator.SetBool("Attacking", true);
