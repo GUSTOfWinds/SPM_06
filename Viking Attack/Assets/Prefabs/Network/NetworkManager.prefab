@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1078430519148682729
+--- !u!1 &2627643080200506126
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1078430519148682725}
-  - component: {fileID: 1078430519148682724}
-  - component: {fileID: 1078430519148682731}
-  - component: {fileID: 1078430519148682730}
-  - component: {fileID: 4050693911780330154}
+  - component: {fileID: 8910869769638421570}
+  - component: {fileID: 7341497129982660151}
+  - component: {fileID: 2130335223947001309}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -20,30 +18,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1078430519148682725
+--- !u!4 &8910869769638421570
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078430519148682729}
+  m_GameObject: {fileID: 2627643080200506126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.152393, y: 5.577095, z: 0.4716854}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1078430519148682724
+--- !u!114 &7341497129982660151
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078430519148682729}
+  m_GameObject: {fileID: 2627643080200506126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 94437ab5c24a9e74885b9198074249c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
@@ -51,23 +49,37 @@ MonoBehaviour:
   autoStartServerBuild: 1
   serverTickRate: 60
   offlineScene: 
-  onlineScene: 
-  transport: {fileID: 1078430519148682731}
+  onlineScene: Assets/Scenes/MaineMenu/MaineMenu_Lobby.unity
+  transport: {fileID: 2130335223947001309}
   networkAddress: localhost
-  maxConnections: 5
+  maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
+  playerPrefab: {fileID: 4178134505983114358, guid: bf76016401850694d988fe410a528477, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs:
+  spawnPrefabs: []
+  menuScene: Assets/Scenes/MaineMenu/MaineMenu_Lobby.unity
+  roomPlayerLobby: {fileID: 379527214673110172, guid: 2a5d2e2012d5d2848b4ab004ed0e74a3, type: 3}
+  gamePlayerPrefab: {fileID: 5905042231322285479, guid: a981d4afc5b300845883915a214218c0, type: 3}
+  playerSpawnSystem: {fileID: 0}
+  SpawnablePrefabs:
+  - {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  - {fileID: 1627232034024812431, guid: 1268ed0163b18974ea84e9d5aef06972, type: 3}
   - {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
---- !u!114 &1078430519148682731
+  - {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
+  - {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
+  - {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
+  - {fileID: 9080351483311851685, guid: 504deff2fa29fc24e84cbb8900573910, type: 3}
+  - {fileID: 469271222892847950, guid: 3299a738816a72b43b2be7e059fb20ec, type: 3}
+  - {fileID: 379527214673110173, guid: 9eca48aa3ba3f9a43ae082939a1e321f, type: 3}
+  - {fileID: 379527214673110173, guid: a981d4afc5b300845883915a214218c0, type: 3}
+--- !u!114 &2130335223947001309
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078430519148682729}
+  m_GameObject: {fileID: 2627643080200506126}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
@@ -76,12 +88,12 @@ MonoBehaviour:
   Port: 7777
   DualMode: 1
   NoDelay: 1
-  Interval: 0
+  Interval: 10
   Timeout: 10000
-  FastResend: 0
-  CongestionWindow: 1
-  SendWindowSize: 8192
-  ReceiveWindowSize: 8192
+  FastResend: 2
+  CongestionWindow: 0
+  SendWindowSize: 4096
+  ReceiveWindowSize: 4096
   MaxRetransmit: 40
   NonAlloc: 1
   MaximizeSendReceiveBuffersToOSLimit: 1
@@ -90,29 +102,3 @@ MonoBehaviour:
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
---- !u!114 &1078430519148682730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078430519148682729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetX: 0
-  offsetY: 0
---- !u!114 &4050693911780330154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078430519148682729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d09f5c8bf2f4747b7a9284ef5d9ce2a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

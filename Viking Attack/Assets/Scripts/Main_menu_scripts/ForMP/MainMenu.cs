@@ -1,20 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-
-namespace Main_menu_scripts.ForMP
+public class MainMenu : MonoBehaviour
 {
-    public class MainMenu : MonoBehaviour
+    [SerializeField] private NetworkManagerLobby networkManager;
+    [Header("UI")] 
+    [SerializeField] private GameObject landingPanel;
+
+    [Header("Lobby")] 
+    [SerializeField] private GameObject lobby;
+
+    public void HostLobby()
     {
-        [SerializeField] private NetworkManagerLobby networkManager;
-
-        [Header("UI")]
-        [SerializeField] private GameObject landingPagePanel;
-
-        public void HostLobby()
-        {
-            networkManager.StartHost();
-
-            landingPagePanel.SetActive(false);
-        }
+        networkManager.StartHost();
+        landingPanel.SetActive(false);
+        //lobby.SetActive(true);
     }
 }

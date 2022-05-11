@@ -1,42 +1,41 @@
 using System;
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
-namespace Main_menu_scripts.ForMP
+public class PlayerNameInput : MonoBehaviour
 {
-    public class PlayerNameInput : MonoBehaviour
-    {
-        [Header("UI")] 
-        [SerializeField] private TMP_InputField nameInputField;
+    [Header("UI")] 
+    [SerializeField] private TMP_InputField nameInputField;
 
-        [SerializeField] private Button continueButton;
+    [SerializeField] private Button continueButton;
     
     
-        public static string displayName { get; private set; }
-        private const string PlayerPrefsNameKey = "PlayerName";
+    public static string displayName { get; private set; }
+    private const string PlayerPrefsNameKey = "PlayerName";
 
-        private void Start() => SetupInputField();
+    private void Start() => SetupInputField();
     
-        private void SetupInputField(){
-            if(!PlayerPrefs.HasKey(PlayerPrefsNameKey)) return;
-            string defaultName = PlayerPrefs.GetString(PlayerPrefsNameKey);
-            nameInputField.text = defaultName;
+    private void SetupInputField(){
+        if(!PlayerPrefs.HasKey(PlayerPrefsNameKey)) return;
+        string defaultName = PlayerPrefs.GetString(PlayerPrefsNameKey);
+        nameInputField.text = defaultName;
 
-            SetPlayerName(defaultName);
-        }
-
-        public void SetPlayerName(String playerName)
-        {
-            continueButton.interactable = string.IsNullOrEmpty(playerName);
-        }
-
-        public void SavePlayerName()
-        {
-            displayName = nameInputField.text;
-            PlayerPrefs.SetString(PlayerPrefsNameKey, displayName);
-        
-        }
-
+        SetPlayerName(defaultName);
     }
+
+    public void SetPlayerName(String playerName)
+    {
+        continueButton.interactable = !string.IsNullOrEmpty(playerName);
+    }
+
+    public void SavePlayerName()
+    {
+        displayName = nameInputField.text;
+        PlayerPrefs.SetString(PlayerPrefsNameKey, displayName);
+        
+    }
+
 }
