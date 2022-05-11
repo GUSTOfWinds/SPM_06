@@ -67,6 +67,7 @@ namespace ItemNamespace
                 {
                     cooldownSound += Time.fixedDeltaTime;
                 }
+                //if the enemy is stagger stop attack
                 if(animator.GetBool("Staggered") && finishAttack != null)
                 {
                     StopCoroutine(finishAttack);

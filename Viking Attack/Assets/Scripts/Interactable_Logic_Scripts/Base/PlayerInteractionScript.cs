@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Mirror;
+using TMPro;
+
 
 public class PlayerInteractionScript : NetworkBehaviour
 {
     //The text that shows when hovering over an interactable object
-    [SerializeField] private UnityEngine.UI.Text interactionText;
+    [SerializeField] private TextMeshProUGUI interactionText;
+
     private Camera mainCamera;
 
     private RaycastHit hit;

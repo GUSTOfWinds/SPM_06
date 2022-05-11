@@ -334,6 +334,7 @@ public class EnemyMovement : NetworkBehaviour
         spawnPosition = tran.position;
     }
 
+    //Gets called from the item beviour
     public void Stagger()
     {
         hitsForStagger++;
