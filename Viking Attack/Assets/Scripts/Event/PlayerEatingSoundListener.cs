@@ -14,7 +14,7 @@ public class PlayerEatingSoundListener : NetworkBehaviour
     [SerializeField] private AudioSource audioSource;
 
     [SerializeField]
-    private uint netID; // the netID of the player, making sure to only play sounds when the local player is hit
+    private uint netID;
 
     private Guid SoundEventGuid;
 
