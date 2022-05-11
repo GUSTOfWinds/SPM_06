@@ -24,26 +24,26 @@ public class ItemMeatBehaviour : ItemBaseBehaviour
         // Checks if the player has enough food to eat and has missing HP will then eat.
         if (globalPlayerInfo.GetMeatStackNumber() > 0 && globalPlayerInfo.GetHealth() < globalPlayerInfo.GetMaxHealth())
         {
-            animator.Play("SwordAttack", animator.GetLayerIndex("Sword Attack"), 0f);
-            animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"), 1);
-            StartCoroutine(WaitToEat(0.5f, itemBase));
+            animator.Play("Eat Meat", animator.GetLayerIndex("Eat Meat"), 0f);
+            animator.SetLayerWeight(animator.GetLayerIndex("Eat Meat"), 1);
+            StartCoroutine(WaitToEat(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Eat Meat")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Eat Meat")).speed, itemBase));
         }
     }
     
     IEnumerator WaitToEat(float time, ItemBase itemBase)
     {
-        yield return new WaitForSeconds(time);
         // Creates an event used to play a sound and display the damage in the player UI
         EventInfo playerEatingEvent = new PlayerEatingEventInfo
         {
             EventUnitGo = gameObject
         };
         EventSystem.Current.FireEvent(playerEatingEvent);
+        yield return new WaitForSeconds(time);
 
         globalPlayerInfo.DecreaseMeatStackNumber();
         globalPlayerInfo.UpdateHealth(itemBase.GetHealAmount);
         playerInventory.UpdateMeatStack();
-        animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"), 0);
+        animator.SetLayerWeight(animator.GetLayerIndex("Eat Meat"), 0);
 
 
         if (globalPlayerInfo.GetMeatStackNumber() == 0)

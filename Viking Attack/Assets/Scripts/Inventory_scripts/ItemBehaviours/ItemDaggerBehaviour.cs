@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using ItemNamespace;
 using UnityEngine;
+using Event;
 
-public class ItemSpearBehaviour : ItemBaseBehaviour
+public class ItemDaggerBehaviour : ItemBaseBehaviour
 {
     private Animator animator;
-    private Camera mainCamera = null;
+    private GameObject rayCastPosition;
+    private Camera mainCamera;
     private GlobalPlayerInfo globalPlayerInfo;
     private RaycastHit hit;
     private bool canAttack = true;
@@ -13,6 +15,7 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
 
     public void Awake()
     {
+        rayCastPosition = gameObject.transform.Find("rayCastPosition").gameObject;
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
         globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
         animator = gameObject.transform.Find("Prefab_PlayerBot").GetComponent<Animator>();
@@ -25,9 +28,9 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
             globalPlayerInfo.UpdateStamina(-belongingTo.GetStamina);
 
             canAttack = false;
-            animator.Play("SwordAttack",animator.GetLayerIndex("Sword Attack"),0f);
-            animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"),1);
-            StartCoroutine(WaitToAttack(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).speed));
+            animator.Play("Dagger_Attack",animator.GetLayerIndex("Dagger Attack"),0f);
+            animator.SetLayerWeight(animator.GetLayerIndex("Dagger Attack"),1);
+            StartCoroutine(WaitToAttack(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Dagger Attack")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Dagger Attack")).speed));
         }
     }
     
@@ -36,9 +39,17 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
     {
 
         yield return new WaitForSeconds(time);
-        if(Physics.SphereCast(mainCamera.transform.position, 1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
+        if(Physics.SphereCast(rayCastPosition.transform.position, 0.1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
+        {
             hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-belongingTo.GetDamage);
-        animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"),0);
+            EnemyHitEvent hitEvent = new EnemyHitEvent();
+            hitEvent.enemy = hit.collider.transform.gameObject;
+            hitEvent.hitPoint = hit.point;
+
+            EventSystem.Current.FireEvent(hitEvent);
+        }
+            
+        animator.SetLayerWeight(animator.GetLayerIndex("Dagger Attack"),0);
         canAttack = true;
         
     }

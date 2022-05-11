@@ -54,4 +54,9 @@ namespace Event
         public GameObject enemy;
         public Vector3 hitPoint;
     }
+    
+    public class PlayerFatigueEventInfo : EventInfo
+    {
+        
+    }
 }
