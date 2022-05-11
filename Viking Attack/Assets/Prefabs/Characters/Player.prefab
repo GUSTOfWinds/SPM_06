@@ -5364,7 +5364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2695977694989061664
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6489,7 +6489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0
-  gravity: 0.4
+  gravity: 0.8
   staticFrictionCoefficient: 0.9
   kineticFrictionCoefficient: 0.6
   airResistance: 0.0001
