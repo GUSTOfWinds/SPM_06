@@ -6,13 +6,16 @@ using Event;
 public class ItemSwordBehaviour : ItemBaseBehaviour
 {
     private Animator animator;
-    private Camera mainCamera = null;
+    private GameObject rayCastPosition;
+    private Camera mainCamera;
     private GlobalPlayerInfo globalPlayerInfo;
+    private RaycastHit hit;
     private bool canAttack = true;
 
 
     public void Awake()
     {
+        rayCastPosition = gameObject.transform.Find("rayCastPosition").gameObject;
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
         globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
         animator = gameObject.transform.Find("Prefab_PlayerBot").GetComponent<Animator>();
@@ -36,8 +39,7 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
     {
 
         yield return new WaitForSeconds(time);
-        RaycastHit hit;
-        if(Physics.SphereCast(mainCamera.transform.position, 1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
+        if(Physics.SphereCast(rayCastPosition.transform.position, 0.1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
         {
             hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-belongingTo.GetDamage);
             hit.collider.gameObject.GetComponent<EnemyMovement>().Stagger();
@@ -52,10 +54,6 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         canAttack = true;
 
         
-        
-    }
-    private void HitParticles()
-    {
         
     }
 }

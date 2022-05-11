@@ -9,7 +9,6 @@ public class PlayerScript3D : NetworkBehaviour
     
     private MyRigidbody3D myRigidbody;
     private StateMachine stateMachine;
-    public float jumpForce = 10f;
     public float acceleration = 12f;
     public bool firstPerson;
     
