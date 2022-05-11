@@ -187,6 +187,51 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
+--- !u!1 &32013314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 32013315}
+  - component: {fileID: 32013316}
+  m_Layer: 0
+  m_Name: ParticleEventHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &32013315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32013314}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1732692368}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &32013316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32013314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c43f00789ed4b7d8f1b265cf7de192f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles:
+  - {fileID: 4111495590509314372, guid: 91a472e3f1dc07247812fe5ad14c5340, type: 3}
 --- !u!1 &63614048
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +363,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 56.559
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &73941760 stripped
@@ -396,6 +445,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 2383320980889370116, guid: d88628bbcd5e4d2448efdf68a0b019d0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 3555711832834082155, guid: d88628bbcd5e4d2448efdf68a0b019d0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -594,6 +647,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 304.641
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &178507580 stripped
@@ -608,6 +665,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (1)
@@ -810,6 +871,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 156.992
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &349041829 stripped
@@ -948,6 +1013,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -249.287
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &436773635 stripped
@@ -1154,6 +1223,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (2)
@@ -1324,6 +1397,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 56.559
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &701958243 stripped
@@ -1462,6 +1539,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -182.872
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &793365333 stripped
@@ -1540,6 +1621,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (5)
@@ -1682,6 +1767,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (10)
@@ -1884,6 +1973,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -279.068
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &976525224 stripped
@@ -2023,6 +2116,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -87.68
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &998009340 stripped
@@ -2037,6 +2134,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (6)
@@ -2115,6 +2216,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (13)
@@ -2353,7 +2458,7 @@ PrefabInstance:
     - target: {fileID: 8119905292906804761, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -840037777384891287, guid: 1135aa5308125434ba5a519b6aed3ae0, type: 3}
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
 --- !u!4 &1104151897 stripped
@@ -2508,6 +2613,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -201.914
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1155151217 stripped
@@ -2792,6 +2901,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 203.292
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1215258117 stripped
@@ -2866,6 +2979,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -141.368
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1239918098 stripped
@@ -3009,6 +3126,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (9)
@@ -3147,6 +3268,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -11.949
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1317709827 stripped
@@ -3161,6 +3286,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (8)
@@ -3239,6 +3368,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (4)
@@ -3477,6 +3610,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (7)
@@ -3625,6 +3762,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (3)
@@ -3973,6 +4114,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 246.26001
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1710742767 stripped
@@ -3987,6 +4132,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (12)
@@ -4088,6 +4237,7 @@ Transform:
   - {fileID: 1581229762}
   - {fileID: 1134633640}
   - {fileID: 2118657100}
+  - {fileID: 32013315}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4158,6 +4308,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 40.198
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1745617809 stripped
@@ -4357,6 +4511,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 171.528
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1791465060 stripped
@@ -4495,6 +4653,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -124.709
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1798692662 stripped
@@ -4645,6 +4807,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (11)
@@ -4723,6 +4889,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone
@@ -4861,6 +5031,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 158.183
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1885385539 stripped

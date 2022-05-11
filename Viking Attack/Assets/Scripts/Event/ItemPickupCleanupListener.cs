@@ -26,7 +26,7 @@ namespace Event
 
         private IEnumerator DestroyAfterTime(PlayerItemPickupEventInfo playerItemPickupEventInfo)
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(destroyTimer);
             
             if (playerItemPickupEventInfo.itemToDestroy)
             {
