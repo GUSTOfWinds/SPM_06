@@ -7,32 +7,24 @@ namespace Event
     public class ParticleListener : MonoBehaviour
     {
         private Guid ParticleEventGuid;
+        [SerializeField] private GameObject[] particles;
         private void Start()
         {
-            EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnUnitDied, ref ParticleEventGuid);
+            EventSystem.Current.RegisterListener<EnemyHitEvent>(OnUnitHit, ref ParticleEventGuid);
             
         }
         
         private void Update()
         {
-            // testing remove
-            if (Input.GetKeyDown(KeyCode.V))
+            
+        }
+        private void OnUnitHit(EnemyHitEvent eventInfo)
+        {
+            if(particles[0] != null)
             {
-                EventSystem.Current.UnregisterListener(ParticleEventGuid);
+                Instantiate(particles[0],eventInfo.hitPoint, Quaternion.Euler(0,0,0));
             }
         }
         
-        
-
-        void OnUnitDied(UnitDeathEventInfo unitDeathEventInfo)
-        {
-            StartCoroutine(PlayParticles(unitDeathEventInfo));
-        }
-
-        IEnumerator PlayParticles(UnitDeathEventInfo unitDeathEventInfo)
-        {
-            yield return new WaitForSeconds(unitDeathEventInfo.RespawnTimer - 0.5f);
-            unitDeathEventInfo.EventUnitGo.GetComponent<ParticleSystem>().Play();
-        }
     }
 }

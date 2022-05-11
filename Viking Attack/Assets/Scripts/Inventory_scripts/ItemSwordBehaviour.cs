@@ -1,13 +1,13 @@
 using System.Collections;
 using ItemNamespace;
 using UnityEngine;
+using Event;
 
 public class ItemSwordBehaviour : ItemBaseBehaviour
 {
     private Animator animator;
     private Camera mainCamera = null;
     private GlobalPlayerInfo globalPlayerInfo;
-    private RaycastHit hit;
     private bool canAttack = true;
 
 
@@ -36,14 +36,26 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
     {
 
         yield return new WaitForSeconds(time);
+        RaycastHit hit;
         if(Physics.SphereCast(mainCamera.transform.position, 1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
         {
             hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-belongingTo.GetDamage);
             hit.collider.gameObject.GetComponent<EnemyMovement>().Stagger();
+            EnemyHitEvent hitEvent = new EnemyHitEvent();
+            hitEvent.enemy = hit.collider.transform.gameObject;
+            hitEvent.hitPoint = hit.point;
+
+            EventSystem.Current.FireEvent(hitEvent);
         }
                 
         animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"),0);
         canAttack = true;
+
+        
+        
+    }
+    private void HitParticles()
+    {
         
     }
 }
