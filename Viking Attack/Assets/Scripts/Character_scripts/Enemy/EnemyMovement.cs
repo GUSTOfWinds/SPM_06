@@ -91,6 +91,7 @@ public class EnemyMovement : NetworkBehaviour
         {
             colliders = Physics.OverlapBox(groundCheck.transform.position, new Vector3(0.1f, 0.1f, 0.1f),
                 Quaternion.identity, ground); //Check if we are on the Ground
+            Debug.DrawLine(spawnPosition, Vector3.up, Color.red);
             if (colliders.Length > 0) //when we find the ground
             {
                 isGrounded = true;
@@ -110,8 +111,15 @@ public class EnemyMovement : NetworkBehaviour
                         patrolRange) //when enemy is moving too far, change moving direction
                     {
                         //Can DO check hit.normal
+      
                         movingDirection = RandomVector(movingDirection);
+                        transform.position = Vector3.MoveTowards(transform.position, movingDirection, Time.fixedDeltaTime);
                     }
+                    else
+                    {
+                        transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
+                    }
+                 
                 }
 
                 if (isChasing)
@@ -204,22 +212,22 @@ public class EnemyMovement : NetworkBehaviour
                 }
 
                 //calculate new movement based on obstacle his
-                Vector3 nevVector = CalculateMovement();
-                if (movingDirection != Vector3.zero)
-                {
-                    movingDirection = Vector3.Lerp(movingDirection, nevVector.normalized, moveSpeed * Time.fixedDeltaTime);
-                    waitFrame++;
-                    if (waitFrame % 60 == 0)
-                    {
-                        ChangeFacingDirection(movingDirection);
-                    }
+                //Vector3 nevVector = CalculateMovement();
+                //if (movingDirection != Vector3.zero)
+                //{
+                //    movingDirection = Vector3.Lerp(movingDirection, nevVector.normalized, moveSpeed * Time.fixedDeltaTime);
+                //    waitFrame++;
+                //    if (waitFrame % 60 == 0)
+                //    {
+                //        ChangeFacingDirection(movingDirection);
+                //    }
                   
-                }
+                //}
 
-                if ((!isChasing) && (!isAttacking))
-                {
-                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
-                }
+                //if ((!isChasing) && (!isAttacking))
+                //{
+                //    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
+                //}
 
 
                 //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
@@ -275,8 +283,15 @@ public class EnemyMovement : NetworkBehaviour
 
     private Vector3 RandomVector(Vector3 current)
     {
+        Debug.DrawLine(transform.position, current, Color.blue);
         float angle = UnityEngine.Random.Range(120f, 210f);
-        Vector3 temp = Quaternion.AngleAxis(angle, Vector3.up) * current;
+        Vector3 temp1 = Quaternion.AngleAxis(angle, Vector3.up) * current;
+        //return temp;
+        float value = UnityEngine.Random.Range(0, patrolRange);
+        Vector3 temp = new Vector3(spawnPosition.x + value, 0.0f, spawnPosition.z + value);
+        Debug.DrawLine(transform.position, temp1 , Color.black);
+        Debug.DrawLine(transform.position, temp, Color.green);
+        
         return temp;
     }
 
@@ -310,7 +325,10 @@ public class EnemyMovement : NetworkBehaviour
                 {
                     movementVector += direction1 * (hitInfo1.distance - 3f);
                 }
-
+                if(Vector3.Dot(positionTemp, hitInfo1.normal) == -1)
+                {
+                    Debug.Log("XXXXXXXXXXXXXX");
+                }
             }
             else
             {
