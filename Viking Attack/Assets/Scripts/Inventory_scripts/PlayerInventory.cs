@@ -18,6 +18,9 @@ namespace Inventory_scripts
         [SerializeField] public Animator animator;
         [SerializeField] private uint netID;
 
+        [SerializeField] private GameObject itemInfoSprite;
+        [SerializeField] private GameObject[] weaponStats;
+
 
         private void Start()
         {
@@ -36,7 +39,7 @@ namespace Inventory_scripts
                 switch (playerItemPickupEventInfo.itemBase.GetItemType)
                 {
                     case ItemBase.ItemType.Weapon:
-                        animator.SetTrigger("itemPOPUP");
+                        
                         switch (playerItemPickupEventInfo.itemBase.GetWeaponType)
                         {
                             // Sets the inventory slot, updates globalplayerinfo, what item the player is using 
@@ -51,6 +54,8 @@ namespace Inventory_scripts
                                     sprites[0].transform.position + new Vector3(0f,10f,0f);
                                 gameObject.GetComponent<PlayerItemUsageController>()
                                     .ChangeItem(playerItemPickupEventInfo.itemBase);
+                                UpdateItemInfo(0); // updates the weapon info box with sword information
+                                animator.SetTrigger("itemPOPUP");
                                 break;
 
                             case ItemBase.WeaponType.Spear:
@@ -63,6 +68,8 @@ namespace Inventory_scripts
                                     sprites[1].transform.position + new Vector3(0f,10f,0f);
                                 gameObject.GetComponent<PlayerItemUsageController>()
                                     .ChangeItem(playerItemPickupEventInfo.itemBase);
+                                UpdateItemInfo(1); // updates the weapon info box with spear information
+                                animator.SetTrigger("itemPOPUP");
                                 break;
 
                             case ItemBase.WeaponType.Dagger:
@@ -75,6 +82,8 @@ namespace Inventory_scripts
                                     sprites[2].transform.position + new Vector3(0f,10f,0f);
                                 gameObject.GetComponent<PlayerItemUsageController>()
                                     .ChangeItem(playerItemPickupEventInfo.itemBase);
+                                UpdateItemInfo(2); // updates the weapon info box with dagger information
+                                animator.SetTrigger("itemPOPUP");
                                 break;
                         }
 
@@ -108,6 +117,16 @@ namespace Inventory_scripts
             }
         }
 
+        // Updates the info box to contain the information of the weapon
+        private void UpdateItemInfo(int index)
+        {
+
+            itemInfoSprite.GetComponent<Image>().sprite = sprites[index].GetComponent<Image>().sprite;
+            weaponStats[0].GetComponent<Text>().text = inventory[index].GetDamage.ToString();
+            weaponStats[1].GetComponent<Text>().text = inventory[index].GetRange.ToString();
+            weaponStats[2].GetComponent<Text>().text = inventory[index].GetSpeed.ToString();
+        }
+
         public void ToggleSword(InputAction.CallbackContext value)
         {
             if (!isLocalPlayer)
@@ -120,6 +139,7 @@ namespace Inventory_scripts
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
                 selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f,10f,0f);
+                UpdateItemInfo(0); // updates the weapon info box with sword information
                 animator.SetTrigger("itemPOPUP");
             }
         }
@@ -135,6 +155,7 @@ namespace Inventory_scripts
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[1]);
                 selectedItem.transform.position = sprites[1].transform.position + new Vector3(0f,10f,0f);
+                UpdateItemInfo(1); // updates the weapon info box with spear information
                 animator.SetTrigger("itemPOPUP");
             }
         }
@@ -150,7 +171,9 @@ namespace Inventory_scripts
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[2]);
                 selectedItem.transform.position = sprites[2].transform.position + new Vector3(0f,10f,0f);
+                UpdateItemInfo(2); // updates the weapon info box with dagger information
                 animator.SetTrigger("itemPOPUP");
+                
             }
         }
 
@@ -165,7 +188,8 @@ namespace Inventory_scripts
             {
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[3]);
                 selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f,10f,0f);
-                animator.SetTrigger("itemPOPUP");
+                
+                //animator.SetTrigger("itemPOPUP");
             }
         }
 
@@ -178,6 +202,7 @@ namespace Inventory_scripts
 
             gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
             selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f,10f,0f);
+            UpdateItemInfo(0);
             animator.SetTrigger("itemPOPUP");
         }
 
