@@ -3,6 +3,7 @@ using UnityEngine;
 using Mirror;
 using System.Collections.Generic;
 using System;
+using Inventory_scripts;
 using UnityEngine.InputSystem;
 
 public class PlayerItemUsageController : NetworkBehaviour
@@ -13,6 +14,7 @@ public class PlayerItemUsageController : NetworkBehaviour
     
     private Type currentActingComponentType;
     private ItemBaseBehaviour currentActingComponent;
+    
 
     public void Start()
     {
@@ -43,6 +45,13 @@ public class PlayerItemUsageController : NetworkBehaviour
         currentActingComponent = (ItemBaseBehaviour)gameObject.AddComponent(itemType);
         currentActingComponent.SetBelongingTo(itemBase);
         currentActingComponentType = itemType;
+        heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
+        heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
+    }
+    
+    public void SyncHeldItem(int index)
+    {
+        itemBase = gameObject.GetComponent<PlayerInventory>().inventory[index];
         heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
         heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
     }
