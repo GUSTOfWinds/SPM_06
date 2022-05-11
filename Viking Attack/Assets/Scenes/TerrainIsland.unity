@@ -170,7 +170,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &21711318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +234,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 1627232034024812431, guid: 1268ed0163b18974ea84e9d5aef06972, type: 3}
-  shouldSpawn: 0
 --- !u!114 &63614051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +318,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 56.559
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &73941760 stripped
@@ -374,7 +376,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
-  shouldSpawn: 0
 --- !u!114 &75479998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +400,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 2383320980889370116, guid: d88628bbcd5e4d2448efdf68a0b019d0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 3555711832834082155, guid: d88628bbcd5e4d2448efdf68a0b019d0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -513,7 +518,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &120638680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,6 +602,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 304.641
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &178507580 stripped
@@ -612,6 +620,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (1)
@@ -716,7 +728,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &217631400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +826,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 156.992
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &349041829 stripped
@@ -855,7 +870,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &415554267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,6 +968,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -249.287
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &436773635 stripped
@@ -1136,7 +1154,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &570852489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,6 +1178,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (2)
@@ -1331,6 +1352,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 56.559
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &701958243 stripped
@@ -1385,7 +1410,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &710798999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1470,6 +1494,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -182.872
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &793365333 stripped
@@ -1524,7 +1552,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &816190162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1549,6 +1576,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (5)
@@ -1667,7 +1698,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &884767926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1692,6 +1722,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (10)
@@ -1894,6 +1928,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -279.068
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &976525224 stripped
@@ -2033,6 +2071,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -87.68
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &998009340 stripped
@@ -2047,6 +2089,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (6)
@@ -2125,6 +2171,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (13)
@@ -2363,7 +2413,7 @@ PrefabInstance:
     - target: {fileID: 8119905292906804761, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -840037777384891287, guid: 1135aa5308125434ba5a519b6aed3ae0, type: 3}
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
 --- !u!4 &1104151897 stripped
@@ -2518,6 +2568,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -201.914
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1155151217 stripped
@@ -2802,6 +2856,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 203.292
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1215258117 stripped
@@ -2876,6 +2934,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -141.368
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1239918098 stripped
@@ -2930,7 +2992,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &1266631454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3020,6 +3081,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (9)
@@ -3158,6 +3223,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -11.949
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1317709827 stripped
@@ -3172,6 +3241,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (8)
@@ -3250,6 +3323,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (4)
@@ -3400,7 +3477,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &1421137625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3451,7 +3527,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &1498591522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3490,6 +3565,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (7)
@@ -3638,6 +3717,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (3)
@@ -3756,7 +3839,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &1599146915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3821,7 +3903,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &1633310414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3857,15 +3938,15 @@ PrefabInstance:
     - target: {fileID: 1078430519148682724, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: spawnPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 469271222892847950, guid: 3299a738816a72b43b2be7e059fb20ec, type: 3}
+      objectReference: {fileID: 1627232034024812431, guid: 1268ed0163b18974ea84e9d5aef06972, type: 3}
     - target: {fileID: 1078430519148682724, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: spawnPrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 1627232034024812431, guid: 1268ed0163b18974ea84e9d5aef06972, type: 3}
+      objectReference: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
     - target: {fileID: 1078430519148682724, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: spawnPrefabs.Array.data[3]
       value: 
-      objectReference: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+      objectReference: {fileID: 469271222892847950, guid: 3299a738816a72b43b2be7e059fb20ec, type: 3}
     - target: {fileID: 1078430519148682724, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: spawnPrefabs.Array.data[4]
       value: 
@@ -3877,7 +3958,7 @@ PrefabInstance:
     - target: {fileID: 1078430519148682724, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: spawnPrefabs.Array.data[6]
       value: 
-      objectReference: {fileID: 4170548561698657582, guid: 0b213fb652969c746a75e0a69420624b, type: 3}
+      objectReference: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
     - target: {fileID: 1078430519148682725, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3988,6 +4069,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 246.26001
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1710742767 stripped
@@ -4002,6 +4087,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (12)
@@ -4173,6 +4262,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 40.198
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1745617809 stripped
@@ -4372,6 +4465,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 171.528
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1791465060 stripped
@@ -4412,7 +4509,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &1795641509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4511,6 +4607,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -124.709
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1798692662 stripped
@@ -4661,6 +4761,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone (11)
@@ -4739,6 +4843,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569942955}
     m_Modifications:
+    - target: {fileID: 646288203246602508, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_Name
       value: Gravestone
@@ -4877,6 +4985,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 158.183
       objectReference: {fileID: 0}
+    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1885385539 stripped
@@ -4884,6 +4996,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
   m_PrefabInstance: {fileID: 1885385538}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1918451283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1918451284}
+  - component: {fileID: 1918451286}
+  - component: {fileID: 1918451285}
+  m_Layer: 0
+  m_Name: Dagger_Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1918451284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918451283}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15.76, y: -31.48, z: 24.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2045507402}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1918451285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918451283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7461f6ed6f4cd2a0fdb02ebd47ab96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  enemyPrefabToSpawn: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
+  spawnAtServerStart: 1
+--- !u!114 &1918451286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918451283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 2767707990
+  serverOnly: 1
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &1965461905
 GameObject:
   m_ObjectHideFlags: 0
@@ -4917,7 +5094,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &1965461907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4996,7 +5172,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &2030169185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5065,6 +5240,7 @@ Transform:
   - {fileID: 985874873}
   - {fileID: 462214439}
   - {fileID: 75479996}
+  - {fileID: 1918451284}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5101,7 +5277,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &2081892642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5247,7 +5422,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
-  shouldSpawn: 0
 --- !u!114 &2131580590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5398,7 +5572,7 @@ PrefabInstance:
     - target: {fileID: 5971249900983466128, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
       propertyPath: dropBase
       value: 
-      objectReference: {fileID: 4170548561698657582, guid: 0b213fb652969c746a75e0a69420624b, type: 3}
+      objectReference: {fileID: 469271222892847950, guid: 3299a738816a72b43b2be7e059fb20ec, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
 --- !u!1001 &6965989448150476984

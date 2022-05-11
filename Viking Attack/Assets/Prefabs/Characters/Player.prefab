@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 990263906447623422}
   - component: {fileID: 6900492373865875619}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: SpeedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -959,7 +959,7 @@ GameObject:
   - component: {fileID: 4492682706449581987}
   - component: {fileID: 1897024722344029716}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: SpeedStat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2469,7 +2469,7 @@ GameObject:
   - component: {fileID: 3795156119756462048}
   - component: {fileID: 169469486589881296}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: RangeStat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3139,7 +3139,7 @@ GameObject:
   - component: {fileID: 4562183057032796679}
   - component: {fileID: 7265547844599315282}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: RangeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3741,7 +3741,7 @@ GameObject:
   - component: {fileID: 8378331289391049854}
   - component: {fileID: 6860626946899473762}
   m_Layer: 5
-  m_Name: Text
+  m_Name: DamageStat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4610,7 +4610,7 @@ GameObject:
   - component: {fileID: 3070406456286602673}
   - component: {fileID: 5663944601007232168}
   m_Layer: 5
-  m_Name: Text
+  m_Name: DamageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5374,18 +5374,18 @@ RectTransform:
   m_GameObject: {fileID: 4996961543554038308}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6129029, y: 1.6393437, z: 1}
+  m_LocalScale: {x: 1.4000001, y: 1.4, z: 3.9859006}
   m_Children:
   - {fileID: 5883708410866569524}
   - {fileID: 3365198383037671820}
   - {fileID: 723462982540485858}
   - {fileID: 8850623506875474946}
-  m_Father: {fileID: 9214030808677026364}
-  m_RootOrder: 0
+  m_Father: {fileID: 5988590173185455044}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 305, y: 224}
+  m_AnchoredPosition: {x: 785, y: -316}
   m_SizeDelta: {x: 223.6477, y: 257.2909}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &241154291480303769
@@ -6055,7 +6055,7 @@ RectTransform:
   - {fileID: 5589308458130813840}
   - {fileID: 9214030808677026364}
   m_Father: {fileID: 5988590173185455044}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6284,6 +6284,7 @@ RectTransform:
   - {fileID: 2224522232630824270}
   - {fileID: 3653107586566960552}
   - {fileID: 1651390800512029302}
+  - {fileID: 2695977694989061664}
   - {fileID: 9105881209717100685}
   m_Father: {fileID: 5988590173649968420}
   m_RootOrder: 1
@@ -6300,7 +6301,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5988590173185455045}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -6488,7 +6489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0
-  gravity: 0.4
+  gravity: 0.8
   staticFrictionCoefficient: 0.9
   kineticFrictionCoefficient: 0.6
   airResistance: 0.0001
@@ -6954,6 +6955,11 @@ MonoBehaviour:
   meatStackNumber: {fileID: 8216098129314240357}
   animator: {fileID: 6997683197337012535}
   netID: 0
+  itemInfoSprite: {fileID: 6079647223067208316}
+  weaponStats:
+  - {fileID: 3817948450136752059}
+  - {fileID: 896804129577900503}
+  - {fileID: 2423587332867720793}
 --- !u!114 &-7731286149923182968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9694,8 +9700,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6200001, y: 0.61000013, z: 1}
-  m_Children:
-  - {fileID: 2695977694989061664}
+  m_Children: []
   m_Father: {fileID: 9105881209717100685}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
