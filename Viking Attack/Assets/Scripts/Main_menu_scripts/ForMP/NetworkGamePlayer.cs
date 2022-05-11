@@ -1,41 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Mirror;
-using TMPro;
-using UnityEngine.UI;
 
-public class NetworkGamePlayer : NetworkBehaviour
+namespace Main_menu_scripts.ForMP
 {
-
-    [SyncVar]
-    private string displayName = "Loading...";
-
-    private NetworkManagerLobby room;
-    private NetworkManagerLobby Room
+    public class NetworkGamePlayer : NetworkBehaviour
     {
-        get
+
+        [SyncVar]
+        private string displayName = "Loading...";
+
+        private NetworkManagerLobby room;
+        private NetworkManagerLobby Room
         {
-            if (room != null) { return room; }
-            return room = NetworkManager.singleton as NetworkManagerLobby;
+            get
+            {
+                if (room != null) { return room; }
+                return room = NetworkManager.singleton as NetworkManagerLobby;
+            }
         }
-    }
 
-    public override void OnStartClient()
-    {
-        DontDestroyOnLoad(gameObject);
+        public override void OnStartClient()
+        {
+            DontDestroyOnLoad(gameObject);
 
-        Room.GamePlayers.Add(this);
-    }
+            Room.GamePlayers.Add(this);
+        }
 
-    public override void OnStopClient()
-    {
-        Room.GamePlayers.Remove(this);
-    }
+        public override void OnStopClient()
+        {
+            Room.GamePlayers.Remove(this);
+        }
 
-    [Server]
-    public void SetDisplayName(string displayName)
-    {
-        this.displayName = displayName;
+        [Server]
+        public void SetDisplayName(string displayName)
+        {
+            this.displayName = displayName;
+        }
     }
 }

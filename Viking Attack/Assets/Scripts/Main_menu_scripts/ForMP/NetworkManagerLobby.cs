@@ -25,7 +25,7 @@ namespace Main_menu_scripts.ForMP
     
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
-        public static event Action<NetworkConnection> OnServerReadied; 
+        public static event Action<NetworkConnectionToClient> OnServerReadied; 
 
 
 
@@ -148,7 +148,7 @@ namespace Main_menu_scripts.ForMP
         public override void ServerChangeScene(string newSceneName)
         {
             // From menu to game
-            if (SceneManager.GetActiveScene().name == menuScene && newSceneName.StartsWith("Scene_Map"))
+            if (SceneManager.GetActiveScene().path == menuScene && newSceneName.StartsWith("Scene_Map"))
             {
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
@@ -156,7 +156,7 @@ namespace Main_menu_scripts.ForMP
                     var gameplayerInstance = Instantiate(gamePlayerPrefab);
                     gameplayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
 
-                    NetworkServer.Destroy(conn.identity.gameObject);
+                    //NetworkServer.Destroy(conn.identity.gameObject);
 
                     NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject);
                 }

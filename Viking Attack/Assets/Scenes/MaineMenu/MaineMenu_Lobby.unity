@@ -2772,7 +2772,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1674244507}
-  - component: {fileID: 1674244506}
   - component: {fileID: 1674244508}
   - component: {fileID: 1674244505}
   m_Layer: 0
@@ -2789,7 +2788,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674244504}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
@@ -2810,124 +2809,6 @@ MonoBehaviour:
   m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
---- !u!114 &1674244506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1674244504}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 9d04051e5d86750469d0a1c96e5fa9bb, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 96c6e056-e058-406e-a6ff-1e9aa5526cdb
-    m_ActionName: PlayerControls/UseItem[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b0bc44f3-7268-473f-86bb-7b15fc17408a
-    m_ActionName: PlayerControls/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: af199d8d-3ea3-441c-8e91-841bd66aebc3
-    m_ActionName: PlayerControls/Dash[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1ddc9014-ad68-4125-a12e-3c1a48174b92
-    m_ActionName: PlayerControls/Camera[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 899a16ae-eb25-4224-a4d5-660b3f6195c8
-    m_ActionName: PlayerControls/Interact[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8ac1dbc9-ba8a-4e17-a3e0-e42a45196aa6
-    m_ActionName: PlayerControls/Sprint[/Keyboard/leftShift]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b9565816-fcd5-4f3b-a366-4bbf5f55998e
-    m_ActionName: MenuControls/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 60aaf160-7d67-46fe-8548-b8bfe5c8b9bf
-    m_ActionName: MenuControls/Submit[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0e02860b-26ab-4634-b24c-09e88be2f30a
-    m_ActionName: MenuControls/Cancel[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9c467273-ae69-49b2-abec-bd3cc285d985
-    m_ActionName: MenuControls/Point[/Mouse/position,/Pen/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ac9da41f-5c41-4447-8979-14cae23ee884
-    m_ActionName: MenuControls/Click[/Mouse/leftButton,/Pen/tip]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4daa9e1a-687f-4b7c-8572-e75e4c34dcb9
-    m_ActionName: MenuControls/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 500d3814-6b12-4270-9ad6-7f0d521aed82
-    m_ActionName: MenuControls/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3f542409-bfd2-4225-93ad-3db3ac7e1ae3
-    m_ActionName: MenuControls/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9f30d056-4820-41c3-bbb1-376b54e60020
-    m_ActionName: MenuControls/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fe3ada87-d875-4073-817b-f13fe2e5c4ce
-    m_ActionName: MenuControls/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c7adf50b-9eda-4e36-9a95-9e56a5ed152d
-    m_ActionName: PlayerControls/Toggle Character screen[/Keyboard/tab]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 29b2511d-54c0-46ac-974c-529248c8a4a5
-    m_ActionName: PlayerControls/Toggle Menu screen[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: dba249a2-92cc-4a04-bbed-2873b42c70ed
-    m_ActionName: PlayerControls/Toggle Sword[/Keyboard/1]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 16bf9e8c-9650-430c-9134-a733467b3b07
-    m_ActionName: PlayerControls/Toggle Spear[/Keyboard/2]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 839a9745-05e6-483c-bb3e-90b327ee6478
-    m_ActionName: PlayerControls/Toggle Dagger[/Keyboard/3]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 01bac9ec-c112-4aa5-a4f8-21fac1eb1dfa
-    m_ActionName: PlayerControls/Toggle Food[/Keyboard/4]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Mouse
-  m_DefaultActionMap: PlayerControls
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 1050952275}
 --- !u!4 &1674244507
 Transform:
   m_ObjectHideFlags: 0
