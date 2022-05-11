@@ -45,6 +45,7 @@ namespace Inventory_scripts
                             // Sets the inventory slot, updates globalplayerinfo, what item the player is using 
                             // in each case
                             case ItemBase.WeaponType.Sword:
+                                
                                 UpdateHeldItem(0, playerItemPickupEventInfo.itemBase);
                                 UpdateItemInfo(0); // updates the weapon info box with sword information
                                 animator.SetTrigger("itemPOPUP");
@@ -114,7 +115,10 @@ namespace Inventory_scripts
         // Updates the info box to contain the information of the weapon
         private void UpdateItemInfo(int index)
         {
-
+            if (itemInfoSprite.transform.parent.gameObject.active == false)
+            {
+                itemInfoSprite.transform.parent.gameObject.SetActive(true);
+            }
             itemInfoSprite.GetComponent<Image>().sprite = sprites[index].GetComponent<Image>().sprite;
             weaponStats[0].GetComponent<Text>().text = inventory[index].GetDamage.ToString();
             weaponStats[1].GetComponent<Text>().text = inventory[index].GetRange.ToString();
