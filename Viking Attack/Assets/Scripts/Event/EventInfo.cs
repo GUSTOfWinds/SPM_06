@@ -49,4 +49,9 @@ namespace Event
     {
         
     }
+    public class EnemyHitEvent : EventInfo
+    {
+        public GameObject enemy;
+        public Vector3 hitPoint;
+    }
 }

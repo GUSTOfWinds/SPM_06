@@ -28,6 +28,7 @@ namespace ItemNamespace
         [SerializeField] private bool stackable; // if the item can be stacked in the inventory or the player bar
         [SerializeField] private Mesh mesh; // the mesh for the item in the world
         [SerializeField] private Material material; // the material for the item in the world
+        [SerializeField] private string usageParticle; // the object with base behavior script for the item
         [SerializeField] private string itemBaseBehaviorScriptName; // the object with base behavior script for the item
 
 
@@ -58,6 +59,8 @@ namespace ItemNamespace
         public Material GetMaterial => material;
         //Returns name of script with this items behavior
         public String GetItemBaseBehaviorScriptName => itemBaseBehaviorScriptName;
+        //Returns the particle effect 
+        public String GetUsagePatricle => usageParticle;
 
         // Contains the different item type, add a new line to the enum in order to add an item type.
         public enum ItemType
