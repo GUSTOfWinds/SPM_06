@@ -14,6 +14,7 @@ public class PlayerDamageUIListener : MonoBehaviour
     private uint netID; // the netID of the player, making sure to only play sounds when the local player is hit
 
     [SerializeField] private Image img;
+    [SerializeField] private Animator animator;
 
     private Guid uiEventGuid;
 
@@ -26,8 +27,9 @@ public class PlayerDamageUIListener : MonoBehaviour
     // Will play a random track from the array above when the local player takes damage
     void OnPlayerDamage(DamageEventInfo eventInfo)
     {
-        img = eventInfo.target.transform.Find("UI").transform.Find("Health_bar").transform.Find("Damage_animator")
-            .GetComponent<Image>();
+        animator = eventInfo.target.transform.Find("UI").transform.Find("Health_bar").GetComponent<Animator>();
+        img = eventInfo.target.transform.Find("UI").Find("Panel").GetComponent<Image>();
+        animator.SetTrigger("takeDMG");
         StartCoroutine(FadeImage());
     }
 
@@ -35,7 +37,7 @@ public class PlayerDamageUIListener : MonoBehaviour
     private IEnumerator FadeImage()
     {
         // fade from transparent to opaque
-        for (float i = 0; i <= 0.5; i += Time.fixedDeltaTime)
+        for (float i = 0; i <= 0; i += Time.fixedDeltaTime)
         {
             // set color with i as alpha
             img.color = new Color(1, 0, 0, i);
@@ -43,7 +45,7 @@ public class PlayerDamageUIListener : MonoBehaviour
         }
 
         // fade from opaque to transparent
-        for (float i = 0.5f; i >= 0; i -= Time.fixedDeltaTime)
+        for (float i = 5f; i >= 0; i -= Time.fixedDeltaTime)
         {
             // set color with i as alpha
             img.color = new Color(1, 0, 0, i);
