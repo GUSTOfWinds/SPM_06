@@ -162,8 +162,7 @@ namespace ItemNamespace
                 enemyMovement.attacking = false;
             }
         }
-
-        // Ships experience to clients, makes experience within proximity possible
+        
         [ClientRpc]
         private void RpcDealDamage(GameObject gpi)
         {
