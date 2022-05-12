@@ -14,14 +14,13 @@ public class CameraMovement3D : NetworkBehaviour
     private Vector3 cameraPosition;
     private Camera mainCamera;
     public bool shouldBeLocked; // used by the character screen to lock the mouse movement when character screen is open
-    
+
 
     void Awake()
     {
         shouldBeLocked = true;
         Cursor.lockState = CursorLockMode.Locked;
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
-        
     }
 
     public override void OnStartLocalPlayer()
@@ -52,21 +51,12 @@ public class CameraMovement3D : NetworkBehaviour
 
     public void OnMouseMovement(InputAction.CallbackContext value)
     {
-        
         if (!isLocalPlayer || !shouldBeLocked) return;
         //Sets rotation to camera depending on mouse position and movement
         rotationX -= value.ReadValue<Vector2>().y * mouseSensitivity;
         rotationY += value.ReadValue<Vector2>().x * mouseSensitivity;
         rotationX = Mathf.Clamp(rotationX, -89, 89);
         mainCamera.transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
-        transform.rotation = Quaternion.Euler(0,rotationY,0);
-    }
-    public void LockCamera ()
-    {
-
-        rotationX = 0;
-        rotationY = 0;
-        rotationX = Mathf.Clamp(rotationX, -89, 89);
-        mainCamera.transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0f);
+        transform.rotation = Quaternion.Euler(0, rotationY, 0);
     }
 }
