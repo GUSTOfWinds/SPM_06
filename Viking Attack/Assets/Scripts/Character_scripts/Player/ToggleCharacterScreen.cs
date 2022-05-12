@@ -16,7 +16,6 @@ public class ToggleCharacterScreen : MonoBehaviour
             {
                 gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = true;
             }
-            gameObject.GetComponent<CameraMovement3D>().LockCamera();
 
             Cursor.lockState = CursorLockMode.Locked;
             
