@@ -33,6 +33,10 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
             StartCoroutine(WaitToAttack(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Dagger Attack")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Dagger Attack")).speed));
         }
     }
+    public override void StopAnimation()
+    {
+        animator.SetLayerWeight(animator.GetLayerIndex("Dagger Attack"),0);
+    }
     
     //Waits the lenght of the animation before leting the player attack again.
     IEnumerator WaitToAttack(float time)
@@ -41,7 +45,7 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
         yield return new WaitForSeconds(time);
         if(Physics.SphereCast(rayCastPosition.transform.position, 0.1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
         {
-            hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-belongingTo.GetDamage);
+            hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-(belongingTo.GetDamage + globalPlayerInfo.GetDamage()));
             EnemyHitEvent hitEvent = new EnemyHitEvent();
             hitEvent.enemy = hit.collider.transform.gameObject;
             hitEvent.hitPoint = hit.point;

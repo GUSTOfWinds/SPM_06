@@ -6,5 +6,6 @@ public abstract class ItemBaseBehaviour : MonoBehaviour
 {
     protected ItemBase belongingTo;
     public abstract void Use(ItemBase itemBase);
+    public abstract void StopAnimation();
     public void SetBelongingTo(ItemBase _belongingTo){belongingTo = _belongingTo;}
 }
