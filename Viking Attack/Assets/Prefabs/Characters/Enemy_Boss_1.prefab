@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 6183275839777379503}
   - component: {fileID: 7336337623128978098}
   m_Layer: 3
-  m_Name: Enemy_Boss
+  m_Name: Enemy_Boss_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -497,9 +497,9 @@ MonoBehaviour:
   attacking: 0
   groundCheck: {fileID: 8374550714829503713}
   isAttacking: 0
-  detectScopeRadius: 30
-  patrolRange: 30
-  maxChasingRange: 0
+  detectScopeRadius: 8
+  patrolRange: 10
+  maxChasingRange: 20
   chasingSpeedMultiplier: 0
   moveSpeed: 0
   characterBase: {fileID: 11400000, guid: bd04765703eb87f4a801c8d2a6309999, type: 2}
@@ -756,9 +756,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
-  m_Height: 1.8
+  m_Height: 1.4518013
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.77390003, z: 0}
 --- !u!1 &1718588843749068532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,7 +2081,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8150900977446959990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.511, z: 0}
+  m_LocalPosition: {x: 0, y: 1.466, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1845788827967627114}

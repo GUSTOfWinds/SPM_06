@@ -2330,7 +2330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15686275, g: 0.15686275, b: 1, a: 0.11764706}
+  m_Color: {r: 0.15686275, g: 0.15686275, b: 1, a: 0.05882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6769,7 +6769,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5988590173185455045}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -6904,6 +6904,8 @@ GameObject:
   - component: {fileID: 2974739320853468469}
   - component: {fileID: 8523882858212146846}
   - component: {fileID: 4271025885202711048}
+  - component: {fileID: -3170082485622496473}
+  - component: {fileID: 5275669811317785066}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -6991,6 +6993,7 @@ MonoBehaviour:
   animator: {fileID: 3196805166761755344}
   globalPlayerInfo: {fileID: 0}
   jump: 0
+  shouldMove: 0
 --- !u!114 &5988590173649968414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7476,6 +7479,7 @@ MonoBehaviour:
   characterScreen: {fileID: 6133393436876657970}
   animator: {fileID: 4342721471618095440}
   otherAnimator: {fileID: 34812485295750230}
+  locked: 0
 --- !u!114 &2628422722539755476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7596,6 +7600,38 @@ MonoBehaviour:
   syncInterval: 0
   clientAuthority: 1
   animator: {fileID: 3196805166761755344}
+--- !u!114 &-3170082485622496473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5988590173649968415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440a9940b718e814dab8605648d2794e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  fog: {fileID: 0}
+--- !u!114 &5275669811317785066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5988590173649968415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e8a3704bf445b1438849e25422f9fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  netID: 0
+  img: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &5988590174749780764
 GameObject:
   m_ObjectHideFlags: 0
@@ -10395,7 +10431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 115, y: 69}
+  m_AnchoredPosition: {x: 95.1, y: 100.66}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6955258621295379543
@@ -10427,17 +10463,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: 0f7a18371ca79c94fb2cbfcd0d89bf25, type: 3}
+    m_FontSize: 75
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 75
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 
 --- !u!1 &8228851030110740811

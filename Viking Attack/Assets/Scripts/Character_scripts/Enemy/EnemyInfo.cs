@@ -7,24 +7,33 @@ namespace ItemNamespace
 {
     public class EnemyInfo : MonoBehaviour
     {
-        [SerializeField] private float range;  // The range of the enemy attacks
+        [SerializeField] private float range; // The range of the enemy attacks
         [SerializeField] private float attackCooldown; // the cooldown of the enemy attacks
         [SerializeField] private int damage; // the damage of the enemy attacks
-        [SerializeField] private float cooldown; // float that will be reset to 0 after hitting the attackCooldown variable
-        [SerializeField] private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
-        [SerializeField] private float chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
+
+        [SerializeField]
+        private float cooldown; // float that will be reset to 0 after hitting the attackCooldown variable
+
+        [SerializeField]
+        private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
+
+        [SerializeField]
+        private float
+            chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
+
         [SerializeField] private int moveSpeed; // movement speed of the enemy
         [SerializeField] private float health;
         [SerializeField] public float maxHealth;
         [SerializeField] private float experienceRadius;
-        [Header("Insert the level you want the enemy to be")]
-        [SerializeField] private int level;
+
+        [Header("Insert the level you want the enemy to be")] [SerializeField]
+        private int level;
+
         [SerializeField] private float experience;
         [SerializeField] private new string name;
         private bool hasHealthBarShown;
         private Transform respawnParent;
         private ItemBase drop; // insert item 
-        private SceneSwitch sceneSwitch;
         private int dropChance;
 
         private void Awake()
@@ -42,22 +51,12 @@ namespace ItemNamespace
             maxHealth = characterBase.GetMaxHealth();
             drop = characterBase.GetDrop();
             dropChance = characterBase.GetDropChance();
-            sceneSwitch = GameObject.FindGameObjectWithTag("Portal").GetComponent<SceneSwitch>();
-
         }
 
         public void Kill()
         {
-            
-                
             //TODO ADD EVENT LISTENER HERE, NEEDS TO FIND ALL LISTENERS FOR ENEMY DEATHS
             gameObject.SetActive(false);
-            
-        }
-
-        public bool CheckHealthBarStatus()
-        {
-            return hasHealthBarShown;
         }
 
         public void SetRespawnAnchor(Transform p)
@@ -70,10 +69,6 @@ namespace ItemNamespace
             return respawnParent;
         }
 
-        public void SetHealthBarStatus(bool b)
-        {
-            hasHealthBarShown = b;
-        }
         public ItemBase GetDrop()
         {
             return drop;
@@ -83,23 +78,16 @@ namespace ItemNamespace
         {
             return dropChance;
         }
-        
-        public void UpdateHealth(float difference)
+
+        public string GetName()
         {
-            health += difference;
-            gameObject.transform.Find("Parent").gameObject.transform.Find("Health_bar").gameObject.GetComponent<EnemyHealthBar>().SetHealth();
-            if (health <= 0)
-            {
-                sceneSwitch.DeadBoss(name);
-                gameObject.GetComponent<EnemyInfo>().Kill();
-            }
+            return name;
         }
 
         //get health back when moving back to default status
-        public void BackToDefault( )
+        public void BackToDefault()
         {
             this.gameObject.GetComponent<EnemyInfo>().health = maxHealth;
-          
         }
     }
 }
