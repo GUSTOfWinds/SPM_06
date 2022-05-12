@@ -29,6 +29,10 @@ public class ItemMeatBehaviour : ItemBaseBehaviour
             StartCoroutine(WaitToEat(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Eat Meat")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Eat Meat")).speed, itemBase));
         }
     }
+    public override void StopAnimation()
+    {
+        animator.SetLayerWeight(animator.GetLayerIndex("Eat Meat"), 0);
+    }
     
     IEnumerator WaitToEat(float time, ItemBase itemBase)
     {

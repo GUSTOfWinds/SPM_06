@@ -43,7 +43,10 @@ public class PlayerItemUsageController : NetworkBehaviour
         itemBase = newItemBase;
         Type itemType = Type.GetType(itemBase.GetItemBaseBehaviorScriptName);
         if(currentActingComponent != null)
+        {
+            currentActingComponent.StopAnimation();
             Destroy(currentActingComponent);
+        }
         currentActingComponent = (ItemBaseBehaviour)gameObject.AddComponent(itemType);
         currentActingComponent.SetBelongingTo(itemBase);
         currentActingComponentType = itemType;

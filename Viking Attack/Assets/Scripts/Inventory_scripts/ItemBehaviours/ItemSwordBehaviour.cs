@@ -33,6 +33,11 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
             StartCoroutine(WaitToAttack(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).speed));
         }
     }
+
+    public override void StopAnimation()
+    {
+        animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"), 0);
+    }
     
     //Waits the lenght of the animation before leting the player attack again.
     IEnumerator WaitToAttack(float time)
@@ -41,7 +46,7 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         yield return new WaitForSeconds(time);
         if(Physics.SphereCast(rayCastPosition.transform.position, 0.1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
         {
-            hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-belongingTo.GetDamage);
+            hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-(belongingTo.GetDamage + globalPlayerInfo.GetDamage()));
             hit.collider.gameObject.GetComponent<EnemyMovement>().Stagger();
             EnemyHitEvent hitEvent = new EnemyHitEvent();
             hitEvent.enemy = hit.collider.transform.gameObject;
