@@ -23,6 +23,8 @@ public class EnemyMovement : NetworkBehaviour
     private Vector3 movingDirection;
     private float waitFrame;
     private int defaultSpeed;
+    private Vector3 point1, point2;
+    private CapsuleCollider capsCollider;
 
     [Header("GroudCheck Settings")] [SerializeField]
     private GameObject groundCheck;
@@ -73,8 +75,14 @@ public class EnemyMovement : NetworkBehaviour
         player = LayerMask.GetMask("Player");
 
         movingDirection = RandomVector(-patrolRange, patrolRange);
-        waitFrame = 0;
         
+        waitFrame = 0;
+
+        capsCollider = GetComponent<CapsuleCollider>();
+        point1 = gameObject.transform.position + capsCollider.center + Vector3.up * (capsCollider.height / 2 - capsCollider.radius);
+        point2 = gameObject.transform.position + capsCollider.center + Vector3.down * (capsCollider.height / 2 - capsCollider.radius);
+
+
     }
 
     private void FixedUpdate()
@@ -84,7 +92,7 @@ public class EnemyMovement : NetworkBehaviour
             return;
         }
         //change the transform.position from botten to central 
-        positionTemp = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        positionTemp = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z);
         if (attacking)
         {
             return;
@@ -113,13 +121,17 @@ public class EnemyMovement : NetworkBehaviour
                     if (Vector3.Distance(transform.position, spawnPosition) >=
                         patrolRange) //when enemy is moving too far, change moving direction
                     {
-                        //Can DO check hit.normal
-                        movingDirection = RandomVector(movingDirection).normalized;
-                        
+                        //Can DO check hit.normal 
+                        // movingDirection = -movingDirection;
+                       movingDirection = RandomVector(movingDirection).normalized;
                         checkForHinder = false;
-                    }
-                    ChangeFacingDirection(movingDirection);
 
+
+
+
+
+                    }
+                   // ChangeFacingDirection(movingDirection);
                 }
 
                 if (isChasing)
@@ -155,6 +167,7 @@ public class EnemyMovement : NetworkBehaviour
                 if (isAttacking)
                 {
                     backToDefault = false;
+                    transform.LookAt(chasingObject.transform.position);
                     if (chasingObject != null)
                     {
                         if (Vector3.Distance(transform.position, spawnPosition) >= maxChasingRange)
@@ -178,6 +191,7 @@ public class EnemyMovement : NetworkBehaviour
                             chasingObject = null;
                         }
                     }
+                    
                 } //is Attacting
 
                 if (backToDefault)
@@ -215,8 +229,10 @@ public class EnemyMovement : NetworkBehaviour
 
 
                 //calculate new movement based on obstacle his
-               
-                if (movingDirection != Vector3.zero && checkForHinder)
+
+
+              
+                if (movingDirection != Vector3.zero  && checkForHinder)
                 {
                     Vector3 nevVector = CalculateMovement();
                     movingDirection = Vector3.Lerp(movingDirection, nevVector.normalized, moveSpeed * Time.fixedDeltaTime);
@@ -230,10 +246,10 @@ public class EnemyMovement : NetworkBehaviour
 
                 if ((!isChasing) && (!isAttacking))
                 {
+                    ChangeFacingDirection(movingDirection);
                     transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                 }
-
-
+                
 
                 //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
                 CmdSetSynchedPosition(transform.position);
@@ -290,7 +306,7 @@ public class EnemyMovement : NetworkBehaviour
     private Vector3 RandomVector(Vector3 current)
     {
         
-        float angle = UnityEngine.Random.Range(130f, 220f);
+        float angle = UnityEngine.Random.Range(170f, 190f);
         Vector3 temp = Quaternion.Euler(0, angle, 0) * current;
         //ChangeFacingDirection(temp);
         return temp;
@@ -312,24 +328,41 @@ public class EnemyMovement : NetworkBehaviour
 
         float stepAngle = (visionAngle * 2.0f) / (traces - 1);
         RaycastHit hitInfo1;
+        if (Physics.Raycast(transform.position, movingDirection+transform.position, 3f, (1 << 9)))
+        {
+            //Time.timeScale = 0;
 
+            movingDirection = -movingDirection;
+
+            Debug.DrawLine(transform.position, transform.position + movingDirection, Color.green);
+            return movingDirection;
+        }
+        //RaycastHit hitInfo;
+        //if (Physics.CapsuleCast(point1, point2, capsCollider.radius, transform.position+movingDirection, out hitInfo, attackRange, (1 << 9)))
+        //{
+        //    if(hitInfo.collider.gameObject.tag == "House")
+        //    {
+        //        movingDirection = -movingDirection;
+        //        return movingDirection;
+        //    }
+
+        //}
         // Create movement vector based on lidar sight.
         for (int i = 0; i < traces; i++)
         {
             float angle1 = (90.0f + visionAngle - (i * stepAngle)) * Mathf.Deg2Rad;
             Vector3 direction1 = transform.TransformDirection(new Vector3(Mathf.Cos(angle1), 0.0f, Mathf.Sin(angle1)));
 
+      
 
-            if (Physics.Raycast(positionTemp, direction1, out hitInfo1, maxChasingRange+ patrolRange))
+            if (Physics.Raycast(transform.position, direction1, out hitInfo1, maxChasingRange+ patrolRange,~(1<<9 | 1<<7)))
             {
                 if (hitInfo1.collider.tag != "Player")
                 {
                     movementVector += direction1 * (hitInfo1.distance - 3f);
                 }
-                if(Vector3.Dot(transform.position, hitInfo1.normal) == -1)
-                {
-                    Debug.Log("XXXXXXXXXXXXXX");
-                }
+
+
             }
             else
             {
