@@ -15,7 +15,7 @@ namespace ItemNamespace
         private float cooldown; // float that will be reset to 0 after hitting the attackCooldown variable
 
         [SerializeField]
-        private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
+        public CharacterBase characterBase; // the scriptable object that we fetch all the variables from
 
         [SerializeField]
         private float
