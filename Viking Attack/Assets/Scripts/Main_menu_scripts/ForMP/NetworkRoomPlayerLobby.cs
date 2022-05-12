@@ -98,7 +98,8 @@ namespace Main_menu_scripts.ForMP
 
             for (int i = 0; i < Room.RoomPlayers.Count; i++)
             {
-                playerNameTexts[i].text = "<color=yellow>"+ Room.RoomPlayers[i].DisplayName+"</color>";
+                playerNameTexts[i].text = Room.RoomPlayers[i].DisplayName;
+                playerNameTexts[i].color = new Color(PlayerPrefs.GetInt("redValue"), PlayerPrefs.GetInt("greenValue"), PlayerPrefs.GetInt("blueValue"));
                 playerReadyTexts[i].text = Room.RoomPlayers[i].isReady
                     ? "<color=green> Ready </color>"
                     : "<color=red> Not Ready </color>";

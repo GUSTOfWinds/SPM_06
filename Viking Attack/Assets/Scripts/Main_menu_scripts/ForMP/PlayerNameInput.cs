@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,7 +14,6 @@ namespace Main_menu_scripts.ForMP
 
         [SerializeField] private Button continueButton;
 
-        [SerializeField] private List<Button> colourButton = new List<Button>();
 
         public static string displayName { get; private set; }
         private const string PlayerPrefsNameKey = "PlayerName";
@@ -39,6 +39,7 @@ namespace Main_menu_scripts.ForMP
         {
             continueButton.interactable = !string.IsNullOrEmpty(playerColor.ToString());
         }
+
 
         public void SavePlayerName()
         {
