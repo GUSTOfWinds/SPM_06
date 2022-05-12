@@ -99,11 +99,23 @@ namespace Main_menu_scripts.ForMP
             for (int i = 0; i < Room.RoomPlayers.Count; i++)
             {
                 playerNameTexts[i].text = Room.RoomPlayers[i].DisplayName;
-                playerNameTexts[i].color = new Color(PlayerPrefs.GetInt("redValue"), PlayerPrefs.GetInt("greenValue"), PlayerPrefs.GetInt("blueValue"));
+                playerNameTexts[i].color = NameColour();
                 playerReadyTexts[i].text = Room.RoomPlayers[i].isReady
                     ? "<color=green> Ready </color>"
                     : "<color=red> Not Ready </color>";
             }
+        }
+
+        private Color32 NameColour()
+        {
+            Color32 returnColour;
+            if (!isLocalPlayer || !hasAuthority) return returnColour = new Color32(255,255,255,255);
+            byte red = (byte)PlayerPrefs.GetInt("redValue");
+            byte green = (byte)PlayerPrefs.GetInt("greenValue");
+            byte blue = (byte)PlayerPrefs.GetInt("blueValue");
+            returnColour = new Color32(r: red, g: green, b: blue, a: 255);
+
+            return returnColour;
         }
 
         public void HandleReadyToStart(bool readyToStart)

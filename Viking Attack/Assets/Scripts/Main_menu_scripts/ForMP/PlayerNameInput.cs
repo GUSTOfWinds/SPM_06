@@ -32,7 +32,7 @@ namespace Main_menu_scripts.ForMP
 
         public void SetPlayerName(String playerName)
         {
-            continueButton.interactable = !string.IsNullOrEmpty(playerName);
+            MakeButtonActive();
         }
         
         public void SetPlayerColour(Color playerColor)
@@ -53,7 +53,18 @@ namespace Main_menu_scripts.ForMP
             
             playerColour = Color.red;
             PlayerPrefs.SetString(PlayerPrefsNameKey, ColorUtility.ToHtmlStringRGB(playerColour));
-        
+        }
+
+        public void MakeButtonActive()
+        {
+            if (nameInputField.text != null || nameInputField.text != "")
+            {
+                continueButton.interactable = true;
+            }
+            else
+            {
+                continueButton.interactable = false;
+            }
         }
 
     }

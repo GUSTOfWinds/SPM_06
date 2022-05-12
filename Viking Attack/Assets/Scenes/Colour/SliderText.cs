@@ -11,7 +11,7 @@ namespace Scenes.Colour
         [SerializeField] private  TMP_InputField textComponent;
         [SerializeField] private  string colorComponent;
         [SerializeField] private  Slider slider;
-
+        public int colValue;
 
         private  void Awake()
         {
@@ -30,7 +30,7 @@ namespace Scenes.Colour
             PlayerPrefs.SetInt(colorComponent, colValue);
         }
 
-        public  int colValue;
+        
 
         public  int GetColValue()
         {
