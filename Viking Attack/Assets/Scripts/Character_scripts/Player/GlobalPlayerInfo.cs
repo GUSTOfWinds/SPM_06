@@ -37,7 +37,7 @@ public class GlobalPlayerInfo : MonoBehaviour
         health = 100;
         maxHealth = 100;
         stamina = 100;
-        maxStamina = 100;
+        maxStamina = 120;
         healthBar = gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform
             .Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>();
         staminaBar = gameObject.transform.Find("UI").gameObject.transform.Find("Stamina_bar").gameObject.transform
