@@ -53,10 +53,9 @@ namespace Event
 
             if (unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetDrop() != null)
             {
-                int randomMax = unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetDropChance() + 1;
                 // Randomizes a number between 1 and the dropchance int set in character base for drops, if
                 // it is a match, the drop will appear
-                if (Random.Range(1, randomMax) ==
+                if (Random.Range(1, unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetDropChance()) ==
                     unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetDropChance())
                 {
                     if (dropDataBase.GetComponent<DropDatabase>().GetIsDropped(unitDeathEventInfo.EventUnitGo.transform

@@ -48,7 +48,6 @@ public class GlobalPlayerInfo : MonoBehaviour
         levelThreshold = 60;
         availableStatpoints = 0;
         level = 1;
-        SetPlayerName(PlayerPrefs.GetString("PlayerName"));
     }
 
     public void SetItemSlot(int index, ItemBase itemBase)
