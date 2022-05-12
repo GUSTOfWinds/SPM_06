@@ -128,7 +128,9 @@ public class EnemyMovement : NetworkBehaviour
                         movingDirection = RandomVector(movingDirection).normalized;
                         checkForHinder = false;
                     }
-                    // ChangeFacingDirection(movingDirection);
+                    
+                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
+                    ChangeFacingDirection(movingDirection);
                 }
 
                 if (isChasing)
@@ -209,12 +211,9 @@ public class EnemyMovement : NetworkBehaviour
                     }
                     else
                     {
-                        transform.position = Vector3.MoveTowards(transform.position, spawnPosition, moveSpeed * 0.3f * Time.deltaTime);
-                        transform.LookAt(spawnPosition);
-                        //Vector3 nevDirection = new Vector3(spawnPosition.x, transform.position.y,spawnPosition.z) - transform.position;
-
-                        //movingDirection = nevDirection.normalized;
-                        //transform.LookAt(movingDirection);
+                       transform.position = Vector3.MoveTowards(transform.position, spawnPosition, moveSpeed * 0.3f * Time.deltaTime);
+                       transform.LookAt(spawnPosition);
+                     
 
                     }
                   
@@ -242,12 +241,12 @@ public class EnemyMovement : NetworkBehaviour
                     }
                 }
 
-                if ((!isChasing) && (!isAttacking))
-                {
+                //if ((!isChasing) && (!isAttacking))
+                //{
                    
-                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
-                    ChangeFacingDirection(movingDirection);
-                }
+                //    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
+                //    ChangeFacingDirection(movingDirection);
+                //}
 
 
                 //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
