@@ -128,7 +128,9 @@ public class EnemyMovement : NetworkBehaviour
                         movingDirection = RandomVector(movingDirection).normalized;
                         checkForHinder = false;
                     }
-                    // ChangeFacingDirection(movingDirection);
+                    
+                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
+                    ChangeFacingDirection(movingDirection);
                 }
 
                 if (isChasing)
@@ -205,16 +207,17 @@ public class EnemyMovement : NetworkBehaviour
                         backToDefault = false;
                         isGuarding = true;
                         chasingObject = null;
+                       //Debug.Log("Back to guarding");
                     }
                     else
                     {
-                        // transform.position = Vector3.MoveTowards(transform.position, spawnPosition, moveSpeed*0.2f * Time.deltaTime);
-                        //transform.LookAt(spawnPosition);
-                        Vector3 nevDirection = transform.position - spawnPosition;
-                        ChangeFacingDirection(-nevDirection);
-                        movingDirection = -nevDirection.normalized;
-                        //  transform.position += (-nevDirection) * moveSpeed * 0.2f * Time.deltaTime;
+                       transform.position = Vector3.MoveTowards(transform.position, spawnPosition, moveSpeed * 0.3f * Time.deltaTime);
+                       transform.LookAt(spawnPosition);
+                     
+
                     }
+                  
+
                 }
 
                 if ((!isChasing) && (!isAttacking))
@@ -238,11 +241,12 @@ public class EnemyMovement : NetworkBehaviour
                     }
                 }
 
-                if ((!isChasing) && (!isAttacking))
-                {
-                    ChangeFacingDirection(movingDirection);
-                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
-                }
+                //if ((!isChasing) && (!isAttacking))
+                //{
+                   
+                //    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
+                //    ChangeFacingDirection(movingDirection);
+                //}
 
 
                 //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP

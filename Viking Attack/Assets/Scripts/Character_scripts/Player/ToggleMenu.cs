@@ -64,6 +64,7 @@ public class ToggleMenu : NetworkBehaviour
     // unpause the game
     public void CloseScreen()
     {
+        isOpen = false;
         if (isServer)
         {
             isOpen = false;
