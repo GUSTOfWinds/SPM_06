@@ -39,7 +39,7 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
         animator.SetLayerWeight(animator.GetLayerIndex("Spear Attack"), 0);
     }
     
-    //Waits the lenght of the animation before leting the player attack again.
+    //Waits the length of the animation before letting the player attack again.
     IEnumerator WaitToAttack(float time)
     {
 
