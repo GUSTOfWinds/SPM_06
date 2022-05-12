@@ -18,10 +18,13 @@ public class PlayerScript3D : NetworkBehaviour
     public InputAction.CallbackContext movementKeyInfo;
     public InputAction.CallbackContext sprintKeyInfo;
     [HideInInspector] public bool jump;
+
+    public bool shouldMove;
     //KeyInfo variables  stop
     
     public override void OnStartLocalPlayer()
     {
+        shouldMove = true;
         myRigidbody = GetComponent<MyRigidbody3D>();
         if (states.Length > 0)
             stateMachine = new StateMachine(this, states);
@@ -45,7 +48,10 @@ public class PlayerScript3D : NetworkBehaviour
     public MyRigidbody3D MyRigidbody3D => myRigidbody;
     public void OnMovement(InputAction.CallbackContext value)
     {
-        movementKeyInfo = value;
+        if (shouldMove)
+        {
+            movementKeyInfo = value;
+        }
     }
     // Checks if the button for sprint is pressed, the value only functions as a bool (pressed or not) in the run state
     public void OnSprint(InputAction.CallbackContext value)
