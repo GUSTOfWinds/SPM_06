@@ -67,6 +67,7 @@ namespace ItemNamespace
                 {
                     cooldownSound += Time.fixedDeltaTime;
                 }
+                //if the enemy is stagger stop attack
                 if(animator.GetBool("Staggered") && finishAttack != null)
                 {
                     StopCoroutine(finishAttack);
@@ -94,7 +95,7 @@ namespace ItemNamespace
                     }
 
                     // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
-                    if (hit.distance < range && cooldown > attackCooldown)
+                    if (hit.distance < range && cooldown > attackCooldown && enemyMovement.isAttacking)
                     {
                         // sets the animator of the enemy to Attacking
                         animator.SetBool("Attacking", true);
@@ -161,8 +162,7 @@ namespace ItemNamespace
                 enemyMovement.attacking = false;
             }
         }
-
-        // Ships experience to clients, makes experience within proximity possible
+        
         [ClientRpc]
         private void RpcDealDamage(GameObject gpi)
         {

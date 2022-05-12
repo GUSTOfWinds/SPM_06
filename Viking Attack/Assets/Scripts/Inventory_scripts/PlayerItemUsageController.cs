@@ -3,6 +3,7 @@ using UnityEngine;
 using Mirror;
 using System.Collections.Generic;
 using System;
+using Inventory_scripts;
 using UnityEngine.InputSystem;
 
 public class PlayerItemUsageController : NetworkBehaviour
@@ -13,11 +14,14 @@ public class PlayerItemUsageController : NetworkBehaviour
     
     private Type currentActingComponentType;
     private ItemBaseBehaviour currentActingComponent;
+    
 
     public void Start()
     {
+        ChangeItem(itemBase);
         if(holdingHand != null)
             heldItemWorldObject.transform.SetParent(holdingHand.transform);
+        
     }
 
     public void OnUse(InputAction.CallbackContext value)
@@ -39,10 +43,20 @@ public class PlayerItemUsageController : NetworkBehaviour
         itemBase = newItemBase;
         Type itemType = Type.GetType(itemBase.GetItemBaseBehaviorScriptName);
         if(currentActingComponent != null)
+        {
+            currentActingComponent.StopAnimation();
             Destroy(currentActingComponent);
+        }
         currentActingComponent = (ItemBaseBehaviour)gameObject.AddComponent(itemType);
         currentActingComponent.SetBelongingTo(itemBase);
         currentActingComponentType = itemType;
+        heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
+        heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
+    }
+    
+    public void SyncHeldItem(int index)
+    {
+        itemBase = gameObject.GetComponent<PlayerInventory>().inventory[index];
         heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
         heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
     }

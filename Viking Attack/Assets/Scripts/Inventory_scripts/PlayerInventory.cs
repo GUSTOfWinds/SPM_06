@@ -10,21 +10,21 @@ namespace Inventory_scripts
 {
     public class PlayerInventory : NetworkBehaviour
     {
-        [SerializeField] private ItemBase[] inventory;
+        [SerializeField] public ItemBase[] inventory;
         [SerializeField] private GameObject[] sprites;
-        [SerializeField] private Guid itemPickupGuid;
         [SerializeField] private GameObject selectedItem;
         [SerializeField] private GameObject meatStackNumber;
         [SerializeField] public Animator animator;
         [SerializeField] private uint netID;
-
         [SerializeField] private GameObject itemInfoSprite;
         [SerializeField] private GameObject[] weaponStats;
+        
+        private Guid itemPickupGuid;
 
 
         private void Start()
         {
-            inventory = new ItemBase[4];
+            //inventory = new ItemBase[4];
             // Registers listener for player pickups
             netID = gameObject.GetComponent<NetworkIdentity>().netId;
             EventSystem.Current.RegisterListener<PlayerItemPickupEventInfo>(OnItemPickup, ref itemPickupGuid);
@@ -39,36 +39,42 @@ namespace Inventory_scripts
                 switch (playerItemPickupEventInfo.itemBase.GetItemType)
                 {
                     case ItemBase.ItemType.Weapon:
-                        
+                        int weaponIndex = 0;
                         switch (playerItemPickupEventInfo.itemBase.GetWeaponType)
                         {
-                            // Sets the inventory slot, updates globalplayerinfo, what item the player is using 
-                            // in each case
-                            case ItemBase.WeaponType.Sword:
-                                
-                                UpdateHeldItem(0, playerItemPickupEventInfo.itemBase);
-                                UpdateItemInfo(0); // updates the weapon info box with sword information
-                                animator.SetTrigger("itemPOPUP");
-                                break;
-
                             case ItemBase.WeaponType.Spear:
-                                UpdateHeldItem(1, playerItemPickupEventInfo.itemBase);
-                                UpdateItemInfo(1); // updates the weapon info box with spear information
-                                animator.SetTrigger("itemPOPUP");
+                                weaponIndex = 1;
                                 break;
 
                             case ItemBase.WeaponType.Dagger:
-                                UpdateHeldItem(2, playerItemPickupEventInfo.itemBase);
-                                UpdateItemInfo(2); // updates the weapon info box with dagger information
-                                animator.SetTrigger("itemPOPUP");
+                                weaponIndex = 2;
                                 break;
                         }
 
+                        // Updates the held item locally
+                        UpdateHeldItem(weaponIndex, playerItemPickupEventInfo.itemBase);
+                        // Updates the weapon item information locally
+                        UpdateItemInfo(weaponIndex);
+
+                        // Syncs the held item to either server or client
+                        if (isClientOnly)
+                        {
+                            CmdUpdateWeapon(weaponIndex, gameObject);
+                        }
+
+                        if (isServer)
+                        {
+                            RpcUpdateWeapon(weaponIndex, gameObject);
+                        }
+
+                        animator.SetTrigger("itemPOPUP");
+
                         break;
                     // END OF INNER WEAPON SWITCH
+
                     // In case it is a food item being picked up
                     case ItemBase.ItemType.Food:
-                        if (inventory[3] != null)
+                        if (sprites[3].active)
                         {
                             gameObject.GetComponent<GlobalPlayerInfo>().IncreaseMeatStackNumber();
                             meatStackNumber.GetComponent<Text>().text =
@@ -92,105 +98,155 @@ namespace Inventory_scripts
                         break;
                 }
             }
-            else
-            {
-                gameObject.GetComponent<PlayerItemUsageController>()
-                    .ChangeItem(playerItemPickupEventInfo.itemBase);
-            }
         }
 
+
+        // A call from a client to the host that the client has picked up a new weapon
+        [Command(requiresAuthority = false)]
+        void CmdUpdateWeapon(int index, GameObject go)
+        {
+            go.GetComponent<PlayerItemUsageController>().SyncHeldItem(index);
+        }
+
+
+        // A call from the host to the client that the host has picked up a new weapon
+        [ClientRpc]
+        void RpcUpdateWeapon(int index, GameObject go)
+        {
+            go.GetComponent<PlayerItemUsageController>().SyncHeldItem(index);
+        }
+
+        
+        // Activates all parts needed for the inventory slot of the itembase that was picked up
+        // to be able to function fully
         private void UpdateHeldItem(int index, ItemBase itemBase)
         {
-            inventory[index] = itemBase;
             sprites[index].SetActive(true);
             sprites[index].GetComponent<Image>().sprite = inventory[index].GetSprite;
             gameObject.GetComponent<GlobalPlayerInfo>()
                 .SetItemSlot(index, inventory[index]); // sets the info in globalplayerinfo
             selectedItem.transform.position =
-                sprites[index].transform.position + new Vector3(0f,10f,0f);
+                sprites[index].transform.position + new Vector3(0f, 10f, 0f);
             gameObject.GetComponent<PlayerItemUsageController>()
                 .ChangeItem(itemBase);
         }
 
-        // Updates the info box to contain the information of the weapon
+        // Updates the info box that contains the information of the weapon
         private void UpdateItemInfo(int index)
         {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
+
             if (itemInfoSprite.transform.parent.gameObject.active == false)
             {
                 itemInfoSprite.transform.parent.gameObject.SetActive(true);
             }
+
             itemInfoSprite.GetComponent<Image>().sprite = sprites[index].GetComponent<Image>().sprite;
             weaponStats[0].GetComponent<Text>().text = inventory[index].GetDamage.ToString();
             weaponStats[1].GetComponent<Text>().text = inventory[index].GetRange.ToString();
             weaponStats[2].GetComponent<Text>().text = inventory[index].GetSpeed.ToString();
         }
 
+
+        // When the player presses the 1 button, the sword is toggled and worn,
+        // if the sword has been picked up
         public void ToggleSword(InputAction.CallbackContext value)
         {
-            if (!isLocalPlayer)
+            if (sprites[0].active)
             {
-                
-                return;
-            }
+                // Syncs the held item to either server or client
+                if (isClientOnly)
+                {
+                    CmdUpdateWeapon(0, gameObject);
+                }
 
-            if (inventory[0] != null)
-            {
+                if (isServer)
+                {
+                    RpcUpdateWeapon(0, gameObject);
+                }
+
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
-                selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f,10f,0f);
+                selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 10f, 0f);
                 UpdateItemInfo(0); // updates the weapon info box with sword information
                 animator.SetTrigger("itemPOPUP");
             }
         }
 
+        // When the player presses the 2 button, the spear is toggled and worn,
+        // if the spear has been picked up
         public void ToggleSpear(InputAction.CallbackContext value)
         {
-            if (!isLocalPlayer)
+            if (sprites[1].active)
             {
-                return;
-            }
+                // Syncs the held item to either server or client
+                if (isClientOnly)
+                {
+                    CmdUpdateWeapon(1, gameObject);
+                }
 
-            if (inventory[1] != null)
-            {
+                if (isServer)
+                {
+                    RpcUpdateWeapon(1, gameObject);
+                }
+
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[1]);
-                selectedItem.transform.position = sprites[1].transform.position + new Vector3(0f,10f,0f);
+                selectedItem.transform.position = sprites[1].transform.position + new Vector3(0f, 10f, 0f);
                 UpdateItemInfo(1); // updates the weapon info box with spear information
                 animator.SetTrigger("itemPOPUP");
             }
         }
 
+        // When the player presses the 3 button, the dagger is toggled and worn,
+        // if the dagger has been picked up
         public void ToggleDagger(InputAction.CallbackContext value)
         {
-            if (!isLocalPlayer)
+            if (sprites[2].active)
             {
-                return;
-            }
+                // Syncs the held item to either server or client
+                if (isClientOnly)
+                {
+                    CmdUpdateWeapon(2, gameObject);
+                }
 
-            if (inventory[2] != null)
-            {
+                if (isServer)
+                {
+                    RpcUpdateWeapon(2, gameObject);
+                }
+
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[2]);
-                selectedItem.transform.position = sprites[2].transform.position + new Vector3(0f,10f,0f);
+                selectedItem.transform.position = sprites[2].transform.position + new Vector3(0f, 10f, 0f);
                 UpdateItemInfo(2); // updates the weapon info box with dagger information
                 animator.SetTrigger("itemPOPUP");
-                
             }
         }
 
+        // When the player presses the 4 button, the food is toggled and held in hand
+        // if the player has more than 0 food in his/her inventory
         public void ToggleFood(InputAction.CallbackContext value)
         {
-            if (!isLocalPlayer)
+            if (gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber() > 0)
             {
-                return;
-            }
+                // Syncs the held item to either server or client
+                if (isClientOnly)
+                {
+                    CmdUpdateWeapon(3, gameObject);
+                }
 
-            if (inventory[3] != null && gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber() > 0)
-            {
+                if (isServer)
+                {
+                    RpcUpdateWeapon(3, gameObject);
+                }
+
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[3]);
-                selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f,10f,0f);
-                
-                //animator.SetTrigger("itemPOPUP");
+                selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f, 10f, 0f);
             }
         }
 
+
+        // After eating all your food, the player goes back to holding the sword
         public void ReturnToDefault()
         {
             if (!isLocalPlayer)
@@ -199,11 +255,12 @@ namespace Inventory_scripts
             }
 
             gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
-            selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f,10f,0f);
+            selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 10f, 0f);
             UpdateItemInfo(0);
             animator.SetTrigger("itemPOPUP");
         }
 
+        // Fetches the current number of food the player has and updates the text shown in the UI
         public void UpdateMeatStack()
         {
             if (!isLocalPlayer)
@@ -213,6 +270,16 @@ namespace Inventory_scripts
 
             meatStackNumber.GetComponent<Text>().text =
                 gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber().ToString();
+
+            if (gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber() < 1)
+            {
+                sprites[3].SetActive(false);
+            }
+            else
+            {
+                sprites[3].SetActive(true);
+            }
+            
         }
     }
 }

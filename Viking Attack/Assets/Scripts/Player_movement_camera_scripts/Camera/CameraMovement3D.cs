@@ -14,24 +14,21 @@ public class CameraMovement3D : NetworkBehaviour
     private Vector3 cameraPosition;
     private Camera mainCamera;
     public bool shouldBeLocked; // used by the character screen to lock the mouse movement when character screen is open
-    
+
 
     void Awake()
     {
-        mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
         shouldBeLocked = true;
         Cursor.lockState = CursorLockMode.Locked;
-        
-        
+        mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
     }
 
-    public override void OnStartClient()
+    public override void OnStartLocalPlayer()
     {
         if (mainCamera != null)
         {
-            Transform transform1;
-            (transform1 = mainCamera.transform).SetParent(transform);
-            transform1.position = firstPersonPosition.transform.position;
+            mainCamera.transform.SetParent(transform);
+            mainCamera.transform.position = firstPersonPosition.transform.position;
         }
 
         if (isLocalPlayer)
@@ -47,29 +44,19 @@ public class CameraMovement3D : NetworkBehaviour
             mainCamera.transform.SetParent(null);
             SceneManager.MoveGameObjectToScene(mainCamera.gameObject, SceneManager.GetActiveScene());
             mainCamera.orthographic = true;
-            var transform1 = mainCamera.transform;
-            transform1.localPosition = new Vector3(0f, 70f, 0f);
-            transform1.localEulerAngles = new Vector3(90f, 0f, 0f);
+            mainCamera.transform.localPosition = new Vector3(0f, 70f, 0f);
+            mainCamera.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
         }
     }
 
     public void OnMouseMovement(InputAction.CallbackContext value)
     {
-        
         if (!isLocalPlayer || !shouldBeLocked) return;
         //Sets rotation to camera depending on mouse position and movement
         rotationX -= value.ReadValue<Vector2>().y * mouseSensitivity;
         rotationY += value.ReadValue<Vector2>().x * mouseSensitivity;
         rotationX = Mathf.Clamp(rotationX, -89, 89);
         mainCamera.transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
-        transform.rotation = Quaternion.Euler(0,rotationY,0);
-    }
-    public void LockCamera ()
-    {
-
-        rotationX = 0;
-        rotationY = 0;
-        rotationX = Mathf.Clamp(rotationX, -89, 89);
-        mainCamera.transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0f);
+        transform.rotation = Quaternion.Euler(0, rotationY, 0);
     }
 }
