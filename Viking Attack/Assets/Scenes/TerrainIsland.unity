@@ -175,6 +175,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 1627232034024812431, guid: 1268ed0163b18974ea84e9d5aef06972, type: 3}
+  isBoss: 1
 --- !u!114 &63614051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,6 +474,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &93606867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,6 +539,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &120638680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +604,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  isBoss: 0
 --- !u!114 &172741934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,6 +747,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &205045416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,6 +880,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &217631400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,6 +1037,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &405789421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,6 +1088,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &415554267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1373,6 +1381,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &570852489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1597,6 +1606,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  isBoss: 0
 --- !u!114 &674882961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1771,6 +1781,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &710798999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2219,6 +2230,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &977054919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3370,6 +3382,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &1266631454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3434,6 +3447,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  isBoss: 0
 --- !u!114 &1272036817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3806,6 +3820,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &1364967455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3870,6 +3885,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &1374278202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4048,6 +4064,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &1421137625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4098,6 +4115,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &1498591522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4532,6 +4550,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &1599146915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4596,6 +4615,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &1633310414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5016,6 +5036,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &1751844131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5269,6 +5290,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &1795641509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6261,6 +6283,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &1965461907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6339,6 +6362,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &2030169185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6529,6 +6553,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &2081892642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6607,6 +6632,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &2108654664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6738,6 +6764,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &2131580590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6816,6 +6843,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  isBoss: 0
 --- !u!114 &2145063010
 MonoBehaviour:
   m_ObjectHideFlags: 0
