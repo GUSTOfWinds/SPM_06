@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using Mirror;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace ItemNamespace
 {
