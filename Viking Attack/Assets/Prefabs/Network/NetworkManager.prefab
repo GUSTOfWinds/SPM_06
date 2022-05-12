@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8910869769638421570}
   - component: {fileID: 7341497129982660151}
   - component: {fileID: 2130335223947001309}
+  - component: {fileID: 1697433109}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -55,11 +56,21 @@ MonoBehaviour:
   maxConnections: 100
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
-  autoCreatePlayer: 1
+  autoCreatePlayer: 0
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  - {fileID: 1627232034024812431, guid: 1268ed0163b18974ea84e9d5aef06972, type: 3}
+  - {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  - {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
+  - {fileID: 6033644488563431086, guid: 48252e56f3a191147bc11d0a659c11fe, type: 3}
+  - {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
+  - {fileID: 9080351483311851685, guid: 504deff2fa29fc24e84cbb8900573910, type: 3}
+  - {fileID: 469271222892847950, guid: 3299a738816a72b43b2be7e059fb20ec, type: 3}
+  - {fileID: 379527214673110173, guid: 9eca48aa3ba3f9a43ae082939a1e321f, type: 3}
+  - {fileID: 379527214673110173, guid: a981d4afc5b300845883915a214218c0, type: 3}
   menuScene: Assets/Scenes/MaineMenu/MaineMenu_Lobby.unity
-  roomPlayerLobby: {fileID: 379527214673110172, guid: 2a5d2e2012d5d2848b4ab004ed0e74a3, type: 3}
+  roomPlayerLobby: {fileID: 379527214673110172, guid: 9eca48aa3ba3f9a43ae082939a1e321f, type: 3}
   gamePlayerPrefab: {fileID: 5905042231322285479, guid: a981d4afc5b300845883915a214218c0, type: 3}
   playerSpawnSystem: {fileID: 5696351078985557884, guid: a7973f2daaebe384db5c3de7da34215f, type: 3}
   spawnablePrefabs:
@@ -73,6 +84,7 @@ MonoBehaviour:
   - {fileID: 469271222892847950, guid: 3299a738816a72b43b2be7e059fb20ec, type: 3}
   - {fileID: 379527214673110173, guid: 9eca48aa3ba3f9a43ae082939a1e321f, type: 3}
   - {fileID: 379527214673110173, guid: a981d4afc5b300845883915a214218c0, type: 3}
+  - {fileID: 6033644488563431086, guid: 48252e56f3a191147bc11d0a659c11fe, type: 3}
 --- !u!114 &2130335223947001309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,3 +114,19 @@ MonoBehaviour:
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
+--- !u!114 &1697433109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2627643080200506126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39adc6e09d5544ed955a50ce8600355a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visRange: 250
+  rebuildInterval: 1
+  checkMethod: 0
+  showSlider: 0

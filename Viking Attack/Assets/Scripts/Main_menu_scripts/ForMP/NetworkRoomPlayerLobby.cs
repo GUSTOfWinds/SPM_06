@@ -21,6 +21,9 @@ namespace Main_menu_scripts.ForMP
         [SyncVar(hook = nameof(HandleReadyStatusChanged))]
         public bool isReady = false;
 
+        [SyncVar(hook = nameof(HandleColourChanged))]
+        public Color colour;
+
         private bool isLeader;
         public bool IsLeader
         {
@@ -64,10 +67,18 @@ namespace Main_menu_scripts.ForMP
         public void HandleReadyStatusChanged(bool oldValue, bool newValue) => UpdateDisplay();
         public void HandleDisplayNameChanged(string oldValue, string newValue) => UpdateDisplay();
 
+        public void HandleColourChanged(Color oldValue, Color newValue) => UpdateDisplay();
+
         private void UpdateDisplay()
         {
             if (!hasAuthority)
             {
+                
+                foreach (var roomplayer in Room.RoomPlayers)
+                {
+                    if(!isLocalPlayer) lobbyUI.SetActive(false);
+
+                }
                 foreach (var player in Room.RoomPlayers)
                 {
                     if (player.hasAuthority)

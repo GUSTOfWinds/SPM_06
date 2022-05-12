@@ -6,7 +6,7 @@ namespace Main_menu_scripts.ForMP
     {
 
         [SyncVar]
-        private string displayName = "Loading...";
+        public string displayName = "Loading...";
 
         private NetworkManagerLobby room;
         private NetworkManagerLobby Room

@@ -247,4 +247,9 @@ public class GlobalPlayerInfo : MonoBehaviour
     {
         meatStackNumber--;
     }
+
+    public void SetDisplayName(string playerName)
+    {
+        this.playerName = playerName;
+    }
 }

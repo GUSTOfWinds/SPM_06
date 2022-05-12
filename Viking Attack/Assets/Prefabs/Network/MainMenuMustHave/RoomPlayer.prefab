@@ -316,7 +316,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 2a5d2e2012d5d2848b4ab004ed0e74a3
+  m_AssetId: 9eca48aa3ba3f9a43ae082939a1e321f
   hasSpawned: 0
 --- !u!114 &379527214673110172
 MonoBehaviour:
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0
   lobbyUI: {fileID: 6912820484618671240}
   playerNameTexts:
   - {fileID: 8613862182902354039}
@@ -1827,7 +1827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6988745577985126136
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2159,7 +2159,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 5532471387827531895}
   m_OnClick:
     m_PersistentCalls:

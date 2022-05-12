@@ -8,8 +8,6 @@ namespace Main_menu_scripts.ForMP
         [Header("UI")] 
         [SerializeField] private GameObject landingPanel;
 
-        [Header("Lobby")] 
-        [SerializeField] private GameObject lobby;
 
         public void HostLobby()
         {

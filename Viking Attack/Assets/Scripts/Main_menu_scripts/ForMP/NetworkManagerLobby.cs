@@ -10,22 +10,20 @@ namespace Main_menu_scripts.ForMP
     {
         private int minPlayers = 1;
         [Scene] [SerializeField] private string menuScene = string.Empty;
-    
-        [Header("Room")] 
-        [SerializeField] private NetworkRoomPlayerLobby roomPlayerLobby;
+
+        [Header("Room")] [SerializeField] private NetworkRoomPlayerLobby roomPlayerLobby;
         public List<NetworkRoomPlayerLobby> RoomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
 
-        [Header("Game")] 
-        [SerializeField] private NetworkGamePlayer gamePlayerPrefab;
+        [Header("Game")] [SerializeField] private NetworkGamePlayer gamePlayerPrefab;
 
         [SerializeField] private GameObject playerSpawnSystem;
         public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
         public List<GameObject> spawnablePrefabs = new List<GameObject>();
 
-    
+
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
-        public static event Action<NetworkConnectionToClient> OnServerReadied; 
+        public static event Action<NetworkConnectionToClient> OnServerReadied;
 
 
 
@@ -34,7 +32,9 @@ namespace Main_menu_scripts.ForMP
         {
             spawnPrefabs = spawnablePrefabs;
             base.OnStartServer();
+            NetworkServer.RegisterHandler<CharacterInfo>(OnSpawnPlayerUI);
         }
+
 
         public override void OnStartClient()
         {
@@ -47,7 +47,16 @@ namespace Main_menu_scripts.ForMP
 
         public override void OnClientConnect(NetworkConnection conn)
         {
+            Color color;
+            ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("ColorKey"), out color);
             base.OnClientConnect(conn);
+            CharacterInfo characterInfo = new CharacterInfo
+            {
+                playerColour = color,
+                Name = PlayerPrefs.GetString("PlayerName")
+            };
+            conn.Send(characterInfo);
+            
             OnClientConnected?.Invoke();
         }
 
@@ -82,35 +91,44 @@ namespace Main_menu_scripts.ForMP
                 RoomPlayers.Remove(player);
                 NotifyPlayersOfReadyState();
             }
+
             base.OnServerDisconnect(conn);
- 
+
         }
 
-        public override void OnServerAddPlayer(NetworkConnectionToClient conn)
+        public void OnSpawnPlayerUI(NetworkConnectionToClient conn, CharacterInfo info)
         {
-            if (SceneManager.GetActiveScene().path == menuScene)
-            {
+             if (SceneManager.GetActiveScene().path == menuScene)
+             {
                 bool isLeader = RoomPlayers.Count == 0;
-            
-            
+
                 NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerLobby);
 
                 roomPlayerInstance.IsLeader = isLeader;
+                roomPlayerInstance.name = info.Name;
+                roomPlayerInstance.colour = info.playerColour;
+                    
+                if (roomPlayerInstance.hasAuthority)
+                {
+                    roomPlayerInstance.gameObject.SetActive(false);
+                }
+
                 NetworkServer.AddPlayerForConnection(conn, roomPlayerInstance.gameObject);
-            }
+
+             }
         }
 
         public override void OnStopServer()
         {
             RoomPlayers.Clear();
-        
+
         }
 
         public void NotifyPlayersOfReadyState()
         {
             foreach (var player in RoomPlayers)
             {
-            
+
                 player.HandleReadyToStart(IsReadyTostart());
             }
         }
@@ -118,16 +136,17 @@ namespace Main_menu_scripts.ForMP
         private bool IsReadyTostart()
         {
             int ready = 0;
-            if (numPlayers <= 0) return false; 
+            if (numPlayers <= 0) return false;
             foreach (var player in RoomPlayers)
             {
                 if (player.isReady)
                 {
                     ready++;
                 }
-            
+
             }
-            if (ready >= numPlayers )
+
+            if (ready >= numPlayers)
             {
                 return true;
             }
@@ -158,7 +177,7 @@ namespace Main_menu_scripts.ForMP
 
                     //NetworkServer.Destroy(conn.identity.gameObject);
 
-                    NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject);
+                    NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject, true);
                 }
             }
 
@@ -171,13 +190,20 @@ namespace Main_menu_scripts.ForMP
             base.OnServerReady(conn);
             OnServerReadied?.Invoke(conn);
         }
-    
 
+        [Server]
         public override void OnServerSceneChanged(String sceneName)
         {
             //if (!sceneName.Contains("Scene_Map")) return;
-            GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
+            var playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
             NetworkServer.Spawn(playerSpawnSystemInstance);
+            var spawner = playerSpawnSystemInstance.GetComponent<PlayerSpawnSystem>();
         }
+    }
+
+    public struct CharacterInfo : NetworkMessage
+    {
+        public string Name;
+        public Color playerColour;
     }
 }
