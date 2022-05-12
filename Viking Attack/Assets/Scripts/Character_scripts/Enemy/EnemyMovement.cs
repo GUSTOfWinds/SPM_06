@@ -13,14 +13,15 @@ public class EnemyMovement : NetworkBehaviour
      * Animation stuff below, to be merged with jiang
      */
     [SerializeField] private Animator animator;
+
     [SerializeField] public bool attacking;
     private int hitsForStagger = 0;
 
     /**
      * 
      */
-    [Header("Base Movement")]
-    private Vector3 movingDirection;
+    [Header("Base Movement")] private Vector3 movingDirection;
+
     private float waitFrame;
     private int defaultSpeed;
     private Vector3 point1, point2;
@@ -28,13 +29,13 @@ public class EnemyMovement : NetworkBehaviour
 
     [Header("GroudCheck Settings")] [SerializeField]
     private GameObject groundCheck;
+
     private bool isGrounded;
     private LayerMask ground;
     private LayerMask player;
     private Collider[] colliders;
 
-    [Header("State Boolean")] 
-    private bool isGuarding;
+    [Header("State Boolean")] private bool isGuarding;
     private bool isChasing;
     public bool isAttacking;
     private bool backToDefault;
@@ -48,13 +49,14 @@ public class EnemyMovement : NetworkBehaviour
     [SerializeField] private float patrolRange;
     [SerializeField] private int maxChasingRange;
 
-    [SerializeField] private float chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
+    [SerializeField]
+    private float
+        chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
 
     [SerializeField] private int moveSpeed; // movement speed of the enemy
     [SerializeField] private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
 
-    [Header("Calculation")] 
-    private int traces = 6;
+    [Header("Calculation")] private int traces = 6;
     private float visionAngle = 45.0f;
     private Vector3 positionTemp;
 
@@ -75,22 +77,23 @@ public class EnemyMovement : NetworkBehaviour
         player = LayerMask.GetMask("Player");
 
         movingDirection = RandomVector(-patrolRange, patrolRange);
-        
+
         waitFrame = 0;
 
         capsCollider = GetComponent<CapsuleCollider>();
-        point1 = gameObject.transform.position + capsCollider.center + Vector3.up * (capsCollider.height / 2 - capsCollider.radius);
-        point2 = gameObject.transform.position + capsCollider.center + Vector3.down * (capsCollider.height / 2 - capsCollider.radius);
-
-
+        point1 = gameObject.transform.position + capsCollider.center +
+                 Vector3.up * (capsCollider.height / 2 - capsCollider.radius);
+        point2 = gameObject.transform.position + capsCollider.center +
+                 Vector3.down * (capsCollider.height / 2 - capsCollider.radius);
     }
 
     private void FixedUpdate()
     {
-        if(animator.GetBool("Staggered"))
+        if (animator.GetBool("Staggered"))
         {
             return;
         }
+
         //change the transform.position from botten to central 
         positionTemp = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z);
         if (attacking)
@@ -105,7 +108,6 @@ public class EnemyMovement : NetworkBehaviour
             if (colliders.Length > 0) //when we find the ground
             {
                 isGrounded = true;
-               
             }
 
             if (isGrounded) //start patrolling
@@ -123,10 +125,10 @@ public class EnemyMovement : NetworkBehaviour
                     {
                         //Can DO check hit.normal 
                         // movingDirection = -movingDirection;
-                       movingDirection = RandomVector(movingDirection).normalized;
+                        movingDirection = RandomVector(movingDirection).normalized;
                         checkForHinder = false;
                     }
-                   // ChangeFacingDirection(movingDirection);
+                    // ChangeFacingDirection(movingDirection);
                 }
 
                 if (isChasing)
@@ -136,26 +138,26 @@ public class EnemyMovement : NetworkBehaviour
                     animator.SetBool("Patrolling", false);
                     backToDefault = false;
                     //Vector3 facePlayer = new Vector3(chasingObject.transform.position.x, transform.position.y, chasingObject.transform.position.z);
-                    movingDirection= (chasingObject.transform.position - transform.position);
+                    movingDirection = (chasingObject.transform.position - transform.position);
                     //Movement
                     ChangeFacingDirection(movingDirection);
-                   
+
                     transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
-                    
-                    if (Vector3.Distance(transform.position, chasingObject.transform.position) <= attackRange) //stop moving when player is in the attacking range 
+
+                    if (Vector3.Distance(transform.position, chasingObject.transform.position) <=
+                        attackRange) //stop moving when player is in the attacking range 
                     {
                         movingDirection = Vector3.zero;
                         //ATTACK
                         isAttacking = true;
                         isChasing = false;
-
                     }
+
                     if (Vector3.Distance(transform.position, spawnPosition) >= maxChasingRange)
                     {
                         isChasing = false;
                         backToDefault = true;
                     }
-                  
                 } //is chasing
 
 
@@ -186,12 +188,11 @@ public class EnemyMovement : NetworkBehaviour
                             chasingObject = null;
                         }
                     }
-                    
                 } //is Attacting
 
                 if (backToDefault)
                 {
-                    moveSpeed = (int)chasingSpeedMultiplier*moveSpeed;
+                    moveSpeed = (int) chasingSpeedMultiplier * moveSpeed;
                     //Enemy gets full HP
                     gameObject.GetComponent<EnemyInfo>().BackToDefault();
                     animator.SetBool("Chasing", true);
@@ -226,21 +227,19 @@ public class EnemyMovement : NetworkBehaviour
                 }
 
 
-
                 //calculate new movement based on obstacle his
 
 
-              
-                if (movingDirection != Vector3.zero  && checkForHinder)
+                if (movingDirection != Vector3.zero && checkForHinder)
                 {
                     Vector3 nevVector = CalculateMovement();
-                    movingDirection = Vector3.Lerp(movingDirection, nevVector.normalized, moveSpeed * Time.fixedDeltaTime);
+                    movingDirection = Vector3.Lerp(movingDirection, nevVector.normalized,
+                        moveSpeed * Time.fixedDeltaTime);
                     waitFrame++;
                     if (waitFrame % 60 == 0)
                     {
                         ChangeFacingDirection(movingDirection);
                     }
-
                 }
 
                 if ((!isChasing) && (!isAttacking))
@@ -249,7 +248,7 @@ public class EnemyMovement : NetworkBehaviour
                     transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                     ChangeFacingDirection(movingDirection);
                 }
-                
+
 
                 //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
                 CmdSetSynchedPosition(transform.position);
@@ -265,6 +264,7 @@ public class EnemyMovement : NetworkBehaviour
             this.transform.position = syncPosition;
             this.transform.rotation = syncRotation;
         }
+
         waitFrame = 0;
     }
 
@@ -286,7 +286,6 @@ public class EnemyMovement : NetworkBehaviour
                     coll.gameObject.GetComponent<GlobalPlayerInfo>().GetHealth() >
                     0) //if we are not chasing someone, only aim one target
                 {
-
                     chasingObject = coll.gameObject;
                     isGuarding = false;
                     isChasing = true;
@@ -305,7 +304,6 @@ public class EnemyMovement : NetworkBehaviour
 
     private Vector3 RandomVector(Vector3 current)
     {
-        
         float angle = UnityEngine.Random.Range(170f, 190f);
         Vector3 temp = Quaternion.Euler(0, angle, 0) * current;
         //ChangeFacingDirection(temp);
@@ -328,7 +326,7 @@ public class EnemyMovement : NetworkBehaviour
 
         float stepAngle = (visionAngle * 2.0f) / (traces - 1);
         RaycastHit hitInfo1;
-        if (Physics.Raycast(transform.position, movingDirection+transform.position, 3f, (1 << 9)))
+        if (Physics.Raycast(transform.position, movingDirection + transform.position, 3f, (1 << 9)))
         {
             //Time.timeScale = 0;
 
@@ -353,22 +351,18 @@ public class EnemyMovement : NetworkBehaviour
             float angle1 = (90.0f + visionAngle - (i * stepAngle)) * Mathf.Deg2Rad;
             Vector3 direction1 = transform.TransformDirection(new Vector3(Mathf.Cos(angle1), 0.0f, Mathf.Sin(angle1)));
 
-      
 
-            if (Physics.Raycast(transform.position, direction1, out hitInfo1, maxChasingRange+ patrolRange,~(1<<9 | 1<<7)))
+            if (Physics.Raycast(transform.position, direction1, out hitInfo1, maxChasingRange + patrolRange,
+                    ~(1 << 9 | 1 << 7)))
             {
                 if (hitInfo1.collider.tag != "Player")
                 {
                     movementVector += direction1 * (hitInfo1.distance - 3f);
                 }
-
-
             }
             else
             {
                 movementVector += direction1 * (maxChasingRange + patrolRange);
-
-
             }
         }
 
@@ -385,10 +379,10 @@ public class EnemyMovement : NetworkBehaviour
     public void Stagger()
     {
         hitsForStagger++;
-        if(hitsForStagger >= 3)
+        if (hitsForStagger >= 3)
         {
             hitsForStagger = 0;
-            animator.SetBool("Staggered",true);
+            animator.SetBool("Staggered", true);
             animator.SetBool("Chasing", false);
             animator.SetBool("Attacking", false);
             animator.SetBool("Patrolling", false);
@@ -399,7 +393,6 @@ public class EnemyMovement : NetworkBehaviour
     IEnumerator WaitForStagger(float time)
     {
         yield return new WaitForSeconds(time);
-        animator.SetBool("Staggered",false);
-        
+        animator.SetBool("Staggered", false);
     }
 }

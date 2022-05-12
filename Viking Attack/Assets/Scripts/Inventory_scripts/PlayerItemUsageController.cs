@@ -18,8 +18,10 @@ public class PlayerItemUsageController : NetworkBehaviour
 
     public void Start()
     {
+        ChangeItem(itemBase);
         if(holdingHand != null)
             heldItemWorldObject.transform.SetParent(holdingHand.transform);
+        
     }
 
     public void OnUse(InputAction.CallbackContext value)

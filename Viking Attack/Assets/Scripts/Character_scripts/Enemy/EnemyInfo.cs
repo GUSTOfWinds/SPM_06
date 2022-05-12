@@ -23,8 +23,9 @@ namespace ItemNamespace
         [SerializeField] private new string name;
         private bool hasHealthBarShown;
         private Transform respawnParent;
-        private ItemBase drop;
+        private ItemBase drop; // insert item 
         private SceneSwitch sceneSwitch;
+        private int dropChance;
 
         private void Awake()
         {
@@ -40,6 +41,7 @@ namespace ItemNamespace
             health = characterBase.GetMaxHealth();
             maxHealth = characterBase.GetMaxHealth();
             drop = characterBase.GetDrop();
+            dropChance = characterBase.GetDropChance();
             sceneSwitch = GameObject.FindGameObjectWithTag("Portal").GetComponent<SceneSwitch>();
 
         }
@@ -75,6 +77,11 @@ namespace ItemNamespace
         public ItemBase GetDrop()
         {
             return drop;
+        }
+
+        public int GetDropChance()
+        {
+            return dropChance;
         }
         
         public void UpdateHealth(float difference)

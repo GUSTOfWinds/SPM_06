@@ -15,6 +15,7 @@ namespace Event
     public class UnitDeathEventInfo : EventInfo
     {
         public float RespawnTimer;
+        public ItemBase itemBase;
     }
 
     public class DebugEventInfo : EventInfo
@@ -58,5 +59,10 @@ namespace Event
     public class PlayerFatigueEventInfo : EventInfo
     {
         
+    }
+
+    public class ItemDropEventInfo : EventInfo
+    {
+        public ItemBase itemBase;
     }
 }
