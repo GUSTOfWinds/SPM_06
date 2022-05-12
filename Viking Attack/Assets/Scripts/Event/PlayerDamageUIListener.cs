@@ -37,12 +37,10 @@ public class PlayerDamageUIListener : MonoBehaviour
     private IEnumerator FadeImage()
     {
         // fade from transparent to opaque
-        for (float i = 0; i <= 0; i += Time.fixedDeltaTime)
-        {
-            // set color with i as alpha
-            img.color = new Color(1, 0, 0, i);
+        
+            img.color = new Color(1, 0, 0, 1);
             yield return null;
-        }
+        
 
         // fade from opaque to transparent
         for (float i = 5f; i >= 0; i -= Time.fixedDeltaTime)

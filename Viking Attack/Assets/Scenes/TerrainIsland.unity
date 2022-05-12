@@ -3258,7 +3258,7 @@ Terrain:
   m_DrawInstanced: 0
   m_DrawTreesAndFoliage: 1
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 2ddf9b128ce0eec43ad8ddcfa38f3e23, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 2c1c4aae37cab494384e866adfc900f5, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -5633,6 +5633,10 @@ PrefabInstance:
       propertyPath: sceneId
       value: 832886662
       objectReference: {fileID: 0}
+    - target: {fileID: 8544967031688414425, guid: e7d31edc687cd1c48b7d370c871c136f, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 507
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 8520356791256160419, guid: e7d31edc687cd1c48b7d370c871c136f, type: 3}
@@ -6398,7 +6402,7 @@ GameObject:
   - component: {fileID: 1953194249}
   - component: {fileID: 1953194248}
   - component: {fileID: 1953194247}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fog
   m_TagString: Fog
   m_Icon: {fileID: 0}
