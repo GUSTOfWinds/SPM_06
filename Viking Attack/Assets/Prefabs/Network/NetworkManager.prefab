@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1078430519148682725}
   - component: {fileID: 1078430519148682724}
+  - component: {fileID: -2010429335355846065}
   - component: {fileID: 1078430519148682731}
   - component: {fileID: 1078430519148682730}
   - component: {fileID: 4050693911780330154}
@@ -61,6 +62,26 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  - {fileID: 469271222892847950, guid: 3299a738816a72b43b2be7e059fb20ec, type: 3}
+  - {fileID: 1627232034024812431, guid: 1268ed0163b18974ea84e9d5aef06972, type: 3}
+  - {fileID: 6653956862289318906, guid: ca3f9185ca87a9142996006b6077717d, type: 3}
+  - {fileID: 9080351483311851685, guid: 504deff2fa29fc24e84cbb8900573910, type: 3}
+--- !u!114 &-2010429335355846065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078430519148682729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39adc6e09d5544ed955a50ce8600355a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visRange: 30
+  rebuildInterval: 1
+  checkMethod: 0
+  showSlider: 0
 --- !u!114 &1078430519148682731
 MonoBehaviour:
   m_ObjectHideFlags: 0
