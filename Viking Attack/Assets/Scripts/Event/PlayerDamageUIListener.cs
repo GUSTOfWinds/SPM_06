@@ -1,14 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Event;
 using UnityEngine;
-using Random = UnityEngine.Random;
 using Mirror;
 using UnityEngine.UI;
 
-public class PlayerDamageUIListener : MonoBehaviour
+public class PlayerDamageUIListener : NetworkBehaviour
 {
     [SerializeField]
     private uint netID; // the netID of the player, making sure to only play sounds when the local player is hit
@@ -20,17 +17,45 @@ public class PlayerDamageUIListener : MonoBehaviour
 
     private void Start()
     {
+        netID = gameObject.GetComponent<NetworkIdentity>().netId;
         EventSystem.Current.RegisterListener<DamageEventInfo>(OnPlayerDamage,
             ref uiEventGuid); // registers the listener
     }
 
-    // Will play a random track from the array above when the local player takes damage
+    // Will play an animation on the client being hit.
     void OnPlayerDamage(DamageEventInfo eventInfo)
     {
-        animator = eventInfo.target.transform.Find("UI").transform.Find("Health_bar").GetComponent<Animator>();
-        img = eventInfo.target.transform.Find("UI").Find("Panel").GetComponent<Image>();
-        animator.SetTrigger("takeDMG");
-        StartCoroutine(FadeImage());
+        if (isServer)
+        {
+            if (eventInfo.target.GetComponent<NetworkIdentity>().netId == netID)
+            {
+                if (eventInfo.target.GetComponent<NetworkIdentity>().netId == netID)
+                {
+                    animator = gameObject.transform.Find("UI").transform.Find("Health_bar").GetComponent<Animator>();
+                    img = gameObject.transform.Find("UI").Find("Panel").GetComponent<Image>();
+                    animator.SetTrigger("takeDMG");
+                    StartCoroutine(FadeImage());
+                    
+                    RpcOnPlayerDamage(eventInfo);
+                }
+            }
+        }
+    }
+
+    [ClientRpc]
+    void RpcOnPlayerDamage(DamageEventInfo eventInfo)
+    {
+        if (isServer)
+        {
+            return;
+        }
+        if (eventInfo.target.GetComponent<NetworkIdentity>().netId == netID)
+        {
+            animator = eventInfo.target.transform.Find("UI").transform.Find("Health_bar").GetComponent<Animator>();
+            img = eventInfo.target.transform.Find("UI").Find("Panel").GetComponent<Image>();
+            animator.SetTrigger("takeDMG");
+            StartCoroutine(FadeImage());
+        }
     }
 
     // Sets teh alpha of the image to 0.5 and then back to 0 after the player is hit
@@ -52,13 +77,6 @@ public class PlayerDamageUIListener : MonoBehaviour
             yield return null;
         }
 
-        img.color = new Color(1,0,0,0);
+        img.color = new Color(1, 0, 0, 0);
     }
-
-
-    // [ClientRpc]
-    // void RpcPlayTakingDamage(DamageEventInfo damageEventInfo)
-    // {
-
-    // }
 }
