@@ -125,11 +125,6 @@ public class EnemyMovement : NetworkBehaviour
                         // movingDirection = -movingDirection;
                        movingDirection = RandomVector(movingDirection).normalized;
                         checkForHinder = false;
-
-
-
-
-
                     }
                    // ChangeFacingDirection(movingDirection);
                 }
@@ -209,16 +204,20 @@ public class EnemyMovement : NetworkBehaviour
                         backToDefault = false;
                         isGuarding = true;
                         chasingObject = null;
+                        Debug.Log("Back to guarding");
                     }
                     else
                     {
-                        // transform.position = Vector3.MoveTowards(transform.position, spawnPosition, moveSpeed*0.2f * Time.deltaTime);
-                        //transform.LookAt(spawnPosition);
-                        Vector3 nevDirection = transform.position - spawnPosition;
-                        ChangeFacingDirection(-nevDirection);
-                        movingDirection = -nevDirection.normalized;
-                        //  transform.position += (-nevDirection) * moveSpeed * 0.2f * Time.deltaTime;
+                        transform.position = Vector3.MoveTowards(transform.position, spawnPosition, moveSpeed * 0.3f * Time.deltaTime);
+                        transform.LookAt(spawnPosition);
+                        //Vector3 nevDirection = new Vector3(spawnPosition.x, transform.position.y,spawnPosition.z) - transform.position;
+
+                        //movingDirection = nevDirection.normalized;
+                        //transform.LookAt(movingDirection);
+
                     }
+                  
+
                 }
 
                 if ((!isChasing) && (!isAttacking))
@@ -246,8 +245,9 @@ public class EnemyMovement : NetworkBehaviour
 
                 if ((!isChasing) && (!isAttacking))
                 {
-                    ChangeFacingDirection(movingDirection);
+                   
                     transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
+                    ChangeFacingDirection(movingDirection);
                 }
                 
 
