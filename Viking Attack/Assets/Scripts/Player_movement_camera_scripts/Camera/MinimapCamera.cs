@@ -15,6 +15,7 @@ public class MinimapCamera : NetworkBehaviour
         if (minimapCamera != null)
         {
             minimapCamera.transform.SetParent(transform);
+            minimapCamera.transform.position = minimapCamera.transform.parent.position;
         }
     }
 }
