@@ -6992,6 +6992,7 @@ MonoBehaviour:
   animator: {fileID: 3196805166761755344}
   globalPlayerInfo: {fileID: 0}
   jump: 0
+  shouldMove: 0
 --- !u!114 &5988590173649968414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7477,6 +7478,7 @@ MonoBehaviour:
   characterScreen: {fileID: 6133393436876657970}
   animator: {fileID: 4342721471618095440}
   otherAnimator: {fileID: 34812485295750230}
+  locked: 0
 --- !u!114 &2628422722539755476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10411,7 +10413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 115, y: 69}
+  m_AnchoredPosition: {x: 95.1, y: 100.66}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6955258621295379543
@@ -10443,17 +10445,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: 0f7a18371ca79c94fb2cbfcd0d89bf25, type: 3}
+    m_FontSize: 75
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 75
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 
 --- !u!1 &8228851030110740811
