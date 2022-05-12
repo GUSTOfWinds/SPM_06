@@ -205,7 +205,7 @@ public class EnemyMovement : NetworkBehaviour
                         backToDefault = false;
                         isGuarding = true;
                         chasingObject = null;
-                        Debug.Log("Back to guarding");
+                       //Debug.Log("Back to guarding");
                     }
                     else
                     {
