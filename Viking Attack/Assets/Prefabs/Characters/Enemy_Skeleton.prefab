@@ -1081,7 +1081,7 @@ MonoBehaviour:
   groundCheck: {fileID: 6653956863877352429}
   isAttacking: 0
   detectScopeRadius: 8
-  patrolRange: 10
+  patrolRange: 8
   maxChasingRange: 30
   chasingSpeedMultiplier: 0
   moveSpeed: 0
@@ -1113,6 +1113,7 @@ MonoBehaviour:
   level: 1
   experience: 0
   name: 
+  drop: {fileID: 11400000, guid: aba9257786c13d4478f9fe47aa44302c, type: 2}
 --- !u!54 &6653956862289318896
 Rigidbody:
   m_ObjectHideFlags: 0

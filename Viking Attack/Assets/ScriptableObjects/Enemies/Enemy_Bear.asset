@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 1
   characterName: BEAR
   description: ROAR
-  range: 4
+  range: 3.5
   attackCooldown: 3
   damage: 15
   chasingSpeedMultiplier: 3
@@ -23,5 +23,6 @@ MonoBehaviour:
   maxHealth: 25
   experienceRadius: 20
   level: 1
-  experience: 5
-  drop: {fileID: 0}
+  experience: 15
+  drop: {fileID: 11400000, guid: 64ccf9d3ba3f178408425f8bde948b16, type: 2}
+  dropchance: 1
