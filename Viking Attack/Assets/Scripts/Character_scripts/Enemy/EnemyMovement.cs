@@ -34,12 +34,14 @@ public class EnemyMovement : NetworkBehaviour
     [Header("State Boolean")] 
     private bool isGuarding;
     private bool isChasing;
-    private bool isAttacking;
+    public bool isAttacking;
     private bool backToDefault;
+    private bool checkForHinder;
 
     [Header("Patrol Settnings")] private Collider[] sphereColliders;
     private GameObject chasingObject;
     private Vector3 spawnPosition;
+    private float attackRange;
     [SerializeField] private float detectScopeRadius;
     [SerializeField] private float patrolRange;
     [SerializeField] private int maxChasingRange;
@@ -64,6 +66,7 @@ public class EnemyMovement : NetworkBehaviour
     {
         chasingSpeedMultiplier = characterBase.GetChasingSpeed();
         defaultSpeed = characterBase.GetMovementSpeed();
+        attackRange = characterBase.GetRange();
         moveSpeed = defaultSpeed;
         isGuarding = true;
         ground = LayerMask.GetMask("Ground");
@@ -94,12 +97,13 @@ public class EnemyMovement : NetworkBehaviour
             if (colliders.Length > 0) //when we find the ground
             {
                 isGrounded = true;
-                spawnPosition.y = transform.position.y;
+               
             }
 
             if (isGrounded) //start patrolling
             {
                 moveSpeed = defaultSpeed;
+                checkForHinder = true;
                 if (isGuarding)
                 {
                     animator.SetBool("Chasing", false);
@@ -110,8 +114,12 @@ public class EnemyMovement : NetworkBehaviour
                         patrolRange) //when enemy is moving too far, change moving direction
                     {
                         //Can DO check hit.normal
-                        movingDirection = RandomVector(movingDirection);
+                        movingDirection = RandomVector(movingDirection).normalized;
+                        
+                        checkForHinder = false;
                     }
+                    ChangeFacingDirection(movingDirection);
+
                 }
 
                 if (isChasing)
@@ -120,24 +128,20 @@ public class EnemyMovement : NetworkBehaviour
                     animator.SetBool("Attacking", false);
                     animator.SetBool("Patrolling", false);
                     backToDefault = false;
-                    Vector3 facePlayer = new Vector3(chasingObject.transform.position.x, transform.position.y, chasingObject.transform.position.z);
-                    Debug.DrawLine(facePlayer, Vector3.up, Color.red);
-                    movingDirection= (chasingObject.transform.position - transform.position).normalized;
-                    // Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-                    // transform.rotation = Quaternion.Slerp(transform.rotation, facePlayer, Time.fixedDeltaTime * 3);
-
+                    //Vector3 facePlayer = new Vector3(chasingObject.transform.position.x, transform.position.y, chasingObject.transform.position.z);
+                    movingDirection= (chasingObject.transform.position - transform.position);
                     //Movement
-                    //transform.position = Vector3.MoveTowards(transform.position, chasingObject.transform.position,
-                    //           chasingSpeedMultiplier * Time.fixedDeltaTime);
-                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                     ChangeFacingDirection(movingDirection);
-                    if (Vector3.Distance(transform.position, chasingObject.transform.position) <= 3f)
+                   
+                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
+                    
+                    if (Vector3.Distance(transform.position, chasingObject.transform.position) <= attackRange) //stop moving when player is in the attacking range 
                     {
                         movingDirection = Vector3.zero;
                         //ATTACK
                         isAttacking = true;
                         isChasing = false;
-             
+
                     }
                     if (Vector3.Distance(transform.position, spawnPosition) >= maxChasingRange)
                     {
@@ -208,23 +212,27 @@ public class EnemyMovement : NetworkBehaviour
                     CheckForPlayer();
                 }
 
+
+
                 //calculate new movement based on obstacle his
-                Vector3 nevVector = CalculateMovement();
-                if (movingDirection != Vector3.zero)
+               
+                if (movingDirection != Vector3.zero && checkForHinder)
                 {
+                    Vector3 nevVector = CalculateMovement();
                     movingDirection = Vector3.Lerp(movingDirection, nevVector.normalized, moveSpeed * Time.fixedDeltaTime);
                     waitFrame++;
                     if (waitFrame % 60 == 0)
                     {
                         ChangeFacingDirection(movingDirection);
                     }
-                  
+
                 }
 
                 if ((!isChasing) && (!isAttacking))
                 {
                     transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                 }
+
 
 
                 //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
@@ -241,6 +249,7 @@ public class EnemyMovement : NetworkBehaviour
             this.transform.position = syncPosition;
             this.transform.rotation = syncRotation;
         }
+        waitFrame = 0;
     }
 
     //Kommandlinjer for att be servern om uppdateringar po rotation och position
@@ -280,8 +289,10 @@ public class EnemyMovement : NetworkBehaviour
 
     private Vector3 RandomVector(Vector3 current)
     {
-        float angle = UnityEngine.Random.Range(120f, 210f);
-        Vector3 temp = Quaternion.AngleAxis(angle, Vector3.up) * current;
+        
+        float angle = UnityEngine.Random.Range(130f, 220f);
+        Vector3 temp = Quaternion.Euler(0, angle, 0) * current;
+        //ChangeFacingDirection(temp);
         return temp;
     }
 
@@ -315,7 +326,10 @@ public class EnemyMovement : NetworkBehaviour
                 {
                     movementVector += direction1 * (hitInfo1.distance - 3f);
                 }
-
+                if(Vector3.Dot(transform.position, hitInfo1.normal) == -1)
+                {
+                    Debug.Log("XXXXXXXXXXXXXX");
+                }
             }
             else
             {

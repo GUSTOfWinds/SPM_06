@@ -7,7 +7,7 @@ public class KillPlayer : MonoBehaviour
     public void PlayerRespawn()
     {
         transform.position = new Vector3(10f, -30f, 10f);
-        Invoke("HealthBack", 2f);
+        Invoke("HealthBack", 3f);
     }
 
     private void HealthBack()
