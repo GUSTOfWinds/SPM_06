@@ -42,10 +42,6 @@ namespace Inventory_scripts
                         int weaponIndex = 0;
                         switch (playerItemPickupEventInfo.itemBase.GetWeaponType)
                         {
-                            case ItemBase.WeaponType.Sword:
-                                weaponIndex = 0;
-                                break;
-
                             case ItemBase.WeaponType.Spear:
                                 weaponIndex = 1;
                                 break;
@@ -274,6 +270,16 @@ namespace Inventory_scripts
 
             meatStackNumber.GetComponent<Text>().text =
                 gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber().ToString();
+
+            if (gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber() < 1)
+            {
+                sprites[3].SetActive(false);
+            }
+            else
+            {
+                sprites[3].SetActive(true);
+            }
+            
         }
     }
 }

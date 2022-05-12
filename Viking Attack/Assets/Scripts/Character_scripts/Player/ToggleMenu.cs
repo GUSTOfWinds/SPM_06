@@ -10,6 +10,7 @@ public class ToggleMenu : NetworkBehaviour
     private GameObject[] players;
     private GameObject[] healthBars;
     private List<GameObject> inactiveBars;
+    private bool isOpen;
 
     private void Awake()
     {
@@ -22,18 +23,38 @@ public class ToggleMenu : NetworkBehaviour
     {
         if (isServer)
         {
-            // // Finds and sets all healthbars to inactive while being paused
-            healthBars = GameObject.FindGameObjectsWithTag("EnemyHealthBar");
-            foreach (var healthBar in healthBars)
+            if (!isOpen)
             {
-                inactiveBars.Add(healthBar);
-                healthBar.SetActive(false);
+                isOpen = true;
+                // // Finds and sets all healthbars to inactive while being paused
+                healthBars = GameObject.FindGameObjectsWithTag("EnemyHealthBar");
+                foreach (var healthBar in healthBars)
+                {
+                    inactiveBars.Add(healthBar);
+                    healthBar.SetActive(false);
+                }
+
+                players = GameObject.FindGameObjectsWithTag("Player");
+                foreach (var player in players)
+                {
+                    RpcOpenMenu(player);
+                }
             }
-            players = GameObject.FindGameObjectsWithTag("Player");
-            
-            foreach (var player in players)
+            else
             {
-                RpcOpenMenu(player);
+                isOpen = false;
+                // Finds and sets all healthbars to active when unpaused
+                for (int i = 0; i < inactiveBars.Count; i++)
+                {
+                    inactiveBars[i].SetActive(true);
+                    inactiveBars.Remove(inactiveBars[i]);
+                }
+
+                players = GameObject.FindGameObjectsWithTag("Player");
+                foreach (var player in players)
+                {
+                    RpcCloseMenu(player);
+                }
             }
         }
     }
@@ -42,6 +63,7 @@ public class ToggleMenu : NetworkBehaviour
     // unpause the game
     public void CloseScreen()
     {
+        isOpen = false;
         if (isServer)
         {
             // Finds and sets all healthbars to active when unpaused
@@ -50,7 +72,7 @@ public class ToggleMenu : NetworkBehaviour
                 inactiveBars[i].SetActive(true);
                 inactiveBars.Remove(inactiveBars[i]);
             }
-            
+
             players = GameObject.FindGameObjectsWithTag("Player");
             foreach (var player in players)
             {
@@ -58,21 +80,45 @@ public class ToggleMenu : NetworkBehaviour
             }
         }
     }
-    
+
     // Closes the menu and unpauses the game
     [ClientRpc]
     private void RpcCloseMenu(GameObject player)
     {
+        player.GetComponent<ToggleCharacterScreen>().locked = false;
+        player.GetComponent<PlayerScript3D>().enabled = true;
+        player.GetComponent<CameraMovement3D>().shouldBeLocked = true;
 
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        player.transform.Find("UI").Find("Menu_screen").gameObject.SetActive(false);
+    }
+
+    // Opens the menu and pauses the game
+    [ClientRpc]
+    private void RpcOpenMenu(GameObject player)
+    {
+        player.GetComponent<ToggleCharacterScreen>().locked = true;
+        player.GetComponent<PlayerScript3D>().enabled = false;
+        player.GetComponent<CameraMovement3D>().shouldBeLocked = false;
+
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        player.transform.Find("UI").Find("Menu_screen").gameObject.SetActive(true);
+    }
+
+    // Could later be used for both players to be able to pause
+    [Command]
+    private void CmdCloseMenu(GameObject player)
+    {
         player.GetComponent<PlayerInput>().enabled = true;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         player.transform.Find("UI").Find("Menu_screen").gameObject.SetActive(false);
     }
-    
-    // Opens the menu and pauses the game
-    [ClientRpc]
-    private void RpcOpenMenu(GameObject player)
+
+    [Command]
+    private void CmdOpenMenu(GameObject player)
     {
         player.GetComponent<PlayerInput>().enabled = false;
         Time.timeScale = 0;

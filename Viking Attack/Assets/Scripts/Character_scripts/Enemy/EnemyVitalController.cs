@@ -32,7 +32,7 @@ public class EnemyVitalController : NetworkBehaviour
         {
             EventUnitGo = gameObject,
             EventDescription = "Unit " + gameObject.name + " has died.",
-            RespawnTimer = waitTime
+            RespawnTimer = waitTime,
         };
         EventSystem.Current.FireEvent(unitDeathEventInfo);
     }

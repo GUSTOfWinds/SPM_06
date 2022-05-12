@@ -12,6 +12,7 @@ public class EnemySpawner : NetworkBehaviour
     [SerializeField] private GameObject enemyPrefabToSpawn;
     private Guid respawnEventGuid;
     private uint netID;
+    [SerializeField] private bool isBoss;
 
 
     private void Awake()
@@ -29,7 +30,7 @@ public class EnemySpawner : NetworkBehaviour
     // Will be run whenever a respawn has been detected by the event system
     public void EnemyRespawn(EnemyRespawnEventInfo enemyRespawnEventInfo)
     {
-        if (enemyRespawnEventInfo.respawnParent.GetComponent<NetworkIdentity>().netId == netID)
+        if (enemyRespawnEventInfo.respawnParent.GetComponent<NetworkIdentity>().netId == netID && !isBoss)
         {
             Spawn();
         }
@@ -42,6 +43,7 @@ public class EnemySpawner : NetworkBehaviour
         // Spawns an enemy at the location of the spawner parent, will also spawn it on the server
         var enemy = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
         enemy.GetComponent<EnemyInfo>().SetRespawnAnchor(transform);
+        enemy.GetComponent<EnemyMovement>().SetEnemyTransform(transform);
         NetworkServer.Spawn(enemy);
         
 

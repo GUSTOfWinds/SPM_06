@@ -16,13 +16,14 @@ MonoBehaviour:
   weaponType: 3
   itemName: Spear
   description: 
-  damage: 5
-  range: 3
-  speed: 1.7
-  stamina: 17
+  damage: 10
+  range: 9
+  speed: 1
+  stamina: 25
   healAmount: 0
   sprite: {fileID: 21300000, guid: c1e68895a2351c143a2f85e428536992, type: 3}
   stackable: 0
   mesh: {fileID: 49431094608927476, guid: 91bf49b0804e5d543962b4b443a1474b, type: 3}
   material: {fileID: 2100000, guid: fb8bb35b8bfa9f24c8dcad71ead34722, type: 2}
+  usageParticle: 
   itemBaseBehaviorScriptName: ItemSpearBehaviour

@@ -16,12 +16,13 @@ MonoBehaviour:
   characterName: Boss
   description: '?'
   range: 5
-  attackCooldown: 3
+  attackCooldown: 2
   damage: 20
-  chasingSpeedMultiplier: 7
-  moveSpeed: 100
-  maxHealth: 150
-  experienceRadius: 20
+  chasingSpeedMultiplier: 1.5
+  moveSpeed: 20
+  maxHealth: 350
+  experienceRadius: 30
   level: 1
   experience: 200
-  drop: {fileID: 11400000, guid: e42a76ee5900ffc4f93a5fbaf0dadbb4, type: 2}
+  drop: {fileID: 11400000, guid: dd75614e9e856f94fba03399318398bb, type: 2}
+  dropchance: 1

@@ -680,6 +680,7 @@ GameObject:
   - component: {fileID: 2399186864775228470}
   - component: {fileID: -2517776122318007361}
   - component: {fileID: 2690753061192251443}
+  - component: {fileID: 7108098811369576399}
   m_Layer: 3
   m_Name: Enemy_Bear
   m_TagString: Enemy
@@ -722,9 +723,10 @@ MonoBehaviour:
   animator: {fileID: 3643602246697119875}
   attacking: 0
   groundCheck: {fileID: 6653956863877352429}
-  detectScopeRadius: 8
-  patrolRange: 10
-  maxChasingRange: 20
+  isAttacking: 0
+  detectScopeRadius: 5
+  patrolRange: 8
+  maxChasingRange: 10
   chasingSpeedMultiplier: 0
   moveSpeed: 0
   characterBase: {fileID: 11400000, guid: 7480ad8c232b0b543a9379e72628b8aa, type: 2}
@@ -786,7 +788,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   characterBase: {fileID: 11400000, guid: 7480ad8c232b0b543a9379e72628b8aa, type: 2}
-  waitTime: 50
+  waitTime: 70
   hasDied: 0
   layerMask:
     serializedVersion: 2
@@ -826,8 +828,8 @@ MonoBehaviour:
   animator: {fileID: 3643602246697119875}
   audioSource: {fileID: 2399186864775228470}
   enemySounds:
-  - {fileID: 8300000, guid: 002d3438d861f224e911c9bea0f7f3d1, type: 3}
-  - {fileID: 8300000, guid: 0edc7bad5b4d70a4abedf2104deeac79, type: 3}
+  - {fileID: 8300000, guid: e0aeb62ba763ea94a96e778ec3fb0a5d, type: 3}
+  - {fileID: 8300000, guid: 3f8f7e7e16cef3d4b83ad87b6666cab7, type: 3}
   range: 0
   attackCooldown: 0
   damage: 0
@@ -980,10 +982,24 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.94259715
+  m_Radius: 0.9877721
   m_Height: 4.136703
   m_Direction: 1
-  m_Center: {x: 0.026915908, y: 2.1599228, z: 0}
+  m_Center: {x: 0.026916116, y: 2.1599228, z: 0.33496797}
+--- !u!136 &7108098811369576399
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6653956862289318906}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.50868046
+  m_Height: 1.3434687
+  m_Direction: 2
+  m_Center: {x: 0.08423568, y: 3.753108, z: 1.81351}
 --- !u!1 &6653956863877352429
 GameObject:
   m_ObjectHideFlags: 0

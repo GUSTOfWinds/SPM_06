@@ -22,6 +22,7 @@ namespace ItemNamespace
         [SerializeField] private int level;
         [SerializeField] private float experience;
         [SerializeField] private ItemBase drop;
+        [SerializeField] private int dropchance;
 
 
         // Returns name of the item
@@ -84,6 +85,11 @@ namespace ItemNamespace
         public ItemBase GetDrop()
         {
             return drop;
+        }
+
+        public int GetDropChance()
+        {
+            return dropchance;
         }
 
 

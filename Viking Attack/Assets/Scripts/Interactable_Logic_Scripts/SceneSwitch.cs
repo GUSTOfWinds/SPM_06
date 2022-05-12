@@ -1,13 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Event;
+using ItemNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneSwitch : MonoBehaviour
 {
 
-    private bool bossIsDead;
+    [SerializeField] private bool bossIsDead;
+    private Guid portalEventGuid;
     
+    private void Start()
+    {
+        EventSystem.Current.RegisterListener<UnitDeathEventInfo>(SetBossLifeStatus, ref portalEventGuid);
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (bossIsDead)
@@ -16,12 +23,11 @@ public class SceneSwitch : MonoBehaviour
         }
         
     }
-    public void DeadBoss(string name)
+    public void SetBossLifeStatus(UnitDeathEventInfo unitDeathEventInfo )
     {
-        if(name == "Boss")
+        if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetName() == "Boss")
         {
             bossIsDead = true;
         }
-        
     }
 }
