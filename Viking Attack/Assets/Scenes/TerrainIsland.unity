@@ -4192,6 +4192,50 @@ Transform:
   m_Father: {fileID: 2045507402}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1549318376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1549318377}
+  - component: {fileID: 1549318378}
+  m_Layer: 0
+  m_Name: DropDatabase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1549318377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549318376}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1732692368}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1549318378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549318376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21574cfa554699c4a8690fa7db8c9156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItems: []
 --- !u!1001 &1576340983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4906,6 +4950,7 @@ Transform:
   - {fileID: 2118657100}
   - {fileID: 32013315}
   - {fileID: 1110034144}
+  - {fileID: 1549318377}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6881,7 +6926,11 @@ PrefabInstance:
     - target: {fileID: 5971249900983466128, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
       propertyPath: dropBase
       value: 
-      objectReference: {fileID: 469271222892847950, guid: 3299a738816a72b43b2be7e059fb20ec, type: 3}
+      objectReference: {fileID: 6033644488563431086, guid: 48252e56f3a191147bc11d0a659c11fe, type: 3}
+    - target: {fileID: 5971249900983466128, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: dropDataBase
+      value: 
+      objectReference: {fileID: 1549318376}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
 --- !u!1001 &4347469675967773425

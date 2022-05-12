@@ -42,10 +42,6 @@ namespace Inventory_scripts
                         int weaponIndex = 0;
                         switch (playerItemPickupEventInfo.itemBase.GetWeaponType)
                         {
-                            case ItemBase.WeaponType.Sword:
-                                weaponIndex = 0;
-                                break;
-
                             case ItemBase.WeaponType.Spear:
                                 weaponIndex = 1;
                                 break;

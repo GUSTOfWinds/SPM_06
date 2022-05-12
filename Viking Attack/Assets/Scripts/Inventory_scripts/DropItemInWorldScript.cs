@@ -24,6 +24,7 @@ public class DropItemInWorldScript : MonoBehaviour
             shape.mesh = itembase.GetMesh;
         }
     }
+
     void Update()
     {
         //Gives a roatating animation to the droped item
