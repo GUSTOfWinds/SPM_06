@@ -41,27 +41,12 @@ namespace ItemNamespace
             
         }
 
-        private void Start()
-        {
-            CmdSyncName();
-        }
-
-        [Command]
-        void CmdSyncName()
-        {
-            if (isClientOnly)
-            {
-                localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
-            }
-        }
-
         private void FixedUpdate()
         {
             if (!isLocalPlayer)
             {
                 return;
             }
-            CmdSyncName();
             // All friendly players detected by the SphereCast
             hits = Physics.SphereCastAll(mainCamera.transform.position, 3,
                 mainCamera.transform.forward, 30, layerMask);
@@ -164,11 +149,8 @@ namespace ItemNamespace
                                 .GetComponent<FriendlyNameDisplay>().GetPersonalNetID())
                         {
                             friendlyName.SetActive(true);
-                            //hit.collider.GetComponent<GlobalPlayerInfo>().SetPlayerName(hit.collider.gameObject
-                            //    .GetComponent<PlayerActivateFriendlyPlayerName>().localName);
                             friendlyName.GetComponent<FriendlyNameDisplay>().text.text =
-                                hit.collider.gameObject
-                                    .GetComponent<PlayerActivateFriendlyPlayerName>().localName;
+                                hit.collider.gameObject.GetComponent<GlobalPlayerInfo>().GetName();
                             alreadyExists = true;
                             break;
                         }
