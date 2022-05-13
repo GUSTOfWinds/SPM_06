@@ -25,6 +25,17 @@ public class DropItemInWorldScript : MonoBehaviour
         }
     }
 
+    public void SetUp(ItemBase itemBase)
+    {
+        itembase = itemBase;
+        gameObject.GetComponent<MeshFilter>().mesh = itembase.GetMesh;
+        gameObject.GetComponent<MeshRenderer>().material = itembase.GetMaterial;
+        var shape = particleSystem.shape;
+        shape.enabled = true;
+        shape.shapeType = ParticleSystemShapeType.Mesh;
+        shape.mesh = itembase.GetMesh;
+    }
+
     void Update()
     {
         //Gives a roatating animation to the droped item

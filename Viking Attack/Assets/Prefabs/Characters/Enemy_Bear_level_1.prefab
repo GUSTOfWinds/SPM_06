@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 2690753061192251443}
   - component: {fileID: 7108098811369576399}
   m_Layer: 3
-  m_Name: Enemy_Bear
+  m_Name: Enemy_Bear_level_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -757,6 +757,8 @@ MonoBehaviour:
   level: 1
   experience: 0
   name: 
+  drop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
+  dropChance: 1
 --- !u!54 &6653956862289318896
 Rigidbody:
   m_ObjectHideFlags: 0

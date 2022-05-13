@@ -1038,7 +1038,7 @@ GameObject:
   - component: {fileID: -2517776122318007361}
   - component: {fileID: 2690753061192251443}
   m_Layer: 3
-  m_Name: Enemy_Skeleton
+  m_Name: Enemy_Skeleton_level_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1113,6 +1113,8 @@ MonoBehaviour:
   level: 1
   experience: 0
   name: 
+  drop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
+  dropChance: 4
 --- !u!54 &6653956862289318896
 Rigidbody:
   m_ObjectHideFlags: 0

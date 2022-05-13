@@ -43,7 +43,6 @@ public class EnemyScaler : MonoBehaviour
     // in each enemyinfo script available.
     void OnPlayerJoin(PlayerConnectEventInfo playerConnectEventInfo)
     {
-        Debug.Log(playerConnectEventInfo.EventUnitGo.name + " HAR JOINAT");
         foreach (var enemy in enemies)
         {
             enemy.GetComponent<EnemyInfo>().PlayerScale();

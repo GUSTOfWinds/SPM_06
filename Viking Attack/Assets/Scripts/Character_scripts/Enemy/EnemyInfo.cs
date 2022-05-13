@@ -36,8 +36,9 @@ namespace ItemNamespace
         [SerializeField] private new string name;
         private bool hasHealthBarShown;
         private Transform respawnParent;
-        private ItemBase drop; // insert item 
-        private int dropChance;
+        [SerializeField] private GameObject drop; // insert item to be dropped from prefab
+
+        [SerializeField] private int dropChance; // insert value for dropchance
         private GameObject[] players;
         private int scale = 1;
 
@@ -53,8 +54,6 @@ namespace ItemNamespace
             chasingSpeedMultiplier = characterBase.GetChasingSpeed();
             moveSpeed = characterBase.GetMovementSpeed();
             maxHealth = characterBase.GetMaxHealth();
-            drop = characterBase.GetDrop();
-            dropChance = characterBase.GetDropChance();
             // Runs for those who respawn
             PlayerScale();
             health = characterBase.GetMaxHealth();
@@ -76,7 +75,7 @@ namespace ItemNamespace
             return respawnParent;
         }
 
-        public ItemBase GetDrop()
+        public GameObject GetDrop()
         {
             return drop;
         }

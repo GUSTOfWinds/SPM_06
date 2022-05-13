@@ -21,9 +21,6 @@ namespace ItemNamespace
         [SerializeField] private float experienceRadius;
         [SerializeField] private int level;
         [SerializeField] private float experience;
-        [SerializeField] private ItemBase drop;
-        [SerializeField] private int dropchance;
-
 
         // Returns name of the item
         public string GetName()
@@ -81,17 +78,6 @@ namespace ItemNamespace
         {
             return level * experience;
         }
-        // Returns name of the item
-        public ItemBase GetDrop()
-        {
-            return drop;
-        }
-
-        public int GetDropChance()
-        {
-            return dropchance;
-        }
-
 
         // Contains the different item type, add a new line to the enum in order to add an item type.
         public enum Type
