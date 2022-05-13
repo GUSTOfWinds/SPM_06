@@ -43,7 +43,6 @@ namespace ItemNamespace
 
         private void Start()
         {
-            
             CmdSyncName();
         }
 
@@ -169,7 +168,8 @@ namespace ItemNamespace
                             hit.collider.GetComponent<GlobalPlayerInfo>().SetPlayerName(hit.collider.gameObject
                                 .GetComponent<PlayerActivateFriendlyPlayerName>().localName);
                             friendlyName.GetComponent<FriendlyNameDisplay>().text.text =
-                                hit.collider.GetComponent<GlobalPlayerInfo>().GetName();
+                                hit.collider.gameObject
+                                    .GetComponent<PlayerActivateFriendlyPlayerName>().localName;
                             alreadyExists = true;
                             break;
                         }
