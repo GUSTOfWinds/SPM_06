@@ -1,66 +1,70 @@
 using System.Collections;
+using Character_scripts.Enemy;
+using Character_scripts.Player;
+using Event;
 using ItemNamespace;
 using UnityEngine;
-using Event;
 
-public class ItemSwordBehaviour : ItemBaseBehaviour
+namespace Inventory_scripts.ItemBehaviours
 {
-    private Animator animator;
-    private GameObject rayCastPosition;
-    private Camera mainCamera;
-    private GlobalPlayerInfo globalPlayerInfo;
-    private RaycastHit hit;
-    private bool canAttack = true;
-
-
-    public void Awake()
+    public class ItemSwordBehaviour : ItemBaseBehaviour
     {
-        rayCastPosition = gameObject.transform.Find("rayCastPosition").gameObject;
-        mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
-        globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
-        animator = gameObject.transform.Find("Prefab_PlayerBot").GetComponent<Animator>();
-    }
-    public override void Use(ItemBase itemBase)
-    {       
-        // Checks if the player has enough stamina to attack, will then attack.
-        if (globalPlayerInfo.GetStamina() > belongingTo.GetStamina && canAttack)
+        private Animator animator;
+        private GameObject rayCastPosition;
+        private Camera mainCamera;
+        private GlobalPlayerInfo globalPlayerInfo;
+        private RaycastHit hit;
+        private bool canAttack = true;
+
+
+        public void Awake()
         {
-            globalPlayerInfo.UpdateStamina(-belongingTo.GetStamina);
-
-            canAttack = false;
-            animator.Play("SwordAttack",animator.GetLayerIndex("Sword Attack"),0f);
-            animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"),1);
-            StartCoroutine(WaitToAttack(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).speed));
+            rayCastPosition = gameObject.transform.Find("rayCastPosition").gameObject;
+            mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
+            globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
+            animator = gameObject.transform.Find("Prefab_PlayerBot").GetComponent<Animator>();
         }
-    }
 
-    public override void StopAnimation()
-    {
-        animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"), 0);
-    }
-    
-    //Waits the lenght of the animation before leting the player attack again.
-    IEnumerator WaitToAttack(float time)
-    {
-
-        yield return new WaitForSeconds(time);
-        if(Physics.SphereCast(rayCastPosition.transform.position, 0.1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
+        public override void Use(ItemBase itemBase)
         {
-            hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-(belongingTo.GetDamage + globalPlayerInfo.GetDamage()));
-            hit.collider.gameObject.GetComponent<EnemyMovement>().Stagger();
-            EnemyHitEvent hitEvent = new EnemyHitEvent();
-            hitEvent.enemy = hit.collider.transform.gameObject;
-            hitEvent.hitPoint = hit.point;
+            // Checks if the player has enough stamina to attack, will then attack.
+            if (globalPlayerInfo.GetStamina() > belongingTo.GetStamina && canAttack)
+            {
+                globalPlayerInfo.UpdateStamina(-belongingTo.GetStamina);
 
-            EventSystem.Current.FireEvent(hitEvent);
+                canAttack = false;
+                animator.Play("SwordAttack", animator.GetLayerIndex("Sword Attack"), 0f);
+                animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"), 1);
+                StartCoroutine(WaitToAttack(
+                    animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).length /
+                    animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).speed));
+            }
         }
-                
-        animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"),0);
-        canAttack = true;
 
-        
-        
+        public override void StopAnimation()
+        {
+            animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"), 0);
+        }
+
+        //Waits the lenght of the animation before leting the player attack again.
+        IEnumerator WaitToAttack(float time)
+        {
+            yield return new WaitForSeconds(time);
+            if (Physics.SphereCast(rayCastPosition.transform.position, 0.1f, mainCamera.transform.forward, out hit,
+                    belongingTo.GetRange, LayerMask.GetMask("Enemy")))
+            {
+                hit.collider.gameObject.GetComponent<EnemyVitalController>()
+                    .CmdUpdateHealth(-(belongingTo.GetDamage + globalPlayerInfo.GetDamage()));
+                hit.collider.gameObject.GetComponent<EnemyMovement>().Stagger();
+                EnemyHitEvent hitEvent = new EnemyHitEvent();
+                hitEvent.enemy = hit.collider.transform.gameObject;
+                hitEvent.hitPoint = hit.point;
+
+                EventSystem.Current.FireEvent(hitEvent);
+            }
+
+            animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"), 0);
+            canAttack = true;
+        }
     }
 }
-        
-    

@@ -1,42 +1,44 @@
 using UnityEngine;
 
-
-public class ToggleCharacterScreen : MonoBehaviour
+namespace Character_scripts.Player
 {
     /**
      * @author Martin Kings
      */
-    [SerializeField] private GameObject characterScreen;
-
-    public Animator animator;
-    public Animator otherAnimator;
-    public bool locked;
-
-    public void ToggleScreen()
+    public class ToggleCharacterScreen : MonoBehaviour
     {
-        if (!locked)
+        [SerializeField] private GameObject characterScreen;
+
+        public Animator animator;
+        public Animator otherAnimator;
+        public bool locked;
+
+        public void ToggleScreen()
         {
-            if (animator.GetBool("CSOpen"))
+            if (!locked)
             {
-                animator.SetBool("CSOpen", false);
-                if (gameObject.GetComponent<CameraMovement3D>().shouldBeLocked == false)
+                if (animator.GetBool("CSOpen"))
                 {
-                    gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = true;
-                }
+                    animator.SetBool("CSOpen", false);
+                    if (gameObject.GetComponent<CameraMovement3D>().shouldBeLocked == false)
+                    {
+                        gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = true;
+                    }
 
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            else
-            {
-                animator.SetBool("CSOpen", true);
-                otherAnimator.SetBool("levelNOTIF", false);
-                Cursor.lockState = CursorLockMode.None;
-                if (gameObject.GetComponent<CameraMovement3D>().shouldBeLocked == true)
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+                else
                 {
-                    gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = false;
-                }
+                    animator.SetBool("CSOpen", true);
+                    otherAnimator.SetBool("levelNOTIF", false);
+                    Cursor.lockState = CursorLockMode.None;
+                    if (gameObject.GetComponent<CameraMovement3D>().shouldBeLocked == true)
+                    {
+                        gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = false;
+                    }
 
-                characterScreen.GetComponent<CharacterScreen>().OpenCharacterScreen();
+                    characterScreen.GetComponent<CharacterScreen>().OpenCharacterScreen();
+                }
             }
         }
     }

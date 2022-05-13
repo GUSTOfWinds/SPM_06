@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace Event
 {
+    /**
+     * @author Martin Kings
+     */
     public class EventSystem : MonoBehaviour
     {
-        /**
-         * @author Martin Kings
-         */
         class GameListener
         {
             public EventListener listener;

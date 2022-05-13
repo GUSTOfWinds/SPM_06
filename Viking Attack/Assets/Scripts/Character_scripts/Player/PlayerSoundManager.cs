@@ -1,16 +1,13 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using Mirror;
+﻿using Mirror;
 using UnityEngine;
 
-namespace ItemNamespace
+namespace Character_scripts.Player
 {
-
+    /**
+     * @author Martin Kings
+     */
     public class PlayerSoundManager : NetworkBehaviour
     {
-        /**
-         * @author Martin Kings
-         */
         // The gameobject containing the listener for each player taking damage.
         [SerializeField] GameObject playerSoundContainer;
 

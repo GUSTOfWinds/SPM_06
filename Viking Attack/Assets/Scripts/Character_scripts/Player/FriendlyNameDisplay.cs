@@ -1,45 +1,47 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class FriendlyNameDisplay : MonoBehaviour
+namespace Character_scripts.Player
 {
     /**
      * @author Martin Kings
      */
-    [SerializeField] private Transform target;
-    [SerializeField] public Text text;
-    [SerializeField] private GameObject nameSource;
-    [SerializeField] private uint netIDOfSpottedPlayer;
-    [SerializeField] private Camera mainCamera;
-
-    public void Update()
+    public class FriendlyNameDisplay : MonoBehaviour
     {
-        Display();
-    }
+        [SerializeField] private Transform target;
+        [SerializeField] public Text text;
+        [SerializeField] private GameObject nameSource;
+        [SerializeField] private uint netIDOfSpottedPlayer;
+        [SerializeField] private Camera mainCamera;
 
-    public void Display()
-    {
-        if (mainCamera == null)
-            return;
+        public void Update()
+        {
+            Display();
+        }
 
-        var wantedPos = mainCamera.WorldToScreenPoint(target.position);
-        gameObject.transform.position = wantedPos;
-        gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-    }
+        public void Display()
+        {
+            if (mainCamera == null)
+                return;
 
-    public uint GetPersonalNetID()
-    {
-        return netIDOfSpottedPlayer;
-    }
+            var wantedPos = mainCamera.WorldToScreenPoint(target.position);
+            gameObject.transform.position = wantedPos;
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
 
-    public void Setup(Transform parent, uint spottedPlayerNetID, GameObject spottedPlayer, Camera mainCam)
-    {
-        transform.SetParent(parent.Find("UI"));
-        nameSource = spottedPlayer;
-        target = nameSource.transform.Find("Overhead");
-        netIDOfSpottedPlayer = spottedPlayerNetID;
-        text.text = nameSource.GetComponent<GlobalPlayerInfo>().GetName();
-        mainCamera = mainCam;
+        public uint GetPersonalNetID()
+        {
+            return netIDOfSpottedPlayer;
+        }
+
+        public void Setup(Transform parent, uint spottedPlayerNetID, GameObject spottedPlayer, Camera mainCam)
+        {
+            transform.SetParent(parent.Find("UI"));
+            nameSource = spottedPlayer;
+            target = nameSource.transform.Find("Overhead");
+            netIDOfSpottedPlayer = spottedPlayerNetID;
+            text.text = nameSource.GetComponent<GlobalPlayerInfo>().GetName();
+            mainCamera = mainCam;
+        }
     }
 }

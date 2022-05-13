@@ -1,28 +1,27 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Event;
 using UnityEngine;
-using UnityEngine.UI;
-using Mirror;
 
-public class PlayLevelAnimation : MonoBehaviour
+namespace Character_scripts.Player
 {
     /**
      * @author Martin Kings
      */
-    [SerializeField] private Animator parentAnimator;
-    [SerializeField] private Animator otherAnimator;
-    private Guid levelUpGuid;
-
-    void Start()
+    public class PlayLevelAnimation : MonoBehaviour
     {
-        EventSystem.Current.RegisterListener<PlayerLevelUpEventInfo>(OnPlayerLevelUp, ref levelUpGuid);
-    }
+        [SerializeField] private Animator parentAnimator;
+        [SerializeField] private Animator otherAnimator;
+        private Guid levelUpGuid;
 
-    public void OnPlayerLevelUp(PlayerLevelUpEventInfo playerLevelUpEventInfo)
-    {
-        parentAnimator.SetTrigger("incLVL");
-        otherAnimator.SetBool("levelNOTIF", true);
+        void Start()
+        {
+            EventSystem.Current.RegisterListener<PlayerLevelUpEventInfo>(OnPlayerLevelUp, ref levelUpGuid);
+        }
+
+        public void OnPlayerLevelUp(PlayerLevelUpEventInfo playerLevelUpEventInfo)
+        {
+            parentAnimator.SetTrigger("incLVL");
+            otherAnimator.SetBool("levelNOTIF", true);
+        }
     }
 }

@@ -4,22 +4,18 @@ using UnityEngine;
 
 namespace Event
 {
+    /**
+     * @author Martin Kings
+     */
     public class ItemPickupCleanupListener : MonoBehaviour
     {
-        /**
-         * @author Martin Kings
-         */
-        
         private Guid pickUpGuid;
 
         [SerializeField] private float destroyTimer;
-        
+
         private void Start()
         {
-            
             EventSystem.Current.RegisterListener<PlayerItemPickupEventInfo>(OnHostPickup, ref pickUpGuid);
-            
-            
         }
 
         private void OnHostPickup(PlayerItemPickupEventInfo playerItemPickupEventInfo)
@@ -30,7 +26,7 @@ namespace Event
         private IEnumerator DestroyAfterTime(PlayerItemPickupEventInfo playerItemPickupEventInfo)
         {
             yield return new WaitForSeconds(destroyTimer);
-            
+
             if (playerItemPickupEventInfo.itemToDestroy)
             {
                 Destroy(playerItemPickupEventInfo.itemToDestroy);

@@ -1,50 +1,51 @@
 ﻿using System;
-using Event;
+using Mirror;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using Mirror;
 
-public class PlayerEatingSoundListener : NetworkBehaviour
+namespace Event
 {
     /**
      * @author Martin Kings
      */
-    [SerializeField] private AudioClip[] sounds; // Contains all sounds that can be played
-
-    [SerializeField]
-    private AudioClip lastAudioClip; // last audioclip that was player, used to not play same audio twice
-
-    [SerializeField] private AudioSource audioSource;
-
-    [SerializeField]
-    private uint netID;
-
-    private Guid SoundEventGuid;
-
-    private void Start()
+    public class PlayerEatingSoundListener : NetworkBehaviour
     {
-        lastAudioClip = sounds[0];
-        netID = gameObject.GetComponent<NetworkIdentity>().netId; // sets the netid 
-        EventSystem.Current.RegisterListener<PlayerEatingEventInfo>(OnPlayerEating,
-            ref SoundEventGuid); // registers the listener
-    }
+        [SerializeField] private AudioClip[] sounds; // Contains all sounds that can be played
 
-    // Will play a random track from the array above when the local player takes damage
-    void OnPlayerEating(PlayerEatingEventInfo eventInfo)
-    {
-        if (isLocalPlayer)
+        [SerializeField]
+        private AudioClip lastAudioClip; // last audioclip that was player, used to not play same audio twice
+
+        [SerializeField] private AudioSource audioSource;
+
+        [SerializeField] private uint netID;
+
+        private Guid SoundEventGuid;
+
+        private void Start()
         {
-            do
-            {
-                audioSource.clip = sounds[Random.Range(0, sounds.Length)];
-            } while (audioSource.clip == lastAudioClip || audioSource.clip == null);
+            lastAudioClip = sounds[0];
+            netID = gameObject.GetComponent<NetworkIdentity>().netId; // sets the netid 
+            EventSystem.Current.RegisterListener<PlayerEatingEventInfo>(OnPlayerEating,
+                ref SoundEventGuid); // registers the listener
+        }
 
-            if (audioSource.gameObject.active && audioSource.isPlaying == false)
+        // Will play a random track from the array above when the local player takes damage
+        void OnPlayerEating(PlayerEatingEventInfo eventInfo)
+        {
+            if (isLocalPlayer)
             {
-                audioSource.Play();
+                do
+                {
+                    audioSource.clip = sounds[Random.Range(0, sounds.Length)];
+                } while (audioSource.clip == lastAudioClip || audioSource.clip == null);
+
+                if (audioSource.gameObject.active && audioSource.isPlaying == false)
+                {
+                    audioSource.Play();
+                }
+
+                lastAudioClip = audioSource.clip;
             }
-
-            lastAudioClip = audioSource.clip;
         }
     }
 }

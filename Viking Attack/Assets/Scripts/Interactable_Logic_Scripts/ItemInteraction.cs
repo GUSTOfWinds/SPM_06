@@ -1,5 +1,6 @@
 using System.Collections;
 using Event;
+using Inventory_scripts;
 using ItemNamespace;
 using UnityEngine;
 using Mirror;

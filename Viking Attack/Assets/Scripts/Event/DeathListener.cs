@@ -1,18 +1,18 @@
 using System;
 using System.Collections;
-using ItemNamespace;
-using UnityEngine;
+using Character_scripts.Enemy;
+using Inventory_scripts;
 using Mirror;
-using UnityEditor;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Event
 {
+    /**
+     * @author Martin Kings
+     */
     public class DeathListener : NetworkBehaviour
     {
-        /**
-         * @author Martin Kings
-         */
         [SerializeField] private GameObject dropBase;
         [SerializeField] private GameObject dropDataBase;
         [SerializeField] private GameObject[] enemies;
