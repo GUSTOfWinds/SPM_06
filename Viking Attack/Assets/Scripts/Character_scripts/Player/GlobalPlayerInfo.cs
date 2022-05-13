@@ -53,7 +53,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         levelThreshold = 60;
         availableStatpoints = 0;
         level = 1;
-        name = PlayerPrefs.GetString("PlayerName");
+        playerName = PlayerPrefs.GetString("PlayerName");
     }
 
     private void Start()
