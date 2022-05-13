@@ -10,7 +10,7 @@ namespace ItemNamespace
     public class CharacterBase : ScriptableObject
     {
         [SerializeField] private Type type;
-        [SerializeField] private string characterName;
+        [SerializeField] private string soName;
         [SerializeField] private string description;
         [SerializeField] private float range;
         [SerializeField] private float attackCooldown;
@@ -19,16 +19,12 @@ namespace ItemNamespace
         [SerializeField] private int moveSpeed;
         [SerializeField] private float maxHealth;
         [SerializeField] private float experienceRadius;
-        [SerializeField] private int level;
         [SerializeField] private float experience;
-        [SerializeField] private ItemBase drop;
-        [SerializeField] private int dropchance;
-
 
         // Returns name of the item
-        public string GetName()
+        public string GetScriptableObjectName()
         {
-            return characterName;
+            return soName;
         }
 
         public float GetMaxHealth()
@@ -79,19 +75,8 @@ namespace ItemNamespace
         // Will give more exp if higher level
         public float GetExperience()
         {
-            return level * experience;
+            return experience;
         }
-        // Returns name of the item
-        public ItemBase GetDrop()
-        {
-            return drop;
-        }
-
-        public int GetDropChance()
-        {
-            return dropchance;
-        }
-
 
         // Contains the different item type, add a new line to the enum in order to add an item type.
         public enum Type

@@ -35,7 +35,7 @@ public class EnemyHealthBar : MonoBehaviour
     // Updates the health number of the slider
     public void SetHealth()
     {
-        healthBar.value = healthSource.GetComponent<EnemyVitalController>().getCurrentHealth();
+        healthBar.value = healthSource.GetComponent<EnemyVitalController>().GetCurrentHealth();
     }
 
     public uint GetPersonalNetID()

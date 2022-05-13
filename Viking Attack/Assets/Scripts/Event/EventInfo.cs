@@ -65,4 +65,9 @@ namespace Event
     {
         public ItemBase itemBase;
     }
+
+    public class PlayerConnectEventInfo : EventInfo
+    {
+        
+    }
 }
