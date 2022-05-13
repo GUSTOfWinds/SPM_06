@@ -41,6 +41,11 @@ namespace ItemNamespace
             CmdSyncName();
         }
 
+        private void Start()
+        {
+            CmdSyncName();
+        }
+
         [Command]
         void CmdSyncName()
         {
@@ -157,8 +162,9 @@ namespace ItemNamespace
                                 .GetComponent<FriendlyNameDisplay>().GetPersonalNetID())
                         {
                             friendlyName.SetActive(true);
-                            hit.collider.GetComponent<GlobalPlayerInfo>().SetPlayerName(hit.collider.gameObject.GetComponent<PlayerActivateFriendlyPlayerName>().localName);
-                            friendlyName.GetComponent<FriendlyNameDisplay>().text.text = 
+                            hit.collider.GetComponent<GlobalPlayerInfo>().SetPlayerName(hit.collider.gameObject
+                                .GetComponent<PlayerActivateFriendlyPlayerName>().localName);
+                            friendlyName.GetComponent<FriendlyNameDisplay>().text.text =
                                 hit.collider.GetComponent<GlobalPlayerInfo>().GetName();
                             alreadyExists = true;
                             break;
