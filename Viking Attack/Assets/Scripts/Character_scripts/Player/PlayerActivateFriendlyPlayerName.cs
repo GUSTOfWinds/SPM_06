@@ -44,7 +44,7 @@ namespace ItemNamespace
         private void Start()
         {
             CmdSyncName();
-            //RpcSyncName();
+            RpcSyncName();
         }
 
         [Command]
@@ -56,6 +56,14 @@ namespace ItemNamespace
             }
         }
 
+        [Client]
+        void RpcSyncName()
+        {
+            if (isLocalPlayer)
+            {
+                localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
+            }
+        }
 
         private void FixedUpdate()
         {
