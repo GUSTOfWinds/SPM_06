@@ -71,7 +71,8 @@ namespace ItemNamespace
             {
                 return;
             }
-
+            CmdSyncName();
+            RpcSyncName();
             // All friendly players detected by the SphereCast
             hits = Physics.SphereCastAll(mainCamera.transform.position, 3,
                 mainCamera.transform.forward, 30, layerMask);
