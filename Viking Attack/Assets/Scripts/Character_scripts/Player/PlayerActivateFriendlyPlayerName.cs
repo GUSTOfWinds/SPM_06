@@ -38,12 +38,13 @@ namespace ItemNamespace
             instancesOfFriendlyNames = new List<GameObject>();
             previousHits = new RaycastHit[] { };
             mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
-            CmdSyncName();
+            
         }
 
         private void Start()
         {
             CmdSyncName();
+            //RpcSyncName();
         }
 
         [Command]
