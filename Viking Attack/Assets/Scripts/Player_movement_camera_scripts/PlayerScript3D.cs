@@ -22,7 +22,7 @@ public class PlayerScript3D : NetworkBehaviour
     public bool shouldMove;
     //KeyInfo variables  stop
     
-    public override void OnStartLocalPlayer()
+    public override void OnStartAuthority()
     {
         shouldMove = true;
         myRigidbody = GetComponent<MyRigidbody3D>();

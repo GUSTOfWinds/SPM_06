@@ -24,8 +24,8 @@ public class PlayerDashState : PlayerState
         if (Player.MyRigidbody3D.velocity.magnitude > 0.2f &&
             Player.GetComponent<GlobalPlayerInfo>().GetStamina() > 10f)
         {
-            Player.GetComponentInParent<GlobalPlayerInfo>().UpdateStamina(-15f);
-            Player.MyRigidbody3D.velocity += input * 27f;
+            Player.GetComponentInParent<GlobalPlayerInfo>().UpdateStamina(-14f);
+            Player.MyRigidbody3D.velocity += input * 25f;
         }
 
         if (Player.movementKeyInfo.ReadValue<Vector2>() != Vector2.zero)

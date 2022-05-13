@@ -9,21 +9,22 @@ namespace Main_menu_scripts.ForMP
     {
 
         [Header("UI")] 
-        [SerializeField] private GameObject lobbyUI;
+        [SerializeField] private GameObject lobbyUI = null;
 
         [SerializeField] private TMP_Text[] playerNameTexts = new TMP_Text[5];
         [SerializeField] private TMP_Text[] playerReadyTexts = new TMP_Text[5];
-        [SerializeField] private Button startGameButton;
+        [SerializeField] private Button startGameButton = null;
 
         [SyncVar(hook = nameof(HandleDisplayNameChanged))]
-        public string displayName = "Loading...";
+        public string DisplayName = "Loading...";
 
         [SyncVar(hook = nameof(HandleReadyStatusChanged))]
-        public bool isReady;
+        public bool isReady = false;
+
+        [SyncVar(hook = nameof(HandleColourChanged))]
+        public Color colour;
 
         private bool isLeader;
-
-   
         public bool IsLeader
         {
             set
@@ -66,15 +67,17 @@ namespace Main_menu_scripts.ForMP
         public void HandleReadyStatusChanged(bool oldValue, bool newValue) => UpdateDisplay();
         public void HandleDisplayNameChanged(string oldValue, string newValue) => UpdateDisplay();
 
-        private void UpdateDisplay()
+        public void HandleColourChanged(Color oldValue, Color newValue) => UpdateDisplay();
 
+        private void UpdateDisplay()
         {
             if (!hasAuthority)
             {
-                foreach (var player in Room.RoomPlayers)
+                
+                foreach (var roomplayer in Room.RoomPlayers)
                 {
-                    lobbyUI.SetActive(false);
-                    //to deactivate all the lobbyUI of the other clients
+                    if(!isLocalPlayer) lobbyUI.SetActive(false);
+
                 }
                 foreach (var player in Room.RoomPlayers)
                 {
@@ -95,11 +98,24 @@ namespace Main_menu_scripts.ForMP
 
             for (int i = 0; i < Room.RoomPlayers.Count; i++)
             {
-                playerNameTexts[i].text = Room.RoomPlayers[i].displayName;
+                playerNameTexts[i].text = Room.RoomPlayers[i].DisplayName;
+                playerNameTexts[i].color = NameColour();
                 playerReadyTexts[i].text = Room.RoomPlayers[i].isReady
                     ? "<color=green> Ready </color>"
                     : "<color=red> Not Ready </color>";
             }
+        }
+
+        private Color32 NameColour()
+        {
+            Color32 returnColour;
+            if (!isLocalPlayer || !hasAuthority) return returnColour = new Color32(255,255,255,255);
+            byte red = (byte)PlayerPrefs.GetInt("redValue");
+            byte green = (byte)PlayerPrefs.GetInt("greenValue");
+            byte blue = (byte)PlayerPrefs.GetInt("blueValue");
+            returnColour = new Color32(r: red, g: green, b: blue, a: 255);
+
+            return returnColour;
         }
 
         public void HandleReadyToStart(bool readyToStart)
@@ -109,9 +125,9 @@ namespace Main_menu_scripts.ForMP
         }
 
         [Command]
-        private void CmdSetDisplayName(string cmdDisplayName)
+        private void CmdSetDisplayName(string displayName)
         {
-            this.displayName = cmdDisplayName;
+            DisplayName = displayName;
         }
 
         [Command]
@@ -125,7 +141,7 @@ namespace Main_menu_scripts.ForMP
         public void CmdStartGame()
         {
             if (Room.RoomPlayers[0].connectionToClient != connectionToClient) return;
-            //TODO STARTA SPELET
+            Room.StartGame();    
         }
     }
 }

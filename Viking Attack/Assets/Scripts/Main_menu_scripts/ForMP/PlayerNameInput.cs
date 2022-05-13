@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,10 +13,12 @@ namespace Main_menu_scripts.ForMP
         [SerializeField] private TMP_InputField nameInputField;
 
         [SerializeField] private Button continueButton;
-    
-    
+
+
         public static string displayName { get; private set; }
         private const string PlayerPrefsNameKey = "PlayerName";
+        public static Color playerColour { get; private set; }
+        public const string PlayerColourKey = "PlayerColour";
 
         private void Start() => SetupInputField();
     
@@ -28,14 +32,39 @@ namespace Main_menu_scripts.ForMP
 
         public void SetPlayerName(String playerName)
         {
-            continueButton.interactable = string.IsNullOrEmpty(playerName);
+            MakeButtonActive();
         }
+        
+        public void SetPlayerColour(Color playerColor)
+        {
+            continueButton.interactable = !string.IsNullOrEmpty(playerColor.ToString());
+        }
+
 
         public void SavePlayerName()
         {
             displayName = nameInputField.text;
             PlayerPrefs.SetString(PlayerPrefsNameKey, displayName);
         
+        }
+        
+        public void SavePlayerColour()
+        {
+            
+            playerColour = Color.red;
+            PlayerPrefs.SetString(PlayerPrefsNameKey, ColorUtility.ToHtmlStringRGB(playerColour));
+        }
+
+        public void MakeButtonActive()
+        {
+            if (nameInputField.text != null || nameInputField.text != "")
+            {
+                continueButton.interactable = true;
+            }
+            else
+            {
+                continueButton.interactable = false;
+            }
         }
 
     }
