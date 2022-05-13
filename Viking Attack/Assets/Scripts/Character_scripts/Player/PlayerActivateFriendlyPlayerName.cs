@@ -50,7 +50,7 @@ namespace ItemNamespace
         [Command]
         void CmdSyncName()
         {
-            if (isLocalPlayer)
+            if (isClientOnly)
             {
                 localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
             }
@@ -59,7 +59,7 @@ namespace ItemNamespace
         [Client]
         void RpcSyncName()
         {
-            if (isLocalPlayer)
+            if (isServer)
             {
                 localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
             }
