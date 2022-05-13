@@ -43,13 +43,17 @@ namespace ItemNamespace
 
         private void Start()
         {
+            
             CmdSyncName();
         }
 
         [Command]
         void CmdSyncName()
         {
-            localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
+            if (isLocalPlayer)
+            {
+                localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
+            }
         }
 
 
