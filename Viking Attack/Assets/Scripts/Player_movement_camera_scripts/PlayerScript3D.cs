@@ -1,4 +1,3 @@
-using Character_scripts.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Mirror;

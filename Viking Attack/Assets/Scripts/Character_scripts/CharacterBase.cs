@@ -1,15 +1,16 @@
 using UnityEngine;
 
-namespace Character_scripts
+namespace ItemNamespace
 {
-    /**
-     * @author Martin Kings
-     */
-
-// Creates the ScriptableObject function for the Item objects.
+    // Creates the ScriptableObject function for the Item objects.
     [CreateAssetMenu(fileName = "Character", menuName = "ScriptableObjects/Create new character")]
+
+    // Contains the base information for all characters.
     public class CharacterBase : ScriptableObject
     {
+        /**
+         * @author Martin Kings
+         */
         [SerializeField] private Type type;
 
         [SerializeField] private string soName;

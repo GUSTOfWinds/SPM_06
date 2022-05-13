@@ -1,14 +1,19 @@
 using System;
-using Mirror;
+using System.Collections;
 using UnityEngine;
+using ItemNamespace;
+using Mirror;
+using UnityEditor;
 
-namespace Character_scripts.Enemy
+
+namespace ItemNamespace
 {
-    /**
-     * @author Martin Kings
-     */
+
     public class EnemyInfo : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
         [SerializeField] private float range; // The range of the enemy attacks
         [SerializeField] private float attackCooldown; // the cooldown of the enemy attacks
 
@@ -16,7 +21,9 @@ namespace Character_scripts.Enemy
 
         // float that will be reset to 0 after hitting the attackCooldown variable
         [SerializeField] private float cooldown;
-        [SerializeField] private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
+
+        [SerializeField]
+        private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
 
         [SerializeField] private float
             chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
@@ -34,6 +41,7 @@ namespace Character_scripts.Enemy
         private bool hasHealthBarShown;
         private Transform respawnParent;
         [SerializeField] private GameObject drop; // insert item to be dropped from prefab
+
         [SerializeField] private int dropChance; // insert value for dropchance
         private GameObject[] players;
         private int scale;

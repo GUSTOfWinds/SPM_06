@@ -1,32 +1,30 @@
-﻿using Mirror;
+﻿using System;
+using Mirror;
 using UnityEngine;
 
-namespace Inventory_scripts
+public class ItemSpawner : NetworkBehaviour
 {
     /**
      * @author Martin Kings
      */
-    public class ItemSpawner : NetworkBehaviour
+    [Header("Drag the item prefab you want to spawn in this spawner here")] [SerializeField]
+    private GameObject enemyPrefabToSpawn;
+
+    private uint netID;
+    [SerializeField] private bool spawnAtServerStart;
+
+    public void Spawn()
     {
-        [Header("Drag the item prefab you want to spawn in this spawner here")] [SerializeField]
-        private GameObject enemyPrefabToSpawn;
+        // Spawns an item at the location of the spawner parent
+        var item = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
+        NetworkServer.Spawn(item);
+    }
 
-        private uint netID;
-        [SerializeField] private bool spawnAtServerStart;
-
-        public void Spawn()
+    public override void OnStartServer()
+    {
+        if (spawnAtServerStart)
         {
-            // Spawns an item at the location of the spawner parent
-            var item = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
-            NetworkServer.Spawn(item);
-        }
-
-        public override void OnStartServer()
-        {
-            if (spawnAtServerStart)
-            {
-                Spawn();
-            }
+            Spawn();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using Character_scripts.Player;
 using Event;
 using ItemNamespace;
 using Mirror;
@@ -9,12 +8,13 @@ using UnityEngine.UI;
 
 namespace Inventory_scripts
 {
-    /**
-     * @author Martin Kings
-     */
     public class PlayerInventory : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
         [SerializeField] public ItemBase[] inventory;
+
         [SerializeField] private GameObject[] sprites;
         [SerializeField] private GameObject selectedItem;
         [SerializeField] private GameObject meatStackNumber;

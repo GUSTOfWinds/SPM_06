@@ -1,14 +1,17 @@
+using System;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace Character_scripts.Player
+namespace ItemNamespace
 {
-    /**
-     * @author Martin Kings
-     */
     public class PlayerActivateFriendlyPlayerName : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
+
         // The layermask of the other player
         [SerializeField] private LayerMask layerMask;
 

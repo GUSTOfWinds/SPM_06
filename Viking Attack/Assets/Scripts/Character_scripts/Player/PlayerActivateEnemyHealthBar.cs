@@ -1,17 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Character_scripts.Enemy;
 using Event;
 using Mirror;
 using UnityEngine;
 
-namespace Character_scripts.Player
+namespace ItemNamespace
 {
-    /**
-     * @author Martin Kings
-     */
+
     public class PlayerActivateEnemyHealthBar : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
+        
         // The layermask of the enemies
         [SerializeField] private LayerMask layerMask;
 

@@ -1,17 +1,18 @@
-using System;
 using UnityEngine;
+using System;
 
-namespace Inventory_scripts
+
+namespace ItemNamespace
 {
-    /**
-     * @author Martin Kings
-     */
     // Creates the ScriptableObject function for the Item objects.
     [CreateAssetMenu(fileName = "Item", menuName = "ScriptableObjects/Create new item")]
 
     // Contains the base information for all items. Will later on be used to determine action when used.
     public class ItemBase : ScriptableObject
     {
+        /**
+         * @author Martin Kings
+         */
         [SerializeField] private ItemType itemType;
 
         [SerializeField] private WeaponType weaponType;

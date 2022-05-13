@@ -1,27 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Character_scripts.Player
+public class PlayerStaminaBar : MonoBehaviour
 {
     /**
      * @author Martin Kings
      */
-    public class PlayerStaminaBar : MonoBehaviour
+    public Slider staminaBar; // the slider 
+    [SerializeField] private GlobalPlayerInfo globalPlayerInfo; // contains the global info of the current player
+
+    private void Start()
     {
-        public Slider staminaBar; // the slider 
-        [SerializeField] private GlobalPlayerInfo globalPlayerInfo; // contains the global info of the current player
+        staminaBar.maxValue = globalPlayerInfo.GetMaxStamina();
+        staminaBar.value = globalPlayerInfo.GetStamina();
+    }
 
-        private void Start()
-        {
-            staminaBar.maxValue = globalPlayerInfo.GetMaxStamina();
-            staminaBar.value = globalPlayerInfo.GetStamina();
-        }
-
-        // Updates the value of the slider to the players current stamina (will be called upon when attackacking, sprinting etc)
-        public void SetStamina(float stamina)
-        {
-            staminaBar.maxValue = globalPlayerInfo.GetMaxStamina();
-            staminaBar.value = stamina;
-        }
+    // Updates the value of the slider to the players current stamina (will be called upon when attackacking, sprinting etc)
+    public void SetStamina(float stamina)
+    {
+        staminaBar.maxValue = globalPlayerInfo.GetMaxStamina();
+        staminaBar.value = stamina;
     }
 }

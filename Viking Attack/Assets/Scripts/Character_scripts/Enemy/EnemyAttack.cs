@@ -1,17 +1,18 @@
 using System;
 using System.Collections;
-using Character_scripts.Player;
 using Event;
 using Mirror;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-namespace Character_scripts.Enemy
+namespace ItemNamespace
 {
-    /**
-     *@author Martin 
-     */
+
     public class EnemyAttack : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
         [SerializeField] private Animator animator;
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip[] enemySounds;
@@ -23,22 +24,27 @@ namespace Character_scripts.Enemy
         [SerializeField] private GlobalPlayerInfo globalPlayerInfo;
         private Vector3 playerLocation; // location used to see if the player has gotten away far enough to not be hit
 
+
         private float
             playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
 
         private RaycastHit hit;
         private Vector3 rayBeginning;
-        [SerializeField] private float cooldown; // float that will be reset to 0 after hitting the attackCooldown variable
+
+        [SerializeField]
+        private float cooldown; // float that will be reset to 0 after hitting the attackCooldown variable
+
         private float cooldownSound = 0f;
         private float timeToNextSound = 6.5f;
+
         [SerializeField] private LayerMask layerMask;
         private EnemyMovement enemyMovement;
         private GameObject[] enemies;
         private Guid respawnEventGuid;
 
         [SerializeField] private DeathListener deathListener;
-
         //[SyncVar] private GameObject syncGlobalPlayerInfo;
+
         public IEnumerator finishAttack;
 
         void Start()
