@@ -27,7 +27,7 @@ namespace ItemNamespace
 
         private Camera mainCamera;
 
-        [SyncVar] [SerializeField] private string playerName;
+        
 
         private void Awake()
         {
@@ -36,21 +36,12 @@ namespace ItemNamespace
             instancesOfFriendlyNames = new List<GameObject>();
             previousHits = new RaycastHit[] { };
             mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
-            CmdSetName(gameObject.GetComponent<GlobalPlayerInfo>().GetName());
         }
 
-        [Command]
-        void CmdSetName(string name)
-        {
-            if (isLocalPlayer)
-            {
-                playerName = name;
-            }
-        }
+
 
         private void FixedUpdate()
         {
-            //CmdSetName(gameObject.GetComponent<GlobalPlayerInfo>().GetName());
             if (!isLocalPlayer)
             {
                 return;

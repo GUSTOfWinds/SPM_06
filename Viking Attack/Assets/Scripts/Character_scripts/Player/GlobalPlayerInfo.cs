@@ -1,12 +1,13 @@
 using Event;
 using ItemNamespace;
+using Mirror;
 using UnityEngine;
 
 
 // WHO TO BLAME: Martin Kings
 
 // Container for all player specifics, will add experience gained, HP, level, items owned etc...
-public class GlobalPlayerInfo : MonoBehaviour
+public class GlobalPlayerInfo : NetworkBehaviour
 {
     [SerializeField] private Component healthBar;
     [SerializeField] private Component staminaBar;
@@ -28,6 +29,7 @@ public class GlobalPlayerInfo : MonoBehaviour
     [SerializeField] private int staminaStat;
     [SerializeField] private float damage;
     [SerializeField] private int meatStackNumber;
+    [SyncVar] [SerializeField] public string syncPlayerName;
 
 
     private void Awake()
@@ -49,6 +51,17 @@ public class GlobalPlayerInfo : MonoBehaviour
         availableStatpoints = 0;
         level = 1;
         SetPlayerName(PlayerPrefs.GetString("PlayerName"));
+        if (!isLocalPlayer)
+        {
+            CmdSetName(playerName);
+        }
+    }
+    
+    [Command]
+    void CmdSetName(string name)
+    {
+        playerName = name;
+        gameObject.GetComponent<GlobalPlayerInfo>().SetPlayerName(playerName);
     }
 
     public void SetItemSlot(int index, ItemBase itemBase)
