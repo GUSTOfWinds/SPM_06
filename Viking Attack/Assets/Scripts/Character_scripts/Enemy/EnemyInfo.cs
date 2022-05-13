@@ -27,12 +27,10 @@ namespace ItemNamespace
         [SerializeField] private int moveSpeed; // movement speed of the enemy
         [SerializeField] private float health;
         [SerializeField] public float maxHealth;
-        [SerializeField] private float experienceRadius;
-
+        private float experienceRadius;
         [Header("Insert the level you want the enemy to be")] [SerializeField]
         private int level;
-
-        [SerializeField] private float experience;
+        private float experience;
         [SerializeField] private new string name;
         private bool hasHealthBarShown;
         private Transform respawnParent;
@@ -40,10 +38,11 @@ namespace ItemNamespace
 
         [SerializeField] private int dropChance; // insert value for dropchance
         private GameObject[] players;
-        private int scale = 1;
+        private int scale;
 
         private void Start()
         {
+            scale = 1;
             // Updates the variables using the scriptable object
             experience = characterBase.GetExperience();
             name = characterBase.GetName();
