@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ItemNamespace
 {
@@ -38,7 +39,17 @@ namespace ItemNamespace
             instancesOfFriendlyNames = new List<GameObject>();
             previousHits = new RaycastHit[] { };
             mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
-            localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
+            CmdSyncName();
+            
+        }
+
+        [Command]
+        void CmdSyncName()
+        {
+            if (isLocalPlayer)
+            {
+                localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
+            }
         }
 
 
@@ -152,6 +163,7 @@ namespace ItemNamespace
                                 .GetComponent<FriendlyNameDisplay>().GetPersonalNetID())
                         {
                             friendlyName.SetActive(true);
+                            friendlyName.GetComponent<FriendlyNameDisplay>().text.text = localName;
                             alreadyExists = true;
                             break;
                         }

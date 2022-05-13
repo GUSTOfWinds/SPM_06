@@ -4,11 +4,10 @@ using UnityEngine.UI;
 public class FriendlyNameDisplay : MonoBehaviour
 {
     [SerializeField] private Transform target;
-    [SerializeField] private Text text;
+    [SerializeField] public Text text;
     [SerializeField] private GameObject nameSource;
     [SerializeField] private uint netIDOfSpottedPlayer;
     [SerializeField] private Camera mainCamera;
-
     public void Update()
     {
         Display();
