@@ -744,6 +744,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56cb9ca2fcf4fe9a8a8a9a9a558fa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   range: 0
   attackCooldown: 0
   damage: 0
@@ -753,10 +755,8 @@ MonoBehaviour:
   moveSpeed: 0
   health: 0
   maxHealth: 0
-  experienceRadius: 0
   level: 1
-  experience: 0
-  name: 
+  name: Bear_1
   drop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
 --- !u!54 &6653956862289318896

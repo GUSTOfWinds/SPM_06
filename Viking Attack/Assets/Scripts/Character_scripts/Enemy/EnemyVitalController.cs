@@ -16,11 +16,14 @@ public class EnemyVitalController : NetworkBehaviour
     [SerializeField] [SyncVar(hook = nameof(OnHealthChangedHook))]
     float currentHealth = 100f;
 
+    private EnemyInfo enemyInfo;
+
     //spara maxvärdet så vi kan räkna ut procent 
     void Start()
     {
         currentHealth = characterBase.GetMaxHealth();
         maxHealth = currentHealth;
+        enemyInfo = gameObject.GetComponent<EnemyInfo>();
     }
 
     public void Die()
@@ -62,8 +65,8 @@ public class EnemyVitalController : NetworkBehaviour
                 foreach (var coll in sphereColliders)
                 {
                     // Updates both the client and the player
-                    RpcIncreaseExperience(coll.gameObject, characterBase.GetExperience());
-                    coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(characterBase.GetExperience());
+                    RpcIncreaseExperience(coll.gameObject, enemyInfo.GetExperience());
+                    coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(enemyInfo.GetExperience());
                 }
                 this.OnDeath?.Invoke(this);
                 Die();

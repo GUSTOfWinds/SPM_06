@@ -47,8 +47,7 @@ namespace ItemNamespace
         {
             scale = 1;
             // Updates the variables using the scriptable object
-            experience = characterBase.GetExperience();
-            name = characterBase.GetName();
+            experience = characterBase.GetExperience() * level;
             experienceRadius = characterBase.GetExperienceRadius();
             range = characterBase.GetRange();
             attackCooldown = characterBase.GetAttackCooldown();
@@ -60,12 +59,6 @@ namespace ItemNamespace
             // Runs for those who respawn
             PlayerScale();
             
-        }
-
-        public void Kill()
-        {
-            //TODO ADD EVENT LISTENER HERE, NEEDS TO FIND ALL LISTENERS FOR ENEMY DEATHS
-            gameObject.SetActive(false);
         }
 
         public void SetRespawnAnchor(Transform p)
@@ -91,6 +84,11 @@ namespace ItemNamespace
         public string GetName()
         {
             return name;
+        }
+
+        public float GetExperience()
+        {
+            return experience;
         }
 
         //get health back when moving back to default status
