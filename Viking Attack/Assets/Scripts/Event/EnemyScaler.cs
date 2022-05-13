@@ -33,6 +33,10 @@ public class EnemyScaler : MonoBehaviour
     void OnUnitRespawn(EnemyRespawnEventInfo unitDeathEventInfo)
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in enemies)
+        {
+            enemy.GetComponent<EnemyInfo>().PlayerScale();
+        }
     }
 
     // Will be run any time a player joins and scales the damage and health
@@ -52,7 +56,7 @@ public class EnemyScaler : MonoBehaviour
         RefreshEnemyArrays(unitDeathEventInfo);
     }
 
-    // 
+    // Removes an enemy from the array
     private void RefreshEnemyArrays(UnitDeathEventInfo unitDeathEventInfo)
     {
         for (int i = 0; i < enemies.Length; i++)
