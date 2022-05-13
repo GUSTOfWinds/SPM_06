@@ -63,6 +63,7 @@ public class ToggleMenu : NetworkBehaviour
     // unpause the game
     public void CloseScreen()
     {
+        isOpen = false;
         if (isServer)
         {
             // Finds and sets all healthbars to active when unpaused
