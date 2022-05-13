@@ -51,11 +51,13 @@ namespace Event
             dropBase.GetComponent<DropItemInWorldScript>().itembase =
                 unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetDrop();
 
+            // Randomizes a number between 1 and the dropchance int set in character base for drops, if
+            // it is a match, the drop will appear
+            int randomMax = unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetDropChance() + 1;
+
             if (unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetDrop() != null)
             {
-                // Randomizes a number between 1 and the dropchance int set in character base for drops, if
-                // it is a match, the drop will appear
-                if (Random.Range(1, unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetDropChance()) ==
+                if (Random.Range(1, randomMax) ==
                     unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetDropChance())
                 {
                     if (dropDataBase.GetComponent<DropDatabase>().GetIsDropped(unitDeathEventInfo.EventUnitGo.transform

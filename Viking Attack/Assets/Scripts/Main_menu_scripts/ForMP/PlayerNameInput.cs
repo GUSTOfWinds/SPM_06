@@ -21,11 +21,20 @@ namespace Main_menu_scripts.ForMP
         public const string PlayerColourKey = "PlayerColour";
 
         private void Start() => SetupInputField();
+        
+        private void FixedUpdate()
+        {
+            if (nameInputField.text.Length > 0)
+            {
+                continueButton.interactable = true;
+            }
+        }
     
         private void SetupInputField(){
             if(!PlayerPrefs.HasKey(PlayerPrefsNameKey)) return;
             string defaultName = PlayerPrefs.GetString(PlayerPrefsNameKey);
             nameInputField.text = defaultName;
+            nameInputField.characterLimit = 12;
 
             SetPlayerName(defaultName);
         }
