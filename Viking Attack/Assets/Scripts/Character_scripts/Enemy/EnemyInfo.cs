@@ -1,5 +1,8 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using ItemNamespace;
+using UnityEditor;
 
 // WHO TO BLAME: Martin Kings
 
@@ -9,16 +12,16 @@ namespace ItemNamespace
     {
         [SerializeField] private float range; // The range of the enemy attacks
         [SerializeField] private float attackCooldown; // the cooldown of the enemy attacks
+
         [SerializeField] private int damage; // the damage of the enemy attacks
 
-        [SerializeField]
-        private float cooldown; // float that will be reset to 0 after hitting the attackCooldown variable
+        // float that will be reset to 0 after hitting the attackCooldown variable
+        [SerializeField] private float cooldown;
 
         [SerializeField]
         private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
 
-        [SerializeField]
-        private float
+        [SerializeField] private float
             chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
 
         [SerializeField] private int moveSpeed; // movement speed of the enemy
@@ -35,8 +38,10 @@ namespace ItemNamespace
         private Transform respawnParent;
         private ItemBase drop; // insert item 
         private int dropChance;
+        private GameObject[] players;
+        private int scale = 1;
 
-        private void Awake()
+        private void Start()
         {
             // Updates the variables using the scriptable object
             experience = characterBase.GetExperience();
@@ -47,10 +52,12 @@ namespace ItemNamespace
             damage = characterBase.GetDamage();
             chasingSpeedMultiplier = characterBase.GetChasingSpeed();
             moveSpeed = characterBase.GetMovementSpeed();
-            health = characterBase.GetMaxHealth();
             maxHealth = characterBase.GetMaxHealth();
             drop = characterBase.GetDrop();
             dropChance = characterBase.GetDropChance();
+            // Runs for those who respawn
+            PlayerScale();
+            health = characterBase.GetMaxHealth();
         }
 
         public void Kill()
@@ -88,6 +95,26 @@ namespace ItemNamespace
         public void BackToDefault()
         {
             this.gameObject.GetComponent<EnemyInfo>().health = maxHealth;
+        }
+
+        // increases damage and health if there are multiple players
+        public void PlayerScale()
+        {
+            players = GameObject.FindGameObjectsWithTag("Player");
+            if (players.Length > 1 &&
+                scale != players.Length) // checks the scale to make sure the enemy doesn't get scaled 
+                // several times
+            {
+                scale = players.Length;
+                float tempHealth = maxHealth;
+                maxHealth = maxHealth * (float) Math.Pow(1.3, players.Length);
+                damage = damage * (int) Math.Pow(1.3, players.Length);
+                if (tempHealth == health)
+                {
+                    health = maxHealth;
+                }
+                gameObject.GetComponent<EnemyVitalController>().PlayerScaleHealthUpdate(health, maxHealth);
+            }
         }
     }
 }
