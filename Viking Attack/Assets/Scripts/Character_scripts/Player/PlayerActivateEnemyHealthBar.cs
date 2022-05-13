@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using Event;
 using Mirror;
 using UnityEngine;
 
@@ -37,9 +40,26 @@ namespace ItemNamespace
             mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
         }
 
+        private void Start()
+        {
+            if (isLocalPlayer)
+            {
+                StartCoroutine(DelayedEnemyScale());
+            }
+        }
+
+        IEnumerator DelayedEnemyScale()
+        {
+            yield return new WaitForSeconds(1);
+            EventInfo unitDeathEventInfo = new PlayerConnectEventInfo
+            {
+                EventUnitGo = gameObject,
+            };
+            EventSystem.Current.FireEvent(unitDeathEventInfo);
+        }
+
         void FixedUpdate()
         {
-
             if (!isLocalPlayer) return;
             // All enemies detected by the SphereCast
             hits = Physics.SphereCastAll(mainCamera.transform.position, 3,
@@ -55,23 +75,26 @@ namespace ItemNamespace
                 {
                     newHealthBarGo = SetupHealthBar(hit);
                     instancesOfEnemyHealthBars.Add(newHealthBarGo);
-                    
+
                     // Adds to all enemy instances (saves the instanceID)
                     instancesOfEnemiesSpotted.Add(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
                 }
             }
-    
+
             // Loops through and destroys the healthbars that aren't visible in this frame
             for (int i = 0; i < instancesOfEnemyHealthBars.Count; i++)
             {
                 // Checks if the enemy IDS that were spotted this frame exist in all instancesOfenemyHealthbars.
-                if (idsSpottedThisFrame.Contains(instancesOfEnemyHealthBars[i].GetComponent<EnemyHealthBar>().GetPersonalNetID()) == false)
+                if (idsSpottedThisFrame.Contains(instancesOfEnemyHealthBars[i].GetComponent<EnemyHealthBar>()
+                        .GetPersonalNetID()) == false)
                 {
-                    instancesOfEnemiesSpotted.Remove(instancesOfEnemyHealthBars[i].GetComponent<EnemyHealthBar>().GetPersonalNetID());
+                    instancesOfEnemiesSpotted.Remove(instancesOfEnemyHealthBars[i].GetComponent<EnemyHealthBar>()
+                        .GetPersonalNetID());
                     Destroy(instancesOfEnemyHealthBars[i]);
                     instancesOfEnemyHealthBars.Remove(instancesOfEnemyHealthBars[i]);
                 }
             }
+
             idsSpottedThisFrame.Clear();
         }
 

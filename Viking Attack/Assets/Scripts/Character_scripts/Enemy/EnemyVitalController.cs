@@ -80,9 +80,15 @@ public class EnemyVitalController : NetworkBehaviour
         player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(exp);
     }
 
-    public float getCurrentHealth()
+    public float GetCurrentHealth()
     {
         return currentHealth;
+    }
+
+    public void PlayerScaleHealthUpdate(float hp, float maxhp)
+    {
+        currentHealth = hp;
+        maxHealth = maxhp;
     }
 
     //andra script kan registrera på detta event
