@@ -44,22 +44,12 @@ namespace ItemNamespace
         private void Start()
         {
             CmdSyncName();
-            RpcSyncName();
         }
 
         [Command]
         void CmdSyncName()
         {
             if (isClientOnly)
-            {
-                localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
-            }
-        }
-
-        [Client]
-        void RpcSyncName()
-        {
-            if (isServer)
             {
                 localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
             }
@@ -72,7 +62,6 @@ namespace ItemNamespace
                 return;
             }
             CmdSyncName();
-            RpcSyncName();
             // All friendly players detected by the SphereCast
             hits = Physics.SphereCastAll(mainCamera.transform.position, 3,
                 mainCamera.transform.forward, 30, layerMask);
