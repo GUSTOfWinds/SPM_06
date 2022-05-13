@@ -28,9 +28,8 @@ namespace ItemNamespace
 
         private Camera mainCamera;
 
-        [SyncVar] public string localName; 
-        
-        
+        [SyncVar] public string localName;
+
 
         private void Awake()
         {
@@ -40,18 +39,13 @@ namespace ItemNamespace
             previousHits = new RaycastHit[] { };
             mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
             CmdSyncName();
-            
         }
 
         [Command]
         void CmdSyncName()
         {
-            if (isLocalPlayer)
-            {
-                localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
-            }
+            localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
         }
-
 
 
         private void FixedUpdate()
@@ -163,7 +157,9 @@ namespace ItemNamespace
                                 .GetComponent<FriendlyNameDisplay>().GetPersonalNetID())
                         {
                             friendlyName.SetActive(true);
-                            friendlyName.GetComponent<FriendlyNameDisplay>().text.text = localName;
+                            hit.collider.GetComponent<GlobalPlayerInfo>().SetPlayerName(hit.collider.gameObject.GetComponent<PlayerActivateFriendlyPlayerName>().localName);
+                            friendlyName.GetComponent<FriendlyNameDisplay>().text.text = 
+                                hit.collider.GetComponent<GlobalPlayerInfo>().GetName();
                             alreadyExists = true;
                             break;
                         }
