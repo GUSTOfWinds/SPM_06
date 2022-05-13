@@ -107,8 +107,8 @@ namespace ItemNamespace
             {
                 scale = players.Length;
                 float tempHealth = maxHealth;
-                maxHealth = maxHealth * (float) Math.Pow(1.3, players.Length);
-                damage = damage * (int) Math.Pow(1.3, players.Length);
+                maxHealth = maxHealth * (float) Math.Pow(1.3, players.Length*1.45);
+                damage = damage * (int) Math.Pow(1.3, players.Length*1.33);
                 if (tempHealth == health)
                 {
                     health = maxHealth;
