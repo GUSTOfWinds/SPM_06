@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using UnityEngine;
 using ItemNamespace;
+using Mirror;
 using UnityEditor;
 
 // WHO TO BLAME: Martin Kings
 
 namespace ItemNamespace
 {
-    public class EnemyInfo : MonoBehaviour
+    public class EnemyInfo : NetworkBehaviour
     {
         [SerializeField] private float range; // The range of the enemy attacks
         [SerializeField] private float attackCooldown; // the cooldown of the enemy attacks
@@ -28,8 +29,10 @@ namespace ItemNamespace
         [SerializeField] private float health;
         [SerializeField] public float maxHealth;
         private float experienceRadius;
+
         [Header("Insert the level you want the enemy to be")] [SerializeField]
         private int level;
+
         private float experience;
         [SerializeField] private new string name;
         private bool hasHealthBarShown;
@@ -53,9 +56,10 @@ namespace ItemNamespace
             chasingSpeedMultiplier = characterBase.GetChasingSpeed();
             moveSpeed = characterBase.GetMovementSpeed();
             maxHealth = characterBase.GetMaxHealth();
+            health = characterBase.GetMaxHealth();
             // Runs for those who respawn
             PlayerScale();
-            health = characterBase.GetMaxHealth();
+            
         }
 
         public void Kill()
@@ -104,13 +108,10 @@ namespace ItemNamespace
                 // several times
             {
                 scale = players.Length;
-                float tempHealth = maxHealth;
-                maxHealth = maxHealth * (float) Math.Pow(1.3, players.Length*1.45);
-                damage = damage * (int) Math.Pow(1.3, players.Length*1.33);
-                if (tempHealth == health)
-                {
-                    health = maxHealth;
-                }
+
+                maxHealth *= (float) Math.Pow(1.3, players.Length * 1.45);
+                damage *= (int) Math.Pow(1.3, players.Length * 1.33);
+                health = maxHealth;
                 gameObject.GetComponent<EnemyVitalController>().PlayerScaleHealthUpdate(health, maxHealth);
             }
         }

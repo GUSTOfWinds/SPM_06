@@ -87,8 +87,8 @@ public class EnemyVitalController : NetworkBehaviour
 
     public void PlayerScaleHealthUpdate(float hp, float maxhp)
     {
-        currentHealth = hp;
         maxHealth = maxhp;
+        currentHealth = hp;
     }
 
     //andra script kan registrera på detta event
