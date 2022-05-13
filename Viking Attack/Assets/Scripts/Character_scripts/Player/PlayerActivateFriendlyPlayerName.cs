@@ -27,6 +27,8 @@ namespace ItemNamespace
 
         private Camera mainCamera;
 
+        [SyncVar] public string localName; 
+        
         
 
         private void Awake()
@@ -36,6 +38,7 @@ namespace ItemNamespace
             instancesOfFriendlyNames = new List<GameObject>();
             previousHits = new RaycastHit[] { };
             mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
+            localName = gameObject.GetComponent<GlobalPlayerInfo>().GetName();
         }
 
 

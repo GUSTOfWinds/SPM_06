@@ -35,7 +35,7 @@ public class FriendlyNameDisplay : MonoBehaviour
         nameSource = spottedPlayer;
         target = nameSource.transform.Find("Overhead");
         netIDOfSpottedPlayer = spottedPlayerNetID;
-        text.text = nameSource.GetComponent<GlobalPlayerInfo>().syncPlayerName;
+        text.text = nameSource.GetComponent<GlobalPlayerInfo>().GetName();
         mainCamera = mainCam;
     }
 }
