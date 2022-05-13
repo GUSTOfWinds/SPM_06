@@ -8,6 +8,10 @@ namespace ItemNamespace
 {
     public class PlayerActivateFriendlyPlayerName : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
+
         // The layermask of the other player
         [SerializeField] private LayerMask layerMask;
 
@@ -38,7 +42,6 @@ namespace ItemNamespace
             instancesOfFriendlyNames = new List<GameObject>();
             previousHits = new RaycastHit[] { };
             mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
-            
         }
 
         private void FixedUpdate()
@@ -47,6 +50,7 @@ namespace ItemNamespace
             {
                 return;
             }
+
             // All friendly players detected by the SphereCast
             hits = Physics.SphereCastAll(mainCamera.transform.position, 3,
                 mainCamera.transform.forward, 30, layerMask);

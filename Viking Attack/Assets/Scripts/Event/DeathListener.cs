@@ -10,6 +10,9 @@ namespace Event
 {
     public class DeathListener : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
         [SerializeField] private GameObject dropBase;
         [SerializeField] private GameObject dropDataBase;
         [SerializeField] private GameObject[] enemies;

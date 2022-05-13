@@ -5,11 +5,12 @@ using Mirror;
 using UnityEngine;
 
 
-// WHO TO BLAME: Martin Kings
 
-// Container for all player specifics, will add experience gained, HP, level, items owned etc...
 public class GlobalPlayerInfo : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [SerializeField] private Component healthBar;
     [SerializeField] private Component staminaBar;
     [SerializeField] private Component experienceBar;
@@ -59,7 +60,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
         {
             CmdSetPlayerName(PlayerPrefs.GetString("PlayerName"));
         }
-        
     }
 
     public void SetItemSlot(int index, ItemBase itemBase)

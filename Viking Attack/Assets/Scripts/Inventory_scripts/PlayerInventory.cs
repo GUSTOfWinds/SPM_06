@@ -10,7 +10,11 @@ namespace Inventory_scripts
 {
     public class PlayerInventory : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
         [SerializeField] public ItemBase[] inventory;
+
         [SerializeField] private GameObject[] sprites;
         [SerializeField] private GameObject selectedItem;
         [SerializeField] private GameObject meatStackNumber;
@@ -18,7 +22,7 @@ namespace Inventory_scripts
         [SerializeField] private uint netID;
         [SerializeField] private GameObject itemInfoSprite;
         [SerializeField] private GameObject[] weaponStats;
-        
+
         private Guid itemPickupGuid;
 
 
@@ -116,7 +120,7 @@ namespace Inventory_scripts
             go.GetComponent<PlayerItemUsageController>().SyncHeldItem(index);
         }
 
-        
+
         // Activates all parts needed for the inventory slot of the itembase that was picked up
         // to be able to function fully
         private void UpdateHeldItem(int index, ItemBase itemBase)
@@ -279,7 +283,6 @@ namespace Inventory_scripts
             {
                 sprites[3].SetActive(true);
             }
-            
         }
     }
 }

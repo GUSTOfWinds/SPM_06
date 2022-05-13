@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class ItemMeatBehaviour : ItemBaseBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     private Animator animator;
     private GlobalPlayerInfo globalPlayerInfo;
     private PlayerInventory playerInventory;

@@ -8,7 +8,11 @@ using UnityEngine.UI;
 
 public class ToggleMenu : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     private GameObject[] players;
+
     private GameObject[] healthBars;
     private List<GameObject> inactiveBars;
     private bool isOpen;

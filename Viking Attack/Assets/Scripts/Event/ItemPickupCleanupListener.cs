@@ -6,6 +6,9 @@ namespace Event
 {
     public class ItemPickupCleanupListener : MonoBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
         
         private Guid pickUpGuid;
 

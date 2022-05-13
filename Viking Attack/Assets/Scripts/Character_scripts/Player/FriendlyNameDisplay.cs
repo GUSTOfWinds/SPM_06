@@ -1,13 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class FriendlyNameDisplay : MonoBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [SerializeField] private Transform target;
     [SerializeField] public Text text;
     [SerializeField] private GameObject nameSource;
     [SerializeField] private uint netIDOfSpottedPlayer;
     [SerializeField] private Camera mainCamera;
+
     public void Update()
     {
         Display();

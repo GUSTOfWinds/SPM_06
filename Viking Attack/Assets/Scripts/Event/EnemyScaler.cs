@@ -8,7 +8,11 @@ using UnityEngine;
 
 public class EnemyScaler : MonoBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [SerializeField] private GameObject[] enemies;
+
     private Guid deathEventGuid;
     private Guid respawnEventGuid;
     private Guid playerConnectEventGuid;

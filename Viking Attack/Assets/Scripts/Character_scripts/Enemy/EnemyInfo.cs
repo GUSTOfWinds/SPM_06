@@ -5,12 +5,15 @@ using ItemNamespace;
 using Mirror;
 using UnityEditor;
 
-// WHO TO BLAME: Martin Kings
 
 namespace ItemNamespace
 {
+
     public class EnemyInfo : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
         [SerializeField] private float range; // The range of the enemy attacks
         [SerializeField] private float attackCooldown; // the cooldown of the enemy attacks
 
@@ -58,7 +61,6 @@ namespace ItemNamespace
             health = characterBase.GetMaxHealth();
             // Runs for those who respawn
             PlayerScale();
-            
         }
 
         public void SetRespawnAnchor(Transform p)
