@@ -13,7 +13,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SerializeField] private Component healthBar;
     [SerializeField] private Component staminaBar;
     [SerializeField] private Component experienceBar;
-    [SerializeField] private string playerName;
+    [SyncVar] [SerializeField] private string playerName;
     [SerializeField] private Color skinColor;
     [SerializeField] private float health;
     [SerializeField] private float maxHealth;
@@ -30,9 +30,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SerializeField] private int staminaStat;
     [SerializeField] private float damage;
     [SerializeField] private int meatStackNumber;
-
-    [SyncVar] [SerializeField] string
-        tempName;
 
 
     private void Awake()
@@ -74,7 +71,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [Command]
     public void CmdSetPlayerName(string insertedName)
     {
-        tempName = insertedName;
+        playerName = insertedName;
     }
 
     public float GetHealth()
