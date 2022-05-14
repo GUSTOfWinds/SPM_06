@@ -146,10 +146,11 @@ namespace ItemNamespace
             ResetCoolDown(); // resets cooldown of the attack
 
 
-            RpcSwingSword();
+            
             yield return new WaitForSeconds(1f); // the time it takes from start of the enemy attack animation
             // to the time of impact, for smooth timing reasons
             // plays the sound of the skeleton swinging its sword
+            RpcSwingSword();
             audioSource.PlayOneShot(enemySounds[1]);
             if (gameObject != null)
             {

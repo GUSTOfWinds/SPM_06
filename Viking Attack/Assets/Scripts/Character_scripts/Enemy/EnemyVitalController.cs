@@ -30,6 +30,11 @@ public class EnemyVitalController : NetworkBehaviour
         enemyInfo = gameObject.GetComponent<EnemyInfo>();
     }
 
+    private void OnConnectedToServer()
+    {
+        UpdateHealth(0);
+    }
+
     public void Die()
     {
         if (hasDied)

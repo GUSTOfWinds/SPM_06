@@ -49,8 +49,7 @@ public class EnemyMovement : NetworkBehaviour
     [SerializeField] private float patrolRange;
     [SerializeField] private int maxChasingRange;
 
-    [SerializeField]
-    private float
+    [SerializeField] private float
         chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
 
     [SerializeField] private int moveSpeed; // movement speed of the enemy
@@ -128,7 +127,7 @@ public class EnemyMovement : NetworkBehaviour
                         movingDirection = RandomVector(movingDirection).normalized;
                         checkForHinder = false;
                     }
-                    
+
                     transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                     ChangeFacingDirection(movingDirection);
                 }
@@ -207,17 +206,14 @@ public class EnemyMovement : NetworkBehaviour
                         backToDefault = false;
                         isGuarding = true;
                         chasingObject = null;
-                       //Debug.Log("Back to guarding");
+                        //Debug.Log("Back to guarding");
                     }
                     else
                     {
-                       transform.position = Vector3.MoveTowards(transform.position, spawnPosition, moveSpeed * 0.3f * Time.deltaTime);
-                       transform.LookAt(spawnPosition);
-                     
-
+                        transform.position = Vector3.MoveTowards(transform.position, spawnPosition,
+                            moveSpeed * 0.3f * Time.deltaTime);
+                        transform.LookAt(spawnPosition);
                     }
-                  
-
                 }
 
                 if ((!isChasing) && (!isAttacking))
@@ -243,7 +239,7 @@ public class EnemyMovement : NetworkBehaviour
 
                 //if ((!isChasing) && (!isAttacking))
                 //{
-                   
+
                 //    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                 //    ChangeFacingDirection(movingDirection);
                 //}
