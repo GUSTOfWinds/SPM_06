@@ -87,6 +87,10 @@ namespace ItemNamespace
         {
             return name;
         }
+        public CharacterBase GetCharacterBase()
+        {
+            return characterBase;
+        }
 
         public float GetExperience()
         {
