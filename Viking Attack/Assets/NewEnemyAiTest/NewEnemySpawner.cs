@@ -43,7 +43,7 @@ public class NewEnemySpawner : NetworkBehaviour
         // Spawns an enemy at the location of the spawner parent, will also spawn it on the server
         var enemy = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
         enemy.GetComponent<EnemyInfo>().SetRespawnAnchor(transform);
-        enemy.GetComponent<EnemyScript>().SetEnemyTransform(transform);
+        enemy.GetComponent<EnemyAIScript>().SetEnemyTransform(transform);
         NetworkServer.Spawn(enemy);
         
 
