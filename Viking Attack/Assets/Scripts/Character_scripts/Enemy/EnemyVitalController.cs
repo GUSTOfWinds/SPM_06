@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Runtime.CompilerServices;
 using ItemNamespace;
 using Event;
 using Mirror;
@@ -10,7 +12,7 @@ public class EnemyVitalController : NetworkBehaviour
     /**
      * @author Martin Kings/Victor
      */
-    float maxHealth;
+    
     [SerializeField] private CharacterBase characterBase;
     [SerializeField] public float waitTime;
     [SerializeField] private bool hasDied;
@@ -18,7 +20,9 @@ public class EnemyVitalController : NetworkBehaviour
     [SerializeField] private LayerMask layerMask;
 
     [SerializeField] [SyncVar(hook = nameof(OnHealthChangedHook))]
-    float currentHealth = 100f;
+    float currentHealth;
+    
+    [SyncVar] private float maxHealth;
 
     private EnemyInfo enemyInfo;
 
@@ -28,6 +32,7 @@ public class EnemyVitalController : NetworkBehaviour
         currentHealth = characterBase.GetMaxHealth();
         maxHealth = currentHealth;
         enemyInfo = gameObject.GetComponent<EnemyInfo>();
+        enemyInfo.PlayerScale();
     }
 
     private void OnConnectedToServer()
@@ -101,8 +106,23 @@ public class EnemyVitalController : NetworkBehaviour
 
     public void PlayerScaleHealthUpdate(float hp, float maxhp)
     {
+        //Debug.Log(hp + " " + maxhp + " från netid: " + gameObject.GetComponent<NetworkIdentity>().netId);
         maxHealth = maxhp;
+        //Debug.Log(maxHealth);
         currentHealth = hp;
+        //Debug.Log(currentHealth);
+        if (currentHealth > 0)
+        {
+            UpdateHealth(0);
+        }
+            //UpdateHealth(0);
+        //StartCoroutine(LateHealthUpdate());
+    }
+
+    IEnumerator LateHealthUpdate()
+    {
+        yield return new WaitForSeconds(1);
+        UpdateHealth(0);
     }
 
     //andra script kan registrera på detta event

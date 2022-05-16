@@ -253,14 +253,20 @@ namespace Inventory_scripts
         // After eating all your food, the player goes back to holding the sword
         public void ReturnToDefault()
         {
-            if (!isLocalPlayer)
+            // Syncs the held item to either server or client
+            if (isClientOnly)
             {
-                return;
+                CmdUpdateWeapon(0, gameObject);
+            }
+
+            if (isServer)
+            {
+                RpcUpdateWeapon(0, gameObject);
             }
 
             gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
             selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 10f, 0f);
-            UpdateItemInfo(0);
+            UpdateItemInfo(0); // updates the weapon info box with sword information
             animator.SetTrigger("itemPOPUP");
         }
 
