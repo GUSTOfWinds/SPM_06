@@ -16,6 +16,7 @@ public class CharacterScreen : MonoBehaviour
     [SerializeField] private Text staminaStatPoints;
     [SerializeField] private Text availableStatPoints;
     [SerializeField] private Text XPtoLVL;
+    [SerializeField] private Text level;
     [SerializeField] private GlobalPlayerInfo globalPlayerInfo;
 
     public Animator animator;
@@ -32,6 +33,8 @@ public class CharacterScreen : MonoBehaviour
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
         XPtoLVL.text = ((globalPlayerInfo.GetLevelThreshold() * globalPlayerInfo.GetLevel() * 1.3f) -
                         globalPlayerInfo.GetExperience()).ToString();
+        level.text = globalPlayerInfo.GetArmorLevel().ToString();
+
     }
 
     // Increases the damage stat of the player when the damage button is pressed

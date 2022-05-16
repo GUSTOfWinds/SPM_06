@@ -31,11 +31,12 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SerializeField] private int staminaStat;
     [SerializeField] private float damage;
     [SerializeField] private int meatStackNumber;
+    [SerializeField] private int armorLevel;
 
 
     private void Awake()
     {
-        items = new ItemBase[4];
+        items = new ItemBase[5];
         damage = 5;
         health = 100;
         maxHealth = 100;
@@ -52,6 +53,12 @@ public class GlobalPlayerInfo : NetworkBehaviour
         availableStatpoints = 0;
         level = 1;
         playerName = PlayerPrefs.GetString("PlayerName");
+        armorLevel = 0;
+    }
+
+    public void IncreaseArmorLevel()
+    {
+        armorLevel++;
     }
 
     private void Start()
@@ -177,6 +184,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         EventInfo playerLevelUpInfo = new PlayerLevelUpEventInfo
         {
+            netID = gameObject.GetComponent<NetworkIdentity>().netId
         };
         EventSystem.Current.FireEvent(playerLevelUpInfo);
         level++;
@@ -264,5 +272,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
     public void SetDisplayName(string playerName)
     {
         this.playerName = playerName;
+    }
+
+    public int GetArmorLevel()
+    {
+        return armorLevel;
     }
 }

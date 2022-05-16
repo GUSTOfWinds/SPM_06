@@ -28,7 +28,6 @@ namespace Inventory_scripts
 
         private void Start()
         {
-            //inventory = new ItemBase[4];
             // Registers listener for player pickups
             netID = gameObject.GetComponent<NetworkIdentity>().netId;
             EventSystem.Current.RegisterListener<PlayerItemPickupEventInfo>(OnItemPickup, ref itemPickupGuid);
@@ -94,6 +93,24 @@ namespace Inventory_scripts
                                 gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber().ToString();
                             gameObject.GetComponent<GlobalPlayerInfo>()
                                 .SetItemSlot(3, inventory[3]); // sets the info in globalplayerinfo
+                        }
+
+                        break;
+                    
+                    case ItemBase.ItemType.Armor:
+
+                        if (sprites[4].active)
+                        {
+                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel();
+                        }
+                        else
+                        {
+                            inventory[4] = playerItemPickupEventInfo.itemBase;
+                            sprites[4].SetActive(true);
+                            sprites[4].GetComponent<Image>().sprite = inventory[4].GetSprite;
+                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel();
+                            gameObject.GetComponent<GlobalPlayerInfo>()
+                                .SetItemSlot(4, inventory[4]);
                         }
 
                         break;

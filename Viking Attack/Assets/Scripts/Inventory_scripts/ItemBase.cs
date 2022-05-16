@@ -29,7 +29,10 @@ namespace ItemNamespace
         [SerializeField] private Material material; // the material for the item in the world
         [SerializeField] private string usageParticle; // the object with base behavior script for the item
         [SerializeField] private string itemBaseBehaviorScriptName; // the object with base behavior script for the item
+        [SerializeField] private int protection;
 
+        // Returns armor level
+        public int GetProtection => protection;
 
         // Returns damage output when used
         public int GetDamage => damage;
@@ -78,7 +81,7 @@ namespace ItemNamespace
         {
             Food,
             Weapon,
-            Tool,
+            Armor,
             Key
         }
 

@@ -75,6 +75,7 @@ public class EnemyVitalController : NetworkBehaviour
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
             if (currentHealth <= 0f)
             {
+                gameObject.GetComponent<EnemyAttack>().StopCoroutine("FinishAttack");
                 sphereColliders =
                     Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
                 foreach (var coll in sphereColliders)
@@ -106,23 +107,12 @@ public class EnemyVitalController : NetworkBehaviour
 
     public void PlayerScaleHealthUpdate(float hp, float maxhp)
     {
-        //Debug.Log(hp + " " + maxhp + " från netid: " + gameObject.GetComponent<NetworkIdentity>().netId);
         maxHealth = maxhp;
-        //Debug.Log(maxHealth);
         currentHealth = hp;
-        //Debug.Log(currentHealth);
         if (currentHealth > 0)
         {
             UpdateHealth(0);
         }
-            //UpdateHealth(0);
-        //StartCoroutine(LateHealthUpdate());
-    }
-
-    IEnumerator LateHealthUpdate()
-    {
-        yield return new WaitForSeconds(1);
-        UpdateHealth(0);
     }
 
     //andra script kan registrera på detta event
