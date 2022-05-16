@@ -20,17 +20,29 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
         globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
         animator = gameObject.transform.Find("Prefab_PlayerBot").GetComponent<Animator>();
     }
+
+    // Might need some tweaking to work as we want
+    IEnumerator AddAttackCooldown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(1.5f);
+        canAttack = true;
+    }
     public override void Use(ItemBase itemBase)
-    {       
+    {
+        
         // Checks if the player has enough stamina to attack, will then attack.
         if (globalPlayerInfo.GetStamina() > belongingTo.GetStamina && canAttack)
         {
             globalPlayerInfo.UpdateStamina(-belongingTo.GetStamina);
-
             canAttack = false;
             animator.Play("Dagger_Attack",animator.GetLayerIndex("Dagger Attack"),0f);
             animator.SetLayerWeight(animator.GetLayerIndex("Dagger Attack"),1);
             StartCoroutine(WaitToAttack(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Dagger Attack")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Dagger Attack")).speed));
+            if (globalPlayerInfo.GetStamina() < 15)
+            {
+                StartCoroutine(AddAttackCooldown());
+            }
         }
     }
     public override void StopAnimation()
