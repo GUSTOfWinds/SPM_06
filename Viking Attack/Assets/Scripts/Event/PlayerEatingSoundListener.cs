@@ -6,6 +6,9 @@ using Mirror;
 
 public class PlayerEatingSoundListener : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [SerializeField] private AudioClip[] sounds; // Contains all sounds that can be played
 
     [SerializeField]

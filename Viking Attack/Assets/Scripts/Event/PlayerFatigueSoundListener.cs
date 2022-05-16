@@ -9,6 +9,9 @@ using Mirror;
 
 public class PlayerFatigueSoundListener : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [SerializeField] private AudioClip[] sounds; // Contains all sounds that can be played
 
     [SerializeField]

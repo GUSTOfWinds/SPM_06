@@ -8,18 +8,21 @@ namespace Event
 {
     public class EventSystem : MonoBehaviour
     {
-    class GameListener
-    {
-        public EventListener listener;
-        public System.Guid guid;
-
-        public GameListener(EventListener listener)
+        /**
+         * @author Martin Kings
+         */
+        class GameListener
         {
-            this.listener = listener;
-            this.guid = Guid.NewGuid();
+            public EventListener listener;
+            public System.Guid guid;
+
+            public GameListener(EventListener listener)
+            {
+                this.listener = listener;
+                this.guid = Guid.NewGuid();
+            }
         }
-    }
-    
+
 
         void OnEnable()
         {
@@ -66,18 +69,18 @@ namespace Event
 
         public void UnregisterListener(Guid guid)
         {
-
             if (eventListeners == null)
             {
                 return;
             }
 
-            KeyValuePair<Type, List<GameListener>> listener = eventListeners.Where(x => x.Value.Any(y => y.guid == guid)).FirstOrDefault();
+            KeyValuePair<Type, List<GameListener>> listener =
+                eventListeners.Where(x => x.Value.Any(y => y.guid == guid)).FirstOrDefault();
 
             GameListener gameListener = listener.Value.Where(x => x != null && x.guid == guid).FirstOrDefault();
-            if (gameListener == null)  //no gamelistener with that Guid, just leave..
+            if (gameListener == null) //no gamelistener with that Guid, just leave..
                 return;
-            
+
             eventListeners[listener.Key].Remove(gameListener);
         }
 
@@ -89,9 +92,9 @@ namespace Event
                 // No one is listening, we are done.
                 return;
             }
+
             foreach (GameListener el in eventListeners[trueEventInfoClass])
             {
-                
                 el.listener(eventInfo);
             }
         }

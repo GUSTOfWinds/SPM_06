@@ -3,14 +3,16 @@ using UnityEngine;
 
 namespace Event
 {
-    // Main class, contains a description
+    /**
+     * @author Martin Kings
+     */
     public abstract class EventInfo
     {
         public GameObject EventUnitGo;
         public string EventDescription;
     }
 
-    
+
     // Die event class
     public class UnitDeathEventInfo : EventInfo
     {
@@ -20,7 +22,6 @@ namespace Event
 
     public class DebugEventInfo : EventInfo
     {
-        
     }
 
     public class DamageEventInfo : EventInfo
@@ -37,7 +38,6 @@ namespace Event
 
     public class PlayerLevelUpEventInfo : EventInfo
     {
-        
     }
 
     public class PlayerItemPickupEventInfo : EventInfo
@@ -48,17 +48,16 @@ namespace Event
 
     public class PlayerEatingEventInfo : EventInfo
     {
-        
     }
+
     public class EnemyHitEvent : EventInfo
     {
         public GameObject enemy;
         public Vector3 hitPoint;
     }
-    
+
     public class PlayerFatigueEventInfo : EventInfo
     {
-        
     }
 
     public class ItemDropEventInfo : EventInfo
@@ -68,6 +67,5 @@ namespace Event
 
     public class PlayerConnectEventInfo : EventInfo
     {
-        
     }
 }

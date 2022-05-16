@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class PlayerDamageUIListener : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [SerializeField]
     private uint netID; // the netID of the player, making sure to only play sounds when the local player is hit
 

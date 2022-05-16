@@ -1,15 +1,18 @@
 using UnityEngine;
-namespace ItemNamespace
 
-// WHO TO BLAME: Martin Kings
+namespace ItemNamespace
 {
     // Creates the ScriptableObject function for the Item objects.
     [CreateAssetMenu(fileName = "Character", menuName = "ScriptableObjects/Create new character")]
-    
+
     // Contains the base information for all characters.
     public class CharacterBase : ScriptableObject
     {
+        /**
+         * @author Martin Kings
+         */
         [SerializeField] private Type type;
+
         [SerializeField] private string soName;
         [SerializeField] private string description;
         [SerializeField] private float range;
@@ -50,7 +53,7 @@ namespace ItemNamespace
             return attackCooldown;
         }
 
-        
+
         // Returns the base damage of the character
         public int GetDamage()
         {
@@ -84,7 +87,6 @@ namespace ItemNamespace
             Player,
             Enemy,
             Friendly
-            
         }
     }
 }

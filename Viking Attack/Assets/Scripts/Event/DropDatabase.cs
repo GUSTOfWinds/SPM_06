@@ -9,6 +9,9 @@ using Random = UnityEngine.Random;
 
 public class DropDatabase : MonoBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [SerializeField] private List<ItemBase> droppedItems; // Contains all sounds that can be played
 
     private Guid itemEventGuid;

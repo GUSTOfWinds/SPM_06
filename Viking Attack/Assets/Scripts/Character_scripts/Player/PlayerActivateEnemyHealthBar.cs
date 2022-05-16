@@ -7,9 +7,13 @@ using UnityEngine;
 
 namespace ItemNamespace
 {
-    // WHO TO BLAME: Martin Kings
+
     public class PlayerActivateEnemyHealthBar : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
+        
         // The layermask of the enemies
         [SerializeField] private LayerMask layerMask;
 

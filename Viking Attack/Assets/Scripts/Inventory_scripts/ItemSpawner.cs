@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ItemSpawner : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [Header("Drag the item prefab you want to spawn in this spawner here")] [SerializeField]
     private GameObject enemyPrefabToSpawn;
 

@@ -5,6 +5,9 @@ namespace Event
 {
     public class DebugListener : MonoBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
         private Guid debugEventGuid;
         private void Start()
         {

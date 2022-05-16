@@ -47,7 +47,10 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
         if(Physics.SphereCast(rayCastPosition.transform.position, 0.1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
         {
             hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-(belongingTo.GetDamage + globalPlayerInfo.GetDamage()));
-            hit.collider.gameObject.GetComponent<EnemyMovement>().Stagger();
+            if(hit.collider.gameObject.GetComponent<EnemyMovement>() != null)
+                hit.collider.gameObject.GetComponent<EnemyMovement>().Stagger();
+            else if(hit.collider.gameObject.GetComponent<EnemyAIScript>() != null)
+                hit.collider.gameObject.GetComponent<EnemyAIScript>().Stagger();
             EnemyHitEvent hitEvent = new EnemyHitEvent();
             hitEvent.enemy = hit.collider.transform.gameObject;
             hitEvent.hitPoint = hit.point;

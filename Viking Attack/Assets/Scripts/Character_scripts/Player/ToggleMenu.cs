@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ToggleMenu : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     private GameObject[] players;
+
     private GameObject[] healthBars;
     private List<GameObject> inactiveBars;
     private bool isOpen;
@@ -66,6 +71,7 @@ public class ToggleMenu : NetworkBehaviour
         isOpen = false;
         if (isServer)
         {
+            isOpen = false;
             // Finds and sets all healthbars to active when unpaused
             for (int i = 0; i < inactiveBars.Count; i++)
             {

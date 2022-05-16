@@ -4,8 +4,12 @@ using Event;
 using Mirror;
 using UnityEngine;
 
+
 public class EnemyVitalController : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings/Victor
+     */
     float maxHealth;
     [SerializeField] private CharacterBase characterBase;
     [SerializeField] public float waitTime;
@@ -24,6 +28,11 @@ public class EnemyVitalController : NetworkBehaviour
         currentHealth = characterBase.GetMaxHealth();
         maxHealth = currentHealth;
         enemyInfo = gameObject.GetComponent<EnemyInfo>();
+    }
+
+    private void OnConnectedToServer()
+    {
+        UpdateHealth(0);
     }
 
     public void Die()
@@ -61,13 +70,15 @@ public class EnemyVitalController : NetworkBehaviour
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
             if (currentHealth <= 0f)
             {
-                sphereColliders = Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
+                sphereColliders =
+                    Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
                 foreach (var coll in sphereColliders)
                 {
                     // Updates both the client and the player
                     RpcIncreaseExperience(coll.gameObject, enemyInfo.GetExperience());
                     coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(enemyInfo.GetExperience());
                 }
+
                 this.OnDeath?.Invoke(this);
                 Die();
             }
@@ -75,7 +86,7 @@ public class EnemyVitalController : NetworkBehaviour
         else
             CmdUpdateHealth(change);
     }
-    
+
     // Ships experience to clients, makes experience within proximity possible
     [ClientRpc]
     private void RpcIncreaseExperience(GameObject player, float exp)

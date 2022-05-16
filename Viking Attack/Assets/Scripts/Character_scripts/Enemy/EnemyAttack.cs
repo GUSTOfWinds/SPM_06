@@ -7,8 +7,12 @@ using UnityEngine;
 
 namespace ItemNamespace
 {
+
     public class EnemyAttack : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
         [SerializeField] private Animator animator;
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip[] enemySounds;
@@ -21,7 +25,8 @@ namespace ItemNamespace
         private Vector3 playerLocation; // location used to see if the player has gotten away far enough to not be hit
 
 
-        private float playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
+        private float
+            playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
 
         private RaycastHit hit;
         private Vector3 rayBeginning;
@@ -63,12 +68,14 @@ namespace ItemNamespace
                 {
                     cooldown += Time.fixedDeltaTime;
                 }
+
                 if (cooldownSound < timeToNextSound) // adds to cooldown if attackCooldown hasn't been met
                 {
                     cooldownSound += Time.fixedDeltaTime;
                 }
+
                 //if the enemy is stagger stop attack
-                if(animator.GetBool("Staggered") && finishAttack != null)
+                if (animator.GetBool("Staggered") && finishAttack != null)
                 {
                     StopCoroutine(finishAttack);
                     enemyMovement.attacking = false;
@@ -91,7 +98,6 @@ namespace ItemNamespace
                         audioSource.PlayOneShot(enemySounds[0]);
                         RpcPlayEnemyChasing();
                         cooldownSound = 0;
-
                     }
 
                     // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
@@ -139,12 +145,12 @@ namespace ItemNamespace
 
             ResetCoolDown(); // resets cooldown of the attack
 
+
             
-            
-            RpcSwingSword();
             yield return new WaitForSeconds(1f); // the time it takes from start of the enemy attack animation
             // to the time of impact, for smooth timing reasons
             // plays the sound of the skeleton swinging its sword
+            RpcSwingSword();
             audioSource.PlayOneShot(enemySounds[1]);
             if (gameObject != null)
             {
@@ -154,16 +160,16 @@ namespace ItemNamespace
                     RpcDealDamage(hitGo);
                     Attack(); // Attacks player
                 }
-                
+
                 animator.SetBool("Attacking", false);
                 //sets the others to false
                 animator.SetBool("Chasing", true);
                 animator.SetBool("Patrolling", false);
-                
+
                 enemyMovement.attacking = false;
             }
         }
-        
+
         [ClientRpc]
         private void RpcDealDamage(GameObject gpi)
         {

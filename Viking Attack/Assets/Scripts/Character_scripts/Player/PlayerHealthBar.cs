@@ -2,11 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-// Who to blame: Martin Kings
-
 
 public class PlayerHealthBar : MonoBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     public Slider healthBar; // the slider 
     [SerializeField] private GlobalPlayerInfo globalPlayerInfo; // contains the global info of the current player
 
