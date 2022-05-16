@@ -223,7 +223,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
 
     public void IncreaseDamageStatPoints()
     {
-        damage+=5;
+        damage+=6;
         availableStatpoints--;
         damageStat++;
     }
