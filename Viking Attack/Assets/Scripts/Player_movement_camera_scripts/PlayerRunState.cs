@@ -9,8 +9,8 @@ public class PlayerRunState : PlayerState
     private Vector3 input;
     private Vector2 inputMovement;
     public InputAction.CallbackContext sprintKeyInfo;
-    private float sprintCost = 10f;
-    private float staminaGain = 22f;
+    private float sprintCost = 8f;
+    private float staminaGain = 13f;
     [SerializeField] private float cooldown = 0.9f;
     private bool hasPassedSprintingCooldown;
     private float sprintingCooldown = 3;

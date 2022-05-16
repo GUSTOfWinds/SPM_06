@@ -4,13 +4,13 @@ using UnityEngine.UI;
 namespace Main_menu_scripts.ForMP
 {
     public class UIPlayer : MonoBehaviour {
-
+        //This script runs locally on every client, it decides what position in the player grid you are at in the lobby for players.
         [SerializeField] Text text;
-        Player player;
+        private Player _player;
 
-        public void SetPlayer (Player player) {
-            this.player = player;
-            text.text = "Player " + player.playerIndex.ToString ();
+        public void SetPlayer (Player _player) {
+            this._player = _player;
+            text.text = "Player " + _player.playerIndex.ToString ();
         }
 
     }

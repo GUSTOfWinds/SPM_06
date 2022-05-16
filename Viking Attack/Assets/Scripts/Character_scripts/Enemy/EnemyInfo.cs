@@ -106,7 +106,6 @@ namespace ItemNamespace
         // increases damage and health if there are multiple players
         public void PlayerScale()
         {
-            Debug.Log(scale);
             players = GameObject.FindGameObjectsWithTag("Player");
             if (players.Length > 1 &&
                 scale != players.Length) // checks the scale to make sure the enemy doesn't get scaled 

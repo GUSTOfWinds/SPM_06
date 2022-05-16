@@ -29,7 +29,6 @@ public class EnemyVitalController : NetworkBehaviour
     //spara maxvärdet så vi kan räkna ut procent 
     void Start()
     {
-        Debug.Log("nu är jag i start" + netId);
         currentHealth = characterBase.GetMaxHealth();
         maxHealth = currentHealth;
         enemyInfo = gameObject.GetComponent<EnemyInfo>();
@@ -111,7 +110,6 @@ public class EnemyVitalController : NetworkBehaviour
         
         maxHealth = maxhp;
         currentHealth = hp;
-        Debug.Log(currentHealth + " " + maxHealth + "NETID: OCH DETTA ÄR I SCALING METODEN" + netId);
         if (currentHealth > 0)
         {
             UpdateHealth(0);

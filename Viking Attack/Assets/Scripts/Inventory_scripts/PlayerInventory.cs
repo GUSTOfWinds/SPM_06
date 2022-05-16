@@ -176,6 +176,10 @@ namespace Inventory_scripts
         // if the sword has been picked up
         public void ToggleSword(InputAction.CallbackContext value)
         {
+            if (gameObject.GetComponent<PlayerItemUsageController>().itemBase == inventory[0])
+            {
+                return;
+            }
             if (sprites[0].active)
             {
                 // Syncs the held item to either server or client
@@ -200,6 +204,10 @@ namespace Inventory_scripts
         // if the spear has been picked up
         public void ToggleSpear(InputAction.CallbackContext value)
         {
+            if (gameObject.GetComponent<PlayerItemUsageController>().itemBase == inventory[1])
+            {
+                return;
+            }
             if (sprites[1].active)
             {
                 // Syncs the held item to either server or client
@@ -224,6 +232,10 @@ namespace Inventory_scripts
         // if the dagger has been picked up
         public void ToggleDagger(InputAction.CallbackContext value)
         {
+            if (gameObject.GetComponent<PlayerItemUsageController>().itemBase == inventory[2])
+            {
+                return;
+            }
             if (sprites[2].active)
             {
                 // Syncs the held item to either server or client
@@ -248,6 +260,10 @@ namespace Inventory_scripts
         // if the player has more than 0 food in his/her inventory
         public void ToggleFood(InputAction.CallbackContext value)
         {
+            if (gameObject.GetComponent<PlayerItemUsageController>().itemBase == inventory[3])
+            {
+                return;
+            }
             if (gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber() > 0)
             {
                 // Syncs the held item to either server or client
