@@ -41,8 +41,7 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
     //Waits the lenght of the animation before leting the player attack again.
     IEnumerator WaitToAttack(float time)
     {
-
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(time / 2);
         if(Physics.SphereCast(rayCastPosition.transform.position, 0.1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
         {
             hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100));
@@ -52,7 +51,7 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
 
             EventSystem.Current.FireEvent(hitEvent);
         }
-            
+        yield return new WaitForSeconds(time / 2);
         animator.SetLayerWeight(animator.GetLayerIndex("Dagger Attack"),0);
         canAttack = true;
         

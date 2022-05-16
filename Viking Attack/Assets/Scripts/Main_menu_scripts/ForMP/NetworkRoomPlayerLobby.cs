@@ -14,6 +14,8 @@ namespace Main_menu_scripts.ForMP
         [SerializeField] private TMP_Text[] playerNameTexts = new TMP_Text[5];
         [SerializeField] private TMP_Text[] playerReadyTexts = new TMP_Text[5];
         [SerializeField] private Button startGameButton = null;
+        [SerializeField] private Button readyButton = null;
+
 
         //These are syncvariables that updates towards the server, and when there is a change we run the methods called in the hook
         [SyncVar(hook = nameof(HandleDisplayNameChanged))]
@@ -76,6 +78,7 @@ namespace Main_menu_scripts.ForMP
         //Method makes sure all players display the same thing whilst in the lobby. It checks to see if it's not the local player and disables the ui element so that there is only one shown per client.
         private void UpdateDisplay()
         {
+
             if (!hasAuthority)
             {
                 //First foreach decides if the lobby UI is active or not base on if you're the local player or not.
@@ -88,6 +91,7 @@ namespace Main_menu_scripts.ForMP
                 {
                     if (player.hasAuthority)
                     {
+
                         player.UpdateDisplay();
                         break;
                     }
@@ -107,8 +111,8 @@ namespace Main_menu_scripts.ForMP
                 playerNameTexts[i].text = Room.RoomPlayers[i].displayName;
                 playerNameTexts[i].color = NameColour();
                 playerReadyTexts[i].text = Room.RoomPlayers[i].isReady
-                    ? "<color=green> Ready </color>"
-                    : "<color=red> Not Ready </color>";
+                    ? "<color=#9CFF8D> Ready </color>"
+                    : "<color=#E53737> Not Ready </color>";
             }
         }
 
@@ -130,6 +134,7 @@ namespace Main_menu_scripts.ForMP
         //All players in lobby must be ready
         public void HandleReadyToStart(bool readyToStart)
         {
+
             if (!isLeader) return;
             startGameButton.interactable = readyToStart;
         }
@@ -144,6 +149,7 @@ namespace Main_menu_scripts.ForMP
         [Command]
         public void CmdReadyUp()
         {
+
             isReady = !isReady;
             Room.NotifyPlayersOfReadyState();
         }

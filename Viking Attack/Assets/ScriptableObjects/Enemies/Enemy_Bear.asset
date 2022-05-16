@@ -13,16 +13,13 @@ MonoBehaviour:
   m_Name: Enemy_Bear
   m_EditorClassIdentifier: 
   type: 1
-  characterName: BEAR
+  soName: 
   description: ROAR
   range: 4
   attackCooldown: 2
   damage: 15
   chasingSpeedMultiplier: 1.5
   moveSpeed: 25
-  maxHealth: 60
+  maxHealth: 70
   experienceRadius: 20
-  level: 1
   experience: 15
-  drop: {fileID: 11400000, guid: 64ccf9d3ba3f178408425f8bde948b16, type: 2}
-  dropchance: 1
