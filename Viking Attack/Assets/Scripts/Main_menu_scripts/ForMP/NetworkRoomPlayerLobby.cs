@@ -14,6 +14,8 @@ namespace Main_menu_scripts.ForMP
         [SerializeField] private TMP_Text[] playerNameTexts = new TMP_Text[5];
         [SerializeField] private TMP_Text[] playerReadyTexts = new TMP_Text[5];
         [SerializeField] private Button startGameButton = null;
+        [SerializeField] private Button readyButton = null;
+
 
         [SyncVar(hook = nameof(HandleDisplayNameChanged))]
         public string DisplayName = "Loading...";
@@ -71,8 +73,10 @@ namespace Main_menu_scripts.ForMP
 
         private void UpdateDisplay()
         {
+
             if (!hasAuthority)
             {
+
                 
                 foreach (var roomplayer in Room.RoomPlayers)
                 {
@@ -83,6 +87,7 @@ namespace Main_menu_scripts.ForMP
                 {
                     if (player.hasAuthority)
                     {
+
                         player.UpdateDisplay();
                         break;
                     }
@@ -101,8 +106,8 @@ namespace Main_menu_scripts.ForMP
                 playerNameTexts[i].text = Room.RoomPlayers[i].DisplayName;
                 playerNameTexts[i].color = NameColour();
                 playerReadyTexts[i].text = Room.RoomPlayers[i].isReady
-                    ? "<color=green> Ready </color>"
-                    : "<color=red> Not Ready </color>";
+                    ? "<color=#9CFF8D> Ready </color>"
+                    : "<color=#E53737> Not Ready </color>";
             }
         }
 
@@ -120,6 +125,7 @@ namespace Main_menu_scripts.ForMP
 
         public void HandleReadyToStart(bool readyToStart)
         {
+
             if (!isLeader) return;
             startGameButton.interactable = readyToStart;
         }
@@ -133,6 +139,7 @@ namespace Main_menu_scripts.ForMP
         [Command]
         public void CmdReadyUp()
         {
+
             isReady = !isReady;
             Room.NotifyPlayersOfReadyState();
         }
