@@ -39,7 +39,7 @@ public class EnemyScaler : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (var enemy in enemies)
         {
-            enemy.GetComponent<EnemyInfo>().PlayerScale();
+            //enemy.GetComponent<EnemyInfo>().PlayerScale();
         }
     }
 

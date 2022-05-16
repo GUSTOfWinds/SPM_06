@@ -46,7 +46,8 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         yield return new WaitForSeconds(time);
         if(Physics.SphereCast(rayCastPosition.transform.position, 0.1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
         {
-            hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-(belongingTo.GetDamage + globalPlayerInfo.GetDamage()));
+            // Damage on player now works as a multiplier instead of damage.
+            hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100));
             if(hit.collider.gameObject.GetComponent<EnemyMovement>() != null)
                 hit.collider.gameObject.GetComponent<EnemyMovement>().Stagger();
             else if(hit.collider.gameObject.GetComponent<EnemyAIScript>() != null)
