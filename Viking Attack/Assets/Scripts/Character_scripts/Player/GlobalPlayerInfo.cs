@@ -37,7 +37,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     private void Awake()
     {
         items = new ItemBase[5];
-        damage = 5;
+        damage = 100;
         health = 100;
         maxHealth = 100;
         stamina = 100;
@@ -223,7 +223,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
 
     public void IncreaseDamageStatPoints()
     {
-        damage++;
+        damage+=5;
         availableStatpoints--;
         damageStat++;
     }

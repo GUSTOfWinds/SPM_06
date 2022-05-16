@@ -28,7 +28,7 @@ public class CharacterScreen : MonoBehaviour
         playerName.text = globalPlayerInfo.GetName();
         playerLevelText.text = globalPlayerInfo.GetLevel().ToString();
         healthStatPoints.text = globalPlayerInfo.GetMaxHealth().ToString();
-        damageStatPoints.text = globalPlayerInfo.GetDamage().ToString();
+        damageStatPoints.text = globalPlayerInfo.GetDamage().ToString() + "%";
         staminaStatPoints.text = globalPlayerInfo.GetMaxStamina().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
         XPtoLVL.text = ((globalPlayerInfo.GetLevelThreshold() * globalPlayerInfo.GetLevel() * 1.3f) -
@@ -44,7 +44,7 @@ public class CharacterScreen : MonoBehaviour
             return;
         animator.SetTrigger("incDMG");
         globalPlayerInfo.IncreaseDamageStatPoints();
-        damageStatPoints.text = globalPlayerInfo.GetDamage().ToString();
+        damageStatPoints.text = globalPlayerInfo.GetDamage().ToString() + "%";
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
     }
 

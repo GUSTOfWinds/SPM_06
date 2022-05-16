@@ -22,13 +22,14 @@ public class EnemyVitalController : NetworkBehaviour
     [SerializeField] [SyncVar(hook = nameof(OnHealthChangedHook))]
     float currentHealth;
     
-    [SyncVar] private float maxHealth;
+    [SerializeField] [SyncVar] private float maxHealth;
 
     private EnemyInfo enemyInfo;
 
     //spara maxvärdet så vi kan räkna ut procent 
     void Start()
     {
+        Debug.Log("nu är jag i start" + netId);
         currentHealth = characterBase.GetMaxHealth();
         maxHealth = currentHealth;
         enemyInfo = gameObject.GetComponent<EnemyInfo>();
@@ -107,8 +108,10 @@ public class EnemyVitalController : NetworkBehaviour
 
     public void PlayerScaleHealthUpdate(float hp, float maxhp)
     {
+        
         maxHealth = maxhp;
         currentHealth = hp;
+        Debug.Log(currentHealth + " " + maxHealth + "NETID: OCH DETTA ÄR I SCALING METODEN" + netId);
         if (currentHealth > 0)
         {
             UpdateHealth(0);
@@ -120,4 +123,5 @@ public class EnemyVitalController : NetworkBehaviour
 
     //OBS KÖRS ENDAST PÅ SERVERN
     public event Action<EnemyVitalController> OnDeath;
+    
 }
