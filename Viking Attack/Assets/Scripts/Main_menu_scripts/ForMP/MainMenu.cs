@@ -7,8 +7,9 @@ namespace Main_menu_scripts.ForMP
         [SerializeField] private NetworkManagerLobby networkManager;
         [Header("UI")] 
         [SerializeField] private GameObject landingPanel;
-
-
+        
+        //MainMenu script only makes sure a server is started with the calling of StartHost()
+        //once host has started, we remove the landingPanels visibility
         public void HostLobby()
         {
             networkManager.StartHost();
