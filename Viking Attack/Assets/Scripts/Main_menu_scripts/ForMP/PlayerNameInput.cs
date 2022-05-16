@@ -15,13 +15,19 @@ namespace Main_menu_scripts.ForMP
         [SerializeField] private Button continueButton;
 
 
+        //Follow 4 rows sets, and gets the players colour and name, as well as set the string used in player-preferences
         public static string displayName { get; private set; }
         private const string PlayerPrefsNameKey = "PlayerName";
-        public static Color playerColour { get; private set; }
+        public static Color32 playerColour { get; private set; }
         public const string PlayerColourKey = "PlayerColour";
-
-        private void Start() => SetupInputField();
         
+        private void Start()
+        { 
+            SetupInputField();
+            nameInputField.characterLimit = 12;
+        } 
+        
+        //checks status of name length to set if button is interactable or not, as the player must have a name.
         private void FixedUpdate()
         {
             if (nameInputField.text.Length > 0)
@@ -29,16 +35,16 @@ namespace Main_menu_scripts.ForMP
                 continueButton.interactable = true;
             }
         }
-    
+        
+        // this method sets the name of a player if they've set a name previously, otherwise returns.
         private void SetupInputField(){
             if(!PlayerPrefs.HasKey(PlayerPrefsNameKey)) return;
             string defaultName = PlayerPrefs.GetString(PlayerPrefsNameKey);
             nameInputField.text = defaultName;
-            nameInputField.characterLimit = 12;
 
             SetPlayerName(defaultName);
         }
-
+        //only activates button, name is saved in other method
         public void SetPlayerName(String playerName)
         {
             MakeButtonActive();
@@ -56,7 +62,7 @@ namespace Main_menu_scripts.ForMP
             PlayerPrefs.SetString(PlayerPrefsNameKey, displayName);
         
         }
-        
+        //Name is saved in playerpreferences.
         public void SavePlayerColour()
         {
             
