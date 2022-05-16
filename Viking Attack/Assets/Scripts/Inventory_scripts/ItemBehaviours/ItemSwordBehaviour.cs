@@ -21,6 +21,13 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         animator = gameObject.transform.Find("Prefab_PlayerBot").GetComponent<Animator>();
     }
 
+    // Might need some tweaking to work as we want
+    IEnumerator AddAttackCooldown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(1.5f);
+        canAttack = true;
+    }
     public override void Use(ItemBase itemBase)
     {
         // Checks if the player has enough stamina to attack, will then attack.
@@ -34,6 +41,10 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
             StartCoroutine(WaitToAttack(
                 animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).length /
                 animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).speed));
+            if (globalPlayerInfo.GetStamina() < 15)
+            {
+                StartCoroutine(AddAttackCooldown());
+            }
         }
     }
 

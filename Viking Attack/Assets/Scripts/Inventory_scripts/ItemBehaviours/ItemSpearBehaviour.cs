@@ -31,7 +31,19 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
             animator.Play("Spear_Attack",animator.GetLayerIndex("Spear Attack"),0f);
             animator.SetLayerWeight(animator.GetLayerIndex("Spear Attack"),1);
             StartCoroutine(WaitToAttack(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Spear Attack")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Spear Attack")).speed));
+            if (globalPlayerInfo.GetStamina() < 15)
+            {
+                StartCoroutine(AddAttackCooldown());
+            }
         }
+    }
+    
+    // Might need some tweaking to work as we want
+    IEnumerator AddAttackCooldown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(1.5f);
+        canAttack = true;
     }
 
     public override void StopAnimation()

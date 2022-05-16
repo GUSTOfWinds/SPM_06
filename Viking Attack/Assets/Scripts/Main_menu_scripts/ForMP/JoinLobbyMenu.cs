@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,7 +31,7 @@ namespace Main_menu_scripts.ForMP
         public void JoinLobby()
         {
             string ipAddress = ipAddressInputField.text;
-
+            if (string.IsNullOrEmpty(ipAddress)) ipAddress = "localhost";
             networkManager.networkAddress = ipAddress;
             networkManager.StartClient();
 
