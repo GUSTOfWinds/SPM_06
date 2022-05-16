@@ -18,8 +18,8 @@ namespace Main_menu_scripts.ForMP
         //Follow 4 rows sets, and gets the players colour and name, as well as set the string used in player-preferences
         public static string displayName { get; private set; }
         private const string PlayerPrefsNameKey = "PlayerName";
-        public static Color32 playerColour { get; private set; }
-        public const string PlayerColourKey = "PlayerColour";
+        private static Color32 playerColour { get; set; }
+        private const string PlayerColourKey = "PlayerColour";
         
         private void Start()
         { 
@@ -43,31 +43,20 @@ namespace Main_menu_scripts.ForMP
             nameInputField.text = defaultName;
 
             SetPlayerName(defaultName);
+            SavePlayerName();
+
         }
         //only activates button, name is saved in other method
         public void SetPlayerName(String playerName)
         {
             MakeButtonActive();
         }
-        
-        public void SetPlayerColour(Color playerColor)
-        {
-            continueButton.interactable = !string.IsNullOrEmpty(playerColor.ToString());
-        }
 
-
+        //Name is saved in playerpreferences.
         public void SavePlayerName()
         {
             displayName = nameInputField.text;
             PlayerPrefs.SetString(PlayerPrefsNameKey, displayName);
-        
-        }
-        //Name is saved in playerpreferences.
-        public void SavePlayerColour()
-        {
-            
-            playerColour = Color.red;
-            PlayerPrefs.SetString(PlayerPrefsNameKey, ColorUtility.ToHtmlStringRGB(playerColour));
         }
 
         public void MakeButtonActive()
