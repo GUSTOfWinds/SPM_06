@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Runtime.CompilerServices;
 using ItemNamespace;
 using Event;
 using Mirror;
@@ -10,7 +12,7 @@ public class EnemyVitalController : NetworkBehaviour
     /**
      * @author Martin Kings/Victor
      */
-    float maxHealth;
+    
     [SerializeField] private CharacterBase characterBase;
     [SerializeField] public float waitTime;
     [SerializeField] private bool hasDied;
@@ -18,7 +20,9 @@ public class EnemyVitalController : NetworkBehaviour
     [SerializeField] private LayerMask layerMask;
 
     [SerializeField] [SyncVar(hook = nameof(OnHealthChangedHook))]
-    float currentHealth = 100f;
+    float currentHealth;
+    
+    [SerializeField] [SyncVar] private float maxHealth;
 
     private EnemyInfo enemyInfo;
 
@@ -28,6 +32,7 @@ public class EnemyVitalController : NetworkBehaviour
         currentHealth = characterBase.GetMaxHealth();
         maxHealth = currentHealth;
         enemyInfo = gameObject.GetComponent<EnemyInfo>();
+        enemyInfo.PlayerScale();
     }
 
     private void OnConnectedToServer()
@@ -70,6 +75,7 @@ public class EnemyVitalController : NetworkBehaviour
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
             if (currentHealth <= 0f)
             {
+                gameObject.GetComponent<EnemyAttack>().StopCoroutine("FinishAttack");
                 sphereColliders =
                     Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
                 foreach (var coll in sphereColliders)
@@ -101,8 +107,13 @@ public class EnemyVitalController : NetworkBehaviour
 
     public void PlayerScaleHealthUpdate(float hp, float maxhp)
     {
+        
         maxHealth = maxhp;
         currentHealth = hp;
+        if (currentHealth > 0)
+        {
+            UpdateHealth(0);
+        }
     }
 
     //andra script kan registrera på detta event
@@ -110,4 +121,5 @@ public class EnemyVitalController : NetworkBehaviour
 
     //OBS KÖRS ENDAST PÅ SERVERN
     public event Action<EnemyVitalController> OnDeath;
+    
 }

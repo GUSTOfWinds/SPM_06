@@ -47,7 +47,7 @@ namespace Main_menu_scripts.ForMP.Försök2 {
                 Match match = new Match (matchID, player, publicMatch);
                 matches.Add (match);
                 Debug.Log ($"Match generated");
-                player.currentMatch = match;
+                //player.currentMatch = match;
                 playerIndex = 1;
                 return true;
             } else {
@@ -65,7 +65,7 @@ namespace Main_menu_scripts.ForMP.Försök2 {
                     if (matches[i].matchID == matchID) {
                         if (!matches[i].inMatch && !matches[i].matchFull) {
                             matches[i].players.Add (player);
-                            player.currentMatch = matches[i];
+                            //player.currentMatch = matches[i];
                             playerIndex = matches[i].players.Count;
 
                             matches[i].players[0].PlayerCountUpdated (matches[i].players.Count);

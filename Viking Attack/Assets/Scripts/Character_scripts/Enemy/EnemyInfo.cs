@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using ItemNamespace;
 using Mirror;
@@ -8,13 +9,13 @@ using UnityEditor;
 
 namespace ItemNamespace
 {
-
     public class EnemyInfo : NetworkBehaviour
     {
         /**
          * @author Martin Kings
          */
         [SerializeField] private float range; // The range of the enemy attacks
+
         [SerializeField] private float attackCooldown; // the cooldown of the enemy attacks
 
         [SerializeField] private int damage; // the damage of the enemy attacks
@@ -59,8 +60,6 @@ namespace ItemNamespace
             moveSpeed = characterBase.GetMovementSpeed();
             maxHealth = characterBase.GetMaxHealth();
             health = characterBase.GetMaxHealth();
-            // Runs for those who respawn
-            PlayerScale();
         }
 
         public void SetRespawnAnchor(Transform p)
@@ -87,6 +86,7 @@ namespace ItemNamespace
         {
             return name;
         }
+
         public CharacterBase GetCharacterBase()
         {
             return characterBase;

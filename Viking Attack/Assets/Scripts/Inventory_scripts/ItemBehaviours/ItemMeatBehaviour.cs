@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Runtime.CompilerServices;
 using Event;
 using Inventory_scripts;
 using ItemNamespace;
@@ -10,8 +12,10 @@ public class ItemMeatBehaviour : ItemBaseBehaviour
      * @author Martin Kings
      */
     private Animator animator;
+
     private GlobalPlayerInfo globalPlayerInfo;
     private PlayerInventory playerInventory;
+    public bool eating;
 
 
     public void Awake()
@@ -27,18 +31,33 @@ public class ItemMeatBehaviour : ItemBaseBehaviour
         // Checks if the player has enough food to eat and has missing HP will then eat.
         if (globalPlayerInfo.GetMeatStackNumber() > 0 && globalPlayerInfo.GetHealth() < globalPlayerInfo.GetMaxHealth())
         {
+            if (eating)
+            {
+                return;
+            }
+            
             animator.Play("Eat Meat", animator.GetLayerIndex("Eat Meat"), 0f);
             animator.SetLayerWeight(animator.GetLayerIndex("Eat Meat"), 1);
-            StartCoroutine(WaitToEat(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Eat Meat")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Eat Meat")).speed, itemBase));
+            StartCoroutine(WaitToEat(
+                animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Eat Meat")).length /
+                animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Eat Meat")).speed, itemBase));
+            
         }
     }
+
+    private void Update()
+    {
+        Debug.Log(eating);
+    }
+
     public override void StopAnimation()
     {
         animator.SetLayerWeight(animator.GetLayerIndex("Eat Meat"), 0);
     }
-    
+
     IEnumerator WaitToEat(float time, ItemBase itemBase)
     {
+        eating = true;
         // Creates an event used to play a sound and display the damage in the player UI
         EventInfo playerEatingEvent = new PlayerEatingEventInfo
         {
@@ -57,5 +76,6 @@ public class ItemMeatBehaviour : ItemBaseBehaviour
         {
             playerInventory.ReturnToDefault();
         }
+        eating = false;
     }
 }

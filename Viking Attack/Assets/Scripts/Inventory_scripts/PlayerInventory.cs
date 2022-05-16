@@ -28,7 +28,6 @@ namespace Inventory_scripts
 
         private void Start()
         {
-            //inventory = new ItemBase[4];
             // Registers listener for player pickups
             netID = gameObject.GetComponent<NetworkIdentity>().netId;
             EventSystem.Current.RegisterListener<PlayerItemPickupEventInfo>(OnItemPickup, ref itemPickupGuid);
@@ -97,6 +96,24 @@ namespace Inventory_scripts
                         }
 
                         break;
+                    
+                    case ItemBase.ItemType.Armor:
+
+                        if (sprites[4].active)
+                        {
+                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel();
+                        }
+                        else
+                        {
+                            inventory[4] = playerItemPickupEventInfo.itemBase;
+                            sprites[4].SetActive(true);
+                            sprites[4].GetComponent<Image>().sprite = inventory[4].GetSprite;
+                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel();
+                            gameObject.GetComponent<GlobalPlayerInfo>()
+                                .SetItemSlot(4, inventory[4]);
+                        }
+
+                        break;
                     default:
                         // code block
                         break;
@@ -159,6 +176,10 @@ namespace Inventory_scripts
         // if the sword has been picked up
         public void ToggleSword(InputAction.CallbackContext value)
         {
+            if (gameObject.GetComponent<PlayerItemUsageController>().itemBase == inventory[0])
+            {
+                return;
+            }
             if (sprites[0].active)
             {
                 // Syncs the held item to either server or client
@@ -183,6 +204,10 @@ namespace Inventory_scripts
         // if the spear has been picked up
         public void ToggleSpear(InputAction.CallbackContext value)
         {
+            if (gameObject.GetComponent<PlayerItemUsageController>().itemBase == inventory[1])
+            {
+                return;
+            }
             if (sprites[1].active)
             {
                 // Syncs the held item to either server or client
@@ -207,6 +232,10 @@ namespace Inventory_scripts
         // if the dagger has been picked up
         public void ToggleDagger(InputAction.CallbackContext value)
         {
+            if (gameObject.GetComponent<PlayerItemUsageController>().itemBase == inventory[2])
+            {
+                return;
+            }
             if (sprites[2].active)
             {
                 // Syncs the held item to either server or client
@@ -231,6 +260,10 @@ namespace Inventory_scripts
         // if the player has more than 0 food in his/her inventory
         public void ToggleFood(InputAction.CallbackContext value)
         {
+            if (gameObject.GetComponent<PlayerItemUsageController>().itemBase == inventory[3])
+            {
+                return;
+            }
             if (gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber() > 0)
             {
                 // Syncs the held item to either server or client
@@ -253,14 +286,20 @@ namespace Inventory_scripts
         // After eating all your food, the player goes back to holding the sword
         public void ReturnToDefault()
         {
-            if (!isLocalPlayer)
+            // Syncs the held item to either server or client
+            if (isClientOnly)
             {
-                return;
+                CmdUpdateWeapon(0, gameObject);
+            }
+
+            if (isServer)
+            {
+                RpcUpdateWeapon(0, gameObject);
             }
 
             gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
             selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 10f, 0f);
-            UpdateItemInfo(0);
+            UpdateItemInfo(0); // updates the weapon info box with sword information
             animator.SetTrigger("itemPOPUP");
         }
 
