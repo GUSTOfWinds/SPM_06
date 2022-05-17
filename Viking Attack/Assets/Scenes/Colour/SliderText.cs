@@ -31,6 +31,7 @@ namespace Scenes.Colour
             textComponent.text = colValue.ToString();
             slider.value = colValue;
             PlayerPrefs.SetInt(colorComponent, colValue);
+            Debug.Log(colorComponent);
         }
 
         

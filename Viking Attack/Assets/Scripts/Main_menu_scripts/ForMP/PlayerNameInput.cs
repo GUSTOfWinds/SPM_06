@@ -19,8 +19,7 @@ namespace Main_menu_scripts.ForMP
         public static string displayName { get; private set; }
         private const string PlayerPrefsNameKey = "PlayerName";
         public static Color32 playerColour { get; private set; }
-        public const string PlayerColourKey = "PlayerColour";
-        
+
         private void Start()
         { 
             SetupInputField();
@@ -63,12 +62,14 @@ namespace Main_menu_scripts.ForMP
         
         }
         //Name is saved in playerpreferences.
+        /*
         public void SavePlayerColour()
         {
             
             playerColour = Color.red;
             PlayerPrefs.SetString(PlayerPrefsNameKey, ColorUtility.ToHtmlStringRGB(playerColour));
         }
+        */
 
         public void MakeButtonActive()
         {
