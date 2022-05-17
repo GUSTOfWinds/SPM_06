@@ -48,10 +48,10 @@ namespace Main_menu_scripts.ForMP
         
         public override void OnClientConnect(NetworkConnection conn)
         {
-            byte r = (byte)PlayerPrefs.GetInt("RSlider");
-            byte g = (byte)PlayerPrefs.GetInt("GSlider");
-            byte b = (byte)PlayerPrefs.GetInt("BSlider");
-            var color = new Color32(r, g, b, 255);
+            byte r = (byte)PlayerPrefs.GetInt("redValue");
+            byte g = (byte)PlayerPrefs.GetInt("greenValue");
+            byte b = (byte)PlayerPrefs.GetInt("blueValue");
+            Color32 color = new Color32(r, g, b, 255);
             base.OnClientConnect(conn);
             CharacterInfo characterInfo = new CharacterInfo
             {

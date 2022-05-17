@@ -8456,7 +8456,6 @@ MonoBehaviour:
   syncInterval: 0.1
   itemBase: {fileID: 11400000, guid: e42a76ee5900ffc4f93a5fbaf0dadbb4, type: 2}
   heldItemWorldObject: {fileID: 8080762913142632678}
-  holdingHand: {fileID: 0}
 --- !u!114 &-1269286427876547455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8523,7 +8522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -8842,6 +8841,8 @@ MonoBehaviour:
   - {fileID: 3817948450136752059}
   - {fileID: 896804129577900503}
   - {fileID: 2423587332867720793}
+  playerItemUsageController: {fileID: 0}
+  wieldedItemBase: {fileID: 0}
 --- !u!114 &-7731286149923182968
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -32,7 +32,9 @@ public class EnemyVitalController : NetworkBehaviour
     //spara maxvärdet så vi kan räkna ut procent 
     void Start()
     {
-        skinnedMeshRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
+        
+        //skinnedMeshRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
+        skinnedMeshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
 
         currentHealth = characterBase.GetMaxHealth();
         maxHealth = currentHealth;
