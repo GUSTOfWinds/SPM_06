@@ -13,6 +13,8 @@ namespace Main_menu_scripts.ForMP
 
         [SerializeField] private TMP_Text[] playerNameTexts = new TMP_Text[5];
         [SerializeField] private TMP_Text[] playerReadyTexts = new TMP_Text[5];
+        [SerializeField] private TMP_Text readyButtonText = null;
+        [SerializeField] private TMP_Text playButtonText = null;
         [SerializeField] private Button startGameButton = null;
         [SerializeField] private Button readyButton = null;
 
@@ -112,7 +114,8 @@ namespace Main_menu_scripts.ForMP
                 playerNameTexts[i].color = NameColour();
                 playerReadyTexts[i].text = Room.RoomPlayers[i].isReady
                     ? "<color=#9CFF8D> Ready </color>"
-                    : "<color=#E53737> Not Ready </color>";
+                    : "<color=#8C3333> Not Ready </color>";
+                
             }
         }
 
@@ -134,9 +137,16 @@ namespace Main_menu_scripts.ForMP
         //All players in lobby must be ready
         public void HandleReadyToStart(bool readyToStart)
         {
-
+            if(readyToStart)
+                readyButtonText.text = "<color=#9CFF8D>Ready </color>";
+            if(!readyToStart)
+                readyButtonText.text = "<color=white>Ready </color>";
             if (!isLeader) return;
             startGameButton.interactable = readyToStart;
+            if (readyToStart)
+                playButtonText.text = "<color=white>start game </color>";
+            if (!readyToStart)
+                playButtonText.text = "<color=#A6A6A6>start game </color>";
         }
 
         //Following 2 command methods gets the name and ready status on the server and sets on clients.
