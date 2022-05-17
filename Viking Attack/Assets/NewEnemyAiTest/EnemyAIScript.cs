@@ -161,14 +161,14 @@ public class EnemyAIScript : NetworkBehaviour
     {
         //Would want to remove, maybe check when a new player joins?
         players = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log(players.Length);
         //
         //Checks if there are any palyers the the players list
         if (players != null)
         {
             //For each player in players list check if that player is in agro range of enemy if not set target to roamingPoint or spawnPoint 
             foreach (GameObject player in players)
-                if (Vector3.Distance(spawnPoint.transform.position, player.transform.position) <=
-                    aggroRangeFromSpawnPoint)
+                if (Vector3.Distance(spawnPoint.transform.position, player.transform.position) <= aggroRangeFromSpawnPoint)
                 {
                     target = player;
                     stateToPlayByIndex = 1;
@@ -187,6 +187,8 @@ public class EnemyAIScript : NetworkBehaviour
                 }
                 else
                 {
+                    GetComponent<EnemyVitalController>().UpdateHealth(characterBase.GetMaxHealth());
+
                     chasing = false;
                     stateToPlayByIndex = 2;
 
@@ -194,6 +196,7 @@ public class EnemyAIScript : NetworkBehaviour
                         target = roamingPoint;
                     else
                         target = spawnPoint;
+                    
                 }
             //Checks for GameObjects with Player tag  
         }

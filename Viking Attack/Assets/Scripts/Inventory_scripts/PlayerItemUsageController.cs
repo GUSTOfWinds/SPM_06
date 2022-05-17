@@ -6,6 +6,7 @@ using System;
 using System.Runtime.CompilerServices;
 using Inventory_scripts;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerItemUsageController : NetworkBehaviour
 {
@@ -18,6 +19,7 @@ public class PlayerItemUsageController : NetworkBehaviour
 
     private Type currentActingComponentType;
     private ItemBaseBehaviour currentActingComponent;
+    private bool whenUsingItem;
 
 
     public void Start()
@@ -34,6 +36,7 @@ public class PlayerItemUsageController : NetworkBehaviour
             if (itemBase != null)
             {
                 currentActingComponent.Use(itemBase);
+                StartCoroutine(slowOnHit());
             }
         }
     }
@@ -67,5 +70,12 @@ public class PlayerItemUsageController : NetworkBehaviour
             heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
             heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
         }
+    }
+
+    public IEnumerator slowOnHit()
+    {
+        gameObject.transform.GetComponent<PlayerScript3D>().acceleration *= itemBase.GetSpeedMultiplierWhenUsingItem;
+        yield return new WaitForSeconds(1);
+        gameObject.transform.GetComponent<PlayerScript3D>().acceleration /= itemBase.GetSpeedMultiplierWhenUsingItem;
     }
 }
