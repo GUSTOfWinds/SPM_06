@@ -190,7 +190,10 @@ public class EnemyAIScript : NetworkBehaviour
                 NavMesh.SamplePosition(randomDirection, out hit, roamingRangeFromSpawn, 1);
                 roamingPoint.transform.position = hit.position;
             }
-        }               
+        }else
+        {
+            StopAllCoroutines();
+        }            
     }
 
     private IEnumerator Attack()
