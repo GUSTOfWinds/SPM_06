@@ -3799,7 +3799,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 511
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -5615,21 +5615,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abandoned_House (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7097281646485190264, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 606.7202
-      objectReference: {fileID: 0}
-    - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 606.7202
       objectReference: {fileID: 0}
     - target: {fileID: 7581049803918175426, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5671,10 +5659,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 171.528
       objectReference: {fileID: 0}
-    - target: {fileID: 8754540818981296045, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 79926412a48503842b1ec2a4ee7a213b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36849a371daa8f24ea5751a9df3179dd, type: 3}
 --- !u!4 &1791465060 stripped
@@ -5893,8 +5877,12 @@ PrefabInstance:
       value: 832886662
       objectReference: {fileID: 0}
     - target: {fileID: 8544967031688414425, guid: e7d31edc687cd1c48b7d370c871c136f, type: 3}
+      propertyPath: orthographic size
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544967031688414425, guid: e7d31edc687cd1c48b7d370c871c136f, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 507
+      value: 1019
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
