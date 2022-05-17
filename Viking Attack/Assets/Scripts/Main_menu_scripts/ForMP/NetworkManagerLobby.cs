@@ -173,7 +173,7 @@ namespace Main_menu_scripts.ForMP
                 {
                     var conn = RoomPlayers[i].connectionToClient;
                     var gameplayerInstance = Instantiate(gamePlayerPrefab);
-                    gameplayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
+                    gameplayerInstance.SetDisplayName(RoomPlayers[i].displayName);
 
                     //NetworkServer.Destroy(conn.identity.gameObject);
 

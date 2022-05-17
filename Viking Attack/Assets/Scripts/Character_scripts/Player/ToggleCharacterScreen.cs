@@ -1,9 +1,13 @@
 using UnityEngine;
 
+
 public class ToggleCharacterScreen : MonoBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [SerializeField] private GameObject characterScreen;
-    
+
     public Animator animator;
     public Animator otherAnimator;
     public bool locked;
@@ -21,7 +25,6 @@ public class ToggleCharacterScreen : MonoBehaviour
                 }
 
                 Cursor.lockState = CursorLockMode.Locked;
-            
             }
             else
             {
@@ -32,6 +35,7 @@ public class ToggleCharacterScreen : MonoBehaviour
                 {
                     gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = false;
                 }
+
                 characterScreen.GetComponent<CharacterScreen>().OpenCharacterScreen();
             }
         }

@@ -7,8 +7,12 @@ using UnityEngine;
 
 namespace ItemNamespace
 {
+
     public class EnemyAttack : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
         [SerializeField] private Animator animator;
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip[] enemySounds;
@@ -21,7 +25,8 @@ namespace ItemNamespace
         private Vector3 playerLocation; // location used to see if the player has gotten away far enough to not be hit
 
 
-        private float playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
+        private float
+            playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
 
         private RaycastHit hit;
         private Vector3 rayBeginning;
@@ -63,12 +68,14 @@ namespace ItemNamespace
                 {
                     cooldown += Time.fixedDeltaTime;
                 }
+
                 if (cooldownSound < timeToNextSound) // adds to cooldown if attackCooldown hasn't been met
                 {
                     cooldownSound += Time.fixedDeltaTime;
                 }
+
                 //if the enemy is stagger stop attack
-                if(animator.GetBool("Staggered") && finishAttack != null)
+                if (animator.GetBool("Staggered") && finishAttack != null)
                 {
                     StopCoroutine(finishAttack);
                     enemyMovement.attacking = false;
@@ -91,7 +98,6 @@ namespace ItemNamespace
                         audioSource.PlayOneShot(enemySounds[0]);
                         RpcPlayEnemyChasing();
                         cooldownSound = 0;
-
                     }
 
                     // If in range and if cooldown has been passed and if the object that the raycast connects with has the tag Player.
@@ -130,7 +136,7 @@ namespace ItemNamespace
             return false;
         }
 
-        private IEnumerator FinishAttack(GameObject hitGo)
+        public IEnumerator FinishAttack(GameObject hitGo)
         {
             enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
 
@@ -139,12 +145,13 @@ namespace ItemNamespace
 
             ResetCoolDown(); // resets cooldown of the attack
 
-            // plays the sound of the skeleton swinging its sword
-            audioSource.PlayOneShot(enemySounds[1]);
-            RpcSwingSword();
+
+            
             yield return new WaitForSeconds(1f); // the time it takes from start of the enemy attack animation
             // to the time of impact, for smooth timing reasons
-
+            // plays the sound of the skeleton swinging its sword
+            RpcSwingSword();
+            audioSource.PlayOneShot(enemySounds[1]);
             if (gameObject != null)
             {
                 playerUpdatedDistance = Vector3.Distance(playerLocation, player.transform.position);
@@ -153,16 +160,16 @@ namespace ItemNamespace
                     RpcDealDamage(hitGo);
                     Attack(); // Attacks player
                 }
-                
+
                 animator.SetBool("Attacking", false);
                 //sets the others to false
                 animator.SetBool("Chasing", true);
                 animator.SetBool("Patrolling", false);
-                
+
                 enemyMovement.attacking = false;
             }
         }
-        
+
         [ClientRpc]
         private void RpcDealDamage(GameObject gpi)
         {
@@ -171,7 +178,9 @@ namespace ItemNamespace
                 return;
             }
 
-            gpi.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
+            // Armor here removes a portion of the damage 
+            int tempDamage = damage - gpi.GetComponent<GlobalPlayerInfo>().GetArmorLevel();
+            gpi.GetComponent<GlobalPlayerInfo>().UpdateHealth(-tempDamage);
         }
 
         [ClientRpc]
@@ -207,7 +216,10 @@ namespace ItemNamespace
         {
             if (globalPlayerInfo.IsAlive()) // checks if the player is even alive
             {
-                globalPlayerInfo.UpdateHealth(-damage); // damages the player in question
+                // Armor here removes a portion of the damage 
+                int tempDamage = damage - globalPlayerInfo.GetArmorLevel();
+                
+                globalPlayerInfo.UpdateHealth(-tempDamage); // damages the player in question
 
                 // Creates an event used to play a sound and display the damage in the player UI
                 EventInfo playerDamageEventInfo = new DamageEventInfo

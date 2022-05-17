@@ -1,11 +1,17 @@
+using System;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ItemNamespace
 {
     public class PlayerActivateFriendlyPlayerName : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
+
         // The layermask of the other player
         [SerializeField] private LayerMask layerMask;
 
@@ -25,6 +31,9 @@ namespace ItemNamespace
         private List<GameObject> instancesToDisable;
 
         private Camera mainCamera;
+
+        [SyncVar] public string localName;
+
 
         private void Awake()
         {
@@ -144,6 +153,8 @@ namespace ItemNamespace
                                 .GetComponent<FriendlyNameDisplay>().GetPersonalNetID())
                         {
                             friendlyName.SetActive(true);
+                            friendlyName.GetComponent<FriendlyNameDisplay>().text.text =
+                                hit.collider.gameObject.GetComponent<GlobalPlayerInfo>().GetName();
                             alreadyExists = true;
                             break;
                         }

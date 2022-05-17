@@ -13,16 +13,13 @@ MonoBehaviour:
   m_Name: Enemy_Boss
   m_EditorClassIdentifier: 
   type: 1
-  characterName: Boss
+  soName: Boss
   description: '?'
   range: 4
-  attackCooldown: 2.5
-  damage: 20
-  chasingSpeedMultiplier: 1.5
-  moveSpeed: 20
-  maxHealth: 330
+  attackCooldown: 1.5
+  damage: 30
+  chasingSpeedMultiplier: 1
+  moveSpeed: 15
+  maxHealth: 350
   experienceRadius: 30
-  level: 1
   experience: 200
-  drop: {fileID: 11400000, guid: dd75614e9e856f94fba03399318398bb, type: 2}
-  dropchance: 1

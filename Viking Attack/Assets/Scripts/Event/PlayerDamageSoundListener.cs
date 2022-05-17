@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Event;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,6 +6,9 @@ using Mirror;
 
 public class PlayerDamageSoundListener : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [SerializeField] private AudioClip[] sounds; // Contains all sounds that can be played
 
     [SerializeField]

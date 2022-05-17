@@ -517,6 +517,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56cb9ca2fcf4fe9a8a8a9a9a558fa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   range: 0
   attackCooldown: 0
   damage: 0
@@ -526,10 +528,10 @@ MonoBehaviour:
   moveSpeed: 0
   health: 0
   maxHealth: 0
-  experienceRadius: 0
-  level: 0
-  experience: 0
-  name: 
+  level: 1
+  name: Boss
+  drop: {fileID: 9080351483311851685, guid: 504deff2fa29fc24e84cbb8900573910, type: 3}
+  dropChance: 1
 --- !u!54 &1698871149917711151
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -3,11 +3,12 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Slider = UnityEngine.UI.Slider;
 
-// WHO TO BLAME: Martin Kings
 
-// This script will make a GUITexture follow a transform (object placed above the enemy).
 public class EnemyHealthBar : MonoBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [SerializeField] public Transform target; // the gameobject.transform that the UI should follow 
     [SerializeField] public Slider healthBar; // the slider 
     [SerializeField] private GameObject healthSource; // the enemy gameobject
@@ -35,7 +36,7 @@ public class EnemyHealthBar : MonoBehaviour
     // Updates the health number of the slider
     public void SetHealth()
     {
-        healthBar.value = healthSource.GetComponent<EnemyVitalController>().getCurrentHealth();
+        healthBar.value = healthSource.GetComponent<EnemyVitalController>().GetCurrentHealth();
     }
 
     public uint GetPersonalNetID()

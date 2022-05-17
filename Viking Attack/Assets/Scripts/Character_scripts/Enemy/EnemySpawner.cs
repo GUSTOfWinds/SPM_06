@@ -5,9 +5,14 @@ using Event;
 using ItemNamespace;
 using Mirror;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
+
 
 public class EnemySpawner : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [Header("Drag the prefab you want to spawn in this spawner here")]
     [SerializeField] private GameObject enemyPrefabToSpawn;
     private Guid respawnEventGuid;

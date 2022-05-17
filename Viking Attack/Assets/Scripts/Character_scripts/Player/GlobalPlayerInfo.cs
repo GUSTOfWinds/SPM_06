@@ -1,17 +1,20 @@
+using System;
 using Event;
 using ItemNamespace;
+using Mirror;
 using UnityEngine;
 
 
-// WHO TO BLAME: Martin Kings
 
-// Container for all player specifics, will add experience gained, HP, level, items owned etc...
-public class GlobalPlayerInfo : MonoBehaviour
+public class GlobalPlayerInfo : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [SerializeField] private Component healthBar;
     [SerializeField] private Component staminaBar;
     [SerializeField] private Component experienceBar;
-    [SerializeField] private string playerName;
+    [SyncVar] [SerializeField] private string playerName;
     [SerializeField] private Color skinColor;
     [SerializeField] private float health;
     [SerializeField] private float maxHealth;
@@ -28,12 +31,13 @@ public class GlobalPlayerInfo : MonoBehaviour
     [SerializeField] private int staminaStat;
     [SerializeField] private float damage;
     [SerializeField] private int meatStackNumber;
+    [SerializeField] private int armorLevel;
 
 
     private void Awake()
     {
-        items = new ItemBase[4];
-        damage = 5;
+        items = new ItemBase[5];
+        damage = 100;
         health = 100;
         maxHealth = 100;
         stamina = 100;
@@ -48,6 +52,21 @@ public class GlobalPlayerInfo : MonoBehaviour
         levelThreshold = 60;
         availableStatpoints = 0;
         level = 1;
+        playerName = PlayerPrefs.GetString("PlayerName");
+        armorLevel = 0;
+    }
+
+    public void IncreaseArmorLevel()
+    {
+        armorLevel++;
+    }
+
+    private void Start()
+    {
+        if (isLocalPlayer)
+        {
+            CmdSetPlayerName(PlayerPrefs.GetString("PlayerName"));
+        }
     }
 
     public void SetItemSlot(int index, ItemBase itemBase)
@@ -56,7 +75,8 @@ public class GlobalPlayerInfo : MonoBehaviour
     }
 
     // Gets called upon during game launch, the main menu sets the player name
-    public void SetPlayerName(string insertedName)
+    [Command]
+    public void CmdSetPlayerName(string insertedName)
     {
         playerName = insertedName;
     }
@@ -164,6 +184,7 @@ public class GlobalPlayerInfo : MonoBehaviour
     {
         EventInfo playerLevelUpInfo = new PlayerLevelUpEventInfo
         {
+            netID = gameObject.GetComponent<NetworkIdentity>().netId
         };
         EventSystem.Current.FireEvent(playerLevelUpInfo);
         level++;
@@ -202,7 +223,7 @@ public class GlobalPlayerInfo : MonoBehaviour
 
     public void IncreaseDamageStatPoints()
     {
-        damage++;
+        damage+=6;
         availableStatpoints--;
         damageStat++;
     }
@@ -251,5 +272,10 @@ public class GlobalPlayerInfo : MonoBehaviour
     public void SetDisplayName(string playerName)
     {
         this.playerName = playerName;
+    }
+
+    public int GetArmorLevel()
+    {
+        return armorLevel;
     }
 }

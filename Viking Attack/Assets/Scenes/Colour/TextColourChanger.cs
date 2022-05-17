@@ -16,6 +16,7 @@ namespace Scenes.Colour
         private float blueVal;
         private float greenVal;
 
+
         private void Awake()
         {
             GameObject.FindGameObjectWithTag("RSlider");
@@ -24,12 +25,14 @@ namespace Scenes.Colour
 
         }
 
+        
         private void FixedUpdate()
         {
             redVal = redSlider.value;
             blueVal = blueSlider.value;
             greenVal = greenSlider.value;
             mixedColour.color = new Color32((byte)redVal, (byte)greenVal, (byte)blueVal, 255);
+            
         }
 
         public void UpdateOnChange()
