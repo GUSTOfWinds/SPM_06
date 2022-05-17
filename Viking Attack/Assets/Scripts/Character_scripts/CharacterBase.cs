@@ -19,7 +19,7 @@ namespace ItemNamespace
         [SerializeField] private float attackCooldown;
         [SerializeField] private int damage;
         [SerializeField] private float chasingSpeedMultiplier;
-        [SerializeField] private int moveSpeed;
+        [SerializeField] private float moveSpeed;
         [SerializeField] private float maxHealth;
         [SerializeField] private float experienceRadius;
         [SerializeField] private float experience;
@@ -65,7 +65,7 @@ namespace ItemNamespace
             return chasingSpeedMultiplier;
         }
 
-        public int GetMovementSpeed()
+        public float GetMovementSpeed()
         {
             return moveSpeed;
         }
