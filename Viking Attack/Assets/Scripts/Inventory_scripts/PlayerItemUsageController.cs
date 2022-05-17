@@ -41,12 +41,10 @@ public class PlayerItemUsageController : NetworkBehaviour
     //Changes what item the player has in their hand and sets the correct mesh and material
     public void ChangeItem(ItemBase newItemBase)
     {
-        Debug.Log("Nu körs ChangeItem för spelare: " + netId);
-        
         itemBase = newItemBase; // updates itembase
         Type itemType = Type.GetType(itemBase.GetItemBaseBehaviorScriptName); // fetches type of the itembehaviour
-        
-        
+
+
         if (currentActingComponent != null)
         {
             currentActingComponent.StopAnimation();
@@ -60,17 +58,14 @@ public class PlayerItemUsageController : NetworkBehaviour
         heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
     }
 
+    // Will be run by both client and server, only updates the mesh shown in the other players hand
     public void SyncHeldItem(int index, uint netid)
     {
-
         if (gameObject.GetComponent<NetworkIdentity>().netId == netid)
         {
-            Debug.Log("Nu körs SyncItem för spelare: " + netId);
-            //Debug.Log(gameObject.GetComponent<NetworkIdentity>().netId);
             itemBase = gameObject.GetComponent<PlayerInventory>().inventory[index];
             heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
             heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
-            //Debug.Log("nu ändras itembase på spelare " + netId + " till " +  itemBase);
         }
     }
 }
