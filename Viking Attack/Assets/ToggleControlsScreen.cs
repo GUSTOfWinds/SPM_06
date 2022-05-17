@@ -6,6 +6,6 @@ public class ToggleControlsScreen : MonoBehaviour
 
     public void ToggleControls()
     {
-        animator.SetBool("controls", true);
+        animator.SetBool("controls", !animator.GetBool("controls"));
     }
 }
