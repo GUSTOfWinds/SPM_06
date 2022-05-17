@@ -11,7 +11,7 @@ namespace Scenes.Colour
         [SerializeField] private  Slider slider;
         public int colValue;
 
-        //sets value on awake if there is a colorvalue, if player hasn't set it's white
+        //sets value on awake if there is a colorValue, if player hasn't set it's white
         private  void Awake()
         {
             colValue = PlayerPrefs.GetInt(colorComponent);
@@ -21,11 +21,18 @@ namespace Scenes.Colour
         }
 
         //FixedUpdate limits value between 0 and 255, otherwise changes value of slider and such to match each other.
-        //TODO fixa så detta funkar bättre för att customiza armor
         private void FixedUpdate()
         {
             if (colValue > 255) colValue = 255;
-            if (colValue <  0|| colValue == null || textComponent.text == null) colValue = 0;
+            if (colValue <  0 || textComponent.text == null) colValue = 0;
+            InvokeRepeating("SetValues", 0.5f, 0.5f);
+
+        }
+
+        private void SetValues()
+        {
+            slider.value = colValue;
+            textComponent.text = ""+colValue;
         }
         
         //Saves chosen colour
@@ -49,12 +56,13 @@ namespace Scenes.Colour
         public  void SetInputFieldValue()
         {
             colValue = (int)slider.value;
-
+            textComponent.text = ""+colValue;
         }
         //Changes string value of input box to int
         public  void SetSliderValue()
         {
             colValue = int.Parse(textComponent.text);
+            slider.value = colValue;
 
         }
         

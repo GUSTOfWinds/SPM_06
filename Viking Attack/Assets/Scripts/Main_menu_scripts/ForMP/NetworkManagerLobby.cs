@@ -71,10 +71,12 @@ namespace Main_menu_scripts.ForMP
             if (landingPage == null)
             {
                 SceneManager.LoadScene(0);
+                landingPage = GameObject.FindGameObjectWithTag("LandingPage");
             }
             else
             {
                 landingPage.SetActive(true);
+
             }
 
             OnClientDisconnected?.Invoke();

@@ -112,7 +112,7 @@ namespace Main_menu_scripts.ForMP
             for (int i = 0; i < Room.RoomPlayers.Count; i++)
             {
                 playerNameTexts[i].text = Room.RoomPlayers[i].displayName;
-                playerNameTexts[i].color = NameColour();
+                playerNameTexts[i].color = Room.RoomPlayers[i].colour;
                 playerReadyTexts[i].text = Room.RoomPlayers[i].isReady
                     ? "<color=#9CFF8D> Ready </color>"
                     : "<color=#8C3333> Not Ready </color>";
@@ -120,20 +120,6 @@ namespace Main_menu_scripts.ForMP
             }
         }
 
-        //Sets the colour of the players name based on the RGB scale on the badge which represents the player.
-        //Color32 is used over Color as Color didn't show 
-        private Color32 NameColour()
-        {
-            Color32 returnColour;
-            if (!isLocalPlayer || !hasAuthority) return returnColour = new Color32(255,255,255,255);
-            byte red = (byte)PlayerPrefs.GetInt("redValue");
-            byte green = (byte)PlayerPrefs.GetInt("greenValue");
-            byte blue = (byte)PlayerPrefs.GetInt("blueValue");
-            returnColour = new Color32(r: red, g: green, b: blue, a: 255);
-
-            return returnColour;
-        }
-    
         //if you aren't the leader you can't start the game. readyToStart works by comparing every players ready status and changes the intractability of the start button based on that.
         //All players in lobby must be ready
         public void HandleReadyToStart(bool readyToStart)

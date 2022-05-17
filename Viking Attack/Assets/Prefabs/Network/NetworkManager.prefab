@@ -55,7 +55,7 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
+  playerPrefab: {fileID: 4178134505983114358, guid: bf76016401850694d988fe410a528477, type: 3}
   autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs:
@@ -86,6 +86,8 @@ MonoBehaviour:
   - {fileID: 379527214673110173, guid: 9eca48aa3ba3f9a43ae082939a1e321f, type: 3}
   - {fileID: 379527214673110173, guid: a981d4afc5b300845883915a214218c0, type: 3}
   - {fileID: 6033644488563431086, guid: 48252e56f3a191147bc11d0a659c11fe, type: 3}
+  - {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
+  landingPage: {fileID: 0}
 --- !u!114 &2130335223947001309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39adc6e09d5544ed955a50ce8600355a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visRange: 250
+  visRange: 5000
   rebuildInterval: 1
   checkMethod: 0
   showSlider: 0
