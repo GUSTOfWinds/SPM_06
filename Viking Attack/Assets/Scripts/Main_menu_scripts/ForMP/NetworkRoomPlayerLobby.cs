@@ -1,5 +1,4 @@
 using Mirror;
-using Mirror.Examples.MultipleMatch;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,9 +13,10 @@ namespace Main_menu_scripts.ForMP
 
         [SerializeField] private TMP_Text[] playerNameTexts = new TMP_Text[5];
         [SerializeField] private TMP_Text[] playerReadyTexts = new TMP_Text[5];
+        [SerializeField] private TMP_Text readyButtonText = null;
+        [SerializeField] private TMP_Text playButtonText = null;
         [SerializeField] private Button startGameButton = null;
         [SerializeField] private Button readyButton = null;
-
 
 
         //These are syncvariables that updates towards the server, and when there is a change we run the methods called in the hook
@@ -70,7 +70,6 @@ namespace Main_menu_scripts.ForMP
         public override void OnStopClient()
         {
             Room.RoomPlayers.Remove(this);
-            
             UpdateDisplay();
         }
         //Following 3 methods updates what is shown whenever a value is changed for the client.
@@ -104,7 +103,7 @@ namespace Main_menu_scripts.ForMP
             //Sets the name as waiting for player before anyone has joined the lobby, and makes sure there is no ready-status when there is no player.
             for (int i = 0; i < playerNameTexts.Length; i++)
             {
-                playerNameTexts[i].text = "<color=white> Waiting For Player... </color>";
+                playerNameTexts[i].text = "Waiting For Player...";
                 playerReadyTexts[i].text = string.Empty;
             }
             //This loop sets the name of a current player in the lobby and sets the name of the colour they've chosen.
@@ -112,21 +111,42 @@ namespace Main_menu_scripts.ForMP
             for (int i = 0; i < Room.RoomPlayers.Count; i++)
             {
                 playerNameTexts[i].text = Room.RoomPlayers[i].displayName;
-                playerNameTexts[i].color = Room.RoomPlayers[i].colour;
+                playerNameTexts[i].color = NameColour();
                 playerReadyTexts[i].text = Room.RoomPlayers[i].isReady
                     ? "<color=#9CFF8D> Ready </color>"
-                    : "<color=#E53737> Not Ready </color>";
-
+                    : "<color=#8C3333> Not Ready </color>";
+                
             }
         }
 
+        //Sets the colour of the players name based on the RGB scale on the badge which represents the player.
+        //Color32 is used over Color as Color didn't show 
+        private Color32 NameColour()
+        {
+            Color32 returnColour;
+            if (!isLocalPlayer || !hasAuthority) return returnColour = new Color32(255,255,255,255);
+            byte red = (byte)PlayerPrefs.GetInt("redValue");
+            byte green = (byte)PlayerPrefs.GetInt("greenValue");
+            byte blue = (byte)PlayerPrefs.GetInt("blueValue");
+            returnColour = new Color32(r: red, g: green, b: blue, a: 255);
+
+            return returnColour;
+        }
+    
         //if you aren't the leader you can't start the game. readyToStart works by comparing every players ready status and changes the intractability of the start button based on that.
         //All players in lobby must be ready
         public void HandleReadyToStart(bool readyToStart)
         {
-
+            if(readyToStart)
+                readyButtonText.text = "<color=#9CFF8D>Ready </color>";
+            if(!readyToStart)
+                readyButtonText.text = "<color=white>Ready </color>";
             if (!isLeader) return;
             startGameButton.interactable = readyToStart;
+            if (readyToStart)
+                playButtonText.text = "<color=white>start game </color>";
+            if (!readyToStart)
+                playButtonText.text = "<color=#A6A6A6>start game </color>";
         }
 
         //Following 2 command methods gets the name and ready status on the server and sets on clients.
