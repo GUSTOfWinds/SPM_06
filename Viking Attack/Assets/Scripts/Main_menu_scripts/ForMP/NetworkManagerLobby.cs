@@ -20,6 +20,8 @@ namespace Main_menu_scripts.ForMP
         public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
         public List<GameObject> spawnablePrefabs = new List<GameObject>();
 
+        [SerializeField] private GameObject landingPage;
+
 
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
@@ -45,10 +47,13 @@ namespace Main_menu_scripts.ForMP
             }
         }
 
+        
         public override void OnClientConnect(NetworkConnection conn)
         {
-            Color color;
-            ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("ColorKey"), out color);
+            byte r = (byte)PlayerPrefs.GetInt("redValue");
+            byte g = (byte)PlayerPrefs.GetInt("greenValue");
+            byte b = (byte)PlayerPrefs.GetInt("blueValue");
+            Color32 color = new Color32(r, g, b, 255);
             base.OnClientConnect(conn);
             CharacterInfo characterInfo = new CharacterInfo
             {
@@ -63,7 +68,10 @@ namespace Main_menu_scripts.ForMP
         public override void OnClientDisconnect(NetworkConnection conn)
         {
             base.OnClientDisconnect(conn);
+            landingPage.SetActive(true);
+
             OnClientDisconnected?.Invoke();
+
         }
 
         public override void OnServerConnect(NetworkConnectionToClient conn)
@@ -120,6 +128,8 @@ namespace Main_menu_scripts.ForMP
 
         public override void OnStopServer()
         {
+            landingPage.SetActive(true);
+
             RoomPlayers.Clear();
 
         }
@@ -204,6 +214,6 @@ namespace Main_menu_scripts.ForMP
     public struct CharacterInfo : NetworkMessage
     {
         public string Name;
-        public Color playerColour;
+        public Color32 playerColour;
     }
 }

@@ -11,7 +11,7 @@ public class PlayerScript3D : NetworkBehaviour
     private StateMachine stateMachine;
     public float acceleration = 12f;
     public bool firstPerson;
-    
+    public GameObject thisObject;
     public Animator animator;
     public GlobalPlayerInfo globalPlayerInfo;
     //KeyInfo variables  start
@@ -22,6 +22,11 @@ public class PlayerScript3D : NetworkBehaviour
     public bool shouldMove;
     //KeyInfo variables  stop
     
+    void Start()
+    {
+        thisObject = this.gameObject;
+    }
+
     public override void OnStartAuthority()
     {
         shouldMove = true;

@@ -30,7 +30,7 @@ public class PlayerRunState : PlayerState
         sprintKeyInfo = Player.sprintKeyInfo;
         
         input = new Vector3(inputMovement.x, 0, inputMovement.y);
-        input = GameObject.FindGameObjectWithTag("CameraMain").transform.rotation * input; 
+        input = Player.thisObject.transform.rotation * input; 
         input = Vector3.ProjectOnPlane(input, Player.MyRigidbody3D.Grounded().normal);
         // if the sprintkey is held and the player has stamina enough to run, the stamina
         // decreases by the sprintCost, else the player regains stamina while walking

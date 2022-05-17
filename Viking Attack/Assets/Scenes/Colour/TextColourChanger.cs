@@ -17,6 +17,7 @@ namespace Scenes.Colour
         private float greenVal;
 
 
+        /*
         private void Awake()
         {
             GameObject.FindGameObjectWithTag("RSlider");
@@ -24,6 +25,7 @@ namespace Scenes.Colour
             GameObject.FindGameObjectWithTag("BSlider");
 
         }
+        */
 
         
         private void FixedUpdate()
