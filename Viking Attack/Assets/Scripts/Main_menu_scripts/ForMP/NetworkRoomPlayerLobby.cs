@@ -18,7 +18,6 @@ namespace Main_menu_scripts.ForMP
         [SerializeField] private Button readyButton = null;
 
 
-
         //These are syncvariables that updates towards the server, and when there is a change we run the methods called in the hook
         [SyncVar(hook = nameof(HandleDisplayNameChanged))]
         public string displayName = "Loading...";
@@ -70,9 +69,9 @@ namespace Main_menu_scripts.ForMP
         public override void OnStopClient()
         {
             Room.RoomPlayers.Remove(this);
-            
             UpdateDisplay();
         }
+        
         //Following 3 methods updates what is shown whenever a value is changed for the client.
         public void HandleReadyStatusChanged(bool oldValue, bool newValue) => UpdateDisplay();
         public void HandleDisplayNameChanged(string oldValue, string newValue) => UpdateDisplay();
