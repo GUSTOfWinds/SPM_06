@@ -82,11 +82,12 @@ public class EnemyVitalController : NetworkBehaviour
     {
         if (base.isServer)
         {
-            StartCoroutine(BlinkOnHit());
+            
             //clampa värdet så vi inte kan få mer hp än maxvärdet
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
             if (currentHealth <= 0f)
             {
+                StartCoroutine(BlinkOnHit());
                 if (gameObject.GetComponent<EnemyAttack>() != null)
                 {
                     gameObject.GetComponent<EnemyAttack>().StopCoroutine("FinishAttack");

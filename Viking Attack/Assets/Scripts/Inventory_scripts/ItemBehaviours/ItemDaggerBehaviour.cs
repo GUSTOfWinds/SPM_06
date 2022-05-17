@@ -9,7 +9,6 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
     private GameObject rayCastPosition;
     private Camera mainCamera;
     private GlobalPlayerInfo globalPlayerInfo;
-    private RaycastHit hit;
     private bool canAttack = true;
     public bool attackLocked;
 
@@ -58,14 +57,15 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
         attackLocked = true;
         
         yield return new WaitForSeconds(time / 2);
-        if(Physics.SphereCast(rayCastPosition.transform.position, 0.1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
+        Collider[] hits = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Enemy"));
+        if (hits.Length > 0)
         {
-            hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100));
-            EnemyHitEvent hitEvent = new EnemyHitEvent();
-            hitEvent.enemy = hit.collider.transform.gameObject;
-            hitEvent.hitPoint = hit.point;
-
-            EventSystem.Current.FireEvent(hitEvent);
+            foreach(Collider hit in hits)
+            {
+                // Damage on player now works as a multiplier instead of damage.
+                hit.gameObject.GetComponent<EnemyVitalController>()
+                    .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100));
+            }
         }
         yield return new WaitForSeconds(time / 2);
         animator.SetLayerWeight(animator.GetLayerIndex("Dagger Attack"),0);
