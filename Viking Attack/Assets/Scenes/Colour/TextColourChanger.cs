@@ -11,11 +11,11 @@ namespace Scenes.Colour
         [SerializeField] public Slider blueSlider;
         [SerializeField] public Slider greenSlider;
         [SerializeField] private TMP_Text mixedColour;
-        [SerializeField] private Text title;
 
         private float redVal;
         private float blueVal;
         private float greenVal;
+
 
         private void Awake()
         {
@@ -25,6 +25,7 @@ namespace Scenes.Colour
 
         }
 
+        
         private void FixedUpdate()
         {
             redVal = redSlider.value;
@@ -40,7 +41,6 @@ namespace Scenes.Colour
             blueVal = blueSlider.value;
             greenVal = greenSlider.value;
             mixedColour.color = new Color(redVal, greenVal, blueVal, 255);
-            title.color = new Color32((byte)redVal, (byte)greenVal, (byte)blueVal, 255);
         }
     }
 }

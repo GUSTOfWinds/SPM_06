@@ -136,7 +136,7 @@ namespace ItemNamespace
             return false;
         }
 
-        private IEnumerator FinishAttack(GameObject hitGo)
+        public IEnumerator FinishAttack(GameObject hitGo)
         {
             enemyMovement.attacking = true; // TODO REMOVE WHEN NEW MOVEMENT IS IN PLACE
 
@@ -178,7 +178,9 @@ namespace ItemNamespace
                 return;
             }
 
-            gpi.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
+            // Armor here removes a portion of the damage 
+            int tempDamage = damage - gpi.GetComponent<GlobalPlayerInfo>().GetArmorLevel();
+            gpi.GetComponent<GlobalPlayerInfo>().UpdateHealth(-tempDamage);
         }
 
         [ClientRpc]
@@ -214,7 +216,10 @@ namespace ItemNamespace
         {
             if (globalPlayerInfo.IsAlive()) // checks if the player is even alive
             {
-                globalPlayerInfo.UpdateHealth(-damage); // damages the player in question
+                // Armor here removes a portion of the damage 
+                int tempDamage = damage - globalPlayerInfo.GetArmorLevel();
+                
+                globalPlayerInfo.UpdateHealth(-tempDamage); // damages the player in question
 
                 // Creates an event used to play a sound and display the damage in the player UI
                 EventInfo playerDamageEventInfo = new DamageEventInfo

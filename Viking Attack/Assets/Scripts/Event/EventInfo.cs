@@ -38,6 +38,7 @@ namespace Event
 
     public class PlayerLevelUpEventInfo : EventInfo
     {
+        public uint netID;
     }
 
     public class PlayerItemPickupEventInfo : EventInfo

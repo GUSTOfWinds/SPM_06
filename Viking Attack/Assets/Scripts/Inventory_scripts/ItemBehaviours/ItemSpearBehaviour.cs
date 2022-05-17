@@ -31,7 +31,19 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
             animator.Play("Spear_Attack",animator.GetLayerIndex("Spear Attack"),0f);
             animator.SetLayerWeight(animator.GetLayerIndex("Spear Attack"),1);
             StartCoroutine(WaitToAttack(animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Spear Attack")).length/animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Spear Attack")).speed));
+            if (globalPlayerInfo.GetStamina() < 15)
+            {
+                StartCoroutine(AddAttackCooldown());
+            }
         }
+    }
+    
+    // Might need some tweaking to work as we want
+    IEnumerator AddAttackCooldown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(1.5f);
+        canAttack = true;
     }
 
     public override void StopAnimation()
@@ -43,10 +55,10 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
     IEnumerator WaitToAttack(float time)
     {
 
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(time / 2);
         if(Physics.SphereCast(rayCastPosition.transform.position, 0.1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
         {
-            hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-(belongingTo.GetDamage + globalPlayerInfo.GetDamage()));
+            hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100));
             if(hit.collider.gameObject.GetComponent<EnemyMovement>() != null)
                 hit.collider.gameObject.GetComponent<EnemyMovement>().Stagger();
             else if(hit.collider.gameObject.GetComponent<EnemyAIScript>() != null)
@@ -57,7 +69,7 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
 
             EventSystem.Current.FireEvent(hitEvent);
         }
-            
+        yield return new WaitForSeconds(time / 2);
         animator.SetLayerWeight(animator.GetLayerIndex("Spear Attack"),0);
         canAttack = true;
         

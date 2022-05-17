@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Runtime.CompilerServices;
 using ItemNamespace;
 using Event;
 using Mirror;
@@ -10,7 +12,7 @@ public class EnemyVitalController : NetworkBehaviour
     /**
      * @author Martin Kings/Victor
      */
-    float maxHealth;
+    
     [SerializeField] private CharacterBase characterBase;
     [SerializeField] public float waitTime;
     [SerializeField] private bool hasDied;
@@ -18,16 +20,28 @@ public class EnemyVitalController : NetworkBehaviour
     [SerializeField] private LayerMask layerMask;
 
     [SerializeField] [SyncVar(hook = nameof(OnHealthChangedHook))]
-    float currentHealth = 100f;
+    float currentHealth;
+    
+    [SerializeField] [SyncVar] private float maxHealth;
 
     private EnemyInfo enemyInfo;
+    private SkinnedMeshRenderer skinnedMeshRenderer;
+    private Material[] materials;
+    [SerializeField] private Material hitMaterial;
 
     //spara maxvärdet så vi kan räkna ut procent 
     void Start()
     {
+        skinnedMeshRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
+
         currentHealth = characterBase.GetMaxHealth();
         maxHealth = currentHealth;
         enemyInfo = gameObject.GetComponent<EnemyInfo>();
+        enemyInfo.PlayerScale();
+
+        materials = new Material[skinnedMeshRenderer.materials.Length + 1];
+        Array.Copy(skinnedMeshRenderer.materials, materials,skinnedMeshRenderer.materials.Length);
+        materials[materials.Length-1] = hitMaterial;
     }
 
     private void OnConnectedToServer()
@@ -66,10 +80,12 @@ public class EnemyVitalController : NetworkBehaviour
     {
         if (base.isServer)
         {
+            StartCoroutine(BlinkOnHit());
             //clampa värdet så vi inte kan få mer hp än maxvärdet
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
             if (currentHealth <= 0f)
             {
+                gameObject.GetComponent<EnemyAttack>().StopCoroutine("FinishAttack");
                 sphereColliders =
                     Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
                 foreach (var coll in sphereColliders)
@@ -87,6 +103,14 @@ public class EnemyVitalController : NetworkBehaviour
             CmdUpdateHealth(change);
     }
 
+    private IEnumerator BlinkOnHit()
+    {
+        Material[] temp = skinnedMeshRenderer.materials;
+        skinnedMeshRenderer.materials = materials;
+        yield return new WaitForSeconds(0.2f);
+        skinnedMeshRenderer.materials = temp;
+    }
+
     // Ships experience to clients, makes experience within proximity possible
     [ClientRpc]
     private void RpcIncreaseExperience(GameObject player, float exp)
@@ -101,8 +125,13 @@ public class EnemyVitalController : NetworkBehaviour
 
     public void PlayerScaleHealthUpdate(float hp, float maxhp)
     {
+        
         maxHealth = maxhp;
         currentHealth = hp;
+        if (currentHealth > 0)
+        {
+            UpdateHealth(0);
+        }
     }
 
     //andra script kan registrera på detta event
@@ -110,4 +139,5 @@ public class EnemyVitalController : NetworkBehaviour
 
     //OBS KÖRS ENDAST PÅ SERVERN
     public event Action<EnemyVitalController> OnDeath;
+    
 }
