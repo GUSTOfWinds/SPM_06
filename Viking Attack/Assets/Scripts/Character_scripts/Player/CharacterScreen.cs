@@ -15,7 +15,7 @@ public class CharacterScreen : MonoBehaviour
     [SerializeField] private Text damageStatPoints;
     [SerializeField] private Text staminaStatPoints;
     [SerializeField] private Text availableStatPoints;
-    [SerializeField] private Text XPtoLVL;
+    [SerializeField] private Text expToLevel;
     [SerializeField] private Text level;
     [SerializeField] private GlobalPlayerInfo globalPlayerInfo;
 
@@ -31,7 +31,7 @@ public class CharacterScreen : MonoBehaviour
         damageStatPoints.text = globalPlayerInfo.GetDamage().ToString() + "%";
         staminaStatPoints.text = globalPlayerInfo.GetMaxStamina().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
-        XPtoLVL.text = ((globalPlayerInfo.GetLevelThreshold() * globalPlayerInfo.GetLevel() * 1.3f) -
+        expToLevel.text = ((globalPlayerInfo.GetLevelThreshold() * globalPlayerInfo.GetLevel() * 1.3f) -
                         globalPlayerInfo.GetExperience()).ToString();
         level.text = globalPlayerInfo.GetArmorLevel().ToString();
 
