@@ -20,6 +20,8 @@ namespace Main_menu_scripts.ForMP
         public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
         public List<GameObject> spawnablePrefabs = new List<GameObject>();
 
+        [SerializeField] private GameObject landingPage;
+
 
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
@@ -66,7 +68,10 @@ namespace Main_menu_scripts.ForMP
         public override void OnClientDisconnect(NetworkConnection conn)
         {
             base.OnClientDisconnect(conn);
+            landingPage.SetActive(true);
+
             OnClientDisconnected?.Invoke();
+
         }
 
         public override void OnServerConnect(NetworkConnectionToClient conn)
@@ -123,6 +128,8 @@ namespace Main_menu_scripts.ForMP
 
         public override void OnStopServer()
         {
+            landingPage.SetActive(true);
+
             RoomPlayers.Clear();
 
         }
