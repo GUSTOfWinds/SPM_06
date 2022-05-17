@@ -50,7 +50,6 @@ namespace Event
             if (isServer)
             {
                 float timer = unitDeathEventInfo.RespawnTimer;
-                uint netIDOfEnemy = unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
                 var parent = unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>().GetRespawnParent();
 
                 // Randomizes a number between 1 and the dropchance int set in character base for drops, if
@@ -90,11 +89,10 @@ namespace Event
 
                 // Destroys the enemy
                 NetworkServer.Destroy(unitDeathEventInfo.EventUnitGo);
-
-                // Destroys the health bars
+                
                 yield return new WaitForSeconds(timer);
 
-                // Respawns the enemy at the same spawner
+                // Respawns the enemy at the same spawner after the timer that has been set in event info
                 RespawnEnemy(parent);
             }
         }
