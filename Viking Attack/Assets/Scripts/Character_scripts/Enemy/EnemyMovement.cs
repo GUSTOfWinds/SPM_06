@@ -23,7 +23,7 @@ public class EnemyMovement : NetworkBehaviour
     [Header("Base Movement")] private Vector3 movingDirection;
 
     private float waitFrame;
-    private int defaultSpeed;
+    private float defaultSpeed;
     private Vector3 point1, point2;
     private CapsuleCollider capsCollider;
 
@@ -52,7 +52,7 @@ public class EnemyMovement : NetworkBehaviour
     [SerializeField] private float
         chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
 
-    [SerializeField] private int moveSpeed; // movement speed of the enemy
+    [SerializeField] private float moveSpeed; // movement speed of the enemy
     [SerializeField] private CharacterBase characterBase; // the scriptable object that we fetch all the variables from
 
     [Header("Calculation")] private int traces = 6;
