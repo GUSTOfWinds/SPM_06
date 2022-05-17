@@ -11,6 +11,7 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
     private GlobalPlayerInfo globalPlayerInfo;
     private RaycastHit hit;
     private bool canAttack = true;
+    public bool attackLocked;
 
 
     public void Awake()
@@ -53,6 +54,9 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
     //Waits the lenght of the animation before leting the player attack again.
     IEnumerator WaitToAttack(float time)
     {
+        // Used to lock the ability to swap between items while attacking
+        attackLocked = true;
+        
         yield return new WaitForSeconds(time / 2);
         if(Physics.SphereCast(rayCastPosition.transform.position, 0.1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
         {
@@ -66,6 +70,9 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
         yield return new WaitForSeconds(time / 2);
         animator.SetLayerWeight(animator.GetLayerIndex("Dagger Attack"),0);
         canAttack = true;
+        
+        // Used to lock the ability to swap between items while attacking
+        attackLocked = false;
         
     }
 }
