@@ -85,6 +85,10 @@ public class EnemyVitalController : NetworkBehaviour
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
             if (currentHealth <= 0f)
             {
+                if (gameObject.GetComponent<EnemyAttack>() != null)
+                {
+                    gameObject.GetComponent<EnemyAttack>().StopCoroutine("FinishAttack");
+                }
                 sphereColliders =
                     Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
                 foreach (var coll in sphereColliders)
