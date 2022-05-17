@@ -99,9 +99,12 @@ public class EnemyVitalController : NetworkBehaviour
                     RpcIncreaseExperience(coll.gameObject, enemyInfo.GetExperience());
                     coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(enemyInfo.GetExperience());
                 }
-
+                
+                if(gameObject.GetComponent<EnemyAIScript>() != null)
+                    gameObject.GetComponent<EnemyAIScript>().BeforeDying();
                 this.OnDeath?.Invoke(this);
                 Die();
+                
             }
         }
         else

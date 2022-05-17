@@ -72,6 +72,7 @@ namespace Main_menu_scripts.ForMP
             Room.RoomPlayers.Remove(this);
             UpdateDisplay();
         }
+        
         //Following 3 methods updates what is shown whenever a value is changed for the client.
         public void HandleReadyStatusChanged(bool oldValue, bool newValue) => UpdateDisplay();
         public void HandleDisplayNameChanged(string oldValue, string newValue) => UpdateDisplay();

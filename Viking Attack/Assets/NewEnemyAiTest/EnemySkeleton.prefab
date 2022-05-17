@@ -601,6 +601,9 @@ MonoBehaviour:
   syncInterval: 0
   aggroRangeFromSpawnPoint: 30
   canSeeThroughWalls: 0
+  enemySounds:
+  - {fileID: 8300000, guid: 002d3438d861f224e911c9bea0f7f3d1, type: 3}
+  - {fileID: 8300000, guid: 0edc7bad5b4d70a4abedf2104deeac79, type: 3}
   hitAmountForStagger: 3
   roamingRangeFromSpawn: 20
 --- !u!114 &6860839154504057231
@@ -618,7 +621,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   characterBase: {fileID: 11400000, guid: 51ce9bc9105c0934c8771ec9f22670c7, type: 2}
-  waitTime: 0
+  waitTime: 999
   hasDied: 0
   layerMask:
     serializedVersion: 2

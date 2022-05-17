@@ -722,8 +722,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897089757}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.5, z: -36.65}
-  m_LocalScale: {x: 4, y: 2, z: 100}
+  m_LocalPosition: {x: 0, y: 0.48, z: -36.65}
+  m_LocalScale: {x: 3.4, y: 2, z: 100}
   m_Children: []
   m_Father: {fileID: 1870734424}
   m_RootOrder: 2
@@ -976,7 +976,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007773625}
   m_LocalRotation: {x: 0.09229599, y: -0.7010574, z: -0.09229599, w: 0.7010574}
-  m_LocalPosition: {x: 0, y: 0, z: -33.25}
+  m_LocalPosition: {x: 0, y: 0, z: -33.31}
   m_LocalScale: {x: 4, y: 2, z: 100}
   m_Children: []
   m_Father: {fileID: 1870734424}
@@ -1766,7 +1766,7 @@ PrefabInstance:
       objectReference: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
     - target: {fileID: 4616224863939141906, guid: 6f521b700c6739a45a2b595a7c5c6c90, type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4616224863939141906, guid: 6f521b700c6739a45a2b595a7c5c6c90, type: 3}
       propertyPath: spawnPrefabs.Array.data[0]
@@ -1775,7 +1775,11 @@ PrefabInstance:
     - target: {fileID: 4616224863939141906, guid: 6f521b700c6739a45a2b595a7c5c6c90, type: 3}
       propertyPath: spawnPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
+      objectReference: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
+    - target: {fileID: 4616224863939141906, guid: 6f521b700c6739a45a2b595a7c5c6c90, type: 3}
+      propertyPath: spawnPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
     - target: {fileID: 4616224863939141910, guid: 6f521b700c6739a45a2b595a7c5c6c90, type: 3}
       propertyPath: m_Name
       value: NetworkManagerForTesting

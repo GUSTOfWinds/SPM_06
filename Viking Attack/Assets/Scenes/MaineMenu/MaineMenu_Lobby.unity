@@ -2934,7 +2934,7 @@ GameObject:
   - component: {fileID: 725211497}
   m_Layer: 0
   m_Name: Panel_LandingPage
-  m_TagString: Untagged
+  m_TagString: LandingPage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7507,6 +7507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
+      propertyPath: landingPage
+      value: 
+      objectReference: {fileID: 725211496}
     - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: playerPrefab
       value: 

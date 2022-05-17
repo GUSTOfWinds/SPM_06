@@ -22,7 +22,13 @@ public class PlayerInteractionScript : NetworkBehaviour
     {
         if (!isLocalPlayer) return;
         //Sends a raycast to check for colliders in the InteractableObject layer
-
+        if (Physics.SphereCast(mainCamera.transform.position, 1f, mainCamera.transform.forward, out hit, 1,
+                LayerMask.GetMask("Enemy")))
+        {
+            //Changes text to the button and information that is set in the object hit
+            interactionText.text = "Press: E to ";
+            //Calls the function to say that the object is interacted with
+        }
 
         if (Physics.SphereCast(mainCamera.transform.position, 1f, mainCamera.transform.forward, out hit, 1,
                 LayerMask.GetMask("InteractableObject")))
