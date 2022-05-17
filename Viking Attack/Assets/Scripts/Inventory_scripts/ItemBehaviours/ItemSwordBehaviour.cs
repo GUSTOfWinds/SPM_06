@@ -73,8 +73,11 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
 
             EventSystem.Current.FireEvent(hitEvent);
         }
+        if (Physics.SphereCast(rayCastPosition.transform.position, 0.1f, mainCamera.transform.forward, out hit,
+               belongingTo.GetRange, LayerMask.GetMask("Breakable")))
+        {
 
-        yield return new WaitForSeconds(time / 2);
+            yield return new WaitForSeconds(time / 2);
         animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"), 0);
         canAttack = true;
     }
