@@ -161,7 +161,6 @@ public class EnemyAIScript : NetworkBehaviour
     {
         //Would want to remove, maybe check when a new player joins?
         players = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log(players.Length);
         //
         //Checks if there are any palyers the the players list
         if (players != null)
