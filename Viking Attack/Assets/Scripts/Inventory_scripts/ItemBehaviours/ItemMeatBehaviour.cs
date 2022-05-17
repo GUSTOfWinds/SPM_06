@@ -45,11 +45,6 @@ public class ItemMeatBehaviour : ItemBaseBehaviour
         }
     }
 
-    private void Update()
-    {
-        Debug.Log(eating);
-    }
-
     public override void StopAnimation()
     {
         animator.SetLayerWeight(animator.GetLayerIndex("Eat Meat"), 0);

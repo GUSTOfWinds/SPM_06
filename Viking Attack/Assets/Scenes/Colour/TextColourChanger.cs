@@ -19,6 +19,7 @@ namespace Scenes.Colour
         private Color32 color32;
 
 
+        /*
         private void Awake()
         {
             GameObject.FindGameObjectWithTag("RSlider");
@@ -27,6 +28,7 @@ namespace Scenes.Colour
             color32 = GetColour();
 
         }
+        */
 
         private Color32 GetColour()
         {

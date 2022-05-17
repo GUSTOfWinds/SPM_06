@@ -28,8 +28,11 @@ namespace Scenes.Colour
         {
             if (colValue > 255) colValue = 255;
             if (colValue <  0|| colValue == null || textComponent.text == null) colValue = 0;
-            textComponent.text = colValue.ToString();
-            slider.value = colValue;
+        }
+        
+        //Saves chosen colour
+        public void SaveColour()
+        {
             PlayerPrefs.SetInt(colorComponent, colValue);
         }
 
@@ -38,7 +41,7 @@ namespace Scenes.Colour
         public  int GetColValue()
         {
             return colValue;
-        }
+        }            
         //Supposed to set the value of colour of R.G.B
         private  void SetColValue(int toSet)
         {

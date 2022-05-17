@@ -3,6 +3,7 @@ using UnityEngine;
 using Mirror;
 using System.Collections.Generic;
 using System;
+using System.Runtime.CompilerServices;
 using Inventory_scripts;
 using UnityEngine.InputSystem;
 
@@ -14,7 +15,6 @@ public class PlayerItemUsageController : NetworkBehaviour
     public ItemBase itemBase; // Will need to be updated if another item is being used.
 
     [SerializeField] private GameObject heldItemWorldObject;
-    [SerializeField] private GameObject holdingHand;
 
     private Type currentActingComponentType;
     private ItemBaseBehaviour currentActingComponent;
@@ -23,8 +23,6 @@ public class PlayerItemUsageController : NetworkBehaviour
     public void Start()
     {
         ChangeItem(itemBase);
-        if (holdingHand != null)
-            heldItemWorldObject.transform.SetParent(holdingHand.transform);
     }
 
     public void OnUse(InputAction.CallbackContext value)
@@ -43,8 +41,10 @@ public class PlayerItemUsageController : NetworkBehaviour
     //Changes what item the player has in their hand and sets the correct mesh and material
     public void ChangeItem(ItemBase newItemBase)
     {
-        itemBase = newItemBase;
-        Type itemType = Type.GetType(itemBase.GetItemBaseBehaviorScriptName);
+        itemBase = newItemBase; // updates itembase
+        Type itemType = Type.GetType(itemBase.GetItemBaseBehaviorScriptName); // fetches type of the itembehaviour
+
+
         if (currentActingComponent != null)
         {
             currentActingComponent.StopAnimation();
@@ -58,10 +58,14 @@ public class PlayerItemUsageController : NetworkBehaviour
         heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
     }
 
-    public void SyncHeldItem(int index)
+    // Will be run by both client and server, only updates the mesh shown in the other players hand
+    public void SyncHeldItem(int index, uint netid)
     {
-        itemBase = gameObject.GetComponent<PlayerInventory>().inventory[index];
-        heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
-        heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
+        if (gameObject.GetComponent<NetworkIdentity>().netId == netid)
+        {
+            itemBase = gameObject.GetComponent<PlayerInventory>().inventory[index];
+            heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;
+            heldItemWorldObject.GetComponent<MeshRenderer>().material = itemBase.GetMaterial;
+        }
     }
 }

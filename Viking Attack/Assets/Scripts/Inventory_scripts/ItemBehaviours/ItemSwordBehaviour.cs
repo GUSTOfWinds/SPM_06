@@ -11,6 +11,7 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
     private GlobalPlayerInfo globalPlayerInfo;
     private RaycastHit hit;
     private bool canAttack = true;
+    public bool attackLocked;
 
 
     public void Awake()
@@ -21,6 +22,13 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         animator = gameObject.transform.Find("Prefab_PlayerBot").GetComponent<Animator>();
     }
 
+    // Might need some tweaking to work as we want
+    IEnumerator AddAttackCooldown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(1.5f);
+        canAttack = true;
+    }
     public override void Use(ItemBase itemBase)
     {
         // Checks if the player has enough stamina to attack, will then attack.
@@ -34,6 +42,10 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
             StartCoroutine(WaitToAttack(
                 animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).length /
                 animator.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("Sword Attack")).speed));
+            if (globalPlayerInfo.GetStamina() < 15)
+            {
+                StartCoroutine(AddAttackCooldown());
+            }
         }
     }
 
@@ -42,9 +54,12 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"), 0);
     }
 
-    //Waits the lenght of the animation before leting the player attack again.
+    //Waits the length of the animation before letting the player attack again.
     IEnumerator WaitToAttack(float time)
     {
+        // Used to lock the ability to swap between items while attacking
+        attackLocked = true;
+        
         yield return new WaitForSeconds(time / 2);
         if (Physics.SphereCast(rayCastPosition.transform.position, 0.1f, mainCamera.transform.forward, out hit,
                 belongingTo.GetRange, LayerMask.GetMask("Enemy")))
@@ -66,5 +81,8 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         yield return new WaitForSeconds(time / 2);
         animator.SetLayerWeight(animator.GetLayerIndex("Sword Attack"), 0);
         canAttack = true;
+        
+        // Used to lock the ability to swap between items while attacking
+        attackLocked = false;
     }
 }
