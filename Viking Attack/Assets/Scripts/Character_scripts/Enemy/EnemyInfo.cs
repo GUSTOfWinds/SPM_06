@@ -29,7 +29,7 @@ namespace ItemNamespace
         [SerializeField] private float
             chasingSpeedMultiplier; // the multiplier for the movement speed of the enemy (1 if to move at same pace as the regular movement speed)
 
-        [SerializeField] private float moveSpeed; // movement speed of the enemy
+        [SerializeField] private int moveSpeed; // movement speed of the enemy
         [SerializeField] private float health;
         [SerializeField] public float maxHealth;
         private float experienceRadius;

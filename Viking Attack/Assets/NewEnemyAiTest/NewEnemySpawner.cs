@@ -13,7 +13,6 @@ public class NewEnemySpawner : NetworkBehaviour
     private Guid respawnEventGuid;
     private uint netID;
     [SerializeField] private bool isBoss;
-    [SerializeField] private bool roaming;
 
 
     private void Awake()
@@ -45,7 +44,6 @@ public class NewEnemySpawner : NetworkBehaviour
         var enemy = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
         enemy.GetComponent<EnemyInfo>().SetRespawnAnchor(transform);
         enemy.GetComponent<EnemyAIScript>().SetEnemyTransform(transform);
-        enemy.GetComponent<EnemyAIScript>().SetIfEnemyRoam(roaming);
         NetworkServer.Spawn(enemy);
         
 
