@@ -12,6 +12,7 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField] public Transform target; // the gameobject.transform that the UI should follow 
     [SerializeField] public Slider healthBar; // the slider 
     [SerializeField] private GameObject healthSource; // the enemy gameobject
+    private EnemyVitalController enemyVitalController;
     private Vector3 wantedPos;
 
     [SerializeField]
@@ -31,12 +32,13 @@ public class EnemyHealthBar : MonoBehaviour
     public void SetHealthSource(GameObject hs)
     {
         healthSource = hs;
+        enemyVitalController = healthSource.GetComponent<EnemyVitalController>();
     }
 
     // Updates the health number of the slider
     public void SetHealth()
     {
-        healthBar.value = healthSource.GetComponent<EnemyVitalController>().GetCurrentHealth();
+        healthBar.value = enemyVitalController.GetCurrentHealth();
     }
 
     public uint GetPersonalNetID()
