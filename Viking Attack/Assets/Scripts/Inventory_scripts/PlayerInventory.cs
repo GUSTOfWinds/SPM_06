@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
+using System.Globalization;
 using Event;
 using ItemNamespace;
 using Mirror;
@@ -27,6 +27,7 @@ namespace Inventory_scripts
         [SerializeField] private ItemBase wieldedItemBase;
 
         private Guid itemPickupGuid;
+        private static readonly int ItemPopup = Animator.StringToHash("itemPOPUP");
 
 
         private void Start()
@@ -38,7 +39,7 @@ namespace Inventory_scripts
         }
 
 
-        // Inserts the itembase + its sprite to the inventory array
+        // Inserts the itemBase + its sprite to the inventory array
         void OnItemPickup(PlayerItemPickupEventInfo playerItemPickupEventInfo)
         {
             if (playerItemPickupEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId == netID)
@@ -74,7 +75,7 @@ namespace Inventory_scripts
                             RpcUpdateWeapon(weaponIndex, gameObject);
                         }
 
-                        animator.SetTrigger("itemPOPUP");
+                        animator.SetTrigger(ItemPopup);
 
                         break;
                     // END OF INNER WEAPON SWITCH
@@ -96,7 +97,7 @@ namespace Inventory_scripts
                             meatStackNumber.GetComponent<Text>().text =
                                 gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber().ToString();
                             gameObject.GetComponent<GlobalPlayerInfo>()
-                                .SetItemSlot(3, inventory[3]); // sets the info in globalplayerinfo
+                                .SetItemSlot(3, inventory[3]); // sets the info in globalPlayerInfo
                         }
 
                         break;
@@ -166,8 +167,8 @@ namespace Inventory_scripts
 
             itemInfoSprite.GetComponent<Image>().sprite = sprites[index].GetComponent<Image>().sprite;
             weaponStats[0].GetComponent<Text>().text = inventory[index].GetDamage.ToString();
-            weaponStats[1].GetComponent<Text>().text = inventory[index].GetRange.ToString();
-            weaponStats[2].GetComponent<Text>().text = inventory[index].GetSpeed.ToString();
+            weaponStats[1].GetComponent<Text>().text = inventory[index].GetRange.ToString(CultureInfo.CurrentCulture);
+            weaponStats[2].GetComponent<Text>().text = inventory[index].GetSpeed.ToString(CultureInfo.CurrentCulture);
         }
 
 
@@ -237,7 +238,7 @@ namespace Inventory_scripts
                         gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
                         selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 10f, 0f);
                         UpdateItemInfo(0); // updates the weapon info box with sword information
-                        animator.SetTrigger("itemPOPUP");
+                        animator.SetTrigger(ItemPopup);
                     }
                 }
             }
@@ -300,7 +301,7 @@ namespace Inventory_scripts
                     gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[1]);
                     selectedItem.transform.position = sprites[1].transform.position + new Vector3(0f, 10f, 0f);
                     UpdateItemInfo(1); // updates the weapon info box with spear information
-                    animator.SetTrigger("itemPOPUP");
+                    animator.SetTrigger(ItemPopup);
                 }
             }
         }
@@ -363,7 +364,7 @@ namespace Inventory_scripts
                     gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[2]);
                     selectedItem.transform.position = sprites[2].transform.position + new Vector3(0f, 10f, 0f);
                     UpdateItemInfo(2); // updates the weapon info box with dagger information
-                    animator.SetTrigger("itemPOPUP");
+                    animator.SetTrigger(ItemPopup);
                 }
             }
         }
@@ -446,7 +447,7 @@ namespace Inventory_scripts
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
                 selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 10f, 0f);
                 UpdateItemInfo(0); // updates the weapon info box with sword information
-                animator.SetTrigger("itemPOPUP");
+                animator.SetTrigger(ItemPopup);
             }
         }
 

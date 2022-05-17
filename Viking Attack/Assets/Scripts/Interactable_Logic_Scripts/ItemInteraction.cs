@@ -1,8 +1,5 @@
-using System.Collections;
 using Event;
-using ItemNamespace;
 using UnityEngine;
-using Mirror;
 
 public class ItemInteraction : BaseObjectInteraction
 {

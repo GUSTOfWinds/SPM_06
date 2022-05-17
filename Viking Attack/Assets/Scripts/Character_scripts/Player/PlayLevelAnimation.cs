@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Event;
 using Mirror;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class PlayLevelAnimation : MonoBehaviour

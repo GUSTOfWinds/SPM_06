@@ -3,7 +3,6 @@ using System.Collections;
 using ItemNamespace;
 using UnityEngine;
 using Mirror;
-using UnityEditor;
 using Random = UnityEngine.Random;
 
 namespace Event

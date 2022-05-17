@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using ItemNamespace;
 using Mirror;
-using UnityEditor;
 
 
 namespace ItemNamespace

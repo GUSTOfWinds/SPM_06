@@ -68,7 +68,14 @@ namespace Main_menu_scripts.ForMP
         public override void OnClientDisconnect(NetworkConnection conn)
         {
             base.OnClientDisconnect(conn);
-            landingPage.SetActive(true);
+            if (landingPage == null)
+            {
+                SceneManager.LoadScene(0);
+            }
+            else
+            {
+                landingPage.SetActive(true);
+            }
 
             OnClientDisconnected?.Invoke();
 

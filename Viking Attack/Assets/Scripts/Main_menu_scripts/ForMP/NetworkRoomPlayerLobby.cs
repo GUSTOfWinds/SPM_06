@@ -165,12 +165,6 @@ namespace Main_menu_scripts.ForMP
             Room.NotifyPlayersOfReadyState();
         }
 
-        [Command]
-        public void CmdUpdatePlayerColor()
-        {
-            setpla
-        }
-
         //Only host can start game, and throws the command all over the server
         [Command]
         public void CmdStartGame()
