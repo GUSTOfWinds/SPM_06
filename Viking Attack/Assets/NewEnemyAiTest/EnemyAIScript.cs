@@ -269,11 +269,11 @@ public class EnemyAIScript : NetworkBehaviour
             audioSource.PlayOneShot(enemySounds[1]);
         }
     }
-    [ClientRpc] private void RpcDealDamage()
+    [ClientRpc] private void RpcDealDamage(GameObject player)
     {
         if (!isServer)
         {
-            target.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
+            player.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
         }
     }
 
@@ -291,7 +291,7 @@ public class EnemyAIScript : NetworkBehaviour
         if (navMeshAgent.remainingDistance <= attackRange)
             if (target.tag.Equals("Player"))
             {
-                RpcDealDamage();
+                RpcDealDamage(target);
                 target.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
 
                 // Creates an event used to play a sound and display the damage in the player UI

@@ -239,6 +239,10 @@ PrefabInstance:
       propertyPath: sceneId
       value: 725950053
       objectReference: {fileID: 0}
+    - target: {fileID: 8369864309845643656, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
+      propertyPath: serverOnly
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
 --- !u!4 &46063950 stripped
@@ -1958,7 +1962,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 511
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2539,6 +2543,10 @@ PrefabInstance:
       propertyPath: sceneId
       value: 1806154172
       objectReference: {fileID: 0}
+    - target: {fileID: 5237441732011636217, guid: 57d53582e8cd7744d8464d9b6fa4042d, type: 3}
+      propertyPath: serverOnly
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57d53582e8cd7744d8464d9b6fa4042d, type: 3}
 --- !u!1001 &1799593079
@@ -2610,7 +2618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8544967031688414425, guid: e7d31edc687cd1c48b7d370c871c136f, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 507
+      value: 1019
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
