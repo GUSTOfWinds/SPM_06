@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3396255496482610229}
   - component: {fileID: 2812096391129749000}
+  - component: {fileID: 632037729398769037}
   m_Layer: 3
   m_Name: Breakable
   m_TagString: Enemy
@@ -49,6 +50,18 @@ MonoBehaviour:
   visible: 0
   m_AssetId: d7f26ace05397064f89d7a123c7bc52b
   hasSpawned: 0
+--- !u!114 &632037729398769037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980946679800242412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86006b2ea17046547bd7f59c0880750c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6333313117284023524
 GameObject:
   m_ObjectHideFlags: 0
