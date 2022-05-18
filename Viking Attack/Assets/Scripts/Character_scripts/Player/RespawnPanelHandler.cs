@@ -9,6 +9,9 @@ using UnityEngine.Rendering;
 
 public class RespawnPanelHandler : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     private Guid playerDeathEventGuid;
     [SerializeField] private GameObject respawnPanel;
 
