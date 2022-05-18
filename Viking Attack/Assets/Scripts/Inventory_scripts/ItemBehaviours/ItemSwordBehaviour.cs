@@ -66,7 +66,6 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         {
             foreach(Collider hit in hits)
             {
-                Debug.Log(gameObject.GetComponent<NetworkIdentity>().netId + " NetId hos spelaren som slog i itemswordbehaviour");
                 // Damage on player now works as a multiplier instead of damage.
                 hit.gameObject.GetComponent<EnemyVitalController>()
                     .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100), gameObject.GetComponent<NetworkIdentity>().netId);
