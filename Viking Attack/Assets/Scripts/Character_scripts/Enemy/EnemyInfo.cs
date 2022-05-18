@@ -64,6 +64,11 @@ namespace ItemNamespace
             enemyVitalController = gameObject.GetComponent<EnemyVitalController>();
         }
 
+        public int GetEnemyLevel()
+        {
+            return level;
+        }
+
         public void SetRespawnAnchor(Transform p)
         {
             respawnParent = p;

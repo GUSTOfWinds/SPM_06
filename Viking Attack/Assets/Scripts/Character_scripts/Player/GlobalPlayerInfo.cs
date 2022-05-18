@@ -52,6 +52,8 @@ public class GlobalPlayerInfo : NetworkBehaviour
         playerName = PlayerPrefs.GetString("PlayerName");
         armorLevel = 0;
     }
+    
+    
 
     public void IncreaseArmorLevel()
     {

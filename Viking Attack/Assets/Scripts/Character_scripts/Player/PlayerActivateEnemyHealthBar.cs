@@ -51,8 +51,8 @@ namespace ItemNamespace
             EventSystem.Current.FireEvent(playerConnectEventInfo);
         }
 
-        // Will pick up any death event on the server, if the killed enemy was the last hit enemy, the 
-        // health bar will be reset.
+        // Will pick up any enemy death event on the server, if the killed enemy was the enemy hit last, the 
+        // health bar will be reset and shut down.
         private void OnEnemyDeath(UnitDeathEventInfo unitDeathEventInfo)
         {
             netIdOfDeadEnemy = unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
@@ -61,26 +61,25 @@ namespace ItemNamespace
                 healthBarInHierarchy.SetActive(false);
                 netIdOfLastHit = 0;
             }
+
             RpcOnEnemyDeath(netIdOfDeadEnemy);
         }
 
         // Will be called on the client if an enemy dies, if the killed enemy was the last hit enemy, the 
         // health bar will be reset.
         [ClientRpc]
-        void RpcOnEnemyDeath(uint netIdOfDeadEnemy)
+        void RpcOnEnemyDeath(uint netId)
         {
             if (!isClientOnly)
             {
                 return;
             }
-            
-            if (netIdOfDeadEnemy == netIdOfLastHit)
+
+            if (netId == netIdOfLastHit)
             {
                 healthBarInHierarchy.SetActive(false);
                 netIdOfLastHit = 0;
             }
-            
-            
         }
 
 
@@ -89,14 +88,15 @@ namespace ItemNamespace
         {
             playerThatHit = hit.playerNetId;
             netIdOfNewHit = hit.EventUnitGo.GetComponent<NetworkIdentity>().netId;
-            
-            
+
+
+            // Runs similar method on clients
             RpcSetupHealthBar(playerThatHit, netIdOfNewHit, hit.EventUnitGo);
-            
+
             // if the person attacking is the same person on the server
             if (playerThatHit == gameObject.GetComponent<NetworkIdentity>().netId)
             {
-                // If the first health bar hasn't been setup yet
+                // If the first health bar hasn't been setup yet or has been reset
                 if (netIdOfLastHit == 0)
                 {
                     if (healthBarInHierarchy.active == false)
@@ -109,6 +109,7 @@ namespace ItemNamespace
                     return;
                 }
 
+                // If the hit enemy is the same as the previously hit one
                 if (netIdOfLastHit == netIdOfNewHit)
                 {
                     if (healthBarInHierarchy.active == false)
@@ -129,7 +130,7 @@ namespace ItemNamespace
                     netIdOfLastHit = netIdOfNewHit;
                 }
             }
-            else
+            else // if it wasn't the local player hitting it
             {
                 if (netIdOfNewHit == netIdOfLastHit)
                 {
@@ -141,7 +142,6 @@ namespace ItemNamespace
                     enemyHealthBar.SetHealth();
                 }
             }
-            
         }
 
         [ClientRpc]
@@ -151,15 +151,14 @@ namespace ItemNamespace
             {
                 return;
             }
-            
+
             playerThatHit = playerId;
             netIdOfNewHit = enemyId;
             // if the person attacking is the same person on the server
             if (playerThatHit == gameObject.GetComponent<NetworkIdentity>().netId)
             {
-                Debug.Log("nu kommer jag in på klient");
                 healthBarInHierarchy.SetActive(true);
-                // If the first health bar hasn't been setup yet
+                // If the first health bar hasn't been setup yet or has been reset
                 if (netIdOfLastHit == 0)
                 {
                     if (healthBarInHierarchy.active == false)
@@ -172,6 +171,7 @@ namespace ItemNamespace
                     return;
                 }
 
+                // If the hit enemy is the same as the previously hit one
                 if (netIdOfLastHit == netIdOfNewHit)
                 {
                     if (healthBarInHierarchy.active == false)
@@ -192,7 +192,7 @@ namespace ItemNamespace
                     netIdOfLastHit = netIdOfNewHit;
                 }
             }
-            else
+            else // if it wasn't the local player hitting it
             {
                 if (netIdOfNewHit == netIdOfLastHit)
                 {
@@ -205,6 +205,5 @@ namespace ItemNamespace
                 }
             }
         }
-        
     }
 }
