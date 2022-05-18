@@ -79,6 +79,7 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
             Collider hit = hitBreakable[0];
             hit.gameObject.GetComponent<BreakableBehavior>()
                 .Break();
+        }
 
             {
 
@@ -90,6 +91,6 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
                 // Used to lock the ability to swap between items while attacking
                 attackLocked = false;
             }
-        }
+        
     }
 }
