@@ -15,7 +15,7 @@ public class BreakableBehavior : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
 
 
-    [SerializeField] [SyncVar] private float maxHealth;
+  
 
     
     private SkinnedMeshRenderer skinnedMeshRenderer;

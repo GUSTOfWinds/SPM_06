@@ -778,7 +778,7 @@ PrefabInstance:
       objectReference: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
     - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2327,7 +2327,7 @@ PrefabInstance:
       objectReference: {fileID: 5618711477724573921, guid: 6ec8c1817f184bf4891ca932aafc4aea, type: 3}
     - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5333,7 +5333,7 @@ Transform:
   - {fileID: 1549318377}
   - {fileID: 578660727}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1745617808
 PrefabInstance:
@@ -6512,19 +6512,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4345302649182038506, guid: 76ed1cdc12fb6cb47a0efb497be55073, type: 3}
   m_PrefabInstance: {fileID: 4345302649925814508}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1953194250}
-  - component: {fileID: 1953194249}
-  - component: {fileID: 1953194248}
-  - component: {fileID: 1953194247}
-  m_Layer: 2
-  m_Name: Fog
-  m_TagString: Fog
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!65 &1953194247
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6587,20 +6574,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953194246}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1953194250
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953194246}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 122.59999, y: 45.5, z: 429.6}
-  m_LocalScale: {x: 433.6, y: 329.2, z: 403.4}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1965461905
 GameObject:
   m_ObjectHideFlags: 0
@@ -7085,17 +7058,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 632037729398769037, guid: d7f26ace05397064f89d7a123c7bc52b, type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 980946679800242412, guid: d7f26ace05397064f89d7a123c7bc52b, type: 3}
       propertyPath: m_Name
       value: Breakable (1)
       objectReference: {fileID: 0}
     - target: {fileID: 980946679800242412, guid: d7f26ace05397064f89d7a123c7bc52b, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 980946679800242412, guid: d7f26ace05397064f89d7a123c7bc52b, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Breakable
       objectReference: {fileID: 0}
     - target: {fileID: 2812096391129749000, guid: d7f26ace05397064f89d7a123c7bc52b, type: 3}
       propertyPath: sceneId
@@ -7155,7 +7132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6333313117284023524, guid: d7f26ace05397064f89d7a123c7bc52b, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8212936596511386435, guid: d7f26ace05397064f89d7a123c7bc52b, type: 3}
       propertyPath: m_LocalScale.x
