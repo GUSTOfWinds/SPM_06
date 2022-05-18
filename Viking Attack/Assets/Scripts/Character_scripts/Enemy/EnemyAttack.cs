@@ -222,7 +222,7 @@ namespace ItemNamespace
                 globalPlayerInfo.UpdateHealth(-tempDamage); // damages the player in question
 
                 // Creates an event used to play a sound and display the damage in the player UI
-                EventInfo playerDamageEventInfo = new DamageEventInfo
+                EventInfo playerDamageEventInfo = new PlayerDamageEventInfo
                 {
                     EventUnitGo = gameObject,
                     target = player

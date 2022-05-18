@@ -297,7 +297,7 @@ public class EnemyAIScript : NetworkBehaviour
                 target.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
 
                 // Creates an event used to play a sound and display the damage in the player UI
-                EventInfo playerDamageEventInfo = new DamageEventInfo {EventUnitGo = gameObject, target = this.target};
+                EventInfo playerDamageEventInfo = new PlayerDamageEventInfo {EventUnitGo = gameObject, target = this.target};
                 EventSystem.Current.FireEvent(playerDamageEventInfo);
             }
 

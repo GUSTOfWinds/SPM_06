@@ -129,6 +129,13 @@ public class GlobalPlayerInfo : NetworkBehaviour
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
         if (health <= 0)
         {
+            // Used by PlayerActivateEnemyHealthBar class on player objects
+            EventInfo unitDeathEventInfo = new UnitDeathEventInfo
+            {
+                EventUnitGo = gameObject
+            };
+            EventSystem.Current.FireEvent(unitDeathEventInfo);
+            
             gameObject.GetComponent<KillPlayer>().PlayerRespawn();
         }
     }

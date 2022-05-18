@@ -16,6 +16,8 @@ namespace ItemNamespace
 
         private Guid deathEventGuid;
 
+        private Guid playerDeathEventGuid;
+
         [SerializeField] private GameObject healthBarInHierarchy;
 
         private EnemyHealthBar enemyHealthBar;
@@ -34,10 +36,41 @@ namespace ItemNamespace
             enemyHealthBar = healthBarInHierarchy.GetComponent<EnemyHealthBar>();
             EventSystem.Current.RegisterListener<EnemyHitEvent>(SetupHealthBar, ref hitEventGuid);
             EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnEnemyDeath, ref deathEventGuid);
+            EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnPlayerDeath, ref playerDeathEventGuid);
 
             if (isLocalPlayer)
             {
                 StartCoroutine(DelayedEnemyScale());
+            }
+        }
+
+        void OnPlayerDeath(UnitDeathEventInfo unitDeathEventInfo)
+        {
+            if (unitDeathEventInfo.EventUnitGo.GetComponent<GlobalPlayerInfo>() == null)
+            {
+                return;
+            }
+            
+            uint netIdOfDeadPlayer = unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
+            if (netIdOfDeadPlayer == gameObject.GetComponent<NetworkIdentity>().netId)
+            {
+                healthBarInHierarchy.SetActive(false);
+                netIdOfLastHit = 0;
+            }
+            RpcOnPlayerDeath(netIdOfDeadPlayer);
+        }
+
+        void RpcOnPlayerDeath(uint nId)
+        {
+            if (!isClientOnly)
+            {
+                return;
+            }
+            
+            if (nId == gameObject.GetComponent<NetworkIdentity>().netId)
+            {
+                healthBarInHierarchy.SetActive(false);
+                netIdOfLastHit = 0;
             }
         }
 
@@ -55,6 +88,11 @@ namespace ItemNamespace
         // health bar will be reset and shut down.
         private void OnEnemyDeath(UnitDeathEventInfo unitDeathEventInfo)
         {
+            if (unitDeathEventInfo.EventUnitGo.GetComponent<GlobalPlayerInfo>() != null)
+            {
+                return;
+            }
+            
             netIdOfDeadEnemy = unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
             if (netIdOfDeadEnemy == netIdOfLastHit)
             {

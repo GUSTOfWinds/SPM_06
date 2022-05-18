@@ -25,12 +25,12 @@ public class PlayerDamageSoundListener : NetworkBehaviour
     {
         lastAudioClip = sounds[0];
         netID = gameObject.GetComponent<NetworkIdentity>().netId; // sets the netid 
-        EventSystem.Current.RegisterListener<DamageEventInfo>(OnPlayerDamage,
+        EventSystem.Current.RegisterListener<PlayerDamageEventInfo>(OnPlayerDamage,
             ref SoundEventGuid); // registers the listener
     }
 
     // Will play a random track from the array above when the local player takes damage
-    void OnPlayerDamage(DamageEventInfo eventInfo)
+    void OnPlayerDamage(PlayerDamageEventInfo eventInfo)
     {
         if (isServer)
         {
@@ -54,10 +54,10 @@ public class PlayerDamageSoundListener : NetworkBehaviour
     }
 
     [ClientRpc]
-    void RpcPlayTakingDamage(DamageEventInfo damageEventInfo)
+    void RpcPlayTakingDamage(PlayerDamageEventInfo playerDamageEventInfo)
     {
         if (isServer) return;
-        if (damageEventInfo.target.GetComponent<NetworkIdentity>().netId == netID)
+        if (playerDamageEventInfo.target.GetComponent<NetworkIdentity>().netId == netID)
         {
             do
             {

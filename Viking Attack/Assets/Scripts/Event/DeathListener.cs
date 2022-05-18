@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using ItemNamespace;
 using UnityEngine;
 using Mirror;
@@ -54,51 +55,55 @@ namespace Event
         {
             if (isServer)
             {
-                float timer = unitDeathEventInfo.RespawnTimer;
-                // Fetches the enemyinfo script from the enemy
-                enemyInfo = unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>();
-
-                var parent = enemyInfo.GetRespawnParent();
-
-                // Randomizes a number between 1 and the dropchance int set in character base for drops, if
-                // it is a match, the drop will appear
-                int randomMax = enemyInfo.GetDropChance() + 1;
-
-                if (enemyInfo.GetDrop() != null)
+                if (unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>() != null)
                 {
-                    if (Random.Range(1, randomMax) ==
-                        enemyInfo.GetDropChance())
+                    float timer = unitDeathEventInfo.RespawnTimer;
+                    // Fetches the enemyinfo script from the enemy
+                    enemyInfo = unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>();
+
+                    var parent = enemyInfo.GetRespawnParent();
+
+                    // Randomizes a number between 1 and the dropchance int set in character base for drops, if
+                    // it is a match, the drop will appear
+                    int randomMax = enemyInfo.GetDropChance() + 1;
+
+                    if (enemyInfo.GetDrop() != null)
                     {
-                        if (dropDataBase.GetComponent<DropDatabase>()
-                                .GetIsDropped(enemyInfo.GetDrop().GetComponent<DropItemInWorldScript>().itembase) ==
-                            false)
+                        if (Random.Range(1, randomMax) ==
+                            enemyInfo.GetDropChance())
                         {
-                            EventInfo itemDropEventInfo = new ItemDropEventInfo
+                            if (dropDataBase.GetComponent<DropDatabase>()
+                                    .GetIsDropped(enemyInfo.GetDrop().GetComponent<DropItemInWorldScript>().itembase) ==
+                                false)
                             {
-                                itemBase = enemyInfo.GetDrop().GetComponent<DropItemInWorldScript>().itembase
-                            };
-                            EventSystem.Current.FireEvent(itemDropEventInfo);
+                                EventInfo itemDropEventInfo = new ItemDropEventInfo
+                                {
+                                    itemBase = enemyInfo.GetDrop().GetComponent<DropItemInWorldScript>().itembase
+                                };
+                                EventSystem.Current.FireEvent(itemDropEventInfo);
 
 
-                            // instantiates the drop that has been added to the enemy prefab and networkspawns it
+                                // instantiates the drop that has been added to the enemy prefab and networkspawns it
 
-                            var drop = Instantiate(
-                                enemyInfo.GetDrop(),
-                                new Vector3(unitDeathEventInfo.EventUnitGo.transform.position.x,
-                                    unitDeathEventInfo.EventUnitGo.transform.position.y + 1,
-                                    unitDeathEventInfo.EventUnitGo.transform.position.z), new Quaternion(0, 0, 0, 0));
-                            NetworkServer.Spawn(drop);
+                                var drop = Instantiate(
+                                    enemyInfo.GetDrop(),
+                                    new Vector3(unitDeathEventInfo.EventUnitGo.transform.position.x,
+                                        unitDeathEventInfo.EventUnitGo.transform.position.y + 1,
+                                        unitDeathEventInfo.EventUnitGo.transform.position.z),
+                                    new Quaternion(0, 0, 0, 0));
+                                NetworkServer.Spawn(drop);
+                            }
                         }
                     }
+
+                    // Destroys the enemy
+                    NetworkServer.Destroy(unitDeathEventInfo.EventUnitGo);
+
+                    yield return new WaitForSeconds(timer);
+
+                    // Respawns the enemy at the same spawner after the timer that has been set in event info
+                    RespawnEnemy(parent);
                 }
-
-                // Destroys the enemy
-                NetworkServer.Destroy(unitDeathEventInfo.EventUnitGo);
-
-                yield return new WaitForSeconds(timer);
-
-                // Respawns the enemy at the same spawner after the timer that has been set in event info
-                RespawnEnemy(parent);
             }
         }
 

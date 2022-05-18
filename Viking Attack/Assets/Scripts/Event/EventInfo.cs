@@ -24,7 +24,7 @@ namespace Event
     {
     }
 
-    public class DamageEventInfo : EventInfo
+    public class PlayerDamageEventInfo : EventInfo
     {
         public GameObject target;
     }
