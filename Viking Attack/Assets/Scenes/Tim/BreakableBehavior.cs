@@ -24,8 +24,9 @@ public class BreakableBehavior : MonoBehaviour
     // Start is called before the first frame update
     public void Break()
     {
+        Debug.Log("I iam gone");
         sphereColliders =
-                    Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
+                    Physics.OverlapSphere(transform.position, 20f, layerMask);
         foreach (var coll in sphereColliders)
         {
             // Updates both the client and the player
@@ -44,6 +45,7 @@ public class BreakableBehavior : MonoBehaviour
 
     public void Die()
     {
+        Debug.Log("I iam gone");
         if (hasDied)
             return;
         hasDied = true;
