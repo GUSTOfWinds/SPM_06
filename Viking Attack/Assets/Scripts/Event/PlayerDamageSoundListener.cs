@@ -11,6 +11,11 @@ public class PlayerDamageSoundListener : NetworkBehaviour
      */
     [SerializeField] private AudioClip[] sounds; // Contains all sounds that can be played
 
+<<<<<<< Updated upstream
+=======
+    [SerializeField] private AudioClip deathSound;
+
+>>>>>>> Stashed changes
     [SerializeField]
     private AudioClip lastAudioClip; // last audioclip that was player, used to not play same audio twice
 
@@ -36,9 +41,23 @@ public class PlayerDamageSoundListener : NetworkBehaviour
         {
             if (eventInfo.target.GetComponent<NetworkIdentity>().netId == netID && !audioSource.isPlaying)
             {
+<<<<<<< Updated upstream
                 do
                 {
                     audioSource.clip = sounds[Random.Range(0, sounds.Length)];
+=======
+
+
+                do
+                {
+                    if (eventInfo.target.GetComponent<GlobalPlayerInfo>().GetHealth() <= 0)
+                    {
+                        audioSource.clip = deathSound;
+                        audioSource.Play();
+                        break;
+                    }
+                    audioSource.clip = damageSounds[Random.Range(0, damageSounds.Length)];
+>>>>>>> Stashed changes
                 } while (audioSource.clip == lastAudioClip || audioSource.clip == null);
 
                 if (audioSource.gameObject.active && audioSource.isPlaying == false)
@@ -59,15 +78,29 @@ public class PlayerDamageSoundListener : NetworkBehaviour
         if (isServer) return;
         if (damageEventInfo.target.GetComponent<NetworkIdentity>().netId == netID)
         {
+<<<<<<< Updated upstream
             do
             {
                 audioSource.clip = sounds[Random.Range(0, sounds.Length)];
+=======
+
+            do
+            {
+                if (playerDamageEventInfo.target.GetComponent<GlobalPlayerInfo>().GetHealth() <= 0)
+                {
+                    audioSource.clip = deathSound;
+                    audioSource.Play();
+                    break;
+                }
+                audioSource.clip = damageSounds[Random.Range(0, damageSounds.Length)];
+>>>>>>> Stashed changes
             } while (audioSource.clip == lastAudioClip || audioSource.clip == null);
 
             if (audioSource.gameObject.active && audioSource.isPlaying == false)
             {
                 audioSource.Play();
             }
+
             lastAudioClip = audioSource.clip;
         }
     }

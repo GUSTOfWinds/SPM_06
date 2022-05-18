@@ -11,7 +11,7 @@ namespace ItemNamespace
         /**
          * @author Martin Kings
          */
-        [SerializeField] private Type type;
+        [SerializeField] private EnemyType type;
 
         [SerializeField] private string soName;
         [SerializeField] private string description;
@@ -82,11 +82,15 @@ namespace ItemNamespace
         }
 
         // Contains the different item type, add a new line to the enum in order to add an item type.
-        public enum Type
+        public enum EnemyType
         {
-            Player,
-            Enemy,
-            Friendly
+            Skeleton,
+            Bear
+        }
+
+        public EnemyType GetEnemyType()
+        {
+            return type;
         }
     }
 }
