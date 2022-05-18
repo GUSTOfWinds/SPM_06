@@ -9,6 +9,9 @@ namespace Event
 {
     public class EnemyDeathSoundListener : NetworkBehaviour
     {
+        /**
+         * @author Martin Kings
+         */
         [SerializeField] private AudioClip[] deathSounds;
         [SerializeField] private GameObject musicPlayerPrefab;
         private int indexToPlay;
