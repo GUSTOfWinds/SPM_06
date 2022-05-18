@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using ItemNamespace;
 using Mirror;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Event
         [SerializeField] private GameObject musicPlayerPrefab;
         private int indexToPlay;
         private Guid enemyDeathGuid;
-        
+
 
         private void Start()
         {
@@ -22,37 +23,46 @@ namespace Event
 
         private void OnEnemyDeath(UnitDeathEventInfo unitDeathEventInfo)
         {
-            switch (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetCharacterBase().GetEnemyType())
+            if (isServer)
             {
-                case CharacterBase.EnemyType.Bear:
-                    indexToPlay = 0;
-                    break;
-                case CharacterBase.EnemyType.Skeleton:
-                    indexToPlay = 1;
-                    break;
-                default:
-                    break;
+                // Finds which sound to play depending on the CharacterBase
+                switch (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetCharacterBase().GetEnemyType())
+                {
+                    case CharacterBase.EnemyType.Bear:
+                        indexToPlay = 0;
+                        break;
+                    case CharacterBase.EnemyType.Skeleton:
+                        indexToPlay = 1;
+                        break;
+                    default:
+                        break;
+                }
+
+                var position = unitDeathEventInfo.EventUnitGo.transform.position;
+                var musicPlayer = Instantiate(musicPlayerPrefab, new Vector3(
+                    position.x,
+                    position.y + 1,
+                    position.z), new Quaternion(0, 0, 0, 0));
+                NetworkServer.Spawn(musicPlayer);
+                musicPlayer.GetComponent<AudioSource>().PlayOneShot(deathSounds[indexToPlay]);
+            
+                // Plays sound on client
+                RpcPlaySound(musicPlayer, indexToPlay);
+            
+                // Removes the gameobject
+                StartCoroutine(RemoveAfterPlaying(musicPlayer));
             }
 
-            var musicPlayer = Instantiate(musicPlayerPrefab, new Vector3(unitDeathEventInfo.EventUnitGo.transform.position.x,
-                unitDeathEventInfo.EventUnitGo.transform.position.y + 1,
-                unitDeathEventInfo.EventUnitGo.transform.position.z), new Quaternion(0, 0, 0, 0));
-            NetworkServer.Spawn(musicPlayer);
-            musicPlayer.GetComponent<AudioSource>().PlayOneShot(deathSounds[indexToPlay]);
-            
-            RpcPlaySound(musicPlayer, indexToPlay);
-            
-            StartCoroutine(RemoveAfterPlaying(musicPlayer));
-
         }
-        
+
         [ClientRpc]
         private void RpcPlaySound(GameObject musicPlayer, int index)
         {
-            if (isClientOnly)
+            if (isServer)
             {
-                musicPlayer.GetComponent<AudioSource>().PlayOneShot(deathSounds[index]);
+                return;
             }
+            musicPlayer.GetComponent<AudioSource>().PlayOneShot(deathSounds[index]);
         }
 
         IEnumerator RemoveAfterPlaying(GameObject musicPlayer)
