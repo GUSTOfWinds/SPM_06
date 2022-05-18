@@ -10,6 +10,7 @@ public class ToggleCharacterScreen : MonoBehaviour
 
     public Animator animator;
     public Animator otherAnimator;
+    public Animator thirdAnimator;
     public bool locked;
     
 
@@ -33,6 +34,7 @@ public class ToggleCharacterScreen : MonoBehaviour
                 if (gameObject.GetComponent<GlobalPlayerInfo>().GetStatPoints() == 0)
                 {
                     otherAnimator.SetBool("levelNOTIF", false);
+                    thirdAnimator.SetBool("pointsavailable", false);
                 }
                 Cursor.lockState = CursorLockMode.None;
                 if (gameObject.GetComponent<CameraMovement3D>().shouldBeLocked == true)
