@@ -31,7 +31,7 @@ public class CharacterScreen : MonoBehaviour
         damageStatPoints.text = globalPlayerInfo.GetDamage().ToString() + "%";
         staminaStatPoints.text = globalPlayerInfo.GetMaxStamina().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
-        expToLevel.text = ((globalPlayerInfo.GetLevelThreshold() * globalPlayerInfo.GetLevel() * 1.3f) -
+        expToLevel.text = (globalPlayerInfo.GetLevelThreshold() * globalPlayerInfo.GetLevel() * 1.3f -
                         globalPlayerInfo.GetExperience()).ToString();
         level.text = globalPlayerInfo.GetArmorLevel().ToString();
 

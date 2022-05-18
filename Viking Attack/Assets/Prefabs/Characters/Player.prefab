@@ -2254,7 +2254,7 @@ GameObject:
   - component: {fileID: 1427503365182440668}
   - component: {fileID: 7818553634583247559}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Exp_level_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8388,7 +8388,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5988590173185455045}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -8612,6 +8612,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4e4bfb8b1a8ce0b4b86d45adb98c4ec1, type: 2}
   acceleration: 1.3
   firstPerson: 1
+  thisObject: {fileID: 0}
   animator: {fileID: 3196805166761755344}
   globalPlayerInfo: {fileID: 0}
   jump: 0
@@ -8673,9 +8674,6 @@ MonoBehaviour:
   level: 0
   levelThreshold: 0
   availableStatpoints: 0
-  damageStat: 0
-  healthStat: 0
-  staminaStat: 0
   damage: 0
   meatStackNumber: 0
   armorLevel: 0
@@ -8747,6 +8745,7 @@ MonoBehaviour:
   firstPersonPosition: {fileID: 5988590173403348295}
   mouseSensitivity: 0.03
   lockMouse: 1
+  canvas: {fileID: 5988590173185455041}
   shouldBeLocked: 0
 --- !u!114 &-4742521611354210552
 MonoBehaviour:
@@ -8766,7 +8765,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   friendlyNamePrefab: {fileID: 8948183428120134570, guid: ffe9784b091208f488d4643a701b1530, type: 3}
-  localName: 
 --- !u!114 &-7393548442607803837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9731,7 +9729,7 @@ MonoBehaviour:
   damageStatPoints: {fileID: 9147603441961099053}
   staminaStatPoints: {fileID: 4554010511050381074}
   availableStatPoints: {fileID: 5778682829102593770}
-  XPtoLVL: {fileID: 7818553634583247559}
+  expToLevel: {fileID: 7818553634583247559}
   level: {fileID: 846005855232251085}
   globalPlayerInfo: {fileID: 1008048771508749607}
   animator: {fileID: 4342721471618095440}
