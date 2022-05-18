@@ -2,6 +2,7 @@
 using ItemNamespace;
 using UnityEngine;
 using Event;
+using Mirror;
 
 public class ItemDaggerBehaviour : ItemBaseBehaviour
 {
@@ -64,7 +65,7 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
             {
                 // Damage on player now works as a multiplier instead of damage.
                 hit.gameObject.GetComponent<EnemyVitalController>()
-                    .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100));
+                    .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100), gameObject.GetComponent<NetworkIdentity>().netId);
             }
         }
         yield return new WaitForSeconds(time / 2);

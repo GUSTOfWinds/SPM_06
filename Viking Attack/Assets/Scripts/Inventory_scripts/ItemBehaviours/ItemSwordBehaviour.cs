@@ -2,6 +2,7 @@ using System.Collections;
 using ItemNamespace;
 using UnityEngine;
 using Event;
+using Mirror;
 
 public class ItemSwordBehaviour : ItemBaseBehaviour
 {
@@ -65,9 +66,10 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         {
             foreach(Collider hit in hits)
             {
+                Debug.Log(gameObject.GetComponent<NetworkIdentity>().netId + " NetId hos spelaren som slog i itemswordbehaviour");
                 // Damage on player now works as a multiplier instead of damage.
                 hit.gameObject.GetComponent<EnemyVitalController>()
-                    .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100));
+                    .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100), gameObject.GetComponent<NetworkIdentity>().netId);
                 if (hit.gameObject.GetComponent<EnemyMovement>() != null)
                     hit.gameObject.GetComponent<EnemyMovement>().Stagger();
                 else if (hit.gameObject.GetComponent<EnemyAIScript>() != null)

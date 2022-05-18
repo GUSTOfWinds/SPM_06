@@ -54,6 +54,7 @@ namespace Event
     public class EnemyHitEvent : EventInfo
     {
         public GameObject enemy;
+        public uint playerNetId;
         public Vector3 hitPoint;
     }
 

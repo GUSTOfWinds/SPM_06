@@ -2,6 +2,7 @@
 using ItemNamespace;
 using UnityEngine;
 using Event;
+using Mirror;
 
 public class ItemSpearBehaviour : ItemBaseBehaviour
 {
@@ -65,7 +66,7 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
             {
                 // Damage on player now works as a multiplier instead of damage.
                 hit.gameObject.GetComponent<EnemyVitalController>()
-                    .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100));
+                    .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100), gameObject.GetComponent<NetworkIdentity>().netId);
                 if (hit.gameObject.GetComponent<EnemyMovement>() != null)
                     hit.gameObject.GetComponent<EnemyMovement>().Stagger();
                 else if (hit.gameObject.GetComponent<EnemyAIScript>() != null)

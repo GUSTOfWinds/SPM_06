@@ -12,8 +12,8 @@ public class EnemyVitalController : NetworkBehaviour
     /**
      * @author Martin Kings/Victor
      */
-    
     [SerializeField] private CharacterBase characterBase;
+
     [SerializeField] public float waitTime;
     [SerializeField] private bool hasDied;
     private Collider[] sphereColliders;
@@ -21,7 +21,7 @@ public class EnemyVitalController : NetworkBehaviour
 
     [SerializeField] [SyncVar(hook = nameof(OnHealthChangedHook))]
     float currentHealth;
-    
+
     [SerializeField] [SyncVar] private float maxHealth;
 
     private EnemyInfo enemyInfo;
@@ -32,7 +32,6 @@ public class EnemyVitalController : NetworkBehaviour
     //spara maxvärdet så vi kan räkna ut procent 
     void Start()
     {
-        
         //skinnedMeshRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
         skinnedMeshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
 
@@ -42,8 +41,8 @@ public class EnemyVitalController : NetworkBehaviour
         enemyInfo.PlayerScale();
 
         materials = new Material[skinnedMeshRenderer.materials.Length + 1];
-        Array.Copy(skinnedMeshRenderer.materials, materials,skinnedMeshRenderer.materials.Length);
-        materials[materials.Length-1] = hitMaterial;
+        Array.Copy(skinnedMeshRenderer.materials, materials, skinnedMeshRenderer.materials.Length);
+        materials[materials.Length - 1] = hitMaterial;
     }
 
     private void OnConnectedToServer()
@@ -65,6 +64,10 @@ public class EnemyVitalController : NetworkBehaviour
         EventSystem.Current.FireEvent(unitDeathEventInfo);
     }
 
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
 
     //körs på alla klienter efter att syncvarens värde ändras
     void OnHealthChangedHook(float old, float @new)
@@ -74,17 +77,30 @@ public class EnemyVitalController : NetworkBehaviour
     }
 
     [Command(requiresAuthority = false)]
+    public void CmdUpdateHealth(float change, uint player) => UpdateHealth(change, player);
+    
+    [Command(requiresAuthority = false)]
     public void CmdUpdateHealth(float change) => UpdateHealth(change);
 
     // Updates the health of the enemy when being damaged or healed.
     // When dying, it will add experience to all players in proximity
-    public void UpdateHealth(float change)
+    public void UpdateHealth(float change, uint player)
     {
         if (base.isServer)
         {
-            
             //clampa värdet så vi inte kan få mer hp än maxvärdet
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
+
+            if (change < 0)
+            {
+                EventInfo enemyTakesDamage = new EnemyHitEvent
+                {
+                    EventUnitGo = gameObject,
+                    playerNetId = player
+                };
+                EventSystem.Current.FireEvent(enemyTakesDamage);
+            }
+
             if (currentHealth <= 0f)
             {
                 StartCoroutine(BlinkOnHit());
@@ -92,6 +108,7 @@ public class EnemyVitalController : NetworkBehaviour
                 {
                     gameObject.GetComponent<EnemyAttack>().StopCoroutine("FinishAttack");
                 }
+
                 sphereColliders =
                     Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
                 foreach (var coll in sphereColliders)
@@ -100,12 +117,45 @@ public class EnemyVitalController : NetworkBehaviour
                     RpcIncreaseExperience(coll.gameObject, enemyInfo.GetExperience());
                     coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(enemyInfo.GetExperience());
                 }
-                
-                if(gameObject.GetComponent<EnemyAIScript>() != null)
+
+                if (gameObject.GetComponent<EnemyAIScript>() != null)
                     gameObject.GetComponent<EnemyAIScript>().BeforeDying();
                 this.OnDeath?.Invoke(this);
                 Die();
-                
+            }
+        }
+        else
+            CmdUpdateHealth(change);
+    }
+    
+    public void UpdateHealth(float change)
+    {
+        if (base.isServer)
+        {
+            //clampa värdet så vi inte kan få mer hp än maxvärdet
+            currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
+            
+            if (currentHealth <= 0f)
+            {
+                StartCoroutine(BlinkOnHit());
+                if (gameObject.GetComponent<EnemyAttack>() != null)
+                {
+                    gameObject.GetComponent<EnemyAttack>().StopCoroutine("FinishAttack");
+                }
+
+                sphereColliders =
+                    Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
+                foreach (var coll in sphereColliders)
+                {
+                    // Updates both the client and the player
+                    RpcIncreaseExperience(coll.gameObject, enemyInfo.GetExperience());
+                    coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(enemyInfo.GetExperience());
+                }
+
+                if (gameObject.GetComponent<EnemyAIScript>() != null)
+                    gameObject.GetComponent<EnemyAIScript>().BeforeDying();
+                this.OnDeath?.Invoke(this);
+                Die();
             }
         }
         else
@@ -134,7 +184,6 @@ public class EnemyVitalController : NetworkBehaviour
 
     public void PlayerScaleHealthUpdate(float hp, float maxhp)
     {
-        
         maxHealth = maxhp;
         currentHealth = hp;
         if (currentHealth > 0)
@@ -148,5 +197,4 @@ public class EnemyVitalController : NetworkBehaviour
 
     //OBS KÖRS ENDAST PÅ SERVERN
     public event Action<EnemyVitalController> OnDeath;
-    
 }
