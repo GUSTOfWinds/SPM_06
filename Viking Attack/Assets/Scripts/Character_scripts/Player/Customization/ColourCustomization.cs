@@ -1,19 +1,32 @@
+using System;
+using Mirror;
 using UnityEngine;
 
 namespace Character_scripts.Player.Customization
 {
-    public class ColourCustomization : MonoBehaviour
+    public class ColourCustomization : NetworkBehaviour
 
     {
 
     //[SerializeField] private List<MeshRenderer> ObjectsToChangeColour = new List<MeshRenderer>();
     [SerializeField] private SkinnedMeshRenderer armorColour;
+    public event System.Action<Color32> OnPlayerColorChanged;
 
+    [SyncVar(hook = nameof(PlayerColorChanged))]
     private Color32 color32;
 
-    public  void Start()
+    private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
+
+    private void Awake()
     {
         ChangeColour();
+    }
+
+    public override void OnStartClient()
+    {
+        OnPlayerColorChanged.Invoke(color32);
+
+        
     }
 
     private void ChangeColour()
@@ -24,8 +37,12 @@ namespace Character_scripts.Player.Customization
         byte blue = (byte)PlayerPrefs.GetInt("blueValue");
         color32 = new Color32(r: red, g: green, b: blue, a: 255);
         
-        armorColour.material.SetColor("_BaseColor", color32);
+        armorColour.material.SetColor(BaseColor, color32);
 
+    }
+    void PlayerColorChanged(Color32 _, Color32 newPlayerColor)
+    {
+        OnPlayerColorChanged?.Invoke(newPlayerColor);
     }
 
 
