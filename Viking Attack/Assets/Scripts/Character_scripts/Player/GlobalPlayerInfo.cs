@@ -119,15 +119,19 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         if (health + difference <= maxHealth)
         {
-            health += difference;
+            
+            if (health + difference < 0)
+            {
+                health = 0;
+            }
+            else
+            {
+                health += difference;
+            }
         }
         else if (health + difference > maxHealth)
         {
             health = maxHealth;
-        }
-        else
-        {
-            health = 0;
         }
 
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
