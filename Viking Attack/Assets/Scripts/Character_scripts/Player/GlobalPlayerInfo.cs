@@ -133,8 +133,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
         if (health <= 0)
         {
-<<<<<<< Updated upstream
-=======
             // Used by PlayerActivateEnemyHealthBar class on player objects and by 
             // RespawnPanelHandler
             EventInfo playerDeathEvent = new PlayerDeathEventInfo
@@ -142,8 +140,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
                 EventUnitGo = gameObject
             };
             EventSystem.Current.FireEvent(playerDeathEvent);
-
->>>>>>> Stashed changes
             gameObject.GetComponent<KillPlayer>().PlayerRespawn();
         }
     }

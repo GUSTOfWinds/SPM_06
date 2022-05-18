@@ -28,9 +28,12 @@ public class SceneSwitch : MonoBehaviour
 
     public void SetBossLifeStatus(UnitDeathEventInfo unitDeathEventInfo)
     {
-        if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetName() == "Boss")
+        if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>() != null)
         {
-            bossIsDead = true;
+            if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetName() == "Boss")
+            {
+                bossIsDead = true;
+            }
         }
     }
 }
