@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ItemNamespace
+namespace Character_scripts.Player
 {
     public class GameController
     {

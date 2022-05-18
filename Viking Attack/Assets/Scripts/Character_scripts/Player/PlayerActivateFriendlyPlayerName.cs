@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
-namespace ItemNamespace
+namespace Character_scripts.Player
 {
     public class PlayerActivateFriendlyPlayerName : NetworkBehaviour
     {

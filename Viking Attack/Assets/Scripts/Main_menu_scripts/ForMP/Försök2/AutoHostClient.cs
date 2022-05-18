@@ -1,7 +1,7 @@
 using Mirror;
 using UnityEngine;
 
-namespace MirrorBasics {
+namespace Main_menu_scripts.ForMP.Försök2 {
     public class AutoHostClient : MonoBehaviour {
 
         [SerializeField] NetworkManager networkManager;

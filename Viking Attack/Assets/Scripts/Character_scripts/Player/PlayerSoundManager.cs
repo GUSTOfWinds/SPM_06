@@ -1,7 +1,7 @@
 ﻿using Mirror;
 using UnityEngine;
 
-namespace ItemNamespace
+namespace Character_scripts.Player
 {
 
     public class PlayerSoundManager : NetworkBehaviour

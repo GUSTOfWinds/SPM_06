@@ -1,20 +1,23 @@
 using UnityEngine;
 
-public class FSM_Tst : MonoBehaviour
+namespace Character_scripts.Enemy.FSM
 {
-    private Enemy_FSM Enemy_FSM;
-    private Animator animator;
-
-    private void Awake()
+    public class FSM_Tst : MonoBehaviour
     {
-       Enemy_FSM = new Enemy_FSM();
-        Enemy_FSM.AddState(StateType.GUARD, new State_Guard(animator,this.gameObject));
-        Enemy_FSM.SetState(StateType.GUARD);
-    }
+        private Enemy_FSM Enemy_FSM;
+        private Animator animator;
 
-    private void FixedUpdate()
-    {
-        Enemy_FSM.OnTick();
-    }
+        private void Awake()
+        {
+            Enemy_FSM = new Enemy_FSM();
+            Enemy_FSM.AddState(StateType.GUARD, new State_Guard(animator,this.gameObject));
+            Enemy_FSM.SetState(StateType.GUARD);
+        }
 
+        private void FixedUpdate()
+        {
+            Enemy_FSM.OnTick();
+        }
+
+    }
 }

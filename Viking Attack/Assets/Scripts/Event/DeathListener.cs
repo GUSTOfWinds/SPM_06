@@ -1,7 +1,8 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
-using ItemNamespace;
+using Character_scripts.Enemy;
+using Inventory_scripts;
 using UnityEngine;
 using Mirror;
 using Random = UnityEngine.Random;

@@ -1,38 +1,40 @@
 using System;
+using Character_scripts.Enemy;
 using Event;
-using ItemNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-public class SceneSwitch : MonoBehaviour
+namespace Interactable_Logic_Scripts
 {
-    /**
+    public class SceneSwitch : MonoBehaviour
+    {
+        /**
      * @author Martin Kings
      */
-    [SerializeField] private bool bossIsDead;
-    private Guid portalEventGuid;
+        [SerializeField] private bool bossIsDead;
+        private Guid portalEventGuid;
 
-    private void Start()
-    {
-        EventSystem.Current.RegisterListener<UnitDeathEventInfo>(SetBossLifeStatus, ref portalEventGuid);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (bossIsDead)
+        private void Start()
         {
-            SceneManager.LoadScene(1);
+            EventSystem.Current.RegisterListener<UnitDeathEventInfo>(SetBossLifeStatus, ref portalEventGuid);
         }
-    }
 
-    public void SetBossLifeStatus(UnitDeathEventInfo unitDeathEventInfo)
-    {
-        if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>() != null)
+        void OnTriggerEnter(Collider other)
         {
-            if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetName() == "Boss")
+            if (bossIsDead)
             {
-                bossIsDead = true;
+                SceneManager.LoadScene(1);
+            }
+        }
+
+        public void SetBossLifeStatus(UnitDeathEventInfo unitDeathEventInfo)
+        {
+            if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>() != null)
+            {
+                if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetName() == "Boss")
+                {
+                    bossIsDead = true;
+                }
             }
         }
     }

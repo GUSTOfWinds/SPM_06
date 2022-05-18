@@ -1,3 +1,4 @@
+using Character_scripts.Player;
 using UnityEngine;
 
 public class WaterKillScript : MonoBehaviour

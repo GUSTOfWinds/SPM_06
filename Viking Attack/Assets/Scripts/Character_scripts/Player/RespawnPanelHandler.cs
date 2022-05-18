@@ -1,70 +1,71 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Event;
 using Mirror;
+using Player_movement_camera_scripts;
+using Player_movement_camera_scripts.Camera;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
-public class RespawnPanelHandler : NetworkBehaviour
+namespace Character_scripts.Player
 {
-    private Guid playerDeathEventGuid;
-    [SerializeField] private GameObject respawnPanel;
-
-    [SerializeField]
-    private uint netID; // the netID of the player, making sure to only play when the local player is hit
-
-    void Start()
+    public class RespawnPanelHandler : NetworkBehaviour
     {
-        netID = gameObject.GetComponent<NetworkIdentity>().netId; // sets the netid 
-        EventSystem.Current.RegisterListener<PlayerDeathEventInfo>(OnPlayerDeath, ref playerDeathEventGuid);
-    }
+        private Guid playerDeathEventGuid;
+        [SerializeField] private GameObject respawnPanel;
 
-    // Deactivates control of player and adds death panel
-    void OnPlayerDeath(PlayerDeathEventInfo playerDeathEventInfo)
-    {
-        if (isServer)
+        [SerializeField]
+        private uint netID; // the netID of the player, making sure to only play when the local player is hit
+
+        void Start()
         {
-            if (playerDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId == netID)
-            {
-                gameObject.GetComponent<ToggleCharacterScreen>().locked = true;
-                gameObject.GetComponent<PlayerScript3D>().enabled = false;
-                gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = false;
-                gameObject.GetComponent<ToggleMenu>().canBeOpened = false;
-                respawnPanel.SetActive(true);
-            }
-
-            RpcOnPlayerDeath(playerDeathEventInfo);
+            netID = gameObject.GetComponent<NetworkIdentity>().netId; // sets the netid 
+            EventSystem.Current.RegisterListener<PlayerDeathEventInfo>(OnPlayerDeath, ref playerDeathEventGuid);
         }
-    }
 
-    [ClientRpc]
-    void RpcOnPlayerDeath(PlayerDeathEventInfo playerDeathEventInfo)
-    {
-        if (isServer || !isLocalPlayer) return;
+        // Deactivates control of player and adds death panel
+        void OnPlayerDeath(PlayerDeathEventInfo playerDeathEventInfo)
         {
-            if (playerDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId == netID)
+            if (isServer)
             {
-                gameObject.GetComponent<ToggleCharacterScreen>().locked = true;
-                gameObject.GetComponent<PlayerScript3D>().enabled = false;
-                gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = false;
-                gameObject.GetComponent<ToggleMenu>().canBeOpened = false;
-                respawnPanel.SetActive(true);
+                if (playerDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId == netID)
+                {
+                    gameObject.GetComponent<ToggleCharacterScreen>().locked = true;
+                    gameObject.GetComponent<PlayerScript3D>().enabled = false;
+                    gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = false;
+                    gameObject.GetComponent<ToggleMenu>().canBeOpened = false;
+                    respawnPanel.SetActive(true);
+                }
+
+                RpcOnPlayerDeath(playerDeathEventInfo);
             }
         }
-    }
 
-    // Reactivates control of player and removes death panel
-    public void Respawn()
-    {
-        if (respawnPanel.activeInHierarchy)
+        [ClientRpc]
+        void RpcOnPlayerDeath(PlayerDeathEventInfo playerDeathEventInfo)
         {
-            gameObject.GetComponent<ToggleCharacterScreen>().locked = false;
-            gameObject.GetComponent<PlayerScript3D>().enabled = true;
-            gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = true;
-            gameObject.GetComponent<ToggleMenu>().canBeOpened = true;
-            respawnPanel.SetActive(false);
+            if (isServer || !isLocalPlayer) return;
+            {
+                if (playerDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId == netID)
+                {
+                    gameObject.GetComponent<ToggleCharacterScreen>().locked = true;
+                    gameObject.GetComponent<PlayerScript3D>().enabled = false;
+                    gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = false;
+                    gameObject.GetComponent<ToggleMenu>().canBeOpened = false;
+                    respawnPanel.SetActive(true);
+                }
+            }
+        }
+
+        // Reactivates control of player and removes death panel
+        public void Respawn()
+        {
+            if (respawnPanel.activeInHierarchy)
+            {
+                gameObject.GetComponent<ToggleCharacterScreen>().locked = false;
+                gameObject.GetComponent<PlayerScript3D>().enabled = true;
+                gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = true;
+                gameObject.GetComponent<ToggleMenu>().canBeOpened = true;
+                respawnPanel.SetActive(false);
+            }
         }
     }
 }

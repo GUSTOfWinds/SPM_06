@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
+using Character_scripts.Enemy;
 using Event;
 using Mirror;
 using UnityEngine;
 
-namespace ItemNamespace
+namespace Character_scripts.Player
 {
     public class PlayerActivateEnemyHealthBar : NetworkBehaviour
     {

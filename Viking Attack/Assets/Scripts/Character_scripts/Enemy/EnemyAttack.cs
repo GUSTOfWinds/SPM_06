@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
+using Character_scripts.Player;
 using Event;
 using Mirror;
 using UnityEngine;
 
-namespace ItemNamespace
+namespace Character_scripts.Enemy
 {
 
     public class EnemyAttack : NetworkBehaviour

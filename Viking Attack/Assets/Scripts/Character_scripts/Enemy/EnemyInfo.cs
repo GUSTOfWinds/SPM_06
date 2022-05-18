@@ -1,9 +1,8 @@
 using System;
-using UnityEngine;
 using Mirror;
+using UnityEngine;
 
-
-namespace ItemNamespace
+namespace Character_scripts.Enemy
 {
     public class EnemyInfo : NetworkBehaviour
     {

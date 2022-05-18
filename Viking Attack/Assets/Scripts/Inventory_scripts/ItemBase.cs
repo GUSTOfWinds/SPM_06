@@ -1,8 +1,7 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
-
-namespace ItemNamespace
+namespace Inventory_scripts
 {
     // Creates the ScriptableObject function for the Item objects.
     [CreateAssetMenu(fileName = "Item", menuName = "ScriptableObjects/Create new item")]

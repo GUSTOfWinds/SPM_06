@@ -22,13 +22,6 @@ namespace Character_scripts.Player.Customization
         ChangeColour();
     }
 
-    public override void OnStartClient()
-    {
-        OnPlayerColorChanged.Invoke(color32);
-
-        
-    }
-
     private void ChangeColour()
     {
 

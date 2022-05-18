@@ -1,7 +1,10 @@
 using UnityEngine;
 
 //Base for all activations
-public abstract class BaseObjectActivation : MonoBehaviour
+namespace Interactable_Logic_Scripts.Base
 {
-    virtual public void activate(){}
+    public abstract class BaseObjectActivation : MonoBehaviour
+    {
+        virtual public void activate(){}
+    }
 }

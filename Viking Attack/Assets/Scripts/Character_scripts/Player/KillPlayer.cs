@@ -1,21 +1,23 @@
 using UnityEngine;
 
-
-public class KillPlayer : MonoBehaviour
+namespace Character_scripts.Player
 {
-    /**
+    public class KillPlayer : MonoBehaviour
+    {
+        /**
      * @author Martin Kings
      */
-    public void PlayerRespawn()
-    {
-        transform.position = GameObject.FindGameObjectWithTag("PlayerRespawnAnchor").transform.position;
-        Invoke("HealthBack", 3f);
-    }
+        public void PlayerRespawn()
+        {
+            transform.position = GameObject.FindGameObjectWithTag("PlayerRespawnAnchor").transform.position;
+            Invoke("HealthBack", 3f);
+        }
 
-    private void HealthBack()
-    {
-        gameObject.GetComponent<GlobalPlayerInfo>()
-            .SetHealth(gameObject.GetComponent<GlobalPlayerInfo>().GetMaxHealth());
-        gameObject.GetComponent<GlobalPlayerInfo>().UpdateHealth(0);
+        private void HealthBack()
+        {
+            gameObject.GetComponent<GlobalPlayerInfo>()
+                .SetHealth(gameObject.GetComponent<GlobalPlayerInfo>().GetMaxHealth());
+            gameObject.GetComponent<GlobalPlayerInfo>().UpdateHealth(0);
+        }
     }
 }

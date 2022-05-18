@@ -1,4 +1,4 @@
-using ItemNamespace;
+using Inventory_scripts;
 using UnityEngine;
 
 namespace Event

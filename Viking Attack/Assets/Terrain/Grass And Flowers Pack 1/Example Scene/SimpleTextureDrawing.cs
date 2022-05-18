@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 
-public class SimpleTextureDrawing : MonoBehaviour 
+namespace Terrain.Grass_And_Flowers_Pack_1.Example_Scene
 {
-	public Material aMaterial;
-	public RenderTexture[] aTextures;
-
-	void OnGUI()
+	public class SimpleTextureDrawing : MonoBehaviour 
 	{
-		Graphics.DrawTexture(new Rect(Screen.width - 300, -2, 300, 300), aTextures[0], aMaterial);
-		Graphics.DrawTexture(new Rect(Screen.width - 300, 302, 300, 300), aTextures[1], aMaterial);
+		public Material aMaterial;
+		public RenderTexture[] aTextures;
+
+		void OnGUI()
+		{
+			Graphics.DrawTexture(new Rect(Screen.width - 300, -2, 300, 300), aTextures[0], aMaterial);
+			Graphics.DrawTexture(new Rect(Screen.width - 300, 302, 300, 300), aTextures[1], aMaterial);
+		}
 	}
 }
 

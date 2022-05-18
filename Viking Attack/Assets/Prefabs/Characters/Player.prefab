@@ -8833,6 +8833,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: aed0cbc1-5915-4269-9c50-1aff7b0a3548
     m_ActionName: PlayerControls/Toggle Map[/Keyboard/m]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 316c72be-cbc8-4172-91c0-36935ba92069
+    m_ActionName: PlayerControls/Respawn[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls
@@ -9095,8 +9099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20f4d94a4543d44097f381f78424b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0
+  syncMode: 1
+  syncInterval: 2
   armorColour: {fileID: 3312697970491304802}
 --- !u!1 &5988590174749780764
 GameObject:
