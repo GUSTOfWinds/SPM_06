@@ -55,11 +55,11 @@ namespace ItemNamespace
         IEnumerator DelayedEnemyScale()
         {
             yield return new WaitForSeconds(1);
-            EventInfo unitDeathEventInfo = new PlayerConnectEventInfo
+            EventInfo playerConnectEventInfo = new PlayerConnectEventInfo
             {
                 EventUnitGo = gameObject,
             };
-            EventSystem.Current.FireEvent(unitDeathEventInfo);
+            EventSystem.Current.FireEvent(playerConnectEventInfo);
         }
 
         void FixedUpdate()

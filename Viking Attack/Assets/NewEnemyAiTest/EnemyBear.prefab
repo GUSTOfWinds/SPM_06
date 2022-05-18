@@ -898,7 +898,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1018,6 +1018,9 @@ MonoBehaviour:
   syncInterval: 0
   aggroRangeFromSpawnPoint: 30
   canSeeThroughWalls: 0
+  enemySounds:
+  - {fileID: 8300000, guid: e0aeb62ba763ea94a96e778ec3fb0a5d, type: 3}
+  - {fileID: 8300000, guid: 3f8f7e7e16cef3d4b83ad87b6666cab7, type: 3}
   hitAmountForStagger: 3
   roamingRangeFromSpawn: 20
 --- !u!114 &2759610424302562943
@@ -1035,7 +1038,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   characterBase: {fileID: 11400000, guid: 7480ad8c232b0b543a9379e72628b8aa, type: 2}
-  waitTime: 0
+  waitTime: 999
   hasDied: 0
   layerMask:
     serializedVersion: 2

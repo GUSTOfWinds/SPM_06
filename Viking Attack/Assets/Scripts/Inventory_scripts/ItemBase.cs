@@ -30,7 +30,9 @@ namespace ItemNamespace
         [SerializeField] private string usageParticle; // the object with base behavior script for the item
         [SerializeField] private string itemBaseBehaviorScriptName; // the object with base behavior script for the item
         [SerializeField] private int protection;
+        [SerializeField] private float speedMultiplierWhenUsingItem;
 
+        public float GetSpeedMultiplierWhenUsingItem => speedMultiplierWhenUsingItem;
         // Returns armor level
         public int GetProtection => protection;
 

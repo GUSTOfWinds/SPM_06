@@ -5,13 +5,13 @@ using Mirror;
 using UnityEngine;
 
 
-
 public class GlobalPlayerInfo : NetworkBehaviour
 {
     /**
      * @author Martin Kings
      */
     [SerializeField] private Component healthBar;
+
     [SerializeField] private Component staminaBar;
     [SerializeField] private Component experienceBar;
     [SyncVar] [SerializeField] private string playerName;
@@ -26,9 +26,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SerializeField] private int level;
     [SerializeField] private float levelThreshold;
     [SerializeField] private int availableStatpoints;
-    [SerializeField] private int damageStat;
-    [SerializeField] private int healthStat;
-    [SerializeField] private int staminaStat;
     [SerializeField] private float damage;
     [SerializeField] private int meatStackNumber;
     [SerializeField] private int armorLevel;
@@ -206,33 +203,16 @@ public class GlobalPlayerInfo : NetworkBehaviour
         return availableStatpoints;
     }
 
-    public int GetDamageStatPoints()
-    {
-        return damageStat;
-    }
-
-    public int GetHealthStatPoints()
-    {
-        return healthStat;
-    }
-
-    public int GetStaminaStatPoints()
-    {
-        return staminaStat;
-    }
-
     public void IncreaseDamageStatPoints()
     {
-        damage+=6;
+        damage += 6;
         availableStatpoints--;
-        damageStat++;
     }
 
     public void IncreaseHealthStatPoints()
     {
         maxHealth += 10;
         availableStatpoints--;
-        healthStat++;
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
     }
 
@@ -240,7 +220,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         maxStamina += 10;
         availableStatpoints--;
-        staminaStat++;
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
     }
 

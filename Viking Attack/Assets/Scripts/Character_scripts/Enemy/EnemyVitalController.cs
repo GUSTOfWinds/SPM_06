@@ -32,7 +32,9 @@ public class EnemyVitalController : NetworkBehaviour
     //spara maxvärdet så vi kan räkna ut procent 
     void Start()
     {
-        skinnedMeshRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
+        
+        //skinnedMeshRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
+        skinnedMeshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
 
         currentHealth = characterBase.GetMaxHealth();
         maxHealth = currentHealth;
@@ -80,11 +82,12 @@ public class EnemyVitalController : NetworkBehaviour
     {
         if (base.isServer)
         {
-            StartCoroutine(BlinkOnHit());
+            
             //clampa värdet så vi inte kan få mer hp än maxvärdet
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
             if (currentHealth <= 0f)
             {
+                StartCoroutine(BlinkOnHit());
                 if (gameObject.GetComponent<EnemyAttack>() != null)
                 {
                     gameObject.GetComponent<EnemyAttack>().StopCoroutine("FinishAttack");
@@ -97,9 +100,12 @@ public class EnemyVitalController : NetworkBehaviour
                     RpcIncreaseExperience(coll.gameObject, enemyInfo.GetExperience());
                     coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(enemyInfo.GetExperience());
                 }
-
+                
+                if(gameObject.GetComponent<EnemyAIScript>() != null)
+                    gameObject.GetComponent<EnemyAIScript>().BeforeDying();
                 this.OnDeath?.Invoke(this);
                 Die();
+                
             }
         }
         else

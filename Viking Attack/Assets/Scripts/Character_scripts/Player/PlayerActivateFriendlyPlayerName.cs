@@ -21,26 +21,25 @@ namespace ItemNamespace
         // the hits detected by the spherecast
         private RaycastHit[] hits;
 
-        // the previous hits by the spherecast, used for comparison to determine what objects to enable and disable
-        private RaycastHit[] previousHits;
+        // The netIDs of all players spotted in each frame
+        private List<uint> instancesOfFriendliesSpotted;
+
+        private List<uint> idsSpottedThisFrame;
 
         private List<GameObject> instancesOfFriendlyNames;
 
-        private List<uint> instancesOfFriendliesSpotted;
-
-        private List<GameObject> instancesToDisable;
+        private GameObject newFriendlyName;
 
         private Camera mainCamera;
 
-        [SyncVar] public string localName;
+        private uint tempNetId;
 
 
         private void Awake()
         {
-            instancesToDisable = new List<GameObject>();
+            idsSpottedThisFrame = new List<uint>();
             instancesOfFriendliesSpotted = new List<uint>();
             instancesOfFriendlyNames = new List<GameObject>();
-            previousHits = new RaycastHit[] { };
             mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
         }
 
@@ -55,42 +54,37 @@ namespace ItemNamespace
             hits = Physics.SphereCastAll(mainCamera.transform.position, 3,
                 mainCamera.transform.forward, 30, layerMask);
 
-            // makes sure that the previousHits array contains objects before iterating through it.
-            if (previousHits.Length > 1)
-            {
-                foreach (var previousHit in previousHits)
-                {
-                    if (previousHit.collider.GetComponent<NetworkIdentity>().netId ==
-                        gameObject.GetComponent<NetworkIdentity>().netId == false)
-                    {
-                        bool shouldDisable =
-                            CheckForHit(previousHit.collider.gameObject.GetComponent<NetworkIdentity>().netId);
 
-                        if (shouldDisable)
-                        {
-                            foreach (var go in instancesOfFriendlyNames)
-                            {
-                                if (previousHit.transform.gameObject.GetComponent<NetworkIdentity>().netId ==
-                                    go.GetComponent<FriendlyNameDisplay>().GetPersonalNetID())
-                                {
-                                    instancesToDisable.Add(go);
-                                }
-                            }
-                        }
-                    }
+            foreach (var hit in hits)
+            {
+                tempNetId = hit.transform.gameObject.GetComponent<NetworkIdentity>()
+                    .netId;
+
+                idsSpottedThisFrame.Add(tempNetId);
+                // if the player wasn't spotted in the previous frame, will simply update previousHits and move to the next frame
+                if (instancesOfFriendliesSpotted.Contains(tempNetId) == false)
+                {
+                    newFriendlyName = SetupFriendlyName(hit);
+                    instancesOfFriendlyNames.Add(newFriendlyName);
+
+                    instancesOfFriendliesSpotted.Add(tempNetId);
                 }
             }
 
-            // Handles instances of the health bar to remove
-            if (instancesToDisable.Count > 0)
+            for (int i = 0; i < instancesOfFriendlyNames.Count; i++)
             {
-                DisableNameInstances();
+                tempNetId = instancesOfFriendlyNames[i].GetComponent<FriendlyNameDisplay>()
+                    .GetPersonalNetID();
+                // Checks if the enemy IDS that were spotted this frame exist in all instancesOfenemyHealthbars.
+                if (idsSpottedThisFrame.Contains(tempNetId) == false)
+                {
+                    instancesOfFriendliesSpotted.Remove(tempNetId);
+                    Destroy(instancesOfFriendlyNames[i]);
+                    instancesOfFriendlyNames.Remove(instancesOfFriendlyNames[i]);
+                }
             }
 
-            // Instantiates a player name for each player in sight if one is missing
-            CreateAndEnableExistingNames();
-
-            previousHits = hits;
+            idsSpottedThisFrame.Clear();
         }
 
         // Sets up the health bar instance and assigns proper values, must be cleaned up
@@ -102,76 +96,6 @@ namespace ItemNamespace
 
             go.GetComponent<FriendlyNameDisplay>().Setup(gameObject.transform, id, hit.collider.gameObject, mainCamera);
             return go;
-        }
-
-        // Checks for an instance ID clash 
-        private bool CheckForHit(uint previousHit)
-        {
-            if (hits.Length > 0)
-            {
-                foreach (var hit in hits)
-                {
-                    // Will return false if there is one found
-                    if (hit.collider.transform.GetComponent<NetworkIdentity>().netId == previousHit)
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
-
-        // Disables names to disable and clears the container
-        public void DisableNameInstances()
-        {
-            foreach (var goToDisable in instancesToDisable)
-            {
-                instancesOfFriendliesSpotted.Remove(goToDisable.GetComponent<FriendlyNameDisplay>()
-                    .GetPersonalNetID());
-                goToDisable.SetActive(false);
-            }
-
-            instancesToDisable.Clear(); // clears after the objects have been handled
-        }
-
-        // Enables names that exist that once more are being hit by the spherecast or creates new ones
-        public void CreateAndEnableExistingNames()
-        {
-            foreach (var hit in hits)
-            {
-                if (instancesOfFriendliesSpotted.Contains(hit.transform.gameObject.GetComponent<NetworkIdentity>()
-                        .netId) == false && hit.collider.gameObject.GetComponent<NetworkIdentity>().netId !=
-                    gameObject.GetComponent<NetworkIdentity>().netId)
-                {
-                    bool alreadyExists = false;
-
-                    foreach (var friendlyName in instancesOfFriendlyNames)
-                    {
-                        //  Will set the found player name to active if it already exists, else a new one will be created
-                        if (hit.collider.gameObject.GetComponent<NetworkIdentity>().netId == friendlyName.gameObject
-                                .GetComponent<FriendlyNameDisplay>().GetPersonalNetID())
-                        {
-                            friendlyName.SetActive(true);
-                            friendlyName.GetComponent<FriendlyNameDisplay>().text.text =
-                                hit.collider.gameObject.GetComponent<GlobalPlayerInfo>().GetName();
-                            alreadyExists = true;
-                            break;
-                        }
-                    }
-
-                    if (!alreadyExists)
-                    {
-                        GameObject go = SetupFriendlyName(hit);
-                        instancesOfFriendlyNames.Add(go);
-                    }
-
-
-                    // Adds to all friend instances (saves the instanceID)
-                    instancesOfFriendliesSpotted.Add(hit.transform.gameObject.GetComponent<NetworkIdentity>()
-                        .netId);
-                }
-            }
         }
     }
 }

@@ -16,6 +16,7 @@ public class FogScript : NetworkBehaviour
         {
             fog.transform.SetParent(transform);
             fog.transform.localPosition = new Vector3 (0f, 0f, 200f);
+            fog.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
         }
     }
 }

@@ -9,8 +9,8 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
     private GameObject rayCastPosition;
     private Camera mainCamera;
     private GlobalPlayerInfo globalPlayerInfo;
-    private RaycastHit hit;
     private bool canAttack = true;
+    public bool attackLocked;
 
 
     public void Awake()
@@ -54,24 +54,29 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
     //Waits the length of the animation before letting the player attack again.
     IEnumerator WaitToAttack(float time)
     {
+        // Used to lock the ability to swap between items while attacking
+        attackLocked = true;
 
         yield return new WaitForSeconds(time / 2);
-        if(Physics.SphereCast(rayCastPosition.transform.position, 0.1f,mainCamera.transform.forward, out hit, belongingTo.GetRange,LayerMask.GetMask("Enemy")))
+        Collider[] hits = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Enemy"));
+        if (hits.Length > 0)
         {
-            hit.collider.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100));
-            if(hit.collider.gameObject.GetComponent<EnemyMovement>() != null)
-                hit.collider.gameObject.GetComponent<EnemyMovement>().Stagger();
-            else if(hit.collider.gameObject.GetComponent<EnemyAIScript>() != null)
-                hit.collider.gameObject.GetComponent<EnemyAIScript>().Stagger();
-            EnemyHitEvent hitEvent = new EnemyHitEvent();
-            hitEvent.enemy = hit.collider.transform.gameObject;
-            hitEvent.hitPoint = hit.point;
-
-            EventSystem.Current.FireEvent(hitEvent);
+            foreach(Collider hit in hits)
+            {
+                // Damage on player now works as a multiplier instead of damage.
+                hit.gameObject.GetComponent<EnemyVitalController>()
+                    .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100));
+                if (hit.gameObject.GetComponent<EnemyMovement>() != null)
+                    hit.gameObject.GetComponent<EnemyMovement>().Stagger();
+                else if (hit.gameObject.GetComponent<EnemyAIScript>() != null)
+                    hit.gameObject.GetComponent<EnemyAIScript>().Stagger();
+            }
         }
         yield return new WaitForSeconds(time / 2);
         animator.SetLayerWeight(animator.GetLayerIndex("Spear Attack"),0);
         canAttack = true;
-        
+
+        // Used to lock the ability to swap between items while attacking
+        attackLocked = false;
     }
 }
