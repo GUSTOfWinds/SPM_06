@@ -36,7 +36,7 @@ namespace ItemNamespace
             enemyHealthBar = healthBarInHierarchy.GetComponent<EnemyHealthBar>();
             EventSystem.Current.RegisterListener<EnemyHitEvent>(SetupHealthBar, ref hitEventGuid);
             EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnEnemyDeath, ref deathEventGuid);
-            EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnPlayerDeath, ref playerDeathEventGuid);
+            EventSystem.Current.RegisterListener<PlayerDeathEventInfo>(OnPlayerDeath, ref playerDeathEventGuid);
 
             if (isLocalPlayer)
             {
@@ -44,14 +44,9 @@ namespace ItemNamespace
             }
         }
 
-        void OnPlayerDeath(UnitDeathEventInfo unitDeathEventInfo)
+        void OnPlayerDeath(PlayerDeathEventInfo playerDeathEventInfo)
         {
-            if (unitDeathEventInfo.EventUnitGo.GetComponent<GlobalPlayerInfo>() == null)
-            {
-                return;
-            }
-            
-            uint netIdOfDeadPlayer = unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
+            uint netIdOfDeadPlayer = playerDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
             if (netIdOfDeadPlayer == gameObject.GetComponent<NetworkIdentity>().netId)
             {
                 healthBarInHierarchy.SetActive(false);
@@ -88,11 +83,6 @@ namespace ItemNamespace
         // health bar will be reset and shut down.
         private void OnEnemyDeath(UnitDeathEventInfo unitDeathEventInfo)
         {
-            if (unitDeathEventInfo.EventUnitGo.GetComponent<GlobalPlayerInfo>() != null)
-            {
-                return;
-            }
-            
             netIdOfDeadEnemy = unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
             if (netIdOfDeadEnemy == netIdOfLastHit)
             {

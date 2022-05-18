@@ -70,4 +70,9 @@ namespace Event
     public class PlayerConnectEventInfo : EventInfo
     {
     }
+
+    public class PlayerDeathEventInfo : EventInfo
+    {
+        
+    }
 }
