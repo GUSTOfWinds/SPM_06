@@ -16,6 +16,7 @@ public class PlayLevelAnimation : MonoBehaviour
 
     [SerializeField] private GameObject player;
     [SerializeField] private Animator otherAnimator;
+    [SerializeField] private Animator thirdAnimator;
     private Guid levelUpGuid;
     private uint netID;
 
@@ -31,6 +32,7 @@ public class PlayLevelAnimation : MonoBehaviour
         {
             parentAnimator.SetTrigger("incLVL");
             otherAnimator.SetBool("levelNOTIF", true);
+            thirdAnimator.SetBool("pointsavailable", true);
         }
     }
 }
