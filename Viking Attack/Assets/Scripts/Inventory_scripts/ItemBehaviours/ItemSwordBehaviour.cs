@@ -64,16 +64,14 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         Collider[] hits = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Enemy"));
         if (hits.Length > 0)
         {
-            foreach(Collider hit in hits)
-            {
-                // Damage on player now works as a multiplier instead of damage.
-                hit.gameObject.GetComponent<EnemyVitalController>()
-                    .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100), gameObject.GetComponent<NetworkIdentity>().netId);
-                if (hit.gameObject.GetComponent<EnemyMovement>() != null)
-                    hit.gameObject.GetComponent<EnemyMovement>().Stagger();
-                else if (hit.gameObject.GetComponent<EnemyAIScript>() != null)
-                    hit.gameObject.GetComponent<EnemyAIScript>().Stagger();
-            }
+            Collider hit = hits[0];
+            // Damage on player now works as a multiplier instead of damage.
+            hit.gameObject.GetComponent<EnemyVitalController>()
+                .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100), gameObject.GetComponent<NetworkIdentity>().netId);
+            if (hit.gameObject.GetComponent<EnemyMovement>() != null)
+                hit.gameObject.GetComponent<EnemyMovement>().Stagger();
+            else if (hit.gameObject.GetComponent<EnemyAIScript>() != null)
+                hit.gameObject.GetComponent<EnemyAIScript>().Stagger(1);
         }
 
         yield return new WaitForSeconds(time / 2);
