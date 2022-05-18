@@ -5,11 +5,12 @@ using Mirror;
 public class EnemyHighlighter : NetworkBehaviour
 {
     private Camera mainCamera;
-    private RaycastHit hit;
     private Material material;
+    private GameObject rayCastPosition;
 
     public void Start()
     {
+        rayCastPosition = gameObject.transform.Find("rayCastPosition").gameObject;
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
     }
 
@@ -17,9 +18,10 @@ public class EnemyHighlighter : NetworkBehaviour
     {
         if (!isLocalPlayer) return;
         //Sends a raycast to check for colliders in the Enemy layer
-        if (Physics.SphereCast(mainCamera.transform.position, 2f, mainCamera.transform.forward, out hit, 10,
-                LayerMask.GetMask("Enemy")))
+        Collider[] hits = Physics.OverlapSphere(rayCastPosition.transform.position, gameObject.GetComponent<PlayerItemUsageController>().itemBase.GetRange, LayerMask.GetMask("Enemy"));
+        if (hits.Length > 0)
         {
+            Collider hit = hits[0];
             material = hit.transform.GetComponentInChildren<SkinnedMeshRenderer>().material;
             material.SetFloat("Vector1_63645fd0daa5462ea5528c1ac3a77c0b", 1f);
         }

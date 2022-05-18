@@ -2,6 +2,7 @@
 using ItemNamespace;
 using UnityEngine;
 using Event;
+using Mirror;
 
 public class ItemDaggerBehaviour : ItemBaseBehaviour
 {
@@ -60,12 +61,10 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
         Collider[] hits = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Enemy"));
         if (hits.Length > 0)
         {
-            foreach(Collider hit in hits)
-            {
-                // Damage on player now works as a multiplier instead of damage.
-                hit.gameObject.GetComponent<EnemyVitalController>()
-                    .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100));
-            }
+           Collider hit = hits[0];
+            // Damage on player now works as a multiplier instead of damage.
+            hit.gameObject.GetComponent<EnemyVitalController>()
+                .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100), gameObject.GetComponent<NetworkIdentity>().netId);
         }
         yield return new WaitForSeconds(time / 2);
         animator.SetLayerWeight(animator.GetLayerIndex("Dagger Attack"),0);

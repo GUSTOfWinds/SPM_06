@@ -24,7 +24,7 @@ namespace Event
     {
     }
 
-    public class DamageEventInfo : EventInfo
+    public class PlayerDamageEventInfo : EventInfo
     {
         public GameObject target;
     }
@@ -54,6 +54,7 @@ namespace Event
     public class EnemyHitEvent : EventInfo
     {
         public GameObject enemy;
+        public uint playerNetId;
         public Vector3 hitPoint;
     }
 
@@ -68,5 +69,10 @@ namespace Event
 
     public class PlayerConnectEventInfo : EventInfo
     {
+    }
+
+    public class PlayerDeathEventInfo : EventInfo
+    {
+        
     }
 }
