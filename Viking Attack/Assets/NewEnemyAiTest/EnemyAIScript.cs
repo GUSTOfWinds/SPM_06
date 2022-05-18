@@ -11,15 +11,18 @@ public class EnemyAIScript : NetworkBehaviour
 {
     private Animator animator;
     private float attackRange;
+    private AudioSource audioSource;
     private CharacterBase characterBase;
     private float chasingSpeedMultiplier;
     private bool chasing;
     private Vector3 currentDestination;
     private float damage;
     private float defaultSpeed;
+    private DeathListener deathListener;
     private bool isAttacking;
     private bool isStaggerd;
     private NavMeshAgent navMeshAgent;
+    private Guid playerConnectGuid;
     private bool roaming;
     private GameObject roamingPoint;
     private GameObject spawnPoint;
@@ -29,10 +32,10 @@ public class EnemyAIScript : NetworkBehaviour
     private GameObject[] players;
     [SerializeField] private float aggroRangeFromSpawnPoint;
     [SerializeField] private bool canSeeThroughWalls;
+    [SerializeField] private AudioClip[] enemySounds;
     [SerializeField] private int hitAmountForStagger = 3;
     [SerializeField] private float roamingRangeFromSpawn;
-    private Guid playerConnectGuid;
-
+    
     // Syncs the position of the object to the server
     [SyncVar] private Vector3 syncPosition;
 
@@ -43,7 +46,11 @@ public class EnemyAIScript : NetworkBehaviour
     {
         //Creates object that enemy uses as points to move to
         spawnPoint = new GameObject("EnemySpawnPoint");
+        spawnPoint.AddComponent<NetworkIdentity>();
+        NetworkServer.Spawn(spawnPoint);
         roamingPoint = new GameObject("RoamingPoint");
+        roamingPoint.AddComponent<NetworkIdentity>();
+        NetworkServer.Spawn(roamingPoint);
         EventSystem.Current.RegisterListener<PlayerConnectEventInfo>(UpdatePlayerList, ref playerConnectGuid);
     }
 
@@ -51,6 +58,7 @@ public class EnemyAIScript : NetworkBehaviour
     {
         //Gets components that are on the enemy object that we need to be able to reference 
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         characterBase = GetComponent<EnemyInfo>().GetCharacterBase();
 
@@ -66,6 +74,11 @@ public class EnemyAIScript : NetworkBehaviour
 
         //Sets starting target
         target = spawnPoint;
+
+        if (isServer)
+        {
+            deathListener = FindObjectOfType<DeathListener>();
+        }
     }
 
     void FixedUpdate()
@@ -146,24 +159,21 @@ public class EnemyAIScript : NetworkBehaviour
     private void SetTarget()
     {
         //Would want to remove, maybe check when a new player joins?
-        //players = GameObject.FindGameObjectsWithTag("Player");
+        players = GameObject.FindGameObjectsWithTag("Player");
         //
         //Checks if there are any palyers the the players list
         if (players != null)
         {
             //For each player in players list check if that player is in agro range of enemy if not set target to roamingPoint or spawnPoint 
             foreach (GameObject player in players)
-                if (Vector3.Distance(spawnPoint.transform.position, player.transform.position) <=
-                    aggroRangeFromSpawnPoint)
+                if (Vector3.Distance(spawnPoint.transform.position, player.transform.position) <= aggroRangeFromSpawnPoint)
                 {
                     target = player;
                     stateToPlayByIndex = 1;
 
                     //Checks if there are anything between the enemy and player, if not don't check until enemy loses aggro
                     RaycastHit hit;
-                    if (!canSeeThroughWalls && !chasing && Physics.Linecast(transform.position + new Vector3(0, 1, 0),
-                            target.transform.position + new Vector3(0, 1, 0), out hit,
-                            ~LayerMask.GetMask("Player", "Enemy")))
+                    if (!canSeeThroughWalls && !chasing && Physics.Linecast(transform.position + new Vector3(0, 1, 0),target.transform.position + new Vector3(0, 1, 0), out hit,~LayerMask.GetMask("Player", "Enemy")))
                     {
                         target = spawnPoint;
                         stateToPlayByIndex = 2;
@@ -175,6 +185,8 @@ public class EnemyAIScript : NetworkBehaviour
                 }
                 else
                 {
+                    GetComponent<EnemyVitalController>().UpdateHealth(characterBase.GetMaxHealth());
+
                     chasing = false;
                     stateToPlayByIndex = 2;
 
@@ -182,6 +194,7 @@ public class EnemyAIScript : NetworkBehaviour
                         target = roamingPoint;
                     else
                         target = spawnPoint;
+                    
                 }
             //Checks for GameObjects with Player tag  
         }
@@ -195,9 +208,13 @@ public class EnemyAIScript : NetworkBehaviour
             if (target.tag.Equals("Player"))
             {
                 stateToPlayByIndex = 3;
-                transform.rotation = Quaternion.Slerp(transform.rotation,
-                    Quaternion.LookRotation((target.transform.position - transform.position).normalized),
-                    Time.deltaTime * navMeshAgent.angularSpeed);
+                if (!GetNearbyAudioSourcePlaying() && !audioSource.isPlaying)
+                {
+                    // plays the sound of the skeleton breathing when in range for attack
+                    audioSource.PlayOneShot(enemySounds[0]);
+                    RpcPlayEnemyChasing();
+                }
+                transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation((target.transform.position - transform.position).normalized),Time.deltaTime * navMeshAgent.angularSpeed);
                 //If target is a spawnPoint set that the enemy should idle
             }
             else if (target == spawnPoint)
@@ -222,19 +239,64 @@ public class EnemyAIScript : NetworkBehaviour
         }
     }
 
+    private bool GetNearbyAudioSourcePlaying()
+    {
+        GameObject[] enemies = deathListener.GetEnemies();
+        foreach (var enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f && enemy.GetComponent<AudioSource>().isPlaying && !enemy.Equals(gameObject))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    [ClientRpc] private void RpcPlayEnemyChasing()
+    {
+        if (!isServer)
+        {
+            audioSource.PlayOneShot(enemySounds[0]);
+        }
+    }
+    [ClientRpc] private void RpcSwingSword()
+    {
+        if (!isServer)
+        {
+            audioSource.PlayOneShot(enemySounds[1]);
+        }
+    }
+    [ClientRpc] private void RpcDealDamage(GameObject player)
+    {
+        if (!isServer)
+        {
+            player.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
+        }
+    }
+
     private IEnumerator Attack()
     {
         //Sets isAttacking to true to show that the Attack() function is running
         isAttacking = true;
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        //Play attack sound for host and clients
+        RpcSwingSword();
+        audioSource.PlayOneShot(enemySounds[1]);
+
         //Checks if the player is still in range
         if (navMeshAgent.remainingDistance <= attackRange)
             if (target.tag.Equals("Player"))
             {
+                RpcDealDamage(target);
                 target.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
 
                 // Creates an event used to play a sound and display the damage in the player UI
-                EventInfo playerDamageEventInfo = new DamageEventInfo {EventUnitGo = gameObject, target = this.target};
+                EventInfo playerDamageEventInfo = new PlayerDamageEventInfo {EventUnitGo = gameObject, target = this.target};
                 EventSystem.Current.FireEvent(playerDamageEventInfo);
             }
 
@@ -276,5 +338,14 @@ public class EnemyAIScript : NetworkBehaviour
     public void SetIfEnemyRoam(bool roaming)
     {
         this.roaming = roaming;
+    }
+
+    public void BeforeDying()
+    {
+        if(isServer)
+        {
+            NetworkServer.Destroy(spawnPoint);
+            NetworkServer.Destroy(roamingPoint);
+        }
     }
 }

@@ -382,7 +382,6 @@ GameObject:
   - component: {fileID: 1155901933938411303}
   - component: {fileID: 1155901933938411296}
   - component: {fileID: 6235558757136187870}
-  - component: {fileID: 9103507500551628149}
   - component: {fileID: 1155901933938411300}
   - component: {fileID: 6860839154504057231}
   - component: {fileID: 3342504787126765304}
@@ -481,7 +480,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -573,18 +572,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &9103507500551628149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1155901933938411299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c682eaa8a9889b48ac5046a2a54772e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1155901933938411300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +588,9 @@ MonoBehaviour:
   syncInterval: 0
   aggroRangeFromSpawnPoint: 30
   canSeeThroughWalls: 0
+  enemySounds:
+  - {fileID: 8300000, guid: 002d3438d861f224e911c9bea0f7f3d1, type: 3}
+  - {fileID: 8300000, guid: 0edc7bad5b4d70a4abedf2104deeac79, type: 3}
   hitAmountForStagger: 3
   roamingRangeFromSpawn: 20
 --- !u!114 &6860839154504057231
@@ -618,7 +608,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   characterBase: {fileID: 11400000, guid: 51ce9bc9105c0934c8771ec9f22670c7, type: 2}
-  waitTime: 0
+  waitTime: 999
   hasDied: 0
   layerMask:
     serializedVersion: 2

@@ -42,6 +42,7 @@ namespace ItemNamespace
         [SerializeField] private int dropChance; // insert value for dropchance
         private GameObject[] players;
         private int scale;
+        private EnemyVitalController enemyVitalController;
 
         private void Start()
         {
@@ -56,6 +57,12 @@ namespace ItemNamespace
             moveSpeed = characterBase.GetMovementSpeed();
             maxHealth = characterBase.GetMaxHealth();
             health = characterBase.GetMaxHealth();
+            enemyVitalController = gameObject.GetComponent<EnemyVitalController>();
+        }
+
+        public int GetEnemyLevel()
+        {
+            return level;
         }
 
         public void SetRespawnAnchor(Transform p)
@@ -96,7 +103,7 @@ namespace ItemNamespace
         //get health back when moving back to default status
         public void BackToDefault()
         {
-            this.gameObject.GetComponent<EnemyInfo>().health = maxHealth;
+            gameObject.GetComponent<EnemyInfo>().health = maxHealth;
         }
 
         // increases damage and health if there are multiple players
@@ -112,7 +119,7 @@ namespace ItemNamespace
                 maxHealth *= (float) Math.Pow(1.3, players.Length * 1.45);
                 damage *= (int) Math.Pow(1.3, players.Length * 1.33);
                 health = maxHealth;
-                gameObject.GetComponent<EnemyVitalController>().PlayerScaleHealthUpdate(health, maxHealth);
+                enemyVitalController.PlayerScaleHealthUpdate(health, maxHealth);
             }
         }
     }
