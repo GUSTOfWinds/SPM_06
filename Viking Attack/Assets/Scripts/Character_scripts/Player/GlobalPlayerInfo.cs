@@ -25,7 +25,7 @@ namespace Character_scripts.Player
         [SerializeField] private float experience;
         [SerializeField] private int level;
         [SerializeField] private float levelThreshold;
-        [SerializeField] private int availableStatpoints;
+        [SerializeField] private int availableStatPoints;
         [SerializeField] private float damage;
         [SerializeField] private int meatStackNumber;
         [SerializeField] private int armorLevel;
@@ -47,7 +47,7 @@ namespace Character_scripts.Player
                 .Find("Experience_bar_slider").gameObject.GetComponent<PlayerExperienceBar>();
             experience = 0;
             levelThreshold = 60;
-            availableStatpoints = 0;
+            availableStatPoints = 0;
             level = 1;
             playerName = PlayerPrefs.GetString("PlayerName");
             armorLevel = 0;
@@ -195,7 +195,7 @@ namespace Character_scripts.Player
             };
             EventSystem.Current.FireEvent(playerLevelUpInfo);
             level++;
-            availableStatpoints += 3;
+            availableStatPoints += 3;
         }
 
         public float GetExperience()
@@ -210,26 +210,26 @@ namespace Character_scripts.Player
 
         public int GetStatPoints()
         {
-            return availableStatpoints;
+            return availableStatPoints;
         }
 
         public void IncreaseDamageStatPoints()
         {
             damage += 6;
-            availableStatpoints--;
+            availableStatPoints--;
         }
 
         public void IncreaseHealthStatPoints()
         {
             maxHealth += 10;
-            availableStatpoints--;
+            availableStatPoints--;
             healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
         }
 
         public void IncreaseStaminaStatPoints()
         {
             maxStamina += 10;
-            availableStatpoints--;
+            availableStatPoints--;
             staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
         }
 
