@@ -42,7 +42,7 @@ public class RespawnPanelHandler : NetworkBehaviour
 
     IEnumerator LockPlayer()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
         gameObject.GetComponent<ToggleCharacterScreen>().locked = true;
         gameObject.GetComponent<PlayerScript3D>().enabled = false;
         gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = false;

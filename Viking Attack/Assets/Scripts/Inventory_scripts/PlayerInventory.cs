@@ -279,10 +279,10 @@ namespace Inventory_scripts
                 
                             break;
                         case "ItemMeatBehaviour":
-                            // if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
-                            // {
-                            //     return;
-                            // }
+                            if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
+                            {
+                                return;
+                            }
                         
                             break;
                     }
