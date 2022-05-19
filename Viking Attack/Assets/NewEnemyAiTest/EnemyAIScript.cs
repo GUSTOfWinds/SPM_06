@@ -103,7 +103,7 @@ public class EnemyAIScript : NetworkBehaviour
                 SetTarget();
 
                 //Check if the enemy should attack and that Attack() function is not going if both true start timer for attack
-                if (!isAttacking && stateToPlayByIndex == 3)
+                if (!isAttacking && stateToPlayByIndex == 3 && animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
                 {
                     StartCoroutine(Attack());
                 }
@@ -275,7 +275,7 @@ public class EnemyAIScript : NetworkBehaviour
     {
         //Sets isAttacking to true to show that the Attack() function is running
         isAttacking = true;
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length * 0.5f);
 
         //Play attack sound for host and clients
         RpcSwingSword();
@@ -293,6 +293,7 @@ public class EnemyAIScript : NetworkBehaviour
                 EventSystem.Current.FireEvent(playerDamageEventInfo);
             }
 
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length * 0.5f);
         //Sets isAttacking to false to show that the Attack() function is done
         isAttacking = false;
     }
