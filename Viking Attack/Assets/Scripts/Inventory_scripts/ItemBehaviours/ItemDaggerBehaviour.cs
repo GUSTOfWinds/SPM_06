@@ -61,7 +61,7 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
         Collider[] hits = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Enemy"));
         if (hits.Length > 0)
         {
-           Collider hit = hits[0];
+            Collider hit = hits[0];
             // Damage on player now works as a multiplier instead of damage.
             hit.gameObject.GetComponent<EnemyVitalController>()
                 .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100), gameObject.GetComponent<NetworkIdentity>().netId);
