@@ -164,42 +164,44 @@ public class EnemyAIScript : NetworkBehaviour
         //Checks if there are any palyers the the players list
         if (players != null)
         {
-            //For each player in players list check if that player is in agro range of enemy if not set target to roamingPoint or spawnPoint 
+            //For each player in players list check if that player is in agro range of enemy if not set target to roamingPoint or spawnPoint
+            bool playerFound = false;
             foreach (GameObject player in players)
-                if (Vector3.Distance(spawnPoint.transform.position, player.transform.position) <=
-                    aggroRangeFromSpawnPoint)
+            {
+                if (Vector3.Distance(spawnPoint.transform.position, player.transform.position) <= aggroRangeFromSpawnPoint)
                 {
                     target = player;
                     stateToPlayByIndex = 1;
+                    playerFound = true;
 
                     //Checks if there are anything between the enemy and player, if not don't check until enemy loses aggro
                     RaycastHit hit;
-                    if (!canSeeThroughWalls && !chasing && Physics.Linecast(transform.position + new Vector3(0, 1, 0),
-                            target.transform.position + new Vector3(0, 1, 0), out hit,
-                            ~LayerMask.GetMask("Player", "Enemy")))
+                    if (!canSeeThroughWalls && !chasing && Physics.Linecast(transform.position + new Vector3(0, 1, 0),target.transform.position + new Vector3(0, 1, 0), out hit,~LayerMask.GetMask("Player", "Enemy")))
                     {
                         target = spawnPoint;
                         stateToPlayByIndex = 2;
-                    }
-                    else
+                        playerFound = false;
+                    }else
                     {
                         chasing = true;
                     }
-
+                    
                     break;
                 }
+            }
+                
+            if(!playerFound)
+            {
+                gameObject.GetComponent<EnemyVitalController>().UpdateHealth(characterBase.GetMaxHealth());
+
+                chasing = false;
+                stateToPlayByIndex = 2;
+
+                if (roaming)
+                    target = roamingPoint;
                 else
-                {
-                    //gameObject.GetComponent<EnemyVitalController>().UpdateHealth(characterBase.GetMaxHealth());
-
-                    chasing = false;
-                    stateToPlayByIndex = 2;
-
-                    if (roaming)
-                        target = roamingPoint;
-                    else
-                        target = spawnPoint;
-                }
+                    target = spawnPoint;
+            }
             //Checks for GameObjects with Player tag  
         }
         else
