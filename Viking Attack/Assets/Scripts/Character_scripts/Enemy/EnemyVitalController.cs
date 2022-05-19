@@ -88,6 +88,7 @@ public class EnemyVitalController : NetworkBehaviour
     {
         if (base.isServer)
         {
+            
             if (change != 0)
             {
                 gameObject.GetComponent<EnemyInfo>().PlayerScale();
@@ -95,7 +96,6 @@ public class EnemyVitalController : NetworkBehaviour
             
             //clampa värdet så vi inte kan få mer hp än maxvärdet
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
-
             if (change < 0)
             {
                 StartCoroutine(BlinkOnHit());

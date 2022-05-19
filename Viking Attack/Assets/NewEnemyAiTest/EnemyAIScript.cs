@@ -80,6 +80,7 @@ public class EnemyAIScript : NetworkBehaviour
         }
     }
 
+
     void FixedUpdate()
     {
         if (isServer)
@@ -189,7 +190,7 @@ public class EnemyAIScript : NetworkBehaviour
                 }
                 else
                 {
-                    GetComponent<EnemyVitalController>().UpdateHealth(characterBase.GetMaxHealth());
+                    //gameObject.GetComponent<EnemyVitalController>().UpdateHealth(characterBase.GetMaxHealth());
 
                     chasing = false;
                     stateToPlayByIndex = 2;
