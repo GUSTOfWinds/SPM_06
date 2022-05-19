@@ -3,9 +3,10 @@ using Event;
 using ItemNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mirror;
 
 
-public class SceneSwitch : MonoBehaviour
+public class SceneSwitch : NetworkBehaviour
 {
     /**
      * @author Martin Kings
@@ -22,7 +23,9 @@ public class SceneSwitch : MonoBehaviour
     {
         if (bossIsDead)
         {
-            SceneManager.LoadScene(1);
+            Debug.Log("Change scen");
+            DontDestroyOnLoad(other.gameObject);
+            NetworkManager.singleton.ServerChangeScene("TerrainIsland2");
         }
     }
 
