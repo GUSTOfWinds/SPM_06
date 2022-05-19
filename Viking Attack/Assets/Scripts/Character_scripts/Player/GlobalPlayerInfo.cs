@@ -55,9 +55,9 @@ public class GlobalPlayerInfo : NetworkBehaviour
     }
 
 
-    public void IncreaseArmorLevel()
+    public void IncreaseArmorLevel(int increase)
     {
-        armorLevel++;
+        armorLevel += increase;
     }
 
     private void Start()
@@ -119,7 +119,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         if (health + difference <= maxHealth)
         {
-            
             if (health + difference < 0)
             {
                 health = 0;
