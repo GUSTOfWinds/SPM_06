@@ -127,9 +127,10 @@ namespace Inventory_scripts
 
 
         // A call from a client to the host that the client has picked up a new weapon
-        [Command(requiresAuthority = false)]
+        [Command]
         void CmdUpdateWeapon(int index, GameObject go)
         {
+            
             go.GetComponent<PlayerItemUsageController>().SyncHeldItem(index, go.GetComponent<NetworkIdentity>().netId);
         }
 
@@ -138,6 +139,7 @@ namespace Inventory_scripts
         [ClientRpc]
         void RpcUpdateWeapon(int index, GameObject go)
         {
+            
             go.GetComponent<PlayerItemUsageController>().SyncHeldItem(index, go.GetComponent<NetworkIdentity>().netId);
         }
 
@@ -204,13 +206,13 @@ namespace Inventory_scripts
                             }
                 
                             break;
-                        // case "ItemMeatBehaviour":
-                        //     if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
-                        //     {
-                        //         return;
-                        //     }
-                        //
-                        //     break;
+                        case "ItemMeatBehaviour":
+                            if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
+                            {
+                                return;
+                            }
+                        
+                            break;
                     }
                 }
 
@@ -276,13 +278,13 @@ namespace Inventory_scripts
                             }
                 
                             break;
-                        // case "ItemMeatBehaviour":
-                        //     // if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
-                        //     // {
-                        //     //     return;
-                        //     // }
-                        //
-                        //     break;
+                        case "ItemMeatBehaviour":
+                            // if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
+                            // {
+                            //     return;
+                            // }
+                        
+                            break;
                     }
                 }
 
@@ -341,13 +343,13 @@ namespace Inventory_scripts
                             }
                 
                             break;
-                        // case "ItemMeatBehaviour":
-                        //     if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
-                        //     {
-                        //         return;
-                        //     }
-                        //
-                        //     break;
+                        case "ItemMeatBehaviour":
+                            if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
+                            {
+                                return;
+                            }
+                        
+                            break;
                     }
                 }
 
@@ -379,59 +381,62 @@ namespace Inventory_scripts
         // if the player has more than 0 food in his/her inventory
         public void ToggleFood(InputAction.CallbackContext value)
         {
-            if (gameObject.GetComponent<PlayerItemUsageController>().itemBase == inventory[3])
+            if (value.started)
             {
-                return;
-            }
-
-            // Checks if the previously wielded item is active and returns if so 
-            if (isLocalPlayer)
-            {
-                wieldedItemBase = playerItemUsageController.itemBase;
-            
-                switch (wieldedItemBase.GetItemBaseBehaviorScriptName)
+                if (playerItemUsageController.itemBase == inventory[3])
                 {
-                    case "ItemSwordBehaviour":
-                        if (gameObject.GetComponent<ItemSwordBehaviour>().attackLocked)
-                        {
-                            return;
-                        }
-            
-                        break;
-                    case "ItemSpearBehaviour":
-                        if (gameObject.GetComponent<ItemSpearBehaviour>().attackLocked)
-                        {
-                            return;
-                        }
-            
-                        break;
-                    case "ItemDaggerBehaviour":
-                        if (gameObject.GetComponent<ItemDaggerBehaviour>().attackLocked)
-                        {
-                            return;
-                        }
-            
-                        break;
-                }
-            }
-
-            if (gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber() > 0)
-            {
-                // Syncs the held item to either server or client
-                if (isClientOnly)
-                {
-                    CmdUpdateWeapon(3, gameObject);
+                    return;
                 }
 
-                if (isServer)
-                {
-                    RpcUpdateWeapon(3, gameObject);
-                }
-
+                // Checks if the previously wielded item is active and returns if so 
                 if (isLocalPlayer)
                 {
-                    gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[3]);
-                    selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f, 10f, 0f);
+                    wieldedItemBase = playerItemUsageController.itemBase;
+
+                    switch (wieldedItemBase.GetItemBaseBehaviorScriptName)
+                    {
+                        case "ItemSwordBehaviour":
+                            if (gameObject.GetComponent<ItemSwordBehaviour>().attackLocked)
+                            {
+                                return;
+                            }
+
+                            break;
+                        case "ItemSpearBehaviour":
+                            if (gameObject.GetComponent<ItemSpearBehaviour>().attackLocked)
+                            {
+                                return;
+                            }
+
+                            break;
+                        case "ItemDaggerBehaviour":
+                            if (gameObject.GetComponent<ItemDaggerBehaviour>().attackLocked)
+                            {
+                                return;
+                            }
+
+                            break;
+                    }
+                }
+
+                if (sprites[3].active)
+                {
+                    // Syncs the held item to either server or client
+                    if (isClientOnly)
+                    {
+                        CmdUpdateWeapon(3, gameObject);
+                    }
+
+                    if (isServer)
+                    {
+                        RpcUpdateWeapon(3, gameObject);
+                    }
+
+                    if (isLocalPlayer)
+                    {
+                        gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[3]);
+                        selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f, 10f, 0f);
+                    }
                 }
             }
         }
