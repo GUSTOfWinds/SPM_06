@@ -39,6 +39,7 @@ namespace ItemNamespace
         [SerializeField] private LayerMask layerMask;
         private EnemyMovement enemyMovement;
         private GameObject[] enemies;
+        private int hej;
         private Guid respawnEventGuid;
 
         [SerializeField] private DeathListener deathListener;
