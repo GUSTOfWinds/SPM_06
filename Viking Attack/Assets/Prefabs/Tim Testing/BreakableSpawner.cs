@@ -13,10 +13,9 @@ public class BreakableSpawner : NetworkBehaviour
    
     [Header("Drag the prefab you want to spawn in this spawner here")]
     [SerializeField] private GameObject enemyPrefabToSpawn;
+    [SerializeField] private MeshRenderer meshRenderer;
     private Guid respawnEventGuid;
     private uint netID;
-
-    [SerializeField] private bool spawnAtServerStart;
     private void Awake()
     {
         // Registers a listener for respawnevents
@@ -41,9 +40,9 @@ public class BreakableSpawner : NetworkBehaviour
         // Will be changed to happen ONCE when event manager handles deaths.
         // Spawns an enemy at the location of the spawner parent, will also spawn it on the server
         var enemy = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
-        enemy.GetComponent<EnemyInfo>().SetRespawnAnchor(transform);
+        enemy.GetComponent<BreakableInfo>().SetRespawnAnchor(transform);
         NetworkServer.Spawn(enemy);
-
+        meshRenderer.enabled = true;
 
     }
 

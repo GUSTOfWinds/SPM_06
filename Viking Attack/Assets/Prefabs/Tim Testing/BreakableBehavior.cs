@@ -6,22 +6,16 @@ using Event;
 using Mirror;
 using UnityEngine;
 
-public class BreakableBehavior : MonoBehaviour
+public class BreakableBehavior : NetworkBehaviour
 {
-    [SerializeField] private CharacterBase characterBase;
     [SerializeField] public float waitTime;
+    [SerializeField] private Renderer render;
     [SerializeField] private bool hasDied;
     private Collider[] sphereColliders;
     [SerializeField] private LayerMask layerMask;
 
-
-  
-
-    
-    private SkinnedMeshRenderer skinnedMeshRenderer;
-    private Material[] materials;
-    [SerializeField] private Material hitMaterial;
     // Start is called before the first frame update
+    
     public void Break()
     {
         Debug.Log("I iam gone");
@@ -37,30 +31,34 @@ public class BreakableBehavior : MonoBehaviour
         this.OnDeath?.Invoke(this);
         Die();
     }
+    [ClientRpc]
     private void RpcIncreaseExperience(GameObject player, float exp)
     {
-        player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(exp);
+        if (isClientOnly) {player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(exp); }
+        
+    }
+    private void Start()
+    {
+        render.enabled = true;
     }
 
 
     public void Die()
     {
-        Debug.Log("I iam gone");
+        Debug.Log("dieBehavior");
         if (hasDied)
             return;
         hasDied = true;
-        EventInfo BreakableDestroyedEventInfo = new UnitDeathEventInfo
+        EventInfo BreakableDestroyedEventInfo = new BreakableDestroyedEventInfo
         {
             EventUnitGo = gameObject,
             EventDescription = "Unit " + gameObject.name + " has died.",
             RespawnTimer = waitTime,
         };
+        Debug.Log("dieBehavior past");
         EventSystem.Current.FireEvent(BreakableDestroyedEventInfo);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    
     public event Action<BreakableBehavior> OnDeath;
 }

@@ -11,61 +11,61 @@ namespace Event
 {
     public class BreakListener : NetworkBehaviour
     {
-        /**
-         * @author Martin Kings
-         */
+        
 
-        [SerializeField] private GameObject[] enemies;
-        private Guid deathEventGuid;
-        private Guid respawnEventGuid;
-        private EnemyInfo enemyInfo;
+        [SerializeField] private GameObject[] objects;
+        private Guid breakEventGuid;
+        private Guid respawnObjectEventGuid;
+        private BreakableInfo breakableInfo;
 
 
         private void Start()
         {
             StartCoroutine(FetchInitialEnemies());
-            EventSystem.Current.RegisterListener<BreakableDestroyedEventInfo>(OnUnitDied, ref deathEventGuid);
-            EventSystem.Current.RegisterListener<BreakableRespawnEventInfo>(OnUnitRespawn, ref respawnEventGuid);
+            EventSystem.Current.RegisterListener<BreakableDestroyedEventInfo>(OnUnitDied, ref breakEventGuid);
+            EventSystem.Current.RegisterListener<BreakableRespawnEventInfo>(OnUnitRespawn, ref respawnObjectEventGuid);
         }
 
         // Will at start get all enemies in the scene
         private IEnumerator FetchInitialEnemies()
         {
             yield return new WaitForSeconds(1);
-            enemies = GameObject.FindGameObjectsWithTag("Breakable");
+            objects = GameObject.FindGameObjectsWithTag("Breakable");
         }
         // Will refresh the array of all enemies if an enemy respawns
 
-        void OnUnitRespawn(BreakableRespawnEventInfo unitDeathEventInfo)
+        void OnUnitRespawn(BreakableRespawnEventInfo breakableDestroyedEventInfo)
         {
-            enemies = GameObject.FindGameObjectsWithTag("Breakable");
+            objects = GameObject.FindGameObjectsWithTag("Breakable");
         }
 
         // Will refresh the array of all enemies if an enemy dies and then perform
         // all death sequences for the enemy that has died
-        void OnUnitDied(BreakableDestroyedEventInfo unitDeathEventInfo)
+        void OnUnitDied(BreakableDestroyedEventInfo breakableDestroyedEventInfo)
         {
-            RefreshEnemyArrays(unitDeathEventInfo);
-            StartCoroutine(DestroyEnemy(unitDeathEventInfo));
+            Debug.Log("died");
+            RefreshEnemyArrays(breakableDestroyedEventInfo);
+            StartCoroutine(DestroyEnemy(breakableDestroyedEventInfo));
         }
 
 
-        IEnumerator DestroyEnemy(BreakableDestroyedEventInfo unitDeathEventInfo)
+        IEnumerator DestroyEnemy(BreakableDestroyedEventInfo breakableDestroyedEventInfo)
         {
             if (isServer)
             {
-                float timer = unitDeathEventInfo.RespawnTimer;
+                Debug.Log("destroy");
+                float timer = breakableDestroyedEventInfo.RespawnTimer;
                 // Fetches the enemyinfo script from the enemy
-                enemyInfo = unitDeathEventInfo.EventUnitGo.transform.GetComponent<EnemyInfo>();
+                breakableInfo = breakableDestroyedEventInfo.EventUnitGo.transform.GetComponent<BreakableInfo>();
 
-                var parent = enemyInfo.GetRespawnParent();
+                var parent = breakableInfo.GetRespawnParent();
 
                 // Randomizes a number between 1 and the dropchance int set in character base for drops, if
                 // it is a match, the drop will appear
               
 
                 // Destroys the enemy
-                NetworkServer.Destroy(unitDeathEventInfo.EventUnitGo);
+                NetworkServer.Destroy(breakableDestroyedEventInfo.EventUnitGo);
 
                 yield return new WaitForSeconds(timer);
 
@@ -86,16 +86,17 @@ namespace Event
             EventSystem.Current.FireEvent(unitRespawnInfo);
         }
 
-        private void RefreshEnemyArrays(BreakableDestroyedEventInfo unitDeathEventInfo)
+        private void RefreshEnemyArrays(BreakableDestroyedEventInfo breakableDestroyedEventInfo)
         {
-            for (int i = 0; i < enemies.Length; i++)
+            objects = GameObject.FindGameObjectsWithTag("Breakable");
+            for (int i = 0; i < objects.Length; i++)
             {
-                if (enemies[i] != null)
+                if (objects[i] != null)
                 {
-                    if (enemies[i].GetComponent<NetworkIdentity>().netId ==
-                        unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId)
+                    if (objects[i].GetComponent<NetworkIdentity>().netId ==
+                        breakableDestroyedEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId)
                     {
-                        enemies[i] = null;
+                        objects[i] = null;
                     }
                 }
             }
@@ -103,7 +104,7 @@ namespace Event
 
         public GameObject[] GetEnemies()
         {
-            return enemies;
+            return objects;
         }
     }
 }

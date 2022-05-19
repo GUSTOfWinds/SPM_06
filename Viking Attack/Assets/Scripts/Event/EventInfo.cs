@@ -22,7 +22,6 @@ namespace Event
     public class BreakableDestroyedEventInfo : EventInfo
     {
         public float RespawnTimer;
-        public ItemBase itemBase;
     }
 
     public class DebugEventInfo : EventInfo
