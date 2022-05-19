@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Globalization;
-using Character_scripts.Player;
+using System.Runtime.CompilerServices;
 using Event;
-using Inventory_scripts.ItemBehaviours;
+using ItemNamespace;
 using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -28,7 +27,6 @@ namespace Inventory_scripts
         [SerializeField] private ItemBase wieldedItemBase;
 
         private Guid itemPickupGuid;
-        private static readonly int ItemPopup = Animator.StringToHash("itemPOPUP");
 
 
         private void Start()
@@ -40,7 +38,7 @@ namespace Inventory_scripts
         }
 
 
-        // Inserts the itemBase + its sprite to the inventory array
+        // Inserts the itembase + its sprite to the inventory array
         void OnItemPickup(PlayerItemPickupEventInfo playerItemPickupEventInfo)
         {
             if (playerItemPickupEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId == netID)
@@ -76,7 +74,7 @@ namespace Inventory_scripts
                             RpcUpdateWeapon(weaponIndex, gameObject);
                         }
 
-                        animator.SetTrigger(ItemPopup);
+                        animator.SetTrigger("itemPOPUP");
 
                         break;
                     // END OF INNER WEAPON SWITCH
@@ -98,7 +96,7 @@ namespace Inventory_scripts
                             meatStackNumber.GetComponent<Text>().text =
                                 gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber().ToString();
                             gameObject.GetComponent<GlobalPlayerInfo>()
-                                .SetItemSlot(3, inventory[3]); // sets the info in globalPlayerInfo
+                                .SetItemSlot(3, inventory[3]); // sets the info in globalplayerinfo
                         }
 
                         break;
@@ -107,14 +105,14 @@ namespace Inventory_scripts
 
                         if (sprites[4].active)
                         {
-                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel();
+                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
                         }
                         else
                         {
                             inventory[4] = playerItemPickupEventInfo.itemBase;
                             sprites[4].SetActive(true);
                             sprites[4].GetComponent<Image>().sprite = inventory[4].GetSprite;
-                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel();
+                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
                             gameObject.GetComponent<GlobalPlayerInfo>()
                                 .SetItemSlot(4, inventory[4]);
                         }
@@ -129,9 +127,10 @@ namespace Inventory_scripts
 
 
         // A call from a client to the host that the client has picked up a new weapon
-        [Command(requiresAuthority = false)]
+        [Command]
         void CmdUpdateWeapon(int index, GameObject go)
         {
+            
             go.GetComponent<PlayerItemUsageController>().SyncHeldItem(index, go.GetComponent<NetworkIdentity>().netId);
         }
 
@@ -140,6 +139,7 @@ namespace Inventory_scripts
         [ClientRpc]
         void RpcUpdateWeapon(int index, GameObject go)
         {
+            
             go.GetComponent<PlayerItemUsageController>().SyncHeldItem(index, go.GetComponent<NetworkIdentity>().netId);
         }
 
@@ -168,8 +168,8 @@ namespace Inventory_scripts
 
             itemInfoSprite.GetComponent<Image>().sprite = sprites[index].GetComponent<Image>().sprite;
             weaponStats[0].GetComponent<Text>().text = inventory[index].GetDamage.ToString();
-            weaponStats[1].GetComponent<Text>().text = inventory[index].GetRange.ToString(CultureInfo.CurrentCulture);
-            weaponStats[2].GetComponent<Text>().text = inventory[index].GetSpeed.ToString(CultureInfo.CurrentCulture);
+            weaponStats[1].GetComponent<Text>().text = inventory[index].GetRange.ToString();
+            weaponStats[2].GetComponent<Text>().text = inventory[index].GetSpeed.ToString();
         }
 
 
@@ -177,6 +177,7 @@ namespace Inventory_scripts
         // if the sword has been picked up
         public void ToggleSword(InputAction.CallbackContext value)
         {
+            //Debug.Log("Jag ska köras på en av maskinerna");
             if (value.started)
             {
                 if (playerItemUsageController.itemBase == inventory[0])
@@ -210,7 +211,7 @@ namespace Inventory_scripts
                             {
                                 return;
                             }
-                
+                        
                             break;
                     }
                 }
@@ -239,7 +240,7 @@ namespace Inventory_scripts
                         gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
                         selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 10f, 0f);
                         UpdateItemInfo(0); // updates the weapon info box with sword information
-                        animator.SetTrigger(ItemPopup);
+                        animator.SetTrigger("itemPOPUP");
                     }
                 }
             }
@@ -282,7 +283,7 @@ namespace Inventory_scripts
                             {
                                 return;
                             }
-                
+                        
                             break;
                     }
                 }
@@ -299,10 +300,13 @@ namespace Inventory_scripts
                     {
                         RpcUpdateWeapon(1, gameObject);
                     }
-                    gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[1]);
-                    selectedItem.transform.position = sprites[1].transform.position + new Vector3(0f, 10f, 0f);
-                    UpdateItemInfo(1); // updates the weapon info box with spear information
-                    animator.SetTrigger(ItemPopup);
+                    if (isLocalPlayer)
+                    {
+                        gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[1]);
+                        selectedItem.transform.position = sprites[1].transform.position + new Vector3(0f, 10f, 0f);
+                        UpdateItemInfo(1); // updates the weapon info box with sword information
+                        animator.SetTrigger("itemPOPUP");
+                    }
                 }
             }
         }
@@ -344,7 +348,7 @@ namespace Inventory_scripts
                             {
                                 return;
                             }
-                
+                        
                             break;
                     }
                 }
@@ -362,10 +366,13 @@ namespace Inventory_scripts
                         RpcUpdateWeapon(2, gameObject);
                     }
 
-                    gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[2]);
-                    selectedItem.transform.position = sprites[2].transform.position + new Vector3(0f, 10f, 0f);
-                    UpdateItemInfo(2); // updates the weapon info box with dagger information
-                    animator.SetTrigger(ItemPopup);
+                    if (isLocalPlayer)
+                    {
+                        gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[2]);
+                        selectedItem.transform.position = sprites[2].transform.position + new Vector3(0f, 10f, 0f);
+                        UpdateItemInfo(2); // updates the weapon info box with sword information
+                        animator.SetTrigger("itemPOPUP");
+                    }
                 }
             }
         }
@@ -374,57 +381,63 @@ namespace Inventory_scripts
         // if the player has more than 0 food in his/her inventory
         public void ToggleFood(InputAction.CallbackContext value)
         {
-            if (gameObject.GetComponent<PlayerItemUsageController>().itemBase == inventory[3])
+            if (value.started)
             {
-                return;
-            }
-
-            // Checks if the previously wielded item is active and returns if so 
-            if (isLocalPlayer)
-            {
-                wieldedItemBase = playerItemUsageController.itemBase;
-            
-                switch (wieldedItemBase.GetItemBaseBehaviorScriptName)
+                if (playerItemUsageController.itemBase == inventory[3])
                 {
-                    case "ItemSwordBehaviour":
-                        if (gameObject.GetComponent<ItemSwordBehaviour>().attackLocked)
-                        {
-                            return;
-                        }
-            
-                        break;
-                    case "ItemSpearBehaviour":
-                        if (gameObject.GetComponent<ItemSpearBehaviour>().attackLocked)
-                        {
-                            return;
-                        }
-            
-                        break;
-                    case "ItemDaggerBehaviour":
-                        if (gameObject.GetComponent<ItemDaggerBehaviour>().attackLocked)
-                        {
-                            return;
-                        }
-            
-                        break;
-                }
-            }
-
-            if (gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber() > 0)
-            {
-                // Syncs the held item to either server or client
-                if (isClientOnly)
-                {
-                    CmdUpdateWeapon(3, gameObject);
+                    return;
                 }
 
-                if (isServer)
+                // Checks if the previously wielded item is active and returns if so 
+                if (isLocalPlayer)
                 {
-                    RpcUpdateWeapon(3, gameObject);
+                    wieldedItemBase = playerItemUsageController.itemBase;
+
+                    switch (wieldedItemBase.GetItemBaseBehaviorScriptName)
+                    {
+                        case "ItemSwordBehaviour":
+                            if (gameObject.GetComponent<ItemSwordBehaviour>().attackLocked)
+                            {
+                                return;
+                            }
+
+                            break;
+                        case "ItemSpearBehaviour":
+                            if (gameObject.GetComponent<ItemSpearBehaviour>().attackLocked)
+                            {
+                                return;
+                            }
+
+                            break;
+                        case "ItemDaggerBehaviour":
+                            if (gameObject.GetComponent<ItemDaggerBehaviour>().attackLocked)
+                            {
+                                return;
+                            }
+
+                            break;
+                    }
                 }
 
-                gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[3]);
-                selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f, 10f, 0f);
+                if (sprites[3].active)
+                {
+                    // Syncs the held item to either server or client
+                    if (isClientOnly)
+                    {
+                        CmdUpdateWeapon(3, gameObject);
+                    }
+
+                    if (isServer)
+                    {
+                        RpcUpdateWeapon(3, gameObject);
+                    }
+
+                    if (isLocalPlayer)
+                    {
+                        gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[3]);
+                        selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f, 10f, 0f);
+                    }
+                }
             }
         }
 
@@ -448,7 +461,7 @@ namespace Inventory_scripts
                 gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[0]);
                 selectedItem.transform.position = sprites[0].transform.position + new Vector3(0f, 10f, 0f);
                 UpdateItemInfo(0); // updates the weapon info box with sword information
-                animator.SetTrigger(ItemPopup);
+                animator.SetTrigger("itemPOPUP");
             }
         }
 
