@@ -49,13 +49,13 @@ public class BreakableBehavior : MonoBehaviour
         if (hasDied)
             return;
         hasDied = true;
-        EventInfo unitDeathEventInfo = new UnitDeathEventInfo
+        EventInfo BreakableDestroyedEventInfo = new UnitDeathEventInfo
         {
             EventUnitGo = gameObject,
             EventDescription = "Unit " + gameObject.name + " has died.",
             RespawnTimer = waitTime,
         };
-        EventSystem.Current.FireEvent(unitDeathEventInfo);
+        EventSystem.Current.FireEvent(BreakableDestroyedEventInfo);
     }
     // Update is called once per frame
     void Update()
