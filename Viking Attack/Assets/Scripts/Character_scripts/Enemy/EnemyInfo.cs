@@ -123,7 +123,7 @@ namespace ItemNamespace
                 maxHealth *= (float) Math.Pow(1.3, players.Length * 1.45);
                 damage *= (int) Math.Pow(1.3, players.Length * 1.33);
                 health = maxHealth;
-                enemyVitalController.PlayerScaleHealthUpdate(health, maxHealth);
+                gameObject.GetComponent<EnemyVitalController>().PlayerScaleHealthUpdate(health, maxHealth);
             }
         }
     }

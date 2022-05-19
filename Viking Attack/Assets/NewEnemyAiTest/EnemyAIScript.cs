@@ -32,13 +32,13 @@ public class EnemyAIScript : NetworkBehaviour
     private int hitsForStagger;
     private GameObject[] playerAggro;
     private GameObject[] players;
-    
+
     [SerializeField] private float aggroRangeFromSpawnPoint;
     [SerializeField] private bool canSeeThroughWalls;
     [SerializeField] private AudioClip[] enemySounds;
     [SerializeField] private int hitAmountForStagger = 3;
     [SerializeField] private float roamingRangeFromSpawn;
-    
+
     // Syncs the position of the object to the server
     [SyncVar] private Vector3 syncPosition;
 
@@ -88,7 +88,8 @@ public class EnemyAIScript : NetworkBehaviour
             if (stateToPlayByIndex == 1)
             {
                 navMeshAgent.speed = defaultSpeed * chasingSpeedMultiplier;
-            }else
+            }
+            else
             {
                 navMeshAgent.speed = defaultSpeed;
             }
@@ -103,7 +104,7 @@ public class EnemyAIScript : NetworkBehaviour
                 SetTarget();
 
                 //Check if the enemy should attack and that Attack() function is not going if both true start timer for attack
-                if (!isAttacking && stateToPlayByIndex == 3)
+                if (!isAttacking && stateToPlayByIndex == 3 && animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
                 {
                     StartCoroutine(Attack());
                 }
@@ -117,7 +118,8 @@ public class EnemyAIScript : NetworkBehaviour
                 }
 
                 //Check if the Staggered animation is playing and that StopStagger() function is not going if both true start timer for stagger
-            }else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Staggered") && !isStaggerd)
+            }
+            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Staggered") && !isStaggerd)
             {
                 StartCoroutine(StopStagger());
             }
@@ -163,23 +165,29 @@ public class EnemyAIScript : NetworkBehaviour
         {
             //For each player in players list check if that player is in agro range of enemy if not set target to roamingPoint or spawnPoint 
             foreach (GameObject player in players)
-                if (Vector3.Distance(spawnPoint.transform.position, player.transform.position) <= aggroRangeFromSpawnPoint)
+                if (Vector3.Distance(spawnPoint.transform.position, player.transform.position) <=
+                    aggroRangeFromSpawnPoint)
                 {
                     target = player;
                     stateToPlayByIndex = 1;
 
                     //Checks if there are anything between the enemy and player, if not don't check until enemy loses aggro
                     RaycastHit hit;
-                    if (!canSeeThroughWalls && !chasing && Physics.Linecast(transform.position + new Vector3(0, 1, 0),target.transform.position + new Vector3(0, 1, 0), out hit,~LayerMask.GetMask("Player", "Enemy")))
+                    if (!canSeeThroughWalls && !chasing && Physics.Linecast(transform.position + new Vector3(0, 1, 0),
+                            target.transform.position + new Vector3(0, 1, 0), out hit,
+                            ~LayerMask.GetMask("Player", "Enemy")))
                     {
                         target = spawnPoint;
                         stateToPlayByIndex = 2;
-                    }else
+                    }
+                    else
                     {
                         chasing = true;
                     }
+
                     break;
-                }else
+                }
+                else
                 {
                     GetComponent<EnemyVitalController>().UpdateHealth(characterBase.GetMaxHealth());
 
@@ -190,10 +198,10 @@ public class EnemyAIScript : NetworkBehaviour
                         target = roamingPoint;
                     else
                         target = spawnPoint;
-                    
                 }
-        //Checks for GameObjects with Player tag  
-        }else
+            //Checks for GameObjects with Player tag  
+        }
+        else
             players = GameObject.FindGameObjectsWithTag("Player");
 
         //Checks if the enemy is att there target
@@ -209,13 +217,18 @@ public class EnemyAIScript : NetworkBehaviour
                     audioSource.PlayOneShot(enemySounds[0]);
                     RpcPlayEnemyChasing();
                 }
-                transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation((target.transform.position - transform.position).normalized),Time.deltaTime * navMeshAgent.angularSpeed);
+
+                transform.rotation = Quaternion.Slerp(transform.rotation,
+                    Quaternion.LookRotation((target.transform.position - transform.position).normalized),
+                    Time.deltaTime * navMeshAgent.angularSpeed);
                 //If target is a spawnPoint set that the enemy should idle
-            }else if (target == spawnPoint)
+            }
+            else if (target == spawnPoint)
             {
                 stateToPlayByIndex = 5;
                 //If target is a roamingPoint set new position for roamingPoint
-            }else
+            }
+            else
             {
                 Vector3 randomDirection = Random.insideUnitSphere * roamingRangeFromSpawn;
                 randomDirection += new Vector3(spawnPoint.transform.position.x, transform.position.y,
@@ -239,7 +252,8 @@ public class EnemyAIScript : NetworkBehaviour
         {
             if (enemy != null)
             {
-                if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f && enemy.GetComponent<AudioSource>().isPlaying && !enemy.Equals(gameObject))
+                if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f &&
+                    enemy.GetComponent<AudioSource>().isPlaying && !enemy.Equals(gameObject))
                 {
                     return true;
                 }
@@ -249,21 +263,26 @@ public class EnemyAIScript : NetworkBehaviour
         return false;
     }
 
-    [ClientRpc] private void RpcPlayEnemyChasing()
+    [ClientRpc]
+    private void RpcPlayEnemyChasing()
     {
         if (!isServer)
         {
             audioSource.PlayOneShot(enemySounds[0]);
         }
     }
-    [ClientRpc] private void RpcSwingSword()
+
+    [ClientRpc]
+    private void RpcSwingSword()
     {
         if (!isServer)
         {
             audioSource.PlayOneShot(enemySounds[1]);
         }
     }
-    [ClientRpc] private void RpcDealDamage(GameObject player)
+
+    [ClientRpc]
+    private void RpcDealDamage(GameObject player)
     {
         if (!isServer)
         {
@@ -275,7 +294,7 @@ public class EnemyAIScript : NetworkBehaviour
     {
         //Sets isAttacking to true to show that the Attack() function is running
         isAttacking = true;
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length * 0.5f);
 
         //Play attack sound for host and clients
         RpcSwingSword();
@@ -289,10 +308,12 @@ public class EnemyAIScript : NetworkBehaviour
                 target.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
 
                 // Creates an event used to play a sound and display the damage in the player UI
-                EventInfo playerDamageEventInfo = new PlayerDamageEventInfo {EventUnitGo = gameObject, target = this.target};
+                EventInfo playerDamageEventInfo = new PlayerDamageEventInfo
+                    {EventUnitGo = gameObject, target = this.target};
                 EventSystem.Current.FireEvent(playerDamageEventInfo);
             }
 
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length * 0.5f);
         //Sets isAttacking to false to show that the Attack() function is done
         isAttacking = false;
     }
@@ -333,9 +354,10 @@ public class EnemyAIScript : NetworkBehaviour
         this.roaming = roaming;
     }
 
-    [ClientRpc] public void BeforeDying(GameObject spawnPoint, GameObject roamingPoint)
+    [ClientRpc]
+    public void RpcBeforeDying(GameObject spawnPoint, GameObject roamingPoint)
     {
-        if(!isServer)
+        if (!isServer)
         {
             Destroy(spawnPoint);
             Destroy(roamingPoint);

@@ -20,7 +20,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SyncVar] [SerializeField] private float health;
     [SyncVar] [SerializeField] private float maxHealth;
     [SerializeField] private ItemBase[] items;
-    [SyncVar] [SerializeField] private bool alive = true;
+    [SyncVar] [SerializeField] private bool alive;
     [SyncVar] [SerializeField] private float stamina;
     [SyncVar] [SerializeField] private float maxStamina;
     [SyncVar] [SerializeField] private float experience;
@@ -34,6 +34,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
 
     private void Awake()
     {
+        alive = true;
         items = new ItemBase[5];
         damage = 100;
         health = 100;
