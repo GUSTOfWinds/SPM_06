@@ -24,7 +24,7 @@ namespace Event
         private void Start()
         {
             StartCoroutine(FetchInitialEnemies());
-            EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnUnitDied, ref deathEventGuid);
+            EventSystem.Current.RegisterListener<BreakableDestroyedEventInfo>(OnUnitDied, ref deathEventGuid);
             EventSystem.Current.RegisterListener<BreakableRespawnEventInfo>(OnUnitRespawn, ref respawnEventGuid);
         }
 
@@ -43,14 +43,14 @@ namespace Event
 
         // Will refresh the array of all enemies if an enemy dies and then perform
         // all death sequences for the enemy that has died
-        void OnUnitDied(UnitDeathEventInfo unitDeathEventInfo)
+        void OnUnitDied(BreakableDestroyedEventInfo unitDeathEventInfo)
         {
             RefreshEnemyArrays(unitDeathEventInfo);
             StartCoroutine(DestroyEnemy(unitDeathEventInfo));
         }
 
 
-        IEnumerator DestroyEnemy(UnitDeathEventInfo unitDeathEventInfo)
+        IEnumerator DestroyEnemy(BreakableDestroyedEventInfo unitDeathEventInfo)
         {
             if (isServer)
             {
@@ -77,7 +77,7 @@ namespace Event
         private void RespawnEnemy(Transform respawnParent)
         {
             // Sets up a respawn event
-            EventInfo unitRespawnInfo = new EnemyRespawnEventInfo
+            EventInfo unitRespawnInfo = new BreakableRespawnEventInfo
             {
                 respawnParent = respawnParent
             };
@@ -86,7 +86,7 @@ namespace Event
             EventSystem.Current.FireEvent(unitRespawnInfo);
         }
 
-        private void RefreshEnemyArrays(UnitDeathEventInfo unitDeathEventInfo)
+        private void RefreshEnemyArrays(BreakableDestroyedEventInfo unitDeathEventInfo)
         {
             for (int i = 0; i < enemies.Length; i++)
             {
