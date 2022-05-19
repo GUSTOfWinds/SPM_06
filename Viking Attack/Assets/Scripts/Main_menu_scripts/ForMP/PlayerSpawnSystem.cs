@@ -41,5 +41,12 @@ namespace Main_menu_scripts.ForMP
 
             nextIndex++;
         }
+
+
+        //test ny scen
+        public void noSpwn()
+        {
+            playerPrefab = null;
+        }
     }
 }
