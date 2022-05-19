@@ -27,7 +27,7 @@ namespace Main_menu_scripts.ForMP
         public bool isReady = false;
 
         [SyncVar(hook = nameof(HandleColourChanged))]
-        public Color colour;
+        public Color32 colour;
 
         //isLeader variable and IsLeader method runs to set who can start the game and who can't.
         private bool isLeader;
@@ -49,7 +49,6 @@ namespace Main_menu_scripts.ForMP
                 if (room != null) return room;
                 return room = NetworkManager.singleton as NetworkManagerLobby;
             }
-
         }
 
         //Sets name on your character in lobby and latter the game, OnStartAuthority makes sure it is run only on the object that is yours.
@@ -76,7 +75,7 @@ namespace Main_menu_scripts.ForMP
         //Following 3 methods updates what is shown whenever a value is changed for the client.
         public void HandleReadyStatusChanged(bool oldValue, bool newValue) => UpdateDisplay();
         public void HandleDisplayNameChanged(string oldValue, string newValue) => UpdateDisplay();
-        public void HandleColourChanged(Color oldValue, Color newValue) => UpdateDisplay();
+        public void HandleColourChanged(Color32 oldValue, Color32 newValue) => UpdateDisplay();
 
         //Method makes sure all players display the same thing whilst in the lobby. It checks to see if it's not the local player and disables the ui element so that there is only one shown per client.
         private void UpdateDisplay()

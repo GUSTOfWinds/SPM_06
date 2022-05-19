@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
-using ItemNamespace;
+using Character_scripts;
+using Character_scripts.Enemy;
 using Mirror;
 using UnityEngine;
 

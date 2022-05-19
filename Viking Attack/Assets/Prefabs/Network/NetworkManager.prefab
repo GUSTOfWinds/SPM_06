@@ -70,6 +70,8 @@ MonoBehaviour:
   - {fileID: 379527214673110173, guid: 9eca48aa3ba3f9a43ae082939a1e321f, type: 3}
   - {fileID: 379527214673110173, guid: a981d4afc5b300845883915a214218c0, type: 3}
   - {fileID: 5618711477724573921, guid: 6ec8c1817f184bf4891ca932aafc4aea, type: 3}
+  - {fileID: 6823922631683938355, guid: a32e9ea88c39cd841a6277c741ada4b9, type: 3}
+  - {fileID: 0}
   menuScene: Assets/Scenes/MaineMenu/MaineMenu_Lobby.unity
   roomPlayerLobby: {fileID: 379527214673110172, guid: 9eca48aa3ba3f9a43ae082939a1e321f, type: 3}
   gamePlayerPrefab: {fileID: 5905042231322285479, guid: a981d4afc5b300845883915a214218c0, type: 3}
@@ -87,7 +89,13 @@ MonoBehaviour:
   - {fileID: 379527214673110173, guid: a981d4afc5b300845883915a214218c0, type: 3}
   - {fileID: 6033644488563431086, guid: 48252e56f3a191147bc11d0a659c11fe, type: 3}
   - {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
+  - {fileID: 6823922631683938355, guid: a32e9ea88c39cd841a6277c741ada4b9, type: 3}
+  - {fileID: 6231450593144196953, guid: 2fdfb2500208d57419b89432a751f27d, type: 3}
+  - {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
+  - {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   landingPage: {fileID: 0}
+  mapToLoad: TerrainIsland for new enemy
+  playerPrefabFinalUse: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
 --- !u!114 &2130335223947001309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Port: 7777
+  Port: 7778
   DualMode: 1
   NoDelay: 1
   Interval: 10
@@ -129,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39adc6e09d5544ed955a50ce8600355a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visRange: 5000
+  visRange: 250
   rebuildInterval: 1
   checkMethod: 0
   showSlider: 0

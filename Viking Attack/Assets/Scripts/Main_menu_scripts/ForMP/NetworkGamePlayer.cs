@@ -1,4 +1,5 @@
 using Mirror;
+using UnityEngine;
 
 namespace Main_menu_scripts.ForMP
 {
@@ -7,6 +8,9 @@ namespace Main_menu_scripts.ForMP
 
         [SyncVar]
         public string displayName = "Loading...";
+
+        [SyncVar] 
+        public Color32 colour = new Color32(200, 50, 200, 255);
 
         private NetworkManagerLobby room;
         private NetworkManagerLobby Room
@@ -30,6 +34,11 @@ namespace Main_menu_scripts.ForMP
             Room.GamePlayers.Remove(this);
         }
 
+        [Server]
+        public void SetSkinColour(Color32 colour)
+        {
+            this.colour = colour;
+        }
         [Server]
         public void SetDisplayName(string displayName)
         {
