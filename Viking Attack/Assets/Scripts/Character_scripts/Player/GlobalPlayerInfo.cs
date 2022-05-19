@@ -4,6 +4,7 @@ using Event;
 using ItemNamespace;
 using Mirror;
 using UnityEngine;
+using UnityEngine.Networking.Types;
 
 
 public class GlobalPlayerInfo : NetworkBehaviour
@@ -141,7 +142,8 @@ public class GlobalPlayerInfo : NetworkBehaviour
             // RespawnPanelHandler
             EventInfo playerDeathEvent = new PlayerDeathEventInfo
             {
-                EventUnitGo = gameObject
+                EventUnitGo = gameObject,
+                playerNetId = gameObject.GetComponent<NetworkIdentity>().netId
             };
             EventSystem.Current.FireEvent(playerDeathEvent);
             gameObject.GetComponent<KillPlayer>().PlayerRespawn();
