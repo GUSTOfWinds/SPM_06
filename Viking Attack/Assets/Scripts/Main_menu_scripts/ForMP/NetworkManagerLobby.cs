@@ -22,12 +22,12 @@ namespace Main_menu_scripts.ForMP
 
         [SerializeField] private GameObject landingPage;
 
+        [SerializeField] private string mapToLoad;
+
 
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
         public static event Action<NetworkConnectionToClient> OnServerReadied;
-
-
 
 
         public override void OnStartServer()
@@ -47,12 +47,12 @@ namespace Main_menu_scripts.ForMP
             }
         }
 
-        
+
         public override void OnClientConnect(NetworkConnection conn)
         {
-            byte r = (byte)PlayerPrefs.GetInt("redValue");
-            byte g = (byte)PlayerPrefs.GetInt("greenValue");
-            byte b = (byte)PlayerPrefs.GetInt("blueValue");
+            byte r = (byte) PlayerPrefs.GetInt("redValue");
+            byte g = (byte) PlayerPrefs.GetInt("greenValue");
+            byte b = (byte) PlayerPrefs.GetInt("blueValue");
             Color32 color = new Color32(r, g, b, 255);
             base.OnClientConnect(conn);
             CharacterInfo characterInfo = new CharacterInfo
@@ -61,7 +61,7 @@ namespace Main_menu_scripts.ForMP
                 Name = PlayerPrefs.GetString("PlayerName")
             };
             conn.Send(characterInfo);
-            
+
             OnClientConnected?.Invoke();
         }
 
@@ -71,7 +71,6 @@ namespace Main_menu_scripts.ForMP
             landingPage.SetActive(true);
 
             OnClientDisconnected?.Invoke();
-
         }
 
         public override void OnServerConnect(NetworkConnectionToClient conn)
@@ -91,7 +90,6 @@ namespace Main_menu_scripts.ForMP
 
         public override void OnServerDisconnect(NetworkConnectionToClient conn)
         {
-
             if (conn.identity != null)
             {
                 var player = conn.identity.GetComponent<NetworkRoomPlayerLobby>();
@@ -101,13 +99,12 @@ namespace Main_menu_scripts.ForMP
             }
 
             base.OnServerDisconnect(conn);
-
         }
 
         public void OnSpawnPlayerUI(NetworkConnectionToClient conn, CharacterInfo info)
         {
-             if (SceneManager.GetActiveScene().path == menuScene)
-             {
+            if (SceneManager.GetActiveScene().path == menuScene)
+            {
                 bool isLeader = RoomPlayers.Count == 0;
 
                 NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerLobby);
@@ -115,15 +112,14 @@ namespace Main_menu_scripts.ForMP
                 roomPlayerInstance.IsLeader = isLeader;
                 roomPlayerInstance.name = info.Name;
                 roomPlayerInstance.colour = info.playerColour;
-                    
+
                 if (roomPlayerInstance.hasAuthority)
                 {
                     roomPlayerInstance.gameObject.SetActive(false);
                 }
 
                 NetworkServer.AddPlayerForConnection(conn, roomPlayerInstance.gameObject);
-
-             }
+            }
         }
 
         public override void OnStopServer()
@@ -131,14 +127,12 @@ namespace Main_menu_scripts.ForMP
             landingPage.SetActive(true);
 
             RoomPlayers.Clear();
-
         }
 
         public void NotifyPlayersOfReadyState()
         {
             foreach (var player in RoomPlayers)
             {
-
                 player.HandleReadyToStart(IsReadyTostart());
             }
         }
@@ -153,7 +147,6 @@ namespace Main_menu_scripts.ForMP
                 {
                     ready++;
                 }
-
             }
 
             if (ready >= numPlayers)
@@ -169,7 +162,7 @@ namespace Main_menu_scripts.ForMP
             if (SceneManager.GetActiveScene().path == menuScene)
             {
                 if (!IsReadyTostart()) return;
-                ServerChangeScene("TerrainIsland"); //TODO bestäm vilken start-kartan är
+                ServerChangeScene(mapToLoad); //TODO bestäm vilken start-kartan är
             }
         }
 

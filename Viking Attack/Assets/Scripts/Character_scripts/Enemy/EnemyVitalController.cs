@@ -88,6 +88,7 @@ public class EnemyVitalController : NetworkBehaviour
     {
         if (base.isServer)
         {
+            
             if (change != 0)
             {
                 gameObject.GetComponent<EnemyInfo>().PlayerScale();
@@ -95,7 +96,6 @@ public class EnemyVitalController : NetworkBehaviour
             
             //clampa värdet så vi inte kan få mer hp än maxvärdet
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
-
             if (change < 0)
             {
                 StartCoroutine(BlinkOnHit());
@@ -124,7 +124,7 @@ public class EnemyVitalController : NetworkBehaviour
                 }
 
                 if (gameObject.GetComponent<EnemyAIScript>() != null)
-                    gameObject.GetComponent<EnemyAIScript>().BeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
+                    gameObject.GetComponent<EnemyAIScript>().RpcBeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
                 this.OnDeath?.Invoke(this);
                 Die();
             }
@@ -162,7 +162,7 @@ public class EnemyVitalController : NetworkBehaviour
                 }
 
                 if (gameObject.GetComponent<EnemyAIScript>() != null)
-                    gameObject.GetComponent<EnemyAIScript>().BeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
+                    gameObject.GetComponent<EnemyAIScript>().RpcBeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
                 this.OnDeath?.Invoke(this);
                 Die();
             }
