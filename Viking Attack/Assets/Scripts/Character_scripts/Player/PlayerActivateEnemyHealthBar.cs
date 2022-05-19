@@ -116,8 +116,6 @@ namespace ItemNamespace
         {
             playerThatHit = hit.playerNetId;
             netIdOfNewHit = hit.EventUnitGo.GetComponent<NetworkIdentity>().netId;
-
-
             // Runs similar method on clients
             RpcSetupHealthBar(playerThatHit, netIdOfNewHit, hit.EventUnitGo);
 
@@ -131,12 +129,10 @@ namespace ItemNamespace
                     {
                         healthBarInHierarchy.SetActive(true);
                     }
-
                     enemyHealthBar.Setup(hit.EventUnitGo);
                     netIdOfLastHit = netIdOfNewHit;
                     return;
                 }
-
                 // If the hit enemy is the same as the previously hit one
                 if (netIdOfLastHit == netIdOfNewHit)
                 {
@@ -144,7 +140,6 @@ namespace ItemNamespace
                     {
                         healthBarInHierarchy.SetActive(true);
                     }
-
                     enemyHealthBar.SetHealth();
                 }
                 else
@@ -153,7 +148,6 @@ namespace ItemNamespace
                     {
                         healthBarInHierarchy.SetActive(true);
                     }
-
                     enemyHealthBar.Setup(hit.EventUnitGo);
                     netIdOfLastHit = netIdOfNewHit;
                 }
@@ -166,7 +160,6 @@ namespace ItemNamespace
                     {
                         healthBarInHierarchy.SetActive(true);
                     }
-
                     enemyHealthBar.SetHealth();
                 }
             }
