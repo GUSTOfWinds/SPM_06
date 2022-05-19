@@ -6,14 +6,15 @@ using Mirror;
 public class PlayerScript3D : NetworkBehaviour
 {
     [SerializeField] private State[] states;
-    
+
     private MyRigidbody3D myRigidbody;
     private StateMachine stateMachine;
     public float acceleration = 12f;
-    public bool firstPerson;
     public GameObject thisObject;
     public Animator animator;
+
     public GlobalPlayerInfo globalPlayerInfo;
+
     //KeyInfo variables  start
     public InputAction.CallbackContext movementKeyInfo;
     public InputAction.CallbackContext sprintKeyInfo;
@@ -21,7 +22,7 @@ public class PlayerScript3D : NetworkBehaviour
 
     public bool shouldMove;
     //KeyInfo variables  stop
-    
+
     void Start()
     {
         thisObject = this.gameObject;
@@ -38,7 +39,8 @@ public class PlayerScript3D : NetworkBehaviour
 
 
     void FixedUpdate()
-    { //Cancels all updates that aren't the local player
+    {
+        //Cancels all updates that aren't the local player
         if (!LocalCheck()) return;
         //If there are any added states in the unity inspector
         if (states.Length > 0)
@@ -49,8 +51,10 @@ public class PlayerScript3D : NetworkBehaviour
     {
         return isLocalPlayer;
     }
+
     //Returns myRigidbody
     public MyRigidbody3D MyRigidbody3D => myRigidbody;
+
     public void OnMovement(InputAction.CallbackContext value)
     {
         if (shouldMove)
@@ -58,14 +62,16 @@ public class PlayerScript3D : NetworkBehaviour
             movementKeyInfo = value;
         }
     }
+
     // Checks if the button for sprint is pressed, the value only functions as a bool (pressed or not) in the run state
     public void OnSprint(InputAction.CallbackContext value)
     {
         sprintKeyInfo = value;
     }
+
     public void OnJump(InputAction.CallbackContext value)
     {
         jump = value.started;
-        jump = !value.canceled;  
+        jump = !value.canceled;
     }
 }

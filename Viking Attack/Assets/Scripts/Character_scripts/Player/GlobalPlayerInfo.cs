@@ -1,9 +1,9 @@
 using System;
+using System.Runtime.CompilerServices;
 using Event;
 using ItemNamespace;
 using Mirror;
 using UnityEngine;
-
 
 
 public class GlobalPlayerInfo : NetworkBehaviour
@@ -12,26 +12,24 @@ public class GlobalPlayerInfo : NetworkBehaviour
      * @author Martin Kings
      */
     [SerializeField] private Component healthBar;
+
     [SerializeField] private Component staminaBar;
     [SerializeField] private Component experienceBar;
     [SyncVar] [SerializeField] private string playerName;
-    [SerializeField] private Color skinColor;
-    [SerializeField] private float health;
-    [SerializeField] private float maxHealth;
+    [SyncVar] [SerializeField] private Color skinColor;
+    [SyncVar] [SerializeField] private float health;
+    [SyncVar] [SerializeField] private float maxHealth;
     [SerializeField] private ItemBase[] items;
-    [SerializeField] private bool alive = true;
-    [SerializeField] private float stamina;
-    [SerializeField] private float maxStamina;
-    [SerializeField] private float experience;
-    [SerializeField] private int level;
-    [SerializeField] private float levelThreshold;
-    [SerializeField] private int availableStatpoints;
-    [SerializeField] private int damageStat;
-    [SerializeField] private int healthStat;
-    [SerializeField] private int staminaStat;
-    [SerializeField] private float damage;
-    [SerializeField] private int meatStackNumber;
-    [SerializeField] private int armorLevel;
+    [SyncVar] [SerializeField] private bool alive = true;
+    [SyncVar] [SerializeField] private float stamina;
+    [SyncVar] [SerializeField] private float maxStamina;
+    [SyncVar] [SerializeField] private float experience;
+    [SyncVar] [SerializeField] private int level;
+    [SyncVar] [SerializeField] private float levelThreshold;
+    [SyncVar] [SerializeField] private int availableStatpoints;
+    [SyncVar] [SerializeField] private float damage;
+    [SyncVar] [SerializeField] private int meatStackNumber;
+    [SyncVar] [SerializeField] private int armorLevel;
 
 
     private void Awake()
@@ -56,9 +54,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
         armorLevel = 0;
     }
 
-    public void IncreaseArmorLevel()
+
+    public void IncreaseArmorLevel(int increase)
     {
-        armorLevel++;
+        armorLevel += increase;
     }
 
     private void Start()
@@ -120,9 +119,16 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         if (health + difference <= maxHealth)
         {
-            health += difference;
+            if (health + difference < 0)
+            {
+                health = 0;
+            }
+            else
+            {
+                health += difference;
+            }
         }
-        else
+        else if (health + difference > maxHealth)
         {
             health = maxHealth;
         }
@@ -130,6 +136,13 @@ public class GlobalPlayerInfo : NetworkBehaviour
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
         if (health <= 0)
         {
+            // Used by PlayerActivateEnemyHealthBar class on player objects and by 
+            // RespawnPanelHandler
+            EventInfo playerDeathEvent = new PlayerDeathEventInfo
+            {
+                EventUnitGo = gameObject
+            };
+            EventSystem.Current.FireEvent(playerDeathEvent);
             gameObject.GetComponent<KillPlayer>().PlayerRespawn();
         }
     }
@@ -206,33 +219,16 @@ public class GlobalPlayerInfo : NetworkBehaviour
         return availableStatpoints;
     }
 
-    public int GetDamageStatPoints()
-    {
-        return damageStat;
-    }
-
-    public int GetHealthStatPoints()
-    {
-        return healthStat;
-    }
-
-    public int GetStaminaStatPoints()
-    {
-        return staminaStat;
-    }
-
     public void IncreaseDamageStatPoints()
     {
-        damage+=6;
+        damage += 6;
         availableStatpoints--;
-        damageStat++;
     }
 
     public void IncreaseHealthStatPoints()
     {
         maxHealth += 10;
         availableStatpoints--;
-        healthStat++;
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
     }
 
@@ -240,7 +236,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         maxStamina += 10;
         availableStatpoints--;
-        staminaStat++;
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
     }
 

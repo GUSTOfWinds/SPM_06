@@ -30,7 +30,9 @@ public class EnemyAIScript : NetworkBehaviour
     private int stateToPlayByIndex = 0;
     private GameObject target;
     private int hitsForStagger;
+    private GameObject[] playerAggro;
     private GameObject[] players;
+    
     [SerializeField] private float aggroRangeFromSpawnPoint;
     [SerializeField] private bool canSeeThroughWalls;
     [SerializeField] private AudioClip[] enemySounds;
@@ -47,11 +49,7 @@ public class EnemyAIScript : NetworkBehaviour
     {
         //Creates object that enemy uses as points to move to
         spawnPoint = new GameObject("EnemySpawnPoint");
-        spawnPoint.AddComponent<NetworkIdentity>();
-        NetworkServer.Spawn(spawnPoint);
         roamingPoint = new GameObject("RoamingPoint");
-        roamingPoint.AddComponent<NetworkIdentity>();
-        NetworkServer.Spawn(roamingPoint);
         EventSystem.Current.RegisterListener<PlayerConnectEventInfo>(UpdatePlayerList, ref playerConnectGuid);
     }
 
@@ -90,8 +88,7 @@ public class EnemyAIScript : NetworkBehaviour
             if (stateToPlayByIndex == 1)
             {
                 navMeshAgent.speed = defaultSpeed * chasingSpeedMultiplier;
-            }
-            else
+            }else
             {
                 navMeshAgent.speed = defaultSpeed;
             }
@@ -120,8 +117,7 @@ public class EnemyAIScript : NetworkBehaviour
                 }
 
                 //Check if the Staggered animation is playing and that StopStagger() function is not going if both true start timer for stagger
-            }
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Staggered") && !isStaggerd)
+            }else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Staggered") && !isStaggerd)
             {
                 StartCoroutine(StopStagger());
             }
@@ -178,13 +174,12 @@ public class EnemyAIScript : NetworkBehaviour
                     {
                         target = spawnPoint;
                         stateToPlayByIndex = 2;
-                    }
-                    else
+                    }else
                     {
                         chasing = true;
                     }
-                }
-                else
+                    break;
+                }else
                 {
                     GetComponent<EnemyVitalController>().UpdateHealth(characterBase.GetMaxHealth());
 
@@ -197,9 +192,8 @@ public class EnemyAIScript : NetworkBehaviour
                         target = spawnPoint;
                     
                 }
-            //Checks for GameObjects with Player tag  
-        }
-        else
+        //Checks for GameObjects with Player tag  
+        }else
             players = GameObject.FindGameObjectsWithTag("Player");
 
         //Checks if the enemy is att there target
@@ -217,13 +211,11 @@ public class EnemyAIScript : NetworkBehaviour
                 }
                 transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation((target.transform.position - transform.position).normalized),Time.deltaTime * navMeshAgent.angularSpeed);
                 //If target is a spawnPoint set that the enemy should idle
-            }
-            else if (target == spawnPoint)
+            }else if (target == spawnPoint)
             {
                 stateToPlayByIndex = 5;
                 //If target is a roamingPoint set new position for roamingPoint
-            }
-            else
+            }else
             {
                 Vector3 randomDirection = Random.insideUnitSphere * roamingRangeFromSpawn;
                 randomDirection += new Vector3(spawnPoint.transform.position.x, transform.position.y,
@@ -297,7 +289,7 @@ public class EnemyAIScript : NetworkBehaviour
                 target.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
 
                 // Creates an event used to play a sound and display the damage in the player UI
-                EventInfo playerDamageEventInfo = new DamageEventInfo {EventUnitGo = gameObject, target = this.target};
+                EventInfo playerDamageEventInfo = new PlayerDamageEventInfo {EventUnitGo = gameObject, target = this.target};
                 EventSystem.Current.FireEvent(playerDamageEventInfo);
             }
 
@@ -315,10 +307,10 @@ public class EnemyAIScript : NetworkBehaviour
         isStaggerd = false;
     }
 
-    public void Stagger()
+    public void Stagger(int amount)
     {
         //Counts hits until hitAmountForStagger the stagger enemy which also resets path that stop the enemy form moving
-        hitsForStagger++;
+        hitsForStagger += amount;
         if (hitsForStagger >= hitAmountForStagger)
         {
             hitsForStagger = 0;
@@ -341,12 +333,15 @@ public class EnemyAIScript : NetworkBehaviour
         this.roaming = roaming;
     }
 
-    public void BeforeDying()
+    [ClientRpc] public void BeforeDying(GameObject spawnPoint, GameObject roamingPoint)
     {
-        if(isServer)
+        if(!isServer)
         {
-            NetworkServer.Destroy(spawnPoint);
-            NetworkServer.Destroy(roamingPoint);
+            Destroy(spawnPoint);
+            Destroy(roamingPoint);
         }
     }
+
+    public GameObject GetSpawnPoint => spawnPoint;
+    public GameObject GetRoamingPoint => roamingPoint;
 }

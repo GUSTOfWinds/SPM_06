@@ -21,10 +21,11 @@ MonoBehaviour:
   speed: 0
   stamina: 0
   healAmount: 0
-  sprite: {fileID: 21300000, guid: 40e0827345d68634c839a0b64a4727f1, type: 3}
+  sprite: {fileID: 21300000, guid: c449ef6ca5f863247948ce6f914e1931, type: 3}
   stackable: 0
   mesh: {fileID: -1345620894613911100, guid: 976baca203d8180499d45747c2391f04, type: 3}
   material: {fileID: 2100000, guid: f97a9ec6cc3d2a246a22d0d6938065da, type: 2}
   usageParticle: 
   itemBaseBehaviorScriptName: 
-  protection: 1
+  protection: 2
+  speedMultiplierWhenUsingItem: 0

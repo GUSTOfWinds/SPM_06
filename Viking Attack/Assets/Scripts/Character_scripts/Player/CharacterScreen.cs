@@ -15,11 +15,12 @@ public class CharacterScreen : MonoBehaviour
     [SerializeField] private Text damageStatPoints;
     [SerializeField] private Text staminaStatPoints;
     [SerializeField] private Text availableStatPoints;
-    [SerializeField] private Text XPtoLVL;
+    [SerializeField] private Text expToLevel;
     [SerializeField] private Text level;
     [SerializeField] private GlobalPlayerInfo globalPlayerInfo;
 
     public Animator animator;
+    public Animator otherAnimator;
 
 
     // sets all the stats to what the globalplayerinfo contains
@@ -31,7 +32,7 @@ public class CharacterScreen : MonoBehaviour
         damageStatPoints.text = globalPlayerInfo.GetDamage().ToString() + "%";
         staminaStatPoints.text = globalPlayerInfo.GetMaxStamina().ToString();
         availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
-        XPtoLVL.text = ((globalPlayerInfo.GetLevelThreshold() * globalPlayerInfo.GetLevel() * 1.3f) -
+        expToLevel.text = (globalPlayerInfo.GetLevelThreshold() * globalPlayerInfo.GetLevel() * 1.3f -
                         globalPlayerInfo.GetExperience()).ToString();
         level.text = globalPlayerInfo.GetArmorLevel().ToString();
 
@@ -41,7 +42,11 @@ public class CharacterScreen : MonoBehaviour
     public void IncreaseDamage()
     {
         if (globalPlayerInfo.GetStatPoints() < 1)
+        {
+            otherAnimator.SetBool("pointsavailable", false);
             return;
+        }
+            
         animator.SetTrigger("incDMG");
         globalPlayerInfo.IncreaseDamageStatPoints();
         damageStatPoints.text = globalPlayerInfo.GetDamage().ToString() + "%";
@@ -52,7 +57,11 @@ public class CharacterScreen : MonoBehaviour
     public void IncreaseHealth()
     {
         if (globalPlayerInfo.GetStatPoints() < 1)
+        {
+            otherAnimator.SetBool("pointsavailable", false); 
             return;
+        }
+            
         animator.SetTrigger("incHP");
         globalPlayerInfo.IncreaseHealthStatPoints();
         healthStatPoints.text = globalPlayerInfo.GetMaxHealth().ToString();
@@ -63,7 +72,12 @@ public class CharacterScreen : MonoBehaviour
     public void IncreaseStamina()
     {
         if (globalPlayerInfo.GetStatPoints() < 1)
+        {
+            otherAnimator.SetBool("pointsavailable", false); 
             return;
+
+        }
+            
         animator.SetTrigger("incSTAM");
         globalPlayerInfo.IncreaseStaminaStatPoints();
         staminaStatPoints.text = globalPlayerInfo.GetMaxStamina().ToString();

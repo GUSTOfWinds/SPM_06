@@ -1,4 +1,6 @@
+using System;
 using ItemNamespace;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Slider = UnityEngine.UI.Slider;
@@ -9,24 +11,18 @@ public class EnemyHealthBar : MonoBehaviour
     /**
      * @author Martin Kings
      */
-    [SerializeField] public Transform target; // the gameobject.transform that the UI should follow 
-    [SerializeField] public Slider healthBar; // the slider 
+    [SerializeField] private Slider healthBar; // the slider 
+
     [SerializeField] private GameObject healthSource; // the enemy gameobject
     private EnemyVitalController enemyVitalController;
-    private Vector3 wantedPos;
+    [SerializeField] private TMP_Text enemyLevelText;
+    [SerializeField] private TMP_Text enemyName;
+    [SerializeField] private Image enemyImage;
 
-    [SerializeField]
-    private uint netID; // the ID of the enemy spotted in the activation script placed on the player
-
-    [SerializeField] private Camera mainCamera;
 
     private void Update()
     {
-        if (healthSource != null)
-        {
-            SetHealth();
-            Display(); // Runs the display method that places the Ui element in the correct place above the enemy. Will only run if active.
-        }
+        SetHealth();
     }
 
     public void SetHealthSource(GameObject hs)
@@ -38,28 +34,24 @@ public class EnemyHealthBar : MonoBehaviour
     // Updates the health number of the slider
     public void SetHealth()
     {
+        healthBar.maxValue = enemyVitalController.GetMaxHealth();
         healthBar.value = enemyVitalController.GetCurrentHealth();
     }
 
-    public uint GetPersonalNetID()
+    public void Setup(GameObject enemy)
     {
-        return netID;
-    }
+        // TODO: Add image of enemy from sprite in character base
 
-    public void Display()
-    {
-        wantedPos = mainCamera.WorldToScreenPoint(target.position);
-        gameObject.transform.position = wantedPos;
-        gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-    }
+        // Sets the name text to the enemy name
+        enemyName.text = enemy.GetComponent<EnemyInfo>().GetName();
 
-    public void Setup(Transform parent, Transform t, Transform enemy, EnemyInfo enemyInfo, Camera mainCam, uint netId)
-    {
-        transform.SetParent(parent.Find("UI"));
-        target = t;
-        SetHealthSource(enemy.gameObject);
-        healthBar.maxValue = enemyInfo.maxHealth;
-        this.netID = netId;
-        mainCamera = mainCam;
+        // Sets the level text to the enemy name
+        enemyLevelText.text = "Level: " + enemy.GetComponent<EnemyInfo>().GetEnemyLevel();
+
+        // Sets up which health source we want for the health bar
+        SetHealthSource(enemy);
+
+        // Updates the health.
+        SetHealth();
     }
 }

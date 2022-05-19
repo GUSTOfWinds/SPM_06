@@ -237,14 +237,6 @@ public class EnemyMovement : NetworkBehaviour
                     }
                 }
 
-                //if ((!isChasing) && (!isAttacking))
-                //{
-
-                //    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
-                //    ChangeFacingDirection(movingDirection);
-                //}
-
-
                 //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen samt HP
                 CmdSetSynchedPosition(transform.position);
                 CmdSetSynchedRotation(transform.rotation);

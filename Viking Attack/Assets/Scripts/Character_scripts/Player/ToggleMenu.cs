@@ -13,12 +13,14 @@ public class ToggleMenu : NetworkBehaviour
      */
     private GameObject[] players;
 
+    public bool canBeOpened;
     private GameObject[] healthBars;
     private List<GameObject> inactiveBars;
     private bool isOpen;
 
     private void Awake()
     {
+        canBeOpened = true;
         inactiveBars = new List<GameObject>();
     }
 
@@ -30,22 +32,54 @@ public class ToggleMenu : NetworkBehaviour
         {
             if (!isOpen)
             {
-                isOpen = true;
-                // // Finds and sets all healthbars to inactive while being paused
-                healthBars = GameObject.FindGameObjectsWithTag("EnemyHealthBar");
-                foreach (var healthBar in healthBars)
+                if (canBeOpened)
                 {
-                    inactiveBars.Add(healthBar);
-                    healthBar.SetActive(false);
-                }
+                    isOpen = true;
+                    // // Finds and sets all healthbars to inactive while being paused
+                    healthBars = GameObject.FindGameObjectsWithTag("EnemyHealthBar");
+                    foreach (var healthBar in healthBars)
+                    {
+                        inactiveBars.Add(healthBar);
+                        healthBar.SetActive(false);
+                    }
 
-                players = GameObject.FindGameObjectsWithTag("Player");
-                foreach (var player in players)
-                {
-                    RpcOpenMenu(player);
+                    players = GameObject.FindGameObjectsWithTag("Player");
+                    foreach (var player in players)
+                    {
+                        RpcOpenMenu(player);
+                    }
                 }
             }
             else
+            {
+                if (canBeOpened)
+                {
+                    isOpen = false;
+                    // Finds and sets all healthbars to active when unpaused
+                    for (int i = 0; i < inactiveBars.Count; i++)
+                    {
+                        inactiveBars[i].SetActive(true);
+                        inactiveBars.Remove(inactiveBars[i]);
+                    }
+
+                    players = GameObject.FindGameObjectsWithTag("Player");
+                    foreach (var player in players)
+                    {
+                        RpcCloseMenu(player);
+                    }
+                }
+            }
+        }
+    }
+
+    // Called upon from either host or client, client will however not be able to 
+    // unpause the game
+    public void CloseScreen()
+    {
+        if (canBeOpened)
+        {
+            isOpen = false;
+            if (isServer)
             {
                 isOpen = false;
                 // Finds and sets all healthbars to active when unpaused
@@ -60,29 +94,6 @@ public class ToggleMenu : NetworkBehaviour
                 {
                     RpcCloseMenu(player);
                 }
-            }
-        }
-    }
-
-    // Called upon from either host or client, client will however not be able to 
-    // unpause the game
-    public void CloseScreen()
-    {
-        isOpen = false;
-        if (isServer)
-        {
-            isOpen = false;
-            // Finds and sets all healthbars to active when unpaused
-            for (int i = 0; i < inactiveBars.Count; i++)
-            {
-                inactiveBars[i].SetActive(true);
-                inactiveBars.Remove(inactiveBars[i]);
-            }
-
-            players = GameObject.FindGameObjectsWithTag("Player");
-            foreach (var player in players)
-            {
-                RpcCloseMenu(player);
             }
         }
     }

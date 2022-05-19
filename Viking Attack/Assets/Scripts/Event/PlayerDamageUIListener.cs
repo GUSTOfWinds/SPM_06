@@ -21,12 +21,12 @@ public class PlayerDamageUIListener : NetworkBehaviour
     private void Start()
     {
         netID = gameObject.GetComponent<NetworkIdentity>().netId;
-        EventSystem.Current.RegisterListener<DamageEventInfo>(OnPlayerDamage,
+        EventSystem.Current.RegisterListener<PlayerDamageEventInfo>(OnPlayerDamage,
             ref uiEventGuid); // registers the listener
     }
 
     // Will play an animation on the client being hit.
-    void OnPlayerDamage(DamageEventInfo eventInfo)
+    void OnPlayerDamage(PlayerDamageEventInfo eventInfo)
     {
         if (isServer)
         {
@@ -46,7 +46,7 @@ public class PlayerDamageUIListener : NetworkBehaviour
     }
 
     [ClientRpc]
-    void RpcOnPlayerDamage(DamageEventInfo eventInfo)
+    void RpcOnPlayerDamage(PlayerDamageEventInfo eventInfo)
     {
         if (isServer)
         {

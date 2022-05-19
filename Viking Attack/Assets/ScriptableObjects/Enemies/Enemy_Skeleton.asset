@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee65ab6ad77e415aaba0db687d6bece9, type: 3}
   m_Name: Enemy_Skeleton
   m_EditorClassIdentifier: 
-  type: 1
+  type: 0
   soName: 
   description: Bones
-  range: 4
+  range: 3.5
   attackCooldown: 1.5
   damage: 20
-  chasingSpeedMultiplier: 1.5
-  moveSpeed: 3.5
+  chasingSpeedMultiplier: 3
+  moveSpeed: 12
   maxHealth: 50
   experienceRadius: 20
   experience: 20

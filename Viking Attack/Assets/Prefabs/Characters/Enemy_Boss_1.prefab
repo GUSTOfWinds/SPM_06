@@ -569,6 +569,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   currentHealth: 100
+  maxHealth: 0
+  hitMaterial: {fileID: 0}
 --- !u!114 &3440420057622895963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,7 +658,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

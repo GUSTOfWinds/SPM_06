@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using ItemNamespace;
 using UnityEngine;
 using Mirror;
@@ -86,7 +87,8 @@ namespace Event
                                 enemyInfo.GetDrop(),
                                 new Vector3(unitDeathEventInfo.EventUnitGo.transform.position.x,
                                     unitDeathEventInfo.EventUnitGo.transform.position.y + 1,
-                                    unitDeathEventInfo.EventUnitGo.transform.position.z), new Quaternion(0, 0, 0, 0));
+                                    unitDeathEventInfo.EventUnitGo.transform.position.z),
+                                new Quaternion(0, 0, 0, 0));
                             NetworkServer.Spawn(drop);
                         }
                     }

@@ -9,7 +9,9 @@ public class PlayerDamageSoundListener : NetworkBehaviour
     /**
      * @author Martin Kings
      */
-    [SerializeField] private AudioClip[] sounds; // Contains all sounds that can be played
+    [SerializeField] private AudioClip[] damageSounds; // Contains all sounds that can be played
+
+    [SerializeField] private AudioClip deathSound;
 
     [SerializeField]
     private AudioClip lastAudioClip; // last audioclip that was player, used to not play same audio twice
@@ -23,14 +25,14 @@ public class PlayerDamageSoundListener : NetworkBehaviour
 
     private void Start()
     {
-        lastAudioClip = sounds[0];
+        lastAudioClip = damageSounds[0];
         netID = gameObject.GetComponent<NetworkIdentity>().netId; // sets the netid 
-        EventSystem.Current.RegisterListener<DamageEventInfo>(OnPlayerDamage,
+        EventSystem.Current.RegisterListener<PlayerDamageEventInfo>(OnPlayerDamage,
             ref SoundEventGuid); // registers the listener
     }
 
     // Will play a random track from the array above when the local player takes damage
-    void OnPlayerDamage(DamageEventInfo eventInfo)
+    void OnPlayerDamage(PlayerDamageEventInfo eventInfo)
     {
         if (isServer)
         {
@@ -38,15 +40,20 @@ public class PlayerDamageSoundListener : NetworkBehaviour
             {
                 do
                 {
-                    audioSource.clip = sounds[Random.Range(0, sounds.Length)];
+                    if (eventInfo.target.GetComponent<GlobalPlayerInfo>().GetHealth() <= 0)
+                    {
+                        audioSource.clip = deathSound;
+                        audioSource.Play();
+                        break;
+                    }
+                    
+                    audioSource.clip = damageSounds[Random.Range(0, damageSounds.Length)];
                 } while (audioSource.clip == lastAudioClip || audioSource.clip == null);
 
                 if (audioSource.gameObject.active && audioSource.isPlaying == false)
                 {
                     audioSource.Play();
                 }
-
-
                 lastAudioClip = audioSource.clip;
                 RpcPlayTakingDamage(eventInfo);
             }
@@ -54,20 +61,28 @@ public class PlayerDamageSoundListener : NetworkBehaviour
     }
 
     [ClientRpc]
-    void RpcPlayTakingDamage(DamageEventInfo damageEventInfo)
+    void RpcPlayTakingDamage(PlayerDamageEventInfo playerDamageEventInfo)
     {
         if (isServer) return;
-        if (damageEventInfo.target.GetComponent<NetworkIdentity>().netId == netID)
+        if (playerDamageEventInfo.target.GetComponent<NetworkIdentity>().netId == netID)
         {
             do
             {
-                audioSource.clip = sounds[Random.Range(0, sounds.Length)];
+                if (playerDamageEventInfo.target.GetComponent<GlobalPlayerInfo>().GetHealth() <= 0)
+                {
+                    audioSource.clip = deathSound;
+                    audioSource.Play();
+                    break;
+                }
+
+                audioSource.clip = damageSounds[Random.Range(0, damageSounds.Length)];
             } while (audioSource.clip == lastAudioClip || audioSource.clip == null);
 
             if (audioSource.gameObject.active && audioSource.isPlaying == false)
             {
                 audioSource.Play();
             }
+
             lastAudioClip = audioSource.clip;
         }
     }

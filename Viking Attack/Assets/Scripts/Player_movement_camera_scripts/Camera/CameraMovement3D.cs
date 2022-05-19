@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Mirror;
@@ -9,11 +10,13 @@ public class CameraMovement3D : NetworkBehaviour
     [SerializeField] private GameObject firstPersonPosition;
     [SerializeField] float mouseSensitivity = 1;
     [SerializeField] private bool lockMouse;
+    [SerializeField] private Canvas canvas;
     private float rotationX;
     private float rotationY;
     private Vector3 cameraPosition;
     private Camera mainCamera;
     public bool shouldBeLocked; // used by the character screen to lock the mouse movement when character screen is open
+    
 
 
     void Awake()
@@ -30,10 +33,13 @@ public class CameraMovement3D : NetworkBehaviour
             mainCamera.transform.SetParent(transform);
             mainCamera.transform.position = firstPersonPosition.transform.position;
         }
+    }
 
-        if (isLocalPlayer)
+    private void Start()
+    {
+        if (!isLocalPlayer)
         {
-            gameObject.transform.Find("UI").GetComponent<Canvas>().enabled = true;
+            canvas.enabled = false;
         }
     }
 

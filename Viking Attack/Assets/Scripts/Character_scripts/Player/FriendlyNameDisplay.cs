@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,22 +9,23 @@ public class FriendlyNameDisplay : MonoBehaviour
      * @author Martin Kings
      */
     [SerializeField] private Transform target;
-    [SerializeField] public Text text;
+    [SerializeField] public TMP_Text text;
     [SerializeField] private GameObject nameSource;
     [SerializeField] private uint netIDOfSpottedPlayer;
     [SerializeField] private Camera mainCamera;
+    private Vector3 wantedPos;
 
     public void Update()
     {
         Display();
     }
 
-    public void Display()
+    private void Display()
     {
         if (mainCamera == null)
             return;
 
-        var wantedPos = mainCamera.WorldToScreenPoint(target.position);
+        wantedPos = mainCamera.WorldToScreenPoint(target.position);
         gameObject.transform.position = wantedPos;
         gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
     }

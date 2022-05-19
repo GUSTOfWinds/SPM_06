@@ -69,7 +69,7 @@ public class MyRigidbody3D : NetworkBehaviour
 
     //Kommandlinjer f�r att be servern om uppdateringar p� rotation och position
     [Command]
-    void CmdSetSynchedPosition(Vector3 position) => syncPosition = position;
+    public void CmdSetSynchedPosition(Vector3 position) => syncPosition = position;
     [Command]
     void CmdSetSynchedRotation(Quaternion rotation) => syncRotation = rotation;
 
