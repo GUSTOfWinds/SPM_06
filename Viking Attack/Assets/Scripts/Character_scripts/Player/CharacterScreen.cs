@@ -43,10 +43,15 @@ public class CharacterScreen : MonoBehaviour
     {
         if (globalPlayerInfo.GetStatPoints() < 1)
         {
-            otherAnimator.SetBool("pointsavailable", false);
+           
             return;
         }
+        if (globalPlayerInfo.GetStatPoints() == 1)
+        {
+            otherAnimator.SetBool("pointsavailable", false);
             
+        }
+
         animator.SetTrigger("incDMG");
         globalPlayerInfo.IncreaseDamageStatPoints();
         damageStatPoints.text = globalPlayerInfo.GetDamage().ToString() + "%";
@@ -58,10 +63,15 @@ public class CharacterScreen : MonoBehaviour
     {
         if (globalPlayerInfo.GetStatPoints() < 1)
         {
-            otherAnimator.SetBool("pointsavailable", false); 
+             
             return;
         }
-            
+        if (globalPlayerInfo.GetStatPoints() == 1)
+        {
+            otherAnimator.SetBool("pointsavailable", false);
+
+        }
+
         animator.SetTrigger("incHP");
         globalPlayerInfo.IncreaseHealthStatPoints();
         healthStatPoints.text = globalPlayerInfo.GetMaxHealth().ToString();
@@ -73,11 +83,16 @@ public class CharacterScreen : MonoBehaviour
     {
         if (globalPlayerInfo.GetStatPoints() < 1)
         {
-            otherAnimator.SetBool("pointsavailable", false); 
+            
             return;
 
         }
-            
+        if (globalPlayerInfo.GetStatPoints() == 1)
+        {
+            otherAnimator.SetBool("pointsavailable", false);
+
+        }
+
         animator.SetTrigger("incSTAM");
         globalPlayerInfo.IncreaseStaminaStatPoints();
         staminaStatPoints.text = globalPlayerInfo.GetMaxStamina().ToString();
