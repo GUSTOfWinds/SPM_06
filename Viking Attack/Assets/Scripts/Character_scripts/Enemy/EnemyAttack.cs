@@ -7,13 +7,13 @@ using UnityEngine;
 
 namespace ItemNamespace
 {
-
     public class EnemyAttack : NetworkBehaviour
     {
         /**
          * @author Martin Kings
          */
         [SerializeField] private Animator animator;
+
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip[] enemySounds;
         [SerializeField] private float range; // The range of the enemy attacks
@@ -23,7 +23,6 @@ namespace ItemNamespace
         [SerializeField] private GameObject player;
         [SerializeField] private GlobalPlayerInfo globalPlayerInfo;
         private Vector3 playerLocation; // location used to see if the player has gotten away far enough to not be hit
-
 
         private float
             playerUpdatedDistance; // location used to see if the player has gotten away far enough to not be hit
@@ -146,7 +145,6 @@ namespace ItemNamespace
             ResetCoolDown(); // resets cooldown of the attack
 
 
-            
             yield return new WaitForSeconds(1f); // the time it takes from start of the enemy attack animation
             // to the time of impact, for smooth timing reasons
             // plays the sound of the skeleton swinging its sword
@@ -218,11 +216,11 @@ namespace ItemNamespace
             {
                 // Armor here removes a portion of the damage 
                 int tempDamage = damage - globalPlayerInfo.GetArmorLevel();
-                
+
                 globalPlayerInfo.UpdateHealth(-tempDamage); // damages the player in question
 
                 // Creates an event used to play a sound and display the damage in the player UI
-                EventInfo playerDamageEventInfo = new DamageEventInfo
+                EventInfo playerDamageEventInfo = new PlayerDamageEventInfo
                 {
                     EventUnitGo = gameObject,
                     target = player

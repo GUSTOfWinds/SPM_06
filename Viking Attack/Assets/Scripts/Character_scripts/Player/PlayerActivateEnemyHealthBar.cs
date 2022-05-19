@@ -7,48 +7,65 @@ using UnityEngine;
 
 namespace ItemNamespace
 {
-
     public class PlayerActivateEnemyHealthBar : NetworkBehaviour
     {
         /**
          * @author Martin Kings
          */
-        
-        // The layermask of the enemies
-        [SerializeField] private LayerMask layerMask;
+        private Guid hitEventGuid;
 
-        // the prefab of the enemy health bar to create.
-        [SerializeField] private GameObject enemyHealthPrefab;
+        private Guid deathEventGuid;
 
-        // the hits detected by the spherecast
-        private RaycastHit[] hits;
+        private Guid playerDeathEventGuid;
 
-        // The netIDs of all enemies spotted in each frame
-        private List<uint> instancesOfEnemiesSpotted;
+        [SerializeField] private GameObject healthBarInHierarchy;
 
-        private List<uint> idsSpottedThisFrame;
+        private EnemyHealthBar enemyHealthBar;
 
-        // All Enemy health bars that exist and belong to an enemy
-        private List<GameObject> instancesOfEnemyHealthBars;
+        private uint netIdOfLastHit;
 
-        private GameObject newHealthBarGo;
+        private uint netIdOfNewHit;
 
-        private Camera mainCamera;
+        private uint playerThatHit;
 
-
-        private void Awake()
-        {
-            idsSpottedThisFrame = new List<uint>();
-            instancesOfEnemiesSpotted = new List<uint>();
-            instancesOfEnemyHealthBars = new List<GameObject>();
-            mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
-        }
+        private uint netIdOfDeadEnemy;
 
         private void Start()
         {
+            netIdOfLastHit = 0;
+            enemyHealthBar = healthBarInHierarchy.GetComponent<EnemyHealthBar>();
+            EventSystem.Current.RegisterListener<EnemyHitEvent>(SetupHealthBar, ref hitEventGuid);
+            EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnEnemyDeath, ref deathEventGuid);
+            EventSystem.Current.RegisterListener<PlayerDeathEventInfo>(OnPlayerDeath, ref playerDeathEventGuid);
+
             if (isLocalPlayer)
             {
                 StartCoroutine(DelayedEnemyScale());
+            }
+        }
+
+        void OnPlayerDeath(PlayerDeathEventInfo playerDeathEventInfo)
+        {
+            uint netIdOfDeadPlayer = playerDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
+            if (netIdOfDeadPlayer == gameObject.GetComponent<NetworkIdentity>().netId)
+            {
+                healthBarInHierarchy.SetActive(false);
+                netIdOfLastHit = 0;
+            }
+            RpcOnPlayerDeath(netIdOfDeadPlayer);
+        }
+
+        void RpcOnPlayerDeath(uint nId)
+        {
+            if (!isClientOnly)
+            {
+                return;
+            }
+            
+            if (nId == gameObject.GetComponent<NetworkIdentity>().netId)
+            {
+                healthBarInHierarchy.SetActive(false);
+                netIdOfLastHit = 0;
             }
         }
 
@@ -62,60 +79,152 @@ namespace ItemNamespace
             EventSystem.Current.FireEvent(playerConnectEventInfo);
         }
 
-        void FixedUpdate()
+        // Will pick up any enemy death event on the server, if the killed enemy was the enemy hit last, the 
+        // health bar will be reset and shut down.
+        private void OnEnemyDeath(UnitDeathEventInfo unitDeathEventInfo)
         {
-            if (!isLocalPlayer) return;
-            // All enemies detected by the SphereCast
-            hits = Physics.SphereCastAll(mainCamera.transform.position, 3,
-                mainCamera.transform.forward, 10, layerMask);
-
-            // Instantiates an health bar for each enemy in sight if one is missing
-            foreach (var hit in hits)
+            netIdOfDeadEnemy = unitDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
+            if (netIdOfDeadEnemy == netIdOfLastHit)
             {
-                idsSpottedThisFrame.Add(hit.transform.GetComponent<NetworkIdentity>().netId);
-                // if the enemy wasn't spotted in the previous frame, will simply update previousHits and move to the next frame
-                if (instancesOfEnemiesSpotted.Contains(hit.transform.gameObject.GetComponent<NetworkIdentity>()
-                        .netId) == false)
-                {
-                    newHealthBarGo = SetupHealthBar(hit);
-                    instancesOfEnemyHealthBars.Add(newHealthBarGo);
-
-                    // Adds to all enemy instances (saves the instanceID)
-                    instancesOfEnemiesSpotted.Add(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
-                }
+                healthBarInHierarchy.SetActive(false);
+                netIdOfLastHit = 0;
             }
 
-            // Loops through and destroys the healthbars that aren't visible in this frame
-            for (int i = 0; i < instancesOfEnemyHealthBars.Count; i++)
+            RpcOnEnemyDeath(netIdOfDeadEnemy);
+        }
+
+        // Will be called on the client if an enemy dies, if the killed enemy was the last hit enemy, the 
+        // health bar will be reset.
+        [ClientRpc]
+        void RpcOnEnemyDeath(uint netId)
+        {
+            if (!isClientOnly)
             {
-                // Checks if the enemy IDS that were spotted this frame exist in all instancesOfenemyHealthbars.
-                if (idsSpottedThisFrame.Contains(instancesOfEnemyHealthBars[i].GetComponent<EnemyHealthBar>()
-                        .GetPersonalNetID()) == false)
-                {
-                    instancesOfEnemiesSpotted.Remove(instancesOfEnemyHealthBars[i].GetComponent<EnemyHealthBar>()
-                        .GetPersonalNetID());
-                    Destroy(instancesOfEnemyHealthBars[i]);
-                    instancesOfEnemyHealthBars.Remove(instancesOfEnemyHealthBars[i]);
-                }
+                return;
             }
 
-            idsSpottedThisFrame.Clear();
+            if (netId == netIdOfLastHit)
+            {
+                healthBarInHierarchy.SetActive(false);
+                netIdOfLastHit = 0;
+            }
         }
 
 
         // Sets up the health bar instance and assigns proper values
-        GameObject SetupHealthBar(RaycastHit hit)
+        private void SetupHealthBar(EnemyHitEvent hit)
         {
-            var enemy = hit.collider.transform;
-            var uiTargetToFollow = enemy.Find("Overhead").gameObject.transform; // sets the target location
-            var go = Instantiate(enemyHealthPrefab,
-                gameObject.transform); // creates the health bar instance
+            playerThatHit = hit.playerNetId;
+            netIdOfNewHit = hit.EventUnitGo.GetComponent<NetworkIdentity>().netId;
+            // Runs similar method on clients
+            RpcSetupHealthBar(playerThatHit, netIdOfNewHit, hit.EventUnitGo);
 
-            go.GetComponent<EnemyHealthBar>().Setup(gameObject.transform, uiTargetToFollow, enemy,
-                enemy.GetComponent<EnemyInfo>(), mainCamera
-                , enemy.GetComponent<NetworkIdentity>().netId);
+            // if the person attacking is the same person on the server
+            if (playerThatHit == gameObject.GetComponent<NetworkIdentity>().netId)
+            {
+                // If the first health bar hasn't been setup yet or has been reset
+                if (netIdOfLastHit == 0)
+                {
+                    if (healthBarInHierarchy.active == false)
+                    {
+                        healthBarInHierarchy.SetActive(true);
+                    }
+                    enemyHealthBar.Setup(hit.EventUnitGo);
+                    netIdOfLastHit = netIdOfNewHit;
+                    return;
+                }
+                // If the hit enemy is the same as the previously hit one
+                if (netIdOfLastHit == netIdOfNewHit)
+                {
+                    if (healthBarInHierarchy.active == false)
+                    {
+                        healthBarInHierarchy.SetActive(true);
+                    }
+                    enemyHealthBar.SetHealth();
+                }
+                else
+                {
+                    if (healthBarInHierarchy.active == false)
+                    {
+                        healthBarInHierarchy.SetActive(true);
+                    }
+                    enemyHealthBar.Setup(hit.EventUnitGo);
+                    netIdOfLastHit = netIdOfNewHit;
+                }
+            }
+            else // if it wasn't the local player hitting it
+            {
+                if (netIdOfNewHit == netIdOfLastHit)
+                {
+                    if (healthBarInHierarchy.active == false)
+                    {
+                        healthBarInHierarchy.SetActive(true);
+                    }
+                    enemyHealthBar.SetHealth();
+                }
+            }
+        }
 
-            return go;
+        [ClientRpc]
+        void RpcSetupHealthBar(uint playerId, uint enemyId, GameObject go)
+        {
+            if (!isClientOnly)
+            {
+                return;
+            }
+
+            playerThatHit = playerId;
+            netIdOfNewHit = enemyId;
+            // if the person attacking is the same person on the server
+            if (playerThatHit == gameObject.GetComponent<NetworkIdentity>().netId)
+            {
+                healthBarInHierarchy.SetActive(true);
+                // If the first health bar hasn't been setup yet or has been reset
+                if (netIdOfLastHit == 0)
+                {
+                    if (healthBarInHierarchy.active == false)
+                    {
+                        healthBarInHierarchy.SetActive(true);
+                    }
+
+                    enemyHealthBar.Setup(go);
+                    netIdOfLastHit = netIdOfNewHit;
+                    return;
+                }
+
+                // If the hit enemy is the same as the previously hit one
+                if (netIdOfLastHit == netIdOfNewHit)
+                {
+                    if (healthBarInHierarchy.active == false)
+                    {
+                        healthBarInHierarchy.SetActive(true);
+                    }
+
+                    enemyHealthBar.SetHealth();
+                }
+                else
+                {
+                    if (healthBarInHierarchy.active == false)
+                    {
+                        healthBarInHierarchy.SetActive(true);
+                    }
+
+                    enemyHealthBar.Setup(go);
+                    netIdOfLastHit = netIdOfNewHit;
+                }
+            }
+            else // if it wasn't the local player hitting it
+            {
+                if (netIdOfNewHit == netIdOfLastHit)
+                {
+                    if (healthBarInHierarchy.active == false)
+                    {
+                        healthBarInHierarchy.SetActive(true);
+                    }
+
+                    enemyHealthBar.SetHealth();
+                }
+            }
         }
     }
 }
