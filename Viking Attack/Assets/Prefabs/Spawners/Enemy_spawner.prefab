@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7063391274927964655}
   - component: {fileID: 7063391274927964653}
-  - component: {fileID: 7063391274927964652}
+  - component: {fileID: 7063391274227806076}
   m_Layer: 0
   m_Name: Enemy_spawner
   m_TagString: Untagged
@@ -49,7 +49,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 94c9aa39d68a75643b980836180a0d44
   hasSpawned: 0
---- !u!114 &7063391274927964652
+--- !u!114 &7063391274227806076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,10 +58,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7063391274927964654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 0}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0

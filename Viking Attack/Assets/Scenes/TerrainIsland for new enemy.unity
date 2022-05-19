@@ -128,72 +128,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7082877506820833593, guid: d4d199697214adf4e865da5512f3ce66, type: 3}
   m_PrefabInstance: {fileID: 7082877506797272378}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &63614048
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 63614049}
-  - component: {fileID: 63614051}
-  - component: {fileID: 63614050}
-  m_Layer: 0
-  m_Name: Boss_spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &63614049
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63614048}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 215.35, y: 9.33, z: -310.86}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2045507402}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &63614050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63614048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 0}
-  isBoss: 0
-  roaming: 0
---- !u!114 &63614051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63614048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 2861250027
-  serverOnly: 1
-  visible: 0
-  m_AssetId: 
-  hasSpawned: 0
 --- !u!1001 &64287570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -470,7 +404,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &93606866
 MonoBehaviour:
@@ -536,7 +470,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 37
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &104889766
 MonoBehaviour:
@@ -554,7 +488,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &104889767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,7 +602,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &172741933
 MonoBehaviour:
@@ -686,7 +620,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &172741934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,7 +815,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &205045415
 MonoBehaviour:
@@ -1033,7 +967,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 36
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &208995523
 MonoBehaviour:
@@ -1051,7 +985,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &208995524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,7 +1099,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 29
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &251482111
 MonoBehaviour:
@@ -1183,7 +1117,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &251482112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1318,7 +1252,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &376557316
 MonoBehaviour:
@@ -1336,7 +1270,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &376557317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1449,7 +1383,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &405789420
 MonoBehaviour:
@@ -1668,7 +1602,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 31
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &561468034
 MonoBehaviour:
@@ -1686,7 +1620,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &561468035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1876,7 +1810,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 38
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &634655160
 MonoBehaviour:
@@ -1894,7 +1828,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &634655161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2110,7 +2044,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &674882960
 MonoBehaviour:
@@ -2128,7 +2062,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &674882961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2176,7 +2110,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &679929080
 MonoBehaviour:
@@ -2194,7 +2128,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &679929081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2743,7 +2677,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 32
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &959914754
 MonoBehaviour:
@@ -2761,7 +2695,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &959914755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2955,7 +2889,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &977054918
 MonoBehaviour:
@@ -3566,7 +3500,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &1134877319
 MonoBehaviour:
@@ -3584,7 +3518,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &1134877320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3993,7 +3927,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 35
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1185632887
 MonoBehaviour:
@@ -4011,7 +3945,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &1185632888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4223,7 +4157,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1272036816
 MonoBehaviour:
@@ -4241,7 +4175,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &1272036817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4543,7 +4477,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1364967454
 MonoBehaviour:
@@ -4609,7 +4543,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1374278201
 MonoBehaviour:
@@ -5274,7 +5208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4616224863939141910, guid: 6f521b700c6739a45a2b595a7c5c6c90, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4616224863939141917, guid: 6f521b700c6739a45a2b595a7c5c6c90, type: 3}
       propertyPath: m_RootOrder
@@ -5352,7 +5286,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 34
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &1657960954
 MonoBehaviour:
@@ -5697,7 +5631,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1751844130
 MonoBehaviour:
@@ -6686,7 +6620,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 30
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &1885430361
 MonoBehaviour:
@@ -6704,7 +6638,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &1885430362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6905,7 +6839,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 28
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &1983620094
 MonoBehaviour:
@@ -6923,7 +6857,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &1983620095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7133,7 +7067,6 @@ Transform:
   - {fileID: 1633310412}
   - {fileID: 570852487}
   - {fileID: 710798997}
-  - {fileID: 63614049}
   - {fileID: 2108654662}
   - {fileID: 1374278200}
   - {fileID: 1751844129}
@@ -7193,7 +7126,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 33
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
 --- !u!114 &2072527143
 MonoBehaviour:
@@ -7211,7 +7144,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
-  roaming: 0
+  roaming: 1
 --- !u!114 &2072527144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7398,7 +7331,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2108654663
 MonoBehaviour:
@@ -7611,7 +7544,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2145063009
 MonoBehaviour:
@@ -8452,10 +8385,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2045507402}
     m_Modifications:
-    - target: {fileID: 7063391274927964652, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
-      propertyPath: enemyPrefabToSpawn
-      value: 
-      objectReference: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
     - target: {fileID: 7063391274927964653, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
       propertyPath: sceneId
       value: 805634729
@@ -8508,31 +8437,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7063391274927964652, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
---- !u!1 &7063391274227806075 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7063391274927964654, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
-  m_PrefabInstance: {fileID: 7063391274227806074}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7063391274227806076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7063391274227806075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
-  isBoss: 0
-  roaming: 0
 --- !u!1001 &7082877506797272378
 PrefabInstance:
   m_ObjectHideFlags: 0

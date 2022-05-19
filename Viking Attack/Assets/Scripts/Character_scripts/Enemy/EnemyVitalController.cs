@@ -124,7 +124,7 @@ public class EnemyVitalController : NetworkBehaviour
                 }
 
                 if (gameObject.GetComponent<EnemyAIScript>() != null)
-                    gameObject.GetComponent<EnemyAIScript>().BeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
+                    gameObject.GetComponent<EnemyAIScript>().RpcBeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
                 this.OnDeath?.Invoke(this);
                 Die();
             }
@@ -162,7 +162,7 @@ public class EnemyVitalController : NetworkBehaviour
                 }
 
                 if (gameObject.GetComponent<EnemyAIScript>() != null)
-                    gameObject.GetComponent<EnemyAIScript>().BeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
+                    gameObject.GetComponent<EnemyAIScript>().RpcBeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
                 this.OnDeath?.Invoke(this);
                 Die();
             }

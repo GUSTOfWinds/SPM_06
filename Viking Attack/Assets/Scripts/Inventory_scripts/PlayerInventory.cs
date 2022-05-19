@@ -175,6 +175,7 @@ namespace Inventory_scripts
         // if the sword has been picked up
         public void ToggleSword(InputAction.CallbackContext value)
         {
+            //Debug.Log("Jag ska köras på en av maskinerna");
             if (value.started)
             {
                 if (playerItemUsageController.itemBase == inventory[0])
@@ -203,13 +204,13 @@ namespace Inventory_scripts
                             }
                 
                             break;
-                        case "ItemMeatBehaviour":
-                            if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
-                            {
-                                return;
-                            }
-                
-                            break;
+                        // case "ItemMeatBehaviour":
+                        //     if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
+                        //     {
+                        //         return;
+                        //     }
+                        //
+                        //     break;
                     }
                 }
 
@@ -275,13 +276,13 @@ namespace Inventory_scripts
                             }
                 
                             break;
-                        case "ItemMeatBehaviour":
-                            if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
-                            {
-                                return;
-                            }
-                
-                            break;
+                        // case "ItemMeatBehaviour":
+                        //     // if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
+                        //     // {
+                        //     //     return;
+                        //     // }
+                        //
+                        //     break;
                     }
                 }
 
@@ -297,10 +298,13 @@ namespace Inventory_scripts
                     {
                         RpcUpdateWeapon(1, gameObject);
                     }
-                    gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[1]);
-                    selectedItem.transform.position = sprites[1].transform.position + new Vector3(0f, 10f, 0f);
-                    UpdateItemInfo(1); // updates the weapon info box with spear information
-                    animator.SetTrigger("itemPOPUP");
+                    if (isLocalPlayer)
+                    {
+                        gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[1]);
+                        selectedItem.transform.position = sprites[1].transform.position + new Vector3(0f, 10f, 0f);
+                        UpdateItemInfo(1); // updates the weapon info box with sword information
+                        animator.SetTrigger("itemPOPUP");
+                    }
                 }
             }
         }
@@ -337,13 +341,13 @@ namespace Inventory_scripts
                             }
                 
                             break;
-                        case "ItemMeatBehaviour":
-                            if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
-                            {
-                                return;
-                            }
-                
-                            break;
+                        // case "ItemMeatBehaviour":
+                        //     if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
+                        //     {
+                        //         return;
+                        //     }
+                        //
+                        //     break;
                     }
                 }
 
@@ -360,10 +364,13 @@ namespace Inventory_scripts
                         RpcUpdateWeapon(2, gameObject);
                     }
 
-                    gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[2]);
-                    selectedItem.transform.position = sprites[2].transform.position + new Vector3(0f, 10f, 0f);
-                    UpdateItemInfo(2); // updates the weapon info box with dagger information
-                    animator.SetTrigger("itemPOPUP");
+                    if (isLocalPlayer)
+                    {
+                        gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[2]);
+                        selectedItem.transform.position = sprites[2].transform.position + new Vector3(0f, 10f, 0f);
+                        UpdateItemInfo(2); // updates the weapon info box with sword information
+                        animator.SetTrigger("itemPOPUP");
+                    }
                 }
             }
         }
@@ -421,8 +428,11 @@ namespace Inventory_scripts
                     RpcUpdateWeapon(3, gameObject);
                 }
 
-                gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[3]);
-                selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f, 10f, 0f);
+                if (isLocalPlayer)
+                {
+                    gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[3]);
+                    selectedItem.transform.position = sprites[3].transform.position + new Vector3(0f, 10f, 0f);
+                }
             }
         }
 
