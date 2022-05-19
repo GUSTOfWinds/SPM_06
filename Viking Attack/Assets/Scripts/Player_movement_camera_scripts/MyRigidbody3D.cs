@@ -49,7 +49,9 @@ public class MyRigidbody3D : NetworkBehaviour
         velocity += Vector3.down * gravity;
 
         //Add air resistance
-        velocity *= Mathf.Pow(airResistance, Time.deltaTime);
+        velocity.x *= Mathf.Pow(airResistance, Time.deltaTime);
+        velocity.z *= Mathf.Pow(airResistance, Time.deltaTime);
+
 
         //Updates capsule (Collider hitbox) circle component position.
         point1 = gameObject.transform.position + capsuleCollider.center + Vector3.up * (capsuleHeight / 2 - capsuleRadius);
