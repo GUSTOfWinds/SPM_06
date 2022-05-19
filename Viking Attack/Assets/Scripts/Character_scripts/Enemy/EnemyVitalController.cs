@@ -98,6 +98,7 @@ public class EnemyVitalController : NetworkBehaviour
 
             if (change < 0)
             {
+                StartCoroutine(BlinkOnHit());
                 EventInfo enemyTakesDamage = new EnemyHitEvent
                 {
                     EventUnitGo = gameObject,
@@ -108,7 +109,6 @@ public class EnemyVitalController : NetworkBehaviour
 
             if (currentHealth <= 0f)
             {
-                StartCoroutine(BlinkOnHit());
                 if (gameObject.GetComponent<EnemyAttack>() != null)
                 {
                     gameObject.GetComponent<EnemyAttack>().StopCoroutine("FinishAttack");
@@ -124,7 +124,7 @@ public class EnemyVitalController : NetworkBehaviour
                 }
 
                 if (gameObject.GetComponent<EnemyAIScript>() != null)
-                    gameObject.GetComponent<EnemyAIScript>().BeforeDying();
+                    gameObject.GetComponent<EnemyAIScript>().BeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
                 this.OnDeath?.Invoke(this);
                 Die();
             }
@@ -162,7 +162,7 @@ public class EnemyVitalController : NetworkBehaviour
                 }
 
                 if (gameObject.GetComponent<EnemyAIScript>() != null)
-                    gameObject.GetComponent<EnemyAIScript>().BeforeDying();
+                    gameObject.GetComponent<EnemyAIScript>().BeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
                 this.OnDeath?.Invoke(this);
                 Die();
             }

@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a97eecf9d0fd4b03bc3d576cbcfccea8, type: 3}
-  m_Name: Meat
+  m_Name: Armor_3
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemType: 2
   weaponType: 0
-  itemName: Meat
-  description: 
+  itemName: Armor
+  description: Level 3 armor
   damage: 0
   range: 0
   speed: 0
   stamina: 0
-  healAmount: 50
-  sprite: {fileID: 21300000, guid: bf46b4653f2bdb8419984216cc7e75b3, type: 3}
-  stackable: 1
-  mesh: {fileID: 3935490030133091849, guid: 3ec49952c9f066043ae6c20503d74fbb, type: 3}
-  material: {fileID: 2100000, guid: 66f65ef82fcb025418b7efa4d97acc4b, type: 2}
+  healAmount: 0
+  sprite: {fileID: 21300000, guid: 4ae2fa8d47b5b694587c9d12aaee69f0, type: 3}
+  stackable: 0
+  mesh: {fileID: -1345620894613911100, guid: 976baca203d8180499d45747c2391f04, type: 3}
+  material: {fileID: 2100000, guid: 235a62236d9555948ab1af68d8bf9a06, type: 2}
   usageParticle: 
-  itemBaseBehaviorScriptName: ItemMeatBehaviour
-  protection: 0
-  speedMultiplierWhenUsingItem: 1
+  itemBaseBehaviorScriptName: 
+  protection: 2
+  speedMultiplierWhenUsingItem: 0

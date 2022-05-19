@@ -105,14 +105,14 @@ namespace Inventory_scripts
 
                         if (sprites[4].active)
                         {
-                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel();
+                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
                         }
                         else
                         {
                             inventory[4] = playerItemPickupEventInfo.itemBase;
                             sprites[4].SetActive(true);
                             sprites[4].GetComponent<Image>().sprite = inventory[4].GetSprite;
-                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel();
+                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
                             gameObject.GetComponent<GlobalPlayerInfo>()
                                 .SetItemSlot(4, inventory[4]);
                         }

@@ -9,6 +9,9 @@ using UnityEngine.Rendering;
 
 public class RespawnPanelHandler : NetworkBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     private Guid playerDeathEventGuid;
     [SerializeField] private GameObject respawnPanel;
 
@@ -28,15 +31,22 @@ public class RespawnPanelHandler : NetworkBehaviour
         {
             if (playerDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId == netID)
             {
-                gameObject.GetComponent<ToggleCharacterScreen>().locked = true;
-                gameObject.GetComponent<PlayerScript3D>().enabled = false;
-                gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = false;
-                gameObject.GetComponent<ToggleMenu>().canBeOpened = false;
+                StartCoroutine(LockPlayer());
+
                 respawnPanel.SetActive(true);
             }
 
             RpcOnPlayerDeath(playerDeathEventInfo);
         }
+    }
+
+    IEnumerator LockPlayer()
+    {
+        yield return new WaitForSeconds(0.05f);
+        gameObject.GetComponent<ToggleCharacterScreen>().locked = true;
+        gameObject.GetComponent<PlayerScript3D>().enabled = false;
+        gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = false;
+        gameObject.GetComponent<ToggleMenu>().canBeOpened = false;
     }
 
     [ClientRpc]
@@ -46,10 +56,7 @@ public class RespawnPanelHandler : NetworkBehaviour
         {
             if (playerDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId == netID)
             {
-                gameObject.GetComponent<ToggleCharacterScreen>().locked = true;
-                gameObject.GetComponent<PlayerScript3D>().enabled = false;
-                gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = false;
-                gameObject.GetComponent<ToggleMenu>().canBeOpened = false;
+                StartCoroutine(LockPlayer());
                 respawnPanel.SetActive(true);
             }
         }

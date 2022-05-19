@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using Event;
 using ItemNamespace;
 using Mirror;
@@ -15,20 +16,20 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SerializeField] private Component staminaBar;
     [SerializeField] private Component experienceBar;
     [SyncVar] [SerializeField] private string playerName;
-    [SerializeField] private Color skinColor;
-    [SerializeField] private float health;
-    [SerializeField] private float maxHealth;
+    [SyncVar] [SerializeField] private Color skinColor;
+    [SyncVar] [SerializeField] private float health;
+    [SyncVar] [SerializeField] private float maxHealth;
     [SerializeField] private ItemBase[] items;
-    [SerializeField] private bool alive = true;
-    [SerializeField] private float stamina;
-    [SerializeField] private float maxStamina;
-    [SerializeField] private float experience;
-    [SerializeField] private int level;
-    [SerializeField] private float levelThreshold;
-    [SerializeField] private int availableStatpoints;
-    [SerializeField] private float damage;
-    [SerializeField] private int meatStackNumber;
-    [SerializeField] private int armorLevel;
+    [SyncVar] [SerializeField] private bool alive = true;
+    [SyncVar] [SerializeField] private float stamina;
+    [SyncVar] [SerializeField] private float maxStamina;
+    [SyncVar] [SerializeField] private float experience;
+    [SyncVar] [SerializeField] private int level;
+    [SyncVar] [SerializeField] private float levelThreshold;
+    [SyncVar] [SerializeField] private int availableStatpoints;
+    [SyncVar] [SerializeField] private float damage;
+    [SyncVar] [SerializeField] private int meatStackNumber;
+    [SyncVar] [SerializeField] private int armorLevel;
 
 
     private void Awake()
@@ -52,12 +53,11 @@ public class GlobalPlayerInfo : NetworkBehaviour
         playerName = PlayerPrefs.GetString("PlayerName");
         armorLevel = 0;
     }
-    
-    
 
-    public void IncreaseArmorLevel()
+
+    public void IncreaseArmorLevel(int increase)
     {
-        armorLevel++;
+        armorLevel += increase;
     }
 
     private void Start()
@@ -119,9 +119,16 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         if (health + difference <= maxHealth)
         {
-            health += difference;
+            if (health + difference < 0)
+            {
+                health = 0;
+            }
+            else
+            {
+                health += difference;
+            }
         }
-        else
+        else if (health + difference > maxHealth)
         {
             health = maxHealth;
         }
@@ -136,7 +143,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
                 EventUnitGo = gameObject
             };
             EventSystem.Current.FireEvent(playerDeathEvent);
-            
             gameObject.GetComponent<KillPlayer>().PlayerRespawn();
         }
     }
