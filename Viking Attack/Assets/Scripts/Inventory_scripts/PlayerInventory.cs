@@ -25,6 +25,7 @@ namespace Inventory_scripts
         [SerializeField] private GameObject[] weaponStats;
         [SerializeField] private PlayerItemUsageController playerItemUsageController;
         [SerializeField] private ItemBase wieldedItemBase;
+        [SerializeField]
 
         private Guid itemPickupGuid;
 
