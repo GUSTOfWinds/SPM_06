@@ -19,6 +19,8 @@ public class Triggertooltip : MonoBehaviour
 
     private Guid portalEventGuid;
 
+    [SerializeField] private bool isBridge;
+
 
     private void Start()
     {
@@ -36,6 +38,11 @@ public class Triggertooltip : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player") == false)
+        {
+            return;
+        }
+        
         if (bossIsDead == false)
         {
             textToDisplay = firstText;
@@ -45,8 +52,19 @@ public class Triggertooltip : MonoBehaviour
             textToDisplay = secondText;
         }
 
-        if (other.CompareTag("Player"))
+        if (isBridge == false)
         {
+            GameObject goalText = other.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject;
+            if (goalText.active == false)
+            {
+                goalText.SetActive(true);
+                goalText.GetComponent<GoalTextScript>().UpdateTextAndDisplay(textToDisplay[0], textToDisplay[1]);
+            }
+        }
+
+        if (isBridge && bossIsDead == false)
+        {
+            Debug.Log(" asd  ");
             GameObject goalText = other.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject;
             if (goalText.active == false)
             {
