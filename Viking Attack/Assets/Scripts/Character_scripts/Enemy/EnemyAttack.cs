@@ -5,7 +5,7 @@ using Event;
 using Mirror;
 using UnityEngine;
 
-namespace Character_scripts.Enemy
+namespace ItemNamespace
 {
     public class EnemyAttack : NetworkBehaviour
     {
