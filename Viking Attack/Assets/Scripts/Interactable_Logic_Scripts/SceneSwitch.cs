@@ -11,13 +11,11 @@ public class SceneSwitch : NetworkBehaviour
     /**
      * @author Martin Kings
      */
-    [SerializeField] public bool bossIsDead;
+    [SerializeField] private bool bossIsDead;
     private Guid portalEventGuid;
-
 
     private void Start()
     {
-        
         EventSystem.Current.RegisterListener<UnitDeathEventInfo>(SetBossLifeStatus, ref portalEventGuid);
     }
 
@@ -41,7 +39,6 @@ public class SceneSwitch : NetworkBehaviour
             if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetName() == "Boss")
             {
                 bossIsDead = true;
-                
             }
         }
     }
