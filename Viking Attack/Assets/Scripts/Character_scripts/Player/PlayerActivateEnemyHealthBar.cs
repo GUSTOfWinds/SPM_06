@@ -44,30 +44,18 @@ namespace ItemNamespace
             }
         }
 
+        // Runs on both client and host, no need to force it to run on client
         void OnPlayerDeath(PlayerDeathEventInfo playerDeathEventInfo)
         {
-            uint netIdOfDeadPlayer = playerDeathEventInfo.EventUnitGo.GetComponent<NetworkIdentity>().netId;
+            uint netIdOfDeadPlayer = playerDeathEventInfo.playerNetId;
             if (netIdOfDeadPlayer == gameObject.GetComponent<NetworkIdentity>().netId)
             {
                 healthBarInHierarchy.SetActive(false);
                 netIdOfLastHit = 0;
             }
-            RpcOnPlayerDeath(netIdOfDeadPlayer);
+            
         }
 
-        void RpcOnPlayerDeath(uint nId)
-        {
-            if (!isClientOnly)
-            {
-                return;
-            }
-            
-            if (nId == gameObject.GetComponent<NetworkIdentity>().netId)
-            {
-                healthBarInHierarchy.SetActive(false);
-                netIdOfLastHit = 0;
-            }
-        }
 
         IEnumerator DelayedEnemyScale()
         {
@@ -89,7 +77,7 @@ namespace ItemNamespace
                 healthBarInHierarchy.SetActive(false);
                 netIdOfLastHit = 0;
             }
-
+            
             RpcOnEnemyDeath(netIdOfDeadEnemy);
         }
 

@@ -198,6 +198,7 @@ namespace Main_menu_scripts.ForMP
         public override void OnServerSceneChanged(String sceneName)
         {
             //if (!sceneName.Contains("Scene_Map")) return;
+            if (sceneName.Contains("TerrainIsland2")) return;
             var playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
             NetworkServer.Spawn(playerSpawnSystemInstance);
             var spawner = playerSpawnSystemInstance.GetComponent<PlayerSpawnSystem>();

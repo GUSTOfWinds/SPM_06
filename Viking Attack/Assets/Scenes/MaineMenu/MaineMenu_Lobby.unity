@@ -7406,7 +7406,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1697433109, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: visRange
-      value: 250
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 2627643080200506126, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: m_Name
@@ -7414,7 +7414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: mapToLoad
-      value: TerrainIsland for new enemy
+      value: TerrainIsland
       objectReference: {fileID: 0}
     - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: landingPage
@@ -7434,7 +7434,7 @@ PrefabInstance:
       objectReference: {fileID: 6823922631683938355, guid: a32e9ea88c39cd841a6277c741ada4b9, type: 3}
     - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: spawnablePrefabs.Array.size
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: spawnablePrefabs.Array.data[11]
@@ -7456,6 +7456,10 @@ PrefabInstance:
       propertyPath: spawnablePrefabs.Array.data[15]
       value: 
       objectReference: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
+    - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
+      propertyPath: spawnablePrefabs.Array.data[16]
+      value: 
+      objectReference: {fileID: 1938624210312167496, guid: 614ed636095112e4bb63983f312a8ebe, type: 3}
     - target: {fileID: 8910869769638421570, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: m_RootOrder
       value: 1
