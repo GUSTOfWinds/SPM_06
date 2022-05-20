@@ -3,7 +3,7 @@ using ItemNamespace;
 using Mirror;
 using UnityEngine;
 
-namespace Character_scripts.Enemy
+namespace ItemNamespace
 {
     public class EnemyMovement : NetworkBehaviour
     {
