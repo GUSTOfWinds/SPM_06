@@ -4,6 +4,7 @@ using Event;
 using ItemNamespace;
 using Mirror;
 using UnityEngine;
+using UnityEngine.Networking.Types;
 
 
 public class GlobalPlayerInfo : NetworkBehaviour
@@ -141,7 +142,8 @@ public class GlobalPlayerInfo : NetworkBehaviour
             // RespawnPanelHandler
             EventInfo playerDeathEvent = new PlayerDeathEventInfo
             {
-                EventUnitGo = gameObject
+                EventUnitGo = gameObject,
+                playerNetId = gameObject.GetComponent<NetworkIdentity>().netId
             };
             EventSystem.Current.FireEvent(playerDeathEvent);
             gameObject.GetComponent<KillPlayer>().PlayerRespawn();
@@ -222,13 +224,14 @@ public class GlobalPlayerInfo : NetworkBehaviour
 
     public void IncreaseDamageStatPoints()
     {
-        damage += 6;
+        damage += 8;
         availableStatpoints--;
     }
 
     public void IncreaseHealthStatPoints()
     {
-        maxHealth += 10;
+        maxHealth += 15;
+        health += 15;
         availableStatpoints--;
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
     }
@@ -236,6 +239,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     public void IncreaseStaminaStatPoints()
     {
         maxStamina += 10;
+        float extraStaminaGain = 
         availableStatpoints--;
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
     }

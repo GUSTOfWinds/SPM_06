@@ -15,6 +15,11 @@ public class PlayerRunState : PlayerState
     private bool hasPassedSprintingCooldown;
     private float sprintingCooldown = 3;
 
+
+    public void ChangeStaminGain(float staminagainIncrease)
+    {
+        staminaGain += staminagainIncrease;
+    }
     public override void Exit()
     {
         
