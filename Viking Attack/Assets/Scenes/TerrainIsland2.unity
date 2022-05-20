@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 6bf9fd9ecf65c504a947bcecb28e3c34, type: 2}
 --- !u!1001 &33866734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -187,8 +187,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2903407794065380453, guid: b632d05765ce59040ab2b783b3fd8c49, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903407794065380453, guid: b632d05765ce59040ab2b783b3fd8c49, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b632d05765ce59040ab2b783b3fd8c49, type: 3}
@@ -252,13 +256,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 42982146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
+  roaming: 1
 --- !u!114 &42982149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,13 +365,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 113374711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &113374714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,8 +495,12 @@ PrefabInstance:
       value: VikingHouse (9)
       objectReference: {fileID: 0}
     - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 5693395419450245737, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_RootOrder
@@ -571,8 +581,12 @@ PrefabInstance:
       value: Gravestone (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -711,6 +725,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
 --- !u!1001 &204186691
@@ -792,6 +814,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
 --- !u!1 &215916663
@@ -835,13 +865,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 215916663}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &215916666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,8 +906,12 @@ PrefabInstance:
       value: Gravestone (11)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -1063,13 +1098,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 271423428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &271423431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1142,8 +1178,12 @@ PrefabInstance:
       value: VikingHouse (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 5693395419450245737, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_RootOrder
@@ -1249,13 +1289,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 286968692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &286968695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,13 +1355,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 300708276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &300708279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1379,13 +1421,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 319612106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &319612109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1444,13 +1487,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 339629424}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &339629427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1547,6 +1591,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
 --- !u!1 &364224022
@@ -1590,13 +1642,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 364224022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &364224025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1661,8 +1714,12 @@ PrefabInstance:
       value: VikingHouse (3)
       objectReference: {fileID: 0}
     - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 5693395419450245737, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_RootOrder
@@ -1904,13 +1961,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 501597943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &501597946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1940,8 +1998,12 @@ PrefabInstance:
       value: VikingHouse (8)
       objectReference: {fileID: 0}
     - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 5693395419450245737, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_RootOrder
@@ -2141,8 +2203,12 @@ PrefabInstance:
       value: Gravestone (10)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -2248,13 +2314,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 702469646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
+  roaming: 1
 --- !u!114 &702469649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2313,13 +2380,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 704838679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
+  roaming: 1
 --- !u!114 &704838682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2358,8 +2426,12 @@ PrefabInstance:
       value: Gravestone (13)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -2460,13 +2532,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 804550450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &804550453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2525,13 +2598,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 812625820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &812625823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2675,13 +2749,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 959759408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
+  roaming: 1
 --- !u!114 &959759411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2802,8 +2877,12 @@ PrefabInstance:
       value: VikingHouse (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 5693395419450245737, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_RootOrder
@@ -2884,8 +2963,12 @@ PrefabInstance:
       value: Gravestone (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -3001,13 +3084,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1124306007}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
+  roaming: 1
 --- !u!114 &1124306010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3080,6 +3164,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WB_Runestone (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7759507166295857100, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7759507166295857100, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
 --- !u!1001 &1142311194
@@ -3137,6 +3229,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WB_Runestone
       objectReference: {fileID: 0}
+    - target: {fileID: 7759507166295857100, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7759507166295857100, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
 --- !u!1001 &1244238282
@@ -3155,8 +3255,12 @@ PrefabInstance:
       value: Gravestone (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -3257,13 +3361,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1277791488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
+  roaming: 1
 --- !u!114 &1277791491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3322,13 +3427,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1307018033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &1307018036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3387,13 +3493,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1323856813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
+  roaming: 1
 --- !u!114 &1323856816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3452,13 +3559,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1326504818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
+  roaming: 1
 --- !u!114 &1326504821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3711,13 +3819,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1497510448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 1627232034024812431, guid: 1268ed0163b18974ea84e9d5aef06972, type: 3}
+  enemyPrefabToSpawn: {fileID: 1938624210312167496, guid: 614ed636095112e4bb63983f312a8ebe, type: 3}
   isBoss: 1
+  roaming: 0
 --- !u!114 &1497510451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3751,8 +3860,12 @@ PrefabInstance:
       value: Gravestone (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -3828,8 +3941,12 @@ PrefabInstance:
       value: Gravestone (8)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -3906,7 +4023,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!154 &1548413596
 TerrainCollider:
@@ -3994,8 +4111,12 @@ PrefabInstance:
       value: Gravestone (12)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -4234,6 +4355,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: GuardTower
       objectReference: {fileID: 0}
+    - target: {fileID: 4494147839548363334, guid: 84114aca77a56024aa0e821be9b5fde1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494147839548363334, guid: 84114aca77a56024aa0e821be9b5fde1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593203010897007522, guid: 84114aca77a56024aa0e821be9b5fde1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593203010897007522, guid: 84114aca77a56024aa0e821be9b5fde1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067162662703325177, guid: 84114aca77a56024aa0e821be9b5fde1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067162662703325177, guid: 84114aca77a56024aa0e821be9b5fde1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84114aca77a56024aa0e821be9b5fde1, type: 3}
 --- !u!1 &1746662336
@@ -4277,13 +4422,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1746662336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
+  roaming: 1
 --- !u!114 &1746662339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4342,13 +4488,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1753278568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
+  roaming: 1
 --- !u!114 &1753278571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4382,8 +4529,12 @@ PrefabInstance:
       value: Gravestone (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -4460,8 +4611,12 @@ PrefabInstance:
       value: VikingHouse
       objectReference: {fileID: 0}
     - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 5693395419450245737, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_RootOrder
@@ -4538,8 +4693,12 @@ PrefabInstance:
       value: VikingHouse (6)
       objectReference: {fileID: 0}
     - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 5693395419450245737, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_RootOrder
@@ -4645,13 +4804,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1832224155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &1832224158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4710,13 +4870,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1883792763}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
+  roaming: 1
 --- !u!114 &1883792766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4755,8 +4916,12 @@ PrefabInstance:
       value: Gravestone (9)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -4837,8 +5002,12 @@ PrefabInstance:
       value: Gravestone (5)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -4975,8 +5144,12 @@ PrefabInstance:
       value: Gravestone (7)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -5077,13 +5250,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2049725751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f3aebfc43ae4b408b00745396cf3aa, type: 3}
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
+  roaming: 0
 --- !u!114 &2049725754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5117,8 +5291,12 @@ PrefabInstance:
       value: Gravestone (14)
       objectReference: {fileID: 0}
     - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
       propertyPath: m_RootOrder
@@ -5234,8 +5412,12 @@ PrefabInstance:
       value: VikingHouse (5)
       objectReference: {fileID: 0}
     - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 5693395419450245737, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_RootOrder
@@ -5312,8 +5494,12 @@ PrefabInstance:
       value: VikingHouse (7)
       objectReference: {fileID: 0}
     - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 5693395419450245737, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_RootOrder
@@ -5390,8 +5576,12 @@ PrefabInstance:
       value: VikingHouse (4)
       objectReference: {fileID: 0}
     - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920411654457088211, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 5693395419450245737, guid: 29d43295278020f4d8637106f55799f1, type: 3}
       propertyPath: m_RootOrder
