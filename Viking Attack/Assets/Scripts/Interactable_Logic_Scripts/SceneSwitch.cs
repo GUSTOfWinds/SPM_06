@@ -1,40 +1,47 @@
 using System;
-using Character_scripts.Enemy;
 using Event;
+using ItemNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mirror;
 
-namespace Interactable_Logic_Scripts
+
+public class SceneSwitch : NetworkBehaviour
 {
-    public class SceneSwitch : MonoBehaviour
-    {
-        /**
+    /**
      * @author Martin Kings
      */
-        [SerializeField] private bool bossIsDead;
-        private Guid portalEventGuid;
+    [SerializeField] public bool bossIsDead;
+    private Guid portalEventGuid;
 
-        private void Start()
-        {
-            EventSystem.Current.RegisterListener<UnitDeathEventInfo>(SetBossLifeStatus, ref portalEventGuid);
-        }
 
-        void OnTriggerEnter(Collider other)
+    private void Start()
+    {
+        
+        EventSystem.Current.RegisterListener<UnitDeathEventInfo>(SetBossLifeStatus, ref portalEventGuid);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (bossIsDead)
         {
-            if (bossIsDead)
+            foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
             {
-                SceneManager.LoadScene(1);
+                DontDestroyOnLoad(player);
             }
-        }
 
-        public void SetBossLifeStatus(UnitDeathEventInfo unitDeathEventInfo)
+            NetworkManager.singleton.ServerChangeScene("TerrainIsland2");
+        }
+    }
+
+    public void SetBossLifeStatus(UnitDeathEventInfo unitDeathEventInfo)
+    {
+        if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>() != null)
         {
-            if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>() != null)
+            if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetName() == "Boss")
             {
-                if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetName() == "Boss")
-                {
-                    bossIsDead = true;
-                }
+                bossIsDead = true;
+                
             }
         }
     }

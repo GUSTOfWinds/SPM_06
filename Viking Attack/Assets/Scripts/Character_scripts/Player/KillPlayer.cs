@@ -1,24 +1,30 @@
+using System;
+using System.Runtime.CompilerServices;
+using Mirror;
 using UnityEngine;
 
-namespace Character_scripts.Player
+
+public class KillPlayer : MonoBehaviour
 {
-    public class KillPlayer : MonoBehaviour
-    {
-        /**
+    /**
      * @author Martin Kings
      */
-        public void PlayerRespawn()
-        {
-            transform.position = GameObject.FindGameObjectWithTag("PlayerRespawnAnchor").transform.position;
-            //gameObject.transform.GetComponent<MyRigidbody3D>().CmdSetSynchedPosition(GameObject.FindGameObjectWithTag("PlayerRespawnAnchor").transform.position);
-            Invoke("HealthBack", 3f);
-        }
+    private Vector3 respawnPoint;
+    private void Start()
+    {
+        respawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnAnchor").transform.position;
+    }
 
-        private void HealthBack()
-        {
-            gameObject.GetComponent<GlobalPlayerInfo>()
-                .SetHealth(gameObject.GetComponent<GlobalPlayerInfo>().GetMaxHealth());
-            gameObject.GetComponent<GlobalPlayerInfo>().UpdateHealth(0);
-        }
+    public void PlayerRespawn()
+    {
+        transform.position = respawnPoint;
+        Invoke("HealthBack", 3f);
+    }
+
+    private void HealthBack()
+    {
+        gameObject.GetComponent<GlobalPlayerInfo>()
+            .SetHealth(gameObject.GetComponent<GlobalPlayerInfo>().GetMaxHealth());
+        gameObject.GetComponent<GlobalPlayerInfo>().UpdateHealth(0);
     }
 }

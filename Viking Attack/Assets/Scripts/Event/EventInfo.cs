@@ -73,6 +73,6 @@ namespace Event
 
     public class PlayerDeathEventInfo : EventInfo
     {
-        
+        public uint playerNetId;
     }
 }
