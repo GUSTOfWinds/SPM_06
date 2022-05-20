@@ -61,7 +61,7 @@ namespace ItemNamespace
             {
                 return;
             }
-            
+
             if (nId == gameObject.GetComponent<NetworkIdentity>().netId)
             {
                 healthBarInHierarchy.SetActive(false);
