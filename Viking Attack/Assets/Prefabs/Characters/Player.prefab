@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Fight the boss to win (Recomendade lv3)
+  m_text: '
 
 '
   m_isRightToLeft: 0
@@ -10996,7 +10996,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fight enemies to level
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 49d1c5d5821ce204286f96d7a49b2f9d, type: 2}
   m_sharedMaterial: {fileID: -8847391519991268732, guid: 49d1c5d5821ce204286f96d7a49b2f9d, type: 2}
@@ -14340,6 +14340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c99a6ccf850f924ba43e5c5819ba3a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textOne: {fileID: 2083510732513897952}
+  textTwo: {fileID: 7028790172182203494}
 --- !u!222 &5673313121807271152
 CanvasRenderer:
   m_ObjectHideFlags: 0
