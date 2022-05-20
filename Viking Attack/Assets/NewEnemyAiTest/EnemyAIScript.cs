@@ -252,17 +252,9 @@ public class EnemyAIScript : NetworkBehaviour
     {
         GameObject[] enemies = deathListener.GetEnemies();
         foreach (var enemy in enemies)
-        {
             if (enemy != null)
-            {
-                if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f &&
-                    enemy.GetComponent<AudioSource>().isPlaying && !enemy.Equals(gameObject))
-                {
+                if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f && enemy.GetComponent<AudioSource>().isPlaying && !enemy.Equals(gameObject))
                     return true;
-                }
-            }
-        }
-
         return false;
     }
 
@@ -270,27 +262,21 @@ public class EnemyAIScript : NetworkBehaviour
     private void RpcPlayEnemyChasing()
     {
         if (!isServer)
-        {
             audioSource.PlayOneShot(enemySounds[0]);
-        }
     }
 
     [ClientRpc]
     private void RpcSwingSword()
     {
         if (!isServer)
-        {
             audioSource.PlayOneShot(enemySounds[1]);
-        }
     }
 
     [ClientRpc]
     private void RpcDealDamage(GameObject player)
     {
         if (!isServer)
-        {
             player.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
-        }
     }
 
     private IEnumerator Attack()
@@ -347,16 +333,6 @@ public class EnemyAIScript : NetworkBehaviour
         }
     }
 
-    public void SetEnemyTransform(Transform trans)
-    {
-        spawnPoint.transform.position = trans.position;
-    }
-
-    public void SetIfEnemyRoam(bool roaming)
-    {
-        this.roaming = roaming;
-    }
-
     [ClientRpc]
     public void RpcBeforeDying(GameObject spawnPoint, GameObject roamingPoint)
     {
@@ -369,4 +345,8 @@ public class EnemyAIScript : NetworkBehaviour
 
     public GameObject GetSpawnPoint => spawnPoint;
     public GameObject GetRoamingPoint => roamingPoint;
+    public void SetIfEnemyRoam(bool roaming) => this.roaming = roaming;
+    public void SetEnemyTransform(Transform trans) => spawnPoint.transform.position = trans.position;
+    public void SetAggroRange(float aggroRange) => this.aggroRangeFromSpawnPoint = aggroRange;
+    public void SetRoamingRange(float roamingRange) => this.roamingRangeFromSpawn = roamingRange;
 }
