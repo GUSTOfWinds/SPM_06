@@ -177,6 +177,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1938624210312167496, guid: 614ed636095112e4bb63983f312a8ebe, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 9080351483311851685, guid: 504deff2fa29fc24e84cbb8900573910, type: 3}
+  dropChance: 1
 --- !u!114 &63614051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +247,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &93606867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +268,79 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
+<<<<<<< Updated upstream
+=======
+--- !u!1 &104889764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104889765}
+  - component: {fileID: 104889767}
+  - component: {fileID: 104889766}
+  m_Layer: 0
+  m_Name: Bear_spawner (15)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &104889765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104889764}
+  m_LocalRotation: {x: 0, y: -0.995562, z: 0, w: 0.094108395}
+  m_LocalPosition: {x: 94.28, y: -16.08, z: -267.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2045507402}
+  m_RootOrder: 37
+  m_LocalEulerAnglesHint: {x: 0, y: -169.2, z: 0}
+--- !u!114 &104889766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104889764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
+  isBoss: 0
+  roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
+--- !u!114 &104889767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104889764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3210438949
+  serverOnly: 1
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
+>>>>>>> Stashed changes
 --- !u!1 &120638677
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,6 +390,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &120638680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +460,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &172741934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +616,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &205045416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,6 +776,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &208995524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,6 +832,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &217631400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +916,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &251482112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,6 +991,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &376557317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -952,6 +1061,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &405789421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1176,6 +1289,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &415554267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1379,6 +1496,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5693395419450245737, guid: 29d43295278020f4d8637106f55799f1, type: 3}
   m_PrefabInstance: {fileID: 544598485}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+--- !u!1 &561468032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 561468033}
+  - component: {fileID: 561468035}
+  - component: {fileID: 561468034}
+  m_Layer: 0
+  m_Name: Bear_spawner (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &561468033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561468032}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 22.8, y: -35.76, z: -243.59}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2045507402}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561468034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561468032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
+  isBoss: 0
+  roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
+--- !u!114 &561468035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561468032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 4170111893
+  serverOnly: 1
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
+>>>>>>> Stashed changes
 --- !u!1 &569942954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,6 +1690,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &570852489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1743,6 +1937,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &634655161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1850,6 +2048,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 644823728}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+--- !u!1 &674882958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 674882959}
+  - component: {fileID: 674882961}
+  - component: {fileID: 674882960}
+  m_Layer: 0
+  m_Name: Bear_spawner (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &674882959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674882958}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 79.89, y: -35.37, z: -224.33}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2045507402}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &674882960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674882958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
+  isBoss: 0
+  roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
+--- !u!114 &674882961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674882958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 2302555754
+  serverOnly: 1
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
+>>>>>>> Stashed changes
 --- !u!1 &679929078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,6 +2170,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &679929081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2761,6 +3036,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &959914755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2891,6 +3170,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &977054919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3544,6 +3827,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1134877320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3706,6 +3993,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1185632888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3919,6 +4210,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 1285414247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -3928,6 +4220,38 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1285414249
+=======
+  m_GameObject: {fileID: 1272036814}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 117.67, y: -14.73, z: -328.24}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2045507402}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1272036816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272036814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cd01e583b289a4a9696687ce44b7a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
+  isBoss: 0
+  roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
+--- !u!114 &1272036817
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4275,6 +4599,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1364967455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4341,6 +4669,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1374278202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4601,6 +4933,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1498591522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5113,6 +5449,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1633310414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5179,6 +5519,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1657960955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5458,6 +5802,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1751844131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5657,6 +6005,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1795641509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6206,6 +6558,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1885430362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6263,6 +6619,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1965461907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6343,6 +6703,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1983620095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6409,6 +6773,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &2030169185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6597,6 +6965,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &2072527144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6649,6 +7021,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &2081892642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6802,6 +7178,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &2108654664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6935,6 +7315,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &2131580590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7015,6 +7399,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &2145063010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7726,6 +8114,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2045507402}
     m_Modifications:
+    - target: {fileID: 7063391274227806076, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
+      propertyPath: itemDrop
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063391274227806076, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
+      propertyPath: aggroRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063391274227806076, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
+      propertyPath: dropChance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063391274227806076, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
+      propertyPath: roamingRange
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7063391274927964652, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
       propertyPath: enemyPrefabToSpawn
       value: 
