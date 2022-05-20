@@ -104,7 +104,7 @@ namespace Main_menu_scripts.ForMP
             //Sets the name as waiting for player before anyone has joined the lobby, and makes sure there is no ready-status when there is no player.
             for (int i = 0; i < playerNameTexts.Length; i++)
             {
-                playerNameTexts[i].text = "Waiting For Player...";
+                playerNameTexts[i].text = "<color=white>Waiting For Player...</color>";
                 playerReadyTexts[i].text = string.Empty;
             }
             //This loop sets the name of a current player in the lobby and sets the name of the colour they've chosen.
@@ -116,7 +116,6 @@ namespace Main_menu_scripts.ForMP
                 playerReadyTexts[i].text = Room.RoomPlayers[i].isReady
                     ? "<color=#9CFF8D> Ready </color>"
                     : "<color=#8C3333> Not Ready </color>";
-                
             }
         }
 
@@ -138,10 +137,6 @@ namespace Main_menu_scripts.ForMP
         //All players in lobby must be ready
         public void HandleReadyToStart(bool readyToStart)
         {
-            if(readyToStart)
-                readyButtonText.text = "<color=#9CFF8D>Ready </color>";
-            if(!readyToStart)
-                readyButtonText.text = "<color=white>Ready </color>";
             if (!isLeader) return;
             startGameButton.interactable = readyToStart;
             if (readyToStart)
