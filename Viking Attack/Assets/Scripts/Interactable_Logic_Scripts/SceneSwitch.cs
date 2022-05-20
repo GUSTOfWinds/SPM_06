@@ -23,8 +23,11 @@ public class SceneSwitch : NetworkBehaviour
     {
         if (bossIsDead)
         {
-            Debug.Log("Change scen");
-            DontDestroyOnLoad(other.gameObject);
+            foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                DontDestroyOnLoad(player);
+            }
+
             NetworkManager.singleton.ServerChangeScene("TerrainIsland2");
         }
     }
