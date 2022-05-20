@@ -239,7 +239,8 @@ public class GlobalPlayerInfo : NetworkBehaviour
     public void IncreaseStaminaStatPoints()
     {
         maxStamina += 10;
-        float extraStaminaGain = 
+        float extraStaminaGain = 1.05f;
+        
         availableStatpoints--;
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
     }
