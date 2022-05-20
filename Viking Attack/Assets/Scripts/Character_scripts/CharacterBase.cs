@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Character_scripts
+namespace ItemNamespace
 {
     // Creates the ScriptableObject function for the Item objects.
     [CreateAssetMenu(fileName = "Character", menuName = "ScriptableObjects/Create new character")]
