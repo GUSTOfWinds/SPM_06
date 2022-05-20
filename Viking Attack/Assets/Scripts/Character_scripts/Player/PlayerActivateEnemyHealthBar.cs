@@ -5,7 +5,7 @@ using Event;
 using Mirror;
 using UnityEngine;
 
-namespace Character_scripts.Player
+namespace ItemNamespace
 {
     public class PlayerActivateEnemyHealthBar : NetworkBehaviour
     {

@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace Character_scripts.Enemy.FSM
-{
+
     public class FSM_Tst : MonoBehaviour
     {
         private Enemy_FSM Enemy_FSM;
@@ -20,4 +19,4 @@ namespace Character_scripts.Enemy.FSM
         }
 
     }
-}
+

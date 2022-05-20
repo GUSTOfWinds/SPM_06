@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using Character_scripts.Player;
 using Event;
+using ItemNamespace;
 using UnityEngine;
 
 namespace Inventory_scripts.ItemBehaviours

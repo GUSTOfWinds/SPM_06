@@ -3,8 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Main_menu_scripts.ForMP
-{
+
     public class NetworkRoomPlayerLobby : NetworkBehaviour
     {
         //In short this script is the player whilst in the lobby, it provides the name, and the the colour of the player, 
@@ -153,4 +152,3 @@ namespace Main_menu_scripts.ForMP
             Room.StartGame();    
         }
     }
-}

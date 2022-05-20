@@ -1,11 +1,8 @@
-using System;
 using Mirror;
 using UnityEngine;
-using UnityEngine.ProBuilder;
 
-namespace Character_scripts.Player.Customization
-{
-    public class ColourCustomization : NetworkBehaviour
+
+public class ColourCustomization : NetworkBehaviour
 
     {
 
@@ -77,4 +74,4 @@ namespace Character_scripts.Player.Customization
 
 
     }
-}
+

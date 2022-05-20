@@ -3,8 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace Character_scripts.Player
-{
+
     public class CharacterScreen : MonoBehaviour
     {
         /**
@@ -101,4 +100,3 @@ namespace Character_scripts.Player
             availableStatPoints.text = globalPlayerInfo.GetStatPoints().ToString();
         }
     }
-}

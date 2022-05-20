@@ -2,12 +2,10 @@ using System;
 using System.Collections;
 using Event;
 using Mirror;
-using Player_movement_camera_scripts;
-using Player_movement_camera_scripts.Camera;
+
 using UnityEngine;
 
-namespace Character_scripts.Player
-{
+
     public class RespawnPanelHandler : NetworkBehaviour
     {
         /**
@@ -76,4 +74,3 @@ namespace Character_scripts.Player
             }
         }
     }
-}

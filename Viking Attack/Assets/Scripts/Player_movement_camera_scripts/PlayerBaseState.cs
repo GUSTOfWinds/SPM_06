@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace Player_movement_camera_scripts
-{
+
     [CreateAssetMenu(menuName = "PlayerState/BaseState")]
 //Used as a state when the player does nothing
     public class PlayerBaseState : PlayerState
@@ -27,4 +26,4 @@ namespace Player_movement_camera_scripts
         
         }
     }
-}
+

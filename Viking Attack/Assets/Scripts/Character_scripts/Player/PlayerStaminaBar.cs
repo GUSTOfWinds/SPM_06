@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Character_scripts.Player
-{
+
     public class PlayerStaminaBar : MonoBehaviour
     {
         /**
@@ -24,4 +23,3 @@ namespace Character_scripts.Player
             staminaBar.value = stamina;
         }
     }
-}

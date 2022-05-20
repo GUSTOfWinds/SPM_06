@@ -1,5 +1,5 @@
 using System.Collections;
-using Character_scripts.Player;
+using ItemNamespace;
 using Mirror;
 using UnityEngine;
 

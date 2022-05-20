@@ -1,6 +1,6 @@
 using System;
-using Character_scripts.Enemy;
 using Event;
+using ItemNamespace;
 using Mirror;
 using UnityEngine;
 

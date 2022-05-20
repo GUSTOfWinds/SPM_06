@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 // The script handles user input in terms of skin color and name choices, ships the chosen
 // data to the GlobalPlayerInfo container.
-namespace Main_menu_scripts
-{
     public class MainMenuButtonManager : MonoBehaviour
     {
         [SerializeField] private GameObject customizationScreen;
@@ -60,4 +58,3 @@ namespace Main_menu_scripts
             }
         }
     }
-}

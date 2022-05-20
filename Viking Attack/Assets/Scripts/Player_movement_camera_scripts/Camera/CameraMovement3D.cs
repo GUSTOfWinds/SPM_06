@@ -3,8 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-namespace Player_movement_camera_scripts.Camera
-{
+
     public class CameraMovement3D : NetworkBehaviour
     {
         [SerializeField] private GameObject firstPersonPosition;
@@ -68,4 +67,3 @@ namespace Player_movement_camera_scripts.Camera
             transform.rotation = Quaternion.Euler(0, rotationY, 0);
         }
     }
-}

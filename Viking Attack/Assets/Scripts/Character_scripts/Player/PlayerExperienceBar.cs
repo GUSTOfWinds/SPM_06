@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Character_scripts.Player
-{
+
     public class PlayerExperienceBar : MonoBehaviour
     {
         /**
@@ -28,4 +27,3 @@ namespace Character_scripts.Player
             levelText.text = globalPlayerInfo.GetLevel().ToString();
         }
     }
-}

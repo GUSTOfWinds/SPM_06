@@ -1,8 +1,6 @@
-using Player_movement_camera_scripts.Camera;
 using UnityEngine;
 
-namespace Character_scripts.Player
-{
+
     public class ToggleCharacterScreen : MonoBehaviour
     {
         /**
@@ -49,4 +47,3 @@ namespace Character_scripts.Player
             }
         }
     }
-}

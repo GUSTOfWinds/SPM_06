@@ -2,7 +2,7 @@ using System;
 using Mirror;
 using UnityEngine;
 
-namespace Character_scripts.Enemy
+namespace ItemNamespace
 {
     public class EnemyInfo : NetworkBehaviour
     {

@@ -1,7 +1,6 @@
 using Mirror;
 
-namespace Main_menu_scripts.ForMP
-{
+
     public class SpawnPlayer : NetworkRoomManager
     {
         
@@ -11,4 +10,4 @@ namespace Main_menu_scripts.ForMP
         }
 
     }
-}
+

@@ -1,8 +1,7 @@
 using Mirror;
 using UnityEngine;
 
-namespace Player_movement_camera_scripts.Camera
-{
+
     public class MinimapCamera : NetworkBehaviour
     {
         [SerializeField] private GameObject minimapCamera;
@@ -21,4 +20,3 @@ namespace Player_movement_camera_scripts.Camera
             }
         }
     }
-}

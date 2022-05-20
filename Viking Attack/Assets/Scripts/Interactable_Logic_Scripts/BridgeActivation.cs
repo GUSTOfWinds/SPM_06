@@ -1,9 +1,7 @@
-using Interactable_Logic_Scripts.Base;
 using Mirror;
 using UnityEngine;
 
-namespace Interactable_Logic_Scripts
-{
+
     public class BridgeActivation : BaseObjectActivation
     {
         [SerializeField] private float rotationSpeed;
@@ -57,4 +55,3 @@ namespace Interactable_Logic_Scripts
             public void CmdSetSynchedRotation(Quaternion rotation) => syncRotation = rotation;
         }
     }
-}

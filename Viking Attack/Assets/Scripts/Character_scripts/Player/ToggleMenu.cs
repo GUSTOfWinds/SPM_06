@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using Mirror;
-using Player_movement_camera_scripts;
-using Player_movement_camera_scripts.Camera;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Character_scripts.Player
-{
+
     public class ToggleMenu : NetworkBehaviour
     {
         /**
@@ -144,4 +142,3 @@ namespace Character_scripts.Player
             player.transform.Find("UI").Find("Menu_screen").gameObject.SetActive(true);
         }
     }
-}

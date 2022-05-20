@@ -1,4 +1,5 @@
 using UnityEngine;
+using ItemNamespace;
 
 namespace Inventory_scripts
 {

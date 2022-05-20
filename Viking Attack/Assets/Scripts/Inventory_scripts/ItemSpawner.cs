@@ -1,8 +1,7 @@
 ﻿using Mirror;
 using UnityEngine;
 
-namespace Inventory_scripts
-{
+
     public class ItemSpawner : NetworkBehaviour
     {
         /**
@@ -29,4 +28,3 @@ namespace Inventory_scripts
             }
         }
     }
-}

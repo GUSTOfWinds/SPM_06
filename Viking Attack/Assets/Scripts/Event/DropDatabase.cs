@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Inventory_scripts;
 using UnityEngine;
+using ItemNamespace;
+
 
 namespace Event
 {

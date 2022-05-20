@@ -1,5 +1,6 @@
 using System;
 using Event;
+using ItemNamespace;
 using Mirror;
 using UnityEngine;
 

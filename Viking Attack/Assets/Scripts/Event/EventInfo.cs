@@ -1,5 +1,6 @@
-using Inventory_scripts;
 using UnityEngine;
+using ItemNamespace;
+
 
 namespace Event
 {

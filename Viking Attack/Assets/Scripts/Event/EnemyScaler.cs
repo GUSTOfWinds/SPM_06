@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Character_scripts.Enemy;
+using ItemNamespace;
 using Mirror;
 using UnityEngine;
 

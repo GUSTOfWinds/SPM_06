@@ -1,8 +1,6 @@
-﻿using Character_scripts.Player;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Player_movement_camera_scripts
-{
+
     [CreateAssetMenu(menuName = "PlayerState/DashState")]
 //Used as a state when the player presses "spacebar"
     public class PlayerDashState : PlayerState
@@ -43,4 +41,3 @@ namespace Player_movement_camera_scripts
         {
         }
     }
-}

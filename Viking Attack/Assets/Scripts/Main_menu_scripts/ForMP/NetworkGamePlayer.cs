@@ -1,8 +1,7 @@
 using Mirror;
 using UnityEngine;
 
-namespace Main_menu_scripts.ForMP
-{
+
     public class NetworkGamePlayer : NetworkBehaviour
     {
 
@@ -45,4 +44,3 @@ namespace Main_menu_scripts.ForMP
             this.displayName = displayName;
         }
     }
-}

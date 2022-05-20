@@ -1,8 +1,6 @@
-using Character_scripts.Player;
 using UnityEngine;
 
-namespace Character_scripts.Enemy.FSM
-{
+
     public class State_Guard : StateBase
     {
         private float moveSpeed = 15f;
@@ -88,4 +86,4 @@ namespace Character_scripts.Enemy.FSM
         }
 
     }
-}
+

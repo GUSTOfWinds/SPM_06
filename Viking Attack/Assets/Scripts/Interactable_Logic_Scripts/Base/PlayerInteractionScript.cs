@@ -3,8 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Interactable_Logic_Scripts.Base
-{
+
     public class PlayerInteractionScript : NetworkBehaviour
     {
         //The text that shows when hovering over an interactable object
@@ -54,4 +53,3 @@ namespace Interactable_Logic_Scripts.Base
             }
         }
     }
-}

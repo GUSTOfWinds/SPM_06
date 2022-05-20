@@ -1,9 +1,7 @@
-using Interactable_Logic_Scripts.Base;
 using Mirror;
 using UnityEngine;
 
-namespace Interactable_Logic_Scripts
-{
+
     public class LeverInteraction : BaseObjectInteraction
     {
         [SerializeField] private float roatitionSpeed;
@@ -67,4 +65,4 @@ namespace Interactable_Logic_Scripts
             }
         }
     }
-}
+

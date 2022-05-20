@@ -1,7 +1,8 @@
 using UnityEngine;
 
+
 //This is the base behavior for all items, used ot give different items different behaviors
-namespace Inventory_scripts.ItemBehaviours
+namespace ItemNamespace
 {
     public abstract class ItemBaseBehaviour : MonoBehaviour
     {

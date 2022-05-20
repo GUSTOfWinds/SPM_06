@@ -2,8 +2,7 @@
 
 using UnityEngine;
 
-namespace Player_movement_camera_scripts
-{
+
     public abstract class PlayerState : State
     {
         private Animator animator;
@@ -12,4 +11,4 @@ namespace Player_movement_camera_scripts
         public PlayerScript3D Player => player = player ?? (PlayerScript3D)owner;
         public Animator Animator => animator = animator ?? player.animator;
     }
-}
+

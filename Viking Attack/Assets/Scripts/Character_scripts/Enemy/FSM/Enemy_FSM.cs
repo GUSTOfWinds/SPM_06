@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 
-namespace Character_scripts.Enemy.FSM
-{
+
     public enum StateType
     {
         GUARD,
@@ -45,4 +44,3 @@ namespace Character_scripts.Enemy.FSM
 
 
     }
-}

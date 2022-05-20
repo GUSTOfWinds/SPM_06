@@ -1,10 +1,8 @@
 using Event;
-using Interactable_Logic_Scripts.Base;
 using Inventory_scripts;
 using UnityEngine;
 
-namespace Interactable_Logic_Scripts
-{
+
     public class ItemInteraction : BaseObjectInteraction
     {
         public override void InteractedWith(GameObject playerThatInteracted)
@@ -29,4 +27,3 @@ namespace Interactable_Logic_Scripts
             }
         }
     }
-}

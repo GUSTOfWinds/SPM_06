@@ -3,8 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Main_menu_scripts.ForMP
-{
+
     public class PlayerNameInput : MonoBehaviour
     {
         [Header("UI")] 
@@ -82,4 +81,4 @@ namespace Main_menu_scripts.ForMP
         }
 
     }
-}
+

@@ -3,8 +3,6 @@ using System.Linq;
 using Mirror;
 using UnityEngine;
 
-namespace Main_menu_scripts.ForMP
-{
     public class PlayerSpawnSystem : NetworkBehaviour
     {
         //[SerializeField] private GameObject playerPrefab = null;
@@ -39,4 +37,3 @@ namespace Main_menu_scripts.ForMP
             }
         }
     }
-}

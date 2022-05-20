@@ -1,8 +1,7 @@
 using UnityEngine;
 
 //super class of all state
-namespace Character_scripts.Enemy.FSM
-{
+
     public abstract class StateBase 
     {
         //since we need to use animation but we dont use MonoBehivor
@@ -23,4 +22,4 @@ namespace Character_scripts.Enemy.FSM
 
 
     }
-}
+

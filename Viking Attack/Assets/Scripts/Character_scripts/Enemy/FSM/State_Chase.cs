@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace Character_scripts.Enemy.FSM
-{
+
     public class State_Chase : StateBase
     {
         public State_Chase(Animator animator, GameObject gameObject) : base(animator, gameObject)
@@ -23,4 +22,4 @@ namespace Character_scripts.Enemy.FSM
             throw new System.NotImplementedException();
         }
     }
-}
+

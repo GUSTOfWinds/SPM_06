@@ -3,8 +3,7 @@ using Event;
 using Mirror;
 using UnityEngine;
 
-namespace Character_scripts.Player
-{
+
     public class PlayLevelAnimation : MonoBehaviour
     {
         /**
@@ -34,4 +33,3 @@ namespace Character_scripts.Player
             }
         }
     }
-}

@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using Character_scripts.Player;
 using Event;
 using Inventory_scripts.ItemBehaviours;
 using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using ItemNamespace;
+
 
 namespace Inventory_scripts
 {

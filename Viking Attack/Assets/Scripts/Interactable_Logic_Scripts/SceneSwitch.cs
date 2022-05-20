@@ -1,8 +1,7 @@
 using System;
-using Character_scripts.Enemy;
 using Event;
+using ItemNamespace;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Mirror;
 
 

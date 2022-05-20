@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Mirror;
-using TMPro;
 
 
 public class higlighttester : NetworkBehaviour

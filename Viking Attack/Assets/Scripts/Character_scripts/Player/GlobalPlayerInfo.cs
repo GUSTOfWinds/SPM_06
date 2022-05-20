@@ -1,13 +1,12 @@
 using Event;
-using Inventory_scripts;
-using Main_menu_scripts.ForMP;
+using ItemNamespace;
 using Mirror;
 using UnityEngine;
 
-namespace Character_scripts.Player
+
+public class GlobalPlayerInfo : NetworkBehaviour
 {
-    public class GlobalPlayerInfo : NetworkBehaviour
-    {
+    /**
         /**
      * @author Martin Kings
      */
@@ -303,4 +302,3 @@ namespace Character_scripts.Player
         }
 
     }
-}

@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace Character_scripts.Enemy.FSM
-{
+
     public class State_Recall : StateBase
     {
         public State_Recall(Animator animator, GameObject gameObject) : base(animator, gameObject)
@@ -24,4 +23,4 @@ namespace Character_scripts.Enemy.FSM
             throw new System.NotImplementedException();
         }
     }
-}
+

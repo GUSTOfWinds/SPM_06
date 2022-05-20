@@ -1,8 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Character_scripts.Player
-{
+
     public class FriendlyNameDisplay : MonoBehaviour
     {
         /**
@@ -45,4 +44,3 @@ namespace Character_scripts.Player
             mainCamera = mainCam;
         }
     }
-}

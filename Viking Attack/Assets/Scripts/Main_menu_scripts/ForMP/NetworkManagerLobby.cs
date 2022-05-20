@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Character_scripts.Player;
 using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-namespace Main_menu_scripts.ForMP
-{
     public class NetworkManagerLobby : NetworkManager
     {
         private int minPlayers = 1;
@@ -24,8 +21,8 @@ namespace Main_menu_scripts.ForMP
         public List<GameObject> spawnablePrefabs = new List<GameObject>();
 
         [SerializeField] private GameObject landingPage;
-
-        [SerializeField] private string mapToLoad;
+        [Header("Scene")]
+        [SerializeField] public string mapToLoad;
         [SerializeField] private GameObject playerPrefabFinalUse = null;
 
 
@@ -37,6 +34,7 @@ namespace Main_menu_scripts.ForMP
 
         public override void OnStartServer()
         {
+            mapToLoad = "TerrainIsland";
             spawnPrefabs = spawnablePrefabs;
             base.OnStartServer();
             NetworkServer.RegisterHandler<CharacterInfo>(OnSpawnPlayerUI);
@@ -134,7 +132,7 @@ namespace Main_menu_scripts.ForMP
 
                 NetworkServer.AddPlayerForConnection(conn, roomPlayerInstance.gameObject);
             }
-            Debug.Log("Roomplayers " + RoomPlayers.Count);
+            Debug.Log("RoomP layers " + RoomPlayers.Count);
             Debug.Log("GamePlayers "+ GamePlayers.Count);
         }
 
@@ -260,4 +258,3 @@ namespace Main_menu_scripts.ForMP
         public string name;
         public Color32 playerColour;
     }
-}

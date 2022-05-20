@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace Interactable_Logic_Scripts.Base
-{
+
     public class InteractableObjectScript : MonoBehaviour
     {
         [SerializeField] private string interactionDescriptionPositiv; //The text with information about a uninteracted object
@@ -23,4 +22,4 @@ namespace Interactable_Logic_Scripts.Base
             interactableGameObject.GetComponent<BaseObjectInteraction>().InteractedWith(playerThatInteracted);
         }
     }
-}
+

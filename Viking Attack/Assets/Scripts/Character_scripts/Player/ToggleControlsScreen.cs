@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace Character_scripts.Player
-{
+
     public class ToggleControlsScreen : MonoBehaviour
     {
         [SerializeField] public Animator animator;
@@ -11,4 +10,3 @@ namespace Character_scripts.Player
             animator.SetBool("controls", !animator.GetBool("controls"));
         }
     }
-}

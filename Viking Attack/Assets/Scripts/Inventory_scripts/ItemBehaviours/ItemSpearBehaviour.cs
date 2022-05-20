@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using Character_scripts.Enemy;
-using Character_scripts.Player;
 using Mirror;
-using NewEnemyAiTest;
+using ItemNamespace;
 using UnityEngine;
 
 namespace Inventory_scripts.ItemBehaviours

@@ -1,7 +1,3 @@
-using System;
-using System.Runtime.CompilerServices;
-using Character_scripts.Player;
-using Mirror;
 using UnityEngine;
 
 
