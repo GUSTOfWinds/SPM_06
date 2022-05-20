@@ -1,10 +1,9 @@
 using Character_scripts.Player;
 using Mirror;
+using Player_movement_camera_scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player_movement_camera_scripts
-{
     [RequireComponent(typeof(CapsuleCollider))]
     public class PlayerScript3D : NetworkBehaviour
     {
@@ -78,4 +77,3 @@ namespace Player_movement_camera_scripts
             jump = !value.canceled;
         }
     }
-}

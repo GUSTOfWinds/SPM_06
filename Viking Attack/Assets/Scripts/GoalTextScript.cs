@@ -19,7 +19,6 @@ public class GoalTextScript : MonoBehaviour
     private IEnumerator Wait(float time)
     {
         yield return new WaitForSeconds(time);
-        Debug.Log("yesboi");
         gameObject.SetActive(false);
     }
 

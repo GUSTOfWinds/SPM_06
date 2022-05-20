@@ -30,8 +30,10 @@ namespace Player_movement_camera_scripts.Camera
         {
             if (mainCamera != null)
             {
-                mainCamera.transform.SetParent(transform);
-                mainCamera.transform.position = firstPersonPosition.transform.position;
+                Transform transform1;
+                (transform1 = mainCamera.transform).SetParent(transform);
+                transform1.position = firstPersonPosition.transform.position;
+                transform1.rotation = firstPersonPosition.transform.rotation;
             }
         }
 

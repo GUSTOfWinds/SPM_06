@@ -140,6 +140,7 @@ namespace Main_menu_scripts.ForMP
 
         public override void OnStopServer()
         {
+            SceneManager.LoadScene(0);
             landingPage.SetActive(true);
 
             RoomPlayers.Clear();
@@ -185,11 +186,11 @@ namespace Main_menu_scripts.ForMP
 
         public override void ServerChangeScene(string newSceneName)
         {
-            Debug.Log("Roomplayers " + RoomPlayers.Count);
-            Debug.Log("GamePlayers "+ GamePlayers.Count);
+            Debug.Log("RoomPlayers SceneChange början " + RoomPlayers.Count);
+            Debug.Log("GamePlayers SceneChange början  "+ GamePlayers.Count);
             // From menu to game
-            if (SceneManager.GetActiveScene().path == menuScene && newSceneName.StartsWith("Scene_Map"))
-            {
+            // if (SceneManager.GetActiveScene().path == menuScene && newSceneName.StartsWith("Scene_Map"))
+            // {
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
                     var conn = RoomPlayers[i].connectionToClient;
@@ -204,9 +205,9 @@ namespace Main_menu_scripts.ForMP
                     Debug.Log("Inuti server change scene");
 
                 }
-            }
-            Debug.Log("Roomplayers " + RoomPlayers.Count);
-            Debug.Log("GamePlayers "+ GamePlayers.Count);
+            //}
+            Debug.Log("Roomplayers SceneChange början  " + RoomPlayers.Count);
+            Debug.Log("GamePlayers SceneChange början  "+ GamePlayers.Count);
 
             base.ServerChangeScene(newSceneName);
         }
@@ -225,22 +226,22 @@ namespace Main_menu_scripts.ForMP
             //if (!sceneName.Contains("Scene_Map")) return;
             var conn = GamePlayers[0].connectionToClient;
             
-            Debug.Log("Roomplayers " + RoomPlayers.Count);
+            Debug.Log("RoomPlayers " + RoomPlayers.Count);
             Debug.Log("GamePlayers "+ GamePlayers.Count);
 
-            if (firstChange)
+            if (!firstChange)
             {
-                for (int i = 0; i < GamePlayers.Count; i--)
+                foreach (var t in GamePlayers)
                 {
-                    conn = GamePlayers[i].connectionToClient;
+                    conn = t.connectionToClient;
                     GameObject playerInGame = Instantiate(playerPrefabFinalUse);
-                    playerInGame.GetComponent<GlobalPlayerInfo>().SetDisplayName(GamePlayers[i].displayName);
-                    playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(GamePlayers[i].colour);
+                    playerInGame.GetComponent<GlobalPlayerInfo>().SetDisplayName(t.displayName);
+                    playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(t.colour);
                     InGamePlayer.Add(playerInGame);
                     //NetworkServer.Destroy(conn.identity.gameObject);
 
-                    NetworkServer.AddPlayerForConnection(conn, playerInGame);
-                    //NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
+                    //NetworkServer.AddPlayerForConnection(conn, playerInGame);
+                    NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
                 }
             }
 

@@ -1,7 +1,9 @@
 ﻿using System.Collections;
-using ItemNamespace;
+using Character_scripts.Player;
 using UnityEngine;
 using Event;
+using Inventory_scripts;
+using Inventory_scripts.ItemBehaviours;
 using Mirror;
 
 public class ItemDaggerBehaviour : ItemBaseBehaviour
