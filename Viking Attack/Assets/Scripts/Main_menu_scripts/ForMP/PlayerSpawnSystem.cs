@@ -32,7 +32,7 @@ using UnityEngine;
             {
                 players[i].transform.position = spawnPoints[i].transform.position;
                 players[i].transform.rotation = spawnPoints[i].transform.rotation;
-                NetworkServer.Spawn(players[i]);
+                //NetworkServer.Spawn(players[i]);
 
             }
         }

@@ -29,6 +29,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         [SyncVar] [SerializeField] private float damage;
         [SyncVar] [SerializeField] private int meatStackNumber;
         [SyncVar] [SerializeField] private int armorLevel;
+        [SerializeField] private SkinnedMeshRenderer skinMesh;
 
 
         private void Awake()
@@ -60,6 +61,8 @@ public class GlobalPlayerInfo : NetworkBehaviour
             armorLevel += increase;
         }
         private NetworkManagerLobby room;
+        private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
+
         private NetworkManagerLobby Room
         {
             get
@@ -73,6 +76,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         {
             if (isLocalPlayer)
             {
+                skinMesh.material.SetColor(BaseColor, skinColour);
                 CmdSetPlayerName(playerName);
                 CmdSetSkinColour(skinColour);
 

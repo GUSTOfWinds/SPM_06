@@ -227,20 +227,23 @@ using UnityEngine.SceneManagement;
             Debug.Log("RoomPlayers " + RoomPlayers.Count);
             Debug.Log("GamePlayers "+ GamePlayers.Count);
 
-            if (!firstChange)
+
+            for (int i = GamePlayers.Count - 1; i >= 0; i--)
             {
-                foreach (var t in GamePlayers)
-                {
+                    if (!firstChange)
+                    {
+                    var t = GamePlayers[i];
                     conn = t.connectionToClient;
                     GameObject playerInGame = Instantiate(playerPrefabFinalUse);
                     playerInGame.GetComponent<GlobalPlayerInfo>().SetDisplayName(t.displayName);
                     playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(t.colour);
                     InGamePlayer.Add(playerInGame);
                     //NetworkServer.Destroy(conn.identity.gameObject);
-
+                    NetworkServer.Spawn(playerInGame);
                     //NetworkServer.AddPlayerForConnection(conn, playerInGame);
                     NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
-                }
+                    GamePlayers.Remove(GamePlayers[i]);
+                    }
             }
 
             var playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
