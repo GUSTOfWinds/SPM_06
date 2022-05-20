@@ -224,13 +224,14 @@ public class GlobalPlayerInfo : NetworkBehaviour
 
     public void IncreaseDamageStatPoints()
     {
-        damage += 6;
+        damage += 8;
         availableStatpoints--;
     }
 
     public void IncreaseHealthStatPoints()
     {
-        maxHealth += 10;
+        maxHealth += 15;
+        health += 15;
         availableStatpoints--;
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
     }

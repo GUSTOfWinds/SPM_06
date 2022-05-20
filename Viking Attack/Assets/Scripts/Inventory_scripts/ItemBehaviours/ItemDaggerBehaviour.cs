@@ -26,7 +26,7 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
     IEnumerator AddAttackCooldown()
     {
         canAttack = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         canAttack = true;
     }
     public override void Use(ItemBase itemBase)
