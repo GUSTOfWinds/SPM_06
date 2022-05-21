@@ -10,8 +10,7 @@ public class PressAnyKey : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        text = GetComponent<UnityEngine.UI.Text>();
-        menu.SetActive(false);
+       
     }
 
     // Update is called once per frame
@@ -19,13 +18,13 @@ public class PressAnyKey : MonoBehaviour
     {
         if(Input.anyKey)
         {
-            animator.SetBool("pressedAKey", true);
+            animator.SetTrigger("pressedanykey");
             Invoke("menutransition", 1.5f);
             
         }
     }
     void menutransition() { 
-        menu.SetActive(true);
+        menu.SetActive(false);
         
     }
 }
