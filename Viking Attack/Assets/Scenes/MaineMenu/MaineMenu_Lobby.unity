@@ -7871,7 +7871,6 @@ GameObject:
   - component: {fileID: 771834735}
   - component: {fileID: 771834734}
   - component: {fileID: 771834733}
-  - component: {fileID: 771834738}
   m_Layer: 0
   m_Name: Button_ConfirmName
   m_TagString: Untagged
@@ -7923,13 +7922,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1293127996}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: PlayOneShot
-        m_Mode: 2
+      - m_Target: {fileID: 1584879194}
+        m_TargetAssemblyTypeName: Main_menu_scripts.ForMP.PlayerNameInput, Assembly-CSharp
+        m_MethodName: SavePlayerName
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: d9e6f2ff03e895143bf12098a9b3a5f3, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7995,13 +7994,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 962074086}
-        m_TargetAssemblyTypeName: Scenes.Colour.SliderText, Assembly-CSharp
-        m_MethodName: SaveColour
-        m_Mode: 1
+      - m_Target: {fileID: 1293127996}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 8300000, guid: d9e6f2ff03e895143bf12098a9b3a5f3, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8066,20 +8065,6 @@ RectTransform:
   m_AnchoredPosition: {x: 9, y: -170.41}
   m_SizeDelta: {x: 102, y: 21.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &771834738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771834732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a453d473dd885d46bd718f8741b0a31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  clip: {fileID: 0}
 --- !u!1 &788429335
 GameObject:
   m_ObjectHideFlags: 0
@@ -8177,9 +8162,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 788429337}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
+      - m_Target: {fileID: 1655397325}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
