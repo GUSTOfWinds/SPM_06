@@ -53,9 +53,9 @@ public class NetworkManagerLobby : NetworkManager
 
     public override void OnClientConnect(NetworkConnection conn)
     {
-        byte r = (byte) PlayerPrefs.GetInt("redValue");
-        byte g = (byte) PlayerPrefs.GetInt("greenValue");
-        byte b = (byte) PlayerPrefs.GetInt("blueValue");
+        byte r = (byte)PlayerPrefs.GetInt("redValue");
+        byte g = (byte)PlayerPrefs.GetInt("greenValue");
+        byte b = (byte)PlayerPrefs.GetInt("blueValue");
         Color32 color = new Color32(r, g, b, 255);
         base.OnClientConnect(conn);
         CharacterInfo characterInfo = new CharacterInfo
@@ -64,6 +64,7 @@ public class NetworkManagerLobby : NetworkManager
             name = PlayerPrefs.GetString("PlayerName")
         };
         conn.Send(characterInfo);
+            
         OnClientConnected?.Invoke();
     }
         
@@ -72,18 +73,11 @@ public class NetworkManagerLobby : NetworkManager
     public override void OnClientDisconnect(NetworkConnection conn)
     {
         base.OnClientDisconnect(conn);
-        if (landingPage == null)
-        {
-            SceneManager.LoadScene(0);
-            landingPage = GameObject.FindGameObjectWithTag("LandingPage");
-        }
-        else
-        {
-            landingPage.SetActive(true);
-
-        }
+        SceneManager.LoadScene(0);
+ 
 
         OnClientDisconnected?.Invoke();
+
     }
 
     public override void OnServerConnect(NetworkConnectionToClient conn)
@@ -147,6 +141,7 @@ public class NetworkManagerLobby : NetworkManager
     {
         foreach (var player in RoomPlayers)
         {
+
             player.HandleReadyToStart(IsReadyToStart());
         }
     }
@@ -161,6 +156,7 @@ public class NetworkManagerLobby : NetworkManager
             {
                 ready++;
             }
+
         }
 
         if (ready >= numPlayers)
@@ -170,7 +166,6 @@ public class NetworkManagerLobby : NetworkManager
 
         return false;
     }
-
     public void StartGame()
     {
         if (SceneManager.GetActiveScene().path == menuScene)
@@ -198,10 +193,9 @@ public class NetworkManagerLobby : NetworkManager
 
             NetworkServer.ReplacePlayerForConnection(conn, gamePlayerInstance.gameObject, true);
             GamePlayers.Add(gamePlayerInstance);
-            Debug.Log("Inuti server change scene");
 
         }
-        //}
+        
 
 
         base.ServerChangeScene(newSceneName);
@@ -221,25 +215,22 @@ public class NetworkManagerLobby : NetworkManager
         //if (!sceneName.Contains("Scene_Map")) return;
         var conn = GamePlayers[0].connectionToClient;
             
+        Debug.Log("RoomPlayers " + RoomPlayers.Count);
+        Debug.Log("GamePlayers "+ GamePlayers.Count);
 
-
-        for (int i = GamePlayers.Count - 1; i >= 0; i--)
+        if (!firstChange)
         {
-            if (!firstChange)
+            foreach (var t in GamePlayers)
             {
-                var t = GamePlayers[i];
                 conn = t.connectionToClient;
-                if (InGamePlayer[i].GetComponent<NetworkGamePlayer>().displayName != (GamePlayers[i].name))
-                {
-                    GameObject playerInGame = Instantiate(playerPrefabFinalUse);
-                    playerInGame.GetComponent<GlobalPlayerInfo>().SetDisplayName(t.displayName);
-                    playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(t.colour);
-                    InGamePlayer.Add(playerInGame);
+                GameObject playerInGame = Instantiate(playerPrefabFinalUse);
+                playerInGame.GetComponent<GlobalPlayerInfo>().SetDisplayName(t.displayName);
+                playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(t.colour);
+                InGamePlayer.Add(playerInGame);
+                //NetworkServer.Destroy(conn.identity.gameObject);
 
-                    NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
-                    GamePlayers.Remove(GamePlayers[i]);
-                }
-
+                //NetworkServer.AddPlayerForConnection(conn, playerInGame);
+                NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
             }
         }
 

@@ -83,7 +83,7 @@ using UnityEngine.UI;
 
             if (!hasAuthority)
             {
-                //First foreach decides if the lobby UI is active or not base on if you're the local player or not.
+                //First foreach decides if the lobby UI is active or not based on if you're the local player or not.
                 foreach (var roomPlayer in Room.RoomPlayers)
                 {
                     if(!isLocalPlayer) lobbyUI.SetActive(false);
@@ -107,7 +107,6 @@ using UnityEngine.UI;
                 playerReadyTexts[i].text = string.Empty;
             }
             //This loop sets the name of a current player in the lobby and sets the name of the colour they've chosen.
-            //Todo remove NameColour call when we have character customization available
             for (int i = 0; i < Room.RoomPlayers.Count; i++)
             {
                 playerNameTexts[i].text = Room.RoomPlayers[i].displayName;
@@ -115,6 +114,7 @@ using UnityEngine.UI;
                 playerReadyTexts[i].text = Room.RoomPlayers[i].isReady
                     ? "<color=#9CFF8D> Ready </color>"
                     : "<color=#8C3333> Not Ready </color>";
+                
             }
         }
 
@@ -122,6 +122,10 @@ using UnityEngine.UI;
         //All players in lobby must be ready
         public void HandleReadyToStart(bool readyToStart)
         {
+            if(readyToStart)
+                readyButtonText.text = "<color=#9CFF8D>Ready </color>";
+            if(!readyToStart)
+                readyButtonText.text = "<color=white>Ready </color>";
             if (!isLeader) return;
             startGameButton.interactable = readyToStart;
             if (readyToStart)
