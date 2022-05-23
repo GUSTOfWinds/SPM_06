@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Event;
 using ItemNamespace;
+using Mirror;
 using UnityEngine;
 
 public class Triggertooltip : MonoBehaviour
 {
+    /**
+     * @author Martin Kings
+     */
     [SerializeField] private GameObject[] players;
 
     [SerializeField] private string[] firstText;
@@ -15,26 +19,30 @@ public class Triggertooltip : MonoBehaviour
 
     private string[] textToDisplay;
 
-    [SerializeField] private bool bossIsDead;
+    [SerializeField] private bool keyIsFound;
 
     private Guid connectedEventGuid;
 
-    private Guid portalEventGuid;
+    private Guid itemEventGuid;
 
-    [SerializeField] private bool isBridge;
+    private GameObject goalText;
+
+    private GoalTextScript goalTextScript;
+    
+    
 
 
     private void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        EventSystem.Current.RegisterListener<UnitDeathEventInfo>(SetBossLifeStatus, ref portalEventGuid);
+        EventSystem.Current.RegisterListener<ItemDropEventInfo>(OnItemDrop,
+            ref itemEventGuid); // registers the listener
         EventSystem.Current.RegisterListener<PlayerConnectEventInfo>(UpdatePlayerList, ref connectedEventGuid);
     }
 
     // Players 
     void UpdatePlayerList(PlayerConnectEventInfo playerConnectEventInfo)
     {
-        Debug.Log("Jag uppdateras när spelare 2 kommer");
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 
@@ -44,8 +52,8 @@ public class Triggertooltip : MonoBehaviour
         {
             return;
         }
-        
-        if (bossIsDead == false)
+
+        if (keyIsFound == false)
         {
             textToDisplay = firstText;
         }
@@ -54,54 +62,46 @@ public class Triggertooltip : MonoBehaviour
             textToDisplay = secondText;
         }
 
-        if (isBridge == false)
+        goalText = other.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject;
+        if (goalText.active == false)
         {
-            GameObject goalText = other.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject;
-            if (goalText.active == false)
-            {
-                goalText.SetActive(true);
-                goalText.GetComponent<GoalTextScript>().UpdateTextAndDisplay(textToDisplay[0], textToDisplay[1]);
-            }
-        }
-
-        if (isBridge && bossIsDead == false)
-        {
-            Debug.Log(" asd  ");
-            GameObject goalText = other.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject;
-            if (goalText.active == false)
-            {
-                goalText.SetActive(true);
-                goalText.GetComponent<GoalTextScript>().UpdateTextAndDisplay(textToDisplay[0], textToDisplay[1]);
-            }
+            goalText.SetActive(true);
+            goalText.GetComponent<GoalTextScript>().UpdateTextAndDisplay(textToDisplay[0], textToDisplay[1]);
         }
     }
 
+    
+    // When a player enters the proximity of the portal, the correct information will be
+    // shown based on the key being picked up or not.
     private void OnTriggerExit(Collider other)
     {
-        if (bossIsDead == false)
+        if (other.CompareTag("Player") == false)
         {
-            if (other.CompareTag("Player"))
+            return;
+        }
+
+
+        if (keyIsFound == false)
+        {
+            goalText = other.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject;
+            goalTextScript = goalText.GetComponent<GoalTextScript>();
+            if (goalText.active && goalTextScript.GetTextOne() == firstText[0] &&
+                goalTextScript.GetTextTwo() == firstText[1])
             {
-                GameObject goalText = other.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject;
-                GoalTextScript goalTextScript = goalText.GetComponent<GoalTextScript>();
-                if (goalText.active && goalTextScript.GetTextOne() == firstText[0] &&
-                    goalTextScript.GetTextTwo() == firstText[1])
-                {
-                    goalText.SetActive(false);
-                }
+                goalText.SetActive(false);
             }
         }
     }
 
-    public void SetBossLifeStatus(UnitDeathEventInfo unitDeathEventInfo)
+    public void OnItemDrop(ItemDropEventInfo unitDeathEventInfo)
     {
-        if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetName() == "Boss")
+        if (unitDeathEventInfo.itemBase.GetItemType == ItemBase.ItemType.Key)
         {
-            bossIsDead = true;
+            keyIsFound = true;
             foreach (var player in players)
             {
-                GameObject goalText = player.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject;
-                GoalTextScript goalTextScript = goalText.GetComponent<GoalTextScript>();
+                goalText = player.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject;
+                goalTextScript = goalText.GetComponent<GoalTextScript>();
                 if (goalText.active)
                 {
                     if (goalTextScript.GetTextOne() == firstText[0] &&
@@ -115,6 +115,14 @@ public class Triggertooltip : MonoBehaviour
                     }
                 }
             }
+            
+            // activates the animation of the portal here
+            
         }
+    }
+
+    public bool GetKeyStatus()
+    {
+        return keyIsFound;
     }
 }

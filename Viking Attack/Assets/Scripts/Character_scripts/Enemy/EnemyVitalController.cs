@@ -28,11 +28,14 @@ public class EnemyVitalController : NetworkBehaviour
     private SkinnedMeshRenderer skinnedMeshRenderer;
     private Material[] materials;
     [SerializeField] private Material hitMaterial;
+    [SerializeField] private AudioClip hitSound;
+    private AudioSource audioSource;
+    
 
     //spara maxvärdet så vi kan räkna ut procent 
     void Start()
     {
-        //skinnedMeshRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
+        audioSource = GetComponent<AudioSource>();
         skinnedMeshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
 
         currentHealth = characterBase.GetMaxHealth();
@@ -99,6 +102,7 @@ public class EnemyVitalController : NetworkBehaviour
             if (change < 0)
             {
                 StartCoroutine(BlinkOnHit());
+                PlayHitSound();
                 EventInfo enemyTakesDamage = new EnemyHitEvent
                 {
                     EventUnitGo = gameObject,
@@ -175,8 +179,16 @@ public class EnemyVitalController : NetworkBehaviour
     {
         Material[] temp = skinnedMeshRenderer.materials;
         skinnedMeshRenderer.materials = materials;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         skinnedMeshRenderer.materials = temp;
+    }
+    private void PlayHitSound()
+    {
+        if (hitSound != null)
+        {
+            //audioSource.Stop();
+            audioSource.PlayOneShot(hitSound);
+        }
     }
 
     // Ships experience to clients, makes experience within proximity possible
