@@ -511,7 +511,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1593998085}
   - {fileID: 106895132}
   m_Father: {fileID: 1158034767}
   m_RootOrder: 0
@@ -635,14 +634,15 @@ RectTransform:
   - {fileID: 1584879193}
   - {fileID: 725211499}
   - {fileID: 1655397326}
+  - {fileID: 1593998085}
   m_Father: {fileID: 94167307}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 456.7, y: 335}
-  m_Pivot: {x: 0, y: 1}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &106895133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6330,6 +6330,7 @@ GameObject:
   - component: {fileID: 1593998085}
   - component: {fileID: 1593998087}
   - component: {fileID: 1593998086}
+  - component: {fileID: 1593998088}
   m_Layer: 5
   m_Name: Panel (1)
   m_TagString: Untagged
@@ -6347,14 +6348,15 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 94167307}
-  m_RootOrder: 0
+  m_Children:
+  - {fileID: 1738850745}
+  m_Father: {fileID: 106895132}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 568, y: 211.5}
-  m_SizeDelta: {x: 1136, y: 483.69}
+  m_AnchoredPosition: {x: 744.3611, y: 151.35}
+  m_SizeDelta: {x: 1488.7222, y: 603.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1593998086
 MonoBehaviour:
@@ -6369,7 +6371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15686275, g: 0.15686275, b: 1, a: 0.05882353}
+  m_Color: {r: 0.44705886, g: 0.5372549, b: 0.54509807, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6394,6 +6396,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593998084}
   m_CullTransparentMesh: 1
+--- !u!95 &1593998088
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593998084}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 105d918c884b821478691099eabb13ba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1631382330
 GameObject:
   m_ObjectHideFlags: 0
@@ -6896,6 +6917,243 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680886901}
   m_CullTransparentMesh: 1
+--- !u!1 &1738850744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738850745}
+  - component: {fileID: 1738850748}
+  - component: {fileID: 1738850747}
+  - component: {fileID: 1738850746}
+  - component: {fileID: 1738850749}
+  m_Layer: 0
+  m_Name: PressAny
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1738850745
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738850744}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1593998085}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -744.361, y: -151.35}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1738850746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738850744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6471197673a894cb7ec67df6368898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 1593998084}
+  animator: {fileID: 1593998088}
+--- !u!114 &1738850747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738850744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e5f66abccc8efcc44bc1b430d18c4f82, type: 3}
+    m_FontSize: 19
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Press any Key
+--- !u!222 &1738850748
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738850744}
+  m_CullTransparentMesh: 1
+--- !u!114 &1738850749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738850744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 9d04051e5d86750469d0a1c96e5fa9bb, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 96c6e056-e058-406e-a6ff-1e9aa5526cdb
+    m_ActionName: PlayerControls/UseItem[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b0bc44f3-7268-473f-86bb-7b15fc17408a
+    m_ActionName: PlayerControls/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: af199d8d-3ea3-441c-8e91-841bd66aebc3
+    m_ActionName: PlayerControls/Dash[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ddc9014-ad68-4125-a12e-3c1a48174b92
+    m_ActionName: PlayerControls/Camera[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 899a16ae-eb25-4224-a4d5-660b3f6195c8
+    m_ActionName: PlayerControls/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8ac1dbc9-ba8a-4e17-a3e0-e42a45196aa6
+    m_ActionName: PlayerControls/Sprint[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c7adf50b-9eda-4e36-9a95-9e56a5ed152d
+    m_ActionName: PlayerControls/Toggle Character screen[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 29b2511d-54c0-46ac-974c-529248c8a4a5
+    m_ActionName: PlayerControls/Toggle Menu screen[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dba249a2-92cc-4a04-bbed-2873b42c70ed
+    m_ActionName: PlayerControls/Toggle Sword[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 16bf9e8c-9650-430c-9134-a733467b3b07
+    m_ActionName: PlayerControls/Toggle Spear[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 839a9745-05e6-483c-bb3e-90b327ee6478
+    m_ActionName: PlayerControls/Toggle Dagger[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 01bac9ec-c112-4aa5-a4f8-21fac1eb1dfa
+    m_ActionName: PlayerControls/Toggle Food[/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: aed0cbc1-5915-4269-9c50-1aff7b0a3548
+    m_ActionName: PlayerControls/Toggle Map[/Keyboard/m]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 316c72be-cbc8-4172-91c0-36935ba92069
+    m_ActionName: PlayerControls/Respawn[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b9565816-fcd5-4f3b-a366-4bbf5f55998e
+    m_ActionName: MenuControls/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 60aaf160-7d67-46fe-8548-b8bfe5c8b9bf
+    m_ActionName: MenuControls/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0e02860b-26ab-4634-b24c-09e88be2f30a
+    m_ActionName: MenuControls/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9c467273-ae69-49b2-abec-bd3cc285d985
+    m_ActionName: MenuControls/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ac9da41f-5c41-4447-8979-14cae23ee884
+    m_ActionName: MenuControls/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4daa9e1a-687f-4b7c-8572-e75e4c34dcb9
+    m_ActionName: MenuControls/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 500d3814-6b12-4270-9ad6-7f0d521aed82
+    m_ActionName: MenuControls/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3f542409-bfd2-4225-93ad-3db3ac7e1ae3
+    m_ActionName: MenuControls/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f30d056-4820-41c3-bbb1-376b54e60020
+    m_ActionName: MenuControls/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fe3ada87-d875-4073-817b-f13fe2e5c4ce
+    m_ActionName: MenuControls/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1738850746}
+        m_TargetAssemblyTypeName: PressAnyKey, Assembly-CSharp
+        m_MethodName: AnyKey
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ea75469b-07ea-49fc-935b-55e0c836e18d
+    m_ActionName: MenuControls/AnyKey[/Keyboard/anyKey]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: MenuControls
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1765909179
 GameObject:
   m_ObjectHideFlags: 0
@@ -7576,7 +7834,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.7179726, g: 0.6745283, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.87
   m_Range: 10
   m_SpotAngle: 30
