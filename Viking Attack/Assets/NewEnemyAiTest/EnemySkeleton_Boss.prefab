@@ -776,7 +776,6 @@ MonoBehaviour:
   enemySounds:
   - {fileID: 8300000, guid: 002d3438d861f224e911c9bea0f7f3d1, type: 3}
   - {fileID: 8300000, guid: 0edc7bad5b4d70a4abedf2104deeac79, type: 3}
-  hitAmountForStagger: 3
   roamingRangeFromSpawn: 20
 --- !u!114 &6186659466624714468
 MonoBehaviour:
@@ -839,7 +838,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 350
   m_StoppingDistance: 0
