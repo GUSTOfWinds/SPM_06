@@ -36,7 +36,10 @@ public class EnemyAIScript : NetworkBehaviour
     [SerializeField] private float aggroRangeFromSpawnPoint;
     [SerializeField] private bool canSeeThroughWalls;
     [SerializeField] private AudioClip[] enemySounds;
+<<<<<<< Updated upstream
     [SerializeField] private int hitAmountForStagger = 3;
+=======
+>>>>>>> Stashed changes
     [SerializeField] private float roamingRangeFromSpawn;
 
     // Syncs the position of the object to the server
@@ -73,6 +76,7 @@ public class EnemyAIScript : NetworkBehaviour
 
         //Sets starting target
         target = spawnPoint;
+        roamingPoint.transform.position = gameObject.transform.position;
 
         if (isServer)
         {
@@ -208,8 +212,9 @@ public class EnemyAIScript : NetworkBehaviour
             players = GameObject.FindGameObjectsWithTag("Player");
 
         //Checks if the enemy is att there target
-        if (navMeshAgent.remainingDistance <= attackRange)
+        if (Vector3.Distance(gameObject.transform.position, target.transform.position) <= attackRange)
         {
+            
             //Checks if target is a player if true set that the enemy should attack and rotate towards the player
             if (target.tag.Equals("Player"))
             {
@@ -281,6 +286,7 @@ public class EnemyAIScript : NetworkBehaviour
 
     private IEnumerator Attack()
     {
+        navMeshAgent.velocity = Vector3.zero;
         //Sets isAttacking to true to show that the Attack() function is running
         isAttacking = true;
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length * 0.5f);
@@ -319,10 +325,12 @@ public class EnemyAIScript : NetworkBehaviour
 
     public void Stagger(int amount)
     {
+        
         //Counts hits until hitAmountForStagger the stagger enemy which also resets path that stop the enemy form moving
         hitsForStagger += amount;
         if (hitsForStagger >= hitAmountForStagger)
         {
+            navMeshAgent.velocity = Vector3.zero;
             hitsForStagger = 0;
             //navMeshAgent.ResetPath();
             stateToPlayByIndex = 4;
