@@ -298,11 +298,11 @@ public class GlobalPlayerInfo : NetworkBehaviour
 
         public override void OnStartClient()
         {
-            Room.InGamePlayer.Add(this.gameObject);
+            if (Room != null) Room.InGamePlayer.Add(this.gameObject);
         }
         public override void OnStopClient()
         {
-            Room.InGamePlayer.Remove(this.gameObject);
+            if (Room != null) Room.InGamePlayer.Remove(this.gameObject);
         }
 
     }
