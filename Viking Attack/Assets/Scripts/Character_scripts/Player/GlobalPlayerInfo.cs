@@ -29,7 +29,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         [SyncVar] [SerializeField] private float damage;
         [SyncVar] [SerializeField] private int meatStackNumber;
         [SyncVar] [SerializeField] private int armorLevel;
-        [SerializeField] private SkinnedMeshRenderer skinMesh;
+        [SerializeField] public SkinnedMeshRenderer skinMesh;
 
 
         private void Awake()
@@ -53,6 +53,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
             level = 1;
             playerName = PlayerPrefs.GetString("PlayerName");
             armorLevel = 0;
+            //UpdateDisplay();
         }
 
 
@@ -99,6 +100,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         public void CmdSetSkinColour(Color32 skinColour)
         {
             this.skinColour = skinColour;
+            skinMesh.material.SetColor(BaseColor, this.skinColour);
         }
 
         public float GetHealth()
@@ -112,7 +114,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         }
 
         // Gets called upon during game launch, the main menu sets the player skin color
-        [Server]
+        [ClientRpc]
         public void SetSkinColour(Color insertedColor)
         {
             skinColour = insertedColor;
@@ -168,6 +170,21 @@ public class GlobalPlayerInfo : NetworkBehaviour
                 gameObject.GetComponent<KillPlayer>().PlayerRespawn();
             }
         }
+        /*private void UpdateDisplay()
+        {
+
+
+            //This loop sets the name of a current player in the lobby and sets the name of the colour they've chosen.
+            //Todo remove NameColour call when we have character customization available
+            for (int i = 0; i < Room.InGamePlayer.Count; i++)
+            {
+                Color32 currentColour = room.InGamePlayer.
+                room.InGamePlayer[i]..material.SetColor(BaseColor, color32);
+
+                playerNameTexts[i].color = Room.RoomPlayers[i].colour;
+
+            }
+        }*/
 
         public void SetHealth(float hp)
         {
