@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 
 public class PressAnyKey : MonoBehaviour
@@ -8,17 +7,25 @@ public class PressAnyKey : MonoBehaviour
     public Animator animator;
     private UnityEngine.UI.Text text;
     
-    void menutransition() 
-    { 
+    // Start is called before the first frame update
+    void Start()
+    {
+        text = GetComponent<UnityEngine.UI.Text>();
         menu.SetActive(false);
     }
 
-    public void AnyKey(InputAction.CallbackContext value)
+    // Update is called once per frame
+    void Update()
     {
-        if(value.performed)
+        if(Input.anyKey)
         {
-            animator.SetTrigger("pressedanykey");
-            Invoke("menutransition", 1f);
+            animator.SetBool("pressedAKey", true);
+            Invoke("menutransition", 1.5f);
+            
         }
+    }
+    void menutransition() { 
+        menu.SetActive(true);
+        
     }
 }
