@@ -1,7 +1,9 @@
 using ItemNamespace;
 using UnityEngine;
 using Mirror;
+using System.Collections.Generic;
 using System;
+using System.Runtime.CompilerServices;
 using Inventory_scripts;
 using UnityEngine.InputSystem;
 using System.Collections;
@@ -17,8 +19,7 @@ public class PlayerItemUsageController : NetworkBehaviour
 
     private Type currentActingComponentType;
     private ItemBaseBehaviour currentActingComponent;
-    public bool WhenUsingItem;
-
+    private bool whenUsingItem;
 
 
     public void Start()
@@ -43,15 +44,16 @@ public class PlayerItemUsageController : NetworkBehaviour
     //Changes what item the player has in their hand and sets the correct mesh and material
     public void ChangeItem(ItemBase newItemBase)
     {
-        itemBase = newItemBase; // updates itemBase
-        Type itemType = Type.GetType(itemBase.GetItemBaseBehaviorScriptName); // fetches type of the itemBehaviour
-        Debug.Log("Nuvarande: "+currentActingComponent);
-        Debug.Log("itemBase" + itemBase);
+        itemBase = newItemBase; // updates itembase
+        Type itemType = Type.GetType(itemBase.GetItemBaseBehaviorScriptName); // fetches type of the itembehaviour
+
+
         if (currentActingComponent != null)
         {
             currentActingComponent.StopAnimation();
             Destroy(currentActingComponent);
         }
+
         currentActingComponent = (ItemBaseBehaviour) gameObject.AddComponent(itemType);
         currentActingComponent.SetBelongingTo(itemBase);
         currentActingComponentType = itemType;
@@ -60,9 +62,9 @@ public class PlayerItemUsageController : NetworkBehaviour
     }
 
     // Will be run by both client and server, only updates the mesh shown in the other players hand
-    public void SyncHeldItem(int index, uint networkId)
+    public void SyncHeldItem(int index, uint netid)
     {
-        if (gameObject.GetComponent<NetworkIdentity>().netId == networkId)
+        if (gameObject.GetComponent<NetworkIdentity>().netId == netid)
         {
             itemBase = gameObject.GetComponent<PlayerInventory>().inventory[index];
             heldItemWorldObject.GetComponent<MeshFilter>().mesh = itemBase.GetMesh;

@@ -67,6 +67,8 @@ using UnityEngine.SceneManagement;
 
             OnClientConnected?.Invoke();
         }
+        
+        
 
         public override void OnClientDisconnect(NetworkConnection conn)
         {
@@ -132,14 +134,12 @@ using UnityEngine.SceneManagement;
 
                 NetworkServer.AddPlayerForConnection(conn, roomPlayerInstance.gameObject);
             }
-            Debug.Log("RoomP layers " + RoomPlayers.Count);
-            Debug.Log("GamePlayers "+ GamePlayers.Count);
         }
 
         public override void OnStopServer()
         {
             SceneManager.LoadScene(0);
-            landingPage.SetActive(true);
+            if (landingPage != null) landingPage.SetActive(true);
 
             RoomPlayers.Clear();
         }
@@ -184,8 +184,7 @@ using UnityEngine.SceneManagement;
 
         public override void ServerChangeScene(string newSceneName)
         {
-            Debug.Log("RoomPlayers SceneChange början " + RoomPlayers.Count);
-            Debug.Log("GamePlayers SceneChange början  "+ GamePlayers.Count);
+           
             // From menu to game
             // if (SceneManager.GetActiveScene().path == menuScene && newSceneName.StartsWith("Scene_Map"))
             // {
@@ -204,8 +203,7 @@ using UnityEngine.SceneManagement;
 
                 }
             //}
-            Debug.Log("Roomplayers SceneChange början  " + RoomPlayers.Count);
-            Debug.Log("GamePlayers SceneChange början  "+ GamePlayers.Count);
+
 
             base.ServerChangeScene(newSceneName);
         }
@@ -224,8 +222,6 @@ using UnityEngine.SceneManagement;
             //if (!sceneName.Contains("Scene_Map")) return;
             var conn = GamePlayers[0].connectionToClient;
             
-            Debug.Log("RoomPlayers " + RoomPlayers.Count);
-            Debug.Log("GamePlayers "+ GamePlayers.Count);
 
 
             for (int i = GamePlayers.Count - 1; i >= 0; i--)
@@ -239,7 +235,7 @@ using UnityEngine.SceneManagement;
                     playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(t.colour);
                     InGamePlayer.Add(playerInGame);
                     //NetworkServer.Destroy(conn.identity.gameObject);
-                    NetworkServer.Spawn(playerInGame);
+                    //NetworkServer.Spawn(playerInGame);
                     //NetworkServer.AddPlayerForConnection(conn, playerInGame);
                     NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
                     GamePlayers.Remove(GamePlayers[i]);
