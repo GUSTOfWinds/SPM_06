@@ -27,6 +27,7 @@ public class EnemyAIScript : NetworkBehaviour
     private bool roaming;
     private GameObject roamingPoint;
     private GameObject spawnPoint;
+    private int staggerStamina;
     private int stateToPlayByIndex = 0;
     private GameObject target;
     private int hitsForStagger;
@@ -36,7 +37,7 @@ public class EnemyAIScript : NetworkBehaviour
     [SerializeField] private float aggroRangeFromSpawnPoint;
     [SerializeField] private bool canSeeThroughWalls;
     [SerializeField] private AudioClip[] enemySounds;
-    [SerializeField] private int hitAmountForStagger = 3;
+    
     [SerializeField] private float roamingRangeFromSpawn;
 
     // Syncs the position of the object to the server
@@ -67,6 +68,7 @@ public class EnemyAIScript : NetworkBehaviour
         damage = characterBase.GetDamage();
         attackRange = characterBase.GetRange();
         navMeshAgent.speed = characterBase.GetMovementSpeed();
+        staggerStamina = characterBase.GetStaggerStamina();
 
         //Sets that the enemy stop a bit closer then there hit range
         navMeshAgent.stoppingDistance = attackRange * 0.8f;
@@ -164,42 +166,44 @@ public class EnemyAIScript : NetworkBehaviour
         //Checks if there are any palyers the the players list
         if (players != null)
         {
-            //For each player in players list check if that player is in agro range of enemy if not set target to roamingPoint or spawnPoint 
+            //For each player in players list check if that player is in agro range of enemy if not set target to roamingPoint or spawnPoint
+            bool playerFound = false;
             foreach (GameObject player in players)
-                if (Vector3.Distance(spawnPoint.transform.position, player.transform.position) <=
-                    aggroRangeFromSpawnPoint)
+            {
+                if (Vector3.Distance(spawnPoint.transform.position, player.transform.position) <= aggroRangeFromSpawnPoint)
                 {
                     target = player;
                     stateToPlayByIndex = 1;
+                    playerFound = true;
 
                     //Checks if there are anything between the enemy and player, if not don't check until enemy loses aggro
                     RaycastHit hit;
-                    if (!canSeeThroughWalls && !chasing && Physics.Linecast(transform.position + new Vector3(0, 1, 0),
-                            target.transform.position + new Vector3(0, 1, 0), out hit,
-                            ~LayerMask.GetMask("Player", "Enemy")))
+                    if (!canSeeThroughWalls && !chasing && Physics.Linecast(transform.position + new Vector3(0, 1, 0),target.transform.position + new Vector3(0, 1, 0), out hit,~LayerMask.GetMask("Player", "Enemy")))
                     {
                         target = spawnPoint;
                         stateToPlayByIndex = 2;
-                    }
-                    else
+                        playerFound = false;
+                    }else
                     {
                         chasing = true;
                     }
-
+                    
                     break;
                 }
+            }
+                
+            if(!playerFound)
+            {
+                gameObject.GetComponent<EnemyVitalController>().UpdateHealth(characterBase.GetMaxHealth());
+
+                chasing = false;
+                stateToPlayByIndex = 2;
+
+                if (roaming)
+                    target = roamingPoint;
                 else
-                {
-                    //gameObject.GetComponent<EnemyVitalController>().UpdateHealth(characterBase.GetMaxHealth());
-
-                    chasing = false;
-                    stateToPlayByIndex = 2;
-
-                    if (roaming)
-                        target = roamingPoint;
-                    else
-                        target = spawnPoint;
-                }
+                    target = spawnPoint;
+            }
             //Checks for GameObjects with Player tag  
         }
         else
@@ -250,17 +254,9 @@ public class EnemyAIScript : NetworkBehaviour
     {
         GameObject[] enemies = deathListener.GetEnemies();
         foreach (var enemy in enemies)
-        {
             if (enemy != null)
-            {
-                if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f &&
-                    enemy.GetComponent<AudioSource>().isPlaying && !enemy.Equals(gameObject))
-                {
+                if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f && enemy.GetComponent<AudioSource>().isPlaying && !enemy.Equals(gameObject))
                     return true;
-                }
-            }
-        }
-
         return false;
     }
 
@@ -268,27 +264,21 @@ public class EnemyAIScript : NetworkBehaviour
     private void RpcPlayEnemyChasing()
     {
         if (!isServer)
-        {
             audioSource.PlayOneShot(enemySounds[0]);
-        }
     }
 
     [ClientRpc]
     private void RpcSwingSword()
     {
         if (!isServer)
-        {
             audioSource.PlayOneShot(enemySounds[1]);
-        }
     }
 
     [ClientRpc]
     private void RpcDealDamage(GameObject player)
     {
         if (!isServer)
-        {
             player.GetComponent<GlobalPlayerInfo>().UpdateHealth(-damage);
-        }
     }
 
     private IEnumerator Attack()
@@ -333,7 +323,7 @@ public class EnemyAIScript : NetworkBehaviour
     {
         //Counts hits until hitAmountForStagger the stagger enemy which also resets path that stop the enemy form moving
         hitsForStagger += amount;
-        if (hitsForStagger >= hitAmountForStagger)
+        if (hitsForStagger >= staggerStamina)
         {
             hitsForStagger = 0;
             //navMeshAgent.ResetPath();
@@ -343,16 +333,6 @@ public class EnemyAIScript : NetworkBehaviour
             //Sets isAttacking to false to show that the Attack() function is done
             isAttacking = false;
         }
-    }
-
-    public void SetEnemyTransform(Transform trans)
-    {
-        spawnPoint.transform.position = trans.position;
-    }
-
-    public void SetIfEnemyRoam(bool roaming)
-    {
-        this.roaming = roaming;
     }
 
     [ClientRpc]
@@ -367,4 +347,8 @@ public class EnemyAIScript : NetworkBehaviour
 
     public GameObject GetSpawnPoint => spawnPoint;
     public GameObject GetRoamingPoint => roamingPoint;
+    public void SetIfEnemyRoam(bool roaming) => this.roaming = roaming;
+    public void SetEnemyTransform(Transform trans) => spawnPoint.transform.position = trans.position;
+    public void SetAggroRange(float aggroRange) => this.aggroRangeFromSpawnPoint = aggroRange;
+    public void SetRoamingRange(float roamingRange) => this.roamingRangeFromSpawn = roamingRange;
 }

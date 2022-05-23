@@ -11,11 +11,13 @@ public class SceneSwitch : NetworkBehaviour
     /**
      * @author Martin Kings
      */
-    [SerializeField] private bool bossIsDead;
+    [SerializeField] public bool bossIsDead;
     private Guid portalEventGuid;
+
 
     private void Start()
     {
+        
         EventSystem.Current.RegisterListener<UnitDeathEventInfo>(SetBossLifeStatus, ref portalEventGuid);
     }
 
@@ -23,17 +25,12 @@ public class SceneSwitch : NetworkBehaviour
     {
         if (bossIsDead)
         {
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            foreach (GameObject player in players)
+            foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
             {
                 DontDestroyOnLoad(player);
             }
-            
-            
-          // NetworkManager.singleton.OnServerSceneChanged
-            
+
             NetworkManager.singleton.ServerChangeScene("TerrainIsland2");
-           
         }
     }
 
@@ -44,6 +41,7 @@ public class SceneSwitch : NetworkBehaviour
             if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetName() == "Boss")
             {
                 bossIsDead = true;
+                
             }
         }
     }

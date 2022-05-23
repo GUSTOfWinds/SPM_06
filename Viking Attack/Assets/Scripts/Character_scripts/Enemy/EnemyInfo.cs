@@ -126,5 +126,8 @@ namespace ItemNamespace
                 gameObject.GetComponent<EnemyVitalController>().PlayerScaleHealthUpdate(health, maxHealth);
             }
         }
+
+        public void SetDropItem(GameObject drop) => this.drop = drop;
+        public void SetDropChance(int chance) => dropChance = chance;
     }
 }

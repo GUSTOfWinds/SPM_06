@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.CompilerServices;
 using Mirror;
 using UnityEngine;
@@ -8,10 +9,15 @@ public class KillPlayer : MonoBehaviour
     /**
      * @author Martin Kings
      */
+    private Vector3 respawnPoint;
+    private void Start()
+    {
+        respawnPoint = GameObject.FindGameObjectWithTag("PlayerRespawnAnchor").transform.position;
+    }
+
     public void PlayerRespawn()
     {
-        transform.position = GameObject.FindGameObjectWithTag("PlayerRespawnAnchor").transform.position;
-        //gameObject.transform.GetComponent<MyRigidbody3D>().CmdSetSynchedPosition(GameObject.FindGameObjectWithTag("PlayerRespawnAnchor").transform.position);
+        transform.position = respawnPoint;
         Invoke("HealthBack", 3f);
     }
 

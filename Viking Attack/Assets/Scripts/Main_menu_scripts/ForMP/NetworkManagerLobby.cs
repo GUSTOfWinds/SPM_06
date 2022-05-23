@@ -15,7 +15,8 @@ namespace Main_menu_scripts.ForMP
         public List<NetworkRoomPlayerLobby> RoomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
 
         [Header("Game")] [SerializeField] private NetworkGamePlayer gamePlayerPrefab;
-
+        //for saving system
+        [Header("SaveSystem")][SerializeField] private GameObject saveSystem;
         [SerializeField] private GameObject playerSpawnSystem;
         public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
         public List<GameObject> spawnablePrefabs = new List<GameObject>();
@@ -188,6 +189,7 @@ namespace Main_menu_scripts.ForMP
         }
 
 
+
         public override void OnServerReady(NetworkConnectionToClient conn)
         {
             base.OnServerReady(conn);
@@ -198,14 +200,19 @@ namespace Main_menu_scripts.ForMP
         public override void OnServerSceneChanged(String sceneName)
         {
             //if (!sceneName.Contains("Scene_Map")) return;
-            if (sceneName.Contains("TerrainIsland2")) return;
+   
             var playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
             NetworkServer.Spawn(playerSpawnSystemInstance);
             var spawner = playerSpawnSystemInstance.GetComponent<PlayerSpawnSystem>();
+         
+     
         }
-
-
-
+        
+        // for loading data By Jiang
+        public NetworkRoomPlayerLobby getLobbyRoom()
+        {
+            return roomPlayerLobby;
+        }
     }
 
     public struct CharacterInfo : NetworkMessage
@@ -213,4 +220,8 @@ namespace Main_menu_scripts.ForMP
         public string Name;
         public Color32 playerColour;
     }
+
+
+
+    
 }

@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4616224863939141917
 Transform:
   m_ObjectHideFlags: 0
@@ -56,10 +56,19 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 6653956862289318906, guid: 165c12ded68761642b5004818eca77ba, type: 3}
+  - {fileID: 1627232034024812431, guid: 1268ed0163b18974ea84e9d5aef06972, type: 3}
+  - {fileID: 6653956862289318906, guid: 80522e53aa967a74bbfe7184b84308dc, type: 3}
+  - {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
+  - {fileID: 6033644488563431086, guid: 48252e56f3a191147bc11d0a659c11fe, type: 3}
+  - {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
+  - {fileID: 9080351483311851685, guid: 504deff2fa29fc24e84cbb8900573910, type: 3}
+  - {fileID: 469271222892847950, guid: 3299a738816a72b43b2be7e059fb20ec, type: 3}
+  - {fileID: 5696351078985557884, guid: a7973f2daaebe384db5c3de7da34215f, type: 3}
 --- !u!114 &4616224863939141907
 MonoBehaviour:
   m_ObjectHideFlags: 0

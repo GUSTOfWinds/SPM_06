@@ -14,7 +14,10 @@ public class NewEnemySpawner : NetworkBehaviour
     private uint netID;
     [SerializeField] private bool isBoss;
     [SerializeField] private bool roaming;
-
+    [SerializeField] private float roamingRange = 20;
+    [SerializeField] private float aggroRange = 30;
+    [SerializeField] private GameObject itemDrop;
+    [SerializeField] private int dropChance;
 
     private void Awake()
     {
@@ -44,8 +47,12 @@ public class NewEnemySpawner : NetworkBehaviour
         // Spawns an enemy at the location of the spawner parent, will also spawn it on the server
         var enemy = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
         enemy.GetComponent<EnemyInfo>().SetRespawnAnchor(transform);
+        enemy.GetComponent<EnemyInfo>().SetDropItem(itemDrop);
+        enemy.GetComponent<EnemyInfo>().SetDropChance(dropChance);
         enemy.GetComponent<EnemyAIScript>().SetEnemyTransform(transform);
         enemy.GetComponent<EnemyAIScript>().SetIfEnemyRoam(roaming);
+        enemy.GetComponent<EnemyAIScript>().SetAggroRange(aggroRange);
+        enemy.GetComponent<EnemyAIScript>().SetRoamingRange(roamingRange);
         NetworkServer.Spawn(enemy);
         
 
