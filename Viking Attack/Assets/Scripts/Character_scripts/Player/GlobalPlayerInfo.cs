@@ -15,7 +15,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         [SerializeField] private Component staminaBar;
         [SerializeField] private Component experienceBar;
         [SyncVar] [SerializeField] private string playerName;
-        [SyncVar] [SerializeField] private Color skinColour;
+        [SyncVar] [SerializeField] public Color32 skinColour;
         [SyncVar] [SerializeField] private float health;
         [SyncVar] [SerializeField] private float maxHealth;
         [SerializeField] private ItemBase[] items;
@@ -30,7 +30,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         [SyncVar] [SerializeField] private int meatStackNumber;
         [SyncVar] [SerializeField] private int armorLevel;
         [SerializeField] public SkinnedMeshRenderer skinMesh;
-
+        private int red, green, blue;
 
         private void Awake()
         {
@@ -53,7 +53,12 @@ public class GlobalPlayerInfo : NetworkBehaviour
             level = 1;
             playerName = PlayerPrefs.GetString("PlayerName");
             armorLevel = 0;
-            //UpdateDisplay();
+            red = PlayerPrefs.GetInt("redValue");
+            green = PlayerPrefs.GetInt("greenValue");
+            blue = PlayerPrefs.GetInt("blueValue");
+            skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255);
+            
+            skinMesh.material.SetColor(BaseColor, skinColour);
         }
 
 
@@ -77,9 +82,11 @@ public class GlobalPlayerInfo : NetworkBehaviour
         {
             if (isLocalPlayer)
             {
-                skinMesh.material.SetColor(BaseColor, skinColour);
+                UpdateColours();
+                Debug.Log("Färg: " + skinColour);
                 CmdSetPlayerName(playerName);
                 CmdSetSkinColour(skinColour);
+
 
             }
         }
@@ -99,8 +106,9 @@ public class GlobalPlayerInfo : NetworkBehaviour
         [Command]
         public void CmdSetSkinColour(Color32 skinColour)
         {
+
             this.skinColour = skinColour;
-            skinMesh.material.SetColor(BaseColor, this.skinColour);
+            UpdateColours();
         }
 
         public float GetHealth()
@@ -113,11 +121,13 @@ public class GlobalPlayerInfo : NetworkBehaviour
             return maxHealth;
         }
 
-        // Gets called upon during game launch, the main menu sets the player skin color
         [ClientRpc]
-        public void SetSkinColour(Color insertedColor)
+        private void UpdateColours()
         {
-            skinColour = insertedColor;
+            for (int i = 0; i < room.InGamePlayer.Count; i++)
+            {
+                room.InGamePlayer[i].GetComponent<GlobalPlayerInfo>().skinMesh.material.SetColor(BaseColor, room.InGamePlayer[i].GetComponent<GlobalPlayerInfo>().skinColour);
+            }
         }
 
         // Returns the player name
@@ -127,7 +137,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         }
 
         // Returns the player skin color
-        public Color GetSkinColor()
+        public Color32 GetSkinColor()
         {
             return skinColour;
         }
@@ -185,6 +195,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
 
             }
         }*/
+        public void SetSkinColour(Color32 insertedColor)
+        {
+            skinColour = insertedColor;
+        }
 
         public void SetHealth(float hp)
         {

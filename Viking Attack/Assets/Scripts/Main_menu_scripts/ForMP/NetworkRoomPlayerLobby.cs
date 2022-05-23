@@ -54,6 +54,7 @@ using UnityEngine.UI;
         public override void OnStartAuthority()
         {
             CmdSetDisplayName(PlayerNameInput.displayName);
+            CmdSetPlayerColour(PlayerNameInput.playerColour);
             lobbyUI.SetActive(true);
         }
 
@@ -143,6 +144,11 @@ using UnityEngine.UI;
             isReady = !isReady;
             Room.NotifyPlayersOfReadyState();
         }
+        [Command]
+        private void CmdSetPlayerColour(Color32 colour32)
+        {
+            colour = colour32;
+        }
 
         //Only host can start game, and throws the command all over the server
         [Command]
@@ -151,4 +157,5 @@ using UnityEngine.UI;
             if (Room.RoomPlayers[0].connectionToClient != connectionToClient) return;
             Room.StartGame();    
         }
+        
     }

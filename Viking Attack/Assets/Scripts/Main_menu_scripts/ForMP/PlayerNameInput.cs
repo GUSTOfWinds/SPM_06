@@ -10,6 +10,10 @@ using UnityEngine.UI;
         [SerializeField] private TMP_InputField nameInputField;
 
         [SerializeField] private Button continueButton;
+        [SerializeField] private Slider red;
+        [SerializeField] private Slider green;
+        [SerializeField] private Slider blue;
+
 
 
         //Follow 4 rows sets, and gets the players colour and name, as well as set the string used in player-preferences
@@ -45,12 +49,6 @@ using UnityEngine.UI;
         {
             MakeButtonActive();
         }
-        
-        public void SetPlayerColour(Color playerColor)
-        {
-            continueButton.interactable = !string.IsNullOrEmpty(playerColor.ToString());
-        }
-
 
         public void SavePlayerName()
         {
@@ -59,14 +57,14 @@ using UnityEngine.UI;
         
         }
         //Name is saved in playerpreferences.
-        /*
+        
         public void SavePlayerColour()
         {
-            
-            playerColour = Color.red;
-            PlayerPrefs.SetString(PlayerPrefsNameKey, ColorUtility.ToHtmlStringRGB(playerColour));
+            PlayerPrefs.SetInt("redValue", (int)red.value);
+            PlayerPrefs.SetInt("greenValue", (int)green.value);
+            PlayerPrefs.SetInt("blueValue", (int)blue.value);
+            playerColour = new Color32((byte)red.value, (byte)green.value, (byte)blue.value, 255);
         }
-        */
 
         public void MakeButtonActive()
         {

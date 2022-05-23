@@ -3100,33 +3100,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 67631882}
-        m_TargetAssemblyTypeName: Scenes.Colour.SliderText, Assembly-CSharp
-        m_MethodName: SaveColour
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2145555469}
-        m_TargetAssemblyTypeName: Scenes.Colour.SliderText, Assembly-CSharp
-        m_MethodName: SaveColour
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 962074086}
-        m_TargetAssemblyTypeName: Scenes.Colour.SliderText, Assembly-CSharp
-        m_MethodName: SaveColour
+      - m_Target: {fileID: 1584879194}
+        m_TargetAssemblyTypeName: PlayerNameInput, Assembly-CSharp
+        m_MethodName: SavePlayerColour
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6281,6 +6257,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameInputField: {fileID: 950750338}
   continueButton: {fileID: 771834733}
+  red: {fileID: 962074085}
+  green: {fileID: 2145555468}
+  blue: {fileID: 67631881}
 --- !u!114 &1584879195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7648,6 +7627,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1697433109, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697433109, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
+      propertyPath: showSlider
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2130335223947001309, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: Port
       value: 7779

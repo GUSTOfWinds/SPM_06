@@ -9,7 +9,7 @@ using UnityEngine;
         public string displayName = "Loading...";
 
         [SyncVar] 
-        public Color32 colour = new Color32(200, 50, 200, 255);
+        public Color32 colour;
 
         private NetworkManagerLobby room;
         private NetworkManagerLobby Room
@@ -20,6 +20,26 @@ using UnityEngine;
                 return room = NetworkManager.singleton as NetworkManagerLobby;
             }
         }
+        
+        //Sets name on your character in lobby and latter the game, OnStartAuthority makes sure it is run only on the object that is yours.
+        public override void OnStartAuthority()
+        {
+            CmdSetDisplayName(PlayerNameInput.displayName);
+            CmdSetPlayerColour(PlayerNameInput.playerColour);
+        }
+        
+        [Command]
+        private void CmdSetDisplayName(string displayName)
+        {
+            this.displayName = displayName;
+        }
+
+        [Command]
+        private void CmdSetPlayerColour(Color32 colour32)
+        {
+            colour = colour32;
+        }
+
 
         public override void OnStartClient()
         {
@@ -33,12 +53,10 @@ using UnityEngine;
             Room.GamePlayers.Remove(this);
         }
 
-        [Server]
         public void SetSkinColour(Color32 colour)
         {
             this.colour = colour;
         }
-        [Server]
         public void SetDisplayName(string displayName)
         {
             this.displayName = displayName;
