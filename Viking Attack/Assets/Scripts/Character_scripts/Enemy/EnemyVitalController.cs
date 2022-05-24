@@ -1,13 +1,10 @@
 using System;
 using System.Collections;
-<<<<<<< Updated upstream
-=======
+
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using ItemNamespace;
->>>>>>> Stashed changes
 using Event;
-using ItemNamespace;
 using Mirror;
 using UnityEngine;
 
