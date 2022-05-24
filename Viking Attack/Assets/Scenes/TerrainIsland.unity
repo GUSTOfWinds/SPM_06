@@ -8168,6 +8168,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortalParent
       objectReference: {fileID: 0}
+    - target: {fileID: 8956608591694349162, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
+      propertyPath: firstText.Array.data[0]
+      value: Find the relic in order to activate the portal.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956608591694349162, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
+      propertyPath: firstText.Array.data[1]
+      value: You can find it somewhere on this island.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956608591694349162, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
+      propertyPath: secondText.Array.data[0]
+      value: The portal to the boss is now active as you found the relic.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956608591694349162, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
+      propertyPath: secondText.Array.data[1]
+      value: You can now approach it at the end of the of path.
+      objectReference: {fileID: 0}
     - target: {fileID: 8956608591694349167, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
       propertyPath: sceneId
       value: 136557201
