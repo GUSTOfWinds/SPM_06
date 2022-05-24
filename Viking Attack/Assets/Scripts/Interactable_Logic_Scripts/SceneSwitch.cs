@@ -11,38 +11,37 @@ public class SceneSwitch : NetworkBehaviour
     /**
      * @author Martin Kings
      */
-    [SerializeField] public bool bossIsDead;
+    [SerializeField] public bool keyIsFound;
+
+    private Triggertooltip triggerTooltip;
+    
     private Guid portalEventGuid;
 
 
     private void Start()
     {
-        
-        EventSystem.Current.RegisterListener<UnitDeathEventInfo>(SetBossLifeStatus, ref portalEventGuid);
+        triggerTooltip = GetComponentInChildren<Triggertooltip>();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (bossIsDead)
+        if (other.CompareTag("Player") == false)
         {
-            foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
-            {
-                DontDestroyOnLoad(player);
-            }
+            return;
+        }
+        
+        if (triggerTooltip.GetKeyStatus())
+        {
+            Debug.Log("Key has been picked up. Will portal player now");
+            
+            // foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
+            // {
+            //     DontDestroyOnLoad(player);
+            // }
 
-            NetworkManager.singleton.ServerChangeScene("TerrainIsland2");
+            // Add teleports the player here
+            //NetworkManager.singleton.ServerChangeScene("TerrainIsland2");
         }
     }
 
-    public void SetBossLifeStatus(UnitDeathEventInfo unitDeathEventInfo)
-    {
-        if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>() != null)
-        {
-            if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetName() == "Boss")
-            {
-                bossIsDead = true;
-                
-            }
-        }
-    }
 }

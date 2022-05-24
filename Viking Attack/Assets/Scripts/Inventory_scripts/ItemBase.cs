@@ -14,11 +14,12 @@ namespace ItemNamespace
          * @author Martin Kings
          */
         [SerializeField] private ItemType itemType;
+
         [SerializeField] private WeaponType weaponType;
         [SerializeField] private string itemName;
         [SerializeField] private string description;
         [SerializeField] private int damage; // only interesting if weapon
-        [SerializeField] private float range;// only interesting if weapon
+        [SerializeField] private float range;
         [SerializeField] private float speed;
         [SerializeField] private float stamina;
         [SerializeField] private int healAmount; // only interesting if food
@@ -30,7 +31,6 @@ namespace ItemNamespace
         [SerializeField] private string itemBaseBehaviorScriptName; // the object with base behavior script for the item
         [SerializeField] private int protection;
         [SerializeField] private float speedMultiplierWhenUsingItem;
-        [SerializeField] private float staggerStaminaDrain;// only interesting if weapon
 
         public float GetSpeedMultiplierWhenUsingItem => speedMultiplierWhenUsingItem;
         // Returns armor level
@@ -77,9 +77,6 @@ namespace ItemNamespace
 
         //Returns the particle effect 
         public String GetUsageParticle => usageParticle;
-
-        //Returns the amounts of hit for stagger with this item
-        public float GetStaggerStaminaDrain => staggerStaminaDrain;
 
         // Contains the different item type, add a new line to the enum in order to add an item type.
         public enum ItemType
