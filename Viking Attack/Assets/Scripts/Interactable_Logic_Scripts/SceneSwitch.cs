@@ -3,25 +3,14 @@ using Event;
 using ItemNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Mirror;
 
 
-public class SceneSwitch : NetworkBehaviour
+public class SceneSwitch : MonoBehaviour
 {
     /**
      * @author Martin Kings
      */
-    [SerializeField] public bool keyIsFound;
-
-    private Triggertooltip triggerTooltip;
-    
-    private Guid portalEventGuid;
-
-
-    private void Start()
-    {
-        triggerTooltip = GetComponentInChildren<Triggertooltip>();
-    }
+    [SerializeField] private Triggertooltip triggerTooltip;
 
     void OnTriggerEnter(Collider other)
     {
@@ -34,13 +23,8 @@ public class SceneSwitch : NetworkBehaviour
         {
             Debug.Log("Key has been picked up. Will portal player now");
             
-            // foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
-            // {
-            //     DontDestroyOnLoad(player);
-            // }
-
+            
             // Add teleports the player here
-            //NetworkManager.singleton.ServerChangeScene("TerrainIsland2");
         }
     }
 

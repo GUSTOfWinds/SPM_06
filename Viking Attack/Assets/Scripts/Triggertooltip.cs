@@ -116,7 +116,7 @@ public class Triggertooltip : MonoBehaviour
                 }
             }
             
-            // activates the animation of the portal here
+            // TODO activate the animation of the portal here
             
         }
     }
