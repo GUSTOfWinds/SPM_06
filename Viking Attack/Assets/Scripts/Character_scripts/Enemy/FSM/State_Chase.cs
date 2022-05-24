@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class State_Chase : StateBase
 {
-    public State_Chase(Animator animator, GameObject gameObject) : base(animator, gameObject)
+    public State_Chase(Animator animator, GameObject gameObject, Vector3 spawnpos) : base(animator, gameObject, spawnpos)
     {
     }
 

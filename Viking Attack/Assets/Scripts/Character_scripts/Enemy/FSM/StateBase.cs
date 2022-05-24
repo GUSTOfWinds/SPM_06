@@ -9,11 +9,13 @@ public abstract class StateBase
     //We can call it when we instantiate the state
     private Animator animator;
     private GameObject gameObject;
+    private Vector3 spawnpos;
 
-    protected StateBase(Animator animator, GameObject gameObject)
+    protected StateBase(Animator animator, GameObject gameObject,Vector3 spawnpos)
     {
         this.animator = animator;
         this.gameObject = gameObject; 
+        this.spawnpos = spawnpos;
     }
 
     public abstract void OnEnter();

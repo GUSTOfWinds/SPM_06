@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class State_Recall : StateBase
 {
-    public State_Recall(Animator animator, GameObject gameObject) : base(animator, gameObject)
+    public State_Recall(Animator animator, GameObject gameObject, Vector3 spawnpos) : base(animator, gameObject, spawnpos)
     {
     }
+
 
     // Start is called before the first frame update
     public override void OnEnter()
