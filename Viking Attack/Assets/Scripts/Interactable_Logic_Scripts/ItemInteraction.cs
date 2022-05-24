@@ -1,30 +1,48 @@
 using System.Collections;
 using Event;
+using Inventory_scripts;
 using ItemNamespace;
-using UnityEngine;
 using Mirror;
+using UnityEngine;
 
-public class ItemInteraction : BaseObjectInteraction
-{
-    public override void InteractedWith(GameObject playerThatInteracted)
+
+    public class ItemInteraction : BaseObjectInteraction
     {
-
-        // Activates an event that the inventory will pick up and add the item to the inventory
-        EventInfo itemPickUpEvent = new PlayerItemPickupEventInfo
+        /**
+         * @author Martin Kings
+         */
+        public override void InteractedWith(GameObject playerThatInteracted)
         {
-            EventUnitGo = playerThatInteracted,
-            itemToDestroy = gameObject,
-            itemBase = gameObject.GetComponent<DropItemInWorldScript>().itembase
-        };
-        EventSystem.Current.FireEvent(itemPickUpEvent);
 
-        if (isClientOnly)
-        {
-            Destroy(gameObject);
+            // Activates an event that the inventory will pick up and add the item to the inventory
+            EventInfo itemPickUpEvent = new PlayerItemPickupEventInfo
+            {
+                EventUnitGo = playerThatInteracted,
+                itemToDestroy = gameObject,
+                itemBase = gameObject.GetComponent<DropItemInWorldScript>().itembase
+            };
+            EventSystem.Current.FireEvent(itemPickUpEvent);
+
+            if (gameObject.GetComponent<DropItemInWorldScript>().itembase.GetItemType == ItemBase.ItemType.Key)
+            {
+                StartCoroutine(DestroyAfterWait());
+                return;
+            }
+            
+            if (isClientOnly)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
-        else
+
+        private IEnumerator DestroyAfterWait()
         {
-            gameObject.SetActive(false);
+            yield return new WaitForSeconds(1);
+            NetworkServer.Destroy(gameObject);
+            
         }
     }
-}
