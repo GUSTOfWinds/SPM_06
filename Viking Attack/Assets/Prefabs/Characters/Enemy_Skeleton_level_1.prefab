@@ -1117,7 +1117,7 @@ GameObject:
   - component: {fileID: 2399186864775228470}
   - component: {fileID: -2517776122318007361}
   - component: {fileID: 2690753061192251443}
-  - component: {fileID: 2510333261423521795}
+  - component: {fileID: -87868174882285068}
   m_Layer: 3
   m_Name: Enemy_Skeleton_level_1
   m_TagString: Enemy
@@ -1403,7 +1403,7 @@ CapsuleCollider:
   m_Height: 1.5061169
   m_Direction: 1
   m_Center: {x: 0, y: 0.74837804, z: -0.020518646}
---- !u!114 &2510333261423521795
+--- !u!114 &-87868174882285068
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1412,12 +1412,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 6653956862289318906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13b6668ae104fa1419090f29edd6d1ea, type: 3}
+  m_Script: {fileID: 11500000, guid: b2288faa1187e9c409ba3db69945aad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  animator: {fileID: 3643602246697119875}
+  attacking: 0
   groundCheck: {fileID: 6653956863877352429}
+  isAttacking: 0
+  detectScopeRadius: 8
+  patrolRange: 10
+  maxChasingRange: 25
+  chasingSpeedMultiplier: 0
+  moveSpeed: 0
+  characterBase: {fileID: 11400000, guid: 51ce9bc9105c0934c8771ec9f22670c7, type: 2}
+  syncPosition: {x: 0, y: 0, z: 0}
+  syncRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6653956863877352429
 GameObject:
   m_ObjectHideFlags: 0

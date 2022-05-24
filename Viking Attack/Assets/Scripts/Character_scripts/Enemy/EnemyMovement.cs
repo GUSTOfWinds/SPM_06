@@ -34,12 +34,15 @@ public class EnemyMovement : NetworkBehaviour
     private LayerMask ground;
     private LayerMask player;
     private Collider[] colliders;
+    private float changeTimer;
 
-    [Header("State Boolean")] private bool isGuarding;
+    [Header("State Boolean")] 
+    private bool isGuarding;
     private bool isChasing;
     public bool isAttacking;
     private bool backToDefault;
     private bool checkForHinder;
+    private bool canChange;
 
     [Header("Patrol Settnings")] private Collider[] sphereColliders;
     private GameObject chasingObject;
@@ -72,6 +75,8 @@ public class EnemyMovement : NetworkBehaviour
         attackRange = characterBase.GetRange();
         moveSpeed = defaultSpeed;
         isGuarding = true;
+        canChange = false;
+        changeTimer = 0;
         ground = LayerMask.GetMask("Ground");
         player = LayerMask.GetMask("Player");
 
@@ -122,13 +127,22 @@ public class EnemyMovement : NetworkBehaviour
                     if (Vector3.Distance(transform.position, spawnPosition) >=
                         patrolRange) //when enemy is moving too far, change moving direction
                     {
-                        //Can DO check hit.normal 
-                        // movingDirection = -movingDirection;
-                        movingDirection = RandomVector(movingDirection).normalized;
-                        checkForHinder = false;
+                        if (canChange)
+                        {
+                            movingDirection = RandomVector(movingDirection).normalized;
+                            checkForHinder = false;
+                            canChange = false;
+                            changeTimer = 0;
+                        }
+                        
+                    }
+                    changeTimer += Time.fixedDeltaTime;
+                    if(changeTimer >= 1f)
+                    {
+                        canChange = true;
                     }
 
-                    transform.position += 0.1f * movingDirection * moveSpeed * Time.fixedDeltaTime;
+                    transform.position += 0.3f * movingDirection * moveSpeed * Time.fixedDeltaTime;
                     ChangeFacingDirection(movingDirection);
                 }
 
@@ -194,6 +208,7 @@ public class EnemyMovement : NetworkBehaviour
                 if (backToDefault)
                 {
                     moveSpeed = (int) chasingSpeedMultiplier * moveSpeed;
+                    ChangeFacingDirection( spawnPosition - gameObject.transform.position);
                     //Enemy gets full HP
                     gameObject.GetComponent<EnemyInfo>().BackToDefault();
                     animator.SetBool("Chasing", true);
@@ -212,7 +227,8 @@ public class EnemyMovement : NetworkBehaviour
                     {
                         transform.position = Vector3.MoveTowards(transform.position, spawnPosition,
                             moveSpeed * 0.3f * Time.deltaTime);
-                        transform.LookAt(spawnPosition);
+                        //Change facing direction only once when moving back to default spot
+                        //transform.LookAt(spawnPosition);
                     }
                 }
 

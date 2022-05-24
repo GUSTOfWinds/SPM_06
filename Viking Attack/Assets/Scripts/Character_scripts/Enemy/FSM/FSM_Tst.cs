@@ -18,7 +18,8 @@ public class FSM_Tst : NetworkBehaviour
     private void Awake()
     {
        Enemy_FSM = new Enemy_FSM();
-       
+        Enemy_FSM.AddState(StateType.GUARD, new State_Guard(animator, this.gameObject, transform.position, Enemy_FSM));
+        Enemy_FSM.SetState(StateType.GUARD);
         //***********//
         ground = LayerMask.GetMask("Ground");
     }
@@ -38,8 +39,7 @@ public class FSM_Tst : NetworkBehaviour
             }
             if (isGrounded)
             {
-                Enemy_FSM.AddState(StateType.GUARD, new State_Guard(animator, this.gameObject, transform.position));
-                Enemy_FSM.SetState(StateType.GUARD);
+                
                 Enemy_FSM.OnTick();
             }
         }

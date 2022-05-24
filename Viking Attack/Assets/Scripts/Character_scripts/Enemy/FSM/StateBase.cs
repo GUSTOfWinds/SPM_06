@@ -10,18 +10,20 @@ public abstract class StateBase
     private Animator animator;
     private GameObject gameObject;
     private Vector3 spawnpos;
+    private Enemy_FSM fsm;
 
-    protected StateBase(Animator animator, GameObject gameObject,Vector3 spawnpos)
+    protected StateBase(Animator animator, GameObject gameObject,Vector3 spawnpos,Enemy_FSM fsm)
     {
         this.animator = animator;
         this.gameObject = gameObject; 
         this.spawnpos = spawnpos;
+        this.fsm = fsm;
     }
 
     public abstract void OnEnter();
     public abstract void OnUppdate();
     public abstract void OnExit();
-  
+    
 
 
 }

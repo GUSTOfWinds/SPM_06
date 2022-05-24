@@ -8,7 +8,7 @@ public class State_Guard : StateBase
     private float counter = 0;
     private Vector3 movingDirection;
     private bool canChangeDirec;
-   
+   private Enemy_FSM fsm;
     private Animator animator;
     private GameObject gameObject;
     
@@ -23,11 +23,12 @@ public class State_Guard : StateBase
     private float visionAngle = 45.0f;
     private Vector3 tempPos;
 
-    public State_Guard(Animator animator, GameObject gameObject, Vector3 spawnpos) : base(animator, gameObject, spawnpos)
+    public State_Guard(Animator animator, GameObject gameObject, Vector3 spawnpos,Enemy_FSM fsm) : base(animator, gameObject, spawnpos,fsm)
     {
         this.animator = animator;
             this.gameObject = gameObject;
         this.spwnPos = spawnpos;
+        this.fsm = fsm;
     }
 
     public override void OnEnter()
@@ -58,18 +59,15 @@ public class State_Guard : StateBase
     private void Movement()
     {
         tempPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y+1f, gameObject.transform.position.z);
-        if (Vector3.Distance(gameObject.transform.position, spwnPos) > 20f)
+        if (Vector3.Distance(gameObject.transform.position, spwnPos) > 12f)
         {
             if(canChangeDirec)
             {
                 movingDirection = RandomVector(movingDirection);
                 counter = 0;
+                canChangeDirec = false;
             }
-            else
-            {
-                movingDirection = Vector3.zero;
-            }
-            
+         
         }
         counter += Time.fixedDeltaTime;
         if(counter > 2f)
@@ -118,6 +116,8 @@ public class State_Guard : StateBase
                     Debug.Log("get you");
                     chasingObject = coll.gameObject;
                     //TO DO Change to chase state
+                    fsm.AddState(StateType.CHASE, new State_Chase(animator, this.gameObject, gameObject.transform.position, fsm,coll.gameObject));
+                    fsm.SetState(StateType.CHASE);
                 }
 
             }
@@ -164,7 +164,7 @@ public class State_Guard : StateBase
 
             if (Physics.Raycast(tempPos, direction1, out hitInfo1, 500f))
             {
-                if (hitInfo1.collider.tag != "Player")
+                if (hitInfo1.collider.tag != "Player" && hitInfo1.collider.tag != "Enemy")
                 {
                     movementVector += direction1 * (hitInfo1.distance - 3f);
                 }

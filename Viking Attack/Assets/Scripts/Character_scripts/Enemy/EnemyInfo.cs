@@ -7,6 +7,7 @@ using Mirror;
 using UnityEditor;
 
 
+
 namespace ItemNamespace
 {
     public class EnemyInfo : NetworkBehaviour
@@ -129,5 +130,10 @@ namespace ItemNamespace
 
         public void SetDropItem(GameObject drop) => this.drop = drop;
         public void SetDropChance(int chance) => dropChance = chance;
+        //Jiang
+        public float getAttckRange()
+        {
+            return range;
+        }
     }
 }

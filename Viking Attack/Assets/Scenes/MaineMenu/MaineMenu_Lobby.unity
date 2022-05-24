@@ -1347,7 +1347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &277558315
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -8550,6 +8550,10 @@ PrefabInstance:
       value: Longship
       objectReference: {fileID: 0}
     - target: {fileID: 8528917936936222038, guid: d3e8c8044d9b3ec41ad84a37f75f4a8d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528917936936222038, guid: d3e8c8044d9b3ec41ad84a37f75f4a8d, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -11930,7 +11934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1627035412
 Transform:
   m_ObjectHideFlags: 0
@@ -13032,7 +13036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2903407794065380453, guid: b632d05765ce59040ab2b783b3fd8c49, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2903407794065380453, guid: b632d05765ce59040ab2b783b3fd8c49, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -14096,7 +14100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &2065347423
 TerrainCollider:
   m_ObjectHideFlags: 0
