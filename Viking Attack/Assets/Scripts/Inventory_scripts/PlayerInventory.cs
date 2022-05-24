@@ -486,5 +486,32 @@ namespace Inventory_scripts
                 sprites[3].SetActive(true);
             }
         }
+
+        //for saving
+        public GameObject[] getSprites()
+        {
+            return sprites;
+        }
+        public void UpdateHeldItem(int index)
+        {
+            sprites[index].SetActive(true);
+            sprites[index].GetComponent<Image>().sprite = inventory[index].GetSprite;
+            gameObject.GetComponent<GlobalPlayerInfo>()
+                .SetItemSlot(index, inventory[index]); // sets the info in globalplayerinfo
+            selectedItem.transform.position =
+                sprites[index].transform.position + new Vector3(0f, 10f, 0f);
+            gameObject.GetComponent<PlayerItemUsageController>()
+               .ChangeItem(inventory[index]);
+            //TO DO something wrong with ChangeItem metod
+        }
+        public void refreshHotbar()
+        {
+            foreach (var sp in sprites)
+            {
+                sp.SetActive(false);
+            }
+        }
+
+
     }
 }

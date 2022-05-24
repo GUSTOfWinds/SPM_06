@@ -16,7 +16,7 @@ namespace Main_menu_scripts.ForMP
 
 
         //Follow 4 rows sets, and gets the players colour and name, as well as set the string used in player-preferences
-        public static string displayName { get; private set; }
+        public static string displayName { get;  set; } //for loading host name from Data file, i delete private  set here By Jiang
         private const string PlayerPrefsNameKey = "PlayerName";
         public static Color32 playerColour { get; private set; }
 
@@ -59,8 +59,12 @@ namespace Main_menu_scripts.ForMP
         {
             displayName = nameInputField.text;
             PlayerPrefs.SetString(PlayerPrefsNameKey, displayName);
+            //For savíng and loading
+            PlayerPrefs.SetString("isLoadFile", "False");
         
         }
+     
+
         //Name is saved in playerpreferences.
         /*
         public void SavePlayerColour()
