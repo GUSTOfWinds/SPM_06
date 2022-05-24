@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1911269464}
-  m_IndirectSpecularColor: {r: 0.2328035, g: 0.23442134, b: 0.27287462, a: 1}
+  m_IndirectSpecularColor: {r: 0.23282295, g: 0.23444027, b: 0.27287063, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11781,6 +11781,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameInputField: {fileID: 950750338}
   continueButton: {fileID: 771834733}
+  red: {fileID: 962074085}
+  green: {fileID: 2145555468}
+  blue: {fileID: 67631881}
 --- !u!114 &1584879195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12511,7 +12514,7 @@ MonoBehaviour:
   syncInterval: 0.1
   networkManager: {fileID: 689856813}
   nameInputPanel: {fileID: 1584879192}
-  LandingPanel: {fileID: 725211496}
+  landingPanel: {fileID: 0}
   loadPanel: {fileID: 1050358173}
 --- !u!4 &1731418626
 Transform:
@@ -13540,6 +13543,10 @@ PrefabInstance:
     - target: {fileID: 1697433109, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: visRange
       value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697433109, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2627643080200506126, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: m_Name

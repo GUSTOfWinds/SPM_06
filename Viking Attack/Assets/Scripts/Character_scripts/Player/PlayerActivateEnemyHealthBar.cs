@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using Character_scripts.Enemy;
 using Event;
 using Mirror;
 using UnityEngine;

@@ -1,10 +1,7 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Main_menu_scripts.ForMP
-{
     public class JoinLobbyMenu : MonoBehaviour
     {
         [SerializeField] private NetworkManagerLobby networkManager = null;
@@ -51,5 +48,5 @@ namespace Main_menu_scripts.ForMP
             joinButton.interactable = true;
         }
     
-    }
+    
 }

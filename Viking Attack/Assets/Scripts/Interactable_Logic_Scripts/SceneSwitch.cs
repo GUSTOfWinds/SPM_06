@@ -1,8 +1,4 @@
-using System;
-using Event;
-using ItemNamespace;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class SceneSwitch : MonoBehaviour

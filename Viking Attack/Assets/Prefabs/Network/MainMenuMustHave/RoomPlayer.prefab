@@ -349,11 +349,11 @@ MonoBehaviour:
   playButtonText: {fileID: 5641543082347656344}
   startGameButton: {fileID: 3056972133116353746}
   readyButton: {fileID: 7393257919693888454}
-  audioSource: {fileID: 1671959830163362206}
-  clip: {fileID: 8300000, guid: 1070f1b54a3c59849887ea05d247841d, type: 3}
   displayName: Loading...
   isReady: 0
-  colour: {r: 0, g: 0, b: 0, a: 0}
+  colour:
+    serializedVersion: 2
+    rgba: 4286545791
 --- !u!1 &946828547138157769
 GameObject:
   m_ObjectHideFlags: 0

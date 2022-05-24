@@ -1,8 +1,7 @@
 using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
-using ItemNamespace;
 using Event;
+using ItemNamespace;
 using Mirror;
 using UnityEngine;
 
@@ -213,9 +212,9 @@ public class EnemyVitalController : NetworkBehaviour
         }
     }
 
-    //andra script kan registrera på detta event
+    //Other scripts that can change this event
     public event Action<float> OnHealthChanged;
 
-    //OBS KÖRS ENDAST PÅ SERVERN
+    //OBS Is only run on the server
     public event Action<EnemyVitalController> OnDeath;
 }

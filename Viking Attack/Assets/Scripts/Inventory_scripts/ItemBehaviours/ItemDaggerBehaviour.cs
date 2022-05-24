@@ -1,7 +1,6 @@
 ﻿using System.Collections;
-using ItemNamespace;
 using UnityEngine;
-using Event;
+using ItemNamespace;
 using Mirror;
 
 public class ItemDaggerBehaviour : ItemBaseBehaviour
