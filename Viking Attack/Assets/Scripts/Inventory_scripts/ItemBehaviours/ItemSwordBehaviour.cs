@@ -19,7 +19,7 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         rayCastPosition = gameObject.transform.Find("rayCastPosition").gameObject;
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
         globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
-        animator = gameObject.transform.Find("Prefab_PlayerBot").GetComponent<Animator>();
+        animator = gameObject.transform.Find("VikingWarrior").GetComponent<Animator>();
     }
 
     // Might need some tweaking to work as we want
