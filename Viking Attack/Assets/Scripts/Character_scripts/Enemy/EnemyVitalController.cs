@@ -30,7 +30,7 @@ public class EnemyVitalController : NetworkBehaviour
     [SerializeField] private Material hitMaterial;
     [SerializeField] private AudioClip hitSound;
     private AudioSource audioSource;
-    
+
 
     //spara maxvärdet så vi kan räkna ut procent 
     void Start()
@@ -81,7 +81,7 @@ public class EnemyVitalController : NetworkBehaviour
 
     [Command(requiresAuthority = false)]
     public void CmdUpdateHealth(float change, uint player) => UpdateHealth(change, player);
-    
+
     [Command(requiresAuthority = false)]
     public void CmdUpdateHealth(float change) => UpdateHealth(change);
 
@@ -91,12 +91,11 @@ public class EnemyVitalController : NetworkBehaviour
     {
         if (base.isServer)
         {
-            
             if (change != 0)
             {
                 gameObject.GetComponent<EnemyInfo>().PlayerScale();
             }
-            
+
             //clampa värdet så vi inte kan få mer hp än maxvärdet
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
             if (change < 0)
@@ -128,7 +127,9 @@ public class EnemyVitalController : NetworkBehaviour
                 }
 
                 if (gameObject.GetComponent<EnemyAIScript>() != null)
-                    gameObject.GetComponent<EnemyAIScript>().RpcBeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
+                    gameObject.GetComponent<EnemyAIScript>().RpcBeforeDying(
+                        gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,
+                        gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
                 this.OnDeath?.Invoke(this);
                 Die();
             }
@@ -136,7 +137,7 @@ public class EnemyVitalController : NetworkBehaviour
         else
             CmdUpdateHealth(change);
     }
-    
+
     public void UpdateHealth(float change)
     {
         if (base.isServer)
@@ -145,6 +146,7 @@ public class EnemyVitalController : NetworkBehaviour
             {
                 gameObject.GetComponent<EnemyInfo>().PlayerScale();
             }
+
             //clampa värdet så vi inte kan få mer hp än maxvärdet
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
 
@@ -166,7 +168,9 @@ public class EnemyVitalController : NetworkBehaviour
                 }
 
                 if (gameObject.GetComponent<EnemyAIScript>() != null)
-                    gameObject.GetComponent<EnemyAIScript>().RpcBeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
+                    gameObject.GetComponent<EnemyAIScript>().RpcBeforeDying(
+                        gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,
+                        gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
                 this.OnDeath?.Invoke(this);
                 Die();
             }
@@ -182,6 +186,7 @@ public class EnemyVitalController : NetworkBehaviour
         yield return new WaitForSeconds(0.1f);
         skinnedMeshRenderer.materials = temp;
     }
+
     private void PlayHitSound()
     {
         if (hitSound != null)
