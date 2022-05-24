@@ -90,6 +90,7 @@ namespace ItemNamespace
             Cursor.lockState = CursorLockMode.None;
         }
 
+        // Called upon by the Yes button under the panel UI gameobject
         public void YesButtonPressed()
         {
             // Returns if the script runs on an object that isn't the local player
@@ -264,9 +265,42 @@ namespace ItemNamespace
             Cursor.lockState = CursorLockMode.Locked;
         }
 
+        // Called upon by the No button under the UI panel Gameobject
         public void NoButtonPressed()
         {
-            
+            // Returns if the script runs on an object that isn't the local player
+            if (!isLocalPlayer)
+            {
+                return;
+            }
+
+            players = GameObject.FindGameObjectsWithTag("Player");
+
+            if (isServer)
+            {
+                foreach (var player in players)
+                {
+                    player.GetComponent<PlayerTeleport>().RpcRemoveConfirmationScreen();
+                }
+            }
+            else
+            {
+                // Resets to default so boss can be reached again
+                clickedYes = false;
+                button.enabled = true;
+                // Sets the Panel and script state to active
+                uiPanel.SetActive(false);
+                toggleCharacterScreen.locked = false;
+                playerScript3D.enabled = true;
+                cameraMovement3D.shouldBeLocked = true;
+
+                Time.timeScale = 1;
+                Cursor.lockState = CursorLockMode.Locked;
+                foreach (var player in players)
+                {
+                    player.GetComponent<PlayerTeleport>().CmdRemoveConfirmationScreen();
+                }
+            }
         }
     }
 }
