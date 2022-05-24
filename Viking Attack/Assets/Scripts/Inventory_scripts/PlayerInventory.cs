@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using Event;
-using ItemNamespace;
 using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using ItemNamespace;
+
 
 namespace Inventory_scripts
 {

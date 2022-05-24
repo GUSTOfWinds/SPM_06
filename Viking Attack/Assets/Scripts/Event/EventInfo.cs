@@ -1,5 +1,6 @@
-using ItemNamespace;
 using UnityEngine;
+using ItemNamespace;
+
 
 namespace Event
 {
