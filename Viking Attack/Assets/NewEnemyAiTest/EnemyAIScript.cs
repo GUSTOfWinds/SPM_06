@@ -26,6 +26,7 @@ public class EnemyAIScript : NetworkBehaviour
     private bool roaming;
     private GameObject roamingPoint;
     private GameObject spawnPoint;
+    private int staggerStamina;
     private int stateToPlayByIndex = 0;
     private GameObject target;
     private int hitsForStagger;
@@ -35,7 +36,6 @@ public class EnemyAIScript : NetworkBehaviour
     [SerializeField] private float aggroRangeFromSpawnPoint;
     [SerializeField] private bool canSeeThroughWalls;
     [SerializeField] private AudioClip[] enemySounds;
-    [SerializeField] private int hitAmountForStagger = 3;
     [SerializeField] private float roamingRangeFromSpawn;
 
     // Syncs the position of the object to the server
@@ -66,6 +66,7 @@ public class EnemyAIScript : NetworkBehaviour
         damage = characterBase.GetDamage();
         attackRange = characterBase.GetRange();
         navMeshAgent.speed = characterBase.GetMovementSpeed();
+        staggerStamina = characterBase.GetStaggerStamina();
 
         //Sets that the enemy stop a bit closer then there hit range
         navMeshAgent.stoppingDistance = attackRange * 0.8f;
@@ -322,7 +323,7 @@ public class EnemyAIScript : NetworkBehaviour
     {
         //Counts hits until hitAmountForStagger the stagger enemy which also resets path that stop the enemy form moving
         hitsForStagger += amount;
-        if (hitsForStagger >= hitAmountForStagger)
+        if (hitsForStagger >= staggerStamina)
         {
             navMeshAgent.velocity = Vector3.zero;
             hitsForStagger = 0;

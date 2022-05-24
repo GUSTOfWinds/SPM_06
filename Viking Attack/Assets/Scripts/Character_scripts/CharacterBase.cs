@@ -23,7 +23,12 @@ namespace ItemNamespace
         [SerializeField] private float maxHealth;
         [SerializeField] private float experienceRadius;
         [SerializeField] private float experience;
+        [SerializeField] private int staggerStamina; // example: Sword does 2 stagger stamina enemy has 3, it takes 2 hit for sword to stagger
 
+        public int GetStaggerStamina()
+        {
+            return staggerStamina;
+        }
         // Returns name of the item
         public string GetScriptableObjectName()
         {
