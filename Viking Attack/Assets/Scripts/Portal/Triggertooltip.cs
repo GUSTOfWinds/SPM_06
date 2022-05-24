@@ -1,6 +1,9 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Event;
 using ItemNamespace;
+using Mirror;
 using UnityEngine;
 
 public class Triggertooltip : NetworkBehaviour
