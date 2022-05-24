@@ -2,46 +2,30 @@ using System;
 using Event;
 using ItemNamespace;
 using UnityEngine;
-using Mirror;
+using UnityEngine.SceneManagement;
 
 
-public class SceneSwitch : NetworkBehaviour
+public class SceneSwitch : MonoBehaviour
 {
     /**
      * @author Martin Kings
      */
-    [SerializeField] public bool bossIsDead;
-    private Guid portalEventGuid;
-
-
-    private void Start()
-    {
-        
-        EventSystem.Current.RegisterListener<UnitDeathEventInfo>(SetBossLifeStatus, ref portalEventGuid);
-    }
+    [SerializeField] private Triggertooltip triggerTooltip;
 
     void OnTriggerEnter(Collider other)
     {
-        if (bossIsDead)
+        if (other.CompareTag("Player") == false)
         {
-            foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
-            {
-                DontDestroyOnLoad(player);
-            }
-
-            NetworkManager.singleton.ServerChangeScene("TerrainIsland2");
+            return;
+        }
+        
+        if (triggerTooltip.GetKeyStatus())
+        {
+            Debug.Log("Key has been picked up. Will portal player now");
+            
+            
+            // Add teleports the player here
         }
     }
 
-    public void SetBossLifeStatus(UnitDeathEventInfo unitDeathEventInfo)
-    {
-        if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>() != null)
-        {
-            if (unitDeathEventInfo.EventUnitGo.GetComponent<EnemyInfo>().GetName() == "Boss")
-            {
-                bossIsDead = true;
-                
-            }
-        }
-    }
 }

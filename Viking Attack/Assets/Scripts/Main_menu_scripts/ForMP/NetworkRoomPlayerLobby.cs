@@ -16,6 +16,8 @@ using UnityEngine.UI;
         [SerializeField] private TMP_Text playButtonText = null;
         [SerializeField] private Button startGameButton = null;
         [SerializeField] private Button readyButton = null;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip clip;
 
 
         //These are syncvariables that updates towards the server, and when there is a change we run the methods called in the hook
@@ -159,6 +161,7 @@ using UnityEngine.UI;
         public void CmdStartGame()
         {
             if (Room.RoomPlayers[0].connectionToClient != connectionToClient) return;
+            audioSource.PlayOneShot(clip);
             Room.StartGame();    
         }
         

@@ -1,7 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Event;
 using ItemNamespace;
 using Mirror;
 using UnityEngine;
+using UnityEngine.Networking.Types;
+using Inventory_scripts;
 
 
 public class GlobalPlayerInfo : NetworkBehaviour
@@ -31,6 +36,77 @@ public class GlobalPlayerInfo : NetworkBehaviour
         [SyncVar] [SerializeField] private int armorLevel;
         [SerializeField] public SkinnedMeshRenderer skinMesh;
         private int red, green, blue;
+    [SerializeField] private Component staminaBar;
+    [SerializeField] private Component experienceBar;
+    [SyncVar] [SerializeField] private string playerName;
+    [SyncVar] [SerializeField] private Color skinColor;
+    [SyncVar] [SerializeField] private float health;
+    [SyncVar] [SerializeField] private float maxHealth;
+    [SerializeField] private ItemBase[] items;
+    [SyncVar] [SerializeField] private bool alive;
+    [SyncVar] [SerializeField] private float stamina;
+    [SyncVar] [SerializeField] private float maxStamina;
+    [SyncVar] [SerializeField] private float experience;
+    [SyncVar] [SerializeField] private int level;
+    [SyncVar] [SerializeField] private float levelThreshold;
+    [SyncVar] [SerializeField] private int availableStatpoints;
+    [SyncVar] [SerializeField] private float damage;
+    [SyncVar] [SerializeField] private int meatStackNumber;
+    [SyncVar] [SerializeField] private int armorLevel;
+    //get character Screen
+    [SerializeField] private GameObject charatS;
+    
+
+
+    //gathering data and reset data
+    public void LoadData(Dictionary<String, System.Object> data)
+    {
+       
+        playerName = (string)data["playerName"];
+        health = (float)data["health"];
+        stamina = (float)data["stamina"];
+        experience = (float)data["experience"];
+        level = (int)data["level"];
+        availableStatpoints = (int)data["availableStatpoints"];
+        //damageStat = (int)dataDict["damageStat"];
+        //healthStat = (int)dataDict["healthStat"];
+        //staminaStat = (int)dataDict["staminaStat"];
+        meatStackNumber = (int)data["meatStackNumber"];
+        damage = (float)data["damage"];
+        armorLevel = (int)data["armorLevel"];
+        healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
+        staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
+        experienceBar.GetComponent<PlayerExperienceBar>().SetExperience(experience);
+        charatS.GetComponent<CharacterScreen>().OpenCharacterScreen();
+        gameObject.GetComponent<PlayerInventory>().UpdateMeatStack();
+    }
+    //Saving all the data
+    public Dictionary<String, System.Object> SaveData()
+    {
+
+        Dictionary<String, System.Object> dataHolder = new Dictionary<string, System.Object>();
+       // Dictionary<String, Dictionary<String, System.Object>> dataToSave = new Dictionary<string, Dictionary<String, System.Object>>();
+        dataHolder.Add("playerName", (System.Object)playerName);
+        dataHolder.Add("health", (System.Object)health);
+        dataHolder.Add("stamina", (System.Object)stamina);
+        dataHolder.Add("experience", (System.Object)experience);
+        dataHolder.Add("level", (System.Object)level);
+        dataHolder.Add("availableStatpoints", (System.Object)availableStatpoints);
+        //dataHolder.Add("damageStat", (System.Object)damageStat);
+        //dataHolder.Add("healthStat", (System.Object)healthStat);
+        //dataHolder.Add("staminaStat", (System.Object)staminaStat);
+        dataHolder.Add("meatStackNumber", (System.Object)meatStackNumber);
+        dataHolder.Add("damage", (System.Object)damage);
+        dataHolder.Add("armorLevel", (System.Object)armorLevel);
+        return dataHolder;
+    }
+
+
+
+
+
+
+    //*******************
 
         private void Awake()
         {

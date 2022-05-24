@@ -39,6 +39,22 @@ public class NetworkManagerLobby : NetworkManager
         base.OnStartServer();
         NetworkServer.RegisterHandler<CharacterInfo>(OnSpawnPlayerUI);
     }
+        private int minPlayers = 1;
+        [Scene] [SerializeField] private string menuScene = string.Empty;
+
+        [Header("Room")] [SerializeField] private NetworkRoomPlayerLobby roomPlayerLobby;
+        public List<NetworkRoomPlayerLobby> RoomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
+
+        [Header("Game")] [SerializeField] private NetworkGamePlayer gamePlayerPrefab;
+        //for saving system
+        [Header("SaveSystem")][SerializeField] private GameObject saveSystem;
+        [SerializeField] private GameObject playerSpawnSystem;
+        public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
+        public List<GameObject> spawnablePrefabs = new List<GameObject>();
+
+        [SerializeField] private GameObject landingPage;
+
+        [SerializeField] private string mapToLoad;
 
 
     public override void OnStartClient()

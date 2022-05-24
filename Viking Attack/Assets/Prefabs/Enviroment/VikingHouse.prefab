@@ -16,8 +16,8 @@ GameObject:
   m_Name: VikingHouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5693395419450245737
 Transform:
@@ -26,9 +26,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4920411654457088211}
-  m_LocalRotation: {x: -0, y: 0.9741761, z: -0, w: 0.22578943}
+  m_LocalRotation: {x: 0, y: 0.9741754, z: 0, w: 0.22579278}
   m_LocalPosition: {x: -246.98, y: 330.9, z: 612.08}
-  m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -95,4 +95,4 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -7267203730087977160, guid: f4817d11079cf1b4c889c58a0ffe9e5c, type: 3}
+  m_Mesh: {fileID: -1281039875509275744, guid: f4817d11079cf1b4c889c58a0ffe9e5c, type: 3}
