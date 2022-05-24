@@ -6,6 +6,9 @@ using Mirror;
 
 public class ItemSpearBehaviour : ItemBaseBehaviour
 {
+    /*
+        Made by Love Strignert
+    */
     private Animator animator;
     private GameObject rayCastPosition;
     private Camera mainCamera;

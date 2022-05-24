@@ -1,5 +1,11 @@
 using System;
 using System.Collections;
+<<<<<<< Updated upstream
+=======
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using ItemNamespace;
+>>>>>>> Stashed changes
 using Event;
 using ItemNamespace;
 using Mirror;
@@ -8,11 +14,8 @@ using UnityEngine;
 
 public class EnemyVitalController : NetworkBehaviour
 {
-    /**
-     * @author Martin Kings/Victor
-     */
+    public Dictionary<uint,float> aggroCounter;
     [SerializeField] private CharacterBase characterBase;
-
     [SerializeField] public float waitTime;
     [SerializeField] private bool hasDied;
     private Collider[] sphereColliders;
@@ -45,6 +48,8 @@ public class EnemyVitalController : NetworkBehaviour
         materials = new Material[skinnedMeshRenderer.materials.Length + 1];
         Array.Copy(skinnedMeshRenderer.materials, materials, skinnedMeshRenderer.materials.Length);
         materials[materials.Length - 1] = hitMaterial;
+
+        aggroCounter = new Dictionary<uint, float>();
     }
 
     private void OnConnectedToServer()
@@ -99,6 +104,14 @@ public class EnemyVitalController : NetworkBehaviour
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
             if (change < 0)
             {
+                if(aggroCounter.ContainsKey(player))
+                {
+                    aggroCounter[player] += change;
+                }else
+                {
+                    aggroCounter.Add(player,change);
+                }
+
                 StartCoroutine(BlinkOnHit());
                 PlayHitSound();
                 EventInfo enemyTakesDamage = new EnemyHitEvent
