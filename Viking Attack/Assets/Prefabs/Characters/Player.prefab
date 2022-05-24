@@ -4695,7 +4695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6333550043100242427
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9458,25 +9458,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4268227376869882894}
-        m_TargetAssemblyTypeName: ToggleControlsScreen, Assembly-CSharp
-        m_MethodName: ToggleControls
+      - m_Target: {fileID: 130896911810333559}
+        m_TargetAssemblyTypeName: SaveOnPlayer, Assembly-CSharp
+        m_MethodName: OnLoadClickFc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4062389340461311092}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: PlayOneShot
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: d9e6f2ff03e895143bf12098a9b3a5f3, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -12756,7 +12744,7 @@ MonoBehaviour:
   damage: 0
   meatStackNumber: 0
   armorLevel: 0
-  charatS: {fileID: 0}
+  charatS: {fileID: 6133393436876657970}
 --- !u!114 &993307644473226796
 MonoBehaviour:
   m_ObjectHideFlags: 0
