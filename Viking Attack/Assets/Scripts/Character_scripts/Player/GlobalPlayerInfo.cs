@@ -139,7 +139,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            UpdateColours();
+            if (isServer)
+            {
+                UpdateColours();
+            }
             CmdSetPlayerName(playerName);
             CmdSetSkinColour(skinColour);
 

@@ -54,7 +54,7 @@ public class SaveScript : NetworkBehaviour
             Debug.Log(t);
             name = t.GetComponent<GlobalPlayerInfo>().GetName();
             Debug.Log(name);
-            GameObject[] inventorySprites = t.GetComponent<PlayerInventory>().getSprites();
+            GameObject[] inventorySprites = t.GetComponent<PlayerInventory>().GetSprites();
             Debug.Log(inventorySprites.Length);
             for (int j = 0; j < inventorySprites.Length; j++)
             {
@@ -108,7 +108,7 @@ public class SaveScript : NetworkBehaviour
                     }
                 }
                 //set all inventory item sprite to false and reset them based on data file
-                t.GetComponent<PlayerInventory>().refreshHotbar();
+                t.GetComponent<PlayerInventory>().RefreshHotbar();
                 for (int j =0; j< playerData.playerInventory[playerName].Count; j++)
                 {
 

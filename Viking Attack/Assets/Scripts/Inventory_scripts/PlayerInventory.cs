@@ -488,7 +488,7 @@ namespace Inventory_scripts
         }
 
         //for saving
-        public GameObject[] getSprites()
+        public GameObject[] GetSprites()
         {
             return sprites;
         }
@@ -504,7 +504,7 @@ namespace Inventory_scripts
                .ChangeItem(inventory[index]);
             //TO DO something wrong with ChangeItem metod
         }
-        public void refreshHotbar()
+        public void RefreshHotbar()
         {
             foreach (var sp in sprites)
             {

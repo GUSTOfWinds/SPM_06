@@ -41,8 +41,20 @@ using UnityEngine;
 
         private IEnumerator DestroyAfterWait()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.2f);
+            if (isServer)
+            {
+                NetworkServer.Destroy(gameObject);
+            }
+            else
+            {
+                CmdDeleteKey();
+            }
+        }
+
+        [Command(requiresAuthority = false)]
+        private void CmdDeleteKey()
+        {
             NetworkServer.Destroy(gameObject);
-            
         }
     }

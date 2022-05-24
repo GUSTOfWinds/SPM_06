@@ -120,7 +120,6 @@ public class Triggertooltip : NetworkBehaviour
                     goalTextScript = goalText.GetComponent<GoalTextScript>();
                     goalText.GetComponent<GoalTextScript>().UpdateTextAndDisplay(secondText[0], secondText[1]);
                     StartCoroutine(DisplayText(player));
-                    Debug.Log(goalTextScript = goalText.GetComponent<GoalTextScript>());
                     CmdDisplayText(player);
                 }
             }

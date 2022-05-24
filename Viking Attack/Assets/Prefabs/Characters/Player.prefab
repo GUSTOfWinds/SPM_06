@@ -13614,6 +13614,7 @@ MonoBehaviour:
   syncInterval: 0
   teleportSpot: {fileID: 0}
   uiPanel: {fileID: 1820640973068262454}
+  button: {fileID: 1812471070183446414}
   clickedYes: 0
 --- !u!1 &5988590174749780764
 GameObject:
@@ -15803,13 +15804,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5988590173649968415}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 2948264465876588219}
+        m_TargetAssemblyTypeName: ItemNamespace.PlayerTeleport, Assembly-CSharp
+        m_MethodName: NoButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -19036,13 +19037,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5988590173649968415}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 2948264465876588219}
+        m_TargetAssemblyTypeName: ItemNamespace.PlayerTeleport, Assembly-CSharp
+        m_MethodName: YesButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
