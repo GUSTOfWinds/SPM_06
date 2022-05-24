@@ -9,8 +9,6 @@ public class SaveOnPlayer : MonoBehaviour
     void Start()
     {
         saveManager = GameObject.Find("SaveManager");
-        Debug.Log("I am working");
-        Debug.Log(saveManager.GetComponent<SaveScript>().isLoadingFile());
         //if we are choosed load game from meny. obtain data from file
         if (PlayerPrefs.GetString("isLoadFile") == "True")
         {

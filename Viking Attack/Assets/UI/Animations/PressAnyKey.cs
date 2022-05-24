@@ -5,6 +5,11 @@ using UnityEngine.InputSystem;
 public class PressAnyKey : MonoBehaviour
 {
     public GameObject menu;
+    public AudioSource audioSource;
+    public AudioSource envAudioSource;
+    public AudioSource seagullAudioSource;
+    public AudioClip ac;
+    
     public Animator animator;
     private UnityEngine.UI.Text text;
     
@@ -17,8 +22,11 @@ public class PressAnyKey : MonoBehaviour
     {
         if(value.performed)
         {
+            audioSource.PlayOneShot(ac);
+            envAudioSource.Play();
+            seagullAudioSource.Play();
             animator.SetTrigger("pressedanykey");
-            Invoke("menutransition", 1f);
+            Invoke("menutransition", 2.5f);
         }
     }
 }

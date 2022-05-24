@@ -22,6 +22,7 @@ public class SaveScript : NetworkBehaviour
     [Header("Panels")]
     [SerializeField] GameObject nameInputPanel;
     [SerializeField] GameObject LandingPanel;
+    [SerializeField] GameObject loadPanel;
 
     private void Start()
     {
@@ -103,7 +104,6 @@ public class SaveScript : NetworkBehaviour
             string playerName;
         for (int i = 0; i < players.Length; i++)
         {
-            Debug.Log(players[i]);
             playerName = players[i].GetComponent<GlobalPlayerInfo>().GetName();
             if (playerName == hostName)
             {
@@ -121,8 +121,7 @@ public class SaveScript : NetworkBehaviour
                 players[i].GetComponent<PlayerInventory>().refreshHotbar();
                  for (int j =0; j< playerData.playerInventory[playerName].Count; j++)
                 {
-         
-                    Debug.Log(playerData.playerInventory[playerName][j]);
+
                 if (playerData.playerInventory[playerName][j])
                 {
                    // if the item was activ, set it to activ now
@@ -148,8 +147,8 @@ public class SaveScript : NetworkBehaviour
             FileStream file = File.Open(Application.persistentDataPath + saveFileName, FileMode.Open);
             SaveData playerData = (SaveData)bf.Deserialize(file);
             nameInputPanel.SetActive(false);
+            loadPanel.SetActive(false);
             // LandingPanel.SetActive(true);
-            Debug.Log(playerData.hostName);
             //only host has the right to save the data, when we load from main meny. the host should be the same as the file 
             PlayerPrefs.SetString("isLoadFile", "True");
             PlayerNameInput.displayName = playerData.hostName;

@@ -12,6 +12,7 @@ namespace ItemNamespace
          * @author Martin Kings
          */
         [SerializeField] private EnemyType type;
+
         [SerializeField] private string soName;
         [SerializeField] private string description;
         [SerializeField] private float range;
@@ -22,7 +23,6 @@ namespace ItemNamespace
         [SerializeField] private float maxHealth;
         [SerializeField] private float experienceRadius;
         [SerializeField] private float experience;
-        [SerializeField] private int staggerStamina; // example: Sword does 2 stagger stamina enemy has 3, it takes 2 hit for sword to stagger
 
         // Returns name of the item
         public string GetScriptableObjectName()
@@ -79,10 +79,6 @@ namespace ItemNamespace
         public float GetExperience()
         {
             return experience;
-        }
-        public int GetStaggerStamina()
-        {
-            return staggerStamina;
         }
 
         // Contains the different item type, add a new line to the enum in order to add an item type.
