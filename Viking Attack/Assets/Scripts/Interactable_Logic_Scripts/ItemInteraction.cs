@@ -1,10 +1,16 @@
+using System.Collections;
 using Event;
 using Inventory_scripts;
+using ItemNamespace;
+using Mirror;
 using UnityEngine;
 
 
     public class ItemInteraction : BaseObjectInteraction
     {
+        /**
+         * @author Martin Kings
+         */
         public override void InteractedWith(GameObject playerThatInteracted)
         {
 
@@ -17,6 +23,12 @@ using UnityEngine;
             };
             EventSystem.Current.FireEvent(itemPickUpEvent);
 
+            if (gameObject.GetComponent<DropItemInWorldScript>().itembase.GetItemType == ItemBase.ItemType.Key)
+            {
+                StartCoroutine(DestroyAfterWait());
+                return;
+            }
+            
             if (isClientOnly)
             {
                 Destroy(gameObject);
@@ -25,5 +37,12 @@ using UnityEngine;
             {
                 gameObject.SetActive(false);
             }
+        }
+
+        private IEnumerator DestroyAfterWait()
+        {
+            yield return new WaitForSeconds(1);
+            NetworkServer.Destroy(gameObject);
+            
         }
     }

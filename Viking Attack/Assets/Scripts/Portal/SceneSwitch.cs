@@ -1,3 +1,4 @@
+using ItemNamespace;
 using UnityEngine;
 
 
@@ -17,10 +18,7 @@ public class SceneSwitch : MonoBehaviour
         
         if (triggerTooltip.GetKeyStatus())
         {
-            Debug.Log("Key has been picked up. Will portal player now");
-            
-            
-            // Add teleports the player here
+            other.GetComponent<PlayerTeleport>().StartTeleport();
         }
     }
 

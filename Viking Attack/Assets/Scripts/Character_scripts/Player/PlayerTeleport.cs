@@ -11,10 +11,13 @@ namespace ItemNamespace
     public class PlayerTeleport : NetworkBehaviour
     {
         [SerializeField] private GameObject teleportSpot;
+        [SerializeField] private GameObject uiPanel;
+        [SyncVar] [SerializeField] private bool clickedYes;
         private Vector3 portPosition;
 
         private void Start()
         {
+            teleportSpot = GameObject.FindGameObjectWithTag("BossPortal");
             portPosition = teleportSpot.transform.position;
         }
 
@@ -22,10 +25,12 @@ namespace ItemNamespace
         {
             if (isServer)
             {
+                
                 RpcStartConfirmation();
             }
             else
             {
+                uiPanel.SetActive(true);
                 CmdStartConfirmation();
             }
             
@@ -34,13 +39,13 @@ namespace ItemNamespace
         [Command]
         private void CmdStartConfirmation()
         {
-            
+            uiPanel.SetActive(true);
         }
         
         [ClientRpc]
         private void RpcStartConfirmation()
         {
-            
+            uiPanel.SetActive(true);
         }
         
     }
