@@ -1,6 +1,5 @@
 ﻿using System;
 using Event;
-using Inventory_scripts.ItemBehaviours;
 using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
