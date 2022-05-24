@@ -1,5 +1,4 @@
 using System.Collections;
-using ItemNamespace;
 using Mirror;
 using UnityEngine;
 

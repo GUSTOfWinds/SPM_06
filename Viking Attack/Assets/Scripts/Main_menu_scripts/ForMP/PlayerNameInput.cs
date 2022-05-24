@@ -17,7 +17,7 @@ using UnityEngine.UI;
 
 
         //Follow 4 rows sets, and gets the players colour and name, as well as set the string used in player-preferences
-        public static string displayName { get;  set; } //for loading host name from Data file, i delete private  set here By Jiang
+        public static string displayName { get; set; }
         private const string PlayerPrefsNameKey = "PlayerName";
         public static Color32 playerColour { get; private set; }
 
@@ -54,15 +54,12 @@ using UnityEngine.UI;
         {
             displayName = nameInputField.text;
             PlayerPrefs.SetString(PlayerPrefsNameKey, displayName);
-            //For savíng and loading
-            PlayerPrefs.SetString("isLoadFile", "False");
+            SavePlayerColour();
         
         }
-     
-
         //Name is saved in playerpreferences.
         
-        public void SavePlayerColour()
+        private void SavePlayerColour()
         {
             PlayerPrefs.SetInt("redValue", (int)red.value);
             PlayerPrefs.SetInt("greenValue", (int)green.value);

@@ -4,14 +4,13 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class NetworkManagerLobby : NetworkManager
 {
-    private int minPlayers = 1;
+    //private int minPlayers = 1;
     [Scene] [SerializeField] private string menuScene = string.Empty;
 
     [Header("Room")] [SerializeField] private NetworkRoomPlayerLobby roomPlayerLobby;
-    [SerializeField] public List<NetworkRoomPlayerLobby> RoomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
+    public List<NetworkRoomPlayerLobby> RoomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
 
     [Header("Game")] [SerializeField] private NetworkGamePlayer gamePlayerPrefab;
 
@@ -23,7 +22,7 @@ public class NetworkManagerLobby : NetworkManager
     [SerializeField] private GameObject landingPage;
     [Header("Scene")]
     [SerializeField] public string mapToLoad;
-    [SerializeField] private GameObject playerPrefabFinalUse = null;
+    [SerializeField] private GameObject playerPrefabFinalUse;
 
 
 
@@ -39,27 +38,10 @@ public class NetworkManagerLobby : NetworkManager
         base.OnStartServer();
         NetworkServer.RegisterHandler<CharacterInfo>(OnSpawnPlayerUI);
     }
-        private int minPlayers = 1;
-        [Scene] [SerializeField] private string menuScene = string.Empty;
-
-        [Header("Room")] [SerializeField] private NetworkRoomPlayerLobby roomPlayerLobby;
-        public List<NetworkRoomPlayerLobby> RoomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
-
-        [Header("Game")] [SerializeField] private NetworkGamePlayer gamePlayerPrefab;
-        //for saving system
-        [Header("SaveSystem")][SerializeField] private GameObject saveSystem;
-        [SerializeField] private GameObject playerSpawnSystem;
-        public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
-        public List<GameObject> spawnablePrefabs = new List<GameObject>();
-
-        [SerializeField] private GameObject landingPage;
-
-        [SerializeField] private string mapToLoad;
-
 
     public override void OnStartClient()
     {
-        var prefabs = this.spawnablePrefabs;
+        var prefabs = spawnablePrefabs;
         foreach (var prefab in prefabs)
         {
             NetworkClient.RegisterPrefab(prefab);
@@ -107,7 +89,6 @@ public class NetworkManagerLobby : NetworkManager
         if (SceneManager.GetActiveScene().path != menuScene)
         {
             conn.Disconnect();
-            return;
         }
     }
 
@@ -187,7 +168,7 @@ public class NetworkManagerLobby : NetworkManager
         if (SceneManager.GetActiveScene().path == menuScene)
         {
             if (!IsReadyToStart()) return;
-            ServerChangeScene(mapToLoad); //TODO bestäm vilken start-kartan är
+            ServerChangeScene(mapToLoad);
         }
     }
 
@@ -257,6 +238,13 @@ public class NetworkManagerLobby : NetworkManager
         firstChange = true;
         Debug.Log("In game " + InGamePlayer.Count);
 
+    }
+    
+    
+    // for loading data By Jiang
+    public NetworkRoomPlayerLobby GetLobbyRoom()
+    {
+        return roomPlayerLobby;
     }
 }
 

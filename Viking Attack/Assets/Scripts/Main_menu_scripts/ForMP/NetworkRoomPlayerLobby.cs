@@ -16,8 +16,6 @@ using UnityEngine.UI;
         [SerializeField] private TMP_Text playButtonText = null;
         [SerializeField] private Button startGameButton = null;
         [SerializeField] private Button readyButton = null;
-        [SerializeField] private AudioSource audioSource;
-        [SerializeField] private AudioClip clip;
 
 
         //These are syncvariables that updates towards the server, and when there is a change we run the methods called in the hook
@@ -120,6 +118,7 @@ using UnityEngine.UI;
             }
         }
 
+
         //if you aren't the leader you can't start the game. readyToStart works by comparing every players ready status and changes the intractability of the start button based on that.
         //All players in lobby must be ready
         public void HandleReadyToStart(bool readyToStart)
@@ -153,6 +152,7 @@ using UnityEngine.UI;
         [Command]
         private void CmdSetPlayerColour(Color32 colour32)
         {
+            colour32 = new Color32(colour32.r, colour32.g, colour32.b, 255);
             colour = colour32;
         }
 
@@ -161,7 +161,6 @@ using UnityEngine.UI;
         public void CmdStartGame()
         {
             if (Room.RoomPlayers[0].connectionToClient != connectionToClient) return;
-            audioSource.PlayOneShot(clip);
             Room.StartGame();    
         }
         

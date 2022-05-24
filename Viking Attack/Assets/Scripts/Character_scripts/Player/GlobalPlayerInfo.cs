@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Event;
 using ItemNamespace;
 using Mirror;
 using UnityEngine;
-using UnityEngine.Networking.Types;
 using Inventory_scripts;
 
 
@@ -15,31 +13,14 @@ public class GlobalPlayerInfo : NetworkBehaviour
         /**
      * @author Martin Kings
      */
-        [SerializeField] private Component healthBar;
+    [SerializeField] private Component healthBar;
 
-        [SerializeField] private Component staminaBar;
-        [SerializeField] private Component experienceBar;
-        [SyncVar] [SerializeField] private string playerName;
-        [SyncVar] [SerializeField] public Color32 skinColour;
-        [SyncVar] [SerializeField] private float health;
-        [SyncVar] [SerializeField] private float maxHealth;
-        [SerializeField] private ItemBase[] items;
-        [SyncVar] [SerializeField] private bool alive;
-        [SyncVar] [SerializeField] private float stamina;
-        [SyncVar] [SerializeField] private float maxStamina;
-        [SyncVar] [SerializeField] private float experience;
-        [SyncVar] [SerializeField] private int level;
-        [SyncVar] [SerializeField] private float levelThreshold;
-        [SyncVar] [SerializeField] private int availableStatpoints;
-        [SyncVar] [SerializeField] private float damage;
-        [SyncVar] [SerializeField] private int meatStackNumber;
-        [SyncVar] [SerializeField] private int armorLevel;
-        [SerializeField] public SkinnedMeshRenderer skinMesh;
-        private int red, green, blue;
+    [SyncVar] [SerializeField] public Color32 skinColour;
+    [SerializeField] public SkinnedMeshRenderer skinMesh;
+    private int red, green, blue;
     [SerializeField] private Component staminaBar;
     [SerializeField] private Component experienceBar;
     [SyncVar] [SerializeField] private string playerName;
-    [SyncVar] [SerializeField] private Color skinColor;
     [SyncVar] [SerializeField] private float health;
     [SyncVar] [SerializeField] private float maxHealth;
     [SerializeField] private ItemBase[] items;
@@ -49,12 +30,12 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SyncVar] [SerializeField] private float experience;
     [SyncVar] [SerializeField] private int level;
     [SyncVar] [SerializeField] private float levelThreshold;
-    [SyncVar] [SerializeField] private int availableStatpoints;
+    [SyncVar] [SerializeField] private int availableStatPoints;
     [SyncVar] [SerializeField] private float damage;
     [SyncVar] [SerializeField] private int meatStackNumber;
     [SyncVar] [SerializeField] private int armorLevel;
     //get character Screen
-    [SerializeField] private GameObject charatS;
+    [SerializeField] private GameObject characterScreen;
     
 
 
@@ -67,7 +48,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         stamina = (float)data["stamina"];
         experience = (float)data["experience"];
         level = (int)data["level"];
-        availableStatpoints = (int)data["availableStatpoints"];
+        availableStatPoints = (int)data["availableStatPoints"];
         //damageStat = (int)dataDict["damageStat"];
         //healthStat = (int)dataDict["healthStat"];
         //staminaStat = (int)dataDict["staminaStat"];
@@ -77,7 +58,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
         experienceBar.GetComponent<PlayerExperienceBar>().SetExperience(experience);
-        charatS.GetComponent<CharacterScreen>().OpenCharacterScreen();
+        characterScreen.GetComponent<CharacterScreen>().OpenCharacterScreen();
         gameObject.GetComponent<PlayerInventory>().UpdateMeatStack();
     }
     //Saving all the data
@@ -85,13 +66,13 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
 
         Dictionary<String, System.Object> dataHolder = new Dictionary<string, System.Object>();
-       // Dictionary<String, Dictionary<String, System.Object>> dataToSave = new Dictionary<string, Dictionary<String, System.Object>>();
+        // Dictionary<String, Dictionary<String, System.Object>> dataToSave = new Dictionary<string, Dictionary<String, System.Object>>();
         dataHolder.Add("playerName", (System.Object)playerName);
         dataHolder.Add("health", (System.Object)health);
         dataHolder.Add("stamina", (System.Object)stamina);
         dataHolder.Add("experience", (System.Object)experience);
         dataHolder.Add("level", (System.Object)level);
-        dataHolder.Add("availableStatpoints", (System.Object)availableStatpoints);
+        dataHolder.Add("availableStatPoints", (System.Object)availableStatPoints);
         //dataHolder.Add("damageStat", (System.Object)damageStat);
         //dataHolder.Add("healthStat", (System.Object)healthStat);
         //dataHolder.Add("staminaStat", (System.Object)staminaStat);
@@ -108,308 +89,307 @@ public class GlobalPlayerInfo : NetworkBehaviour
 
     //*******************
 
-        private void Awake()
-        {
-            alive = true;
-            items = new ItemBase[5];
-            damage = 100;
-            health = 100;
-            maxHealth = 100;
-            stamina = 100;
-            maxStamina = 120;
-            healthBar = gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform
-                .Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>();
-            staminaBar = gameObject.transform.Find("UI").gameObject.transform.Find("Stamina_bar").gameObject.transform
-                .Find("Stamina_bar_slider").gameObject.GetComponent<PlayerStaminaBar>();
-            experienceBar = gameObject.transform.Find("UI").gameObject.transform.Find("Experience_bar").gameObject.transform
-                .Find("Experience_bar_slider").gameObject.GetComponent<PlayerExperienceBar>();
-            experience = 0;
-            levelThreshold = 60;
-            availableStatpoints = 0;
-            level = 1;
-            playerName = PlayerPrefs.GetString("PlayerName");
-            armorLevel = 0;
-            red = PlayerPrefs.GetInt("redValue");
-            green = PlayerPrefs.GetInt("greenValue");
-            blue = PlayerPrefs.GetInt("blueValue");
-            skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255);
+    private void Awake()
+    {
+        alive = true;
+        items = new ItemBase[5];
+        damage = 100;
+        health = 100;
+        maxHealth = 100;
+        stamina = 100;
+        maxStamina = 120;
+        healthBar = gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform
+            .Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>();
+        staminaBar = gameObject.transform.Find("UI").gameObject.transform.Find("Stamina_bar").gameObject.transform
+            .Find("Stamina_bar_slider").gameObject.GetComponent<PlayerStaminaBar>();
+        experienceBar = gameObject.transform.Find("UI").gameObject.transform.Find("Experience_bar").gameObject.transform
+            .Find("Experience_bar_slider").gameObject.GetComponent<PlayerExperienceBar>();
+        experience = 0;
+        levelThreshold = 60;
+        availableStatPoints = 0;
+        level = 1;
+        playerName = PlayerPrefs.GetString("PlayerName");
+        armorLevel = 0;
+        red = PlayerPrefs.GetInt("redValue");
+        green = PlayerPrefs.GetInt("greenValue");
+        blue = PlayerPrefs.GetInt("blueValue");
+        skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255);
             
-            skinMesh.material.SetColor(BaseColor, skinColour);
-        }
+        skinMesh.material.SetColor(BaseColor, skinColour);
+    }
 
 
-        public void IncreaseArmorLevel(int increase)
+    public void IncreaseArmorLevel(int increase)
+    {
+        armorLevel += increase;
+    }
+    private NetworkManagerLobby room;
+    private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
+
+    private NetworkManagerLobby Room
+    {
+        get
         {
-            armorLevel += increase;
+            if (room != null) return room;
+            return room = NetworkManager.singleton as NetworkManagerLobby;
         }
-        private NetworkManagerLobby room;
-        private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
+    }
 
-        private NetworkManagerLobby Room
+    private void Start()
+    {
+        if (isLocalPlayer)
         {
-            get
-            {
-                if (room != null) return room;
-                return room = NetworkManager.singleton as NetworkManagerLobby;
-            }
-        }
-
-        private void Start()
-        {
-            if (isLocalPlayer)
-            {
-                UpdateColours();
-                Debug.Log("Färg: " + skinColour);
-                CmdSetPlayerName(playerName);
-                CmdSetSkinColour(skinColour);
-
-
-            }
-        }
-
-        public void SetItemSlot(int index, ItemBase itemBase)
-        {
-            items[index] = itemBase;
-        }
-
-        // Gets called upon during game launch, the main menu sets the player name
-        [Command]
-        public void CmdSetPlayerName(string insertedName)
-        {
-            playerName = insertedName;
-        }
-        // Gets called upon during game launch, the main menu sets the player name
-        [Command]
-        public void CmdSetSkinColour(Color32 skinColour)
-        {
-
-            this.skinColour = skinColour;
             UpdateColours();
-        }
+            CmdSetPlayerName(playerName);
+            CmdSetSkinColour(skinColour);
 
-        public float GetHealth()
-        {
-            return health;
-        }
 
-        public float GetMaxHealth()
-        {
-            return maxHealth;
         }
+    }
 
-        [ClientRpc]
-        private void UpdateColours()
+    public void SetItemSlot(int index, ItemBase itemBase)
+    {
+        items[index] = itemBase;
+    }
+
+    // Gets called upon during game launch, the main menu sets the player name
+    [Command]
+    public void CmdSetPlayerName(string insertedName)
+    {
+        playerName = insertedName;
+    }
+    // Gets called upon during game launch, the main menu sets the player name
+    [Command]
+    public void CmdSetSkinColour(Color32 chosenColour)
+    {
+
+        this.skinColour = chosenColour;
+        UpdateColours();
+    }
+
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    [ClientRpc]
+    private void UpdateColours()
+    {
+        foreach (var t in room.InGamePlayer)
         {
-            for (int i = 0; i < room.InGamePlayer.Count; i++)
+            t.GetComponent<GlobalPlayerInfo>().skinMesh.material.SetColor(BaseColor, t.GetComponent<GlobalPlayerInfo>().skinColour);
+        }
+    }
+
+    // Returns the player name
+    public string GetName()
+    {
+        return playerName;
+    }
+
+    // Returns the player skin color
+    public Color32 GetSkinColor()
+    {
+        return skinColour;
+    }
+
+    // Checks if the player is alive
+    public bool IsAlive()
+    {
+        return alive;
+    }
+
+    // Adds or reduces health
+    public void UpdateHealth(float difference)
+    {
+        if (health + difference <= maxHealth)
+        {
+            if (health + difference < 0)
             {
-                room.InGamePlayer[i].GetComponent<GlobalPlayerInfo>().skinMesh.material.SetColor(BaseColor, room.InGamePlayer[i].GetComponent<GlobalPlayerInfo>().skinColour);
-            }
-        }
-
-        // Returns the player name
-        public string GetName()
-        {
-            return playerName;
-        }
-
-        // Returns the player skin color
-        public Color32 GetSkinColor()
-        {
-            return skinColour;
-        }
-
-        // Checks if the player is alive
-        public bool IsAlive()
-        {
-            return alive;
-        }
-
-        // Adds or reduces health
-        public void UpdateHealth(float difference)
-        {
-            if (health + difference <= maxHealth)
-            {
-                if (health + difference < 0)
-                {
-                    health = 0;
-                }
-                else
-                {
-                    health += difference;
-                }
-            }
-            else if (health + difference > maxHealth)
-            {
-                health = maxHealth;
-            }
-
-            healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
-            if (health <= 0)
-            {
-                // Used by PlayerActivateEnemyHealthBar class on player objects and by 
-                // RespawnPanelHandler
-                EventInfo playerDeathEvent = new PlayerDeathEventInfo
-                {
-                    EventUnitGo = gameObject
-                };
-                EventSystem.Current.FireEvent(playerDeathEvent);
-                gameObject.GetComponent<KillPlayer>().PlayerRespawn();
-            }
-        }
-        /*private void UpdateDisplay()
-        {
-
-
-            //This loop sets the name of a current player in the lobby and sets the name of the colour they've chosen.
-            //Todo remove NameColour call when we have character customization available
-            for (int i = 0; i < Room.InGamePlayer.Count; i++)
-            {
-                Color32 currentColour = room.InGamePlayer.
-                room.InGamePlayer[i]..material.SetColor(BaseColor, color32);
-
-                playerNameTexts[i].color = Room.RoomPlayers[i].colour;
-
-            }
-        }*/
-        public void SetSkinColour(Color32 insertedColor)
-        {
-            skinColour = insertedColor;
-        }
-
-        public void SetHealth(float hp)
-        {
-            health = hp;
-        }
-
-        // Returns the current stamina
-        public float GetStamina()
-        {
-            return stamina;
-        }
-
-        // Returns the players max stamina
-        public float GetMaxStamina()
-        {
-            return maxStamina;
-        }
-
-        // Adds or reduces stamina
-        public void UpdateStamina(float difference)
-        {
-            if (stamina + difference <= maxStamina)
-            {
-                stamina += difference;
+                health = 0;
             }
             else
             {
-                stamina = maxStamina;
+                health += difference;
             }
-
-            staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
+        }
+        else if (health + difference > maxHealth)
+        {
+            health = maxHealth;
         }
 
-
-        // Increases the players current experience, will reset it to 0 if the player reaches next level
-        public void IncreaseExperience(float exp)
+        healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
+        if (health <= 0)
         {
-            experience += exp;
-            if (experience >= levelThreshold * (1.3 * level))
+            // Used by PlayerActivateEnemyHealthBar class on player objects and by 
+            // RespawnPanelHandler
+            EventInfo playerDeathEvent = new PlayerDeathEventInfo
             {
-                IncreaseLevel();
-                experience = 0;
-            }
-
-            experienceBar.GetComponent<PlayerExperienceBar>().SetExperience(experience);
-        }
-
-        public void IncreaseLevel()
-        {
-            EventInfo playerLevelUpInfo = new PlayerLevelUpEventInfo
-            {
-                netID = gameObject.GetComponent<NetworkIdentity>().netId
+                EventUnitGo = gameObject
             };
-            EventSystem.Current.FireEvent(playerLevelUpInfo);
-            level++;
-            availableStatpoints += 3;
+            EventSystem.Current.FireEvent(playerDeathEvent);
+            gameObject.GetComponent<KillPlayer>().PlayerRespawn();
         }
-
-        public float GetExperience()
-        {
-            return experience;
-        }
-
-        public int GetLevel()
-        {
-            return level;
-        }
-
-        public int GetStatPoints()
-        {
-            return availableStatpoints;
-        }
-
-        public void IncreaseDamageStatPoints()
-        {
-            damage += 6;
-            availableStatpoints--;
-        }
-
-        public void IncreaseHealthStatPoints()
-        {
-            maxHealth += 10;
-            availableStatpoints--;
-            healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
-        }
-
-        public void IncreaseStaminaStatPoints()
-        {
-            maxStamina += 10;
-            availableStatpoints--;
-            staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
-        }
-
-        public float GetLevelThreshold()
-        {
-            return levelThreshold;
-        }
-
-        public float GetDamage()
-        {
-            return damage;
-        }
-
-        public void IncreaseMeatStackNumber()
-        {
-            meatStackNumber++;
-        }
-
-        public int GetMeatStackNumber()
-        {
-            return meatStackNumber;
-        }
-
-        public void DecreaseMeatStackNumber()
-        {
-            meatStackNumber--;
-        }
-        [Server]
-        public void SetDisplayName(string playerName)
-        {
-            this.playerName = playerName;
-        }
-
-        public int GetArmorLevel()
-        {
-            return armorLevel;
-        }
-
-        public override void OnStartClient()
-        {
-            if (Room != null) Room.InGamePlayer.Add(this.gameObject);
-        }
-        public override void OnStopClient()
-        {
-            if (Room != null) Room.InGamePlayer.Remove(this.gameObject);
-        }
-
     }
+    /*private void UpdateDisplay()
+    {
+
+
+        //This loop sets the name of a current player in the lobby and sets the name of the colour they've chosen.
+        //Todo remove NameColour call when we have character customization available
+        for (int i = 0; i < Room.InGamePlayer.Count; i++)
+        {
+            Color32 currentColour = room.InGamePlayer.
+            room.InGamePlayer[i]..material.SetColor(BaseColor, color32);
+
+            playerNameTexts[i].color = Room.RoomPlayers[i].colour;
+
+        }
+    }*/
+    public void SetSkinColour(Color32 insertedColor)
+    {
+        skinColour = insertedColor;
+    }
+
+    public void SetHealth(float hp)
+    {
+        health = hp;
+    }
+
+    // Returns the current stamina
+    public float GetStamina()
+    {
+        return stamina;
+    }
+
+    // Returns the players max stamina
+    public float GetMaxStamina()
+    {
+        return maxStamina;
+    }
+
+    // Adds or reduces stamina
+    public void UpdateStamina(float difference)
+    {
+        if (stamina + difference <= maxStamina)
+        {
+            stamina += difference;
+        }
+        else
+        {
+            stamina = maxStamina;
+        }
+
+        staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
+    }
+
+
+    // Increases the players current experience, will reset it to 0 if the player reaches next level
+    public void IncreaseExperience(float exp)
+    {
+        experience += exp;
+        if (experience >= levelThreshold * (1.3 * level))
+        {
+            IncreaseLevel();
+            experience = 0;
+        }
+
+        experienceBar.GetComponent<PlayerExperienceBar>().SetExperience(experience);
+    }
+
+    public void IncreaseLevel()
+    {
+        EventInfo playerLevelUpInfo = new PlayerLevelUpEventInfo
+        {
+            netID = gameObject.GetComponent<NetworkIdentity>().netId
+        };
+        EventSystem.Current.FireEvent(playerLevelUpInfo);
+        level++;
+        availableStatPoints += 3;
+    }
+
+    public float GetExperience()
+    {
+        return experience;
+    }
+
+    public int GetLevel()
+    {
+        return level;
+    }
+
+    public int GetStatPoints()
+    {
+        return availableStatPoints;
+    }
+
+    public void IncreaseDamageStatPoints()
+    {
+        damage += 6;
+        availableStatPoints--;
+    }
+
+    public void IncreaseHealthStatPoints()
+    {
+        maxHealth += 10;
+        availableStatPoints--;
+        healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
+    }
+
+    public void IncreaseStaminaStatPoints()
+    {
+        maxStamina += 10;
+        availableStatPoints--;
+        staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
+    }
+
+    public float GetLevelThreshold()
+    {
+        return levelThreshold;
+    }
+
+    public float GetDamage()
+    {
+        return damage;
+    }
+
+    public void IncreaseMeatStackNumber()
+    {
+        meatStackNumber++;
+    }
+
+    public int GetMeatStackNumber()
+    {
+        return meatStackNumber;
+    }
+
+    public void DecreaseMeatStackNumber()
+    {
+        meatStackNumber--;
+    }
+    [Server]
+    public void SetDisplayName(string playersName)
+    {
+        this.playerName = playersName;
+    }
+
+    public int GetArmorLevel()
+    {
+        return armorLevel;
+    }
+
+    public override void OnStartClient()
+    {
+        if (Room != null) Room.InGamePlayer.Add(this.gameObject);
+    }
+    public override void OnStopClient()
+    {
+        if (Room != null) Room.InGamePlayer.Remove(this.gameObject);
+    }
+
+}

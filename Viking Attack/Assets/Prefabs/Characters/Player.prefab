@@ -2113,6 +2113,7 @@ MonoBehaviour:
   healthSource: {fileID: 0}
   enemyLevelText: {fileID: 9106073329763110509}
   enemyName: {fileID: 6569754210297354089}
+  enemyImage: {fileID: 0}
 --- !u!1 &915184397880636243
 GameObject:
   m_ObjectHideFlags: 0
@@ -9290,7 +9291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: 0}
+  m_AnchoredPosition: {x: -0.00024414062, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5628691211688165498
@@ -12679,9 +12680,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 72064a91bcb61c845b3203c72ca636c8, type: 2}
   - {fileID: 11400000, guid: 4e4bfb8b1a8ce0b4b86d45adb98c4ec1, type: 2}
   acceleration: 1.3
-  thisObject: {fileID: 0}
+  thisObject: {fileID: 5988590173649968415}
   animator: {fileID: 3196805166761755344}
-  globalPlayerInfo: {fileID: 0}
+  globalPlayerInfo: {fileID: 1008048771508749607}
   jump: 0
   shouldMove: 0
 --- !u!114 &5988590173649968414
@@ -12726,10 +12727,13 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   healthBar: {fileID: 0}
+  skinColour:
+    serializedVersion: 2
+    rgba: 0
+  skinMesh: {fileID: 3312697970491304802}
   staminaBar: {fileID: 0}
   experienceBar: {fileID: 0}
   playerName: NameTest
-  skinColor: {r: 0, g: 0, b: 0, a: 0}
   health: 0
   maxHealth: 0
   items:
@@ -12740,11 +12744,11 @@ MonoBehaviour:
   experience: 0
   level: 0
   levelThreshold: 0
-  availableStatpoints: 0
+  availableStatPoints: 0
   damage: 0
   meatStackNumber: 0
   armorLevel: 0
-  charatS: {fileID: 6133393436876657970}
+  characterScreen: {fileID: 0}
 --- !u!114 &993307644473226796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13163,8 +13167,8 @@ MonoBehaviour:
   - {fileID: 3817948450136752059}
   - {fileID: 896804129577900503}
   - {fileID: 2423587332867720793}
-  playerItemUsageController: {fileID: 0}
-  wieldedItemBase: {fileID: 0}
+  playerItemUsageController: {fileID: 993307644473226796}
+  wieldedItemBase: {fileID: 11400000, guid: e42a76ee5900ffc4f93a5fbaf0dadbb4, type: 2}
 --- !u!114 &-7731286149923182968
 MonoBehaviour:
   m_ObjectHideFlags: 0

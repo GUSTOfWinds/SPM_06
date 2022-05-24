@@ -4,9 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using Inventory_scripts;
 using System.Collections.Generic;
-using ItemNamespace;
 using Mirror;
-using Main_menu_scripts.ForMP;
 
 public class SaveScript : NetworkBehaviour
 {
@@ -21,7 +19,7 @@ public class SaveScript : NetworkBehaviour
     [SerializeField] private NetworkManagerLobby networkManager;
     [Header("Panels")]
     [SerializeField] GameObject nameInputPanel;
-    [SerializeField] GameObject LandingPanel;
+    [SerializeField] GameObject landingPanel;
     [SerializeField] GameObject loadPanel;
 
     private void Start()
@@ -42,34 +40,28 @@ public class SaveScript : NetworkBehaviour
     public void SaveGame()
     {
         Debug.Log(theHost);   
-        SaveData savePlayer = new SaveData();
-        savePlayer.hostName = theHost.GetComponent<GlobalPlayerInfo>().GetName();
+        SaveData savePlayer = new SaveData
+        {
+            hostName = theHost.GetComponent<GlobalPlayerInfo>().GetName()
+        };
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         Dictionary<int, bool> isSpritActiv = new Dictionary<int, bool>();
         Dictionary<String, System.Object> dataToSave = new Dictionary<String, System.Object>();
         string name;
         Debug.Log(players.Length);
-        for (int i = 0; i < players.Length; i++)
+        foreach (var t in players)
         {
-            Debug.Log(players[i]);
-             name = players[i].GetComponent<GlobalPlayerInfo>().GetName();
+            Debug.Log(t);
+            name = t.GetComponent<GlobalPlayerInfo>().GetName();
             Debug.Log(name);
-            GameObject[] inventorySprites = players[i].GetComponent<PlayerInventory>().getSprites();
+            GameObject[] inventorySprites = t.GetComponent<PlayerInventory>().getSprites();
             Debug.Log(inventorySprites.Length);
             for (int j = 0; j < inventorySprites.Length; j++)
             {
-                if (inventorySprites[j].activeSelf)
-                {
-                    //if the player own this item
-                    isSpritActiv.Add(j, true);
-                }
-                else
-                {
-                    isSpritActiv.Add(j, false);
-                }
+                isSpritActiv.Add(j, inventorySprites[j].activeSelf);
             }
             savePlayer.playerInventory.Add(name, isSpritActiv);
-           dataToSave = players[i].GetComponent<GlobalPlayerInfo>().SaveData();
+            dataToSave = t.GetComponent<GlobalPlayerInfo>().SaveData();
             if(name == savePlayer.hostName)
             {
                 Debug.Log("This is host");
@@ -80,14 +72,13 @@ public class SaveScript : NetworkBehaviour
                 Debug.Log("This is client");
                 savePlayer.clientData.Add(name, dataToSave);
             }
-
         }
         Debug.Log(Application.persistentDataPath); //print the path   
         if (Directory.Exists(Application.persistentDataPath + saveFileName))//if we have a file there
         {
             Directory.Delete(Application.persistentDataPath + saveFileName, true);
         }
-        BinaryFormatter bf = new BinaryFormatter();  // bin‰r konvertering
+        BinaryFormatter bf = new BinaryFormatter();  // bin√§r konvertering
         FileStream file = File.Create(Application.persistentDataPath + saveFileName);
         bf.Serialize(file, savePlayer);
         file.Close();
@@ -96,39 +87,38 @@ public class SaveScript : NetworkBehaviour
 
     public void LoadGame()
     {
-        //Calls when we are in game, and the hots name is aldreay updated      
+        //Calls when we are in game, and the hots name is already updated      
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + saveFileName, FileMode.Open);
             SaveData playerData = (SaveData)bf.Deserialize(file);
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            string playerName;
-        for (int i = 0; i < players.Length; i++)
-        {
-            playerName = players[i].GetComponent<GlobalPlayerInfo>().GetName();
-            if (playerName == hostName)
+            foreach (var t in players)
             {
-                players[i].GetComponent<GlobalPlayerInfo>().LoadData(playerData.hostData[hostName]);
-            }
-            else
-            {
-                //if the player is not host but we have he/she's data
-                if (playerData.clients.Contains(playerName))
+                var playerName = t.GetComponent<GlobalPlayerInfo>().GetName();
+                if (playerName == hostName)
                 {
-                    players[i].GetComponent<GlobalPlayerInfo>().LoadData(playerData.clientData[playerName]);
+                    t.GetComponent<GlobalPlayerInfo>().LoadData(playerData.hostData[hostName]);
                 }
-            }
+                else
+                {
+                    //if the player is not host but we have he/she's data
+                    if (playerData.clients.Contains(playerName))
+                    {
+                        t.GetComponent<GlobalPlayerInfo>().LoadData(playerData.clientData[playerName]);
+                    }
+                }
                 //set all inventory item sprite to false and reset them based on data file
-                players[i].GetComponent<PlayerInventory>().refreshHotbar();
-                 for (int j =0; j< playerData.playerInventory[playerName].Count; j++)
+                t.GetComponent<PlayerInventory>().refreshHotbar();
+                for (int j =0; j< playerData.playerInventory[playerName].Count; j++)
                 {
 
-                if (playerData.playerInventory[playerName][j])
-                {
-                   // if the item was activ, set it to activ now
-                     players[i].GetComponent<PlayerInventory>().UpdateHeldItem(j);
-                }
-            }//for j all player inventory items
-            }//for i all players
+                    if (playerData.playerInventory[playerName][j])
+                    {
+                        // if the item was activ, set it to activ now
+                        t.GetComponent<PlayerInventory>().UpdateHeldItem(j);
+                    }
+                }//for j all player inventory items
+            }
 
 
             file.Close();
@@ -155,7 +145,7 @@ public class SaveScript : NetworkBehaviour
             PlayerPrefs.SetString("PlayerName", playerData.hostName);
             hostName = playerData.hostName;
             networkManager.StartHost();
-            networkManager.GetComponent<NetworkManagerLobby>().getLobbyRoom().OnStartAuthority();
+            networkManager.GetComponent<NetworkManagerLobby>().GetLobbyRoom().OnStartAuthority();
            
 
         }
@@ -165,7 +155,7 @@ public class SaveScript : NetworkBehaviour
         }
     }
 
-    public bool isLoadingFile()
+    public bool IsLoadingFile()
     {
         return isLoadFromFile;
     }
@@ -175,7 +165,7 @@ public class SaveScript : NetworkBehaviour
 
 
 
-[System.Serializable]
+[Serializable]
 public class SaveData
 {
     public string hostName;
