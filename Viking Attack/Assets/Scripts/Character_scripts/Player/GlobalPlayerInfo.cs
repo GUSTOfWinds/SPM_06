@@ -39,45 +39,50 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SerializeField] private GameObject characterScreen;
 
 
-    //gathering data and reset data
+    //gathering data and reset data By Jiang
     public void LoadData(Dictionary<String, System.Object> data)
     {
-        playerName = (string) data["playerName"];
-        health = (float) data["health"];
-        stamina = (float) data["stamina"];
-        experience = (float) data["experience"];
-        level = (int) data["level"];
-        availableStatPoints = (int) data["availableStatPoints"];
+
+        playerName = (string)data["playerName"];
+        health = (float)data["health"];
+        stamina = (float)data["stamina"];
+        maxHealth = (float)data["maxHealth"];
+        maxStamina = (float)data["maxStamina"];
+        experience = (float)data["experience"];
+        level = (int)data["level"];
+        availableStatPoints = (int)data["availableStatPoints"];
         //damageStat = (int)dataDict["damageStat"];
         //healthStat = (int)dataDict["healthStat"];
         //staminaStat = (int)dataDict["staminaStat"];
-        meatStackNumber = (int) data["meatStackNumber"];
-        damage = (float) data["damage"];
-        armorLevel = (int) data["armorLevel"];
+        meatStackNumber = (int)data["meatStackNumber"];
+        damage = (float)data["damage"];
+        armorLevel = (int)data["armorLevel"];
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
         experienceBar.GetComponent<PlayerExperienceBar>().SetExperience(experience);
         characterScreen.GetComponent<CharacterScreen>().OpenCharacterScreen();
         gameObject.GetComponent<PlayerInventory>().UpdateMeatStack();
     }
-
-    //Saving all the data
+    //Saving all the data By Jiang
     public Dictionary<String, System.Object> SaveData()
     {
+
         Dictionary<String, System.Object> dataHolder = new Dictionary<string, System.Object>();
         // Dictionary<String, Dictionary<String, System.Object>> dataToSave = new Dictionary<string, Dictionary<String, System.Object>>();
-        dataHolder.Add("playerName", (System.Object) playerName);
-        dataHolder.Add("health", (System.Object) health);
-        dataHolder.Add("stamina", (System.Object) stamina);
-        dataHolder.Add("experience", (System.Object) experience);
-        dataHolder.Add("level", (System.Object) level);
-        dataHolder.Add("availableStatPoints", (System.Object) availableStatPoints);
+        dataHolder.Add("playerName", (System.Object)playerName);
+        dataHolder.Add("health", (System.Object)health);
+        dataHolder.Add("stamina", (System.Object)stamina);
+        dataHolder.Add("maxHealth", (System.Object)maxHealth);
+        dataHolder.Add("maxStamina", (System.Object)maxStamina);
+        dataHolder.Add("experience", (System.Object)experience);
+        dataHolder.Add("level", (System.Object)level);
+        dataHolder.Add("availableStatPoints", (System.Object)availableStatPoints);
         //dataHolder.Add("damageStat", (System.Object)damageStat);
         //dataHolder.Add("healthStat", (System.Object)healthStat);
         //dataHolder.Add("staminaStat", (System.Object)staminaStat);
-        dataHolder.Add("meatStackNumber", (System.Object) meatStackNumber);
-        dataHolder.Add("damage", (System.Object) damage);
-        dataHolder.Add("armorLevel", (System.Object) armorLevel);
+        dataHolder.Add("meatStackNumber", (System.Object)meatStackNumber);
+        dataHolder.Add("damage", (System.Object)damage);
+        dataHolder.Add("armorLevel", (System.Object)armorLevel);
         return dataHolder;
     }
 
@@ -105,12 +110,12 @@ public class GlobalPlayerInfo : NetworkBehaviour
         level = 1;
         playerName = PlayerPrefs.GetString("PlayerName");
         armorLevel = 0;
-        red = PlayerPrefs.GetInt("redValue");
-        green = PlayerPrefs.GetInt("greenValue");
-        blue = PlayerPrefs.GetInt("blueValue");
-        skinColour = new Color32((byte) red, (byte) green, (byte) blue, 255);
+        red = PlayerPrefs.GetInt("redValue"); // Victor Wikner
+        green = PlayerPrefs.GetInt("greenValue"); // Victor Wikner
+        blue = PlayerPrefs.GetInt("blueValue");// Victor Wikner
+        skinColour = new Color32((byte) red, (byte) green, (byte) blue, 255); // Victor Wikner
 
-        skinMesh.material.SetColor(BaseColor, skinColour);
+        skinMesh.material.SetColor(BaseColor, skinColour); //Victor Wikner
     }
 
 
@@ -119,8 +124,11 @@ public class GlobalPlayerInfo : NetworkBehaviour
         armorLevel += increase;
     }
 
+    /**
+    * @author Victor Wikner
+    */
     private NetworkManagerLobby room;
-    private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
+    private static readonly int BaseColor = Shader.PropertyToID("Color_be8b5dda336745c985841ed4b814c54e");
 
     private NetworkManagerLobby Room
     {
@@ -156,7 +164,9 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         playerName = insertedName;
     }
-
+    /**
+    * @author Victor Wikner
+    */
     // Gets called upon during game launch, the main menu sets the player name
     [Command]
     public void CmdSetSkinColour(Color32 chosenColour)
@@ -175,7 +185,9 @@ public class GlobalPlayerInfo : NetworkBehaviour
         return maxHealth;
     }
 
-    [ClientRpc]
+    /**
+    * @author Victor Wikner
+    */
     private void UpdateColours()
     {
         foreach (var t in room.InGamePlayer)
@@ -185,12 +197,16 @@ public class GlobalPlayerInfo : NetworkBehaviour
         }
     }
 
+    
     // Returns the player name
     public string GetName()
     {
         return playerName;
     }
 
+    /**
+ * @author Victor Wikner
+ */
     // Returns the player skin color
     public Color32 GetSkinColor()
     {
@@ -236,6 +252,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
         }
     }
 
+    /**
+    * @author Victor Wikner
+     * Not Implemented
+    */
     /*private void UpdateDisplay()
     {
 
@@ -251,6 +271,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
 
         }
     }*/
+    
+    /**
+ * @author Victor Wikner
+ */
     public void SetSkinColour(Color32 insertedColor)
     {
         skinColour = insertedColor;
@@ -373,6 +397,9 @@ public class GlobalPlayerInfo : NetworkBehaviour
         meatStackNumber--;
     }
 
+    /**
+    * @author Victor Wikner
+    */
     [Server]
     public void SetDisplayName(string playersName)
     {
@@ -383,12 +410,16 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         return armorLevel;
     }
-
+    /**
+    * @author Victor Wikner
+    */
     public override void OnStartClient()
     {
         if (Room != null) Room.InGamePlayer.Add(this.gameObject);
     }
-
+    /**
+    * @author Victor Wikner
+    */
     public override void OnStopClient()
     {
         if (Room != null) Room.InGamePlayer.Remove(this.gameObject);

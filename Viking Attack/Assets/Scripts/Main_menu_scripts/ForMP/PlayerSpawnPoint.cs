@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/**
+ * @author Victor Wikner
+ */
 
     public class PlayerSpawnPoint : MonoBehaviour
     {

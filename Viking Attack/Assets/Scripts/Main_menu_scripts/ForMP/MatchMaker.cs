@@ -5,7 +5,13 @@ using System.Text;
 using Mirror;
 using UnityEngine;
 
-
+/**
+ * @author Victor Wikner
+ *
+ * not implemented
+ *
+ * class was supposed to create a server and make it joinable with special codes
+ */
     [System.Serializable]
     public class Match {
         public string matchID;

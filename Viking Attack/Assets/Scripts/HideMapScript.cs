@@ -3,6 +3,9 @@ using UnityEngine.InputSystem;
 
 public class HideMapScript : MonoBehaviour
 {
+    /*
+        @Author Love Strignert - lost9373
+    */
     [SerializeField] GameObject map;
     public void OnPress(InputAction.CallbackContext value)
     {

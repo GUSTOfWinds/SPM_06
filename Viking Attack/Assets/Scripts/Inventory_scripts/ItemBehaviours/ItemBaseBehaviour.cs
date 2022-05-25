@@ -6,6 +6,9 @@ namespace ItemNamespace
 {
     public abstract class ItemBaseBehaviour : MonoBehaviour
     {
+        /*
+            @Author Love Strignert - lost9373
+        */
         protected ItemBase belongingTo;
         public abstract void Use(ItemBase itemBase);
         public abstract void StopAnimation();
