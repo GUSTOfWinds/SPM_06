@@ -123,7 +123,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     * @author Victor Wikner
     */
     private NetworkManagerLobby room;
-    private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
+    private static readonly int BaseColor = Shader.PropertyToID("Color_be8b5dda336745c985841ed4b814c54e");
 
     private NetworkManagerLobby Room
     {
