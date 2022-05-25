@@ -76,4 +76,9 @@ namespace Event
     {
         public uint playerNetId;
     }
+
+    public class EnemyRetreatingEventInfo : EventInfo
+    {
+        public uint netid;
+    }
 }

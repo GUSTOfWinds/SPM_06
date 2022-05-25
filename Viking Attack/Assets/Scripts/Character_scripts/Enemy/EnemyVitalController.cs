@@ -107,7 +107,10 @@ public class EnemyVitalController : NetworkBehaviour
                     aggroCounter.Add(player,change);
                 }
 
+                RpcBlinkOnHit(); // Plays for client
                 StartCoroutine(BlinkOnHit());
+
+                RpcPlayHitSound(); // Plays for client
                 PlayHitSound();
                 EventInfo enemyTakesDamage = new EnemyHitEvent
                 {
@@ -186,12 +189,35 @@ public class EnemyVitalController : NetworkBehaviour
             CmdUpdateHealth(change);
     }
 
+    // Plays the hit color on client
+    [ClientRpc]
+    private void RpcBlinkOnHit()
+    {
+        if (isServer)
+        {
+            return;
+        }
+
+        StartCoroutine(BlinkOnHit());
+    }
+    
     private IEnumerator BlinkOnHit()
     {
         Material[] temp = skinnedMeshRenderer.materials;
         skinnedMeshRenderer.materials = materials;
         yield return new WaitForSeconds(0.1f);
         skinnedMeshRenderer.materials = temp;
+    }
+    
+    [ClientRpc]
+    private void RpcPlayHitSound()
+    {
+        if (isServer)
+        {
+            return;
+        }
+
+        PlayHitSound();
     }
 
     private void PlayHitSound()
@@ -202,7 +228,7 @@ public class EnemyVitalController : NetworkBehaviour
             audioSource.PlayOneShot(hitSound);
         }
     }
-
+    
     // Ships experience to clients, makes experience within proximity possible
     [ClientRpc]
     private void RpcIncreaseExperience(GameObject player, float exp)

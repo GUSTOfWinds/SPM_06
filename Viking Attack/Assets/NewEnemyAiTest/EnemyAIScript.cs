@@ -211,6 +211,7 @@ public class EnemyAIScript : NetworkBehaviour
             {
                 gameObject.GetComponent<EnemyVitalController>().UpdateHealth(characterBase.GetMaxHealth());
 
+                
                 chasing = false;
                 stateToPlayByIndex = 2;
 
