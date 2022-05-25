@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
-
+/**
+ * @author Victor Wikner
+ */
 public class ChangeReadyButtonColour : MonoBehaviour
 {
     [SerializeField] private TMP_Text ButtonText;
@@ -8,7 +10,7 @@ public class ChangeReadyButtonColour : MonoBehaviour
     private bool ReadyStatus = false;
     [SerializeField] private AudioSource audioSource;
     
-    
+    //Changes the buttons colour when a player presses it
     public void ChangeColour()
     {
         audioSource.PlayOneShot(clip);

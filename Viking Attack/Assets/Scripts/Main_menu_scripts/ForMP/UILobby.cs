@@ -4,6 +4,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * @author Victor Wikner
+ * Not implemented, would function differently than current
+ */
 
     public class UILobby : MonoBehaviour {
 
@@ -25,15 +29,18 @@ using UnityEngine.UI;
 
 
         GameObject localPlayerLobbyUI;
-
+        
+        //Sets current instance to the same as this lobby
         void Start () {
             instance = this;
         }
 
+        //Sets start button active for the owner of the lobby
         public void SetStartButtonActive (bool active) {
             beginGameButton.SetActive (active);
         }
 
+        //Choose if you want a searchable game or not
         public void HostPublic () {
             lobbySelectables.ForEach (x => x.interactable = false);
             Debug.Log("Player: " + Player.localPlayer.ToString());
@@ -47,6 +54,7 @@ using UnityEngine.UI;
             Player.localPlayer.HostGame (false);
         }
 
+        //Starts hosting and adds you to the match, if you already has a lobby ui it will be destroyed
         public void HostSuccess (bool success, string matchID) {
             if (success) {
                 lobbyCanvas.enabled = true;
@@ -59,12 +67,14 @@ using UnityEngine.UI;
             }
         }
 
+        //joins lobby
         public void Join () {
             lobbySelectables.ForEach (x => x.interactable = false);
 
             Player.localPlayer.JoinGame (joinMatchInput.text.ToUpper ());
         }
 
+        //Adds you to the lobby if you have
         public void JoinSuccess (bool success, string matchID) {
             if (success) {
                 lobbyCanvas.enabled = true;
@@ -76,6 +86,8 @@ using UnityEngine.UI;
                 lobbySelectables.ForEach (x => x.interactable = true);
             }
         }
+        
+        //Leaves the game and removes lobby from your canvas
 
         public void DisconnectGame () {
             if (localPlayerLobbyUI != null) Destroy (localPlayerLobbyUI);
@@ -85,6 +97,7 @@ using UnityEngine.UI;
             lobbySelectables.ForEach (x => x.interactable = true);
         }
 
+        //Adds your prefab to the lobby
         public GameObject SpawnPlayerUIPrefab (Player player) {
             GameObject newUIPlayer = Instantiate (UIPlayerPrefab, UIPlayerParent);
             newUIPlayer.GetComponent<UIPlayer> ().SetPlayer (player);

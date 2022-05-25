@@ -105,12 +105,12 @@ public class GlobalPlayerInfo : NetworkBehaviour
         level = 1;
         playerName = PlayerPrefs.GetString("PlayerName");
         armorLevel = 0;
-        red = PlayerPrefs.GetInt("redValue");
-        green = PlayerPrefs.GetInt("greenValue");
-        blue = PlayerPrefs.GetInt("blueValue");
-        skinColour = new Color32((byte) red, (byte) green, (byte) blue, 255);
+        red = PlayerPrefs.GetInt("redValue"); // Victor Wikner
+        green = PlayerPrefs.GetInt("greenValue"); // Victor Wikner
+        blue = PlayerPrefs.GetInt("blueValue");// Victor Wikner
+        skinColour = new Color32((byte) red, (byte) green, (byte) blue, 255); // Victor Wikner
 
-        skinMesh.material.SetColor(BaseColor, skinColour);
+        skinMesh.material.SetColor(BaseColor, skinColour); //Victor Wikner
     }
 
 
@@ -119,6 +119,9 @@ public class GlobalPlayerInfo : NetworkBehaviour
         armorLevel += increase;
     }
 
+    /**
+    * @author Victor Wikner
+    */
     private NetworkManagerLobby room;
     private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
 
@@ -156,7 +159,9 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         playerName = insertedName;
     }
-
+    /**
+    * @author Victor Wikner
+    */
     // Gets called upon during game launch, the main menu sets the player name
     [Command]
     public void CmdSetSkinColour(Color32 chosenColour)
@@ -175,7 +180,9 @@ public class GlobalPlayerInfo : NetworkBehaviour
         return maxHealth;
     }
 
-    [ClientRpc]
+    /**
+    * @author Victor Wikner
+    */
     private void UpdateColours()
     {
         foreach (var t in room.InGamePlayer)
@@ -185,12 +192,16 @@ public class GlobalPlayerInfo : NetworkBehaviour
         }
     }
 
+    
     // Returns the player name
     public string GetName()
     {
         return playerName;
     }
 
+    /**
+ * @author Victor Wikner
+ */
     // Returns the player skin color
     public Color32 GetSkinColor()
     {
@@ -236,6 +247,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
         }
     }
 
+    /**
+    * @author Victor Wikner
+     * Not Implemented
+    */
     /*private void UpdateDisplay()
     {
 
@@ -251,6 +266,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
 
         }
     }*/
+    
+    /**
+ * @author Victor Wikner
+ */
     public void SetSkinColour(Color32 insertedColor)
     {
         skinColour = insertedColor;
@@ -373,6 +392,9 @@ public class GlobalPlayerInfo : NetworkBehaviour
         meatStackNumber--;
     }
 
+    /**
+    * @author Victor Wikner
+    */
     [Server]
     public void SetDisplayName(string playersName)
     {
@@ -383,12 +405,16 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         return armorLevel;
     }
-
+    /**
+    * @author Victor Wikner
+    */
     public override void OnStartClient()
     {
         if (Room != null) Room.InGamePlayer.Add(this.gameObject);
     }
-
+    /**
+    * @author Victor Wikner
+    */
     public override void OnStopClient()
     {
         if (Room != null) Room.InGamePlayer.Remove(this.gameObject);

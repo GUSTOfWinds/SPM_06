@@ -3,7 +3,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+/**
+ * @author Victor Wikner
+ */
     public class PlayerNameInput : MonoBehaviour
     {
         [Header("UI")] 

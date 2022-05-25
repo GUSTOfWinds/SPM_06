@@ -1,7 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+/**
+ * @author Victor Wikner
+ */
     public class JoinLobbyMenu : MonoBehaviour
     {
         [SerializeField] private NetworkManagerLobby networkManager = null;

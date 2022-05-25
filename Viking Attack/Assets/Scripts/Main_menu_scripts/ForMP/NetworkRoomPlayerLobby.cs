@@ -2,7 +2,9 @@ using Mirror;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+/**
+ * @author Victor Wikner
+ */
 
     public class NetworkRoomPlayerLobby : NetworkBehaviour
     {
@@ -15,7 +17,7 @@ using UnityEngine.UI;
         [SerializeField] private TMP_Text readyButtonText = null;
         [SerializeField] private TMP_Text playButtonText = null;
         [SerializeField] private Button startGameButton = null;
-        [SerializeField] private Button readyButton = null;
+        //[SerializeField] private Button readyButton = null;
 
 
         //These are syncvariables that updates towards the server, and when there is a change we run the methods called in the hook
