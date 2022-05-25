@@ -33,7 +33,7 @@ public class Triggertooltip : NetworkBehaviour
     private void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        EventSystem.Current.RegisterListener<PlayerItemPickupEventInfo>(OnItemDrop,
+        EventSystem.Current.RegisterListener<PlayerItemPickupEventInfo>(OnKeyPickup,
             ref itemEventGuid); // registers the listener
         EventSystem.Current.RegisterListener<PlayerConnectEventInfo>(UpdatePlayerList, ref connectedEventGuid);
     }
@@ -93,7 +93,7 @@ public class Triggertooltip : NetworkBehaviour
 
     // When either a client or a host has picked up the relic, bools will be set and text will be displayed as 
     // requested
-    public void OnItemDrop(PlayerItemPickupEventInfo pickupEventInfo)
+    public void OnKeyPickup(PlayerItemPickupEventInfo pickupEventInfo)
     {
         if (pickupEventInfo.itemBase.GetItemType == ItemBase.ItemType.Key)
         {

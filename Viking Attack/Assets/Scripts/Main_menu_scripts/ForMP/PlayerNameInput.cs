@@ -56,6 +56,8 @@ using UnityEngine.UI;
         {
             displayName = nameInputField.text;
             PlayerPrefs.SetString(PlayerPrefsNameKey, displayName);
+        //for saving file and load file
+        PlayerPrefs.SetString("isLoadFile", "False");
             SavePlayerColour();
         
         }

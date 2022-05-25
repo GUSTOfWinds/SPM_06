@@ -11909,7 +11909,7 @@ Animator:
   m_GameObject: {fileID: 1593998084}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 105d918c884b821478691099eabb13ba, type: 2}
+  m_Controller: {fileID: 9100000, guid: 87880f6888886a34b9227f635d54d234, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -13622,7 +13622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: spawnablePrefabs.Array.size
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: spawnablePrefabs.Array.data[11]
@@ -13648,6 +13648,10 @@ PrefabInstance:
       propertyPath: spawnablePrefabs.Array.data[16]
       value: 
       objectReference: {fileID: 1938624210312167496, guid: 614ed636095112e4bb63983f312a8ebe, type: 3}
+    - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
+      propertyPath: spawnablePrefabs.Array.data[17]
+      value: 
+      objectReference: {fileID: 980946679800242412, guid: d7f26ace05397064f89d7a123c7bc52b, type: 3}
     - target: {fileID: 8910869769638421570, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: m_RootOrder
       value: 1
