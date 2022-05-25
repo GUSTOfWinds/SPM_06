@@ -1,6 +1,8 @@
 using UnityEngine;
 
-
+/**
+ * @author Victor Wikner
+ */
     public class MainMenu : MonoBehaviour
     {
         [SerializeField] private NetworkManagerLobby networkManager;

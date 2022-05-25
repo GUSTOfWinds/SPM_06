@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using ItemNamespace;
 using Event;
 using Mirror;
@@ -11,6 +9,9 @@ using UnityEngine;
 
 public class EnemyVitalController : NetworkBehaviour
 {
+    /**
+     * @author Martin, Love, Victor
+     */
     public Dictionary<uint,float> aggroCounter;
     [SerializeField] private CharacterBase characterBase;
     [SerializeField] public float waitTime;
@@ -109,7 +110,10 @@ public class EnemyVitalController : NetworkBehaviour
                     aggroCounter.Add(player,change);
                 }
 
+                RpcBlinkOnHit(); // Plays for client
                 StartCoroutine(BlinkOnHit());
+
+                RpcPlayHitSound(); // Plays for client
                 PlayHitSound();
                 EventInfo enemyTakesDamage = new EnemyHitEvent
                 {
@@ -188,23 +192,51 @@ public class EnemyVitalController : NetworkBehaviour
             CmdUpdateHealth(change);
     }
 
+    // Plays the hit color on client
+    [ClientRpc]
+    private void RpcBlinkOnHit()
+    {
+        if (isServer)
+        {
+            return;
+        }
+
+        StartCoroutine(BlinkOnHit());
+    }
+    
     private IEnumerator BlinkOnHit()
     {
+        /*
+            @Author Love Strignert - lost9373
+        */
         Material[] temp = skinnedMeshRenderer.materials;
         skinnedMeshRenderer.materials = materials;
         yield return new WaitForSeconds(0.1f);
         skinnedMeshRenderer.materials = temp;
     }
+    
+    [ClientRpc]
+    private void RpcPlayHitSound()
+    {
+        if (isServer)
+        {
+            return;
+        }
+
+        PlayHitSound();
+    }
 
     private void PlayHitSound()
     {
+        /*
+            @Author Love Strignert - lost9373
+        */
         if (hitSound != null)
         {
-            //audioSource.Stop();
             audioSource.PlayOneShot(hitSound);
         }
     }
-
+    
     // Ships experience to clients, makes experience within proximity possible
     [ClientRpc]
     private void RpcIncreaseExperience(GameObject player, float exp)

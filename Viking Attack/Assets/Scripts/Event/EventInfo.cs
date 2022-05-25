@@ -76,4 +76,20 @@ namespace Event
     {
         public uint playerNetId;
     }
+
+    public class EnemyRetreatingEventInfo : EventInfo
+    {
+        public uint netid;
+    }
+    
+    public class BreakableDestroyedEventInfo : EventInfo
+    {
+        public float RespawnTimer;
+    }
+    public class BreakableRespawnEventInfo : EventInfo
+    {
+        // The spawner parent, makes sure that the enemy respawns at the same place 
+        // it was placed in teh beginning of the game
+        public Transform respawnParent;
+    }
 }

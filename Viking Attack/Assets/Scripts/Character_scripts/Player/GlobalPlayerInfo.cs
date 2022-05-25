@@ -10,7 +10,6 @@ using Inventory_scripts;
 public class GlobalPlayerInfo : NetworkBehaviour
 {
     /**
-        /**
      * @author Martin Kings
      */
     [SerializeField] private Component healthBar;
@@ -33,19 +32,22 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SyncVar] [SerializeField] private int availableStatPoints;
     [SyncVar] [SerializeField] private float damage;
     [SyncVar] [SerializeField] private int meatStackNumber;
+
     [SyncVar] [SerializeField] private int armorLevel;
+
     //get character Screen
     [SerializeField] private GameObject characterScreen;
-    
 
 
-    //gathering data and reset data
+    //gathering data and reset data By Jiang
     public void LoadData(Dictionary<String, System.Object> data)
     {
-       
+
         playerName = (string)data["playerName"];
         health = (float)data["health"];
         stamina = (float)data["stamina"];
+        maxHealth = (float)data["maxHealth"];
+        maxStamina = (float)data["maxStamina"];
         experience = (float)data["experience"];
         level = (int)data["level"];
         availableStatPoints = (int)data["availableStatPoints"];
@@ -61,7 +63,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         characterScreen.GetComponent<CharacterScreen>().OpenCharacterScreen();
         gameObject.GetComponent<PlayerInventory>().UpdateMeatStack();
     }
-    //Saving all the data
+    //Saving all the data By Jiang
     public Dictionary<String, System.Object> SaveData()
     {
 
@@ -70,6 +72,8 @@ public class GlobalPlayerInfo : NetworkBehaviour
         dataHolder.Add("playerName", (System.Object)playerName);
         dataHolder.Add("health", (System.Object)health);
         dataHolder.Add("stamina", (System.Object)stamina);
+        dataHolder.Add("maxHealth", (System.Object)maxHealth);
+        dataHolder.Add("maxStamina", (System.Object)maxStamina);
         dataHolder.Add("experience", (System.Object)experience);
         dataHolder.Add("level", (System.Object)level);
         dataHolder.Add("availableStatPoints", (System.Object)availableStatPoints);
@@ -81,10 +85,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
         dataHolder.Add("armorLevel", (System.Object)armorLevel);
         return dataHolder;
     }
-
-
-
-
 
 
     //*******************
@@ -110,12 +110,12 @@ public class GlobalPlayerInfo : NetworkBehaviour
         level = 1;
         playerName = PlayerPrefs.GetString("PlayerName");
         armorLevel = 0;
-        red = PlayerPrefs.GetInt("redValue");
-        green = PlayerPrefs.GetInt("greenValue");
-        blue = PlayerPrefs.GetInt("blueValue");
-        skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255);
-            
-        skinMesh.material.SetColor(BaseColor, skinColour);
+        red = PlayerPrefs.GetInt("redValue"); // Victor Wikner
+        green = PlayerPrefs.GetInt("greenValue"); // Victor Wikner
+        blue = PlayerPrefs.GetInt("blueValue");// Victor Wikner
+        skinColour = new Color32((byte) red, (byte) green, (byte) blue, 255); // Victor Wikner
+
+        skinMesh.material.SetColor(BaseColor, skinColour); //Victor Wikner
     }
 
 
@@ -123,8 +123,12 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         armorLevel += increase;
     }
+
+    /**
+    * @author Victor Wikner
+    */
     private NetworkManagerLobby room;
-    private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
+    private static readonly int BaseColor = Shader.PropertyToID("Color_be8b5dda336745c985841ed4b814c54e");
 
     private NetworkManagerLobby Room
     {
@@ -143,10 +147,9 @@ public class GlobalPlayerInfo : NetworkBehaviour
             {
                 UpdateColours();
             }
+
             CmdSetPlayerName(playerName);
             CmdSetSkinColour(skinColour);
-
-
         }
     }
 
@@ -161,11 +164,13 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         playerName = insertedName;
     }
+    /**
+    * @author Victor Wikner
+    */
     // Gets called upon during game launch, the main menu sets the player name
     [Command]
     public void CmdSetSkinColour(Color32 chosenColour)
     {
-
         this.skinColour = chosenColour;
         UpdateColours();
     }
@@ -180,21 +185,28 @@ public class GlobalPlayerInfo : NetworkBehaviour
         return maxHealth;
     }
 
-    [ClientRpc]
+    /**
+    * @author Victor Wikner
+    */
     private void UpdateColours()
     {
         foreach (var t in room.InGamePlayer)
         {
-            t.GetComponent<GlobalPlayerInfo>().skinMesh.material.SetColor(BaseColor, t.GetComponent<GlobalPlayerInfo>().skinColour);
+            t.GetComponent<GlobalPlayerInfo>().skinMesh.material
+                .SetColor(BaseColor, t.GetComponent<GlobalPlayerInfo>().skinColour);
         }
     }
 
+    
     // Returns the player name
     public string GetName()
     {
         return playerName;
     }
 
+    /**
+ * @author Victor Wikner
+ */
     // Returns the player skin color
     public Color32 GetSkinColor()
     {
@@ -239,6 +251,11 @@ public class GlobalPlayerInfo : NetworkBehaviour
             gameObject.GetComponent<KillPlayer>().PlayerRespawn();
         }
     }
+
+    /**
+    * @author Victor Wikner
+     * Not Implemented
+    */
     /*private void UpdateDisplay()
     {
 
@@ -254,6 +271,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
 
         }
     }*/
+    
+    /**
+ * @author Victor Wikner
+ */
     public void SetSkinColour(Color32 insertedColor)
     {
         skinColour = insertedColor;
@@ -375,6 +396,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         meatStackNumber--;
     }
+
+    /**
+    * @author Victor Wikner
+    */
     [Server]
     public void SetDisplayName(string playersName)
     {
@@ -385,14 +410,18 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         return armorLevel;
     }
-
+    /**
+    * @author Victor Wikner
+    */
     public override void OnStartClient()
     {
         if (Room != null) Room.InGamePlayer.Add(this.gameObject);
     }
+    /**
+    * @author Victor Wikner
+    */
     public override void OnStopClient()
     {
         if (Room != null) Room.InGamePlayer.Remove(this.gameObject);
     }
-
 }

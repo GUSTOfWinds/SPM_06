@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 public class EnemyAIScript : NetworkBehaviour
 {
     /*
-        Author Love Strignert - lost9373
+        @Author Love Strignert - lost9373
     */
     private Animator animator;
     private float attackRange;
@@ -36,6 +36,7 @@ public class EnemyAIScript : NetworkBehaviour
     private GameObject target;
     private int hitsForStagger;
     private GameObject[] players;
+    private GameObject[] enemies;
 
     [SerializeField] private float aggroRangeFromSpawnPoint;
     [SerializeField] private bool canSeeThroughWalls;
@@ -209,8 +210,18 @@ public class EnemyAIScript : NetworkBehaviour
                 
             if(!playerFound)
             {
-                gameObject.GetComponent<EnemyVitalController>().UpdateHealth(characterBase.GetMaxHealth());
+                enemyVitalController.UpdateHealth(characterBase.GetMaxHealth());
 
+                if (chasing)
+                {
+                    EventInfo enemyRetreatingEventInfo = new EnemyRetreatingEventInfo
+                    {
+                        EventUnitGo = gameObject,
+                        netid = gameObject.GetComponent<NetworkIdentity>().netId
+                    };
+                    EventSystem.Current.FireEvent(enemyRetreatingEventInfo);
+                }
+                
                 chasing = false;
                 stateToPlayByIndex = 2;
 
@@ -267,7 +278,7 @@ public class EnemyAIScript : NetworkBehaviour
 
     private bool GetNearbyAudioSourcePlaying()
     {
-        GameObject[] enemies = deathListener.GetEnemies();
+        enemies = deathListener.GetEnemies();
         foreach (var enemy in enemies)
             if (enemy != null)
                 if (Vector3.Distance(enemy.transform.position, gameObject.transform.position) < 6f && enemy.GetComponent<AudioSource>().isPlaying && !enemy.Equals(gameObject))
@@ -349,7 +360,8 @@ public class EnemyAIScript : NetworkBehaviour
         }
     }
 
-    [ClientRpc] public void RpcBeforeDying(GameObject spawnPoint, GameObject roamingPoint)
+    [ClientRpc] 
+    public void RpcBeforeDying(GameObject spawnPoint, GameObject roamingPoint)
     {
         if (!isServer)
         {

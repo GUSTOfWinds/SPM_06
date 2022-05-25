@@ -9,8 +9,8 @@ public class GoalTextScript : MonoBehaviour
     [SerializeField] private TMP_Text textTwo;
     void Start()
     {
-        textOne.text = "Find your way to the portal to progress to the second level";
-        textTwo.text = "Along the way you will encounter enemies protecting the treasure guardian";
+        textOne.text = "Make your way to the end of the path of the island";
+        textTwo.text = "There you will find the portal to the skeleton lord";
         StartCoroutine(Wait(5));
     }
 

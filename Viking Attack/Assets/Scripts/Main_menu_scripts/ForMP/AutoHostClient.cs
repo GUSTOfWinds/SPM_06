@@ -1,6 +1,12 @@
 using Mirror;
 using UnityEngine;
-
+/**
+ * @author Victor Wikner
+ *
+ * Not implamented
+ *
+ * This object was supposed to be added on a scene where you want to join your local ip by default
+ */
 
     public class AutoHostClient : MonoBehaviour {
 
