@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class BreakableInfo : NetworkBehaviour
+public class BreakableInfo : MonoBehaviour
 {
     private Transform respawnParent;
 

@@ -13,7 +13,7 @@ public class BreakableSpawner : NetworkBehaviour
    
     [Header("Drag the prefab you want to spawn in this spawner here")]
     [SerializeField] private GameObject enemyPrefabToSpawn;
-    [SerializeField] private MeshRenderer meshRenderer;
+    //[SerializeField] private MeshRenderer meshRenderer;
     private Guid respawnEventGuid;
     private uint netID;
     private void Awake()
@@ -42,7 +42,7 @@ public class BreakableSpawner : NetworkBehaviour
         var enemy = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
         enemy.GetComponent<BreakableInfo>().SetRespawnAnchor(transform);
         NetworkServer.Spawn(enemy);
-        meshRenderer.enabled = true;
+        //meshRenderer.enabled = true;
 
     }
 

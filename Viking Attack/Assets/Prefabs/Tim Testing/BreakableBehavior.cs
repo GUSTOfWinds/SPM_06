@@ -13,6 +13,7 @@ public class BreakableBehavior : NetworkBehaviour
     [SerializeField] private bool hasDied;
     private Collider[] sphereColliders;
     [SerializeField] private LayerMask layerMask;
+    public GameObject fractured;
 
     // Start is called before the first frame update
     
@@ -55,7 +56,7 @@ public class BreakableBehavior : NetworkBehaviour
             EventDescription = "Unit " + gameObject.name + " has died.",
             RespawnTimer = waitTime,
         };
-        Debug.Log("dieBehavior past");
+        Instantiate(fractured, transform.position, Quaternion.identity);
         EventSystem.Current.FireEvent(BreakableDestroyedEventInfo);
     }
 
