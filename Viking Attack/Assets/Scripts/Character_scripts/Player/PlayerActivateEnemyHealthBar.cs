@@ -50,6 +50,7 @@ namespace ItemNamespace
 
         private void OnEnemyRetreating(EnemyRetreatingEventInfo enemyRetreatingEventInfo)
         {
+            Debug.Log("retreat event found");
             if (netId == netIdOfLastHit)
             {
                 healthBarInHierarchy.SetActive(false);

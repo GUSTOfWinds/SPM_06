@@ -5,8 +5,8 @@ using UnityEngine;
     public class FriendlyNameDisplay : MonoBehaviour
     {
         /**
-     * @author Martin Kings
-     */
+         * @author Martin Kings
+         */
         [SerializeField] private Transform target;
         [SerializeField] public TMP_Text text;
         [SerializeField] private GameObject nameSource;

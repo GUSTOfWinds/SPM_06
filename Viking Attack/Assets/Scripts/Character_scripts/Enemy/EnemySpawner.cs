@@ -9,8 +9,8 @@ namespace Character_scripts.Enemy
     public class EnemySpawner : NetworkBehaviour
     {
         /**
-     * @author Martin Kings
-     */
+         * @author Martin Kings
+         */
         [Header("Drag the prefab you want to spawn in this spawner here")]
         [SerializeField] private GameObject enemyPrefabToSpawn;
         private Guid respawnEventGuid;

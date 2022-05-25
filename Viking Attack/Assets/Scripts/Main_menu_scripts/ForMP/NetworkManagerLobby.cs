@@ -205,9 +205,6 @@ public class NetworkManagerLobby : NetworkManager
         //if (!sceneName.Contains("Scene_Map")) return;
         var conn = GamePlayers[0].connectionToClient;
 
-        Debug.Log("RoomPlayers " + RoomPlayers.Count);
-        Debug.Log("GamePlayers " + GamePlayers.Count);
-
         if (!firstChange)
         {
             foreach (var t in GamePlayers)
@@ -229,7 +226,6 @@ public class NetworkManagerLobby : NetworkManager
         var spawner = playerSpawnSystemInstance.GetComponent<PlayerSpawnSystem>();
         spawner.SpawnPlayer(conn, InGamePlayer);
         firstChange = true;
-        Debug.Log("In game " + InGamePlayer.Count);
     }
 
 
