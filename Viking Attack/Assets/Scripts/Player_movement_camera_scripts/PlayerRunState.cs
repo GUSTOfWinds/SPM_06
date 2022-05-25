@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 //Used as a state when the player inputs for Horizontal and Vertical movement
 public class PlayerRunState : PlayerState
 {
+    /*
+        @Author Love Strignert - lost9373
+    */
     private Vector3 input;
     private Vector2 inputMovement;
     public InputAction.CallbackContext sprintKeyInfo;

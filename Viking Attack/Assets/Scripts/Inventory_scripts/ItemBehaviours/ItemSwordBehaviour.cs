@@ -6,6 +6,9 @@ using Mirror;
 
 public class ItemSwordBehaviour : ItemBaseBehaviour
 {
+    /*
+        @Author Love Strignert - lost9373
+    */
     private Animator animator;
     private GameObject rayCastPosition;
     private Camera mainCamera;

@@ -11,10 +11,9 @@ namespace ItemNamespace
     public class ItemBase : ScriptableObject
     {
         /**
-         * @author Martin Kings
+         * @author Martin Kings & Love Strignert - lost9373
          */
         [SerializeField] private ItemType itemType;
-
         [SerializeField] private WeaponType weaponType;
         [SerializeField] private string itemName;
         [SerializeField] private string description;
@@ -32,7 +31,12 @@ namespace ItemNamespace
         [SerializeField] private int protection;
         [SerializeField] private float speedMultiplierWhenUsingItem;
         [SerializeField] private float staggerStaminaDrain;// only interesting if weapon
+        [SerializeField] private GameObject particle;// only interesting if weapon
         
+
+        //Returns the the hit particle that will play when used
+        public GameObject GetParticle => particle;
+
         //Returns the amounts of hit for stagger with this item
         public float GetStaggerStaminaDrain => staggerStaminaDrain;
         

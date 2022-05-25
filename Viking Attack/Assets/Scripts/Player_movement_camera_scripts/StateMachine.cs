@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 
 public class StateMachine
-{ 
+{   
+    /*
+        @Author Love Strignert - lost9373
+    */
     private State currentState;
     private State[] stateList;
     private Queue<State> stateQueue = new Queue<State>();

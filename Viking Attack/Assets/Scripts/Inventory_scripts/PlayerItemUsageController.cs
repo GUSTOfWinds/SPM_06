@@ -9,7 +9,7 @@ using System.Collections;
 public class PlayerItemUsageController : NetworkBehaviour
 {
     /**
-     * @author Martin Kings
+     * @author Martin Kings & Love Strignert - lost9373
      */
     public ItemBase itemBase; // Will need to be updated if another item is being used.
 

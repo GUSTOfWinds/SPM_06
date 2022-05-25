@@ -7,7 +7,7 @@ using Mirror;
 public class ItemSpearBehaviour : ItemBaseBehaviour
 {
     /*
-        Made by Love Strignert
+        @Author Love Strignert - lost9373
     */
     private Animator animator;
     private GameObject rayCastPosition;

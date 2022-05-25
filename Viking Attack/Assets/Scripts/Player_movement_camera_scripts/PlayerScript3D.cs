@@ -5,6 +5,9 @@ using Mirror;
 [RequireComponent(typeof(CapsuleCollider))]
 public class PlayerScript3D : NetworkBehaviour
 {
+    /*
+        @Author Love Strignert - lost9373
+    */
     [SerializeField] private State[] states;
 
     private MyRigidbody3D myRigidbody;

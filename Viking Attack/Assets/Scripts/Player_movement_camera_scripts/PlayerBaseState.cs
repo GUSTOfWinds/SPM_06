@@ -5,7 +5,9 @@ using UnityEngine;
 //Used as a state when the player does nothing
     public class PlayerBaseState : PlayerState
     {
-
+        /*
+            @Author Love Strignert - lost9373
+        */
         public override void Enter()
         {
         
