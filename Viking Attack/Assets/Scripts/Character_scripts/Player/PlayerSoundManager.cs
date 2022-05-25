@@ -1,6 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using Mirror;
+﻿using Mirror;
 using UnityEngine;
 
 namespace ItemNamespace

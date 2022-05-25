@@ -1,5 +1,6 @@
-using ItemNamespace;
 using UnityEngine;
+using ItemNamespace;
+
 
 namespace Event
 {
@@ -85,5 +86,10 @@ namespace Event
     public class PlayerDeathEventInfo : EventInfo
     {
         public uint playerNetId;
+    }
+
+    public class EnemyRetreatingEventInfo : EventInfo
+    {
+        public uint netid;
     }
 }

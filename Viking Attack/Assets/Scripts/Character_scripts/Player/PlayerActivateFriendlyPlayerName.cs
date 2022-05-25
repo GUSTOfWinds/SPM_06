@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ItemNamespace
 {
@@ -60,14 +58,17 @@ namespace ItemNamespace
                 tempNetId = hit.transform.gameObject.GetComponent<NetworkIdentity>()
                     .netId;
 
-                idsSpottedThisFrame.Add(tempNetId);
-                // if the player wasn't spotted in the previous frame, will simply update previousHits and move to the next frame
-                if (instancesOfFriendliesSpotted.Contains(tempNetId) == false)
+                if (tempNetId != gameObject.GetComponent<NetworkIdentity>().netId)
                 {
-                    newFriendlyName = SetupFriendlyName(hit);
-                    instancesOfFriendlyNames.Add(newFriendlyName);
+                    idsSpottedThisFrame.Add(tempNetId);
+                    // if the player wasn't spotted in the previous frame, will simply update previousHits and move to the next frame
+                    if (instancesOfFriendliesSpotted.Contains(tempNetId) == false)
+                    {
+                        newFriendlyName = SetupFriendlyName(hit);
+                        instancesOfFriendlyNames.Add(newFriendlyName);
 
-                    instancesOfFriendliesSpotted.Add(tempNetId);
+                        instancesOfFriendliesSpotted.Add(tempNetId);
+                    }
                 }
             }
 

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97eecf9d0fd4b03bc3d576cbcfccea8, type: 3}
+  m_Name: Key
+  m_EditorClassIdentifier: 
+  itemType: 3
+  weaponType: 0
+  itemName: Key
+  description: Opens the gate to the boss island
+  damage: 0
+  range: 0
+  speed: 0
+  stamina: 0
+  healAmount: 0
+  sprite: {fileID: 21300000, guid: 40e0827345d68634c839a0b64a4727f1, type: 3}
+  stackable: 0
+  mesh: {fileID: 3722159955531138981, guid: aa8971306493d2d4dacb41606e5bec59, type: 3}
+  material: {fileID: 2100000, guid: db0ca61647c34b346bc5fddd8cc194a9, type: 2}
+  usageParticle: 
+  itemBaseBehaviorScriptName: 
+  protection: 0
+  speedMultiplierWhenUsingItem: 0

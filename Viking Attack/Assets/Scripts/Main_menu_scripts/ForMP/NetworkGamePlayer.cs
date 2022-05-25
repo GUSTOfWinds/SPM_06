@@ -1,39 +1,64 @@
 using Mirror;
+using UnityEngine;
 
-namespace Main_menu_scripts.ForMP
+
+public class NetworkGamePlayer : NetworkBehaviour
 {
-    public class NetworkGamePlayer : NetworkBehaviour
+
+    [SyncVar]
+    public string displayName = "Loading...";
+
+    [SyncVar] 
+    public Color32 colour;
+
+    private NetworkManagerLobby room;
+    private NetworkManagerLobby Room
     {
-
-        [SyncVar]
-        public string displayName = "Loading...";
-
-        private NetworkManagerLobby room;
-        private NetworkManagerLobby Room
+        get
         {
-            get
-            {
-                if (room != null) { return room; }
-                return room = NetworkManager.singleton as NetworkManagerLobby;
-            }
+            if (room != null) { return room; }
+            return room = NetworkManager.singleton as NetworkManagerLobby;
         }
+    }
+        
+    //Sets name on your character in lobby and latter the game, OnStartAuthority makes sure it is run only on the object that is yours.
+    public override void OnStartAuthority()
+    {
+        CmdSetDisplayName(PlayerNameInput.displayName);
+        CmdSetPlayerColour(PlayerNameInput.playerColour);
+    }
+        
+    [Command]
+    private void CmdSetDisplayName(string displayName)
+    {
+        this.displayName = displayName;
+    }
 
-        public override void OnStartClient()
-        {
-            DontDestroyOnLoad(gameObject);
+    [Command]
+    private void CmdSetPlayerColour(Color32 colour32)
+    {
+        colour = colour32;
+    }
 
-            Room.GamePlayers.Add(this);
-        }
 
-        public override void OnStopClient()
-        {
-            Room.GamePlayers.Remove(this);
-        }
+    public override void OnStartClient()
+    {
+        DontDestroyOnLoad(gameObject);
 
-        [Server]
-        public void SetDisplayName(string displayName)
-        {
-            this.displayName = displayName;
-        }
+        //Room.GamePlayers.Add(this);
+    }
+
+    public override void OnStopClient()
+    {
+        Room.GamePlayers.Remove(this);
+    }
+
+    public void SetSkinColour(Color32 colour)
+    {
+        this.colour = colour;
+    }
+    public void SetDisplayName(string displayName)
+    {
+        this.displayName = displayName;
     }
 }

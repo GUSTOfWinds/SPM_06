@@ -21,7 +21,7 @@ public class ItemMeatBehaviour : ItemBaseBehaviour
     public void Awake()
     {
         globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
-        animator = gameObject.transform.Find("Prefab_PlayerBot").GetComponent<Animator>();
+        animator = gameObject.transform.Find("VikingWarrior").GetComponent<Animator>();
         playerInventory = gameObject.GetComponent<PlayerInventory>();
     }
 

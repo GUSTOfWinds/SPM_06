@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 using ItemNamespace;
 using Event;
 using Mirror;
@@ -9,11 +9,8 @@ using UnityEngine;
 
 public class EnemyVitalController : NetworkBehaviour
 {
-    /**
-     * @author Martin Kings/Victor
-     */
+    public Dictionary<uint,float> aggroCounter;
     [SerializeField] private CharacterBase characterBase;
-
     [SerializeField] public float waitTime;
     [SerializeField] private bool hasDied;
     private Collider[] sphereColliders;
@@ -28,11 +25,14 @@ public class EnemyVitalController : NetworkBehaviour
     private SkinnedMeshRenderer skinnedMeshRenderer;
     private Material[] materials;
     [SerializeField] private Material hitMaterial;
+    [SerializeField] private AudioClip hitSound;
+    private AudioSource audioSource;
+
 
     //spara maxvärdet så vi kan räkna ut procent 
     void Start()
     {
-        //skinnedMeshRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
+        audioSource = GetComponent<AudioSource>();
         skinnedMeshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
 
         currentHealth = characterBase.GetMaxHealth();
@@ -43,6 +43,8 @@ public class EnemyVitalController : NetworkBehaviour
         materials = new Material[skinnedMeshRenderer.materials.Length + 1];
         Array.Copy(skinnedMeshRenderer.materials, materials, skinnedMeshRenderer.materials.Length);
         materials[materials.Length - 1] = hitMaterial;
+
+        aggroCounter = new Dictionary<uint, float>();
     }
 
     private void OnConnectedToServer()
@@ -78,7 +80,7 @@ public class EnemyVitalController : NetworkBehaviour
 
     [Command(requiresAuthority = false)]
     public void CmdUpdateHealth(float change, uint player) => UpdateHealth(change, player);
-    
+
     [Command(requiresAuthority = false)]
     public void CmdUpdateHealth(float change) => UpdateHealth(change);
 
@@ -88,17 +90,28 @@ public class EnemyVitalController : NetworkBehaviour
     {
         if (base.isServer)
         {
-            
             if (change != 0)
             {
                 gameObject.GetComponent<EnemyInfo>().PlayerScale();
             }
-            
+
             //clampa värdet så vi inte kan få mer hp än maxvärdet
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
             if (change < 0)
             {
+                if(aggroCounter.ContainsKey(player))
+                {
+                    aggroCounter[player] += change;
+                }else
+                {
+                    aggroCounter.Add(player,change);
+                }
+
+                RpcBlinkOnHit(); // Plays for client
                 StartCoroutine(BlinkOnHit());
+
+                RpcPlayHitSound(); // Plays for client
+                PlayHitSound();
                 EventInfo enemyTakesDamage = new EnemyHitEvent
                 {
                     EventUnitGo = gameObject,
@@ -124,7 +137,9 @@ public class EnemyVitalController : NetworkBehaviour
                 }
 
                 if (gameObject.GetComponent<EnemyAIScript>() != null)
-                    gameObject.GetComponent<EnemyAIScript>().RpcBeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
+                    gameObject.GetComponent<EnemyAIScript>().RpcBeforeDying(
+                        gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,
+                        gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
                 this.OnDeath?.Invoke(this);
                 Die();
             }
@@ -132,7 +147,7 @@ public class EnemyVitalController : NetworkBehaviour
         else
             CmdUpdateHealth(change);
     }
-    
+
     public void UpdateHealth(float change)
     {
         if (base.isServer)
@@ -141,6 +156,7 @@ public class EnemyVitalController : NetworkBehaviour
             {
                 gameObject.GetComponent<EnemyInfo>().PlayerScale();
             }
+
             //clampa värdet så vi inte kan få mer hp än maxvärdet
             currentHealth = Mathf.Clamp(currentHealth += change, -Mathf.Infinity, maxHealth);
 
@@ -162,7 +178,9 @@ public class EnemyVitalController : NetworkBehaviour
                 }
 
                 if (gameObject.GetComponent<EnemyAIScript>() != null)
-                    gameObject.GetComponent<EnemyAIScript>().RpcBeforeDying(gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
+                    gameObject.GetComponent<EnemyAIScript>().RpcBeforeDying(
+                        gameObject.GetComponent<EnemyAIScript>().GetSpawnPoint,
+                        gameObject.GetComponent<EnemyAIScript>().GetRoamingPoint);
                 this.OnDeath?.Invoke(this);
                 Die();
             }
@@ -171,14 +189,46 @@ public class EnemyVitalController : NetworkBehaviour
             CmdUpdateHealth(change);
     }
 
+    // Plays the hit color on client
+    [ClientRpc]
+    private void RpcBlinkOnHit()
+    {
+        if (isServer)
+        {
+            return;
+        }
+
+        StartCoroutine(BlinkOnHit());
+    }
+    
     private IEnumerator BlinkOnHit()
     {
         Material[] temp = skinnedMeshRenderer.materials;
         skinnedMeshRenderer.materials = materials;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         skinnedMeshRenderer.materials = temp;
     }
+    
+    [ClientRpc]
+    private void RpcPlayHitSound()
+    {
+        if (isServer)
+        {
+            return;
+        }
 
+        PlayHitSound();
+    }
+
+    private void PlayHitSound()
+    {
+        if (hitSound != null)
+        {
+            //audioSource.Stop();
+            audioSource.PlayOneShot(hitSound);
+        }
+    }
+    
     // Ships experience to clients, makes experience within proximity possible
     [ClientRpc]
     private void RpcIncreaseExperience(GameObject player, float exp)
@@ -201,9 +251,9 @@ public class EnemyVitalController : NetworkBehaviour
         }
     }
 
-    //andra script kan registrera på detta event
+    //Other scripts that can change this event
     public event Action<float> OnHealthChanged;
 
-    //OBS KÖRS ENDAST PÅ SERVERN
+    //OBS Is only run on the server
     public event Action<EnemyVitalController> OnDeath;
 }

@@ -1,31 +1,32 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class PressAnyKey : MonoBehaviour
 {
     public GameObject menu;
+    public AudioSource audioSource;
+    public AudioSource envAudioSource;
+    public AudioSource seagullAudioSource;
+    public AudioClip ac;
+    
     public Animator animator;
     private UnityEngine.UI.Text text;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        text = GetComponent<UnityEngine.UI.Text>();
+    void menutransition() 
+    { 
         menu.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AnyKey(InputAction.CallbackContext value)
     {
-        if(Input.anyKey)
+        if(value.performed)
         {
-            animator.SetBool("pressedAKey", true);
-            Invoke("menutransition", 1.5f);
-            
+            audioSource.PlayOneShot(ac);
+            envAudioSource.Play();
+            seagullAudioSource.Play();
+            animator.SetTrigger("pressedanykey");
+            Invoke("menutransition", 2.5f);
         }
-    }
-    void menutransition() { 
-        menu.SetActive(true);
-        
     }
 }
