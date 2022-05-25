@@ -1,7 +1,13 @@
 using Mirror;
 using UnityEngine;
 
-
+/**
+ * @author Victor Wikner
+ *
+ * Not implemented
+ *
+ * Supposed to change colour and set it so all players can see the difference
+ */
 public class ColourCustomization : NetworkBehaviour
 
     {

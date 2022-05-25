@@ -37,7 +37,7 @@ public class MyRigidbody3D : NetworkBehaviour
     void FixedUpdate()
     {
 
-        // //H�r ser vi om det �r lokal spelare eller inte, om det inte �r det s� uppdaterar vi vyn f�r den andra och avbryter.
+        //Here we ee if it's a local player or not, if it isn't we update the view for the other and cancel.
         if (!isLocalPlayer)
         {
             base.transform.position = syncPosition;
@@ -69,10 +69,13 @@ public class MyRigidbody3D : NetworkBehaviour
         CmdSetSynchedRotation(this.transform.rotation);
     }
 
-    //Kommandlinjer f�r att be servern om uppdateringar p� rotation och position
-    [Command]
+    /**
+    * @author Victor Wikner
+    * Commandlines to ask server for updates on rotation and position
+    */
+    [Command(requiresAuthority = false)] 
     public void CmdSetSynchedPosition(Vector3 position) => syncPosition = position;
-    [Command]
+    [Command(requiresAuthority = false)]
     void CmdSetSynchedRotation(Quaternion rotation) => syncRotation = rotation;
 
     //Check if object is on ground (on another collider) returns a bool

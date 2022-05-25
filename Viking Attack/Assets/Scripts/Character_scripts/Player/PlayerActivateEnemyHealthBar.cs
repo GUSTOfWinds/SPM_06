@@ -17,7 +17,7 @@ namespace ItemNamespace
         private Guid deathEventGuid;
 
         private Guid playerDeathEventGuid;
-        
+
         private Guid enemyRetreatEventGuid;
 
         [SerializeField] private GameObject healthBarInHierarchy;
@@ -31,7 +31,7 @@ namespace ItemNamespace
         private uint playerThatHit;
 
         private uint netIdOfDeadEnemy;
-        
+
 
         private void Start()
         {
@@ -40,7 +40,8 @@ namespace ItemNamespace
             EventSystem.Current.RegisterListener<EnemyHitEvent>(SetupHealthBar, ref hitEventGuid);
             EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnEnemyDeath, ref deathEventGuid);
             EventSystem.Current.RegisterListener<PlayerDeathEventInfo>(OnPlayerDeath, ref playerDeathEventGuid);
-            EventSystem.Current.RegisterListener<EnemyRetreatingEventInfo>(OnEnemyRetreating, ref enemyRetreatEventGuid);
+            EventSystem.Current.RegisterListener<EnemyRetreatingEventInfo>(OnEnemyRetreating,
+                ref enemyRetreatEventGuid);
 
             if (isLocalPlayer)
             {
@@ -50,12 +51,31 @@ namespace ItemNamespace
 
         private void OnEnemyRetreating(EnemyRetreatingEventInfo enemyRetreatingEventInfo)
         {
-            if (netId == netIdOfLastHit)
+            if (isServer)
             {
-                healthBarInHierarchy.SetActive(false);
-                netIdOfLastHit = 0;
+                if (enemyRetreatingEventInfo.netid == netIdOfLastHit)
+                {
+                    healthBarInHierarchy.SetActive(false);
+                    netIdOfLastHit = 0;
+                }
+
+                RpcOnEnemyRetreating(enemyRetreatingEventInfo);
             }
         }
+
+        [ClientRpc]
+        private void RpcOnEnemyRetreating(EnemyRetreatingEventInfo enemyRetreatingEventInfo)
+        {
+            if (!isServer)
+            {
+                if (enemyRetreatingEventInfo.netid == netIdOfLastHit)
+                {
+                    healthBarInHierarchy.SetActive(false);
+                    netIdOfLastHit = 0;
+                }
+            }
+        }
+
 
         // Runs on both client and host, no need to force it to run on client
         void OnPlayerDeath(PlayerDeathEventInfo playerDeathEventInfo)
@@ -66,7 +86,6 @@ namespace ItemNamespace
                 healthBarInHierarchy.SetActive(false);
                 netIdOfLastHit = 0;
             }
-            
         }
 
 
@@ -90,7 +109,7 @@ namespace ItemNamespace
                 healthBarInHierarchy.SetActive(false);
                 netIdOfLastHit = 0;
             }
-            
+
             RpcOnEnemyDeath(netIdOfDeadEnemy);
         }
 
@@ -130,10 +149,12 @@ namespace ItemNamespace
                     {
                         healthBarInHierarchy.SetActive(true);
                     }
+
                     enemyHealthBar.Setup(hit.EventUnitGo);
                     netIdOfLastHit = netIdOfNewHit;
                     return;
                 }
+
                 // If the hit enemy is the same as the previously hit one
                 if (netIdOfLastHit == netIdOfNewHit)
                 {
@@ -141,6 +162,7 @@ namespace ItemNamespace
                     {
                         healthBarInHierarchy.SetActive(true);
                     }
+
                     enemyHealthBar.SetHealth();
                 }
                 else
@@ -149,6 +171,7 @@ namespace ItemNamespace
                     {
                         healthBarInHierarchy.SetActive(true);
                     }
+
                     enemyHealthBar.Setup(hit.EventUnitGo);
                     netIdOfLastHit = netIdOfNewHit;
                 }
@@ -161,6 +184,7 @@ namespace ItemNamespace
                     {
                         healthBarInHierarchy.SetActive(true);
                     }
+
                     enemyHealthBar.SetHealth();
                 }
             }

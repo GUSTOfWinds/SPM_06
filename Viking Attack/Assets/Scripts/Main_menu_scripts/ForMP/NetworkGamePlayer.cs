@@ -1,7 +1,9 @@
 using Mirror;
 using UnityEngine;
 
-
+/**
+ * @author Victor Wikner
+ */
 public class NetworkGamePlayer : NetworkBehaviour
 {
 
@@ -27,20 +29,20 @@ public class NetworkGamePlayer : NetworkBehaviour
         CmdSetDisplayName(PlayerNameInput.displayName);
         CmdSetPlayerColour(PlayerNameInput.playerColour);
     }
-        
+        //Syncs displayname between all players
     [Command]
     private void CmdSetDisplayName(string displayName)
     {
         this.displayName = displayName;
     }
-
+        //syncs players colour between all players
     [Command]
     private void CmdSetPlayerColour(Color32 colour32)
     {
         colour = colour32;
     }
 
-
+    //when client is started on this object we make sure the data isn't destroyed upon moving to the next scene
     public override void OnStartClient()
     {
         DontDestroyOnLoad(gameObject);

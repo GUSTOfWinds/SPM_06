@@ -7,9 +7,9 @@ using UnityEngine.UI;
     public class CharacterScreen : MonoBehaviour
     {
         /**
-     * @author Martin Kings
-     */
-        //[SerializeField] private Image playerImage; // might delete, TODO we should perhaps add a sprite of the player
+         * @author Martin Kings
+         */
+        
         [SerializeField] private Text playerName;
         [SerializeField] private Text playerLevelText;
         [SerializeField] private Text healthStatPoints;

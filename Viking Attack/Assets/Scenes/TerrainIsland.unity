@@ -1920,7 +1920,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &750614925
 PrefabInstance:
@@ -3078,7 +3078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2903407794065380453, guid: b632d05765ce59040ab2b783b3fd8c49, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2903407794065380453, guid: b632d05765ce59040ab2b783b3fd8c49, type: 3}
       propertyPath: m_IsActive
@@ -5070,6 +5070,18 @@ PrefabInstance:
     - target: {fileID: 6801884737494532167, guid: 71202ca465fc89e4aa61674f54fa1583, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801884737494532167, guid: 71202ca465fc89e4aa61674f54fa1583, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801884737494532167, guid: 71202ca465fc89e4aa61674f54fa1583, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801884737494532167, guid: 71202ca465fc89e4aa61674f54fa1583, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6801884737494532167, guid: 71202ca465fc89e4aa61674f54fa1583, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7919,67 +7931,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4d199697214adf4e865da5512f3ce66, type: 3}
---- !u!1001 &7898017508014752943
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7898017506895355706, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898017506895355706, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898017506895355706, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898017506895355706, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898017506895355706, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898017506895355706, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898017506895355706, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898017506895355706, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898017506895355706, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898017506895355706, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898017506895355706, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898017506895355707, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_Name
-      value: ForTesting
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898017506895355707, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4468b27763821ce4691d53ef7a191cfe, type: 3}
 --- !u!1001 &8835398901763274802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8120,10 +8071,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 466933699, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.35
-      objectReference: {fileID: 0}
     - target: {fileID: 8956608590388440444, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -8171,22 +8118,6 @@ PrefabInstance:
     - target: {fileID: 8956608590388440445, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
       propertyPath: m_Name
       value: PortalParent
-      objectReference: {fileID: 0}
-    - target: {fileID: 8956608591694349162, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
-      propertyPath: firstText.Array.data[0]
-      value: Find the relic in order to activate the portal.
-      objectReference: {fileID: 0}
-    - target: {fileID: 8956608591694349162, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
-      propertyPath: firstText.Array.data[1]
-      value: You can find it somewhere on this island.
-      objectReference: {fileID: 0}
-    - target: {fileID: 8956608591694349162, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
-      propertyPath: secondText.Array.data[0]
-      value: The portal to the boss is now active as you found the relic.
-      objectReference: {fileID: 0}
-    - target: {fileID: 8956608591694349162, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
-      propertyPath: secondText.Array.data[1]
-      value: You can now approach it at the end of the of path.
       objectReference: {fileID: 0}
     - target: {fileID: 8956608591694349167, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
       propertyPath: sceneId
