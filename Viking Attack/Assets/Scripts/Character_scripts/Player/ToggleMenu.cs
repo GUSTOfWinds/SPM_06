@@ -141,4 +141,11 @@ using UnityEngine.InputSystem;
             Cursor.lockState = CursorLockMode.None;
             player.transform.Find("UI").Find("Menu_screen").gameObject.SetActive(true);
         }
+        //Exit function
+        public void OnExit()
+         {
+                 Application.Quit();
+          }
+
+
     }

@@ -169,4 +169,6 @@ public class Triggertooltip : NetworkBehaviour
     {
         return keyIsFound;
     }
+    //for saving the key status, if the key is found , when we load, i want to change the key status here
+    public void setKeyStatus() { keyIsFound = true; } //By Jiang
 }

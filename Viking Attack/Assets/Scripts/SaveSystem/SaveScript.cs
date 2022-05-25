@@ -93,6 +93,8 @@ public class SaveScript : NetworkBehaviour
         FileStream file = File.Create(Application.persistentDataPath + saveFileName);
         bf.Serialize(file, savePlayer);
         file.Close();
+        // some UI test on the screen to tell the player that data has been saved 
+        theHost.GetComponent<SaveOnPlayer>().showSaveSuccessPanel();
         Debug.Log("Game data saved!");
     }
 
