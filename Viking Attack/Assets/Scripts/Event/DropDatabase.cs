@@ -9,8 +9,8 @@ namespace Event
     public class DropDatabase : MonoBehaviour
     {
         /**
-     * @author Martin Kings
-     */
+         * @author Martin Kings
+         */
         [SerializeField] private List<ItemBase> droppedItems; // Contains all sounds that can be played
 
         private Guid itemEventGuid;
@@ -21,7 +21,7 @@ namespace Event
                 ref itemEventGuid); // registers the listener
         }
 
-        // Will play a random track from the array above when the local player takes damage
+        
         void OnItemDrop(ItemDropEventInfo eventInfo)
         {
             if (eventInfo.itemBase.GetName != "Meat" && GetIsDropped(eventInfo.itemBase) == false)
