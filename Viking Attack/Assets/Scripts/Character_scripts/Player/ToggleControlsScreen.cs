@@ -1,12 +1,11 @@
 using UnityEngine;
 
+public class ToggleControlsScreen : MonoBehaviour
+{
+    [SerializeField] public Animator animator;
 
-    public class ToggleControlsScreen : MonoBehaviour
+    public void ToggleControls()
     {
-        [SerializeField] public Animator animator;
-
-        public void ToggleControls()
-        {
-            animator.SetBool("controls", !animator.GetBool("controls"));
-        }
+        animator.SetBool("controls", !animator.GetBool("controls"));
     }
+}

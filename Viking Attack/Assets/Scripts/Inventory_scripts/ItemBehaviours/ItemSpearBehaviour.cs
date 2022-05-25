@@ -6,9 +6,6 @@ using Mirror;
 
 public class ItemSpearBehaviour : ItemBaseBehaviour
 {
-    /*
-        Made by Love Strignert
-    */
     private Animator animator;
     private GameObject rayCastPosition;
     private Camera mainCamera;
@@ -22,7 +19,7 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
         rayCastPosition = gameObject.transform.Find("rayCastPosition").gameObject;
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
         globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
-        animator = gameObject.transform.Find("VikingWarrior").GetComponent<Animator>();
+        animator = gameObject.transform.Find("Prefab_PlayerBot").GetComponent<Animator>();
     }
     public override void Use(ItemBase itemBase)
     {       
@@ -67,11 +64,8 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
         {
             Collider hit = hits[0];
             // Damage on player now works as a multiplier instead of damage.
-            float damage = -(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100);
-            if(hit.GetComponent<EnemyInfo>().GetCharacterBase().GetEnemyType() == CharacterBase.EnemyType.Skeleton)
-                damage += 15;
-            hit.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(damage, gameObject.GetComponent<NetworkIdentity>().netId);
-            
+            hit.gameObject.GetComponent<EnemyVitalController>()
+                .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100), gameObject.GetComponent<NetworkIdentity>().netId);
             if (hit.gameObject.GetComponent<EnemyMovement>() != null)
                 hit.gameObject.GetComponent<EnemyMovement>().Stagger();
             else if (hit.gameObject.GetComponent<EnemyAIScript>() != null)

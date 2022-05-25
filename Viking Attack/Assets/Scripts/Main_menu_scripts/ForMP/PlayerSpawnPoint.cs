@@ -1,6 +1,7 @@
 using UnityEngine;
 
-
+namespace Main_menu_scripts.ForMP
+{
     public class PlayerSpawnPoint : MonoBehaviour
     {
         private void Awake() => PlayerSpawnSystem.AddSpawnPoint(transform);
@@ -16,4 +17,4 @@ using UnityEngine;
             Gizmos.DrawLine(position, position + transform.forward * 2);
         }
     }
-
+}

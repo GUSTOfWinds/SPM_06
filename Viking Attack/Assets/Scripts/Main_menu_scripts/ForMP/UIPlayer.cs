@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
+namespace Main_menu_scripts.ForMP
+{
     public class UIPlayer : MonoBehaviour {
         //This script runs locally on every client, it decides what position in the player grid you are at in the lobby for players.
         [SerializeField] Text text;
@@ -13,4 +14,4 @@ using UnityEngine.UI;
         }
 
     }
-
+}

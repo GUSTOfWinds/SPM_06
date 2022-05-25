@@ -5,6 +5,7 @@ using System.Text;
 using Mirror;
 using UnityEngine;
 
+namespace Main_menu_scripts.ForMP {
 
     [System.Serializable]
     public class Match {
@@ -161,4 +162,5 @@ using UnityEngine;
             return new Guid (hashBytes);
         }
     }
-    
+
+}

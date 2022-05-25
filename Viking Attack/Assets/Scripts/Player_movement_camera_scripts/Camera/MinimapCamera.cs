@@ -1,22 +1,21 @@
-using Mirror;
 using UnityEngine;
+using Mirror;
 
+public class MinimapCamera : NetworkBehaviour
+{
+    [SerializeField] private GameObject minimapCamera;
 
-    public class MinimapCamera : NetworkBehaviour
+    void Awake()
     {
-        [SerializeField] private GameObject minimapCamera;
+        minimapCamera = GameObject.FindGameObjectWithTag("MinimapCamera");
+    }
 
-        void Awake()
+    public override void OnStartAuthority()
+    {
+        if (minimapCamera != null)
         {
-            minimapCamera = GameObject.FindGameObjectWithTag("MinimapCamera");
-        }
-
-        public override void OnStartAuthority()
-        {
-            if (minimapCamera != null)
-            {
-                minimapCamera.transform.SetParent(transform);
-                minimapCamera.transform.localPosition = new Vector3(0, 200, 0);
-            }
+            minimapCamera.transform.SetParent(transform);
+            minimapCamera.transform.localPosition = new Vector3(0, 200, 0);
         }
     }
+}

@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Character_scripts.Enemy;
+using System.Collections.Generic;
 using Event;
 using Mirror;
 using UnityEngine;
@@ -17,8 +17,6 @@ namespace ItemNamespace
         private Guid deathEventGuid;
 
         private Guid playerDeathEventGuid;
-        
-        private Guid enemyRetreatEventGuid;
 
         [SerializeField] private GameObject healthBarInHierarchy;
 
@@ -31,7 +29,6 @@ namespace ItemNamespace
         private uint playerThatHit;
 
         private uint netIdOfDeadEnemy;
-        
 
         private void Start()
         {
@@ -40,20 +37,10 @@ namespace ItemNamespace
             EventSystem.Current.RegisterListener<EnemyHitEvent>(SetupHealthBar, ref hitEventGuid);
             EventSystem.Current.RegisterListener<UnitDeathEventInfo>(OnEnemyDeath, ref deathEventGuid);
             EventSystem.Current.RegisterListener<PlayerDeathEventInfo>(OnPlayerDeath, ref playerDeathEventGuid);
-            EventSystem.Current.RegisterListener<EnemyRetreatingEventInfo>(OnEnemyRetreating, ref enemyRetreatEventGuid);
 
             if (isLocalPlayer)
             {
                 StartCoroutine(DelayedEnemyScale());
-            }
-        }
-
-        private void OnEnemyRetreating(EnemyRetreatingEventInfo enemyRetreatingEventInfo)
-        {
-            if (netId == netIdOfLastHit)
-            {
-                healthBarInHierarchy.SetActive(false);
-                netIdOfLastHit = 0;
             }
         }
 

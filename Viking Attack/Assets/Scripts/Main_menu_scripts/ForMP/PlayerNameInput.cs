@@ -1,23 +1,22 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+namespace Main_menu_scripts.ForMP
+{
     public class PlayerNameInput : MonoBehaviour
     {
         [Header("UI")] 
         [SerializeField] private TMP_InputField nameInputField;
 
         [SerializeField] private Button continueButton;
-        [SerializeField] private Slider red;
-        [SerializeField] private Slider green;
-        [SerializeField] private Slider blue;
-
 
 
         //Follow 4 rows sets, and gets the players colour and name, as well as set the string used in player-preferences
-        public static string displayName { get; set; }
+        public static string displayName { get; private set; }
         private const string PlayerPrefsNameKey = "PlayerName";
         public static Color32 playerColour { get; private set; }
 
@@ -49,23 +48,28 @@ using UnityEngine.UI;
         {
             MakeButtonActive();
         }
+        
+        public void SetPlayerColour(Color playerColor)
+        {
+            continueButton.interactable = !string.IsNullOrEmpty(playerColor.ToString());
+        }
+
 
         public void SavePlayerName()
         {
             displayName = nameInputField.text;
             PlayerPrefs.SetString(PlayerPrefsNameKey, displayName);
-            SavePlayerColour();
         
         }
         //Name is saved in playerpreferences.
-        
-        private void SavePlayerColour()
+        /*
+        public void SavePlayerColour()
         {
-            PlayerPrefs.SetInt("redValue", (int)red.value);
-            PlayerPrefs.SetInt("greenValue", (int)green.value);
-            PlayerPrefs.SetInt("blueValue", (int)blue.value);
-            playerColour = new Color32((byte)red.value, (byte)green.value, (byte)blue.value, 255);
+            
+            playerColour = Color.red;
+            PlayerPrefs.SetString(PlayerPrefsNameKey, ColorUtility.ToHtmlStringRGB(playerColour));
         }
+        */
 
         public void MakeButtonActive()
         {
@@ -80,4 +84,4 @@ using UnityEngine.UI;
         }
 
     }
-
+}

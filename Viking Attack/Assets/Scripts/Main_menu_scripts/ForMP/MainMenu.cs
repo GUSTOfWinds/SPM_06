@@ -1,6 +1,7 @@
 using UnityEngine;
 
-
+namespace Main_menu_scripts.ForMP
+{
     public class MainMenu : MonoBehaviour
     {
         [SerializeField] private NetworkManagerLobby networkManager;
@@ -15,4 +16,4 @@ using UnityEngine;
             landingPanel.SetActive(false);
         }
     }
-
+}

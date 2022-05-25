@@ -6,55 +6,55 @@ using UnityEngine.UI;
 
 // The script handles user input in terms of skin color and name choices, ships the chosen
 // data to the GlobalPlayerInfo container.
-    public class MainMenuButtonManager : MonoBehaviour
+public class MainMenuButtonManager : MonoBehaviour
+{
+    [SerializeField] private GameObject customizationScreen;
+    [SerializeField] private Text chosenName;
+    [SerializeField] private Image displayedImage;
+    [SerializeField] private GameObject player;
+    public Animator animator;
+    public UnityEngine.UI.Button settingButton;
+    public Sprite back;
+    public Sprite settings;
+
+    // opens player customization page
+    public void NewGame()
     {
-        [SerializeField] private GameObject customizationScreen;
-        [SerializeField] private Text chosenName;
-        [SerializeField] private Image displayedImage;
-        [SerializeField] private GameObject player;
-        public Animator animator;
-        public UnityEngine.UI.Button settingButton;
-        public Sprite back;
-        public Sprite settings;
+        customizationScreen.SetActive(true);
+    }
 
-        // opens player customization page
-        public void NewGame()
+    // loads the latest save
+    public void LoadGame()
+    {
+        print("Load happens now");
+    }
+
+    // Exits the application
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    // launches a new run of game, ships the current inserted name and the chosen color to the GlobalPlayerInfo container
+    public void LaunchGame()
+    {
+        //GlobalPlayerInfo.SetSkinColor(displayedImage.color);
+        //lobalPlayerInfo.SetPlayerName(chosenName.text);
+        SceneManager.LoadScene(1);
+    }
+
+    public void Settings()
+    {
+        animator.SetBool("settings", !animator.GetBool("settings"));
+        if (animator.GetBool("settings"))
         {
-            customizationScreen.SetActive(true);
+            settingButton.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            settingButton.image.sprite = back;
         }
-
-        // loads the latest save
-        public void LoadGame()
+        else
         {
-            print("Load happens now");
-        }
-
-        // Exits the application
-        public void ExitGame()
-        {
-            Application.Quit();
-        }
-
-        // launches a new run of game, ships the current inserted name and the chosen color to the GlobalPlayerInfo container
-        public void LaunchGame()
-        {
-            //GlobalPlayerInfo.SetSkinColor(displayedImage.color);
-            //lobalPlayerInfo.SetPlayerName(chosenName.text);
-            SceneManager.LoadScene(1);
-        }
-
-        public void Settings()
-        {
-            animator.SetBool("settings", !animator.GetBool("settings"));
-            if (animator.GetBool("settings"))
-            {
-                settingButton.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-                settingButton.image.sprite = back;
-            }
-            else
-            {
-                settingButton.image.sprite = settings;
-                settingButton.transform.localScale = new Vector3(1f, 1f, 1f);
-            }
+            settingButton.image.sprite = settings;
+            settingButton.transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
+}

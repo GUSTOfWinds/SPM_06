@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace Main_menu_scripts.ForMP {
 
     public class UILobby : MonoBehaviour {
 
@@ -133,3 +134,4 @@ using UnityEngine.UI;
         }
 
     }
+}

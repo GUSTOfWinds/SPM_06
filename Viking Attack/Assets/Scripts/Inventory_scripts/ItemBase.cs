@@ -31,11 +31,7 @@ namespace ItemNamespace
         [SerializeField] private string itemBaseBehaviorScriptName; // the object with base behavior script for the item
         [SerializeField] private int protection;
         [SerializeField] private float speedMultiplierWhenUsingItem;
-        [SerializeField] private float staggerStaminaDrain;// only interesting if weapon
-        
-        //Returns the amounts of hit for stagger with this item
-        public float GetStaggerStaminaDrain => staggerStaminaDrain;
-        
+
         public float GetSpeedMultiplierWhenUsingItem => speedMultiplierWhenUsingItem;
         // Returns armor level
         public int GetProtection => protection;

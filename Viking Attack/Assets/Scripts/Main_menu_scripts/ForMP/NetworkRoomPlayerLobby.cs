@@ -3,7 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+namespace Main_menu_scripts.ForMP
+{
     public class NetworkRoomPlayerLobby : NetworkBehaviour
     {
         //In short this script is the player whilst in the lobby, it provides the name, and the the colour of the player, 
@@ -26,7 +27,7 @@ using UnityEngine.UI;
         public bool isReady = false;
 
         [SyncVar(hook = nameof(HandleColourChanged))]
-        public Color32 colour;
+        public Color colour;
 
         //isLeader variable and IsLeader method runs to set who can start the game and who can't.
         private bool isLeader;
@@ -48,13 +49,13 @@ using UnityEngine.UI;
                 if (room != null) return room;
                 return room = NetworkManager.singleton as NetworkManagerLobby;
             }
+
         }
 
         //Sets name on your character in lobby and latter the game, OnStartAuthority makes sure it is run only on the object that is yours.
         public override void OnStartAuthority()
         {
             CmdSetDisplayName(PlayerNameInput.displayName);
-            CmdSetPlayerColour(PlayerNameInput.playerColour);
             lobbyUI.SetActive(true);
         }
 
@@ -75,7 +76,7 @@ using UnityEngine.UI;
         //Following 3 methods updates what is shown whenever a value is changed for the client.
         public void HandleReadyStatusChanged(bool oldValue, bool newValue) => UpdateDisplay();
         public void HandleDisplayNameChanged(string oldValue, string newValue) => UpdateDisplay();
-        public void HandleColourChanged(Color32 oldValue, Color32 newValue) => UpdateDisplay();
+        public void HandleColourChanged(Color oldValue, Color newValue) => UpdateDisplay();
 
         //Method makes sure all players display the same thing whilst in the lobby. It checks to see if it's not the local player and disables the ui element so that there is only one shown per client.
         private void UpdateDisplay()
@@ -83,7 +84,7 @@ using UnityEngine.UI;
 
             if (!hasAuthority)
             {
-                //First foreach decides if the lobby UI is active or not based on if you're the local player or not.
+                //First foreach decides if the lobby UI is active or not base on if you're the local player or not.
                 foreach (var roomPlayer in Room.RoomPlayers)
                 {
                     if(!isLocalPlayer) lobbyUI.SetActive(false);
@@ -103,14 +104,15 @@ using UnityEngine.UI;
             //Sets the name as waiting for player before anyone has joined the lobby, and makes sure there is no ready-status when there is no player.
             for (int i = 0; i < playerNameTexts.Length; i++)
             {
-                playerNameTexts[i].text = "<color=white>Waiting For Player...</color>";
+                playerNameTexts[i].text = "Waiting For Player...";
                 playerReadyTexts[i].text = string.Empty;
             }
             //This loop sets the name of a current player in the lobby and sets the name of the colour they've chosen.
+            //Todo remove NameColour call when we have character customization available
             for (int i = 0; i < Room.RoomPlayers.Count; i++)
             {
                 playerNameTexts[i].text = Room.RoomPlayers[i].displayName;
-                playerNameTexts[i].color = Room.RoomPlayers[i].colour;
+                playerNameTexts[i].color = NameColour();
                 playerReadyTexts[i].text = Room.RoomPlayers[i].isReady
                     ? "<color=#9CFF8D> Ready </color>"
                     : "<color=#8C3333> Not Ready </color>";
@@ -118,7 +120,20 @@ using UnityEngine.UI;
             }
         }
 
+        //Sets the colour of the players name based on the RGB scale on the badge which represents the player.
+        //Color32 is used over Color as Color didn't show 
+        private Color32 NameColour()
+        {
+            Color32 returnColour;
+            if (!isLocalPlayer || !hasAuthority) return returnColour = new Color32(255,255,255,255);
+            byte red = (byte)PlayerPrefs.GetInt("redValue");
+            byte green = (byte)PlayerPrefs.GetInt("greenValue");
+            byte blue = (byte)PlayerPrefs.GetInt("blueValue");
+            returnColour = new Color32(r: red, g: green, b: blue, a: 255);
 
+            return returnColour;
+        }
+    
         //if you aren't the leader you can't start the game. readyToStart works by comparing every players ready status and changes the intractability of the start button based on that.
         //All players in lobby must be ready
         public void HandleReadyToStart(bool readyToStart)
@@ -149,12 +164,6 @@ using UnityEngine.UI;
             isReady = !isReady;
             Room.NotifyPlayersOfReadyState();
         }
-        [Command]
-        private void CmdSetPlayerColour(Color32 colour32)
-        {
-            colour32 = new Color32(colour32.r, colour32.g, colour32.b, 255);
-            colour = colour32;
-        }
 
         //Only host can start game, and throws the command all over the server
         [Command]
@@ -163,5 +172,5 @@ using UnityEngine.UI;
             if (Room.RoomPlayers[0].connectionToClient != connectionToClient) return;
             Room.StartGame();    
         }
-        
     }
+}

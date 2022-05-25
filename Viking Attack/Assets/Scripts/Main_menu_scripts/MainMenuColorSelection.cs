@@ -1,6 +1,7 @@
 using UnityEngine;
 
-
+namespace Main_menu_scripts
+{
     public class MainMenuColorSelection : MonoBehaviour
     {
         // Drag & drop slider to choose the color choice
@@ -23,3 +24,4 @@ using UnityEngine;
             skinColor.color = colors[(int) slider.value];
         }
     }
+}

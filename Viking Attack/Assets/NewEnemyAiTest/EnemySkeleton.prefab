@@ -591,6 +591,7 @@ MonoBehaviour:
   enemySounds:
   - {fileID: 8300000, guid: 002d3438d861f224e911c9bea0f7f3d1, type: 3}
   - {fileID: 8300000, guid: 0edc7bad5b4d70a4abedf2104deeac79, type: 3}
+  hitAmountForStagger: 3
   roamingRangeFromSpawn: 20
 --- !u!114 &6860839154504057231
 MonoBehaviour:
@@ -615,7 +616,6 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 0
   hitMaterial: {fileID: 2100000, guid: 1577569dee33d494ab3681dd7cd4a9d9, type: 2}
-  hitSound: {fileID: 8300000, guid: 7529684194f53bb4abeb6120c4129edf, type: 3}
 --- !u!114 &3342504787126765304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,7 +654,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 15
+  m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 350
   m_StoppingDistance: 0

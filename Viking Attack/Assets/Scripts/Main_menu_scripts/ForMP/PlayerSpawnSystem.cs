@@ -3,12 +3,14 @@ using System.Linq;
 using Mirror;
 using UnityEngine;
 
+namespace Main_menu_scripts.ForMP
+{
     public class PlayerSpawnSystem : NetworkBehaviour
     {
-        //[SerializeField] private GameObject playerPrefab = null;
-        public List<GameObject> PlayerList { get; set; } = new List<GameObject>();
+        [SerializeField] private GameObject playerPrefab = null;
+
         private static List<Transform> spawnPoints = new List<Transform>();
-        
+
         private int nextIndex = 0;
 
         public static void AddSpawnPoint(Transform transform) 
@@ -24,16 +26,20 @@ using UnityEngine;
         [ServerCallback]
         private void OnDestroy() => NetworkManagerLobby.OnServerReadied -= SpawnPlayer;
 
-        public void SpawnPlayer(NetworkConnectionToClient conn, List<GameObject> players)
+        public void SpawnPlayer(NetworkConnectionToClient conn)
         {
-            PlayerList = players;
+            Transform spawnPoint = spawnPoints.ElementAtOrDefault(nextIndex);
 
-            for (int i = 0; i < players.Count; i++)
+
+            if (spawnPoint != null)
             {
-                players[i].transform.position = spawnPoints[i].transform.position;
-                players[i].transform.rotation = spawnPoints[i].transform.rotation;
-                //NetworkServer.Spawn(players[i]);
-
+                GameObject playerInstance = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+            
+                NetworkServer.AddPlayerForConnection(conn, playerInstance.gameObject);
             }
+
+
+            nextIndex++;
         }
     }
+}

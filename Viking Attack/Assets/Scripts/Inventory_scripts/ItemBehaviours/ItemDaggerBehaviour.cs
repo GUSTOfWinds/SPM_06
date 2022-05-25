@@ -1,6 +1,7 @@
 ﻿using System.Collections;
-using UnityEngine;
 using ItemNamespace;
+using UnityEngine;
+using Event;
 using Mirror;
 
 public class ItemDaggerBehaviour : ItemBaseBehaviour
@@ -18,7 +19,7 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
         rayCastPosition = gameObject.transform.Find("rayCastPosition").gameObject;
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
         globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
-        animator = gameObject.transform.Find("VikingWarrior").GetComponent<Animator>();
+        animator = gameObject.transform.Find("Prefab_PlayerBot").GetComponent<Animator>();
     }
 
     // Might need some tweaking to work as we want
@@ -62,10 +63,8 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
         {
             Collider hit = hits[0];
             // Damage on player now works as a multiplier instead of damage.
-            float damage = -(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100);
-            if(hit.GetComponent<EnemyInfo>().GetCharacterBase().GetEnemyType() == CharacterBase.EnemyType.Skeleton)
-                damage -= 5;
-            hit.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(damage, gameObject.GetComponent<NetworkIdentity>().netId);
+            hit.gameObject.GetComponent<EnemyVitalController>()
+                .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100), gameObject.GetComponent<NetworkIdentity>().netId);
         }
         yield return new WaitForSeconds(time / 2);
         animator.SetLayerWeight(animator.GetLayerIndex("Dagger Attack"),0);

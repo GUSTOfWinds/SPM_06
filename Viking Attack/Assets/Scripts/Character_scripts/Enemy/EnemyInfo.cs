@@ -1,6 +1,11 @@
 using System;
-using Mirror;
+using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using ItemNamespace;
+using Mirror;
+using UnityEditor;
+
 
 namespace ItemNamespace
 {
@@ -121,8 +126,5 @@ namespace ItemNamespace
                 gameObject.GetComponent<EnemyVitalController>().PlayerScaleHealthUpdate(health, maxHealth);
             }
         }
-
-        public void SetDropItem(GameObject drop) => this.drop = drop;
-        public void SetDropChance(int chance) => dropChance = chance;
     }
 }

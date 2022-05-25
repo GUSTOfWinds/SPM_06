@@ -3,7 +3,7 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+namespace Main_menu_scripts.ForMP {
 
     [RequireComponent (typeof (NetworkMatch))]
     public class Player : NetworkBehaviour {
@@ -227,3 +227,4 @@ using UnityEngine.SceneManagement;
         }
 
     }
+}

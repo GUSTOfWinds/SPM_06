@@ -1,9 +1,8 @@
 ﻿// This should be editor only
 #if UNITY_EDITOR
-using ParrelSync;
 using UnityEngine;
 
-namespace DuoTest.ParrelSync.Examples
+namespace ParrelSync.Example
 {
     public class CustomArgumentExample : MonoBehaviour
     {

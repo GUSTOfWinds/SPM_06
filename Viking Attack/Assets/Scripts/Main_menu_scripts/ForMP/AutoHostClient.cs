@@ -1,7 +1,7 @@
 using Mirror;
 using UnityEngine;
 
-
+namespace Main_menu_scripts.ForMP {
     public class AutoHostClient : MonoBehaviour {
 
         
@@ -26,4 +26,4 @@ using UnityEngine;
         }
 
     }
-
+}
