@@ -36,11 +36,7 @@ public class MyRigidbody3D : NetworkBehaviour
 
     void FixedUpdate()
     {
-
-<<<<<<< Updated upstream
-        //Here we ee if it's a local player or not, if it isn't we update the view for the other and cancel.
-=======
->>>>>>> Stashed changes
+        //Here we se if it's a local player or not, if it isn't we update the view for the other and cancel.
         if (!isLocalPlayer)
         {
             base.transform.position = syncPosition;
@@ -72,16 +68,11 @@ public class MyRigidbody3D : NetworkBehaviour
         CmdSetSynchedRotation(this.transform.rotation);
     }
 
-<<<<<<< Updated upstream
     /**
     * @author Victor Wikner
     * Commandlines to ask server for updates on rotation and position
     */
     [Command(requiresAuthority = false)] 
-=======
-    //Commands to server to change position and rotation
-    [Command]
->>>>>>> Stashed changes
     public void CmdSetSynchedPosition(Vector3 position) => syncPosition = position;
     [Command(requiresAuthority = false)]
     void CmdSetSynchedRotation(Quaternion rotation) => syncRotation = rotation;
