@@ -5,6 +5,9 @@ using System.IO;
 using Inventory_scripts;
 using System.Collections.Generic;
 using Mirror;
+using Event;
+using ItemNamespace;
+
 
 public class SaveScript : NetworkBehaviour
 {
@@ -25,8 +28,8 @@ public class SaveScript : NetworkBehaviour
     private void Start()
     {
         DontDestroyOnLoad(this);
-      isLoadFromFile = false;
-     
+        isLoadFromFile = false;
+
     }
     public void setLoadFromFile()
     {
@@ -39,7 +42,7 @@ public class SaveScript : NetworkBehaviour
 
     public void SaveGame()
     {
-        Debug.Log(theHost);   
+        Debug.Log(theHost);
         SaveData savePlayer = new SaveData
         {
             hostName = theHost.GetComponent<GlobalPlayerInfo>().GetName()
@@ -51,9 +54,7 @@ public class SaveScript : NetworkBehaviour
         Debug.Log(players.Length);
         foreach (var t in players)
         {
-            Debug.Log(t);
             name = t.GetComponent<GlobalPlayerInfo>().GetName();
-            Debug.Log(name);
             GameObject[] inventorySprites = t.GetComponent<PlayerInventory>().GetSprites();
             Debug.Log(inventorySprites.Length);
             for (int j = 0; j < inventorySprites.Length; j++)
@@ -62,17 +63,27 @@ public class SaveScript : NetworkBehaviour
             }
             savePlayer.playerInventory.Add(name, isSpritActiv);
             dataToSave = t.GetComponent<GlobalPlayerInfo>().SaveData();
-            if(name == savePlayer.hostName)
+            if (name == savePlayer.hostName)
             {
-                Debug.Log("This is host");
+                //Check out if the boss is dead and save it with host
+                //if we have the  spear, the boss is dead, otherwise is not 
+                if (isSpritActiv[1])
+                {
+                    dataToSave.Add("isBossDead", (System.Object)"True");
+                }
+                else
+                {
+                    dataToSave.Add("isBossDead", (System.Object)"False");
+                }
                 savePlayer.hostData.Add(name, dataToSave);
             }
             else
             {
-                Debug.Log("This is client");
                 savePlayer.clientData.Add(name, dataToSave);
             }
         }
+
+
         Debug.Log(Application.persistentDataPath); //print the path   
         if (Directory.Exists(Application.persistentDataPath + saveFileName))//if we have a file there
         {
@@ -88,42 +99,64 @@ public class SaveScript : NetworkBehaviour
     public void LoadGame()
     {
         //Calls when we are in game, and the hots name is already updated      
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + saveFileName, FileMode.Open);
-            SaveData playerData = (SaveData)bf.Deserialize(file);
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            foreach (var t in players)
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Open(Application.persistentDataPath + saveFileName, FileMode.Open);
+        SaveData playerData = (SaveData)bf.Deserialize(file);
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (var t in players)
+        {
+            var playerName = t.GetComponent<GlobalPlayerInfo>().GetName();
+            if (playerName == hostName)
             {
-                var playerName = t.GetComponent<GlobalPlayerInfo>().GetName();
-                if (playerName == hostName)
-                {
-                    t.GetComponent<GlobalPlayerInfo>().LoadData(playerData.hostData[hostName]);
-                }
-                else
-                {
-                    //if the player is not host but we have he/she's data
-                    if (playerData.clients.Contains(playerName))
-                    {
-                        t.GetComponent<GlobalPlayerInfo>().LoadData(playerData.clientData[playerName]);
-                    }
-                }
-                //set all inventory item sprite to false and reset them based on data file
-                t.GetComponent<PlayerInventory>().RefreshHotbar();
-                for (int j =0; j< playerData.playerInventory[playerName].Count; j++)
-                {
-
-                    if (playerData.playerInventory[playerName][j])
-                    {
-                        // if the item was activ, set it to activ now
-                        t.GetComponent<PlayerInventory>().UpdateHeldItem(j);
-                    }
-                }//for j all player inventory items
+                t.GetComponent<GlobalPlayerInfo>().LoadData(playerData.hostData[hostName]);
             }
+            else
+            {
+                //if the player is not host but we have he/she's data
+                if (playerData.clients.Contains(playerName))
+                {
+                    t.GetComponent<GlobalPlayerInfo>().LoadData(playerData.clientData[playerName]);
+                }
+            }
+            //set all inventory item sprite to false and reset them based on data file
+            t.GetComponent<PlayerInventory>().RefreshHotbar();
+            for (int j = 0; j < playerData.playerInventory[playerName].Count; j++)
+            {
+                //TO DO dropItem 
+                //Add to item list if is already gained 
 
+                if (playerData.playerInventory[playerName][j])
+                {
+                    //Add to item list if is already gained 
+                    // if the item was activ, set it to activ now
 
-            file.Close();
-            Debug.Log("Data is loaded");
-  
+                    EventInfo itemDropEventInfo = new ItemDropEventInfo
+                    {
+                        itemBase = t.GetComponent<PlayerInventory>().inventory[j]
+                    };
+
+                    EventSystem.Current.FireEvent(itemDropEventInfo);
+                    t.GetComponent<PlayerInventory>().UpdateHeldItem(j);
+                }
+            }//for j all player inventory items
+        }
+        if ((string)playerData.hostData[hostName]["isBossDead"] == "True")
+        {
+            //if we has killed the boss, find it and destory in this scen
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (var e in enemies)
+            {
+                if (e.GetComponent<EnemyInfo>().GetName() == "Boss")
+                {
+                    //Maybe we can call death event here. 
+                    NetworkServer.Destroy(e);
+                }
+            }
+        }
+
+        file.Close();
+        Debug.Log("Data is loaded");
+
     }
 
 
@@ -146,7 +179,7 @@ public class SaveScript : NetworkBehaviour
             hostName = playerData.hostName;
             networkManager.StartHost();
             networkManager.GetComponent<NetworkManagerLobby>().GetLobbyRoom().OnStartAuthority();
-           
+
 
         }
         else
@@ -173,7 +206,7 @@ public class SaveData
     public HashSet<string> clients = new HashSet<string>();
     public Dictionary<String, Dictionary<String, System.Object>> hostData = new Dictionary<string, Dictionary<string, object>>(); //all the information about the host
     public Dictionary<String, Dictionary<String, System.Object>> clientData = new Dictionary<string, Dictionary<string, object>>();// all th information about clients
-    public Dictionary<string,Dictionary<int,bool>> playerInventory = new Dictionary<string,Dictionary<int,bool>>(); //player's name and the "isSpritActiv" 
+    public Dictionary<string, Dictionary<int, bool>> playerInventory = new Dictionary<string, Dictionary<int, bool>>(); //player's name and the "isSpritActiv" 
 
 }
 

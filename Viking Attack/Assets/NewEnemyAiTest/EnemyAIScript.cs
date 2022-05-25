@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 public class EnemyAIScript : NetworkBehaviour
 {
     /*
-        Author Love Strignert - lost9373
+        @Author Love Strignert - lost9373
     */
     private Animator animator;
     private float attackRange;

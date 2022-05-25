@@ -206,6 +206,9 @@ public class EnemyVitalController : NetworkBehaviour
     
     private IEnumerator BlinkOnHit()
     {
+        /*
+            @Author Love Strignert - lost9373
+        */
         Material[] temp = skinnedMeshRenderer.materials;
         skinnedMeshRenderer.materials = materials;
         yield return new WaitForSeconds(0.1f);
@@ -225,9 +228,11 @@ public class EnemyVitalController : NetworkBehaviour
 
     private void PlayHitSound()
     {
+        /*
+            @Author Love Strignert - lost9373
+        */
         if (hitSound != null)
         {
-            //audioSource.Stop();
             audioSource.PlayOneShot(hitSound);
         }
     }

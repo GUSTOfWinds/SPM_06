@@ -4539,7 +4539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00036621094, y: 0}
+  m_AnchoredPosition: {x: -0.00024414062, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &8983627906334188695
@@ -12256,6 +12256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9036749531679775797}
+  - component: {fileID: 3615428072195274630}
   m_Layer: 5
   m_Name: Tutorial
   m_TagString: Untagged
@@ -12287,6 +12288,28 @@ RectTransform:
   m_AnchoredPosition: {x: -0.00011393229, y: 0.0000002543129}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3615428072195274630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215953079329457344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b63117f1d18c75489269107c8a45a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialParts:
+  - {fileID: 365958536699488309}
+  - {fileID: 6754700370033614529}
+  - {fileID: 6308876142253291044}
+  - {fileID: 2814497096309021006}
+  wasdFinished: 0
+  sprintFinished: 0
+  dashFinished: 0
+  attackFinished: 0
+  itemSwapFinished: 0
 --- !u!1 &4252440847402504445
 GameObject:
   m_ObjectHideFlags: 0
@@ -16553,7 +16576,7 @@ MonoBehaviour:
   airResistance: 0.0001
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1360
+    m_Bits: 1368
   capsuleCollider: {fileID: 5988590173649968411}
   velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &5988590173649968409
@@ -16579,6 +16602,7 @@ MonoBehaviour:
   animator: {fileID: 7593343412926976990}
   globalPlayerInfo: {fileID: 1008048771508749607}
   jump: 0
+  tutorialHandlerGameObject: {fileID: 4215953079329457344}
   shouldMove: 0
 --- !u!114 &5988590173649968414
 MonoBehaviour:
@@ -17064,6 +17088,7 @@ MonoBehaviour:
   - {fileID: 2423587332867720793}
   playerItemUsageController: {fileID: 993307644473226796}
   wieldedItemBase: {fileID: 11400000, guid: e42a76ee5900ffc4f93a5fbaf0dadbb4, type: 2}
+  tutorialHandlerGameObject: {fileID: 4215953079329457344}
 --- !u!114 &-7731286149923182968
 MonoBehaviour:
   m_ObjectHideFlags: 0

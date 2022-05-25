@@ -228,11 +228,8 @@ public class NetworkManagerLobby : NetworkManager
     {
         //if (!sceneName.Contains("Scene_Map")) return;
         var conn = GamePlayers[0].connectionToClient;
-            
-        Debug.Log("RoomPlayers " + RoomPlayers.Count);
-        Debug.Log("GamePlayers "+ GamePlayers.Count);
-        
-            foreach (var t in GamePlayers)
+
+        foreach (var t in GamePlayers)
             {
                 conn = t.connectionToClient;
                 GameObject playerInGame = Instantiate(playerPrefabFinalUse);

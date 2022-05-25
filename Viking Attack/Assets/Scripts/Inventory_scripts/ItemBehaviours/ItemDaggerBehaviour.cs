@@ -5,11 +5,15 @@ using Mirror;
 
 public class ItemDaggerBehaviour : ItemBaseBehaviour
 {
+    /*
+        @Author Love Strignert - lost9373
+    */
     private Animator animator;
     private GameObject rayCastPosition;
     private Camera mainCamera;
     private GlobalPlayerInfo globalPlayerInfo;
     private bool canAttack = true;
+
     public bool attackLocked;
 
 
@@ -30,7 +34,6 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
     }
     public override void Use(ItemBase itemBase)
     {
-        
         // Checks if the player has enough stamina to attack, will then attack.
         if (globalPlayerInfo.GetStamina() > belongingTo.GetStamina && canAttack)
         {
@@ -64,7 +67,13 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
             // Damage on player now works as a multiplier instead of damage.
             float damage = -(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100);
             if(hit.GetComponent<EnemyInfo>().GetCharacterBase().GetEnemyType() == CharacterBase.EnemyType.Skeleton)
+            {
                 damage -= 5;
+                GameObject temp = Instantiate(belongingTo.GetParticle,hit.gameObject.transform.position + new Vector3(0,2,0),hit.gameObject.transform.rotation,hit.gameObject.transform);
+                temp.transform.localScale = hit.gameObject.transform.localScale;
+                Destroy(temp,0.4f);
+            }
+                
             hit.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(damage, gameObject.GetComponent<NetworkIdentity>().netId);
         }
         yield return new WaitForSeconds(time / 2);

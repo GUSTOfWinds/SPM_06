@@ -3,6 +3,9 @@ using Mirror;
 
 public class MyRigidbody3D : NetworkBehaviour
 {
+    /*
+        @Author Love Strignert - lost9373
+    */
     [SerializeField] private float gravity = 3f;
     [SerializeField] private float staticFrictionCoefficient = 0.3f;
     [SerializeField] private float kineticFrictionCoefficient = 0.2f;
@@ -18,26 +21,22 @@ public class MyRigidbody3D : NetworkBehaviour
     private int UpdateVelocityTimes;
     public Vector3 velocity;
 
-    //syncPosition �r till f�r att synkronisera alla spelarpositioner gentemot servern
+    //syncPosition syncs the player position to the server
     [SyncVar] private Vector3 syncPosition;
-    //syncRotation ser till synkronisera alla rotationer, quaternion ist�llet f�r gimbal f�r att kunna rotera p� x-axeln men inte y-axeln
+    //syncRotation syncs the player rotation to the server
     [SyncVar] private Quaternion syncRotation;
 
     void Awake()
     {
-        
-        //Set collisionMask to hit everything except self
         collisionMask = ~(collisionMask);
-        //capsuleCollider = GetComponent<CapsuleCollider>();
-        capsuleHeight = capsuleCollider.height;//* transform.localScale.y;
-        capsuleRadius = capsuleCollider.radius;//* transform.localScale.x;
+        capsuleHeight = capsuleCollider.height;
+        capsuleRadius = capsuleCollider.radius;
         NetworkServer.SpawnObjects();
     }
 
     void FixedUpdate()
     {
-
-        //Here we ee if it's a local player or not, if it isn't we update the view for the other and cancel.
+        //Here we se if it's a local player or not, if it isn't we update the view for the other and cancel.
         if (!isLocalPlayer)
         {
             base.transform.position = syncPosition;
@@ -64,7 +63,7 @@ public class MyRigidbody3D : NetworkBehaviour
         //Add velocity variable to object position
         transform.position += velocity * Time.deltaTime;
 
-        //Foljande 2 rader skickar ett kommando till servern och da andrar antingen positionen eller rotationen.
+        //Send command to server to change position and rotation
         CmdSetSynchedPosition(this.transform.position);
         CmdSetSynchedRotation(this.transform.rotation);
     }

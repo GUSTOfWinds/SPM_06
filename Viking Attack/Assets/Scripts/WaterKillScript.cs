@@ -3,6 +3,9 @@ using Mirror;
 using UnityEngine;
 public class WaterKillScript : MonoBehaviour
 {
+    /*
+        @Author Love Strignert - lost9373
+    */
     //Checks if the player hits the water if true respawn player
     void Update()
     {
