@@ -222,15 +222,16 @@ public class NetworkManagerLobby : NetworkManager
     
     
 
-    //private bool firstChange = false;
     //Method is called when scene has changed, it instantiates the players then spawns the spawn-system which sets position, rotation and spawns the players, i.e makes sure they're all
     [Server]
     public override void OnServerSceneChanged(String sceneName)
     {
         //if (!sceneName.Contains("Scene_Map")) return;
         var conn = GamePlayers[0].connectionToClient;
-
-
+            
+        Debug.Log("RoomPlayers " + RoomPlayers.Count);
+        Debug.Log("GamePlayers "+ GamePlayers.Count);
+        
             foreach (var t in GamePlayers)
             {
                 conn = t.connectionToClient;
@@ -238,21 +239,12 @@ public class NetworkManagerLobby : NetworkManager
                 playerInGame.GetComponent<GlobalPlayerInfo>().SetDisplayName(t.displayName);
                 playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(t.colour);
                 InGamePlayer.Add(playerInGame);
-                //NetworkServer.Destroy(conn.identity.gameObject);
-
-                //NetworkServer.AddPlayerForConnection(conn, playerInGame);
                 NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
             }
-        
-
         var playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
         NetworkServer.Spawn(playerSpawnSystemInstance);
-        var spawner = playerSpawnSystemInstance.GetComponent<PlayerSpawnSystem>();
 
     }
-
-
-
 
     // for loading data By Jiang
     public NetworkRoomPlayerLobby GetLobbyRoom()
