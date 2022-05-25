@@ -212,6 +212,16 @@ public class EnemyAIScript : NetworkBehaviour
             {
                 enemyVitalController.UpdateHealth(characterBase.GetMaxHealth());
 
+                if (chasing)
+                {
+                    EventInfo enemyRetreatingEventInfo = new EnemyRetreatingEventInfo
+                    {
+                        EventUnitGo = gameObject,
+                        netid = gameObject.GetComponent<NetworkIdentity>().netId
+                    };
+                    EventSystem.Current.FireEvent(enemyRetreatingEventInfo);
+                }
+                
                 chasing = false;
                 stateToPlayByIndex = 2;
 
@@ -350,7 +360,8 @@ public class EnemyAIScript : NetworkBehaviour
         }
     }
 
-    [ClientRpc] public void RpcBeforeDying(GameObject spawnPoint, GameObject roamingPoint)
+    [ClientRpc] 
+    public void RpcBeforeDying(GameObject spawnPoint, GameObject roamingPoint)
     {
         if (!isServer)
         {

@@ -9,6 +9,9 @@ using UnityEngine;
 
 public class EnemyVitalController : NetworkBehaviour
 {
+    /**
+     * @author Martin, Love, Victor
+     */
     public Dictionary<uint,float> aggroCounter;
     [SerializeField] private CharacterBase characterBase;
     [SerializeField] public float waitTime;
