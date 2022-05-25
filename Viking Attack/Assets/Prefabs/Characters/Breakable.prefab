@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3243558105675630887}
   - component: {fileID: -3127228622202548877}
   - component: {fileID: 3689709779474702671}
-  - component: {fileID: 3889299248438821997}
+  - component: {fileID: 7895918222198805665}
   m_Layer: 10
   m_Name: Breakable
   m_TagString: Breakable
@@ -69,7 +69,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   waitTime: 5
-  render: {fileID: 0}
+  render: {fileID: 7895918222198805665}
   hasDied: 0
   layerMask:
     serializedVersion: 2
@@ -124,7 +124,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980946679800242412}
   m_Mesh: {fileID: 2230857456986390742, guid: 90811b9707e66ab4f8767f2c22c1fb2f, type: 3}
---- !u!23 &3889299248438821997
+--- !u!23 &7895918222198805665
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
