@@ -51,6 +51,9 @@ public class PlayerScript3D : NetworkBehaviour
             stateMachine.Update();
     }
 
+    /**
+    * @author Victor Wikner
+    */
     public bool LocalCheck()
     {
         return isLocalPlayer;

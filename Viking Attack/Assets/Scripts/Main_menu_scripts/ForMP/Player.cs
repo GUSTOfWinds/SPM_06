@@ -3,7 +3,11 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+/**
+ * @author Victor Wikner
+ *
+ * Class not implemented in game, used to try diefferent method for lobby
+ */
 
     [RequireComponent (typeof (NetworkMatch))]
     public class Player : NetworkBehaviour {

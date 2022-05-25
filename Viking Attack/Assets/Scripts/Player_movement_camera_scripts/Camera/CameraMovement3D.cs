@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
         private float rotationX;
         private float rotationY;
         private Vector3 cameraPosition;
-        private UnityEngine.Camera mainCamera;
+        private Camera mainCamera;
         public bool shouldBeLocked; // used by the character screen to lock the mouse movement when character screen is open
     
 
@@ -22,9 +22,12 @@ using UnityEngine.SceneManagement;
         {
             shouldBeLocked = true;
             Cursor.lockState = CursorLockMode.Locked;
-            mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<UnityEngine.Camera>();
+            mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
         }
-
+        
+    /**
+    * @author Victor Wikner
+    */
         public override void OnStartLocalPlayer()
         {
             if (mainCamera != null)
@@ -44,6 +47,9 @@ using UnityEngine.SceneManagement;
             }
         }
 
+    /**
+    * @author Victor Wikner
+    */
         public override void OnStopLocalPlayer()
         {
             if (mainCamera != null)
