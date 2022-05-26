@@ -6,7 +6,6 @@ using UnityEngine;
     public class RuneInteraction : BaseObjectInteraction
     {
         private List<GlobalPlayerInfo> interacted = new List<GlobalPlayerInfo>();
-        [SerializeField] private float roatitionSpeed;
         //The object that the lever is activating
         [SerializeField] private GameObject activationObject;
         //A boolean if a player can get a point or not
@@ -16,19 +15,24 @@ using UnityEngine;
 
         public override void InteractedWith(GameObject playerThatInteracted)
         {
-            canGetPoint = interacted.Contains(playerThatInteracted.GetComponent<GlobalPlayerInfo>());
+            if (playerThatInteracted != isLocalPlayer) return;
+            canGetPoint = !interacted.Contains(playerThatInteracted.GetComponent<GlobalPlayerInfo>());
             //Calls the object to activate (uses the BaseObjectActivation so i can call different objects)
             activationObject.GetComponent<BaseObjectActivation>().activate();
+
+            GlobalPlayerInfo playerInfo = playerThatInteracted.GetComponent<GlobalPlayerInfo>();
             
-            
-            //Gives player a level if they exist within the list, otherwise no.
+            //Gives player a level if they  don't exist within the list, otherwise no.
             if(canGetPoint)
             {
-                playerThatInteracted.GetComponent<GlobalPlayerInfo>().IncreaseLevel();
+                playerInfo.IncreaseLevel();
+                playerInfo.SetHealth(playerInfo.GetMaxHealth());
 
             }else
             {
+                playerInfo.SetHealth(playerInfo.GetMaxHealth());
             }   
+            interacted.Add(playerInfo);
         }
         // Sets the default targetRotation to current LeverShaftPivot rotation
     }
