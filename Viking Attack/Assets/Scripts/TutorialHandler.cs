@@ -18,7 +18,7 @@ public class TutorialHandler : MonoBehaviour
     private void Update()
     {
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("tutorialstop"))
-            Destroy(gameObject,0.7f);
+            Destroy(gameObject,0.5f);
     }
 
     public void OnMovement(InputAction.CallbackContext value)
