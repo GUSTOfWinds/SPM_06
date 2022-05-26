@@ -230,7 +230,7 @@ AnimatorStateMachine:
     m_Position: {x: 550, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2052767029292774075}
-    m_Position: {x: 1033.8806, y: 141.28061, z: 0}
+    m_Position: {x: 1020, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2630867847759665994}
     m_Position: {x: 1179.5238, y: 87.292206, z: 0}
@@ -479,7 +479,7 @@ AnimatorController:
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: checkdash
     m_Type: 9
@@ -491,7 +491,7 @@ AnimatorController:
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: checkattack
     m_Type: 9

@@ -12387,7 +12387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9036749531679775797
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17015,6 +17015,7 @@ MonoBehaviour:
   animator: {fileID: 7593343412926976990}
   globalPlayerInfo: {fileID: 1008048771508749607}
   jump: 0
+  tutorialHandlerGameObject: {fileID: 0}
   shouldMove: 0
 --- !u!114 &5988590173649968414
 MonoBehaviour:
@@ -17500,6 +17501,7 @@ MonoBehaviour:
   - {fileID: 2423587332867720793}
   playerItemUsageController: {fileID: 993307644473226796}
   wieldedItemBase: {fileID: 11400000, guid: e42a76ee5900ffc4f93a5fbaf0dadbb4, type: 2}
+  tutorialHandlerGameObject: {fileID: 0}
 --- !u!114 &-7731286149923182968
 MonoBehaviour:
   m_ObjectHideFlags: 0
