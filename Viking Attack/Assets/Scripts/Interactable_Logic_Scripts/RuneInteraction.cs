@@ -1,49 +1,36 @@
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
-
+/**
+ * @author Victor Wikner
+ */
 
     public class RuneInteraction : BaseObjectInteraction
     {
-        private List<GlobalPlayerInfo> interacted = new List<GlobalPlayerInfo>();
-        //The object that the lever is activating
-        [SerializeField] private GameObject activationObject;
         //A boolean if a player can get a point or not
-        private bool canGetPoint;
-        //Sets to the starting rotation
-        private Quaternion targetRotation;
+        private bool canGetPoint = true;
 
+        //Disables and enables collider to show proper text or not
         [SerializeField] private GameObject colliderToDisable;
         [SerializeField] private GameObject colliderToEnable;
 
 
         public override void InteractedWith(GameObject playerThatInteracted)
         {
-            if (playerThatInteracted != isLocalPlayer) return;
-            canGetPoint = !interacted.Contains(playerThatInteracted.GetComponent<GlobalPlayerInfo>());
-            //Calls the object to activate (uses the BaseObjectActivation so i can call different objects)
-            activationObject.GetComponent<BaseObjectActivation>().activate();
-
             GlobalPlayerInfo playerInfo = playerThatInteracted.GetComponent<GlobalPlayerInfo>();
-            
-            //Gives player a level if they  don't exist within the list, otherwise no.
-            if(canGetPoint)
+
+            if (!playerInfo.isLocalPlayer) return;
+
+            if(canGetPoint == true)
             {
                 playerInfo.IncreaseLevel();
-                playerInfo.SetHealth(playerInfo.GetMaxHealth());
                 colliderToDisable.SetActive(false);
                 colliderToEnable.SetActive(true);
+                canGetPoint = false;
 
-            }else
-            {
-                playerInfo.SetHealth(playerInfo.GetMaxHealth());
             }
+            playerInfo.UpdateHealth(playerInfo.GetMaxHealth());
 
-            if (!interacted.Contains(playerInfo))
-            {
-                interacted.Add(playerInfo);
-            }
         }
-        // Sets the default targetRotation to current LeverShaftPivot rotation
     }
 
