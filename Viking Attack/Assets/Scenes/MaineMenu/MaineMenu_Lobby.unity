@@ -1372,8 +1372,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: aeddd06de19f2fd429b7a46cbac317d3, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_PlayOnAwake: 0
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -9042,7 +9042,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 872b4a6e93d075e438b60c847fc4e73a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -9956,7 +9956,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b7b5af0c4bf029444afbf806d2f25f98, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -12730,6 +12730,7 @@ MonoBehaviour:
   audioSource: {fileID: 1293127996}
   envAudioSource: {fileID: 946571101}
   seagullAudioSource: {fileID: 1140188840}
+  music: {fileID: 260097689}
   ac: {fileID: 8300000, guid: 1070f1b54a3c59849887ea05d247841d, type: 3}
   animator: {fileID: 1593998088}
 --- !u!114 &1738850747
