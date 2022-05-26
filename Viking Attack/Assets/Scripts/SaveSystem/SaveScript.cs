@@ -94,70 +94,79 @@ public class SaveScript : NetworkBehaviour
         bf.Serialize(file, savePlayer);
         file.Close();
         // some UI test on the screen to tell the player that data has been saved 
-        theHost.GetComponent<SaveOnPlayer>().showSaveSuccessPanel();
+        //theHost.GetComponent<SaveOnPlayer>().showSaveSuccessPanel();
         Debug.Log("Game data saved!");
     }
 
     public void LoadGame()
     {
-        //Calls when we are in game, and the hots name is already updated      
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + saveFileName, FileMode.Open);
-        SaveData playerData = (SaveData)bf.Deserialize(file);
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        foreach (var t in players)
-        {
-            var playerName = t.GetComponent<GlobalPlayerInfo>().GetName();
-            if (playerName == hostName)
+
+
+        if (File.Exists(Application.persistentDataPath + saveFileName))
+        { //Calls when we are in game, and the hots name is already updated      
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + saveFileName, FileMode.Open);
+            SaveData playerData = (SaveData)bf.Deserialize(file);
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var t in players)
             {
-                t.GetComponent<GlobalPlayerInfo>().LoadData(playerData.hostData[hostName]);
-            }
-            else
-            {
-                //if the player is not host but we have he/she's data
-                if (playerData.clients.Contains(playerName))
+                var playerName = t.GetComponent<GlobalPlayerInfo>().GetName();
+                if (playerName == hostName)
                 {
-                    t.GetComponent<GlobalPlayerInfo>().LoadData(playerData.clientData[playerName]);
+                    t.GetComponent<GlobalPlayerInfo>().LoadData(playerData.hostData[hostName]);
                 }
-            }
-            //set all inventory item sprite to false and reset them based on data file
-            t.GetComponent<PlayerInventory>().RefreshHotbar();
-            for (int j = 0; j < playerData.playerInventory[playerName].Count; j++)
-            {
-                //TO DO dropItem 
-                //Add to item list if is already gained 
-
-                if (playerData.playerInventory[playerName][j])
+                else
                 {
-                    //Add to item list if is already gained 
-                    // if the item was activ, set it to activ now
-
-                    EventInfo itemDropEventInfo = new ItemDropEventInfo
+                    //if the player is not host but we have he/she's data
+                    if (playerData.clients.Contains(playerName))
                     {
-                        itemBase = t.GetComponent<PlayerInventory>().inventory[j]
-                    };
-
-                    EventSystem.Current.FireEvent(itemDropEventInfo);
-                    t.GetComponent<PlayerInventory>().UpdateHeldItem(j);
+                        t.GetComponent<GlobalPlayerInfo>().LoadData(playerData.clientData[playerName]);
+                    }
                 }
-            }//for j all player inventory items
-        }
-        if ((string)playerData.hostData[hostName]["isBossDead"] == "True")
-        {
-            //if we has killed the boss, find it and destory in this scen
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (var e in enemies)
-            {
-                if (e.GetComponent<EnemyInfo>().GetName() == "Boss")
+                //set all inventory item sprite to false and reset them based on data file
+                t.GetComponent<PlayerInventory>().RefreshHotbar();
+                for (int j = 0; j < playerData.playerInventory[playerName].Count; j++)
                 {
-                    //Maybe we can call death event here. 
-                    NetworkServer.Destroy(e);
+                    //TO DO dropItem 
+                    //Add to item list if is already gained 
+
+                    if (playerData.playerInventory[playerName][j])
+                    {
+                        //Add to item list if is already gained 
+                        // if the item was activ, set it to activ now
+
+                        EventInfo itemDropEventInfo = new ItemDropEventInfo
+                        {
+                            itemBase = t.GetComponent<PlayerInventory>().inventory[j]
+                        };
+
+                        EventSystem.Current.FireEvent(itemDropEventInfo);
+                        t.GetComponent<PlayerInventory>().UpdateHeldItem(j);
+                    }
+                }//for j all player inventory items
+            }
+            if ((string)playerData.hostData[hostName]["isBossDead"] == "True")
+            {
+                //if we has killed the boss, find it and destory in this scen
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                foreach (var e in enemies)
+                {
+                    if (e.GetComponent<EnemyInfo>().GetName() == "Boss")
+                    {
+                        //Maybe we can call death event here. 
+                        NetworkServer.Destroy(e);
+                    }
                 }
             }
-        }
 
-        file.Close();
-        Debug.Log("Data is loaded");
+            file.Close();
+            Debug.Log("Data is loaded");
+        }
+        else
+        {
+            Debug.LogError("There is no save data!");
+        }
+           
 
     }
 

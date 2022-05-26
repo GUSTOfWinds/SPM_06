@@ -5,9 +5,10 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     // Start is called before the first frame update
-    private void OnTriggerEnter(Collider other)
+    public void OnHit(GameObject other)
     {
-        if(other.gameObject.tag == "Player")
+    Debug.Log("Someone here");
+        if(other.CompareTag("Player"))
         {
             //change the respawn position for all player
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -15,7 +16,7 @@ public class CheckPoint : MonoBehaviour
             {
                 p.GetComponent<KillPlayer>().changeRespawnPoint(gameObject.transform.position);
             }
-           
+            Destroy(gameObject);
         }
     }
 }

@@ -29,8 +29,17 @@ using UnityEngine.InputSystem;
                 interactionText.text = "Press: E to ";
                 //Calls the function to say that the object is interacted with
             }
-
-            if (Physics.SphereCast(mainCamera.transform.position, 1f, mainCamera.transform.forward, out hit, 1,
+        //For check points **************
+        if (Physics.SphereCast(mainCamera.transform.position, 1f, mainCamera.transform.forward, out hit, 1,
+             LayerMask.GetMask("CheckPoint")))
+        {
+            //Changes text to the button and information that is set in the object hit
+            Debug.Log("CheckPoint");
+            hit.collider.gameObject.GetComponent<CheckPoint>().OnHit(gameObject);
+            //Calls the function to say that the object is interacted with
+        }
+        //********************
+        if (Physics.SphereCast(mainCamera.transform.position, 1f, mainCamera.transform.forward, out hit, 1,
                     LayerMask.GetMask("InteractableObject")))
             {
                 //Changes text to the button and information that is set in the object hit
