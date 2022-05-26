@@ -12381,6 +12381,7 @@ GameObject:
   - component: {fileID: 6496224508611059297}
   - component: {fileID: 4995878257031069448}
   - component: {fileID: 8506084779778800014}
+  - component: {fileID: 1776104126169933410}
   m_Layer: 5
   m_Name: Tutorial
   m_TagString: Untagged
@@ -12465,6 +12466,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1776104126169933410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215953079329457344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b63117f1d18c75489269107c8a45a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasdFinished: 0
+  sprintFinished: 0
+  dashFinished: 0
+  attackFinished: 0
+  itemSwapFinished: 0
 --- !u!1 &4252440847402504445
 GameObject:
   m_ObjectHideFlags: 0
@@ -17015,6 +17033,7 @@ MonoBehaviour:
   animator: {fileID: 7593343412926976990}
   globalPlayerInfo: {fileID: 1008048771508749607}
   jump: 0
+  tutorialHandlerGameObject: {fileID: 4215953079329457344}
   shouldMove: 0
 --- !u!114 &5988590173649968414
 MonoBehaviour:
@@ -17500,6 +17519,7 @@ MonoBehaviour:
   - {fileID: 2423587332867720793}
   playerItemUsageController: {fileID: 993307644473226796}
   wieldedItemBase: {fileID: 11400000, guid: e42a76ee5900ffc4f93a5fbaf0dadbb4, type: 2}
+  tutorialHandlerGameObject: {fileID: 4215953079329457344}
 --- !u!114 &-7731286149923182968
 MonoBehaviour:
   m_ObjectHideFlags: 0
