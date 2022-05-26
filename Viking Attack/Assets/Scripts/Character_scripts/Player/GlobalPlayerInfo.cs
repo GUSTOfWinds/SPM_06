@@ -13,7 +13,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
      * @author Martin Kings
      */
     [SerializeField] private Component healthBar;
-
+    
     [SyncVar] [SerializeField] public Color32 skinColour;
     [SerializeField] public SkinnedMeshRenderer skinMesh;
     private int red, green, blue;
@@ -25,6 +25,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SerializeField] private ItemBase[] items;
     [SyncVar] [SerializeField] private bool alive;
     [SyncVar] [SerializeField] private float stamina;
+    [SyncVar] [SerializeField] private float staminaRegen;
     [SyncVar] [SerializeField] private float maxStamina;
     [SyncVar] [SerializeField] private float experience;
     [SyncVar] [SerializeField] private int level;
@@ -57,6 +58,14 @@ public class GlobalPlayerInfo : NetworkBehaviour
         meatStackNumber = (int)data["meatStackNumber"];
         damage = (float)data["damage"];
         armorLevel = (int)data["armorLevel"];
+        //  skinMesh.material.SetColor(BaseColor, (Color32)data["color"]); //set the saved color to player 
+        //Can not save Color32
+        red = (int)data["red"];
+        green = (int)data["green"];
+        blue = (int)data["blue"];
+        skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255); 
+        skinMesh.material.SetColor(BaseColor, skinColour); 
+
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
         experienceBar.GetComponent<PlayerExperienceBar>().SetExperience(experience);
@@ -83,6 +92,11 @@ public class GlobalPlayerInfo : NetworkBehaviour
         dataHolder.Add("meatStackNumber", (System.Object)meatStackNumber);
         dataHolder.Add("damage", (System.Object)damage);
         dataHolder.Add("armorLevel", (System.Object)armorLevel);
+        //  dataHolder.Add("color", (System.Object)skinColour);
+        //Save the player color with red green and blue
+        dataHolder.Add("red", (System.Object)red);
+        dataHolder.Add("green", (System.Object)green);
+        dataHolder.Add("blue", (System.Object)blue);
         return dataHolder;
     }
 
@@ -97,6 +111,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         health = 100;
         maxHealth = 100;
         stamina = 100;
+        staminaRegen = 18;
         maxStamina = 120;
         healthBar = gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform
             .Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>();
@@ -252,25 +267,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         }
     }
 
-    /**
-    * @author Victor Wikner
-     * Not Implemented
-    */
-    /*private void UpdateDisplay()
-    {
 
-
-        //This loop sets the name of a current player in the lobby and sets the name of the colour they've chosen.
-        //Todo remove NameColour call when we have character customization available
-        for (int i = 0; i < Room.InGamePlayer.Count; i++)
-        {
-            Color32 currentColour = room.InGamePlayer.
-            room.InGamePlayer[i]..material.SetColor(BaseColor, color32);
-
-            playerNameTexts[i].color = Room.RoomPlayers[i].colour;
-
-        }
-    }*/
     
     /**
  * @author Victor Wikner
@@ -289,6 +286,14 @@ public class GlobalPlayerInfo : NetworkBehaviour
     public float GetStamina()
     {
         return stamina;
+    }
+    // Returns the current staminaRegen
+    public float GetStaminaRegen()
+    {
+        /*
+            @Author Love Strignert - lost9373
+        */
+        return staminaRegen;
     }
 
     // Returns the players max stamina
@@ -335,6 +340,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
         EventSystem.Current.FireEvent(playerLevelUpInfo);
         level++;
         availableStatPoints += 3;
+        //get full hp when level up 
+        health = maxHealth;
+        healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
+
     }
 
     public float GetExperience()
@@ -368,6 +377,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     public void IncreaseStaminaStatPoints()
     {
         maxStamina += 10;
+        staminaRegen *= 1.05f;
         availableStatPoints--;
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
     }
