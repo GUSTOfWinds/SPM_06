@@ -24,4 +24,9 @@ public class KillPlayer : MonoBehaviour
             .SetHealth(gameObject.GetComponent<GlobalPlayerInfo>().GetMaxHealth());
         gameObject.GetComponent<GlobalPlayerInfo>().UpdateHealth(0);
     }
+    //Change player respawn position when reach checkpoint  By Jiang
+    public void changeRespawnPoint(Vector3 checkPoint)
+    {
+        respawnPoint = checkPoint;
+    }
 }

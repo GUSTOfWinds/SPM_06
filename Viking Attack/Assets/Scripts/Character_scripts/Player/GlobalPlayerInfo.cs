@@ -13,7 +13,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
      * @author Martin Kings
      */
     [SerializeField] private Component healthBar;
-
+    
     [SyncVar] [SerializeField] public Color32 skinColour;
     [SerializeField] public SkinnedMeshRenderer skinMesh;
     private int red, green, blue;
@@ -57,6 +57,14 @@ public class GlobalPlayerInfo : NetworkBehaviour
         meatStackNumber = (int)data["meatStackNumber"];
         damage = (float)data["damage"];
         armorLevel = (int)data["armorLevel"];
+        //  skinMesh.material.SetColor(BaseColor, (Color32)data["color"]); //set the saved color to player 
+        //Can not save Color32
+        red = (int)data["red"];
+        green = (int)data["green"];
+        blue = (int)data["blue"];
+        skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255); 
+        skinMesh.material.SetColor(BaseColor, skinColour); 
+
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
         experienceBar.GetComponent<PlayerExperienceBar>().SetExperience(experience);
@@ -83,6 +91,11 @@ public class GlobalPlayerInfo : NetworkBehaviour
         dataHolder.Add("meatStackNumber", (System.Object)meatStackNumber);
         dataHolder.Add("damage", (System.Object)damage);
         dataHolder.Add("armorLevel", (System.Object)armorLevel);
+        //  dataHolder.Add("color", (System.Object)skinColour);
+        //Save the player color with red green and blue
+        dataHolder.Add("red", (System.Object)red);
+        dataHolder.Add("green", (System.Object)green);
+        dataHolder.Add("blue", (System.Object)blue);
         return dataHolder;
     }
 
@@ -317,6 +330,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
         EventSystem.Current.FireEvent(playerLevelUpInfo);
         level++;
         availableStatPoints += 3;
+        //get full hp when level up 
+        health = maxHealth;
+        healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
+
     }
 
     public float GetExperience()
