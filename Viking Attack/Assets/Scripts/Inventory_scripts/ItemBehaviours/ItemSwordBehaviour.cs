@@ -15,7 +15,6 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
     private GlobalPlayerInfo globalPlayerInfo;
     public bool canAttack;
     public bool attackLocked;
-    private TutorialHandler tutorialHandler;
 
 
     public void Awake()
@@ -25,8 +24,6 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         mainCamera = GameObject.FindGameObjectWithTag("CameraMain").GetComponent<Camera>();
         globalPlayerInfo = gameObject.GetComponent<GlobalPlayerInfo>();
         animator = gameObject.transform.Find("VikingWarrior").GetComponent<Animator>();
-        tutorialHandler = gameObject.transform.Find("UI").gameObject.transform.Find("Tutorial")
-            .GetComponent<TutorialHandler>();
     }
 
     // Might need some tweaking to work as we want
@@ -38,11 +35,6 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
     }
     public override void Use(ItemBase itemBase)
     {
-        if (tutorialHandler.attackFinished == false)
-        {
-            tutorialHandler.FinishAttack();
-        }
-        
         // Checks if the player has enough stamina to attack, will then attack.
         if (globalPlayerInfo.GetStamina() > belongingTo.GetStamina && canAttack)
         {
