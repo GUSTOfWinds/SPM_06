@@ -26,7 +26,6 @@ namespace Inventory_scripts
         [SerializeField] private PlayerItemUsageController playerItemUsageController;
         [SerializeField] private ItemBase wieldedItemBase;
         [SerializeField] private GameObject tutorialHandlerGameObject;
-        private TutorialHandler tutorialHandler;
 
         private Guid itemPickupGuid;
 
@@ -37,7 +36,6 @@ namespace Inventory_scripts
             playerItemUsageController = gameObject.GetComponent<PlayerItemUsageController>();
             netID = gameObject.GetComponent<NetworkIdentity>().netId;
             EventSystem.Current.RegisterListener<PlayerItemPickupEventInfo>(OnItemPickup, ref itemPickupGuid);
-            tutorialHandler = tutorialHandlerGameObject.GetComponent<TutorialHandler>();
         }
 
 
@@ -180,13 +178,6 @@ namespace Inventory_scripts
         // if the sword has been picked up
         public void ToggleSword(InputAction.CallbackContext value)
         {
-            // Removes the itemswap part of the tutorial
-            if (tutorialHandler.itemSwapFinished == false)
-            {
-                tutorialHandler.FinishItemSwap();
-            }
-            
-            
             if (value.started)
             {
                 if (playerItemUsageController.itemBase == inventory[0])
@@ -258,13 +249,7 @@ namespace Inventory_scripts
         // When the player presses the 2 button, the spear is toggled and worn,
         // if the spear has been picked up
         public void ToggleSpear(InputAction.CallbackContext value)
-        {
-            // Removes the itemswap part of the tutorial
-            if (tutorialHandler.itemSwapFinished == false)
-            {
-                tutorialHandler.FinishItemSwap();
-            }
-            
+        { 
             if (value.started)
             {
                 if (playerItemUsageController.itemBase == inventory[1])
@@ -330,11 +315,6 @@ namespace Inventory_scripts
         // if the dagger has been picked up
         public void ToggleDagger(InputAction.CallbackContext value)
         {
-            // Removes the itemswap part of the tutorial
-            if (tutorialHandler.itemSwapFinished == false)
-            {
-                tutorialHandler.FinishItemSwap();
-            }
             
             if (value.started)
             {
@@ -402,11 +382,6 @@ namespace Inventory_scripts
         // if the player has more than 0 food in his/her inventory
         public void ToggleFood(InputAction.CallbackContext value)
         {
-            // Removes the itemswap part of the tutorial
-            if (tutorialHandler.itemSwapFinished == false)
-            {
-                tutorialHandler.FinishItemSwap();
-            }
             
             if (value.started)
             {
