@@ -853,7 +853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6738725445545472074, guid: a2b3571bf9b4b3e45a0024920d3b7211, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6738725445545472074, guid: a2b3571bf9b4b3e45a0024920d3b7211, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1505,7 +1505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6738725445545472074, guid: a2b3571bf9b4b3e45a0024920d3b7211, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6738725445545472074, guid: a2b3571bf9b4b3e45a0024920d3b7211, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2389,7 +2389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6738725445545472074, guid: a2b3571bf9b4b3e45a0024920d3b7211, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6738725445545472074, guid: a2b3571bf9b4b3e45a0024920d3b7211, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3639,9 +3639,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1668189336}
+  - {fileID: 769947991}
   - {fileID: 516807626}
   - {fileID: 281910020}
-  - {fileID: 769947991}
   m_Father: {fileID: 569942955}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4697,7 +4697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6738725445545472074, guid: a2b3571bf9b4b3e45a0024920d3b7211, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6738725445545472074, guid: a2b3571bf9b4b3e45a0024920d3b7211, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6699,6 +6699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mountain
       objectReference: {fileID: 0}
+    - target: {fileID: 8292751895775199668, guid: e1c87f750f3c82b4e99ea2f25ed68dc2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5cf082c595215bb408c53a88a3debfd0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c87f750f3c82b4e99ea2f25ed68dc2, type: 3}
 --- !u!4 &3489791998989556419 stripped
