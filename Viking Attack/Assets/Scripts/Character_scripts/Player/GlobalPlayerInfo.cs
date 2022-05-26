@@ -25,6 +25,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SerializeField] private ItemBase[] items;
     [SyncVar] [SerializeField] private bool alive;
     [SyncVar] [SerializeField] private float stamina;
+    [SyncVar] [SerializeField] private float staminaRegen;
     [SyncVar] [SerializeField] private float maxStamina;
     [SyncVar] [SerializeField] private float experience;
     [SyncVar] [SerializeField] private int level;
@@ -110,6 +111,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         health = 100;
         maxHealth = 100;
         stamina = 100;
+        staminaRegen = 18;
         maxStamina = 120;
         healthBar = gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform
             .Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>();
@@ -285,6 +287,14 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         return stamina;
     }
+    // Returns the current staminaRegen
+    public float GetStaminaRegen()
+    {
+        /*
+            @Author Love Strignert - lost9373
+        */
+        return staminaRegen;
+    }
 
     // Returns the players max stamina
     public float GetMaxStamina()
@@ -367,6 +377,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     public void IncreaseStaminaStatPoints()
     {
         maxStamina += 10;
+        staminaRegen *= 1.05f;
         availableStatPoints--;
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
     }

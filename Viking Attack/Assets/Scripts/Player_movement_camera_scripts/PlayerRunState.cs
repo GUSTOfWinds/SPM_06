@@ -13,7 +13,6 @@ public class PlayerRunState : PlayerState
     private Vector2 inputMovement;
     public InputAction.CallbackContext sprintKeyInfo;
     private float sprintCost = 6f;
-    private float staminaGain = 17f;
     [SerializeField] private float cooldown = 0.9f;
     private bool hasPassedSprintingCooldown;
     private float sprintingCooldown = 3;
@@ -50,7 +49,7 @@ public class PlayerRunState : PlayerState
             
             Animator.SetBool("isRunning",false);
             Animator.SetBool("isWalking",true);
-            Player.globalPlayerInfo.UpdateStamina( staminaGain * Time.deltaTime);
+            Player.globalPlayerInfo.UpdateStamina( Player.globalPlayerInfo.GetStaminaRegen() * Time.deltaTime);
             input = input.normalized * Player.acceleration;
         }
         //If player is grounded set input vector to follow the ground 

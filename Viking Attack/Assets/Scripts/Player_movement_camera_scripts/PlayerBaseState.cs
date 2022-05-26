@@ -15,7 +15,7 @@ using UnityEngine;
         public override void Update()
         {
             // If the player is standing still, the stamina gets replenished.
-            Player.globalPlayerInfo.UpdateStamina( 18f * Time.deltaTime);
+            Player.globalPlayerInfo.UpdateStamina( Player.globalPlayerInfo.GetStaminaRegen() * Time.deltaTime);
         
             if(Player.movementKeyInfo.ReadValue<Vector2>() != Vector2.zero)
             {
