@@ -252,25 +252,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         }
     }
 
-    /**
-    * @author Victor Wikner
-     * Not Implemented
-    */
-    /*private void UpdateDisplay()
-    {
 
-
-        //This loop sets the name of a current player in the lobby and sets the name of the colour they've chosen.
-        //Todo remove NameColour call when we have character customization available
-        for (int i = 0; i < Room.InGamePlayer.Count; i++)
-        {
-            Color32 currentColour = room.InGamePlayer.
-            room.InGamePlayer[i]..material.SetColor(BaseColor, color32);
-
-            playerNameTexts[i].color = Room.RoomPlayers[i].colour;
-
-        }
-    }*/
     
     /**
  * @author Victor Wikner
