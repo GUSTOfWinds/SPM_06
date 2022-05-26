@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -3127228622202548877}
   - component: {fileID: 3689709779474702671}
   - component: {fileID: 7895918222198805665}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Breakable
   m_TagString: Breakable
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 980946679800242412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 254.5309, y: 304.69043, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  waitTime: 5
+  waitTime: 70
   render: {fileID: 7895918222198805665}
   hasDied: 0
   layerMask:

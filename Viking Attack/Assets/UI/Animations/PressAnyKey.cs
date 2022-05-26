@@ -8,6 +8,7 @@ public class PressAnyKey : MonoBehaviour
     public AudioSource audioSource;
     public AudioSource envAudioSource;
     public AudioSource seagullAudioSource;
+    public AudioSource music;
     public AudioClip ac;
     
     public Animator animator;
@@ -25,6 +26,7 @@ public class PressAnyKey : MonoBehaviour
             audioSource.PlayOneShot(ac);
             envAudioSource.Play();
             seagullAudioSource.Play();
+            music.Play();
             animator.SetTrigger("pressedanykey");
             Invoke("menutransition", 2.5f);
         }
