@@ -5,6 +5,9 @@ namespace Inventory_scripts
 {
     public class DropItemInWorldScript : MonoBehaviour
     {
+        /*
+            @Author Love Strignert - lost9373
+        */
         public ItemBase itembase;
         [SerializeField] private float rotationSpeed = 1;
         private ParticleSystem particleSystem;

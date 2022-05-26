@@ -5,6 +5,9 @@ using Mirror;
 [RequireComponent(typeof(CapsuleCollider))]
 public class PlayerScript3D : NetworkBehaviour
 {
+    /*
+        @Author Love Strignert - lost9373
+    */
     [SerializeField] private State[] states;
 
     private MyRigidbody3D myRigidbody;
@@ -20,11 +23,15 @@ public class PlayerScript3D : NetworkBehaviour
     public InputAction.CallbackContext sprintKeyInfo;
     [HideInInspector] public bool jump;
 
+    [SerializeField] private GameObject tutorialHandlerGameObject;
+    private TutorialHandler tutorialHandler;
+    
     public bool shouldMove;
     //KeyInfo variables  stop
 
     void Start()
     {
+        tutorialHandler = tutorialHandlerGameObject.GetComponent<TutorialHandler>();
         thisObject = this.gameObject;
     }
 
@@ -60,6 +67,11 @@ public class PlayerScript3D : NetworkBehaviour
 
     public void OnMovement(InputAction.CallbackContext value)
     {
+        if (tutorialHandler.wasdFinished == false)
+        {
+            tutorialHandler.FinishWasd();
+        }
+        
         if (shouldMove)
         {
             movementKeyInfo = value;
@@ -69,11 +81,20 @@ public class PlayerScript3D : NetworkBehaviour
     // Checks if the button for sprint is pressed, the value only functions as a bool (pressed or not) in the run state
     public void OnSprint(InputAction.CallbackContext value)
     {
+        if (tutorialHandler.sprintFinished == false)
+        {
+            tutorialHandler.FinishSprint();
+        }
         sprintKeyInfo = value;
     }
 
     public void OnJump(InputAction.CallbackContext value)
     {
+        if (tutorialHandler.dashFinished == false)
+        {
+            tutorialHandler.FinishDash();
+        }
+        
         jump = value.started;
         jump = !value.canceled;
     }

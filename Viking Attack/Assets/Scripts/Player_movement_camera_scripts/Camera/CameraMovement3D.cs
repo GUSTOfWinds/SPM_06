@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
     public class CameraMovement3D : NetworkBehaviour
     {
+        /*
+            @Author Love Strignert - lost9373
+        */
         [SerializeField] private GameObject firstPersonPosition;
         [SerializeField] float mouseSensitivity = 1;
         [SerializeField] private bool lockMouse;

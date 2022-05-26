@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class NewEnemySpawner : NetworkBehaviour
 {
+    
     [Header("Drag the prefab you want to spawn in this spawner here")]
     [SerializeField] private GameObject enemyPrefabToSpawn;
     private Guid respawnEventGuid;
@@ -40,9 +41,10 @@ public class NewEnemySpawner : NetworkBehaviour
 
     public void Spawn()
     {
-
-    // Will be changed to happen ONCE when event manager handles deaths.
-        // Spawns an enemy at the location of the spawner parent, will also spawn it on the server
+        /*
+            @Author Love Strignert - lost9373
+        */
+        // Spawns an enemy at the location of the spawner and set that enemys veribals, will also spawn it on the server
         var enemy = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
         enemy.GetComponent<EnemyInfo>().SetRespawnAnchor(transform);
         enemy.GetComponent<EnemyInfo>().SetDropItem(itemDrop);

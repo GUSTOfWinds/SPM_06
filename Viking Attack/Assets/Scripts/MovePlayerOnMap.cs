@@ -4,6 +4,9 @@ using TMPro;
 
 public class MovePlayerOnMap : NetworkBehaviour
 {
+    /*
+        @Author Love Strignert - lost9373
+    */
     private GameObject player;
     private RectTransform rectTransform;
     private TextMeshProUGUI text;
