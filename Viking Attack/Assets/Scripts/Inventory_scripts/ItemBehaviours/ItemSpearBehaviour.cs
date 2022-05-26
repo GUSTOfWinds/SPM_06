@@ -77,6 +77,13 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
             else if (hit.gameObject.GetComponent<EnemyAIScript>() != null)
                 hit.gameObject.GetComponent<EnemyAIScript>().Stagger(2);
         }
+        Collider[] hitBreakable = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Breakable"));
+        if (hitBreakable.Length > 0)
+        {
+            Collider hit = hitBreakable[0];
+            hit.gameObject.GetComponent<BreakableBehavior>().Break();
+        }
+
         yield return new WaitForSeconds(time / 2);
         animator.SetLayerWeight(animator.GetLayerIndex("Spear Attack"),0);
         canAttack = true;

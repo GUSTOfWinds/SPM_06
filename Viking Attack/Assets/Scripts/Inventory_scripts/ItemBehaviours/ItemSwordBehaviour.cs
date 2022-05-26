@@ -81,8 +81,7 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         if (hitBreakable.Length > 0)
         {
             Collider hit = hitBreakable[0];
-            hit.gameObject.GetComponent<BreakableBehavior>()
-                .Break();
+            hit.gameObject.GetComponent<BreakableBehavior>().Break();
         }
 
         yield return new WaitForSeconds(time / 2);
