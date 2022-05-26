@@ -13,6 +13,10 @@ using UnityEngine;
         //Sets to the starting rotation
         private Quaternion targetRotation;
 
+        [SerializeField] private GameObject colliderToDisable;
+        [SerializeField] private GameObject colliderToEnable;
+
+
         public override void InteractedWith(GameObject playerThatInteracted)
         {
             if (playerThatInteracted != isLocalPlayer) return;
@@ -27,12 +31,18 @@ using UnityEngine;
             {
                 playerInfo.IncreaseLevel();
                 playerInfo.SetHealth(playerInfo.GetMaxHealth());
+                colliderToDisable.SetActive(false);
+                colliderToEnable.SetActive(true);
 
             }else
             {
                 playerInfo.SetHealth(playerInfo.GetMaxHealth());
-            }   
-            interacted.Add(playerInfo);
+            }
+
+            if (!interacted.Contains(playerInfo))
+            {
+                interacted.Add(playerInfo);
+            }
         }
         // Sets the default targetRotation to current LeverShaftPivot rotation
     }
