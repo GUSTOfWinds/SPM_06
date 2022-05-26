@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Toon_PineTree 1
+  m_Name: CellshadingNotWork
   m_Shader: {fileID: -6465566751694194690, guid: d888420ab09a54d41b17ec296250b201, type: 3}
-  m_ShaderKeywords: MAIN_LIGHT_CALCULATE_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -23,24 +23,8 @@ Material:
         m_Texture: {fileID: 2800000, guid: a9495a073dd6fc0428f81fca402607a0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - Texture2D_460ca186e56b4a7382c0b0d0c02d8a18:
-        m_Texture: {fileID: 2800000, guid: a9495a073dd6fc0428f81fca402607a0, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_5f7f2878553d4e1ebafb86152eeecbfc:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_90d8199aaac24028bd87c7f1a7589eef:
-        m_Texture: {fileID: 2800000, guid: d7bcbd3db5ab2f84faf48e67da779be7, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - Texture2D_df9024568b854bf6a51de62c026ac409:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_f601cd3f61ef4a6b974769e68d69c2bb:
-        m_Texture: {fileID: 2800000, guid: a9495a073dd6fc0428f81fca402607a0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -101,16 +85,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_1049de4205394fe7a89110e6433ace1c: 0.7
-    - Vector1_5d07599967d74d5ca198be89be605eeb: 5
-    - Vector1_63645fd0daa5462ea5528c1ac3a77c0b: 0
     - Vector1_72584e6f3a6c452eab878fd52bf3d526: 10
     - Vector1_8b2202ae19ed4554a4068ba7943d54a6: 5
-    - Vector1_97584b77dab0461986e8451ddbe36d17: 3.73
-    - Vector1_b3c449af1fd944e5bd8ce2f344049075: 0.67
-    - Vector1_b4f34bc9a225416d940ba6bc557120ce: 0.05
     - Vector1_bd2afc7e5b344322ad88663b0ab7c9c9: 0.2
     - Vector1_ceb4c179a1774ea3aaafc2778bee387f: 0.05
-    - Vector1_faa12fc81f0142b685e150932fe76764: 17.13
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -138,17 +116,14 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_3899fda4fd0240618cf6458f849b35a3: {r: 0.043137252, g: 0.0990459, b: 0.14901961, a: 0}
-    - Color_3faf41ce09af43f49e77e2db8ff63c76: {r: 0.15686275, g: 0.19864379, b: 0.29411766, a: 0}
-    - Color_92bcb93fdd3448e0991e21ab4d2fad94: {r: 0.754717, g: 0.754717, b: 0.754717, a: 0}
-    - Color_be8b5dda336745c985841ed4b814c54e: {r: 0, g: 0.46429884, b: 0.5660378, a: 1}
-    - Color_f44a7c363af64105bc970fabf5e97ed7: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 0}
+    - Color_3faf41ce09af43f49e77e2db8ff63c76: {r: 0.15864186, g: 0.17980868, b: 0.2924528, a: 0}
+    - Color_f44a7c363af64105bc970fabf5e97ed7: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &3807338407384384320
+--- !u!114 &8663040993708424837
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
