@@ -513,7 +513,7 @@ namespace Inventory_scripts
             }
         }
 
-        //for saving
+        //for saving By Jiang*************************
         public GameObject[] GetSprites()
         {
             return sprites;
@@ -537,7 +537,7 @@ namespace Inventory_scripts
                 sp.SetActive(false);
             }
         }
-
+        //***************************************Jiang
 
     }
 }

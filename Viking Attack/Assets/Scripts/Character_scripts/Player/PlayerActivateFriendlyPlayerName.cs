@@ -55,8 +55,7 @@ namespace ItemNamespace
 
             foreach (var hit in hits)
             {
-                tempNetId = hit.transform.gameObject.GetComponent<NetworkIdentity>()
-                    .netId;
+                tempNetId = hit.transform.gameObject.GetComponent<NetworkIdentity>().netId;
 
                 if (tempNetId != gameObject.GetComponent<NetworkIdentity>().netId)
                 {
