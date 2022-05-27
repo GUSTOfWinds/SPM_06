@@ -31,10 +31,10 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SyncVar] [SerializeField] private float experience;
     [SyncVar] [SerializeField] private int level;
     [SyncVar] [SerializeField] private float levelThreshold;
-    [SyncVar] [SerializeField] private int availableStatpoints;
+    [SyncVar] [SerializeField] private int availableStatPoints;
     [SyncVar] [SerializeField] private float damage;
     [SyncVar] [SerializeField] private int meatStackNumber;
-    
+
 
 
     [SyncVar] [SerializeField] private int armorLevel;
@@ -51,6 +51,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         health = 100;
         maxHealth = 100;
         stamina = 100;
+        staminaRegen = 18;
         maxStamina = 120;
         healthBar = gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform
             .Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>();
@@ -60,16 +61,16 @@ public class GlobalPlayerInfo : NetworkBehaviour
             .Find("Experience_bar_slider").gameObject.GetComponent<PlayerExperienceBar>();
         experience = 0;
         levelThreshold = 60;
-        availableStatpoints = 0;
+        availableStatPoints = 0;
         level = 1;
         playerName = PlayerPrefs.GetString("PlayerName");
         armorLevel = 0;
-        red = PlayerPrefs.GetInt("redValue");
-        green = PlayerPrefs.GetInt("greenValue");
-        blue = PlayerPrefs.GetInt("blueValue");
-        skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255);
+        red = PlayerPrefs.GetInt("redValue"); // Victor Wikner
+        green = PlayerPrefs.GetInt("greenValue"); // Victor Wikner
+        blue = PlayerPrefs.GetInt("blueValue");// Victor Wikner
+        skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255); // Victor Wikner
 
-        skinMesh.material.SetColor(BaseColor, skinColour);
+        skinMesh.material.SetColor(BaseColor, skinColour); //Victor Wikner
     }
 
 
@@ -265,7 +266,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         };
         EventSystem.Current.FireEvent(playerLevelUpInfo);
         level++;
-        availableStatpoints += 3;
+        availableStatPoints += 3;
     }
 
     public float GetExperience()
@@ -280,26 +281,26 @@ public class GlobalPlayerInfo : NetworkBehaviour
 
     public int GetStatPoints()
     {
-        return availableStatpoints;
+        return availableStatPoints;
     }
 
     public void IncreaseDamageStatPoints()
     {
         damage += 6;
-        availableStatpoints--;
+        availableStatPoints--;
     }
 
     public void IncreaseHealthStatPoints()
     {
         maxHealth += 10;
-        availableStatpoints--;
+        availableStatPoints--;
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
     }
 
     public void IncreaseStaminaStatPoints()
     {
         maxStamina += 10;
-        availableStatpoints--;
+        availableStatPoints--;
         staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
     }
 
@@ -366,7 +367,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         maxStamina = (float)data["maxStamina"];
         experience = (float)data["experience"];
         level = (int)data["level"];
-        availableStatpoints = (int)data["availableStatpoints"];
+        availableStatPoints = (int)data["availableStatPoints"];
         //damageStat = (int)dataDict["damageStat"];
         //healthStat = (int)dataDict["healthStat"];
         //staminaStat = (int)dataDict["staminaStat"];
@@ -402,7 +403,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         dataHolder.Add("maxStamina", (System.Object)maxStamina);
         dataHolder.Add("experience", (System.Object)experience);
         dataHolder.Add("level", (System.Object)level);
-        dataHolder.Add("availableStatpoints", (System.Object)availableStatpoints);
+        dataHolder.Add("availableStatPoints", (System.Object)availableStatPoints);
         //dataHolder.Add("damageStat", (System.Object)damageStat);
         //dataHolder.Add("healthStat", (System.Object)healthStat);
         //dataHolder.Add("staminaStat", (System.Object)staminaStat);
