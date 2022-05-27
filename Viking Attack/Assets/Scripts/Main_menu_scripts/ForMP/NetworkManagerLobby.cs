@@ -33,7 +33,7 @@ public class NetworkManagerLobby : NetworkManager
 
 
 
-    
+
     public override void OnStartServer()
     {
         spawnPrefabs = spawnablePrefabs;
@@ -51,12 +51,12 @@ public class NetworkManagerLobby : NetworkManager
         }
     }
 
-//Sets customizable data in a message and sends to the server.
+    //Sets customizable data in a message and sends to the server.
     public override void OnClientConnect(NetworkConnection conn)
     {
-        byte r = (byte) PlayerPrefs.GetInt("redValue");
-        byte g = (byte) PlayerPrefs.GetInt("greenValue");
-        byte b = (byte) PlayerPrefs.GetInt("blueValue");
+        byte r = (byte)PlayerPrefs.GetInt("redValue");
+        byte g = (byte)PlayerPrefs.GetInt("greenValue");
+        byte b = (byte)PlayerPrefs.GetInt("blueValue");
         Color32 color = new Color32(r, g, b, 255);
         base.OnClientConnect(conn);
         CharacterInfo characterInfo = new CharacterInfo
@@ -69,7 +69,7 @@ public class NetworkManagerLobby : NetworkManager
         OnClientConnected?.Invoke();
     }
 
-//removes client on disconnect
+    //removes client on disconnect
     public override void OnClientDisconnect(NetworkConnection conn)
     {
         base.OnClientDisconnect(conn);
@@ -78,7 +78,7 @@ public class NetworkManagerLobby : NetworkManager
 
         OnClientDisconnected?.Invoke();
     }
-//adds client on connect with exceptions of overfill 
+    //adds client on connect with exceptions of overfill 
     public override void OnServerConnect(NetworkConnectionToClient conn)
     {
         if (numPlayers >= maxConnections)
@@ -102,7 +102,7 @@ public class NetworkManagerLobby : NetworkManager
             var player = conn.identity.GetComponent<NetworkRoomPlayerLobby>();
             var player2 = conn.identity.GetComponent<NetworkGamePlayer>();
             var player3 = conn.identity.GetComponent<GameObject>();
-            
+
             GamePlayers.Remove(player2);
             RoomPlayers.Remove(player);
             InGamePlayer.Remove(player3);
@@ -134,7 +134,7 @@ public class NetworkManagerLobby : NetworkManager
         }
     }
 
-//Removes all players from lists when server is stopped and returns to first scene    
+    //Removes all players from lists when server is stopped and returns to first scene    
     public override void OnStopServer()
     {
         SceneManager.LoadScene(0);
@@ -200,7 +200,7 @@ public class NetworkManagerLobby : NetworkManager
                 gamePlayerInstance.SetSkinColour(RoomPlayers[i].colour);
 
                 //NetworkServer.Destroy(conn.identity.gameObject);
-                
+
                 NetworkServer.ReplacePlayerForConnection(conn, gamePlayerInstance.gameObject, true);
                 GamePlayers.Add(gamePlayerInstance);
             }
@@ -218,8 +218,8 @@ public class NetworkManagerLobby : NetworkManager
         OnServerReadied?.Invoke(conn, InGamePlayer);
 
     }
-    
-    
+
+
 
     //Method is called when scene has changed, it instantiates the players then spawns the spawn-system which sets position, rotation and spawns the players, i.e makes sure they're all
     [Server]
@@ -229,14 +229,14 @@ public class NetworkManagerLobby : NetworkManager
         var conn = GamePlayers[0].connectionToClient;
 
         foreach (var t in GamePlayers)
-            {
-                conn = t.connectionToClient;
-                GameObject playerInGame = Instantiate(playerPrefabFinalUse);
-                playerInGame.GetComponent<GlobalPlayerInfo>().SetDisplayName(t.displayName);
-                playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(t.colour);
-                InGamePlayer.Add(playerInGame);
-                NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
-            }
+        {
+            conn = t.connectionToClient;
+            GameObject playerInGame = Instantiate(playerPrefabFinalUse);
+            playerInGame.GetComponent<GlobalPlayerInfo>().SetDisplayName(t.displayName);
+            playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(t.colour);
+            InGamePlayer.Add(playerInGame);
+            NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
+        }
         var playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
         NetworkServer.Spawn(playerSpawnSystemInstance);
 

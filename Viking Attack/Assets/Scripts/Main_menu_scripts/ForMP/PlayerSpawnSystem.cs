@@ -8,10 +8,10 @@ public class PlayerSpawnSystem : NetworkBehaviour
     //[SerializeField] private GameObject playerPrefab = null;
     public List<GameObject> PlayerList { get; set; } = new List<GameObject>();
     private static List<Transform> spawnPoints = new List<Transform>();
-        
+
     private int nextIndex = 0;
 
-    public static void AddSpawnPoint(Transform transform) 
+    public static void AddSpawnPoint(Transform transform)
     {
         spawnPoints.Add(transform);
 

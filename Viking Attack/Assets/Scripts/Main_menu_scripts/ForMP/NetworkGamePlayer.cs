@@ -10,7 +10,7 @@ public class NetworkGamePlayer : NetworkBehaviour
     [SyncVar]
     public string displayName = "Loading...";
 
-    [SyncVar] 
+    [SyncVar]
     public Color32 colour;
 
     private NetworkManagerLobby room;
@@ -22,20 +22,20 @@ public class NetworkGamePlayer : NetworkBehaviour
             return room = NetworkManager.singleton as NetworkManagerLobby;
         }
     }
-        
+
     //Sets name on your character in lobby and latter the game, OnStartAuthority makes sure it is run only on the object that is yours.
     public override void OnStartAuthority()
     {
         CmdSetDisplayName(PlayerNameInput.displayName);
         CmdSetPlayerColour(PlayerNameInput.playerColour);
     }
-        //Syncs displayname between all players
+    //Syncs displayname between all players
     [Command]
     private void CmdSetDisplayName(string displayName)
     {
         this.displayName = displayName;
     }
-        //syncs players colour between all players
+    //syncs players colour between all players
     [Command]
     private void CmdSetPlayerColour(Color32 colour32)
     {
