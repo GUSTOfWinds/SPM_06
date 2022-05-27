@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 1
-    cellSize: 0.1
+    cellSize: 0.025
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -4882,7 +4882,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364967452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 122.13, y: -26.49, z: -173.72}
+  m_LocalPosition: {x: 120.6, y: -26.49, z: -171.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045507402}
@@ -8225,13 +8225,37 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 674064936, guid: 8a9a100d022279a4e9cbd4787558f810, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 674064936, guid: 8a9a100d022279a4e9cbd4787558f810, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1013818210, guid: 8a9a100d022279a4e9cbd4787558f810, type: 3}
       propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013818210, guid: 8a9a100d022279a4e9cbd4787558f810, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013818210, guid: 8a9a100d022279a4e9cbd4787558f810, type: 3}
+      propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2881309148687205824, guid: 8a9a100d022279a4e9cbd4787558f810, type: 3}
       propertyPath: m_Name
       value: SM_Runestone
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881309148687205824, guid: 8a9a100d022279a4e9cbd4787558f810, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881309148687205824, guid: 8a9a100d022279a4e9cbd4787558f810, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3115680285047473755, guid: 8a9a100d022279a4e9cbd4787558f810, type: 3}
       propertyPath: sceneId
@@ -10109,6 +10133,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2045507402}
     m_Modifications:
+    - target: {fileID: 7063391274227806076, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
+      propertyPath: aggroRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063391274227806076, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
+      propertyPath: roamingRange
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7063391274927964652, guid: 94c9aa39d68a75643b980836180a0d44, type: 3}
       propertyPath: enemyPrefabToSpawn
       value: 
