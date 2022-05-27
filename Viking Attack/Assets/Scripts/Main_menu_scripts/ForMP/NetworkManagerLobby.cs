@@ -36,7 +36,6 @@ public class NetworkManagerLobby : NetworkManager
     
     public override void OnStartServer()
     {
-        mapToLoad = "TerrainIsland";
         spawnPrefabs = spawnablePrefabs;
         base.OnStartServer();
         NetworkServer.RegisterHandler<CharacterInfo>(OnSpawnPlayerUI);

@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2903407794065380449, guid: b632d05765ce59040ab2b783b3fd8c49, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2903407794065380449, guid: b632d05765ce59040ab2b783b3fd8c49, type: 3}
       propertyPath: m_LocalPosition.x
@@ -264,6 +264,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &42982149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +326,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 33.627, y: 19.477, z: -76.543}
 --- !u!1 &113374711
 GameObject:
@@ -373,6 +377,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &113374714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,7 +489,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &133942984
 PrefabInstance:
@@ -655,7 +663,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
       propertyPath: m_LocalScale.x
@@ -873,6 +881,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &215916666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1106,6 +1118,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &271423431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,6 +1313,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &286968695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1363,6 +1383,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &300708279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,6 +1453,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &319612109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1495,6 +1523,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &339629427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1521,7 +1553,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c685e4500201774eba71efdfc379f47, type: 3}
       propertyPath: m_LocalScale.x
@@ -1650,6 +1682,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &364224025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1700,7 +1736,7 @@ Transform:
   - {fileID: 243622202}
   - {fileID: 969926380}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &430309437
 PrefabInstance:
@@ -1857,7 +1893,124 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &457976461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 457976465}
+  - component: {fileID: 457976464}
+  - component: {fileID: 457976463}
+  - component: {fileID: 457976462}
+  m_Layer: 0
+  m_Name: MainCamera
+  m_TagString: CameraMain
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &457976462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457976461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+--- !u!81 &457976463
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457976461}
+  m_Enabled: 1
+--- !u!20 &457976464
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457976461}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &457976465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457976461}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 110.73579, y: 5.999827, z: 328.52798}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &468832859
 LightingSettings:
@@ -1920,6 +2073,22 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
+--- !u!1 &499831195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 1961472309}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1053903223}
+  m_Layer: 0
+  m_Name: 'Gravestone (5) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &501597943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,6 +2138,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &501597946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2077,7 +2250,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3825169113147164924, guid: 84114aca77a56024aa0e821be9b5fde1, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3825169113147164924, guid: 84114aca77a56024aa0e821be9b5fde1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2268,11 +2441,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d181335e30e43dd449176478dc559375, type: 3}
---- !u!4 &676836353 stripped
+--- !u!4 &676836353
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 1899465760}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429088593}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &702469646
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,6 +2504,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &702469649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2388,6 +2574,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &704838682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2405,11 +2595,20 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!4 &770666874 stripped
+--- !u!4 &770666874
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 1508760162}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020371985}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &773838326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2540,6 +2739,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &804550453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2606,6 +2809,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &812625823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2623,21 +2830,48 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!4 &835755307 stripped
+--- !u!4 &835755307
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 1037357148}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &894003009 stripped
+  m_GameObject: {fileID: 1939759503}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &894003009
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 1990016034}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &914860151 stripped
+  m_GameObject: {fileID: 2051151253}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &914860151
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 773838326}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361703683}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &937771437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2757,6 +2991,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &959759411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2860,11 +3098,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8239ae705d238446a94fe9432b80510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &979688314 stripped
+--- !u!4 &979688314
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 1542755293}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577754930}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &986263334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 199735220}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1889292490}
+  m_Layer: 0
+  m_Name: 'Gravestone (1) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1018552424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 1773149179}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1791332143}
+  m_Layer: 0
+  m_Name: 'Gravestone (6) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1020371985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 1508760162}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 770666874}
+  m_Layer: 0
+  m_Name: 'Gravestone (2) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1033116625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3028,21 +3323,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d181335e30e43dd449176478dc559375, type: 3}
---- !u!4 &1040958325 stripped
+--- !u!4 &1040958325
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 1244238282}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1053903223 stripped
+  m_GameObject: {fileID: 1630237887}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1053903223
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 1961472309}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1112846275 stripped
+  m_GameObject: {fileID: 499831195}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1112846275
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 665660121}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540060115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1124306007
 GameObject:
   m_ObjectHideFlags: 0
@@ -3092,6 +3414,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1124306010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3109,136 +3435,6 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!1001 &1126374977
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 112.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 60.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 540.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.30277815
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.26687217
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.66228724
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.63125294
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -93.846
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -72.92999
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 205.395
-      objectReference: {fileID: 0}
-    - target: {fileID: 7759507166295857100, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_Name
-      value: WB_Runestone (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7759507166295857100, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7759507166295857100, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
---- !u!1001 &1142311194
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 556.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 44.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 294.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.42656383
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.40891165
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.5627012
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.578102
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -91.898
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -167.321
-      objectReference: {fileID: 0}
-    - target: {fileID: 6981879094251736438, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 274.886
-      objectReference: {fileID: 0}
-    - target: {fileID: 7759507166295857100, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_Name
-      value: WB_Runestone
-      objectReference: {fileID: 0}
-    - target: {fileID: 7759507166295857100, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7759507166295857100, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8a94bd33f4697d24a958e789f1e8c239, type: 3}
 --- !u!1001 &1244238282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3369,6 +3565,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1277791491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3386,6 +3586,22 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
+--- !u!1 &1305600340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 236444539}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1969864048}
+  m_Layer: 0
+  m_Name: 'Gravestone (11) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1307018033
 GameObject:
   m_ObjectHideFlags: 0
@@ -3435,6 +3651,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1307018036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3501,6 +3721,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1323856816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3567,6 +3791,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1326504821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3666,6 +3894,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5132910417486616748, guid: 31d1e26d6490b364d9807313ebd7954f, type: 3}
   m_PrefabInstance: {fileID: 1339194671}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1361703683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 773838326}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 914860151}
+  m_Layer: 0
+  m_Name: 'Gravestone (13) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1417127323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3771,13 +4015,38 @@ Transform:
   - {fileID: 133942985}
   - {fileID: 283960501}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1448562898 stripped
+--- !u!1 &1429088593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 1899465760}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 676836353}
+  m_Layer: 0
+  m_Name: 'Gravestone (9) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1448562898
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 2064203021}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619703844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1497510448
 GameObject:
   m_ObjectHideFlags: 0
@@ -3827,6 +4096,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1938624210312167496, guid: 614ed636095112e4bb63983f312a8ebe, type: 3}
   isBoss: 1
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1497510451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3925,6 +4198,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d181335e30e43dd449176478dc559375, type: 3}
+--- !u!1 &1540060115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 665660121}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1112846275}
+  m_Layer: 0
+  m_Name: 'Gravestone (10) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1542755293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4081,7 +4370,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1548413599
 MonoBehaviour:
@@ -4176,6 +4465,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d181335e30e43dd449176478dc559375, type: 3}
+--- !u!1 &1577754930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 1542755293}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 979688314}
+  m_Layer: 0
+  m_Name: 'Gravestone (8) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1619703844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 2064203021}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1448562898}
+  m_Layer: 0
+  m_Name: 'Gravestone (14) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1630237887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 1244238282}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1040958325}
+  m_Layer: 0
+  m_Name: 'Gravestone (3) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1643983675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4430,6 +4767,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1746662339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4496,6 +4837,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1753278571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4594,11 +4939,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d181335e30e43dd449176478dc559375, type: 3}
---- !u!4 &1791332143 stripped
+--- !u!4 &1791332143
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 1773149179}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018552424}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1803867608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4812,6 +5166,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1832224158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4878,6 +5236,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 7597596195000461523, guid: cb66d09698ec4834fb233f790a6e8485, type: 3}
   isBoss: 0
   roaming: 1
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &1883792766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4895,11 +5257,36 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!4 &1889292490 stripped
+--- !u!4 &1889292490
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 199735220}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986263334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1891722868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 1559846399}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1903649531}
+  m_Layer: 0
+  m_Name: 'Gravestone (12) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1899465760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4981,11 +5368,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d181335e30e43dd449176478dc559375, type: 3}
---- !u!4 &1903649531 stripped
+--- !u!4 &1903649531
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 1559846399}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891722868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1939759503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 1037357148}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 835755307}
+  m_Layer: 0
+  m_Name: 'Gravestone (4) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1961472309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5067,11 +5479,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d181335e30e43dd449176478dc559375, type: 3}
---- !u!4 &1969864048 stripped
+--- !u!4 &1969864048
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1779836023532286563, guid: d181335e30e43dd449176478dc559375, type: 3}
   m_PrefabInstance: {fileID: 236444539}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305600340}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066656346}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1974170063
 GameObject:
   m_ObjectHideFlags: 0
@@ -5126,7 +5547,7 @@ Transform:
   - {fileID: 1746662337}
   - {fileID: 702469647}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1990016034
 PrefabInstance:
@@ -5258,6 +5679,10 @@ MonoBehaviour:
   enemyPrefabToSpawn: {fileID: 1155901933938411299, guid: 9e5e397d7623c6240884fbffec9f1619, type: 3}
   isBoss: 0
   roaming: 0
+  roamingRange: 20
+  aggroRange: 30
+  itemDrop: {fileID: 0}
+  dropChance: 0
 --- !u!114 &2049725754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5275,6 +5700,22 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
+--- !u!1 &2051151253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1439163699320695001, guid: d181335e30e43dd449176478dc559375, type: 3}
+  m_PrefabInstance: {fileID: 1990016034}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 894003009}
+  m_Layer: 0
+  m_Name: 'Gravestone (7) (Missing Prefab with guid: d181335e30e43dd449176478dc559375)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &2064203021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5398,7 +5839,7 @@ Transform:
   - {fileID: 1040958325}
   - {fileID: 770666874}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 73.53, z: 0}
 --- !u!1001 &2068169457
 PrefabInstance:
@@ -5680,5 +6121,5 @@ Transform:
   - {fileID: 1417127324}
   - {fileID: 1643983676}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
