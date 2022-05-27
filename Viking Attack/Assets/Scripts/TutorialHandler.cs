@@ -1,62 +1,68 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TutorialHandler : MonoBehaviour
 {
-    /**
-     * @author Martin Kings
-     */
-    public bool wasdFinished;
-    public bool sprintFinished;
-    public bool dashFinished;
-    public bool attackFinished;
-    public bool itemSwapFinished;
-    public void FinishWasd()
+    /*
+        @Author Love Strignert - lost9373
+    */
+    private int whatTutorialLevel = 1;
+    [SerializeField] private Animator animator;     
+    private void Awake()
     {
-        wasdFinished = true;
-        // TODO ADD ANIMATION
+        //animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("tutorialstop"))
+            Destroy(gameObject,0.5f);
+    }
+
+    public void OnMovement(InputAction.CallbackContext value)
+    {
+        if(value.performed && whatTutorialLevel == 1)
+        {
+            animator.SetTrigger("checkmove");
+            whatTutorialLevel++;
+        }
+    }
+
+    public void OnSprint(InputAction.CallbackContext value)
+    {
+        if(value.performed && whatTutorialLevel == 2)
+        {
+            animator.SetTrigger("checksprint");
+            whatTutorialLevel++;
+        }
+    }
+
+    public void OnDash(InputAction.CallbackContext value)
+    {
+        if(value.performed && whatTutorialLevel == 3)
+        {
+            animator.SetTrigger("checkdash");
+            whatTutorialLevel++;
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext value)
+    {    
+        if(value.performed && whatTutorialLevel == 4)
+        {
+            animator.SetTrigger("checkattack");
+            whatTutorialLevel++;
+        }
     }
     
-    public void FinishSprint()
-    {
-        if (!wasdFinished)
+    public void OnItemChange(InputAction.CallbackContext value)
+    {    
+        if(value.performed && whatTutorialLevel == 5)
         {
-            return;
+            animator.SetTrigger("checkitem");
+            whatTutorialLevel++;
         }
-
-        sprintFinished = true;
-        // TODO ADD ANIMATION
-    }
-
-    public void FinishDash()
-    {
-        if (!sprintFinished)
-        {
-            return;
-        }
-
-        dashFinished = true;
-        // TODO ADD ANIMATION
-    }
-
-    public void FinishAttack()
-    {
-        if (!dashFinished)
-        {
-            return;
-        }
-
-        attackFinished = true;
-        // TODO ADD ANIMATION
-    }
-
-    public void FinishItemSwap()
-    {
-        if (!attackFinished)
-        {
-            return;
-        }
-
-        itemSwapFinished = true;
-        // TODO ADD ANIMATION
     }
 }

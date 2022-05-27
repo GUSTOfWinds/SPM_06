@@ -3,6 +3,9 @@ using UnityEngine;
 
     public class InteractableObjectScript : MonoBehaviour
     {
+        /**
+         * @Author Love Strignert - lost9373
+        */
         [SerializeField] private string interactionDescriptionPositiv; //The text with information about a uninteracted object
         [SerializeField] private string interactionDescriptionNegative; //The text with information about a interacted object
         [SerializeField] private GameObject interactableGameObject; //The object that is interacted with

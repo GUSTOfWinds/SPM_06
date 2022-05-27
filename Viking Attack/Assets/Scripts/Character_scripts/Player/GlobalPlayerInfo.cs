@@ -7,13 +7,14 @@ using UnityEngine;
 using Inventory_scripts;
 
 
+
 public class GlobalPlayerInfo : NetworkBehaviour
 {
     /**
      * @author Martin Kings
      */
     [SerializeField] private Component healthBar;
-    
+
     [SyncVar] [SerializeField] public Color32 skinColour;
     [SerializeField] public SkinnedMeshRenderer skinMesh;
     private int red, green, blue;
@@ -25,6 +26,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SerializeField] private ItemBase[] items;
     [SyncVar] [SerializeField] private bool alive;
     [SyncVar] [SerializeField] private float stamina;
+    [SyncVar] [SerializeField] private float staminaRegen;
     [SyncVar] [SerializeField] private float maxStamina;
     [SyncVar] [SerializeField] private float experience;
     [SyncVar] [SerializeField] private int level;
@@ -33,74 +35,13 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SyncVar] [SerializeField] private float damage;
     [SyncVar] [SerializeField] private int meatStackNumber;
 
+
+
     [SyncVar] [SerializeField] private int armorLevel;
 
     //get character Screen
     [SerializeField] private GameObject characterScreen;
 
-
-    //gathering data and reset data By Jiang
-    public void LoadData(Dictionary<String, System.Object> data)
-    {
-
-        playerName = (string)data["playerName"];
-        health = (float)data["health"];
-        stamina = (float)data["stamina"];
-        maxHealth = (float)data["maxHealth"];
-        maxStamina = (float)data["maxStamina"];
-        experience = (float)data["experience"];
-        level = (int)data["level"];
-        availableStatPoints = (int)data["availableStatPoints"];
-        //damageStat = (int)dataDict["damageStat"];
-        //healthStat = (int)dataDict["healthStat"];
-        //staminaStat = (int)dataDict["staminaStat"];
-        meatStackNumber = (int)data["meatStackNumber"];
-        damage = (float)data["damage"];
-        armorLevel = (int)data["armorLevel"];
-        //  skinMesh.material.SetColor(BaseColor, (Color32)data["color"]); //set the saved color to player 
-        //Can not save Color32
-        red = (int)data["red"];
-        green = (int)data["green"];
-        blue = (int)data["blue"];
-        skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255); 
-        skinMesh.material.SetColor(BaseColor, skinColour); 
-
-        healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
-        staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
-        experienceBar.GetComponent<PlayerExperienceBar>().SetExperience(experience);
-        characterScreen.GetComponent<CharacterScreen>().OpenCharacterScreen();
-        gameObject.GetComponent<PlayerInventory>().UpdateMeatStack();
-    }
-    //Saving all the data By Jiang
-    public Dictionary<String, System.Object> SaveData()
-    {
-
-        Dictionary<String, System.Object> dataHolder = new Dictionary<string, System.Object>();
-        // Dictionary<String, Dictionary<String, System.Object>> dataToSave = new Dictionary<string, Dictionary<String, System.Object>>();
-        dataHolder.Add("playerName", (System.Object)playerName);
-        dataHolder.Add("health", (System.Object)health);
-        dataHolder.Add("stamina", (System.Object)stamina);
-        dataHolder.Add("maxHealth", (System.Object)maxHealth);
-        dataHolder.Add("maxStamina", (System.Object)maxStamina);
-        dataHolder.Add("experience", (System.Object)experience);
-        dataHolder.Add("level", (System.Object)level);
-        dataHolder.Add("availableStatPoints", (System.Object)availableStatPoints);
-        //dataHolder.Add("damageStat", (System.Object)damageStat);
-        //dataHolder.Add("healthStat", (System.Object)healthStat);
-        //dataHolder.Add("staminaStat", (System.Object)staminaStat);
-        dataHolder.Add("meatStackNumber", (System.Object)meatStackNumber);
-        dataHolder.Add("damage", (System.Object)damage);
-        dataHolder.Add("armorLevel", (System.Object)armorLevel);
-        //  dataHolder.Add("color", (System.Object)skinColour);
-        //Save the player color with red green and blue
-        dataHolder.Add("red", (System.Object)red);
-        dataHolder.Add("green", (System.Object)green);
-        dataHolder.Add("blue", (System.Object)blue);
-        return dataHolder;
-    }
-
-
-    //*******************
 
     private void Awake()
     {
@@ -110,6 +51,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         health = 100;
         maxHealth = 100;
         stamina = 100;
+        staminaRegen = 18;
         maxStamina = 120;
         healthBar = gameObject.transform.Find("UI").gameObject.transform.Find("Health_bar").gameObject.transform
             .Find("Health_bar_slider").gameObject.GetComponent<PlayerHealthBar>();
@@ -126,7 +68,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         red = PlayerPrefs.GetInt("redValue"); // Victor Wikner
         green = PlayerPrefs.GetInt("greenValue"); // Victor Wikner
         blue = PlayerPrefs.GetInt("blueValue");// Victor Wikner
-        skinColour = new Color32((byte) red, (byte) green, (byte) blue, 255); // Victor Wikner
+        skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255); // Victor Wikner
 
         skinMesh.material.SetColor(BaseColor, skinColour); //Victor Wikner
     }
@@ -136,10 +78,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         armorLevel += increase;
     }
-
-    /**
-    * @author Victor Wikner
-    */
     private NetworkManagerLobby room;
     private static readonly int BaseColor = Shader.PropertyToID("Color_be8b5dda336745c985841ed4b814c54e");
 
@@ -156,13 +94,12 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            if (isServer)
-            {
-                UpdateColours();
-            }
-
+            UpdateColours();
+            Debug.Log("Färg: " + skinColour);
             CmdSetPlayerName(playerName);
             CmdSetSkinColour(skinColour);
+
+
         }
     }
 
@@ -177,14 +114,12 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         playerName = insertedName;
     }
-    /**
-    * @author Victor Wikner
-    */
     // Gets called upon during game launch, the main menu sets the player name
     [Command]
-    public void CmdSetSkinColour(Color32 chosenColour)
+    public void CmdSetSkinColour(Color32 skinColour)
     {
-        this.skinColour = chosenColour;
+
+        this.skinColour = skinColour;
         UpdateColours();
     }
 
@@ -198,28 +133,21 @@ public class GlobalPlayerInfo : NetworkBehaviour
         return maxHealth;
     }
 
-    /**
-    * @author Victor Wikner
-    */
+    //[ClientRpc]
     private void UpdateColours()
     {
-        foreach (var t in room.InGamePlayer)
+        for (int i = 0; i < room.InGamePlayer.Count; i++)
         {
-            t.GetComponent<GlobalPlayerInfo>().skinMesh.material
-                .SetColor(BaseColor, t.GetComponent<GlobalPlayerInfo>().skinColour);
+            room.InGamePlayer[i].GetComponent<GlobalPlayerInfo>().skinMesh.material.SetColor(BaseColor, room.InGamePlayer[i].GetComponent<GlobalPlayerInfo>().skinColour);
         }
     }
 
-    
     // Returns the player name
     public string GetName()
     {
         return playerName;
     }
 
-    /**
- * @author Victor Wikner
- */
     // Returns the player skin color
     public Color32 GetSkinColor()
     {
@@ -264,12 +192,21 @@ public class GlobalPlayerInfo : NetworkBehaviour
             gameObject.GetComponent<KillPlayer>().PlayerRespawn();
         }
     }
+    /*private void UpdateDisplay()
+    {
 
 
-    
-    /**
- * @author Victor Wikner
- */
+        //This loop sets the name of a current player in the lobby and sets the name of the colour they've chosen.
+        //Todo remove NameColour call when we have character customization available
+        for (int i = 0; i < Room.InGamePlayer.Count; i++)
+        {
+            Color32 currentColour = room.InGamePlayer.
+            room.InGamePlayer[i]..material.SetColor(BaseColor, color32);
+
+            playerNameTexts[i].color = Room.RoomPlayers[i].colour;
+
+        }
+    }*/
     public void SetSkinColour(Color32 insertedColor)
     {
         skinColour = insertedColor;
@@ -330,10 +267,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
         EventSystem.Current.FireEvent(playerLevelUpInfo);
         level++;
         availableStatPoints += 3;
-        //get full hp when level up 
-        health = maxHealth;
-        healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
-
     }
 
     public float GetExperience()
@@ -395,32 +328,95 @@ public class GlobalPlayerInfo : NetworkBehaviour
     {
         meatStackNumber--;
     }
-
-    /**
-    * @author Victor Wikner
-    */
     [Server]
-    public void SetDisplayName(string playersName)
+    public void SetDisplayName(string playerName)
     {
-        this.playerName = playersName;
+        this.playerName = playerName;
     }
 
     public int GetArmorLevel()
     {
         return armorLevel;
     }
-    /**
-    * @author Victor Wikner
-    */
+
     public override void OnStartClient()
     {
         if (Room != null) Room.InGamePlayer.Add(this.gameObject);
     }
-    /**
-    * @author Victor Wikner
-    */
     public override void OnStopClient()
     {
         if (Room != null) Room.InGamePlayer.Remove(this.gameObject);
     }
+    public float GetStaminaRegen()
+    {
+        /*
+            @Author Love Strignert - lost9373
+        */
+        return staminaRegen;
+    }
+
+
+    //gathering data and reset data By Jiang
+    public void LoadData(Dictionary<String, System.Object> data)
+    {
+
+        playerName = (string)data["playerName"];
+        health = (float)data["health"];
+        stamina = (float)data["stamina"];
+        maxHealth = (float)data["maxHealth"];
+        maxStamina = (float)data["maxStamina"];
+        experience = (float)data["experience"];
+        level = (int)data["level"];
+        availableStatPoints = (int)data["availableStatPoints"];
+        //damageStat = (int)dataDict["damageStat"];
+        //healthStat = (int)dataDict["healthStat"];
+        //staminaStat = (int)dataDict["staminaStat"];
+        meatStackNumber = (int)data["meatStackNumber"];
+        damage = (float)data["damage"];
+        armorLevel = (int)data["armorLevel"];
+        //  skinMesh.material.SetColor(BaseColor, (Color32)data["color"]); //set the saved color to player 
+        //Can not save Color32
+        red = (int)data["red"];
+        green = (int)data["green"];
+        blue = (int)data["blue"];
+        skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255);
+        skinMesh.material.SetColor(BaseColor, skinColour);
+
+        healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
+        staminaBar.GetComponent<PlayerStaminaBar>().SetStamina(stamina);
+        experienceBar.GetComponent<PlayerExperienceBar>().SetExperience(experience);
+        characterScreen.GetComponent<CharacterScreen>().OpenCharacterScreen();
+        gameObject.GetComponent<PlayerInventory>().UpdateMeatStack();
+    }
+
+
+    //Saving all the data By Jiang
+    public Dictionary<String, System.Object> SaveData()
+    {
+
+        Dictionary<String, System.Object> dataHolder = new Dictionary<string, System.Object>();
+        // Dictionary<String, Dictionary<String, System.Object>> dataToSave = new Dictionary<string, Dictionary<String, System.Object>>();
+        dataHolder.Add("playerName", (System.Object)playerName);
+        dataHolder.Add("health", (System.Object)health);
+        dataHolder.Add("stamina", (System.Object)stamina);
+        dataHolder.Add("maxHealth", (System.Object)maxHealth);
+        dataHolder.Add("maxStamina", (System.Object)maxStamina);
+        dataHolder.Add("experience", (System.Object)experience);
+        dataHolder.Add("level", (System.Object)level);
+        dataHolder.Add("availableStatPoints", (System.Object)availableStatPoints);
+        //dataHolder.Add("damageStat", (System.Object)damageStat);
+        //dataHolder.Add("healthStat", (System.Object)healthStat);
+        //dataHolder.Add("staminaStat", (System.Object)staminaStat);
+        dataHolder.Add("meatStackNumber", (System.Object)meatStackNumber);
+        dataHolder.Add("damage", (System.Object)damage);
+        dataHolder.Add("armorLevel", (System.Object)armorLevel);
+          dataHolder.Add("color", (System.Object)skinColour);
+        //Save the player color with red green and blue
+        dataHolder.Add("red", (System.Object)red);
+        dataHolder.Add("green", (System.Object)green);
+        dataHolder.Add("blue", (System.Object)blue);
+        return dataHolder;
+    }
+
 }
+

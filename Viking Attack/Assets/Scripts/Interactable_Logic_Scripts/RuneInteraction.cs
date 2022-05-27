@@ -7,6 +7,9 @@ using UnityEngine;
 
     public class RuneInteraction : BaseObjectInteraction
     {
+        /**
+         * @Author Love Strignert - lost9373
+        */
         //A boolean if a player can get a point or not
         private bool canGetPoint = true;
 

@@ -5,6 +5,9 @@ using UnityEngine;
 
     public abstract class BaseObjectInteraction : NetworkBehaviour
     {
+        /**
+         * @Author Love Strignert - lost9373
+        */
         virtual public void InteractedWith(GameObject playerThatInteracted){}
     }
 

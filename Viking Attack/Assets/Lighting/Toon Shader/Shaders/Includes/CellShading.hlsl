@@ -26,7 +26,7 @@ in float CellRampOffset, out float3 CellRampOutput, out float3 Direction)
 		half d = dot(Normal, light.direction) * 0.5 + 0.5;
 		
 		// cellramp in a smoothstep
-		half cellRamp = smoothstep(CellRampOffset, CellRampOffset+ CellRampSmoothness, d );
+		half cellRamp = smoothstep(CellRampOffset, CellRampOffset + CellRampSmoothness, d );
 		// multiply with shadows;
 		cellRamp *= light.shadowAttenuation;
 		// add in lights and extra tinting

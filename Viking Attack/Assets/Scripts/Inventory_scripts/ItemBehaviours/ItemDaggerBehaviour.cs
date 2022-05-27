@@ -76,6 +76,13 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
                 
             hit.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(damage, gameObject.GetComponent<NetworkIdentity>().netId);
         }
+        Collider[] hitBreakable = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Breakable"));
+        if (hitBreakable.Length > 0)
+        {
+            Collider hit = hitBreakable[0];
+            hit.gameObject.GetComponent<BreakableBehavior>().Break();
+        }
+
         yield return new WaitForSeconds(time / 2);
         animator.SetLayerWeight(animator.GetLayerIndex("Dagger Attack"),0);
         canAttack = true;

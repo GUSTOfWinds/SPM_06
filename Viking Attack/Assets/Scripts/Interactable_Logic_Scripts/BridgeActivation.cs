@@ -4,6 +4,9 @@ using UnityEngine;
 
     public class BridgeActivation : BaseObjectActivation
     {
+        /**
+         * @Author Love Strignert - lost9373
+        */
         [SerializeField] private float rotationSpeed;
 
         //Sets to the starting rotation

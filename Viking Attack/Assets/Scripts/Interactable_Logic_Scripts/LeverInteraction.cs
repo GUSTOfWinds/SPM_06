@@ -4,6 +4,9 @@ using UnityEngine;
 
     public class LeverInteraction : BaseObjectInteraction
     {
+        /**
+         * @Author Love Strignert - lost9373
+        */
         [SerializeField] private float roatitionSpeed;
         //The object that the lever is activating
         [SerializeField] private GameObject activationObject;

@@ -47,7 +47,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 1
   visible: 0
-  m_AssetId: 
+  m_AssetId: 71fe4190f89ed2443b0b5551180c74f3
   hasSpawned: 0
 --- !u!114 &3004928640689117618
 MonoBehaviour:
@@ -63,5 +63,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemyPrefabToSpawn: {fileID: 0}
-  spawnAtServerStart: 0
+  breakablePrefabToSpawn: {fileID: 980946679800242412, guid: d7f26ace05397064f89d7a123c7bc52b, type: 3}
