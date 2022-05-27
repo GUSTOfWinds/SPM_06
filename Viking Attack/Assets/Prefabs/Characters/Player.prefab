@@ -12870,6 +12870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccebcb9a815bda74fa98a125f05dc10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 6496224508611059297}
 --- !u!1 &4252440847402504445
 GameObject:
   m_ObjectHideFlags: 0
@@ -17418,6 +17419,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e42a76ee5900ffc4f93a5fbaf0dadbb4, type: 2}
   alive: 1
   stamina: 0
+  staminaRegen: 0
   maxStamina: 0
   experience: 0
   level: 0
@@ -17803,6 +17805,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b951d755767a540a47e2231605d933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveSuccessPanel: {fileID: 0}
+  menyPanel: {fileID: 0}
 --- !u!114 &2948264465876588219
 MonoBehaviour:
   m_ObjectHideFlags: 0
