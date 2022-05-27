@@ -12780,7 +12780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9036749531679775797
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17418,6 +17418,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e42a76ee5900ffc4f93a5fbaf0dadbb4, type: 2}
   alive: 1
   stamina: 0
+  staminaRegen: 0
   maxStamina: 0
   experience: 0
   level: 0
@@ -17803,6 +17804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b951d755767a540a47e2231605d933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveSuccessPanel: {fileID: 0}
+  menyPanel: {fileID: 0}
 --- !u!114 &2948264465876588219
 MonoBehaviour:
   m_ObjectHideFlags: 0
