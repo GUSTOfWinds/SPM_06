@@ -4,6 +4,9 @@ using UnityEngine;
 
     public abstract class BaseObjectActivation : MonoBehaviour
     {
+        /**
+         * @Author Love Strignert - lost9373
+        */
         virtual public void activate(){}
     }
 

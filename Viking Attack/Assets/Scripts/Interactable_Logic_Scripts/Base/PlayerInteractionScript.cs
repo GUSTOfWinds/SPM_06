@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 
     public class PlayerInteractionScript : NetworkBehaviour
     {
+        /**
+         * @Author Love Strignert - lost9373
+        */
         //The text that shows when hovering over an interactable object
         [SerializeField] private TextMeshProUGUI interactionText;
 
