@@ -9,7 +9,7 @@ public class TutorialHandler : MonoBehaviour
         @Author Love Strignert - lost9373
     */
     private int whatTutorialLevel = 1;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator animator;     
     private void Awake()
     {
         //animator = GetComponent<Animator>();
