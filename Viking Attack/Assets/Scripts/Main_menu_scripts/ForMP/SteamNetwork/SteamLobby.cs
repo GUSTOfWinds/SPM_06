@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using HeathenEngineering.SteamworksIntegration;
 using UnityEngine;
 using Steamworks;
 using Mirror;
@@ -10,6 +9,7 @@ using UnityEngine.UI;
 public class SteamLobby : MonoBehaviour
 {
 
+    public static SteamLobby Instance;
     //Callbacks
     protected Callback<LobbyCreated_t> LobbyCreated;
     protected Callback<GameLobbyJoinRequested_t> JoinRequest;
@@ -27,7 +27,10 @@ public class SteamLobby : MonoBehaviour
 
     private void Start()
     {
-        if (!SteamSettings.Initialized) return;
+        if (!SteamManager.Initialized) return;
+        if (Instance == null) Instance = this;
+
+        
         manager = GetComponent<NetworkManagerLobby>();
         LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
@@ -43,7 +46,12 @@ public class SteamLobby : MonoBehaviour
 
     private void OnLobbyCreated(LobbyCreated_t callback)
     {
-        if (callback.m_eResult != EResult.k_EResultOK) return;
+        if (callback.m_eResult != EResult.k_EResultOK)
+        {
+            return;
+            hostButton.SetActive(true);
+        }
+        hostButton.SetActive(false);
         Debug.Log("Lobby Created");
         
         manager.StartHost();
@@ -71,6 +79,7 @@ public class SteamLobby : MonoBehaviour
         if (NetworkServer.active) return;
         manager.networkAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
         manager.StartClient();
+        hostButton.SetActive(false);
     }
 
 }

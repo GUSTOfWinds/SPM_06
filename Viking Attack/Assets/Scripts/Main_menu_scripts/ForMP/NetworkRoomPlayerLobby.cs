@@ -17,6 +17,12 @@ using UnityEngine.UI;
         [SerializeField] private TMP_Text readyButtonText = null;
         [SerializeField] private TMP_Text playButtonText = null;
         [SerializeField] private Button startGameButton = null;
+
+        [SyncVar] public int ConnectionID;
+
+        [SyncVar] public int PlayerIdNumber;
+
+        [SyncVar] public ulong PlayerSteamID;
         //[SerializeField] private Button readyButton = null;
 
 

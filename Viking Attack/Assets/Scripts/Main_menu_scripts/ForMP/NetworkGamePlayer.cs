@@ -7,6 +7,11 @@ using UnityEngine;
 public class NetworkGamePlayer : NetworkBehaviour
 {
 
+    [SyncVar] public int ConnectionID;
+
+    [SyncVar] public int PlayerIdNumber;
+
+    [SyncVar] public ulong PlayerSteamID;
     [SyncVar]
     public string displayName = "Loading...";
 
