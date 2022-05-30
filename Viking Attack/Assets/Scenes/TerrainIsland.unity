@@ -389,6 +389,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 9080351483311851685, guid: 504deff2fa29fc24e84cbb8900573910, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &63614051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,6 +460,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &93606867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,6 +531,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &120638680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,6 +602,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &172741934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,6 +763,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &205045416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -829,6 +834,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &208995524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -885,6 +891,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &217631400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,6 +976,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &251482112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1401,6 +1409,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &376557317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1471,6 +1480,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &405789421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1707,6 +1717,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &415554267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1862,6 +1873,10 @@ PrefabInstance:
     - target: {fileID: 3770880122257842121, guid: dfe9584122ab9eb45bfe750dbe866229, type: 3}
       propertyPath: sceneId
       value: 814386168
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740666681227945544, guid: dfe9584122ab9eb45bfe750dbe866229, type: 3}
+      propertyPath: m_TagString
+      value: BreastRenderer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfe9584122ab9eb45bfe750dbe866229, type: 3}
@@ -2202,6 +2217,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &570852489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2457,6 +2473,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &634655161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2593,6 +2610,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &679929081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3531,6 +3549,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &959914755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3665,6 +3684,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &977054919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4130,6 +4150,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &1134877320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4428,6 +4449,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &1185632888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4802,6 +4824,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &1364967455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4872,6 +4895,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &1374278202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5182,6 +5206,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &1498591522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5790,6 +5815,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &1633310414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5926,6 +5952,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &1657960955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6194,6 +6221,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &1751844131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6250,6 +6278,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &1795641509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6569,6 +6598,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &1885430362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6749,6 +6779,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &1965461907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6833,6 +6864,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &1983620095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7062,6 +7094,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &2030169185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7222,6 +7255,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 5964413402834376738, guid: 49d75cb59ff9a454b92702b473b63343, type: 3}
   dropChance: 1
+  respawnTime: 0
 --- !u!114 &2072527144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7344,6 +7378,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &2081892642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7494,6 +7529,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &2108654664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7555,6 +7591,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &2131580590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7639,6 +7676,7 @@ MonoBehaviour:
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
   dropChance: 20
+  respawnTime: 0
 --- !u!114 &2145063010
 MonoBehaviour:
   m_ObjectHideFlags: 0

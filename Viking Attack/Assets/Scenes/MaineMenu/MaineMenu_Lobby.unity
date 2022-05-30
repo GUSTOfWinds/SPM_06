@@ -7931,7 +7931,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
   m_PrefabInstance: {fileID: 1935880336}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935880337}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94437ab5c24a9e74885b9198074249c2, type: 3}
@@ -13630,34 +13630,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1935880338, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
+      propertyPath: hostButton
+      value: 
+      objectReference: {fileID: 582264560}
     - target: {fileID: 2627643080200506126, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
     - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
-      propertyPath: mapToLoad
-      value: TerrainIsland
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
-      propertyPath: transport
-      value: 
-      objectReference: {fileID: 1935880340}
-    - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: landingPage
       value: 
       objectReference: {fileID: 725211496}
-    - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
-      propertyPath: networkAddress
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
-      propertyPath: spawnPrefabs.Array.size
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
-      propertyPath: spawnPrefabs.Array.data[13]
-      value: 
-      objectReference: {fileID: 980946679800242412, guid: d7f26ace05397064f89d7a123c7bc52b, type: 3}
     - target: {fileID: 8910869769638421570, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -13702,56 +13686,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2130335223947001309, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
---- !u!1 &1935880337 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2627643080200506126, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
+--- !u!114 &1935880338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1935880338, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
   m_PrefabInstance: {fileID: 1935880336}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1935880338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935880337}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a403b84af28d2174688fb021f741ecfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentLobbyID: 0
-  hostButton: {fileID: 582264560}
---- !u!114 &1935880339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935880337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 410f47e7ddfccd2489396d38b0a08e79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1935880340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935880337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6e55fca1f4e4844593a3dd65a3ecb39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Channels: 0200000001000000
-  Timeout: 25
-  AllowSteamRelay: 1
-  UseNextGenSteamNetworking: 1
 --- !u!1 &1945912842
 GameObject:
   m_ObjectHideFlags: 0
