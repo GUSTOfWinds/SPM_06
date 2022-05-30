@@ -39,6 +39,7 @@ namespace ItemNamespace
             {
                 return;
             }
+            
 
             if (isServer)
             {
@@ -132,7 +133,7 @@ namespace ItemNamespace
                     cameraMovement3D.shouldBeLocked = true;
                     transform.position = portPosition;
                     toolTipPanel.SetActive(false);
-                    
+
 
                     Time.timeScale = 1;
                     Cursor.lockState = CursorLockMode.Locked;
@@ -243,6 +244,7 @@ namespace ItemNamespace
             {
                 return;
             }
+
             toolTipPanel.SetActive(false);
             // Resets to default so boss can be reached again
             clickedYes = false;
