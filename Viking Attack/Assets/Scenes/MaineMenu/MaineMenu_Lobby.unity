@@ -13639,9 +13639,17 @@ PrefabInstance:
       value: TerrainIsland
       objectReference: {fileID: 0}
     - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
+      propertyPath: transport
+      value: 
+      objectReference: {fileID: 1935880340}
+    - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: landingPage
       value: 
       objectReference: {fileID: 725211496}
+    - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
+      propertyPath: networkAddress
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7341497129982660151, guid: 7525bb1c586e6654abc9aff84429035c, type: 3}
       propertyPath: spawnPrefabs.Array.size
       value: 14

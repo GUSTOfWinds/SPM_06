@@ -34,6 +34,11 @@ public class NetworkManagerLobby : NetworkManager
 
 
 
+    private void Start()
+    {
+        spawnPrefabs = spawnablePrefabs;
+
+    }
 
     public override void OnStartServer()
     {
