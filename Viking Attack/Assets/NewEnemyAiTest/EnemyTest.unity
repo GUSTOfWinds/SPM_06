@@ -644,6 +644,7 @@ MonoBehaviour:
   aggroRange: 0
   itemDrop: {fileID: 0}
   dropChance: 0
+  respawnTime: 3
 --- !u!114 &330030663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,6 +888,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4832187650858666882, guid: 84f335fbc3c5c894d979c75bbc29a696, type: 3}
+      propertyPath: respawnTime
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 4832187650858666883, guid: 84f335fbc3c5c894d979c75bbc29a696, type: 3}
       propertyPath: sceneId
       value: 2364207524
@@ -894,6 +899,14 @@ PrefabInstance:
     - target: {fileID: 4832187651206348672, guid: 84f335fbc3c5c894d979c75bbc29a696, type: 3}
       propertyPath: sceneId
       value: 1594276256
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832187651206348675, guid: 84f335fbc3c5c894d979c75bbc29a696, type: 3}
+      propertyPath: respawnTime
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832187651587877480, guid: 84f335fbc3c5c894d979c75bbc29a696, type: 3}
+      propertyPath: respawnTime
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4832187651587877481, guid: 84f335fbc3c5c894d979c75bbc29a696, type: 3}
       propertyPath: sceneId
@@ -946,6 +959,10 @@ PrefabInstance:
     - target: {fileID: 4832187651869317027, guid: 84f335fbc3c5c894d979c75bbc29a696, type: 3}
       propertyPath: m_Name
       value: Spawners
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832187652884313946, guid: 84f335fbc3c5c894d979c75bbc29a696, type: 3}
+      propertyPath: respawnTime
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4832187652884313947, guid: 84f335fbc3c5c894d979c75bbc29a696, type: 3}
       propertyPath: sceneId
@@ -2464,6 +2481,7 @@ MonoBehaviour:
   aggroRange: 0
   itemDrop: {fileID: 0}
   dropChance: 0
+  respawnTime: 3
 --- !u!114 &1150086865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2976,6 +2994,7 @@ MonoBehaviour:
   aggroRange: 0
   itemDrop: {fileID: 0}
   dropChance: 0
+  respawnTime: 3
 --- !u!114 &1573590850
 MonoBehaviour:
   m_ObjectHideFlags: 0

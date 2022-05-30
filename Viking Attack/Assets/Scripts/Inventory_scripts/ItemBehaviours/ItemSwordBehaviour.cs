@@ -68,14 +68,23 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         Collider[] hits = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Enemy"));
         if (hits.Length > 0)
         {
-            Collider hit = hits[0];
+            Collider enemy = null;
+            float closest = Mathf.Infinity;
+            foreach(Collider hit in hits)
+            {
+                if(Vector3.Distance(hit.transform.position, gameObject.transform.position) < closest)
+                {
+                    closest = Vector3.Distance(hit.transform.position, gameObject.transform.position);
+                    enemy = hit;
+                } 
+            }
             // Damage on player now works as a multiplier instead of damage.
-            hit.gameObject.GetComponent<EnemyVitalController>()
+            enemy.gameObject.GetComponent<EnemyVitalController>()
                 .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100), gameObject.GetComponent<NetworkIdentity>().netId);
-            if (hit.gameObject.GetComponent<EnemyMovement>() != null)
-                hit.gameObject.GetComponent<EnemyMovement>().Stagger();
-            else if (hit.gameObject.GetComponent<EnemyAIScript>() != null)
-                hit.gameObject.GetComponent<EnemyAIScript>().Stagger(1);
+            if (enemy.gameObject.GetComponent<EnemyMovement>() != null)
+                enemy.gameObject.GetComponent<EnemyMovement>().Stagger();
+            else if (enemy.gameObject.GetComponent<EnemyAIScript>() != null)
+                enemy.gameObject.GetComponent<EnemyAIScript>().Stagger(1);
         }
         Collider[] hitBreakable = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Breakable"));
         if (hitBreakable.Length > 0)

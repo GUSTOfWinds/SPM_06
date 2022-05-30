@@ -65,26 +65,35 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
         Collider[] hits = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Enemy"));
         if (hits.Length > 0)
         {
-            Collider hit = hits[0];
+            Collider enemy = null;
+            float closest = Mathf.Infinity;
+            foreach(Collider hit in hits)
+            {
+                if(Vector3.Distance(hit.transform.position, gameObject.transform.position) < closest)
+                {
+                    closest = Vector3.Distance(hit.transform.position, gameObject.transform.position);
+                    enemy = hit;
+                } 
+            }
             // Damage on player now works as a multiplier instead of damage.
             float damage = -(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100);
-            if(hit.GetComponent<EnemyInfo>().GetCharacterBase().GetEnemyType() == CharacterBase.EnemyType.Skeleton)
+            if(enemy.GetComponent<EnemyInfo>().GetCharacterBase().GetEnemyType() == CharacterBase.EnemyType.Skeleton)
             {
                 damage += 15;
-            }else if(hit.GetComponent<EnemyInfo>().GetCharacterBase().GetEnemyType() == CharacterBase.EnemyType.Bear)
+            }else if(enemy.GetComponent<EnemyInfo>().GetCharacterBase().GetEnemyType() == CharacterBase.EnemyType.Bear)
             {
                 damage -= 15;
-                GameObject temp = Instantiate(belongingTo.GetParticle,hit.gameObject.transform.position + new Vector3(0,2,0),hit.gameObject.transform.rotation,hit.gameObject.transform);
-                temp.transform.localScale = hit.gameObject.transform.localScale;
+                GameObject temp = Instantiate(belongingTo.GetParticle,enemy.gameObject.transform.position + new Vector3(0,2,0),enemy.gameObject.transform.rotation,enemy.gameObject.transform);
+                temp.transform.localScale = enemy.gameObject.transform.localScale;
                 Destroy(temp,1.2f);
             }
                 
-            hit.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(damage, gameObject.GetComponent<NetworkIdentity>().netId);
+            enemy.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(damage, gameObject.GetComponent<NetworkIdentity>().netId);
             
-            if (hit.gameObject.GetComponent<EnemyMovement>() != null)
-                hit.gameObject.GetComponent<EnemyMovement>().Stagger();
-            else if (hit.gameObject.GetComponent<EnemyAIScript>() != null)
-                hit.gameObject.GetComponent<EnemyAIScript>().Stagger(2);
+            if (enemy.gameObject.GetComponent<EnemyMovement>() != null)
+                enemy.gameObject.GetComponent<EnemyMovement>().Stagger();
+            else if (enemy.gameObject.GetComponent<EnemyAIScript>() != null)
+                enemy.gameObject.GetComponent<EnemyAIScript>().Stagger(2);
         }
         Collider[] hitBreakable = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Breakable"));
         if (hitBreakable.Length > 0)

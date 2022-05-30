@@ -17,6 +17,7 @@ public class NewEnemySpawner : NetworkBehaviour
     [SerializeField] private float aggroRange = 30;
     [SerializeField] private GameObject itemDrop;
     [SerializeField] private int dropChance;
+    [SerializeField] private int respawnTime;
 
     private void Awake()
     {
@@ -49,6 +50,7 @@ public class NewEnemySpawner : NetworkBehaviour
         enemy.GetComponent<EnemyInfo>().SetRespawnAnchor(transform);
         enemy.GetComponent<EnemyInfo>().SetDropItem(itemDrop);
         enemy.GetComponent<EnemyInfo>().SetDropChance(dropChance);
+        enemy.GetComponent<EnemyVitalController>().waitTime = respawnTime;
         enemy.GetComponent<EnemyAIScript>().SetEnemyTransform(transform);
         enemy.GetComponent<EnemyAIScript>().SetIfEnemyRoam(roaming);
         enemy.GetComponent<EnemyAIScript>().SetAggroRange(aggroRange);
