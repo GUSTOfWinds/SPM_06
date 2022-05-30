@@ -6,12 +6,12 @@ using Slider = UnityEngine.UI.Slider;
 
 
 namespace Character_scripts.Enemy
-{
-    public class EnemyHealthBar : MonoBehaviour
-    {
-        /**
+{ 
+    /**
      * @author Martin Kings
      */
+    public class EnemyHealthBar : MonoBehaviour
+    {
         [SerializeField] private Slider healthBar; // the slider 
 
         [SerializeField] private GameObject healthSource; // the enemy gameobject
