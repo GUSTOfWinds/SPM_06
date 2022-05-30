@@ -14,6 +14,7 @@ namespace ItemNamespace
         [SerializeField] private GameObject teleportSpot;
         [SerializeField] private GameObject uiPanel;
         [SerializeField] private Button button;
+        [SerializeField] private GameObject toolTipPanel;
         [SyncVar] [SerializeField] public bool clickedYes;
         private bool allClickedYes;
         private GameObject[] players;
@@ -121,10 +122,23 @@ namespace ItemNamespace
                 // pop up will be disabled
                 if (allClickedYes)
                 {
+                    // Resets to default so boss can be reached again
+                    clickedYes = false;
+                    button.enabled = true;
+                    // Sets the Panel and script state to active
+                    uiPanel.SetActive(false);
+                    toggleCharacterScreen.locked = false;
+                    playerScript3D.enabled = true;
+                    cameraMovement3D.shouldBeLocked = true;
+                    transform.position = portPosition;
+                    toolTipPanel.SetActive(false);
+                    
+
+                    Time.timeScale = 1;
+                    Cursor.lockState = CursorLockMode.Locked;
                     foreach (var player in players)
                     {
-                        player.GetComponent<PlayerTeleport>().CmdRemoveConfirmationScreen();
-                        player.transform.position = portPosition;
+                        player.GetComponent<PlayerTeleport>().CmdRemoveConfirmationScreen(allClickedYes);
                     }
                 }
                 else
@@ -166,8 +180,7 @@ namespace ItemNamespace
                 Cursor.lockState = CursorLockMode.Locked;
                 foreach (var player in players)
                 {
-                    player.GetComponent<PlayerTeleport>().CmdRemoveConfirmationScreen();
-                    player.transform.position = portPosition;
+                    player.GetComponent<PlayerTeleport>().CmdRemoveConfirmationScreen(allClickedYes);
                 }
             }
             else
@@ -210,6 +223,7 @@ namespace ItemNamespace
                     if (isServer)
                     {
                         player.GetComponent<PlayerTeleport>().RpcRemoveConfirmationScreen();
+                        player.transform.position = portPosition;
                     }
 
                     player.transform.position = portPosition;
@@ -229,7 +243,7 @@ namespace ItemNamespace
             {
                 return;
             }
-
+            toolTipPanel.SetActive(false);
             // Resets to default so boss can be reached again
             clickedYes = false;
             button.enabled = true;
@@ -244,12 +258,12 @@ namespace ItemNamespace
         }
 
         [Command(requiresAuthority = false)]
-        private void CmdRemoveConfirmationScreen()
+        private void CmdRemoveConfirmationScreen(bool allYes)
         {
-            // Returns if the script runs on an object that isn't the local player
-            if (!isLocalPlayer)
+            if (allYes)
             {
-                return;
+                toolTipPanel.SetActive(false);
+                transform.position = portPosition;
             }
 
             // Resets to default so boss can be reached again
@@ -298,7 +312,7 @@ namespace ItemNamespace
                 Cursor.lockState = CursorLockMode.Locked;
                 foreach (var player in players)
                 {
-                    player.GetComponent<PlayerTeleport>().CmdRemoveConfirmationScreen();
+                    player.GetComponent<PlayerTeleport>().CmdRemoveConfirmationScreen(false);
                 }
             }
         }

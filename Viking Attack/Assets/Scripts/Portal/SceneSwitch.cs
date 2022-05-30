@@ -12,6 +12,7 @@ public class SceneSwitch : MonoBehaviour
 
     [SerializeField] private GameObject[] players;
 
+    // Will start the teleportation sequence if a player enters the portal
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") == false)
