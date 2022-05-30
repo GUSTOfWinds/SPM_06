@@ -18,7 +18,7 @@ public class SceneSwitch : MonoBehaviour
         {
             return;
         }
-
+        Debug.Log("On trigger");
         if (triggerTooltip.GetKeyStatus())
         {
             players = GameObject.FindGameObjectsWithTag("Player");

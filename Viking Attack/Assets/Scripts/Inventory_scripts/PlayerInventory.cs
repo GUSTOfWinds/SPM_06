@@ -495,6 +495,17 @@ namespace Inventory_scripts
         }
         public void UpdateHeldItem(int index)
         {
+            //if the item is Amor
+            if(index == 4)
+            {
+                sprites[4].SetActive(true);
+                sprites[4].GetComponent<Image>().sprite = inventory[4].GetSprite;
+                gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel(inventory[index].GetProtection);
+                gameObject.GetComponent<GlobalPlayerInfo>()
+                    .SetItemSlot(4, inventory[4]);
+                return;
+
+            }
             sprites[index].SetActive(true);
             sprites[index].GetComponent<Image>().sprite = inventory[index].GetSprite;
             gameObject.GetComponent<GlobalPlayerInfo>()

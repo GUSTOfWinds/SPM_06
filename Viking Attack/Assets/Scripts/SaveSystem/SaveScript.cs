@@ -42,7 +42,7 @@ public class SaveScript : NetworkBehaviour
 
     public void SaveGame()
     {
-        Debug.Log(theHost);
+        
         SaveData savePlayer = new SaveData
         {
             hostName = theHost.GetComponent<GlobalPlayerInfo>().GetName()
@@ -50,13 +50,16 @@ public class SaveScript : NetworkBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         Dictionary<int, bool> isSpritActiv = new Dictionary<int, bool>();
         Dictionary<String, System.Object> dataToSave = new Dictionary<String, System.Object>();
+        //Get the key status (relic) save the key informtion with all players
+        GameObject keyObj = GameObject.FindGameObjectWithTag("Key");
+  
         string name;
-        Debug.Log(players.Length);
+       
         foreach (var t in players)
         {
             name = t.GetComponent<GlobalPlayerInfo>().GetName();
             GameObject[] inventorySprites = t.GetComponent<PlayerInventory>().GetSprites();
-            Debug.Log(inventorySprites.Length);
+           
             for (int j = 0; j < inventorySprites.Length; j++)
             {
                 isSpritActiv.Add(j, inventorySprites[j].activeSelf);
@@ -75,6 +78,15 @@ public class SaveScript : NetworkBehaviour
                 {
                     dataToSave.Add("isBossDead", (System.Object)"False");
                 }
+                //Save the key information with host
+                if (keyObj != null)
+                {
+                    dataToSave.Add("isKeyFound", (System.Object)"False");
+                }
+                else
+                {
+                    dataToSave.Add("isKeyFound", (System.Object)"True");
+                }
                 savePlayer.hostData.Add(name, dataToSave);
             }
             else
@@ -87,7 +99,7 @@ public class SaveScript : NetworkBehaviour
         Debug.Log(Application.persistentDataPath); //print the path   
         if (Directory.Exists(Application.persistentDataPath + saveFileName))//if we have a file there
         {
-            Directory.Delete(Application.persistentDataPath + saveFileName, true);
+            Directory.Delete(Application.persistentDataPath + saveFileName);
         }
         BinaryFormatter bf = new BinaryFormatter();  // binär konvertering
         FileStream file = File.Create(Application.persistentDataPath + saveFileName);
@@ -101,13 +113,15 @@ public class SaveScript : NetworkBehaviour
     public void LoadGame()
     {
 
-
+        //TO DO 
+        //return when no player is found
         if (File.Exists(Application.persistentDataPath + saveFileName))
         { //Calls when we are in game, and the hots name is already updated      
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + saveFileName, FileMode.Open);
             SaveData playerData = (SaveData)bf.Deserialize(file);
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            hostName = playerData.hostName;
             foreach (var t in players)
             {
                 var playerName = t.GetComponent<GlobalPlayerInfo>().GetName();
@@ -134,7 +148,7 @@ public class SaveScript : NetworkBehaviour
                     {
                         //Add to item list if is already gained 
                         // if the item was activ, set it to activ now
-
+                        //Maybe it should be item pick up event
                         EventInfo itemDropEventInfo = new ItemDropEventInfo
                         {
                             itemBase = t.GetComponent<PlayerInventory>().inventory[j]
@@ -142,9 +156,20 @@ public class SaveScript : NetworkBehaviour
 
                         EventSystem.Current.FireEvent(itemDropEventInfo);
                         t.GetComponent<PlayerInventory>().UpdateHeldItem(j);
+
+              
                     }
                 }//for j all player inventory items
             }
+            //check if we have the key in the saving file, destory the key in the current scen
+           if((string)playerData.hostData[hostName]["isKeyFound"] == "True")
+            {
+                Destroy(GameObject.FindGameObjectWithTag("Key"));
+               
+                //And tell the portal
+            }
+
+
             if ((string)playerData.hostData[hostName]["isBossDead"] == "True")
             {
                 //if we has killed the boss, find it and destory in this scen
