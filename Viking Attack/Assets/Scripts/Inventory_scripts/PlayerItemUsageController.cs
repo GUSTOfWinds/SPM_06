@@ -72,8 +72,8 @@ public class PlayerItemUsageController : NetworkBehaviour
 
     public IEnumerator slowOnHit()
     {
-        gameObject.transform.GetComponent<PlayerScript3D>().acceleration *= itemBase.GetSpeedMultiplierWhenUsingItem;
+        gameObject.transform.GetComponent<PlayerScript3D>().acceleration = gameObject.transform.GetComponent<PlayerScript3D>().GetBaseAcceleration * itemBase.GetSpeedMultiplierWhenUsingItem;
         yield return new WaitForSeconds(1);
-        gameObject.transform.GetComponent<PlayerScript3D>().acceleration /= itemBase.GetSpeedMultiplierWhenUsingItem;
+        gameObject.transform.GetComponent<PlayerScript3D>().acceleration = gameObject.transform.GetComponent<PlayerScript3D>().GetBaseAcceleration / itemBase.GetSpeedMultiplierWhenUsingItem;
     }
 }

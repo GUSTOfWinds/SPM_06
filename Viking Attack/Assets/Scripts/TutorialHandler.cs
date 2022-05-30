@@ -65,4 +65,12 @@ public class TutorialHandler : MonoBehaviour
             whatTutorialLevel++;
         }
     }
+
+    public void OnExit(InputAction.CallbackContext value)
+    {    
+        if(value.performed)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
