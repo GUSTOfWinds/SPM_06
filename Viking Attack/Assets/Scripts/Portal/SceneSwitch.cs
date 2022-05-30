@@ -35,4 +35,9 @@ public class SceneSwitch : MonoBehaviour
             }
         }
     }
+
+    public Triggertooltip GetTooltip()
+    {
+        return triggerTooltip;
+    }
 }

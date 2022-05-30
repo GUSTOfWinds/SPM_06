@@ -165,8 +165,10 @@ public class SaveScript : NetworkBehaviour
            if((string)playerData.hostData[hostName]["isKeyFound"] == "True")
             {
                 Destroy(GameObject.FindGameObjectWithTag("Key"));
-               
+
                 //And tell the portal
+                GameObject portal = GameObject.FindGameObjectWithTag("Portal");
+                portal.GetComponent<SceneSwitch>().GetTooltip().setKeyStatus();
             }
 
 
