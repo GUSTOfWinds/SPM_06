@@ -13,6 +13,7 @@ public class PlayerScript3D : NetworkBehaviour
     private MyRigidbody3D myRigidbody;
     private StateMachine stateMachine;
     public float acceleration = 12f;
+    private float baseAcceleration;
     public GameObject thisObject;
     public Animator animator;
 
@@ -30,6 +31,7 @@ public class PlayerScript3D : NetworkBehaviour
 
     void Start()
     {
+        baseAcceleration = acceleration;
         thisObject = this.gameObject;
     }
 
@@ -83,4 +85,6 @@ public class PlayerScript3D : NetworkBehaviour
         jump = value.started;
         jump = !value.canceled;
     }
+
+    public float GetBaseAcceleration => baseAcceleration;
 }
