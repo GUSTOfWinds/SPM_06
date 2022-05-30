@@ -11,16 +11,18 @@ namespace Inventory_scripts
         public ItemBase itembase;
         [SerializeField] private float rotationSpeed = 1;
         private ParticleSystem particleSystem;
+        private GameObject itemRender;
         private float rotation;
 
         void Start()
         {
-            particleSystem = GetComponent<ParticleSystem>();
+            itemRender = transform.Find("ItemRender").gameObject;
+            particleSystem = itemRender.GetComponent<ParticleSystem>();
             if(itembase != null)
             {
                 //Gets the mesh and material from the itembase that is droped
-                gameObject.GetComponent<MeshFilter>().mesh = itembase.GetMesh;
-                gameObject.GetComponent<MeshRenderer>().material = itembase.GetMaterial;
+                itemRender.GetComponent<MeshFilter>().mesh = itembase.GetMesh;
+                itemRender.GetComponent<MeshRenderer>().material = itembase.GetMaterial;
                 var shape = particleSystem.shape;
                 shape.enabled = true;
                 shape.shapeType = ParticleSystemShapeType.Mesh;
@@ -31,8 +33,8 @@ namespace Inventory_scripts
         public void SetUp(ItemBase itemBase)
         {
             itembase = itemBase;
-            gameObject.GetComponent<MeshFilter>().mesh = itembase.GetMesh;
-            gameObject.GetComponent<MeshRenderer>().material = itembase.GetMaterial;
+            itemRender.GetComponent<MeshFilter>().mesh = itembase.GetMesh;
+            itemRender.GetComponent<MeshRenderer>().material = itembase.GetMaterial;
             var shape = particleSystem.shape;
             shape.enabled = true;
             shape.shapeType = ParticleSystemShapeType.Mesh;
@@ -42,8 +44,11 @@ namespace Inventory_scripts
         void Update()
         {
             //Gives a roatating animation to the droped item
-            rotation += rotationSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(0,rotation,0);
+            if(rotation > 0)
+            {
+               rotation += rotationSpeed * Time.deltaTime;
+                transform.rotation = Quaternion.Euler(0,rotation,0); 
+            }
         }
     }
 }
