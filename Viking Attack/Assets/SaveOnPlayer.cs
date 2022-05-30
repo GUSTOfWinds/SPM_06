@@ -37,4 +37,8 @@ public class SaveOnPlayer : MonoBehaviour
         //hide successpanel after 1s 
         saveSuccessPanel.SetActive(false);
     }
+    public void OnExit()
+    {
+        Application.Quit();
+    }
 }
