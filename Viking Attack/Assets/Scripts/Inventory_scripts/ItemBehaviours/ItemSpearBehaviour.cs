@@ -69,7 +69,16 @@ public class ItemSpearBehaviour : ItemBaseBehaviour
             // Damage on player now works as a multiplier instead of damage.
             float damage = -(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100);
             if(hit.GetComponent<EnemyInfo>().GetCharacterBase().GetEnemyType() == CharacterBase.EnemyType.Skeleton)
+            {
                 damage += 15;
+            }else if(hit.GetComponent<EnemyInfo>().GetCharacterBase().GetEnemyType() == CharacterBase.EnemyType.Bear)
+            {
+                damage -= 15;
+                GameObject temp = Instantiate(belongingTo.GetParticle,hit.gameObject.transform.position + new Vector3(0,2,0),hit.gameObject.transform.rotation,hit.gameObject.transform);
+                temp.transform.localScale = hit.gameObject.transform.localScale;
+                Destroy(temp,1.2f);
+            }
+                
             hit.gameObject.GetComponent<EnemyVitalController>().CmdUpdateHealth(damage, gameObject.GetComponent<NetworkIdentity>().netId);
             
             if (hit.gameObject.GetComponent<EnemyMovement>() != null)

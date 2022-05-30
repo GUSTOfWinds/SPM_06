@@ -18215,6 +18215,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f3d98b3c-53ef-4041-bce0-ad7404a28d62
     m_ActionName: MenuControls/AnyKey[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4340171350062935261}
+        m_TargetAssemblyTypeName: TutorialHandler, Assembly-CSharp
+        m_MethodName: OnExit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5202203f-2897-457a-a920-f93afd51c6b1
+    m_ActionName: PlayerControls/ExitTutorial[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls
