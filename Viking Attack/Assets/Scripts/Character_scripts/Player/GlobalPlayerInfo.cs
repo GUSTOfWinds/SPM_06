@@ -95,7 +95,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         if (isLocalPlayer)
         {
             UpdateColours();
-            Debug.Log("Färg: " + skinColour);
+            Debug.Log("Fï¿½rg: " + skinColour);
             CmdSetPlayerName(playerName);
             CmdSetSkinColour(skinColour);
 
@@ -267,6 +267,8 @@ public class GlobalPlayerInfo : NetworkBehaviour
         EventSystem.Current.FireEvent(playerLevelUpInfo);
         level++;
         availableStatPoints += 3;
+        health = maxHealth;
+        healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
     }
 
     public float GetExperience()
@@ -356,7 +358,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     }
 
 
-    //gathering data and reset data By Jiang
+    //gathering data and reset data By Jiang, stamina never changes, dont need to be saved, will be initialization while awake
     public void LoadData(Dictionary<String, System.Object> data)
     {
 
@@ -410,7 +412,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         dataHolder.Add("meatStackNumber", (System.Object)meatStackNumber);
         dataHolder.Add("damage", (System.Object)damage);
         dataHolder.Add("armorLevel", (System.Object)armorLevel);
-          dataHolder.Add("color", (System.Object)skinColour);
+         //dataHolder.Add("color", (System.Object)skinColour);
         //Save the player color with red green and blue
         dataHolder.Add("red", (System.Object)red);
         dataHolder.Add("green", (System.Object)green);

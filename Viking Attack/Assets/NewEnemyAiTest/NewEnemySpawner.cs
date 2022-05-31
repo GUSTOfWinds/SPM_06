@@ -17,6 +17,7 @@ public class NewEnemySpawner : NetworkBehaviour
     [SerializeField] private float aggroRange = 30;
     [SerializeField] private GameObject itemDrop;
     [SerializeField] private int dropChance;
+    [SerializeField] private int respawnTime;
 
     private void Awake()
     {
@@ -45,10 +46,11 @@ public class NewEnemySpawner : NetworkBehaviour
             @Author Love Strignert - lost9373
         */
         // Spawns an enemy at the location of the spawner and set that enemys veribals, will also spawn it on the server
-        var enemy = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, Quaternion.identity, null);
+        var enemy = Instantiate(enemyPrefabToSpawn, gameObject.transform.position, gameObject.transform.rotation, null);
         enemy.GetComponent<EnemyInfo>().SetRespawnAnchor(transform);
         enemy.GetComponent<EnemyInfo>().SetDropItem(itemDrop);
         enemy.GetComponent<EnemyInfo>().SetDropChance(dropChance);
+        enemy.GetComponent<EnemyVitalController>().waitTime = respawnTime;
         enemy.GetComponent<EnemyAIScript>().SetEnemyTransform(transform);
         enemy.GetComponent<EnemyAIScript>().SetIfEnemyRoam(roaming);
         enemy.GetComponent<EnemyAIScript>().SetAggroRange(aggroRange);
