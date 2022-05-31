@@ -69,7 +69,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         green = PlayerPrefs.GetInt("greenValue"); // Victor Wikner
         blue = PlayerPrefs.GetInt("blueValue");// Victor Wikner
         skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255); // Victor Wikner
-
+        Cursor.visible = false;
         skinMesh.material.SetColor(BaseColor, skinColour); //Victor Wikner
     }
 
