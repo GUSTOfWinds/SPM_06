@@ -9,5 +9,4 @@ public class CursorSetup : MonoBehaviour
     {
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.ForceSoftware);
     }
-
 }
