@@ -9671,8 +9671,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 412815898}
     m_Modifications:
     - target: {fileID: 5557104493015273076, guid: e6e7a9a6c08bc10459b1a7a63e575876, type: 3}
+      propertyPath: m_Size.y
+      value: 3.750746
+      objectReference: {fileID: 0}
+    - target: {fileID: 5557104493015273076, guid: e6e7a9a6c08bc10459b1a7a63e575876, type: 3}
+      propertyPath: m_Center.y
+      value: -1.375373
+      objectReference: {fileID: 0}
+    - target: {fileID: 5557104493015273076, guid: e6e7a9a6c08bc10459b1a7a63e575876, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5557104493015273077, guid: e6e7a9a6c08bc10459b1a7a63e575876, type: 3}
       propertyPath: m_RootOrder
@@ -9733,6 +9741,14 @@ PrefabInstance:
     - target: {fileID: 5557104493015273083, guid: e6e7a9a6c08bc10459b1a7a63e575876, type: 3}
       propertyPath: m_TagString
       value: PlayerRespawnAnchor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729845858902293260, guid: e6e7a9a6c08bc10459b1a7a63e575876, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844816026819049255, guid: e6e7a9a6c08bc10459b1a7a63e575876, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.38
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6e7a9a6c08bc10459b1a7a63e575876, type: 3}
