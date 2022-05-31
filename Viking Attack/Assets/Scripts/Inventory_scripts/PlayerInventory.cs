@@ -93,7 +93,7 @@ namespace Inventory_scripts
                             gameObject.GetComponent<GlobalPlayerInfo>().IncreaseMeatStackNumber();
                             inventory[3] = playerItemPickupEventInfo.itemBase;
                             sprites[3].SetActive(true);
-                            sprites[3].GetComponent<Image>().sprite = inventory[3].GetSprite;
+                            sprites[3].GetComponent<Image>().sprite = inventory[3].GetSprite(0);
                             meatStackNumber.GetComponent<Text>().text =
                                 gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber().ToString();
                             gameObject.GetComponent<GlobalPlayerInfo>()
@@ -106,14 +106,24 @@ namespace Inventory_scripts
 
                         if (sprites[4].active)
                         {
-                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
+                            gameObject.GetComponent<GlobalPlayerInfo>()
+                                .IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
+                            sprites[4].GetComponent<Image>().sprite = inventory[4]
+                                .GetSprite((gameObject.GetComponent<GlobalPlayerInfo>().GetArmorLevel() / 2) - 1);
                         }
                         else
                         {
+                            // Adds to the inventory
                             inventory[4] = playerItemPickupEventInfo.itemBase;
+                            // Sets the sprite active
                             sprites[4].SetActive(true);
-                            sprites[4].GetComponent<Image>().sprite = inventory[4].GetSprite;
-                            gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
+                            // Upgrades armor level
+                            gameObject.GetComponent<GlobalPlayerInfo>()
+                                .IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
+                            // Fetches the suitable armor sprite
+                            sprites[4].GetComponent<Image>().sprite = inventory[4]
+                                .GetSprite((gameObject.GetComponent<GlobalPlayerInfo>().GetArmorLevel() / 2) - 1);
+                            // Adds inventory to globalplayerinfo
                             gameObject.GetComponent<GlobalPlayerInfo>()
                                 .SetItemSlot(4, inventory[4]);
                         }
@@ -131,7 +141,6 @@ namespace Inventory_scripts
         [Command]
         void CmdUpdateWeapon(int index, GameObject go)
         {
-            
             go.GetComponent<PlayerItemUsageController>().SyncHeldItem(index, go.GetComponent<NetworkIdentity>().netId);
         }
 
@@ -140,7 +149,6 @@ namespace Inventory_scripts
         [ClientRpc]
         void RpcUpdateWeapon(int index, GameObject go)
         {
-            
             go.GetComponent<PlayerItemUsageController>().SyncHeldItem(index, go.GetComponent<NetworkIdentity>().netId);
         }
 
@@ -150,7 +158,7 @@ namespace Inventory_scripts
         private void UpdateHeldItem(int index, ItemBase itemBase)
         {
             sprites[index].SetActive(true);
-            sprites[index].GetComponent<Image>().sprite = inventory[index].GetSprite;
+            sprites[index].GetComponent<Image>().sprite = inventory[index].GetSprite(0);
             gameObject.GetComponent<GlobalPlayerInfo>()
                 .SetItemSlot(index, inventory[index]); // sets the info in globalplayerinfo
             selectedItem.transform.position =
@@ -189,7 +197,7 @@ namespace Inventory_scripts
                 if (isLocalPlayer)
                 {
                     wieldedItemBase = playerItemUsageController.itemBase;
-                
+
                     switch (wieldedItemBase.GetItemBaseBehaviorScriptName)
                     {
                         case "ItemSpearBehaviour":
@@ -197,21 +205,21 @@ namespace Inventory_scripts
                             {
                                 return;
                             }
-                
+
                             break;
                         case "ItemDaggerBehaviour":
                             if (gameObject.GetComponent<ItemDaggerBehaviour>().attackLocked)
                             {
                                 return;
                             }
-                
+
                             break;
                         case "ItemMeatBehaviour":
                             if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
                             {
                                 return;
                             }
-                        
+
                             break;
                     }
                 }
@@ -249,7 +257,7 @@ namespace Inventory_scripts
         // When the player presses the 2 button, the spear is toggled and worn,
         // if the spear has been picked up
         public void ToggleSpear(InputAction.CallbackContext value)
-        { 
+        {
             if (value.started)
             {
                 if (playerItemUsageController.itemBase == inventory[1])
@@ -261,7 +269,7 @@ namespace Inventory_scripts
                 if (isLocalPlayer)
                 {
                     wieldedItemBase = playerItemUsageController.itemBase;
-                
+
                     switch (wieldedItemBase.GetItemBaseBehaviorScriptName)
                     {
                         case "ItemSwordBehaviour":
@@ -269,21 +277,21 @@ namespace Inventory_scripts
                             {
                                 return;
                             }
-                
+
                             break;
                         case "ItemDaggerBehaviour":
                             if (gameObject.GetComponent<ItemDaggerBehaviour>().attackLocked)
                             {
                                 return;
                             }
-                
+
                             break;
                         case "ItemMeatBehaviour":
                             if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
                             {
                                 return;
                             }
-                        
+
                             break;
                     }
                 }
@@ -300,6 +308,7 @@ namespace Inventory_scripts
                     {
                         RpcUpdateWeapon(1, gameObject);
                     }
+
                     if (isLocalPlayer)
                     {
                         gameObject.GetComponent<PlayerItemUsageController>().ChangeItem(inventory[1]);
@@ -315,7 +324,6 @@ namespace Inventory_scripts
         // if the dagger has been picked up
         public void ToggleDagger(InputAction.CallbackContext value)
         {
-            
             if (value.started)
             {
                 if (playerItemUsageController.itemBase == inventory[2])
@@ -327,7 +335,7 @@ namespace Inventory_scripts
                 if (isLocalPlayer)
                 {
                     wieldedItemBase = playerItemUsageController.itemBase;
-                
+
                     switch (wieldedItemBase.GetItemBaseBehaviorScriptName)
                     {
                         case "ItemSwordBehaviour":
@@ -335,21 +343,21 @@ namespace Inventory_scripts
                             {
                                 return;
                             }
-                
+
                             break;
                         case "ItemSpearBehaviour":
                             if (gameObject.GetComponent<ItemSpearBehaviour>().attackLocked)
                             {
                                 return;
                             }
-                
+
                             break;
                         case "ItemMeatBehaviour":
                             if (gameObject.GetComponent<ItemMeatBehaviour>().eating)
                             {
                                 return;
                             }
-                        
+
                             break;
                     }
                 }
@@ -382,7 +390,6 @@ namespace Inventory_scripts
         // if the player has more than 0 food in his/her inventory
         public void ToggleFood(InputAction.CallbackContext value)
         {
-            
             if (value.started)
             {
                 if (playerItemUsageController.itemBase == inventory[3])
@@ -493,29 +500,31 @@ namespace Inventory_scripts
         {
             return sprites;
         }
+
         public void UpdateHeldItem(int index)
         {
             //if the item is Amor
-            if(index == 4)
+            if (index == 4)
             {
                 sprites[4].SetActive(true);
-                sprites[4].GetComponent<Image>().sprite = inventory[4].GetSprite;
+                sprites[4].GetComponent<Image>().sprite = inventory[4].GetSprite(0);
                 gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel(inventory[index].GetProtection);
                 gameObject.GetComponent<GlobalPlayerInfo>()
                     .SetItemSlot(4, inventory[4]);
                 return;
-
             }
+
             sprites[index].SetActive(true);
-            sprites[index].GetComponent<Image>().sprite = inventory[index].GetSprite;
+            sprites[index].GetComponent<Image>().sprite = inventory[index].GetSprite(0);
             gameObject.GetComponent<GlobalPlayerInfo>()
                 .SetItemSlot(index, inventory[index]); // sets the info in globalplayerinfo
             selectedItem.transform.position =
                 sprites[index].transform.position + new Vector3(0f, 10f, 0f);
             gameObject.GetComponent<PlayerItemUsageController>()
-               .ChangeItem(inventory[index]);
+                .ChangeItem(inventory[index]);
             //TO DO something wrong with ChangeItem metod
         }
+
         public void RefreshHotbar()
         {
             foreach (var sp in sprites)
@@ -524,6 +533,5 @@ namespace Inventory_scripts
             }
         }
         //***************************************Jiang
-
     }
 }

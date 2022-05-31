@@ -37,7 +37,6 @@ using UnityEngine.InputSystem;
              LayerMask.GetMask("CheckPoint")))
         {
             //Changes text to the button and information that is set in the object hit
-            Debug.Log("CheckPoint");
             hit.collider.gameObject.GetComponent<CheckPoint>().OnHit(gameObject);
             //Calls the function to say that the object is interacted with
         }
