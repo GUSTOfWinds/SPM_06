@@ -163,6 +163,16 @@ public class GlobalPlayerInfo : NetworkBehaviour
     // Adds or reduces health
     public void UpdateHealth(float difference)
     {
+        // Adds armor to the negative health update calculation
+        if (difference < 0)
+        {
+            difference += GetArmorLevel();
+            if (difference > 0)
+            {
+                difference = 0;
+            }
+        }
+        
         if (health + difference <= maxHealth)
         {
             if (health + difference < 0)
@@ -178,6 +188,8 @@ public class GlobalPlayerInfo : NetworkBehaviour
         {
             health = maxHealth;
         }
+        
+        
 
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
         if (health <= 0)

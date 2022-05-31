@@ -106,7 +106,7 @@ namespace Inventory_scripts
 
                     case ItemBase.ItemType.Armor:
 
-                        if (sprites[4].active)
+                        if (gameObject.GetComponent<GlobalPlayerInfo>().GetArmorLevel() > 0)
                         {
                             gameObject.GetComponent<GlobalPlayerInfo>()
                                 .IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
