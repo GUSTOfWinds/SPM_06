@@ -76,7 +76,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         green = PlayerPrefs.GetInt("greenValue"); // Victor Wikner
         blue = PlayerPrefs.GetInt("blueValue");// Victor Wikner
         skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255); // Victor Wikner
-
+        Cursor.visible = false;
         skinMesh.material.SetColor(BaseColor, skinColour); //Victor Wikner
     }
 
@@ -169,6 +169,16 @@ public class GlobalPlayerInfo : NetworkBehaviour
     // Adds or reduces health
     public void UpdateHealth(float difference)
     {
+        // Adds armor to the negative health update calculation
+        if (difference < 0)
+        {
+            difference += GetArmorLevel();
+            if (difference > 0)
+            {
+                difference = 0;
+            }
+        }
+        
         if (health + difference <= maxHealth)
         {
             if (health + difference < 0)
@@ -184,6 +194,8 @@ public class GlobalPlayerInfo : NetworkBehaviour
         {
             health = maxHealth;
         }
+        
+        
 
         healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
         if (health <= 0)
@@ -273,6 +285,8 @@ public class GlobalPlayerInfo : NetworkBehaviour
         EventSystem.Current.FireEvent(playerLevelUpInfo);
         level++;
         availableStatPoints += 3;
+        health = maxHealth;
+        healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
     }
 
     public float GetExperience()
@@ -362,7 +376,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
     }
 
 
-    //gathering data and reset data By Jiang
+    //gathering data and reset data By Jiang, stamina never changes, dont need to be saved, will be initialization while awake
     public void LoadData(Dictionary<String, System.Object> data)
     {
 
@@ -416,7 +430,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         dataHolder.Add("meatStackNumber", (System.Object)meatStackNumber);
         dataHolder.Add("damage", (System.Object)damage);
         dataHolder.Add("armorLevel", (System.Object)armorLevel);
-          dataHolder.Add("color", (System.Object)skinColour);
+         //dataHolder.Add("color", (System.Object)skinColour);
         //Save the player color with red green and blue
         dataHolder.Add("red", (System.Object)red);
         dataHolder.Add("green", (System.Object)green);

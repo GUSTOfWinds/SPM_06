@@ -27,6 +27,7 @@ using UnityEngine;
                     }
 
                     Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
                 }
                 else
                 {
@@ -37,6 +38,7 @@ using UnityEngine;
                         thirdAnimator.SetBool("pointsavailable", false);
                     }
                     Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                     if (gameObject.GetComponent<CameraMovement3D>().shouldBeLocked == true)
                     {
                         gameObject.GetComponent<CameraMovement3D>().shouldBeLocked = false;

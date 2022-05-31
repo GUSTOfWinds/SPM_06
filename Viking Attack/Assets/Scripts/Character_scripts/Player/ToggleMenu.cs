@@ -8,8 +8,8 @@ using UnityEngine.InputSystem;
     public class ToggleMenu : NetworkBehaviour
     {
         /**
-     * @author Martin Kings
-     */
+         * @author Martin Kings
+         */
         private GameObject[] players;
 
         public bool canBeOpened;
@@ -107,6 +107,7 @@ using UnityEngine.InputSystem;
 
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             player.transform.Find("UI").Find("Menu_screen").gameObject.SetActive(false);
         }
 
@@ -120,6 +121,7 @@ using UnityEngine.InputSystem;
 
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             player.transform.Find("UI").Find("Menu_screen").gameObject.SetActive(true);
         }
 

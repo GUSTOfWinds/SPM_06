@@ -19,7 +19,6 @@ public class SceneSwitch : MonoBehaviour
         {
             return;
         }
-
         if (triggerTooltip.GetKeyStatus())
         {
             players = GameObject.FindGameObjectsWithTag("Player");
@@ -29,10 +28,15 @@ public class SceneSwitch : MonoBehaviour
                 if (player.GetComponent<PlayerTeleport>() != null)
                 {
                     var position = gameObject.transform.position;
-                    player.GetComponent<KillPlayer>().ChangeRespawnPoint(new Vector3(position.x, position.y, position.z - 20), true);
+                    player.GetComponent<KillPlayer>().ChangeRespawnPoint(new Vector3(position.x, position.y, position.z - 5), true);
                     player.GetComponent<PlayerTeleport>().StartTeleport();
                 }
             }
         }
+    }
+
+    public Triggertooltip GetTooltip()
+    {
+        return triggerTooltip;
     }
 }

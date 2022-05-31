@@ -54,6 +54,7 @@ namespace ItemNamespace
 
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 CmdStartConfirmation();
             }
         }
@@ -73,6 +74,7 @@ namespace ItemNamespace
 
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         [ClientRpc]
@@ -90,6 +92,7 @@ namespace ItemNamespace
 
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         // Called upon by the Yes button under the panel UI gameobject
@@ -137,6 +140,7 @@ namespace ItemNamespace
 
                     Time.timeScale = 1;
                     Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
                     foreach (var player in players)
                     {
                         player.GetComponent<PlayerTeleport>().CmdRemoveConfirmationScreen(allClickedYes);
@@ -179,6 +183,7 @@ namespace ItemNamespace
 
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 foreach (var player in players)
                 {
                     player.GetComponent<PlayerTeleport>().CmdRemoveConfirmationScreen(allClickedYes);
@@ -218,7 +223,7 @@ namespace ItemNamespace
 
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
-
+                Cursor.visible = false;
                 foreach (var player in players)
                 {
                     if (isServer)
@@ -257,6 +262,7 @@ namespace ItemNamespace
 
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         [Command(requiresAuthority = false)]
@@ -279,6 +285,7 @@ namespace ItemNamespace
 
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         // Called upon by the No button under the UI panel Gameobject
@@ -312,6 +319,7 @@ namespace ItemNamespace
 
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 foreach (var player in players)
                 {
                     player.GetComponent<PlayerTeleport>().CmdRemoveConfirmationScreen(false);
