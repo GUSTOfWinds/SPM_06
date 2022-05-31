@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using ItemNamespace;
+using TMPro;
 
 
 namespace Inventory_scripts
@@ -15,7 +16,7 @@ namespace Inventory_scripts
          * @author Martin Kings
          */
         [SerializeField] public ItemBase[] inventory;
-
+        [SerializeField] private TMP_Text armorDisplayText;
         [SerializeField] private GameObject[] sprites;
         [SerializeField] private GameObject selectedItem;
         [SerializeField] private GameObject meatStackNumber;
@@ -32,6 +33,7 @@ namespace Inventory_scripts
 
         private void Start()
         {
+            armorDisplayText.text = "0";
             // Registers listener for player pickups
             playerItemUsageController = gameObject.GetComponent<PlayerItemUsageController>();
             netID = gameObject.GetComponent<NetworkIdentity>().netId;
@@ -93,7 +95,7 @@ namespace Inventory_scripts
                             gameObject.GetComponent<GlobalPlayerInfo>().IncreaseMeatStackNumber();
                             inventory[3] = playerItemPickupEventInfo.itemBase;
                             sprites[3].SetActive(true);
-                            sprites[3].GetComponent<Image>().sprite = inventory[3].GetSprite(0);
+                            sprites[3].GetComponent<Image>().sprite = inventory[3].GetSprite;
                             meatStackNumber.GetComponent<Text>().text =
                                 gameObject.GetComponent<GlobalPlayerInfo>().GetMeatStackNumber().ToString();
                             gameObject.GetComponent<GlobalPlayerInfo>()
@@ -108,21 +110,15 @@ namespace Inventory_scripts
                         {
                             gameObject.GetComponent<GlobalPlayerInfo>()
                                 .IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
-                            sprites[4].GetComponent<Image>().sprite = inventory[4]
-                                .GetSprite((gameObject.GetComponent<GlobalPlayerInfo>().GetArmorLevel() / 2) - 1);
+                            armorDisplayText.text = gameObject.GetComponent<GlobalPlayerInfo>().GetArmorLevel().ToString();
                         }
                         else
                         {
                             // Adds to the inventory
                             inventory[4] = playerItemPickupEventInfo.itemBase;
-                            // Sets the sprite active
-                            sprites[4].SetActive(true);
-                            // Upgrades armor level
                             gameObject.GetComponent<GlobalPlayerInfo>()
                                 .IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
-                            // Fetches the suitable armor sprite
-                            sprites[4].GetComponent<Image>().sprite = inventory[4]
-                                .GetSprite((gameObject.GetComponent<GlobalPlayerInfo>().GetArmorLevel() / 2) - 1);
+                            armorDisplayText.text = gameObject.GetComponent<GlobalPlayerInfo>().GetArmorLevel().ToString();
                             // Adds inventory to globalplayerinfo
                             gameObject.GetComponent<GlobalPlayerInfo>()
                                 .SetItemSlot(4, inventory[4]);
@@ -158,7 +154,7 @@ namespace Inventory_scripts
         private void UpdateHeldItem(int index, ItemBase itemBase)
         {
             sprites[index].SetActive(true);
-            sprites[index].GetComponent<Image>().sprite = inventory[index].GetSprite(0);
+            sprites[index].GetComponent<Image>().sprite = inventory[index].GetSprite;
             gameObject.GetComponent<GlobalPlayerInfo>()
                 .SetItemSlot(index, inventory[index]); // sets the info in globalplayerinfo
             selectedItem.transform.position =
@@ -507,7 +503,7 @@ namespace Inventory_scripts
             if (index == 4)
             {
                 sprites[4].SetActive(true);
-                sprites[4].GetComponent<Image>().sprite = inventory[4].GetSprite(0);
+                sprites[4].GetComponent<Image>().sprite = inventory[4].GetSprite;
                 gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel(inventory[index].GetProtection);
                 gameObject.GetComponent<GlobalPlayerInfo>()
                     .SetItemSlot(4, inventory[4]);
@@ -515,7 +511,7 @@ namespace Inventory_scripts
             }
 
             sprites[index].SetActive(true);
-            sprites[index].GetComponent<Image>().sprite = inventory[index].GetSprite(0);
+            sprites[index].GetComponent<Image>().sprite = inventory[index].GetSprite;
             gameObject.GetComponent<GlobalPlayerInfo>()
                 .SetItemSlot(index, inventory[index]); // sets the info in globalplayerinfo
             selectedItem.transform.position =

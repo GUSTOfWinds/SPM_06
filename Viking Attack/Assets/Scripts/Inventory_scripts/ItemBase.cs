@@ -22,7 +22,7 @@ namespace ItemNamespace
         [SerializeField] private float speed;
         [SerializeField] private float stamina;
         [SerializeField] private int healAmount; // only interesting if food
-        [SerializeField] private Sprite[] sprite; // the icon shown when interacting with the item
+        [SerializeField] private Sprite sprite; // the icon shown when interacting with the item
         [SerializeField] private bool stackable; // if the item can be stacked in the inventory or the player bar
         [SerializeField] private Mesh mesh; // the mesh for the item in the world
         [SerializeField] private Material material; // the material for the item in the world
@@ -66,10 +66,7 @@ namespace ItemNamespace
         public string GetDescription => description;
 
         // Returns the 2D image for the item
-        public Sprite GetSprite(int index)
-        {
-            return sprite[index];
-        }
+        public Sprite GetSprite => sprite;
 
         // Returns this type
         public ItemType GetItemType => itemType;
