@@ -60,7 +60,7 @@ public class ItemDaggerBehaviour : ItemBaseBehaviour
         attackLocked = true;
         
         yield return new WaitForSeconds(time / 2);
-        Collider[] hits = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Enemy"));
+        Collider[] hits = Physics.OverlapSphere(rayCastPosition.transform.position + mainCamera.transform.forward*belongingTo.GetRange/2, belongingTo.GetRange/2, LayerMask.GetMask("Enemy"));
         if (hits.Length > 0)
         {
             Collider enemy = null;
