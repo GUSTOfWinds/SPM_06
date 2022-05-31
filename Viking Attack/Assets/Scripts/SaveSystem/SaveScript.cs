@@ -127,6 +127,13 @@ public class SaveScript : NetworkBehaviour
                 Debug.LogError("No player found");
                 return;
             }
+            //only host can press load
+            if(playerData.hostName != PlayerPrefs.GetString("PlayerName"))
+            {
+                //if the svaed data doesn't contain this  host's infotmation
+                Debug.LogError("No data found");
+                return;
+            }
             hostName = playerData.hostName;
             foreach (var t in players)
             {
