@@ -95,7 +95,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         if (isLocalPlayer)
         {
             UpdateColours();
-            Debug.Log("Färg: " + skinColour);
+            Debug.Log("Fï¿½rg: " + skinColour);
             CmdSetPlayerName(playerName);
             CmdSetSkinColour(skinColour);
 
@@ -267,6 +267,8 @@ public class GlobalPlayerInfo : NetworkBehaviour
         EventSystem.Current.FireEvent(playerLevelUpInfo);
         level++;
         availableStatPoints += 3;
+        health = maxHealth;
+        healthBar.GetComponent<PlayerHealthBar>().SetHealth(health);
     }
 
     public float GetExperience()
