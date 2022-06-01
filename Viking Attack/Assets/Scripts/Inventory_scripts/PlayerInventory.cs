@@ -111,6 +111,7 @@ namespace Inventory_scripts
                             gameObject.GetComponent<GlobalPlayerInfo>()
                                 .IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
                             armorDisplayText.text = gameObject.GetComponent<GlobalPlayerInfo>().GetArmorLevel().ToString();
+
                         }
                         else
                         {
