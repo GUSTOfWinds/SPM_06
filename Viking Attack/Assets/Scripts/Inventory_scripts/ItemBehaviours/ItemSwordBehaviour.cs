@@ -65,7 +65,7 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
         attackLocked = true;
         
         yield return new WaitForSeconds(time / 2);
-        Collider[] hits = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Enemy"));
+        Collider[] hits = Physics.OverlapSphere(rayCastPosition.transform.position + mainCamera.transform.forward*belongingTo.GetRange/2, belongingTo.GetRange/2, LayerMask.GetMask("Enemy"));
         if (hits.Length > 0)
         {
             Collider enemy = null;
@@ -81,9 +81,7 @@ public class ItemSwordBehaviour : ItemBaseBehaviour
             // Damage on player now works as a multiplier instead of damage.
             enemy.gameObject.GetComponent<EnemyVitalController>()
                 .CmdUpdateHealth(-(belongingTo.GetDamage * (globalPlayerInfo.GetDamage()) / 100), gameObject.GetComponent<NetworkIdentity>().netId);
-            if (enemy.gameObject.GetComponent<EnemyMovement>() != null)
-                enemy.gameObject.GetComponent<EnemyMovement>().Stagger();
-            else if (enemy.gameObject.GetComponent<EnemyAIScript>() != null)
+            if (enemy.gameObject.GetComponent<EnemyAIScript>() != null)
                 enemy.gameObject.GetComponent<EnemyAIScript>().Stagger(1);
         }
         Collider[] hitBreakable = Physics.OverlapSphere(rayCastPosition.transform.position, belongingTo.GetRange, LayerMask.GetMask("Breakable"));

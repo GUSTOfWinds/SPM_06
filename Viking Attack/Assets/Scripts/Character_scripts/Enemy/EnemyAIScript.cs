@@ -92,6 +92,16 @@ public class EnemyAIScript : NetworkBehaviour
     {
         if (isServer)
         {
+            if (hitsForStagger >= staggerStamina)
+            {
+                navMeshAgent.velocity = Vector3.zero;
+                hitsForStagger = 0;
+                stateToPlayByIndex = 4;
+                //Stops the Attack() function
+                StopAllCoroutines();
+                //Sets isAttacking to false to show that the Attack() function is done
+                isAttacking = false;
+            }
             //Is the enemy running set speed to chasingSpeedMultiplier fast if not set speed to defaultSpeed
             if (stateToPlayByIndex == 1)
             {
@@ -345,19 +355,16 @@ public class EnemyAIScript : NetworkBehaviour
 
     public void Stagger(int amount)
     {
-        //Counts hits until hitAmountForStagger the stagger enemy which also resets path that stop the enemy form moving
+        //Counts hits for the stagger
         hitsForStagger += amount;
-        if (hitsForStagger >= staggerStamina)
-        {
-            navMeshAgent.velocity = Vector3.zero;
-            hitsForStagger = 0;
-            //navMeshAgent.ResetPath();
-            stateToPlayByIndex = 4;
-            //Stops the Attack() function
-            StopAllCoroutines();
-            //Sets isAttacking to false to show that the Attack() function is done
-            isAttacking = false;
-        }
+        RpcStagger(amount);
+    }
+
+    [ClientRpc] 
+    public void RpcStagger(int amount)
+    {
+        if(!isServer)
+            hitsForStagger += amount;
     }
 
     [ClientRpc] 

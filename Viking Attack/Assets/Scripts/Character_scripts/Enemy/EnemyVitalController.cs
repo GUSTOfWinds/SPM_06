@@ -26,7 +26,7 @@ public class EnemyVitalController : NetworkBehaviour
 
     private EnemyInfo enemyInfo;
     private SkinnedMeshRenderer skinnedMeshRenderer;
-    private Material[] materials;
+    private Material[] materialsWhenHit;
     [SerializeField] private Material hitMaterial;
     [SerializeField] private AudioClip hitSound;
     private AudioSource audioSource;
@@ -42,11 +42,12 @@ public class EnemyVitalController : NetworkBehaviour
         maxHealth = currentHealth;
         enemyInfo = gameObject.GetComponent<EnemyInfo>();
         enemyInfo.PlayerScale();
-
-        materials = new Material[skinnedMeshRenderer.materials.Length + 1];
-        Array.Copy(skinnedMeshRenderer.materials, materials, skinnedMeshRenderer.materials.Length);
-        materials[materials.Length - 1] = hitMaterial;
-
+        materialsWhenHit = new Material[skinnedMeshRenderer.materials.Length + 2];
+        materialsWhenHit[0] = hitMaterial;
+        materialsWhenHit[1] = hitMaterial;
+        foreach(Material mat in skinnedMeshRenderer.materials)
+        for(int i = 2; i<skinnedMeshRenderer.materials.Length;i++)
+            materialsWhenHit[i] = skinnedMeshRenderer.materials[i-2];
         aggroCounter = new Dictionary<uint, float>();
     }
 
@@ -110,7 +111,6 @@ public class EnemyVitalController : NetworkBehaviour
                     aggroCounter.Add(player,change);
                 }
 
-                RpcBlinkOnHit(); // Plays for client
                 StartCoroutine(BlinkOnHit());
 
                 RpcPlayHitSound(); // Plays for client
@@ -125,10 +125,6 @@ public class EnemyVitalController : NetworkBehaviour
 
             if (currentHealth <= 0f)
             {
-                if (gameObject.GetComponent<EnemyAttack>() != null)
-                {
-                    gameObject.GetComponent<EnemyAttack>().StopCoroutine("FinishAttack");
-                }
 
                 sphereColliders =
                     Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
@@ -166,10 +162,6 @@ public class EnemyVitalController : NetworkBehaviour
             if (currentHealth <= 0f)
             {
                 StartCoroutine(BlinkOnHit());
-                if (gameObject.GetComponent<EnemyAttack>() != null)
-                {
-                    gameObject.GetComponent<EnemyAttack>().StopCoroutine("FinishAttack");
-                }
 
                 sphereColliders =
                     Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
@@ -191,18 +183,6 @@ public class EnemyVitalController : NetworkBehaviour
         else
             CmdUpdateHealth(change);
     }
-
-    // Plays the hit color on client
-    [ClientRpc]
-    private void RpcBlinkOnHit()
-    {
-        if (isServer)
-        {
-            return;
-        }
-
-        StartCoroutine(BlinkOnHit());
-    }
     
     private IEnumerator BlinkOnHit()
     {
@@ -210,7 +190,7 @@ public class EnemyVitalController : NetworkBehaviour
             @Author Love Strignert - lost9373
         */
         Material[] temp = skinnedMeshRenderer.materials;
-        skinnedMeshRenderer.materials = materials;
+        skinnedMeshRenderer.materials = materialsWhenHit;
         yield return new WaitForSeconds(0.1f);
         skinnedMeshRenderer.materials = temp;
     }
@@ -218,12 +198,10 @@ public class EnemyVitalController : NetworkBehaviour
     [ClientRpc]
     private void RpcPlayHitSound()
     {
-        if (isServer)
+        if (!isServer)
         {
-            return;
+            PlayHitSound();
         }
-
-        PlayHitSound();
     }
 
     private void PlayHitSound()
