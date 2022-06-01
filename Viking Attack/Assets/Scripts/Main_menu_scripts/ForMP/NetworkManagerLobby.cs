@@ -239,8 +239,19 @@ public class NetworkManagerLobby : NetworkManager
     {
         //if (!sceneName.Contains("Scene_Map")) return;
         var conn = GamePlayers[0].connectionToClient;
+        
+        for (int i = GamePlayers.Count -1 ; i >= 0; i--)
+        {
+            NetworkGamePlayer currentSpot = GamePlayers[i];
+            conn = currentSpot.connectionToClient;
+            GameObject playerInGame = Instantiate(playerPrefabFinalUse);
+            playerInGame.GetComponent<GlobalPlayerInfo>().SetDisplayName(currentSpot.displayName);
+            playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(currentSpot.colour);
+            InGamePlayer.Add(playerInGame);
+            NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
+        }
 
-        foreach (var t in GamePlayers)
+        /*foreach (var t in GamePlayers)
         {
             conn = t.connectionToClient;
             GameObject playerInGame = Instantiate(playerPrefabFinalUse);
@@ -248,9 +259,15 @@ public class NetworkManagerLobby : NetworkManager
             playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(t.colour);
             InGamePlayer.Add(playerInGame);
             NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
-        }
+        }*/
         var playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
         NetworkServer.Spawn(playerSpawnSystemInstance);
+        for (int i = GamePlayers.Count -1 ; i >= 0 ; i--)
+        {
+            Destroy(GamePlayers[i]);
+        }
+
+        GamePlayers.Clear();
     }
 
     // for loading data By Jiang

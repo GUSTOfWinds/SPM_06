@@ -34,7 +34,6 @@ public class EnemyAIScript : NetworkBehaviour
     private int staggerStamina;
     private int stateToPlayByIndex = 0;
     private GameObject target;
-    private int hitsForStagger;
     private GameObject[] players;
     private GameObject[] enemies;
 
@@ -45,9 +44,10 @@ public class EnemyAIScript : NetworkBehaviour
 
     // Syncs the position of the object to the server
     [SyncVar] private Vector3 syncPosition;
-
     // Syncs the rotaion of the object to the server
     [SyncVar] private Quaternion syncRotation;
+    // Syncs the hitsForStagger of the object to the server
+    [SyncVar] private int syncHitsForStagger;
 
     void Awake()
     {
@@ -92,10 +92,11 @@ public class EnemyAIScript : NetworkBehaviour
     {
         if (isServer)
         {
-            if (hitsForStagger >= staggerStamina)
+            if (syncHitsForStagger >= staggerStamina)
             {
+                Debug.Log("HMMMMMMMMMMMMMMMMM");
                 navMeshAgent.velocity = Vector3.zero;
-                hitsForStagger = 0;
+                CmdSetSynchedHitsForStagger(0);
                 stateToPlayByIndex = 4;
                 //Stops the Attack() function
                 StopAllCoroutines();
@@ -356,15 +357,8 @@ public class EnemyAIScript : NetworkBehaviour
     public void Stagger(int amount)
     {
         //Counts hits for the stagger
-        hitsForStagger += amount;
-        RpcStagger(amount);
-    }
-
-    [ClientRpc] 
-    public void RpcStagger(int amount)
-    {
-        if(!isServer)
-            hitsForStagger += amount;
+        CmdSetSynchedHitsForStagger(syncHitsForStagger + amount);
+        Debug.Log(syncHitsForStagger);
     }
 
     [ClientRpc] 
@@ -385,4 +379,6 @@ public class EnemyAIScript : NetworkBehaviour
     public void SetRoamingRange(float roamingRange) => this.roamingRangeFromSpawn = roamingRange;
     [Command(requiresAuthority = false)] private void CmdSetSynchedPosition(Vector3 position) => syncPosition = position;
     [Command(requiresAuthority = false)] private void CmdSetSynchedRotation(Quaternion rotation) => syncRotation = rotation;
+    [Command(requiresAuthority = false)] private void CmdSetSynchedHitsForStagger(int amount) => syncHitsForStagger = amount;
+    
 }

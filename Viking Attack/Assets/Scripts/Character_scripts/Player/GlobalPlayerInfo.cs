@@ -95,7 +95,6 @@ public class GlobalPlayerInfo : NetworkBehaviour
         if (isLocalPlayer)
         {
             UpdateColours();
-            Debug.Log("F�rg: " + skinColour);
             CmdSetPlayerName(playerName);
             CmdSetSkinColour(skinColour);
 
