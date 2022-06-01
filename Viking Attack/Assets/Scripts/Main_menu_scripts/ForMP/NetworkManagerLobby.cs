@@ -27,11 +27,18 @@ public class NetworkManagerLobby : NetworkManager
     [SerializeField] private GameObject playerPrefabFinalUse;
 
 
+    private bool SceneChanged;
+
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
     public static event Action<NetworkConnectionToClient, List<GameObject>> OnServerReadied;
 
 
+
+    private void Start()
+    {
+        spawnPrefabs = spawnablePrefabs;
+    }
 
 
     public override void OnStartServer()
@@ -67,6 +74,10 @@ public class NetworkManagerLobby : NetworkManager
         conn.Send(characterInfo);
 
         OnClientConnected?.Invoke();
+        if (SceneChanged == true)
+        {
+            ServerChangeScene(mapToLoad);
+        }
     }
 
     //removes client on disconnect
@@ -181,6 +192,7 @@ public class NetworkManagerLobby : NetworkManager
         if (SceneManager.GetActiveScene().path == menuScene)
         {
             if (!IsReadyToStart()) return;
+            SceneChanged = true;
             ServerChangeScene(mapToLoad);
         }
     }
@@ -239,7 +251,6 @@ public class NetworkManagerLobby : NetworkManager
         }
         var playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
         NetworkServer.Spawn(playerSpawnSystemInstance);
-
     }
 
     // for loading data By Jiang

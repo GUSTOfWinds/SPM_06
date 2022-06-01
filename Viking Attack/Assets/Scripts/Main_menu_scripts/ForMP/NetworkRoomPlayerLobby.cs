@@ -39,6 +39,7 @@ using UnityEngine.UI;
                 isLeader = value;
                 startGameButton.gameObject.SetActive(value);
             }
+            get => isLeader;
         }
         
         //room and Room are supposed to function with the server, and if there isn't a room that holds the NetworkManager it'll create one
