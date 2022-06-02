@@ -11,11 +11,7 @@ using ItemNamespace;
 
 public class SaveScript : NetworkBehaviour
 {
-    int intToSave;
-    float floatToSave;
-    bool boolToSave;
     private string saveFileName = "/playedData.dat";
-    private PlayerInventory hostInventory;
     private bool isLoadFromFile;
     private GameObject theHost;
     private string hostName;
@@ -31,11 +27,8 @@ public class SaveScript : NetworkBehaviour
         isLoadFromFile = false;
 
     }
-    public void setLoadFromFile()
-    {
-
-    }
-    public void setHost(GameObject obj)
+ 
+    public void SetHost(GameObject obj)
     {
         theHost = obj;
     }
@@ -94,7 +87,14 @@ public class SaveScript : NetworkBehaviour
                 savePlayer.clientData.Add(name, dataToSave);
             }
         }
-
+        // save armor information
+        GameObject[] armors = GameObject.FindGameObjectsWithTag("Armor");
+        foreach(var ar in armors)
+        {
+            savePlayer.armorsPos.Add(ar.gameObject.transform.position.x);
+        }
+      
+        Debug.Log("Armor is savd");
 
         Debug.Log(Application.persistentDataPath); //print the path   
         if (Directory.Exists(Application.persistentDataPath + saveFileName))//if we have a file there
@@ -199,6 +199,16 @@ public class SaveScript : NetworkBehaviour
                     }
                 }
             }
+            //check armors in the game world and armors in saved file
+            GameObject[] armors = GameObject.FindGameObjectsWithTag("Armor");
+            foreach(var armor in armors)
+            {
+                if (!playerData.armorsPos.Contains(armor.gameObject.transform.position.x))
+                {
+                    //destory this armor if is not saved in file
+                    Destroy(armor.gameObject);
+                }
+            }
 
             file.Close();
             Debug.Log("Data is loaded");
@@ -259,6 +269,7 @@ public class SaveData
     public Dictionary<String, Dictionary<String, System.Object>> hostData = new Dictionary<string, Dictionary<string, object>>(); //all the information about the host
     public Dictionary<String, Dictionary<String, System.Object>> clientData = new Dictionary<string, Dictionary<string, object>>();// all th information about clients
     public Dictionary<string, Dictionary<int, bool>> playerInventory = new Dictionary<string, Dictionary<int, bool>>(); //player's name and the "isSpritActiv" 
+    public HashSet<float> armorsPos = new HashSet<float>(); //sava the world position x of all armors which not has been picked up by players
 
 }
 
