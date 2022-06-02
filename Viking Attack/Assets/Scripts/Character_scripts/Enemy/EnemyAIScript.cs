@@ -94,7 +94,6 @@ public class EnemyAIScript : NetworkBehaviour
         {
             if (syncHitsForStagger >= staggerStamina)
             {
-                Debug.Log("HMMMMMMMMMMMMMMMMM");
                 navMeshAgent.velocity = Vector3.zero;
                 CmdSetSynchedHitsForStagger(0);
                 stateToPlayByIndex = 4;
