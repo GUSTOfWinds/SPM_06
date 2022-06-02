@@ -804,8 +804,8 @@ MonoBehaviour:
   roaming: 0
   roamingRange: 20
   aggroRange: 30
-  itemDrop: {fileID: 9080351483311851685, guid: 504deff2fa29fc24e84cbb8900573910, type: 3}
-  dropChance: 1
+  itemDrop: {fileID: 0}
+  dropChance: 0
   respawnTime: 99999999
 --- !u!114 &63614051
 MonoBehaviour:
@@ -1008,7 +1008,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 70
 --- !u!114 &93606867
 MonoBehaviour:
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 120
 --- !u!114 &120638680
 MonoBehaviour:
@@ -1222,8 +1222,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 19886700}
-  - {fileID: 8956608590428937732}
   - {fileID: 696261250}
+  - {fileID: 8956608590428937732}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1494,7 +1494,7 @@ PrefabInstance:
       objectReference: {fileID: 5618711477724573921, guid: 6ec8c1817f184bf4891ca932aafc4aea, type: 3}
     - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1607,7 +1607,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 70
 --- !u!114 &205045416
 MonoBehaviour:
@@ -1890,7 +1890,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 120
 --- !u!114 &217631400
 MonoBehaviour:
@@ -3759,7 +3759,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 70
 --- !u!114 &405789421
 MonoBehaviour:
@@ -4191,7 +4191,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 120
 --- !u!114 &415554267
 MonoBehaviour:
@@ -5410,7 +5410,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 120
 --- !u!114 &570852489
 MonoBehaviour:
@@ -6752,7 +6752,7 @@ Transform:
   - {fileID: 3252394837032378525}
   - {fileID: 2069697524860194142}
   m_Father: {fileID: 163320563}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &710798997 stripped
 Transform:
@@ -7495,7 +7495,7 @@ PrefabInstance:
       objectReference: {fileID: 5618711477724573921, guid: 6ec8c1817f184bf4891ca932aafc4aea, type: 3}
     - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8097,6 +8097,76 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 911835059}
   m_Mesh: {fileID: -3983063591393173388, guid: 8eb3b4b60819d1e498262ba0f08f5b89, type: 3}
+--- !u!1001 &911916948
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2055683207}
+    m_Modifications:
+    - target: {fileID: 8541251770372932264, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: enemyPrefabToSpawn
+      value: 
+      objectReference: {fileID: 9080351483311851685, guid: 504deff2fa29fc24e84cbb8900573910, type: 3}
+    - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 290.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.187996
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 329.301
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541251770372932267, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: sceneId
+      value: 4166185407
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541251770372932270, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+      propertyPath: m_Name
+      value: Spear_spawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+--- !u!4 &911916949 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
+  m_PrefabInstance: {fileID: 911916948}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &912112578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8805,7 +8875,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 70
 --- !u!114 &977054919
 MonoBehaviour:
@@ -10982,7 +11052,7 @@ PrefabInstance:
       objectReference: {fileID: 5618711477724573921, guid: 6ec8c1817f184bf4891ca932aafc4aea, type: 3}
     - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11304,7 +11374,7 @@ PrefabInstance:
       objectReference: {fileID: 5618711477724573921, guid: 6ec8c1817f184bf4891ca932aafc4aea, type: 3}
     - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8541251770372932265, guid: 4b4bdac3cd52fea4684708f2ee91fd35, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12000,7 +12070,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 70
 --- !u!114 &1364967455
 MonoBehaviour:
@@ -12071,7 +12141,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 70
 --- !u!114 &1374278202
 MonoBehaviour:
@@ -12788,7 +12858,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 120
 --- !u!114 &1498591522
 MonoBehaviour:
@@ -14536,7 +14606,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 120
 --- !u!114 &1633310414
 MonoBehaviour:
@@ -14828,7 +14898,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 70
 --- !u!114 &1657960955
 MonoBehaviour:
@@ -15686,7 +15756,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 70
 --- !u!114 &1751844131
 MonoBehaviour:
@@ -15867,7 +15937,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 120
 --- !u!114 &1795641509
 MonoBehaviour:
@@ -17303,7 +17373,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 120
 --- !u!114 &1965461907
 MonoBehaviour:
@@ -17521,7 +17591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6801884737494532167, guid: 71202ca465fc89e4aa61674f54fa1583, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6801884737494532167, guid: 71202ca465fc89e4aa61674f54fa1583, type: 3}
       propertyPath: m_LocalScale.x
@@ -17840,7 +17910,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 120
 --- !u!114 &2030169185
 MonoBehaviour:
@@ -18074,6 +18144,7 @@ Transform:
   m_LocalPosition: {x: -122.59999, y: -46, z: -429.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 911916949}
   - {fileID: 1237695040}
   - {fileID: 1258387479}
   - {fileID: 201121631}
@@ -18446,7 +18517,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 120
 --- !u!114 &2081892642
 MonoBehaviour:
@@ -18597,7 +18668,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 70
 --- !u!114 &2108654664
 MonoBehaviour:
@@ -18721,7 +18792,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 120
 --- !u!114 &2131580590
 MonoBehaviour:
@@ -18806,7 +18877,7 @@ MonoBehaviour:
   roamingRange: 20
   aggroRange: 30
   itemDrop: {fileID: 7614592851052429147, guid: 5e9f8fde78cd9bf46b3450050603f911, type: 3}
-  dropChance: 20
+  dropChance: 5
   respawnTime: 70
 --- !u!114 &2145063010
 MonoBehaviour:
@@ -21482,7 +21553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956608590388440444, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8956608590388440444, guid: fc07a57ea4ed1b6478af8613d862e6d1, type: 3}
       propertyPath: m_LocalScale.y
