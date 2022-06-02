@@ -13,6 +13,7 @@ public class PressAnyKey : MonoBehaviour
     
     public Animator animator;
     private UnityEngine.UI.Text text;
+    private bool pressed = false;
     
     void menutransition() 
     { 
@@ -21,14 +22,18 @@ public class PressAnyKey : MonoBehaviour
 
     public void AnyKey(InputAction.CallbackContext value)
     {
-        if(value.performed)
+        if (pressed == false)
         {
-            audioSource.PlayOneShot(ac);
-            envAudioSource.Play();
-            seagullAudioSource.Play();
-            music.Play();
-            animator.SetTrigger("pressedanykey");
-            Invoke("menutransition", 2.5f);
+            if (value.performed)
+            {
+                audioSource.PlayOneShot(ac);
+                envAudioSource.Play();
+                seagullAudioSource.Play();
+                music.Play();
+                animator.SetTrigger("pressedanykey");
+                Invoke("menutransition", 2.5f);
+                pressed = true;
+            }
         }
     }
 }
