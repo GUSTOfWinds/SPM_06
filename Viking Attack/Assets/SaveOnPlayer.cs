@@ -17,7 +17,7 @@ public class SaveOnPlayer : MonoBehaviour
 
     public void OnSaveClickFc()
     {
-        saveManager.GetComponent<SaveScript>().setHost(gameObject);
+        saveManager.GetComponent<SaveScript>().SetHost(gameObject);
         saveManager.GetComponent<SaveScript>().SaveGame();
 
     }

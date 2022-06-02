@@ -114,6 +114,7 @@ public class EnemyVitalController : NetworkBehaviour
                 StartCoroutine(BlinkOnHit());
                 RpcBlinkOnHit();
 
+                RpcFixMaxHealth();
                 RpcPlayHitSound(); // Plays for client
                 PlayHitSound();
                 EventInfo enemyTakesDamage = new EnemyHitEvent
@@ -224,6 +225,12 @@ public class EnemyVitalController : NetworkBehaviour
     private void RpcIncreaseExperience(GameObject player, float exp)
     {
         player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(exp);
+    }
+
+    [ClientRpc]
+    private void RpcFixMaxHealth()
+    {
+        maxHealth = gameObject.GetComponent<EnemyInfo>().maxHealth;
     }
 
     public float GetCurrentHealth()
