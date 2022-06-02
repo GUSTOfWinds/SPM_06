@@ -69,7 +69,7 @@ public class EnemyAIScript : NetworkBehaviour
         //Gets the variables that we need to set from the characterBase
         chasingSpeedMultiplier = characterBase.GetChasingSpeed();
         defaultSpeed = characterBase.GetMovementSpeed();
-        damage = characterBase.GetDamage();
+        damage = GetComponent<EnemyInfo>().GetDamage();
         attackRange = characterBase.GetRange();
         navMeshAgent.speed = characterBase.GetMovementSpeed();
         staggerStamina = characterBase.GetStaggerStamina();
@@ -368,7 +368,6 @@ public class EnemyAIScript : NetworkBehaviour
     {
         //Counts hits for the stagger
         CmdSetSynchedHitsForStagger(syncHitsForStagger + amount);
-        Debug.Log(syncHitsForStagger);
     }
 
     [ClientRpc]

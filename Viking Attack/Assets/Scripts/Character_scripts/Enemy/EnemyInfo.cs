@@ -13,7 +13,7 @@ namespace ItemNamespace
 
         [SerializeField] private float attackCooldown; // the cooldown of the enemy attacks
 
-        [SerializeField] private int damage; // the damage of the enemy attacks
+        [SerializeField] private float damage; // the damage of the enemy attacks
 
         // float that will be reset to 0 after hitting the attackCooldown variable
         [SerializeField] private float cooldown;
@@ -41,9 +41,8 @@ namespace ItemNamespace
         [SerializeField] private int dropChance; // insert value for dropchance
         private GameObject[] players;
         private int scale;
-        private EnemyVitalController enemyVitalController;
 
-        private void Start()
+        private void Awake()
         {
             scale = 1;
             // Updates the variables using the scriptable object
@@ -56,7 +55,16 @@ namespace ItemNamespace
             moveSpeed = characterBase.GetMovementSpeed();
             maxHealth = characterBase.GetMaxHealth();
             health = characterBase.GetMaxHealth();
-            enemyVitalController = gameObject.GetComponent<EnemyVitalController>();
+            
+            if (level > 1)
+            {
+                for (int i = 1; i < level; i++)
+                {
+                    damage *= 1.3f;
+                    maxHealth *= 1.3f;
+                    health = maxHealth;
+                }
+            }
         }
 
         public int GetEnemyLevel()
@@ -89,6 +97,11 @@ namespace ItemNamespace
             return name;
         }
 
+        public float GetDamage()
+        {
+            return damage;
+        }
+
         public CharacterBase GetCharacterBase()
         {
             return characterBase;
@@ -97,12 +110,6 @@ namespace ItemNamespace
         public float GetExperience()
         {
             return experience;
-        }
-
-        //get health back when moving back to default status
-        public void BackToDefault()
-        {
-            gameObject.GetComponent<EnemyInfo>().health = maxHealth;
         }
 
         // increases damage and health if there are multiple players
@@ -116,7 +123,7 @@ namespace ItemNamespace
                 scale = players.Length;
 
                 maxHealth *= (float) Math.Pow(1.3, players.Length * 1.45);
-                damage *= (int) Math.Pow(1.3, players.Length * 1.33);
+                damage *= (float) Math.Pow(1.3, players.Length * 1.33);
                 health = maxHealth;
                 gameObject.GetComponent<EnemyVitalController>().PlayerScaleHealthUpdate(health, maxHealth);
             }
