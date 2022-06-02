@@ -79,6 +79,7 @@ public class Triggertooltip : NetworkBehaviour
         {
             return;
         }
+
         if (keyIsFound == false)
         {
             goalText = other.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject;
@@ -123,8 +124,6 @@ public class Triggertooltip : NetworkBehaviour
                     CmdDisplayText(player);
                 }
             }
-            
-            // TODO activate the animation of the portal animation or whatever here
         }
     }
 
@@ -159,16 +158,17 @@ public class Triggertooltip : NetworkBehaviour
     {
         player.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject.SetActive(true);
         yield return new WaitForSeconds(7);
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) > 15f)
-        {
-            player.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject.SetActive(false);
-        }
+        player.transform.Find("UI").gameObject.transform.Find("GoalText").gameObject.SetActive(false);
     }
 
     public bool GetKeyStatus()
     {
         return keyIsFound;
     }
+
     //for saving the key status, if the key is found , when we load, i want to change the key status here
-    public void setKeyStatus() { keyIsFound = true; } //By Jiang
+    public void setKeyStatus()
+    {
+        keyIsFound = true;
+    } //By Jiang
 }
