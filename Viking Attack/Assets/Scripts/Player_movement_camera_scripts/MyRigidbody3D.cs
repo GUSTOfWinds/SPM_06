@@ -95,8 +95,9 @@ public class MyRigidbody3D : NetworkBehaviour
         {
             if (audioSource.isPlaying)
             {
-                audioSource.loop = false;
+                audioSource.Stop();
             }
+            audioSource.loop = false;
             return;
         }
 
