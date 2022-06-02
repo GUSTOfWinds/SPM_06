@@ -15,6 +15,8 @@ using UnityEngine.InputSystem;
         private Camera mainCamera;
 
         private RaycastHit hit;
+        //For checkoint
+       
 
         public void Start()
         {
@@ -32,15 +34,6 @@ using UnityEngine.InputSystem;
                 interactionText.text = "Press: E to ";
                 //Calls the function to say that the object is interacted with
             }
-        //For check points **************
-        if (Physics.SphereCast(mainCamera.transform.position, 1f, mainCamera.transform.forward, out hit, 1,
-             LayerMask.GetMask("CheckPoint")))
-        {
-            //Changes text to the button and information that is set in the object hit
-            hit.collider.gameObject.GetComponent<CheckPoint>().OnHit(gameObject);
-            //Calls the function to say that the object is interacted with
-        }
-        //********************
         if (Physics.SphereCast(mainCamera.transform.position, 1f, mainCamera.transform.forward, out hit, 1,
                     LayerMask.GetMask("InteractableObject")))
             {
@@ -63,4 +56,13 @@ using UnityEngine.InputSystem;
                 hit.transform.GetComponent<InteractableObjectScript>().ButtonPressed(gameObject);
             }
         }
-    }
+
+
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.CompareTag("Player"))
+    //    {
+    //        Debug.Log("Hit checkPoint");
+    //    }
+    //}
+}
