@@ -77,10 +77,6 @@ public class MyRigidbody3D : NetworkBehaviour
         CmdSetSynchedPosition(this.transform.position);
         CmdSetSynchedRotation(this.transform.rotation);
 
-        
-
-        
-        
     }
 
     /*

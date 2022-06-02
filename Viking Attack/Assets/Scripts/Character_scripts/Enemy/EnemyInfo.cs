@@ -65,6 +65,7 @@ namespace ItemNamespace
                     health = maxHealth;
                 }
             }
+            gameObject.GetComponent<EnemyVitalController>().PlayerScaleHealthUpdate(health, maxHealth);
         }
 
         public int GetEnemyLevel()
@@ -125,9 +126,9 @@ namespace ItemNamespace
                 maxHealth *= (float) Math.Pow(1.3, players.Length * 1.45);
                 damage *= (float) Math.Pow(1.3, players.Length * 1.33);
                 health = maxHealth;
-                
+                gameObject.GetComponent<EnemyVitalController>().PlayerScaleHealthUpdate(health, maxHealth);
             }
-            gameObject.GetComponent<EnemyVitalController>().PlayerScaleHealthUpdate(health, maxHealth);
+            
         }
 
         public void SetDropItem(GameObject drop) => this.drop = drop;
