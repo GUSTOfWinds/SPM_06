@@ -70,7 +70,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         blue = PlayerPrefs.GetInt("blueValue");// Victor Wikner
         skinColour = new Color32((byte)red, (byte)green, (byte)blue, 255); // Victor Wikner
         Cursor.visible = false;
-        skinMesh.material.SetColor("Color_3faf41ce09af43f49e77e2db8ff63c76", skinColour); //Victor Wikner
+        skinMesh.material.SetColor(BaseColor, skinColour); //Victor Wikner
     }
 
 
@@ -79,7 +79,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         armorLevel += increase;
     }
     private NetworkManagerLobby room;
-    private static readonly int BaseColor = Shader.PropertyToID("Color_be8b5dda336745c985841ed4b814c54e");
+    private static readonly int BaseColor = Shader.PropertyToID("Color_3faf41ce09af43f49e77e2db8ff63c76");
 
     private NetworkManagerLobby Room
     {
