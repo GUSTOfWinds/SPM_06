@@ -79,7 +79,7 @@ public class GlobalPlayerInfo : NetworkBehaviour
         armorLevel += increase;
     }
     private NetworkManagerLobby room;
-    private static readonly int BaseColor = Shader.PropertyToID("Color_be8b5dda336745c985841ed4b814c54e");
+    private static readonly int BaseColor = Shader.PropertyToID("Color_3faf41ce09af43f49e77e2db8ff63c76");
 
     private NetworkManagerLobby Room
     {

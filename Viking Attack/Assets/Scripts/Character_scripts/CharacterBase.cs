@@ -17,7 +17,7 @@ namespace ItemNamespace
         [SerializeField] private string description;
         [SerializeField] private float range;
         [SerializeField] private float attackCooldown;
-        [SerializeField] private int damage;
+        [SerializeField] private float damage;
         [SerializeField] private float chasingSpeedMultiplier;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float maxHealth;
@@ -60,7 +60,7 @@ namespace ItemNamespace
 
 
         // Returns the base damage of the character
-        public int GetDamage()
+        public float GetDamage()
         {
             return damage;
         }
