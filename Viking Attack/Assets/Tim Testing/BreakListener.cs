@@ -43,7 +43,6 @@ namespace Event
         // all death sequences for the enemy that has died
         void OnUnitDied(BreakableDestroyedEventInfo breakableDestroyedEventInfo)
         {
-            Debug.Log("died");
             RefreshEnemyArrays(breakableDestroyedEventInfo);
             StartCoroutine(DestroyEnemy(breakableDestroyedEventInfo));
         }
@@ -53,7 +52,6 @@ namespace Event
         {
             if (isServer)
             {
-                Debug.Log("destroy");
                 float timer = breakableDestroyedEventInfo.RespawnTimer;
                 // Fetches the enemyinfo script from the enemy
                 breakableInfo = breakableDestroyedEventInfo.EventUnitGo.transform.GetComponent<BreakableInfo>();
