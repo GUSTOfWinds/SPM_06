@@ -803,7 +803,7 @@ MonoBehaviour:
   isBoss: 1
   roaming: 0
   roamingRange: 20
-  aggroRange: 60
+  aggroRange: 30
   itemDrop: {fileID: 0}
   dropChance: 0
   respawnTime: 99999999
@@ -8998,10 +8998,6 @@ PrefabInstance:
       propertyPath: sceneId
       value: 2914997009
       objectReference: {fileID: 0}
-    - target: {fileID: -3688838473506855825, guid: eb119f04fdeaedb41a63d969eec1c0fc, type: 3}
-      propertyPath: serverOnly
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3740169863694480178, guid: eb119f04fdeaedb41a63d969eec1c0fc, type: 3}
       propertyPath: m_Name
       value: BreakableObjectEventHandler
@@ -13615,7 +13611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1685426733795514, guid: f31c6bb6e68212e41b0bcae74612a240, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4538438218131234, guid: f31c6bb6e68212e41b0bcae74612a240, type: 3}
       propertyPath: m_RootOrder
