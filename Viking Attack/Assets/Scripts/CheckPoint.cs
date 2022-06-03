@@ -8,7 +8,6 @@ public class CheckPoint : MonoBehaviour
  
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Player is here");
         if (other.CompareTag("Player"))
         {
             //change the respawn position for all player
