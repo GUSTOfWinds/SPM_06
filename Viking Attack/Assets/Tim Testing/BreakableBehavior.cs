@@ -16,9 +16,10 @@ public class BreakableBehavior : NetworkBehaviour
     public GameObject fractured;
 
     // Start is called before the first frame update
-    
+
     public void Break()
     {
+        
         sphereColliders =
                     Physics.OverlapSphere(transform.position, 20f, layerMask);
         foreach (var coll in sphereColliders)

@@ -6,11 +6,12 @@ using ItemNamespace;
 using Mirror;
 using UnityEngine;
 
-public class BreakableToolTip : MonoBehaviour
+public class BreakableToolTip : NetworkBehaviour
 {
     [SerializeField] private GameObject[] players;
     [SerializeField] private string text;
     private GameObject tipText;
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,8 +43,4 @@ public class BreakableToolTip : MonoBehaviour
         tipText.SetActive(false);
     }
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
