@@ -25,15 +25,15 @@ public class BreakableBehavior : NetworkBehaviour
         foreach (var coll in sphereColliders)
         {
             // Updates both the client and the player
-            RpcIncreaseExperience(coll.gameObject, 7f);
+            CmdIncreaseExperience(coll.gameObject, 7f);
             coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(7f);
         }
 
         this.OnDeath?.Invoke(this);
         Die();
     }
-    [ClientRpc]
-    private void RpcIncreaseExperience(GameObject player, float exp)
+    [Command]
+    private void CmdIncreaseExperience(GameObject player, float exp)
     {
         if (isClientOnly) {player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(exp); }
         
