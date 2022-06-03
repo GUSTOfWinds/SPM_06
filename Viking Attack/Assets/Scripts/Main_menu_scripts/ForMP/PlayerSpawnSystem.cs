@@ -28,7 +28,7 @@ public class PlayerSpawnSystem : NetworkBehaviour
     {
         PlayerList = players;
 
-        for (int i = 0; i < players.Count; i++)
+        for (int i = players.Count-1; i >= 0; i--)
         {
             players[i].transform.position = spawnPoints[i].transform.position;
             players[i].transform.rotation = spawnPoints[i].transform.rotation;
