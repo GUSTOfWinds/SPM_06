@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Event;
 using ItemNamespace;
-using Mirror;
 using UnityEngine;
 
-public class BreakableToolTip : NetworkBehaviour
+public class BreakableToolTip : MonoBehaviour
 {
     [SerializeField] private GameObject[] players;
     [SerializeField] private string text;
