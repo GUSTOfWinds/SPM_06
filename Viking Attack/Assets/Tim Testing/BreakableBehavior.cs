@@ -24,6 +24,7 @@ public class BreakableBehavior : NetworkBehaviour
                     Physics.OverlapSphere(transform.position, 20f, layerMask);
         foreach (var coll in sphereColliders)
         {
+            
             // Updates both the client and the player
             RpcIncreaseExperience(coll.gameObject, 7f);
             coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(7f);
@@ -35,12 +36,12 @@ public class BreakableBehavior : NetworkBehaviour
     [ClientRpc]
     private void RpcIncreaseExperience(GameObject player, float exp)
     {
-        if (isClientOnly) {player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(exp); }
-        
+        player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(7f);
+
     }
     private void Start()
     {
-        render.enabled = true;
+        //render.enabled = true;
     }
 
 
@@ -54,7 +55,7 @@ public class BreakableBehavior : NetworkBehaviour
         {
             EventUnitGo = gameObject,
             EventDescription = "Unit " + gameObject.name + " has died.",
-            RespawnTimer = waitTime
+            RespawnTimer = waitTime,
         };
         Instantiate(fractured, transform.position, Quaternion.identity);
         EventSystem.Current.FireEvent(breakableDestroyedEventInfo);

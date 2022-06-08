@@ -5,7 +5,6 @@ using ItemNamespace;
 using UnityEngine;
 using Mirror;
 using UnityEditor;
-using Random = UnityEngine.Random;
 
 namespace Event
 {
@@ -21,13 +20,13 @@ namespace Event
 
         private void Start()
         {
-            StartCoroutine(FetchInitialEnemies());
+            StartCoroutine(FetchInitialBreakables());
             EventSystem.Current.RegisterListener<BreakableDestroyedEventInfo>(OnUnitDied, ref breakEventGuid);
             EventSystem.Current.RegisterListener<BreakableRespawnEventInfo>(OnUnitRespawn, ref respawnObjectEventGuid);
         }
 
         // Will at start get all enemies in the scene
-        private IEnumerator FetchInitialEnemies()
+        private IEnumerator FetchInitialBreakables()
         {
             yield return new WaitForSeconds(1);
             objects = GameObject.FindGameObjectsWithTag("Breakable");
@@ -43,15 +42,16 @@ namespace Event
         // all death sequences for the enemy that has died
         void OnUnitDied(BreakableDestroyedEventInfo breakableDestroyedEventInfo)
         {
-            RefreshEnemyArrays(breakableDestroyedEventInfo);
-            StartCoroutine(DestroyEnemy(breakableDestroyedEventInfo));
+            RefreshBreakableArrays(breakableDestroyedEventInfo);
+            StartCoroutine(DestroyBreakable(breakableDestroyedEventInfo));
         }
 
 
-        IEnumerator DestroyEnemy(BreakableDestroyedEventInfo breakableDestroyedEventInfo)
+        IEnumerator DestroyBreakable(BreakableDestroyedEventInfo breakableDestroyedEventInfo)
         {
             if (isServer)
             {
+                Debug.Log("destroy");
                 float timer = breakableDestroyedEventInfo.RespawnTimer;
                 // Fetches the enemyinfo script from the enemy
                 breakableInfo = breakableDestroyedEventInfo.EventUnitGo.transform.GetComponent<BreakableInfo>();
@@ -64,7 +64,6 @@ namespace Event
 
                 // Destroys the enemy
                 NetworkServer.Destroy(breakableDestroyedEventInfo.EventUnitGo);
-
                 yield return new WaitForSeconds(timer);
 
                 // Respawns the enemy at the same spawner after the timer that has been set in event info
@@ -84,7 +83,7 @@ namespace Event
             EventSystem.Current.FireEvent(unitRespawnInfo);
         }
 
-        private void RefreshEnemyArrays(BreakableDestroyedEventInfo breakableDestroyedEventInfo)
+        private void RefreshBreakableArrays(BreakableDestroyedEventInfo breakableDestroyedEventInfo)
         {
             objects = GameObject.FindGameObjectsWithTag("Breakable");
             for (int i = 0; i < objects.Length; i++)
