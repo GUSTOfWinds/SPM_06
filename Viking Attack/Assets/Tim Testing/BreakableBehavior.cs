@@ -59,7 +59,8 @@ public class BreakableBehavior : NetworkBehaviour
             EventDescription = "Unit " + gameObject.name + " has died.",
             RespawnTimer = waitTime,
         };
-        Instantiate(fractured, transform.position, Quaternion.identity);
+        GameObject fractur = Instantiate(fractured, transform.position, Quaternion.identity);
+        NetworkServer.Spawn(fractur);
         EventSystem.Current.FireEvent(breakableDestroyedEventInfo);
     }
 
