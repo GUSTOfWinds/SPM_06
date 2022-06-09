@@ -37,6 +37,8 @@ public class BreakableBehavior : NetworkBehaviour
     private void RpcIncreaseExperience(GameObject player, float exp)
     {
         player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(7f);
+        
+
 
     }
     [Command(requiresAuthority = false)]

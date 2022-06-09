@@ -41,5 +41,9 @@ public class BreakableToolTip : MonoBehaviour
         tipText = other.transform.Find("UI").gameObject.transform.Find("TipBreakable").gameObject;
         tipText.SetActive(false);
     }
+    public void OnDestroy()
+    {
+        tipText.SetActive(false);
+    }
     // Update is called once per frame
 }
