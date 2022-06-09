@@ -39,6 +39,8 @@ public class BreakableBehavior : NetworkBehaviour
         player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(7f);
 
     }
+    [Command(requiresAuthority = false)]
+    public void CmdBreak() => Break();
     private void Start()
     {
         //render.enabled = true;
