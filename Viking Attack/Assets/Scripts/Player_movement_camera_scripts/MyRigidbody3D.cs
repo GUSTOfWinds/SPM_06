@@ -25,6 +25,13 @@ public class MyRigidbody3D : NetworkBehaviour
     [SyncVar] private Vector3 syncPosition;
     //syncRotation syncs the player rotation to the server
     [SyncVar] private Quaternion syncRotation;
+    
+    /*
+     * @author Martin kings
+     */
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] audioClips;
+    
 
     void Awake()
     {
@@ -60,13 +67,54 @@ public class MyRigidbody3D : NetworkBehaviour
         UpdateVelocity();
         UpdateVelocityTimes = 0;
 
+        // Plays walking and running sounds
+        PlayMovementSounds();
+
         //Add velocity variable to object position
         transform.position += velocity * Time.deltaTime;
 
         //Send command to server to change position and rotation
         CmdSetSynchedPosition(this.transform.position);
         CmdSetSynchedRotation(this.transform.rotation);
+
     }
+
+    /*
+     * @author Martin kings
+     */
+    
+    private void PlayMovementSounds()
+    {
+        
+        // Stops playing the audio if standing still
+        if (velocity.magnitude < 1)
+        {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+            audioSource.loop = false;
+            return;
+        }
+
+        // Plays the walking sound if walking and plays the running sound if running
+        if(velocity.magnitude > 1 && velocity.magnitude < 9)
+        {
+            audioSource.clip = audioClips[0];
+        }
+        else
+        {
+            audioSource.clip = audioClips[1];
+        }
+
+        if (audioSource.isPlaying == false)
+        {
+            audioSource.Play();
+        }
+
+        audioSource.loop = true;
+    }
+    
 
     /**
     * @author Victor Wikner

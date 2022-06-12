@@ -111,6 +111,7 @@ namespace Inventory_scripts
                             gameObject.GetComponent<GlobalPlayerInfo>()
                                 .IncreaseArmorLevel(playerItemPickupEventInfo.itemBase.GetProtection);
                             armorDisplayText.text = gameObject.GetComponent<GlobalPlayerInfo>().GetArmorLevel().ToString();
+
                         }
                         else
                         {
@@ -502,12 +503,8 @@ namespace Inventory_scripts
             //if the item is Amor
             if (index == 4)
             {
-                sprites[4].SetActive(true);
-                sprites[4].GetComponent<Image>().sprite = inventory[4].GetSprite;
-                gameObject.GetComponent<GlobalPlayerInfo>().IncreaseArmorLevel(inventory[index].GetProtection);
-                gameObject.GetComponent<GlobalPlayerInfo>()
-                    .SetItemSlot(4, inventory[4]);
-                return;
+                armorDisplayText.text = gameObject.GetComponent<GlobalPlayerInfo>().GetArmorLevel().ToString();
+                return;   
             }
 
             sprites[index].SetActive(true);

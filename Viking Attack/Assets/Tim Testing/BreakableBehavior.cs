@@ -16,13 +16,15 @@ public class BreakableBehavior : NetworkBehaviour
     public GameObject fractured;
 
     // Start is called before the first frame update
-    
+
     public void Break()
     {
+        
         sphereColliders =
                     Physics.OverlapSphere(transform.position, 20f, layerMask);
         foreach (var coll in sphereColliders)
         {
+            
             // Updates both the client and the player
             RpcIncreaseExperience(coll.gameObject, 7f);
             coll.transform.GetComponent<GlobalPlayerInfo>().IncreaseExperience(7f);
@@ -34,12 +36,16 @@ public class BreakableBehavior : NetworkBehaviour
     [ClientRpc]
     private void RpcIncreaseExperience(GameObject player, float exp)
     {
-        if (isClientOnly) {player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(exp); }
+        player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(7f);
         
+
+
     }
+    [Command(requiresAuthority = false)]
+    public void CmdBreak() => Break();
     private void Start()
     {
-        render.enabled = true;
+        //render.enabled = true;
     }
 
 
@@ -53,9 +59,10 @@ public class BreakableBehavior : NetworkBehaviour
         {
             EventUnitGo = gameObject,
             EventDescription = "Unit " + gameObject.name + " has died.",
-            RespawnTimer = waitTime
+            RespawnTimer = waitTime,
         };
-        Instantiate(fractured, transform.position, Quaternion.identity);
+        GameObject fractur = Instantiate(fractured, transform.position, Quaternion.identity);
+        NetworkServer.Spawn(fractur);
         EventSystem.Current.FireEvent(breakableDestroyedEventInfo);
     }
 

@@ -1,4 +1,5 @@
 using Mirror;
+using System.Collections;
 using UnityEngine;
 
 
@@ -17,6 +18,9 @@ using UnityEngine;
             {
                 minimapCamera.transform.SetParent(transform);
                 minimapCamera.transform.localPosition = new Vector3(0, 200, 0);
-            }
+                minimapCamera.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+
         }
-    }
+        }
+
+}

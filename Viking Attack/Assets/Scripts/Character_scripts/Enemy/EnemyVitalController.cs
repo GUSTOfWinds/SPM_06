@@ -112,7 +112,9 @@ public class EnemyVitalController : NetworkBehaviour
                 }
 
                 StartCoroutine(BlinkOnHit());
+                RpcBlinkOnHit();
 
+                RpcFixMaxHealth();
                 RpcPlayHitSound(); // Plays for client
                 PlayHitSound();
                 EventInfo enemyTakesDamage = new EnemyHitEvent
@@ -162,6 +164,7 @@ public class EnemyVitalController : NetworkBehaviour
             if (currentHealth <= 0f)
             {
                 StartCoroutine(BlinkOnHit());
+                RpcBlinkOnHit();
 
                 sphereColliders =
                     Physics.OverlapSphere(transform.position, characterBase.GetExperienceRadius(), layerMask);
@@ -184,11 +187,16 @@ public class EnemyVitalController : NetworkBehaviour
             CmdUpdateHealth(change);
     }
     
+    [ClientRpc]
+    private void RpcBlinkOnHit()
+    {
+        if (!isServer)
+        {
+            StartCoroutine(BlinkOnHit());
+        }
+    }
     private IEnumerator BlinkOnHit()
     {
-        /*
-            @Author Love Strignert - lost9373
-        */
         Material[] temp = skinnedMeshRenderer.materials;
         skinnedMeshRenderer.materials = materialsWhenHit;
         yield return new WaitForSeconds(0.1f);
@@ -206,9 +214,6 @@ public class EnemyVitalController : NetworkBehaviour
 
     private void PlayHitSound()
     {
-        /*
-            @Author Love Strignert - lost9373
-        */
         if (hitSound != null)
         {
             audioSource.PlayOneShot(hitSound);
@@ -220,6 +225,12 @@ public class EnemyVitalController : NetworkBehaviour
     private void RpcIncreaseExperience(GameObject player, float exp)
     {
         player.GetComponent<GlobalPlayerInfo>().IncreaseExperience(exp);
+    }
+
+    [ClientRpc]
+    private void RpcFixMaxHealth()
+    {
+        maxHealth = gameObject.GetComponent<EnemyInfo>().maxHealth;
     }
 
     public float GetCurrentHealth()

@@ -5,20 +5,26 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     // Start is called before the first frame update
-    public void OnHit(GameObject other)
+ 
+    public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             //change the respawn position for all player
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            foreach(GameObject p in players)
+            foreach (GameObject p in players)
             {
                 p.GetComponent<KillPlayer>().ChangeRespawnPoint(gameObject.transform.position, false);
             }
-            Destroy(gameObject);
+            //First destory collider, the player may interact with runestone now 
+            Destroy(gameObject.GetComponent<BoxCollider>());
+            Invoke("DisableVFX", 2f);
         }
     }
-    
-    
-    
+
+    private void DisableVFX()
+    {
+        Destroy(gameObject);
+    }
+
 }

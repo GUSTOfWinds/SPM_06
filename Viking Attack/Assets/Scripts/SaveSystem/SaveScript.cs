@@ -11,11 +11,7 @@ using ItemNamespace;
 
 public class SaveScript : NetworkBehaviour
 {
-    int intToSave;
-    float floatToSave;
-    bool boolToSave;
     private string saveFileName = "/playedData.dat";
-    private PlayerInventory hostInventory;
     private bool isLoadFromFile;
     private GameObject theHost;
     private string hostName;
@@ -31,11 +27,8 @@ public class SaveScript : NetworkBehaviour
         isLoadFromFile = false;
 
     }
-    public void setLoadFromFile()
-    {
-
-    }
-    public void setHost(GameObject obj)
+ 
+    public void SetHost(GameObject obj)
     {
         theHost = obj;
     }
@@ -94,7 +87,14 @@ public class SaveScript : NetworkBehaviour
                 savePlayer.clientData.Add(name, dataToSave);
             }
         }
-
+        // save armor information
+        GameObject[] armors = GameObject.FindGameObjectsWithTag("Armor");
+        foreach(var ar in armors)
+        {
+            savePlayer.armorsPos.Add(ar.gameObject.transform.position.x);
+        }
+      
+        Debug.Log("Armor is savd");
 
         Debug.Log(Application.persistentDataPath); //print the path   
         if (Directory.Exists(Application.persistentDataPath + saveFileName))//if we have a file there
@@ -113,14 +113,27 @@ public class SaveScript : NetworkBehaviour
     public void LoadGame()
     {
 
-        //TO DO 
-        //return when no player is found
+       
+       
         if (File.Exists(Application.persistentDataPath + saveFileName))
         { //Calls when we are in game, and the hots name is already updated      
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + saveFileName, FileMode.Open);
             SaveData playerData = (SaveData)bf.Deserialize(file);
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            //return when no player is found
+            if (players.Length < 1)
+            {
+                Debug.LogError("No player found");
+                return;
+            }
+            //only host can press load
+            if(playerData.hostName != PlayerPrefs.GetString("PlayerName"))
+            {
+                //if the svaed data doesn't contain this  host's infotmation
+                Debug.LogError("No data found");
+                return;
+            }
             hostName = playerData.hostName;
             foreach (var t in players)
             {
@@ -141,8 +154,7 @@ public class SaveScript : NetworkBehaviour
                 t.GetComponent<PlayerInventory>().RefreshHotbar();
                 for (int j = 0; j < playerData.playerInventory[playerName].Count; j++)
                 {
-                    //TO DO dropItem 
-                    //Add to item list if is already gained 
+
 
                     if (playerData.playerInventory[playerName][j])
                     {
@@ -160,6 +172,8 @@ public class SaveScript : NetworkBehaviour
               
                     }
                 }//for j all player inventory items
+                 //uppdate player armor
+                t.GetComponent<PlayerInventory>().UpdateHeldItem(4);
             }
             //check if we have the key in the saving file, destory the key in the current scen
            if((string)playerData.hostData[hostName]["isKeyFound"] == "True")
@@ -183,6 +197,16 @@ public class SaveScript : NetworkBehaviour
                         //Maybe we can call death event here. 
                         NetworkServer.Destroy(e);
                     }
+                }
+            }
+            //check armors in the game world and armors in saved file
+            GameObject[] armors = GameObject.FindGameObjectsWithTag("Armor");
+            foreach(var armor in armors)
+            {
+                if (!playerData.armorsPos.Contains(armor.gameObject.transform.position.x))
+                {
+                    //destory this armor if is not saved in file
+                    Destroy(armor.gameObject);
                 }
             }
 
@@ -245,6 +269,7 @@ public class SaveData
     public Dictionary<String, Dictionary<String, System.Object>> hostData = new Dictionary<string, Dictionary<string, object>>(); //all the information about the host
     public Dictionary<String, Dictionary<String, System.Object>> clientData = new Dictionary<string, Dictionary<string, object>>();// all th information about clients
     public Dictionary<string, Dictionary<int, bool>> playerInventory = new Dictionary<string, Dictionary<int, bool>>(); //player's name and the "isSpritActiv" 
+    public HashSet<float> armorsPos = new HashSet<float>(); //sava the world position x of all armors which not has been picked up by players
 
 }
 

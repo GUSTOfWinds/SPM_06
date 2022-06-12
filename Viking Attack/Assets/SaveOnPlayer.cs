@@ -3,8 +3,6 @@ using UnityEngine;
 public class SaveOnPlayer : MonoBehaviour
 {
     private GameObject saveManager;
-    [SerializeField] GameObject saveSuccessPanel;
-    [SerializeField] GameObject menyPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +17,9 @@ public class SaveOnPlayer : MonoBehaviour
 
     public void OnSaveClickFc()
     {
-        saveManager.GetComponent<SaveScript>().setHost(gameObject);
+        saveManager.GetComponent<SaveScript>().SetHost(gameObject);
         saveManager.GetComponent<SaveScript>().SaveGame();
-        // TO DO a new UI which is not a child to menyPnael 
-        //if the data has been saved, show this panel
-        //saveSuccessPanel.SetActive(true);
-        //Invoke("hideSuccessPanel", 0.5f);
+
     }
 
     public void OnLoadClickFc()
@@ -32,11 +27,7 @@ public class SaveOnPlayer : MonoBehaviour
         saveManager.GetComponent<SaveScript>().LoadGame();
     }
 
-    private void hideSuccessPanel()
-    {
-        //hide successpanel after 1s 
-        saveSuccessPanel.SetActive(false);
-    }
+
     public void OnExit()
     {
         Application.Quit();

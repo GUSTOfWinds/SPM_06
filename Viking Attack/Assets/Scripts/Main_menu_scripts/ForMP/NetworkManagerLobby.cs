@@ -28,6 +28,8 @@ public class NetworkManagerLobby : NetworkManager
     [SerializeField] private GameObject playerPrefabFinalUse;
 
 
+    private bool SceneChanged;
+
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
     public static event Action<NetworkConnectionToClient, List<GameObject>> OnServerReadied;
@@ -39,6 +41,8 @@ public class NetworkManagerLobby : NetworkManager
         spawnPrefabs = spawnablePrefabs;
 
     }
+    
+
 
     public override void OnStartServer()
     {
@@ -73,6 +77,10 @@ public class NetworkManagerLobby : NetworkManager
         conn.Send(characterInfo);
 
         OnClientConnected?.Invoke();
+        if (SceneChanged == true)
+        {
+            ServerChangeScene(mapToLoad);
+        }
     }
 
     //removes client on disconnect
@@ -192,6 +200,7 @@ public class NetworkManagerLobby : NetworkManager
         if (SceneManager.GetActiveScene().path == menuScene)
         {
             if (!IsReadyToStart()) return;
+            SceneChanged = true;
             ServerChangeScene(mapToLoad);
         }
     }
@@ -242,8 +251,19 @@ public class NetworkManagerLobby : NetworkManager
     {
         //if (!sceneName.Contains("Scene_Map")) return;
         var conn = GamePlayers[0].connectionToClient;
+        
+        for (int i = GamePlayers.Count -1 ; i >= 0; i--)
+        {
+            NetworkGamePlayer currentSpot = GamePlayers[i];
+            conn = currentSpot.connectionToClient;
+            GameObject playerInGame = Instantiate(playerPrefabFinalUse);
+            playerInGame.GetComponent<GlobalPlayerInfo>().SetDisplayName(currentSpot.displayName);
+            playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(currentSpot.colour);
+            InGamePlayer.Add(playerInGame);
+            NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
+        }
 
-        foreach (var t in GamePlayers)
+        /*foreach (var t in GamePlayers)
         {
             conn = t.connectionToClient;
             GameObject playerInGame = Instantiate(playerPrefabFinalUse);
@@ -255,10 +275,15 @@ public class NetworkManagerLobby : NetworkManager
 
             InGamePlayer.Add(playerInGame);
             NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
-        }
+        }*/
         var playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
         NetworkServer.Spawn(playerSpawnSystemInstance);
+        /*for (int i = GamePlayers.Count -1 ; i >= 0 ; i--)
+        {
+            Destroy(GamePlayers[i].gameObject);
+        }*/
 
+        //GamePlayers.Clear();
     }
 
     // for loading data By Jiang
