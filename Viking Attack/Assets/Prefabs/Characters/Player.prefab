@@ -183,7 +183,7 @@ RectTransform:
   m_GameObject: {fileID: 43435641070569803}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1.0000225}
+  m_LocalScale: {x: 6.3, y: 6.3, z: 1.0000225}
   m_Children:
   - {fileID: 2082415159619589730}
   - {fileID: 5798373809738419794}
@@ -1321,7 +1321,7 @@ RectTransform:
   m_GameObject: {fileID: 528471015254226524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1.0000225}
+  m_LocalScale: {x: 6.3, y: 6.3, z: 1.0000225}
   m_Children:
   - {fileID: 4797506394220186915}
   - {fileID: 1314603947972435220}
@@ -6640,13 +6640,14 @@ GameObject:
   - component: {fileID: 4153006826799068645}
   - component: {fileID: 5657057744554180920}
   - component: {fileID: 7525377836733022052}
+  - component: {fileID: 3509207554575499040}
   m_Layer: 5
   m_Name: LevelUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1142370859421082560
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6656,7 +6657,7 @@ RectTransform:
   m_GameObject: {fileID: 2385974264639349833}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5746027969364926702}
   - {fileID: 1307625578599723208}
@@ -6723,6 +6724,18 @@ MonoBehaviour:
   player: {fileID: 5988590173649968415}
   otherAnimator: {fileID: 34812485295750230}
   thirdAnimator: {fileID: 4348829571395229712}
+--- !u!114 &3509207554575499040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2385974264639349833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a61808b3657bdb42aaf94045e957106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2389605602016278584
 GameObject:
   m_ObjectHideFlags: 0
@@ -15042,7 +15055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2695977694989061664
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15063,8 +15076,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 553, y: 217}
-  m_SizeDelta: {x: 223.6477, y: 257.2909}
+  m_AnchoredPosition: {x: 539.2, y: 217}
+  m_SizeDelta: {x: 230.4, y: 257.2909}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &241154291480303769
 CanvasRenderer:
@@ -16868,7 +16881,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -8.0000725, y: -568.00995}
-  m_SizeDelta: {x: 559.73, y: 394}
+  m_SizeDelta: {x: 545.67, y: 394}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2714783005888943040
 CanvasRenderer:
@@ -23334,8 +23347,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.4500122, y: 1.7999878}
-  m_SizeDelta: {x: 445.59, y: 377.9}
+  m_AnchoredPosition: {x: -2.4559937, y: 0.3869934}
+  m_SizeDelta: {x: 432.672, y: 361.516}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &121774757431704852
 CanvasRenderer:
@@ -23486,8 +23499,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -54.79699, y: -14.4}
-  m_SizeDelta: {x: 413.855, y: 485.2699}
+  m_AnchoredPosition: {x: -56.7, y: -12}
+  m_SizeDelta: {x: 409.1, y: 485.2699}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1573677001007923001
 CanvasRenderer:
@@ -24522,7 +24535,7 @@ RectTransform:
   m_GameObject: {fileID: 8089786304148694616}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1.0000225}
+  m_LocalScale: {x: 6.3, y: 6.3, z: 1.0000225}
   m_Children:
   - {fileID: 7737464786071345324}
   - {fileID: 1001314832956807428}
