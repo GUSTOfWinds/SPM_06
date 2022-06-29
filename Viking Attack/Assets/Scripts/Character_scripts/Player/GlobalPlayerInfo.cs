@@ -35,6 +35,13 @@ public class GlobalPlayerInfo : NetworkBehaviour
     [SyncVar] [SerializeField] private float damage;
     [SyncVar] [SerializeField] private int meatStackNumber;
 
+    
+    
+    [SyncVar] public int ConnectionID;
+
+    [SyncVar] public int PlayerIdNumber;
+
+    [SyncVar] public ulong PlayerSteamID;
 
 
     [SyncVar] [SerializeField] private int armorLevel;

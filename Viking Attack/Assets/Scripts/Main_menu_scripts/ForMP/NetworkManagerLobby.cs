@@ -4,6 +4,7 @@ using System.Linq;
 using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Steamworks;
 /**
  * @author Victor Wikner
  */
@@ -38,7 +39,9 @@ public class NetworkManagerLobby : NetworkManager
     private void Start()
     {
         spawnPrefabs = spawnablePrefabs;
+
     }
+    
 
 
     public override void OnStartServer()
@@ -135,6 +138,11 @@ public class NetworkManagerLobby : NetworkManager
             roomPlayerInstance.IsLeader = isLeader;
             roomPlayerInstance.name = info.name;
             roomPlayerInstance.colour = info.playerColour;
+            roomPlayerInstance.ConnectionID = conn.connectionId;
+            roomPlayerInstance.PlayerIdNumber = RoomPlayers.Count;
+            roomPlayerInstance.PlayerSteamID =
+                (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)SteamLobby.Instance.CurrentLobbyID,
+                    RoomPlayers.Count);
 
             if (roomPlayerInstance.hasAuthority)
             {
@@ -210,6 +218,10 @@ public class NetworkManagerLobby : NetworkManager
                 var gamePlayerInstance = Instantiate(gamePlayerPrefab);
                 gamePlayerInstance.SetDisplayName(RoomPlayers[i].displayName);
                 gamePlayerInstance.SetSkinColour(RoomPlayers[i].colour);
+                gamePlayerInstance.ConnectionID = conn.connectionId;
+                gamePlayerInstance.PlayerIdNumber = RoomPlayers[i].PlayerIdNumber;
+                gamePlayerInstance.PlayerSteamID = RoomPlayers[i].PlayerSteamID;
+
 
                 //NetworkServer.Destroy(conn.identity.gameObject);
 
@@ -257,6 +269,10 @@ public class NetworkManagerLobby : NetworkManager
             GameObject playerInGame = Instantiate(playerPrefabFinalUse);
             playerInGame.GetComponent<GlobalPlayerInfo>().SetDisplayName(t.displayName);
             playerInGame.GetComponent<GlobalPlayerInfo>().SetSkinColour(t.colour);
+            playerInGame.GetComponent<GlobalPlayerInfo>().ConnectionID = t.ConnectionID;
+            playerInGame.GetComponent<GlobalPlayerInfo>().PlayerIdNumber = t.ConnectionID;
+            playerInGame.GetComponent<GlobalPlayerInfo>().PlayerSteamID = t.PlayerSteamID;
+
             InGamePlayer.Add(playerInGame);
             NetworkServer.ReplacePlayerForConnection(conn, playerInGame.gameObject, true);
         }*/

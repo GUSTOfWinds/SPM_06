@@ -13,7 +13,7 @@ using UnityEngine;
         //once host has started, we remove the landingPanels visibility
         public void HostLobby()
         {
-            networkManager.StartHost();
+            //networkManager.StartHost();
             landingPanel.SetActive(false);
         }
     }

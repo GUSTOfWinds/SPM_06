@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8910869769638421570}
   - component: {fileID: 7341497129982660151}
-  - component: {fileID: 2130335223947001309}
   - component: {fileID: 1697433109}
+  - component: {fileID: 1935880338}
+  - component: {fileID: 1935880339}
+  - component: {fileID: 1935880340}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -51,8 +53,8 @@ MonoBehaviour:
   serverTickRate: 60
   offlineScene: 
   onlineScene: Assets/Scenes/MaineMenu/MaineMenu_Lobby.unity
-  transport: {fileID: 2130335223947001309}
-  networkAddress: localhost
+  transport: {fileID: 1935880340}
+  networkAddress: 5
   maxConnections: 100
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 4178134505983114358, guid: bf76016401850694d988fe410a528477, type: 3}
@@ -72,6 +74,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 980946679800242412, guid: d7f26ace05397064f89d7a123c7bc52b, type: 3}
   menuScene: Assets/Scenes/MaineMenu/MaineMenu_Lobby.unity
   roomPlayerLobby: {fileID: 379527214673110172, guid: 9eca48aa3ba3f9a43ae082939a1e321f, type: 3}
   gamePlayerPrefab: {fileID: 5905042231322285479, guid: a981d4afc5b300845883915a214218c0, type: 3}
@@ -98,35 +101,6 @@ MonoBehaviour:
   landingPage: {fileID: 0}
   mapToLoad: TerrainIsland
   playerPrefabFinalUse: {fileID: 5988590173649968415, guid: 8f21620885d13714387404aeadb47b0b, type: 3}
---- !u!114 &2130335223947001309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2627643080200506126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Port: 7779
-  DualMode: 1
-  NoDelay: 1
-  Interval: 10
-  Timeout: 10000
-  FastResend: 2
-  CongestionWindow: 0
-  SendWindowSize: 4096
-  ReceiveWindowSize: 4096
-  MaxRetransmit: 40
-  NonAlloc: 1
-  MaximizeSendReceiveBuffersToOSLimit: 1
-  ReliableMaxMessageSize: 298449
-  UnreliableMaxMessageSize: 1199
-  debugLog: 0
-  statisticsGUI: 0
-  statisticsLog: 0
 --- !u!114 &1697433109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +117,45 @@ MonoBehaviour:
   rebuildInterval: 1
   checkMethod: 0
   showSlider: 0
+--- !u!114 &1935880338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2627643080200506126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a403b84af28d2174688fb021f741ecfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentLobbyID: 0
+  hostButton: {fileID: 0}
+--- !u!114 &1935880339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2627643080200506126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 410f47e7ddfccd2489396d38b0a08e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1935880340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2627643080200506126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e55fca1f4e4844593a3dd65a3ecb39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Channels: 0200000001000000
+  Timeout: 25
+  AllowSteamRelay: 1
+  UseNextGenSteamNetworking: 1
